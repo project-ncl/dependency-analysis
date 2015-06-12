@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.jboss</groupId>
-	<artifactId>dependency-analyzer</artifactId>
+	<groupId>org.jboss.da</groupId>
+	<artifactId>parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -16,8 +16,8 @@
 
 	<modules>
 
-		<module>dependency-analyzer-backend</module>
-		<module>dependency-analyzer-communication</module>
-		<module>dependency-analyzer-rest</module>
+		<module>backend</module>
+		<module>communication</module>
+		<module>rest</module>
 	</modules>
 </project>
