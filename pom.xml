@@ -16,8 +16,10 @@
 
 	<modules>
 
-		<module>backend</module>
 		<module>communication</module>
-		<module>rest</module>
+		<module>bc-backend</module>
+		<module>bc-rest</module>
+		<module>reports-backend</module>
+		<module>reports-rest</module>
 	</modules>
 </project>
