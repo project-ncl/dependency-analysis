@@ -8,14 +8,16 @@
     </parent>
     <artifactId>reports-backend</artifactId>
 
-
-
     <dependencies>
         <!-- Project modules -->
         <dependency>
             <groupId>org.jboss.da</groupId>
             <artifactId>communication</artifactId>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>

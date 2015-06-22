@@ -8,7 +8,6 @@
     </parent>
     <artifactId>bc-backend</artifactId>
 
-
     <dependencies>
         <!-- Project modules -->
         <dependency>
@@ -20,6 +19,10 @@
             <groupId>org.jboss.da</groupId>
             <artifactId>reports-backend</artifactId>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>
