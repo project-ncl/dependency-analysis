@@ -1,1 +1,1 @@
-# dependecy-analysis
+# dependency-analysis
