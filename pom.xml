@@ -26,9 +26,9 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.jboss.logging</groupId>
-				<artifactId>jboss-logging</artifactId>
-				<version>3.1.4.GA</version>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.7</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
