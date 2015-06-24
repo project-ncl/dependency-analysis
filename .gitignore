@@ -4,5 +4,5 @@
 .settings
 *~
 *.iml
-target
+*/target
 .idea
