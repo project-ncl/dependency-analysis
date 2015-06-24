@@ -13,6 +13,9 @@
             <groupId>org.jboss.da</groupId>
             <artifactId>reports-backend</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 </project>
