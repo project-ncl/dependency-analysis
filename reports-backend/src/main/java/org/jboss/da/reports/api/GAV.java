@@ -1,0 +1,25 @@
+package org.jboss.da.reports.api;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+/**
+ *
+ * @author Honza Brázdil <janinko.g@gmail.com>
+ */
+@RequiredArgsConstructor
+public class GAV {
+    
+    @Getter
+    @NonNull
+    private String groupId;
+    
+    @Getter
+    @NonNull
+    private String artifactId;
+    
+    @Getter
+    @NonNull
+    private String version;
+}
