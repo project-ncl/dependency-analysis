@@ -1,6 +1,7 @@
 package org.jboss.da.communcation.pnc.authentication;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -15,13 +16,18 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
-import org.jboss.da.communcation.pnc.ReadResource;
+import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.util.Configuration;
+
+import javax.inject.Inject;
 
 /**
- * Class obtained from pnc example on OAuth example on PNC:
+ * Class obtained from pnc example on OAuth example on PNCProducer:
  * https://github.com/project-ncl/pnc/blob/master/examples/oauth-client/src/main/java/org/jboss/pnc/auth/client/SimpleOAuthConnect.java
  */
 public class PNCAuthentication {
+
+    Configuration config = new Configuration();
 
     public static String getAccessToken(String url, Map<String, String> urlParams)
             throws ClientProtocolException, IOException {
@@ -103,22 +109,21 @@ public class PNCAuthentication {
 
     }
 
-    public static String authenticate() {
+    public String authenticate() {
         try {
-            String keycloakServer = ReadResource.getResource("keycloak_server");
-            String realm = ReadResource.getResource("keycloak_realm");
-            String clientId = ReadResource.getResource("keycloak_clientid");
-            String username = ReadResource.getResource("keycloak_username");
-            String password = ReadResource.getResource("keycloak_password");
+            DAConfig conf = config.getConfig();
+            String keycloakServer = conf.getKeycloakServer();
+            String realm = conf.getKeycloakRealm();
+            String clientId = conf.getKeycloakClientid();
+            String username = conf.getKeycloakUsername();
+            String password = conf.getKeycloakPassword();
 
             return PNCAuthentication.getAccessToken(
                     keycloakServer + "/auth/realms/" + realm + "/tokens/grants/access",
                     clientId, username, password);
         } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;

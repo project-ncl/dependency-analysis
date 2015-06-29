@@ -1,16 +1,16 @@
 package org.jboss.da.communcation.pnc.authentication;
 
-import org.jboss.da.communcation.pnc.authentication.PNCAuthentication;
-
+import javax.inject.Inject;
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;
 import java.io.IOException;
 
 /**
- * Filter to add authorization header to all http requests to PNC
+ * Filter to add authorization header to all http requests to PNCProducer
  */
 public class PNCAuthFilter implements ClientRequestFilter {
 
+    PNCAuthentication pncAuthenticate = new PNCAuthentication();
     /**
      * It works by add the Authorization key, followed by "Bearer <token>"
      * to the http request
@@ -19,7 +19,7 @@ public class PNCAuthFilter implements ClientRequestFilter {
      * @throws IOException
      */
     public void filter(ClientRequestContext requestContext) throws IOException {
-        String token = PNCAuthentication.authenticate();
+        String token = pncAuthenticate.authenticate();
         requestContext.getHeaders().add("Authorization", "Bearer " + token);
     }
 }
