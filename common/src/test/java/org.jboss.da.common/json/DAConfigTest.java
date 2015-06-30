@@ -1,6 +1,7 @@
 package org.jboss.da.common.json;
 
 import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -29,8 +30,9 @@ public class DAConfigTest {
     }
 
     @Test
-    public void loadConfigProperly() {
+    public void loadConfigProperly() throws ConfigurationParseException {
         Configuration config = new Configuration();
+
         DAConfig depAnalysisConfig = config.getConfig();
         assertEquals("keycloak-server", depAnalysisConfig.getKeycloakServer());
         assertEquals("keycloak-realm", depAnalysisConfig.getKeycloakRealm());

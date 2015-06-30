@@ -8,14 +8,13 @@ import org.jboss.da.common.json.DAConfig;
 public class Configuration {
     private static final String CONFIG_SYSPROP = "da-config-file";
 
-    public DAConfig getConfig() {
+    public DAConfig getConfig() throws ConfigurationParseException {
 
         try(InputStream configStream = getConfigStream()) {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(getConfigStream(), DAConfig.class);
-        } catch (IOException e) {
-            // TODO: write a proper exception class later
-            return null;
+        } catch (Exception e) {
+            throw new ConfigurationParseException(e.getMessage());
         }
     }
 

@@ -1,6 +1,6 @@
 package org.jboss.da.common.json;
 
-public class DAConfig {
+public class DAConfig implements AutoCloseable {
     private String keycloakServer;
     private String keycloakClientid;
     private String keycloakUsername;
@@ -32,4 +32,5 @@ public class DAConfig {
         return keycloakRealm;
     }
 
+    public void close() {}
 }

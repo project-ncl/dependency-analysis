@@ -18,6 +18,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
 
 import javax.inject.Inject;
 
@@ -110,8 +111,7 @@ public class PNCAuthentication {
     }
 
     public String authenticate() {
-        try {
-            DAConfig conf = config.getConfig();
+        try(DAConfig conf = config.getConfig()) {
             String keycloakServer = conf.getKeycloakServer();
             String realm = conf.getKeycloakRealm();
             String clientId = conf.getKeycloakClientid();
@@ -124,6 +124,8 @@ public class PNCAuthentication {
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ConfigurationParseException e) {
             e.printStackTrace();
         }
         return null;
