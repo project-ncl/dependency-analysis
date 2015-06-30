@@ -35,15 +35,13 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
     }
 
     @Override
-    public T getArtifactByGAV(String groupId, String artifactId, String version) {
-        return getDAO().findArtifactByGAV(groupId, artifactId, version);
+    public T getArtifact(String groupId, String artifactId, String version) {
+        return getDAO().findArtifact(groupId, artifactId, version);
     }
 
     @Override
-    public boolean isArtifactByGAV(String groupId, String artifactId, String version) {
-        if (getDAO().findArtifactByGAV(groupId, artifactId, version) != null)
-            return true;
-        return false;
+    public boolean isArtifactPresent(String groupId, String artifactId, String version) {
+        return (getDAO().findArtifact(groupId, artifactId, version) != null);
     }
 
     @Override

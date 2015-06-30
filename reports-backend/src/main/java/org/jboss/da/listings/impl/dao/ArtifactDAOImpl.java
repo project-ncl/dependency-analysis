@@ -23,7 +23,7 @@ public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> imple
         super(clazz);
     }
 
-    public T findArtifactByGAV(String groupId, String artifactId, String version) {
+    public T findArtifact(String groupId, String artifactId, String version) {
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<T> cq = cb.createQuery(type);
@@ -35,9 +35,8 @@ public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> imple
             TypedQuery<T> q = em.createQuery(cq);
             return q.getSingleResult();
         } catch (NoResultException e) {
-            // ok
+            return null;
         }
-        return null;
     }
 
     public List<T> findAll() {

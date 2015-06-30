@@ -28,7 +28,7 @@ public interface ArtifactService<T extends Artifact> {
      * @param version
      * @return
      */
-    T getArtifactByGAV(String groupId, String artifactId, String version);
+    T getArtifact(String groupId, String artifactId, String version);
 
     /**
      * Finds if list contains artifact with specific groupId, artifactId and verison.
@@ -38,7 +38,7 @@ public interface ArtifactService<T extends Artifact> {
      * @param version
      * @return True or false if list contains artifact.
      */
-    boolean isArtifactByGAV(String groupId, String artifactId, String version);
+    boolean isArtifactPresent(String groupId, String artifactId, String version);
 
     /**
      * Finds and return all artifacts.

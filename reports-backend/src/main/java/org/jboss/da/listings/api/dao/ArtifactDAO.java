@@ -19,7 +19,7 @@ public interface ArtifactDAO<T extends Artifact> extends GenericDAO<T> {
      * @param version Version of desired artifact.s
      * @return Found artifact or null when not found.
      */
-    T findArtifactByGAV(String groupId, String artifactId, String version);
+    T findArtifact(String groupId, String artifactId, String version);
 
     /**
      * Finds and return all artifacts.
