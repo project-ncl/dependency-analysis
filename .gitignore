@@ -3,6 +3,7 @@
 .project
 .settings
 *~
-*.iml
 */target
+/target/
+*.iml
 .idea
