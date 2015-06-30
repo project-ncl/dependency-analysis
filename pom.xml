@@ -22,6 +22,7 @@
         <module>bc-rest</module>
         <module>reports-backend</module>
         <module>reports-rest</module>
+        <module>application</module>
     </modules>
 
     <developers>
@@ -67,26 +68,31 @@
                 <groupId>org.jboss.da</groupId>
                 <artifactId>communication</artifactId>
                 <version>${version.da}</version>
+                <type>ejb</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.da</groupId>
                 <artifactId>bc-backend</artifactId>
                 <version>${version.da}</version>
+                <type>ejb</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.da</groupId>
                 <artifactId>bc-rest</artifactId>
                 <version>${version.da}</version>
+                <type>ejb</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.da</groupId>
                 <artifactId>reports-backend</artifactId>
                 <version>${version.da}</version>
+                <type>ejb</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.da</groupId>
                 <artifactId>reports-rest</artifactId>
                 <version>${version.da}</version>
+                <type>ejb</type>
             </dependency>
 
             <dependency>

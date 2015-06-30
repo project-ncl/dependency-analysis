@@ -8,12 +8,15 @@
     </parent>
 
     <artifactId>bc-rest</artifactId>
+	 <packaging>ejb</packaging>
 
     <dependencies>
         <dependency>
             <groupId>org.jboss.da</groupId>
             <artifactId>bc-backend</artifactId>
+            <type>ejb</type>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
