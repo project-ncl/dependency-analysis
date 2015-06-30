@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -22,14 +23,17 @@ import lombok.ToString;
 @MappedSuperclass
 public class Artifact extends GenericEntity {
 
+    @Setter
     @Getter
     @NonNull
     private String groupId;
 
+    @Setter
     @Getter
     @NonNull
     private String artifactId;
 
+    @Setter
     @Getter
     @NonNull
     private String version;
