@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
+    <display-name>test</display-name>
+    <module>
+        <ejb>${communication}</ejb>
+    </module>
+    <module>
+        <ejb>${bc-backend}</ejb>
+    </module>
+    <module>
+        <ejb>${reports-backend}</ejb>
+    </module>
+    <module>
+        <ejb>${bc-rest}</ejb>
+    </module>
+    <module>
+        <ejb>${reports-rest}</ejb>
+    </module>
+    <module>
+        <ejb>${testsuite}</ejb>
+    </module>
+    <library-directory>lib</library-directory>
+</application>
+
