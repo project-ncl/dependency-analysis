@@ -2,6 +2,7 @@ package org.jboss.da.listings.impl.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -22,16 +23,20 @@ public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> imple
         super(clazz);
     }
 
-    public T findArtifactByGAV(String groupId, String artifactId, String version) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<T> cq = cb.createQuery(type);
-        Root<T> artifact = cq.from(type);
-        cq.select(artifact).where(
-                cb.and(cb.equal(artifact.get("artifactId"), artifactId),
-                        cb.equal(artifact.get("groupId"), groupId),
-                        cb.equal(artifact.get("version"), version)));
-        TypedQuery<T> q = em.createQuery(cq);
-        return q.getSingleResult();
+    public T findArtifact(String groupId, String artifactId, String version) {
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<T> cq = cb.createQuery(type);
+            Root<T> artifact = cq.from(type);
+            cq.select(artifact).where(
+                    cb.and(cb.equal(artifact.get("artifactId"), artifactId),
+                            cb.equal(artifact.get("groupId"), groupId),
+                            cb.equal(artifact.get("version"), version)));
+            TypedQuery<T> q = em.createQuery(cq);
+            return q.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public List<T> findAll() {

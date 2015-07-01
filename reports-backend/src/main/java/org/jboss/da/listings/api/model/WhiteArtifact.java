@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
  * @author Jozef Mrazek <jmrazek@redhat.com>
  *
  */
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "groupId", "artifactId", "version" }))
 public class WhiteArtifact extends Artifact {
