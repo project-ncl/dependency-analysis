@@ -22,7 +22,8 @@ public class PNCProducer {
     public PNC getPNCInstance() {
         ResteasyClient client = new ResteasyClientBuilder().build();
 
-        try (DAConfig conf = config.getConfig()) {
+        try {
+            DAConfig conf = config.getConfig();
             // add authorization header for each REST request
             client.register(new PNCAuthFilter());
             String pncServer = config.getConfig().getPncServer();

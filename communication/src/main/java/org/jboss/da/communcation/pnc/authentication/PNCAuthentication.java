@@ -111,7 +111,8 @@ public class PNCAuthentication {
     }
 
     public String authenticate() {
-        try(DAConfig conf = config.getConfig()) {
+        try {
+            DAConfig conf = config.getConfig();
             String keycloakServer = conf.getKeycloakServer();
             String realm = conf.getKeycloakRealm();
             String clientId = conf.getKeycloakClientid();
