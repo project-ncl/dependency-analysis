@@ -18,7 +18,7 @@ public interface ArtifactService<T extends Artifact> {
      * @param artifactId
      * @param version
      */
-    void addArtifact(String groupId, String artifactId, String version);
+    boolean addArtifact(String groupId, String artifactId, String version);
 
     /**
      * Finds artifact by given group id, artifact id and version. When not found returns null.

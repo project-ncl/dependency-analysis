@@ -93,7 +93,7 @@
                 <groupId>org.jboss.da</groupId>
                 <artifactId>reports-rest</artifactId>
                 <version>${version.da}</version>
-                <type>ejb</type>
+                <type>war</type>
             </dependency>
 
             <dependency>
@@ -121,6 +121,13 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.16.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jaxrs</artifactId>
+                <version>2.3.5.Final</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
