@@ -8,9 +8,6 @@
         </dependencies>
     </sub-deployment>
     <sub-deployment name="reports-rest.war">
-        <dependencies>
-            <module name="deployment.dependency-analysis.ear.reports-backend.jar"/>
-        </dependencies>
     </sub-deployment>
     <sub-deployment name="reports-backend.jar">
         <dependencies>

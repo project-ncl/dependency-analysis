@@ -21,6 +21,7 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
         super(WhiteArtifact.class);
     }
 
+    @Inject
     private WhiteArtifactDAO artifactDAO;
 
     @Override
