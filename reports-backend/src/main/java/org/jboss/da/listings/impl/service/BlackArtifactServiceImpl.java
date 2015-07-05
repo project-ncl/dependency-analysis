@@ -21,7 +21,6 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
         super(BlackArtifact.class);
     }
 
-    @Inject
     private BlackArtifactDAO artifactDAO;
 
     @Override

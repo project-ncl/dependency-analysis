@@ -7,7 +7,7 @@
             <module name="deployment.dependency-analysis.ear.bc-backend.jar"/>
         </dependencies>
     </sub-deployment>
-    <sub-deployment name="reports-rest.jar">
+    <sub-deployment name="reports-rest.war">
         <dependencies>
             <module name="deployment.dependency-analysis.ear.reports-backend.jar"/>
         </dependencies>
