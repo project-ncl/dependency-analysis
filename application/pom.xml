@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.jboss.da</groupId>
             <artifactId>reports-rest</artifactId>
-            <type>ejb</type>
+            <type>war</type>
         </dependency>
     </dependencies>
 
@@ -83,10 +83,10 @@
                             <groupId>org.jboss.da</groupId>
                             <artifactId>reports-backend</artifactId>
                         </ejbModule>
-                        <ejbModule>
+                        <webModule>
                             <groupId>org.jboss.da</groupId>
                             <artifactId>reports-rest</artifactId>
-                        </ejbModule>
+                        </webModule>
                     </modules>
                     <fileNameMapping>no-version</fileNameMapping>
                     <outputDirectory>${outDirectory}</outputDirectory>
