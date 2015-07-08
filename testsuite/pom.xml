@@ -46,7 +46,7 @@
         <dependency>
             <groupId>org.jboss.da</groupId>
             <artifactId>reports-rest</artifactId>
-            <type>ejb</type>
+            <type>war</type>
         </dependency>
         <dependency>
             <groupId>org.jboss.da</groupId>
