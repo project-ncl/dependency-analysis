@@ -83,9 +83,7 @@ public class PNCAuthentication {
 
         String refreshToken = "";
         String accessToken = "";
-        try {
-            BufferedReader rd = new BufferedReader(
-                    new InputStreamReader(response.getEntity().getContent()));
+        try (BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()))) {
 
             String line = "";
             while ((line = rd.readLine()) != null) {
