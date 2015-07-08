@@ -1,0 +1,8 @@
+{
+  "keycloakServer": "keycloak-server",
+  "keycloakClientid": "keycloak-client-id",
+  "keycloakUsername": "keycloak-username",
+  "keycloakPassword": "keycloak-password",
+  "keycloakRealm": "keycloak-realm",
+  "pncServer": "pnc-server"
+}
