@@ -22,16 +22,21 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
     protected abstract ArtifactDAO<T> getDAO();
 
     @Override
-    public void addArtifact(String groupId, String artifactId, String version) {
+    public boolean addArtifact(String groupId, String artifactId, String version) {
+        if (getDAO().findArtifact(groupId, artifactId, version) != null) {
+            return false;
+        }
         try {
             T artifact = (T) type.newInstance();
             artifact.setArtifactId(artifactId);
             artifact.setGroupId(groupId);
             artifact.setVersion(version);
             getDAO().create(artifact);
+            return true;
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
