@@ -24,8 +24,6 @@ public class Configuration {
         if (configFileName == null) {
             configFileName = "da-config.json";
         }
-        // TODO: refactor with proper logger
-        System.out.println("Loading configuration from file: " + configFileName);
 
         //Try to open stream from full path
         File file = new File(configFileName);
