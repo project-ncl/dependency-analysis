@@ -8,23 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStage;
 
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
-@RunWith(Arquillian.class)
-public class AbstractArquillianTest {
+public abstract class AbstractArquillianTest {
     
     private static final String TEST_JAR = "testsuite.jar";
     
@@ -42,11 +38,22 @@ public class AbstractArquillianTest {
 
     private static final String TEST_PLACEHOLDER = "${testsuite}";
     
+    private static final String TYPE_WAR = "war";
+
+    private static final String TYPE_EJB = "ejb";
+
+    private static MavenStrategyStage mavenResolve(String groupId, String artifactId, String type){
+        return Maven.resolver().loadPomFromFile("../application/pom.xml").resolve(groupId + ":" + artifactId + ":"+type+":?");
+    }
+
     private static JavaArchive getModule(String groupId, String artifactId) {
-        File file = Maven.resolver().loadPomFromFile("../application/pom.xml")
-                .resolve(groupId + ":" + artifactId + ":ejb:?").withoutTransitivity()
-                .asSingleFile();
+        File file = mavenResolve(groupId, artifactId, "ejb").withoutTransitivity().asSingleFile();
         return ShrinkWrap.createFromZipFile(JavaArchive.class, file);
+    }
+
+    private static WebArchive getWebModule(String groupId, String artifactId) {
+        File file = mavenResolve(groupId, artifactId, "war").withoutTransitivity().asSingleFile();
+        return ShrinkWrap.createFromZipFile(WebArchive.class, file);
     }
 
     /**
@@ -90,9 +97,8 @@ public class AbstractArquillianTest {
      * Regex pattern for file name
      */
     private final static Pattern fileNamePattern = Pattern.compile("(^[a-z-]+[a-z])");
-    private static File[] getLibs(String groupId, String artifactId) {
-        File[] libs = Maven.resolver().loadPomFromFile("../application/pom.xml")
-                .resolve(groupId + ':' + artifactId + ":ejb:?").withTransitivity().asFile();
+    private static File[] getLibs(String groupId, String artifactId, String type) {
+        File[] libs = mavenResolve(groupId, artifactId, type).withTransitivity().asFile();
 
         List<File> libsList = new ArrayList<>();
         for (File f : libs) {
@@ -103,36 +109,35 @@ public class AbstractArquillianTest {
         }
         return libsList.toArray(new File[libsList.size()]);
     }
-    
-    public static JavaArchive prepareTestsuiteJar(){
+
+    private static JavaArchive prepareTestsuiteJar(){
         JavaArchive testsuiteJar = ShrinkWrap.create(JavaArchive.class, TEST_JAR);
         testsuiteJar.addPackages(true, "org.jboss.da.test");
         testsuiteJar.addAsManifestResource(new File("src/test/resources/META-INF/beans.xml"));
         return testsuiteJar;
     }
     
-    @Deployment
     public static EnterpriseArchive createDeployment() {
         JavaArchive communicationJar = getModule("org.jboss.da", "communication");
         JavaArchive bcBackendJar = getModule("org.jboss.da", "bc-backend");
         JavaArchive reportsBackendJar = getModule("org.jboss.da", "reports-backend");
         JavaArchive bcRestJar = getModule("org.jboss.da", "bc-rest");
-        JavaArchive reportsRestJar = getModule("org.jboss.da", "reports-rest");
+        WebArchive reportsRestJar = getWebModule("org.jboss.da", "reports-rest");
         
         JavaArchive testsuiteJar = prepareTestsuiteJar();
 
         String depStruct = prepareDeploymentStructure(communicationJar.getName(), bcBackendJar.getName(),
                 reportsBackendJar.getName(), bcRestJar.getName(), reportsRestJar.getName());
-        
+
         StringAsset deploymentStructure = new StringAsset(depStruct);
         
         
         EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, TEST_EAR);
-        ear.addAsLibraries(getLibs("org.jboss.da", "communication"));
-        ear.addAsLibraries(getLibs("org.jboss.da", "bc-backend"));
-        ear.addAsLibraries(getLibs("org.jboss.da", "reports-backend"));
-        ear.addAsLibraries(getLibs("org.jboss.da", "bc-rest"));
-        ear.addAsLibraries(getLibs("org.jboss.da", "reports-rest"));
+        ear.addAsLibraries(getLibs("org.jboss.da", "communication", TYPE_EJB));
+        ear.addAsLibraries(getLibs("org.jboss.da", "bc-backend", TYPE_EJB));
+        ear.addAsLibraries(getLibs("org.jboss.da", "reports-backend", TYPE_EJB));
+        ear.addAsLibraries(getLibs("org.jboss.da", "bc-rest", TYPE_EJB));
+        ear.addAsLibraries(getLibs("org.jboss.da", "reports-rest", TYPE_WAR));
         ear.addAsModule(testsuiteJar);
         ear.addAsModule(communicationJar);
         ear.addAsModule(bcBackendJar);
@@ -145,11 +150,6 @@ public class AbstractArquillianTest {
         ear.addAsManifestResource(deploymentStructure, "jboss-deployment-structure.xml");
 
         return ear;
-    }
-    
-    @Test
-    public void testTest() {
-        assertTrue(true);
     }
     
 }
