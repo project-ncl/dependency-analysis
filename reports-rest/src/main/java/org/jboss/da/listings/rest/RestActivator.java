@@ -8,6 +8,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import org.jboss.da.listings.rest.impl.ArtifactsImpl;
+import org.jboss.da.listings.rest.impl.RootImpl;
 
 /**
  * 

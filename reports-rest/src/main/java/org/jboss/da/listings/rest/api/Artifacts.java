@@ -3,6 +3,7 @@ package org.jboss.da.listings.rest.api;
 import java.util.Collection;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -57,4 +58,16 @@ public interface Artifacts {
     @Path("/blacklist")
     @Produces(MediaType.APPLICATION_JSON)
     Collection<RestArtifact> getAllBlackArtifacts();
+    
+    @DELETE
+    @Path("/white")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    SuccessResponse removeWhiteArtifact(RestArtifact artifact);
+
+    @DELETE
+    @Path("/black")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    SuccessResponse removeBlackArtifact(RestArtifact artifact);
 }

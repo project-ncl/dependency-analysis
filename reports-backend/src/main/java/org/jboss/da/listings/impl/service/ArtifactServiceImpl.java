@@ -53,4 +53,14 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
     public List<T> getAll() {
         return getDAO().findAll();
     }
+
+    @Override
+    public boolean removeArtifact(String groupId, String artifactId, String version) {
+        T artifact = getDAO().findArtifact(groupId, artifactId, version);
+        if (artifact != null) {
+            getDAO().delete(artifact);
+            return true;
+        }
+        return false;
+    }
 }
