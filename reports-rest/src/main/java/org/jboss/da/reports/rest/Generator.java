@@ -8,23 +8,17 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/generator")
-public class Generator {
+public interface Generator {
 
     @POST
     @Path("scm")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Report scmGenerator(SCMRequest scmRequest) {
-        // TODO: placeholder for now
-        return null;
-    }
+    public Report scmGenerator(SCMRequest scmRequest);
 
     @POST
     @Path("gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Report gavGenerator(GAVRequest gavRequest) {
-        // TODO: placeholder for now
-        return null;
-    }
+    public Report gavGenerator(GAVRequest gavRequest);
 }
