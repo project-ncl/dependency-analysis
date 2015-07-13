@@ -2,33 +2,20 @@
 
 target=localhost:8080/reports-rest/rest/listings
 
-testSuccess() {
-    echo '{
-        "success":true
-    }'
-}
-
-testContains() {
-    echo '{
-        "contains":true
-    }'
-}
-
-testNotContains() {
-    echo '{
-        "contains":false
-    }'
-}
-
-
 printUsage() {
-    echo "$0 (add|check) (b[lack]|w[hite]) GROUP_ID:ARTIFACT_ID:VERSION"
+    echo "$0 (add|delete|check) (b[lack]|w[hite]) GROUP_ID:ARTIFACT_ID:VERSION"
     echo "$0 list (b[lack]|w[hite])"
     exit
 }
 
 pretyprintGAV() {
-    python -m json.tool | egrep '"(artifact_id|group_id|version)"' | sed -r 's/ *"(artifact_id|group_id)": "([^"]*)",?/\2:/; s/ *"version": "([^"]*)",?/\1~/;' | tr -d "\n" | tr "~" "\n"
+    python -m json.tool | \
+        egrep '"(artifact_id|group_id|version)"' | \
+        sed -r 's/ *"group_id": "([^"]*)",?/g:\1\t/;
+                s/ *"artifact_id": "([^"]*)",?/a:\1\t/;
+                s/ *"version": "([^"]*)",?/v:\1\t~/;' | \
+        tr -d "\n" | tr "~" "\n" | \
+        sed -r 's/(g:([^\t]*)\t|a:([^\t]*)\t|v:([^\t]*)\t)*/\2:\3:\4/'
 }
 
 list() {
@@ -44,6 +31,18 @@ matchGAV() {
     groupId=`echo $1 | cut -f1 -d:`
     artifactId=`echo $1 | cut -f2 -d:`
     version=`echo $1 | cut -f3 -d:`
+}
+
+delete() {
+    matchGAV $1
+    tmpfile=`mktemp`
+    curl -s -H "Content-Type: application/json" -X DELETE -d '{"group_id":"'${groupId}'", "artifact_id":"'${artifactId}'", "version":"'${version}'"}' "$target/$color" > $tmpfile
+    if ! grep -q '"success":true' $tmpfile; then
+        echo "Error removing $groupId:$artifactId:$version"
+        cat $tmpfile
+        echo
+    fi
+    rm $tmpfile
 }
 
 add() {
@@ -91,6 +90,7 @@ esac
 
 case $action in
     add) add $3;;
+    delete) delete $3;;
     check) check $3;;
     list) list;;
     *) printUsage ;;
