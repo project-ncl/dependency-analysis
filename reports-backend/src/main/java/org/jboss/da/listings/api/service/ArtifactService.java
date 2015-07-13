@@ -46,5 +46,15 @@ public interface ArtifactService<T extends Artifact> {
      * @return List of found artifacts.
      */
     List<T> getAll();
+    
+    /**
+     * Remove artifact from list
+     * 
+     * @param groupId
+     * @param artifactId
+     * @param version
+     * @return
+     */
+    boolean removeArtifact(String groupId, String artifactId, String version);
 
 }

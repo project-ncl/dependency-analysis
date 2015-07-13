@@ -75,4 +75,22 @@ public class ArtifactsImpl implements Artifacts {
         return artifacts;
     }
 
+    @Override
+    public SuccessResponse removeWhiteArtifact(RestArtifact artifact) {
+        SuccessResponse response = new SuccessResponse();
+        response.setSuccess(whiteService.removeArtifact(artifact.getGroupId(),
+                artifact.getArtifactId(),
+                artifact.getVersion()));
+        return response;
+    }
+
+    @Override
+    public SuccessResponse removeBlackArtifact(RestArtifact artifact) {
+        SuccessResponse response = new SuccessResponse();
+        response.setSuccess(blackService.removeArtifact(artifact.getGroupId(),
+                artifact.getArtifactId(),
+                artifact.getVersion()));
+        return response;
+    }
+
 }

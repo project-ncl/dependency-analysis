@@ -1,4 +1,4 @@
-package org.jboss.da.listings.rest;
+package org.jboss.da.listings.rest.impl;
 
 import org.jboss.da.listings.rest.api.Root;
 
