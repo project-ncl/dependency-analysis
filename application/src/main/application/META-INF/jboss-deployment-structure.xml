@@ -25,6 +25,7 @@
     </sub-deployment>
     <sub-deployment name="communication.jar">
         <dependencies>
+            <module name="deployment.dependency-analysis.ear.common.jar"/>
         </dependencies>
     </sub-deployment>
 </jboss-deployment-structure>
