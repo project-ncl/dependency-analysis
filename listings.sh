@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target=localhost:8080/reports-rest/rest/listings
+target=10.3.10.85:8080/reports-rest/rest/listings
 
 printUsage() {
     echo "$0 (add|delete|check) (b[lack]|w[hite]) GROUP_ID:ARTIFACT_ID:VERSION"
@@ -10,9 +10,9 @@ printUsage() {
 
 pretyprintGAV() {
     python -m json.tool | \
-        egrep '"(artifact_id|group_id|version)"' | \
-        sed -r 's/ *"group_id": "([^"]*)",?/g:\1\t/;
-                s/ *"artifact_id": "([^"]*)",?/a:\1\t/;
+        egrep '"(artifactId|groupId|version)"' | \
+        sed -r 's/ *"groupId": "([^"]*)",?/g:\1\t/;
+                s/ *"artifactId": "([^"]*)",?/a:\1\t/;
                 s/ *"version": "([^"]*)",?/v:\1\t~/;' | \
         tr -d "\n" | tr "~" "\n" | \
         sed -r 's/(g:([^\t]*)\t|a:([^\t]*)\t|v:([^\t]*)\t)*/\2:\3:\4/'
@@ -36,7 +36,7 @@ matchGAV() {
 delete() {
     matchGAV $1
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X DELETE -d '{"group_id":"'${groupId}'", "artifact_id":"'${artifactId}'", "version":"'${version}'"}' "$target/$color" > $tmpfile
+    curl -s -H "Content-Type: application/json" -X DELETE -d '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"}' "$target/$color" > $tmpfile
     if ! grep -q '"success":true' $tmpfile; then
         echo "Error removing $groupId:$artifactId:$version"
         cat $tmpfile
@@ -48,7 +48,7 @@ delete() {
 add() {
     matchGAV $1
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X POST -d '{"group_id":"'${groupId}'", "artifact_id":"'${artifactId}'", "version":"'${version}'"}' "$target/$color" > $tmpfile
+    curl -s -H "Content-Type: application/json" -X POST -d '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"}' "$target/$color" > $tmpfile
     if ! grep -q '"success":true' $tmpfile; then
         echo "Error adding $groupId:$artifactId:$version"
         cat $tmpfile
