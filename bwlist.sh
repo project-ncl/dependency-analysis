@@ -11,7 +11,7 @@ printUsage() {
     echo "$0 list (b[lack]|w[hite])"
     echo "    List all artifacts in black or white list"
     echo "$0 pom [--no-transitive]";
-    echo "    Chech all dependencies from pom in working directory (using dependency:list) and print they Black/White list status"
+    echo "    Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status"
     exit
 }
 
