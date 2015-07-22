@@ -4,5 +4,6 @@
   "keycloakUsername": "",
   "keycloakPassword": "",
   "keycloakRealm": "",
-  "pncServer": ""
+  "pncServer": "",
+  "aproxServer":"http://10.3.8.115/api/group/public/"
 }
