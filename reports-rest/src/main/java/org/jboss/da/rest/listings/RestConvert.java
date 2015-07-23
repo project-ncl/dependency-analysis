@@ -1,19 +1,19 @@
-package org.jboss.da.listings.rest;
+package org.jboss.da.rest.listings;
+
+import org.jboss.da.listings.api.model.Artifact;
+import org.jboss.da.rest.listings.model.RestArtifact;
+
+import javax.enterprise.context.ApplicationScoped;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.ejb.Stateless;
-
-import org.jboss.da.listings.api.model.Artifact;
-import org.jboss.da.listings.rest.api.model.RestArtifact;
 
 /**
  * 
  * @author Jozef Mrazek <jmrazek@redhat.com>
  *
  */
-@Stateless
+@ApplicationScoped
 public class RestConvert {
 
     public <T extends Artifact> List<RestArtifact> toRestArtifacts(List<T> artifacts) {

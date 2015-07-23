@@ -1,4 +1,4 @@
-package org.jboss.da.listings.rest.api.model;
+package org.jboss.da.rest.listings.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,16 +16,16 @@ import lombok.ToString;
  * @author Jozef Mrazek <jmrazek@redhat.com>
  *
  */
-@XmlRootElement(name = "success")
+@XmlRootElement(name = "contains")
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class SuccessResponse {
+public class ContainsResponse {
 
     @Getter
     @Setter
-    @XmlElement(required = true, name = "success")
-    protected boolean success;
+    @XmlElement(required = true, name = "contains")
+    protected boolean contains;
 
 }

@@ -1,8 +1,10 @@
-package org.jboss.da.listings.rest.api;
+package org.jboss.da.rest.listings;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.rest.listings.model.ContainsResponse;
+import org.jboss.da.rest.listings.model.RestArtifact;
+import org.jboss.da.rest.listings.model.SuccessResponse;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -14,14 +16,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
-import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.WhiteArtifactService;
-import org.jboss.da.listings.rest.RestConvert;
-import org.jboss.da.listings.rest.api.model.ContainsResponse;
-import org.jboss.da.listings.rest.api.model.RestArtifact;
-import org.jboss.da.listings.rest.api.model.SuccessResponse;
 
 /**
  *
