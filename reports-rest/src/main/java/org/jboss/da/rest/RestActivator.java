@@ -1,14 +1,13 @@
-package org.jboss.da.listings.rest;
+package org.jboss.da.rest;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import org.jboss.da.rest.listings.ArtifactsImpl;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import org.jboss.da.listings.rest.impl.ArtifactsImpl;
-import org.jboss.da.listings.rest.impl.RootImpl;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 

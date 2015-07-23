@@ -1,4 +1,4 @@
-package org.jboss.da.listings.rest.api;
+package org.jboss.da.rest.listings.api;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

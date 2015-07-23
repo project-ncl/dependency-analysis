@@ -1,14 +1,17 @@
-package org.jboss.da.reports.rest;
+package org.jboss.da.rest.reports.api;
 
-import org.jboss.da.reports.rest.model.GAVRequest;
-import org.jboss.da.reports.rest.model.Report;
-import org.jboss.da.reports.rest.model.SCMRequest;
+import org.jboss.da.rest.reports.api.model.GAVRequest;
+import org.jboss.da.rest.reports.api.model.Report;
+import org.jboss.da.rest.reports.api.model.SCMRequest;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/generator")
-public interface Generator {
+@Path("/reports")
+public interface Reports {
 
     @POST
     @Path("scm")
@@ -21,4 +24,6 @@ public interface Generator {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Report gavGenerator(GAVRequest gavRequest);
+    
+
 }

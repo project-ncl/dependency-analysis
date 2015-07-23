@@ -1,18 +1,17 @@
-package org.jboss.da.listings.rest.impl;
+package org.jboss.da.rest.listings;
+
+import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.rest.listings.api.Artifacts;
+import org.jboss.da.rest.listings.api.model.ContainsResponse;
+import org.jboss.da.rest.listings.api.model.RestArtifact;
+import org.jboss.da.rest.listings.api.model.SuccessResponse;
+
+import javax.inject.Inject;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import javax.inject.Inject;
-
-import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.WhiteArtifactService;
-import org.jboss.da.listings.rest.RestConvert;
-import org.jboss.da.listings.rest.api.Artifacts;
-import org.jboss.da.listings.rest.api.model.ContainsResponse;
-import org.jboss.da.listings.rest.api.model.RestArtifact;
-import org.jboss.da.listings.rest.api.model.SuccessResponse;
 
 /**
  * 
@@ -22,7 +21,7 @@ import org.jboss.da.listings.rest.api.model.SuccessResponse;
 public class ArtifactsImpl implements Artifacts {
 
     @Inject
-    private RestConvert convert;
+    private RestListingsConvert convert;
 
     @Inject
     private WhiteArtifactService whiteService;

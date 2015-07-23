@@ -1,7 +1,8 @@
-package org.jboss.da.listings.rest.api.model;
+package org.jboss.da.rest.listings.api.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.EqualsAndHashCode;
@@ -15,23 +16,16 @@ import lombok.ToString;
  * @author Jozef Mrazek <jmrazek@redhat.com>
  *
  */
-@XmlRootElement(name = "artifact")
+@XmlRootElement(name = "contains")
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class RestArtifact {
+public class ContainsResponse {
 
     @Getter
     @Setter
-    protected String groupId;
-
-    @Getter
-    @Setter
-    protected String artifactId;
-
-    @Getter
-    @Setter
-    protected String version;
+    @XmlElement(required = true, name = "contains")
+    protected boolean contains;
 
 }

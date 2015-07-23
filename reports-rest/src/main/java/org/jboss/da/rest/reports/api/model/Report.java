@@ -1,4 +1,4 @@
-package org.jboss.da.reports.rest.model;
+package org.jboss.da.rest.reports.api.model;
 
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @XmlRootElement(name = "report")
 @XmlAccessorType(XmlAccessType.FIELD)
 @RequiredArgsConstructor
-public class GAVRequest {
+public class Report {
     
     @Getter
     @NonNull
@@ -35,6 +35,19 @@ public class GAVRequest {
     
     @Getter
     @NonNull
-    @XmlElement(required = true, name = "products")
-    private final List<Product> products;
+    @XmlElement(required = true, name = "available_versions")
+    private final List<String> availableVersions;
+    
+    @Getter
+    @XmlElement(required = false, name = "best_match_version")
+    private final String bestMatchVersion;
+    
+    @Getter
+    @XmlElement(required = false, name = "dependency_versions_satisfied")
+    private final boolean dependencyVersionsSatisfied;
+    
+    @Getter
+    @NonNull
+    @XmlElement(required = true, name = "dependencies")
+    private final List<Report> dependencies;
 }

@@ -1,6 +1,6 @@
-package org.jboss.da.listings.rest.impl;
+package org.jboss.da.rest;
 
-import org.jboss.da.listings.rest.api.Root;
+import org.jboss.da.rest.listings.api.Root;
 
 public class RootImpl implements Root {
 

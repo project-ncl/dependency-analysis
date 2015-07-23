@@ -1,8 +1,7 @@
-package org.jboss.da.listings.rest.api.model;
+package org.jboss.da.rest.listings.api.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.EqualsAndHashCode;
@@ -16,16 +15,23 @@ import lombok.ToString;
  * @author Jozef Mrazek <jmrazek@redhat.com>
  *
  */
-@XmlRootElement(name = "success")
+@XmlRootElement(name = "artifact")
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class SuccessResponse {
+public class RestArtifact {
 
     @Getter
     @Setter
-    @XmlElement(required = true, name = "success")
-    protected boolean success;
+    protected String groupId;
+
+    @Getter
+    @Setter
+    protected String artifactId;
+
+    @Getter
+    @Setter
+    protected String version;
 
 }

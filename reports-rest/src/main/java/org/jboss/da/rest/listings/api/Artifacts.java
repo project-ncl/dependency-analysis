@@ -1,6 +1,8 @@
-package org.jboss.da.listings.rest.api;
+package org.jboss.da.rest.listings.api;
 
-import java.util.Collection;
+import org.jboss.da.rest.listings.api.model.ContainsResponse;
+import org.jboss.da.rest.listings.api.model.RestArtifact;
+import org.jboss.da.rest.listings.api.model.SuccessResponse;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -11,9 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.jboss.da.listings.rest.api.model.ContainsResponse;
-import org.jboss.da.listings.rest.api.model.RestArtifact;
-import org.jboss.da.listings.rest.api.model.SuccessResponse;
+import java.util.Collection;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package org.jboss.da.reports.rest.model;
+package org.jboss.da.rest.reports.api.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
