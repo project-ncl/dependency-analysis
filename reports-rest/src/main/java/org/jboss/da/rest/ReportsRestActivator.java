@@ -1,14 +1,13 @@
-package org.jboss.da;
+package org.jboss.da.rest;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import org.jboss.da.rest.listings.Artifacts;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import org.jboss.da.listings.rest.api.Artifacts;
-import org.jboss.da.listings.rest.api.Root;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 
@@ -16,7 +15,7 @@ import org.jboss.da.listings.rest.api.Root;
  *
  */
 @ApplicationPath("/rest")
-public class RestActivator extends Application {
+public class ReportsRestActivator extends Application {
 
     private static Class<?>[] restClasses = new Class<?>[] { Root.class, Artifacts.class,
     com.wordnik.swagger.jaxrs.listing.ApiListingResource.class,

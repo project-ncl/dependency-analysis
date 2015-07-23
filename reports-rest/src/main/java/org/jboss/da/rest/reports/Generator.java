@@ -1,10 +1,13 @@
-package org.jboss.da.reports.rest;
+package org.jboss.da.rest.reports;
 
-import org.jboss.da.reports.rest.model.GAVRequest;
-import org.jboss.da.reports.rest.model.Report;
-import org.jboss.da.reports.rest.model.SCMRequest;
+import org.jboss.da.rest.reports.model.GAVRequest;
+import org.jboss.da.rest.reports.model.Report;
+import org.jboss.da.rest.reports.model.SCMRequest;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/generator")
