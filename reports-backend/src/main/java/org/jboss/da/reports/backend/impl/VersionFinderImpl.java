@@ -2,7 +2,7 @@ package org.jboss.da.reports.backend.impl;
 
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GA;
-import org.jboss.da.reports.api.GAV;
+import org.jboss.da.communication.aprox.model.GAV;
 import org.jboss.da.reports.backend.api.VersionFinder;
 
 import javax.enterprise.context.ApplicationScoped;

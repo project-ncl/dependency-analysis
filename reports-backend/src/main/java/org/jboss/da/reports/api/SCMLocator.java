@@ -22,4 +22,8 @@ public class SCMLocator {
     @Getter
     @NonNull
     private String pomPath;
+
+    @Getter
+    @NonNull
+    private String version;
 }

@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GA;
-import org.jboss.da.reports.api.GAV;
+import org.jboss.da.communication.aprox.model.GAV;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

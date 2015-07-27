@@ -1,6 +1,6 @@
 package org.jboss.da.rest.reports;
 
-import org.jboss.da.reports.api.GAV;
+import org.jboss.da.communication.aprox.model.GAV;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.rest.reports.model.GAVRequest;
 import org.jboss.da.rest.reports.model.LookupReport;
