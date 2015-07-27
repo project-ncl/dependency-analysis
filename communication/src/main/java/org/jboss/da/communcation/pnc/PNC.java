@@ -20,7 +20,7 @@ public class PNC {
     private Configuration config;
     private DAConfig conf;
     private String pncServer;
-    private String token;
+    private PNCAuthentication pncAuthenticate;
 
     public PNC() throws ConfigurationParseException {
         Configuration config = new Configuration();
@@ -28,14 +28,16 @@ public class PNC {
         pncServer = config.getConfig().getPncServer();
 
         PNCAuthentication pncAuthenticate = new PNCAuthentication();
-        token = pncAuthenticate.authenticate();
     }
 
     public ClientRequest getClient(String endpoint, boolean authenticate) {
         ClientRequest request = new ClientRequest(pncServer + "/pnc-rest/rest/" + endpoint);
         request.accept(MediaType.APPLICATION_JSON);
 
+        // TODO: instead of getting a new token everytime, check if existing
+        // TODO: token is expired before asking for a new one
         if (authenticate) {
+            String token = pncAuthenticate.authenticate();
             request.header("Authorization", "Bearer " + token);
         }
 
