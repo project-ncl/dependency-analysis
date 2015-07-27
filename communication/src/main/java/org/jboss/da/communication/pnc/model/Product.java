@@ -1,69 +1,37 @@
 package org.jboss.da.communication.pnc.model;
 
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 public class Product {
+
+    @Getter
+    @Setter
     private int id;
+
+    @Getter
+    @Setter
     private String name;
+
+    @Getter
+    @Setter
     private String description;
+
+    @Getter
+    @Setter
     private String abbreviation;
+
+    @Getter
+    @Setter
     private String productCode;
+
+    @Getter
+    @Setter
     private String pgmSystemName;
+
+    @Getter
+    @Setter
     private List<Integer> productVersionIds;
 
-    public List<Integer> getProductVersionIds() {
-        return productVersionIds;
-    }
-
-    public void setProductVersionIds(List<Integer> productVersionIds) {
-        this.productVersionIds = productVersionIds;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getAbbreviation() {
-        return abbreviation;
-    }
-
-    public void setAbbreviation(String abbreviation) {
-        this.abbreviation = abbreviation;
-    }
-
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
-    public String getPgmSystemName() {
-        return pgmSystemName;
-    }
-
-    public void setPgmSystemName(String pgmSystemName) {
-        this.pgmSystemName = pgmSystemName;
-    }
 }

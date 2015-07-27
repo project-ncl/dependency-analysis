@@ -2,132 +2,65 @@ package org.jboss.da.communication.pnc.model;
 
 import java.util.Date;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 public class BuildConfiguration {
+
+    @Getter
+    @Setter
     private int id;
+
+    @Getter
+    @Setter
     private String name;
+
+    @Getter
+    @Setter
     private String description;
+
+    @Getter
+    @Setter
     private String buildScript;
+
+    @Getter
+    @Setter
     private String scmRepoURL;
+
+    @Getter
+    @Setter
     private String scmRevision;
+
+    @Getter
+    @Setter
     private Date creationTime;
+
+    @Getter
+    @Setter
     private Date lastModificationTime;
+
+    @Getter
+    @Setter
     private String buildStatus;
+
+    @Getter
+    @Setter
     private String repositories;
+
+    @Getter
+    @Setter
     private int projectId;
+
+    @Getter
+    @Setter
     private int environmentId;
+
+    @Getter
+    @Setter
     private List<Integer> dependencyIds;
+
+    @Getter
+    @Setter
     private List<Integer> productVersionIds;
 
-    public List<Integer> getProductVersionIds() {
-        return productVersionIds;
-    }
-
-    public void setProductVersionIds(List<Integer> productVersionIds) {
-        this.productVersionIds = productVersionIds;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getBuildScript() {
-        return buildScript;
-    }
-
-    public void setBuildScript(String buildScript) {
-        this.buildScript = buildScript;
-    }
-
-    public String getScmRepoURL() {
-        return scmRepoURL;
-    }
-
-    public void setScmRepoURL(String scmRepoURL) {
-        this.scmRepoURL = scmRepoURL;
-    }
-
-    public String getScmRevision() {
-        return scmRevision;
-    }
-
-    public void setScmRevision(String scmRevision) {
-        this.scmRevision = scmRevision;
-    }
-
-    public Date getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(Date creationTime) {
-        this.creationTime = creationTime;
-    }
-
-    public Date getLastModificationTime() {
-        return lastModificationTime;
-    }
-
-    public void setLastModificationTime(Date lastModificationTime) {
-        this.lastModificationTime = lastModificationTime;
-    }
-
-    public String getBuildStatus() {
-        return buildStatus;
-    }
-
-    public void setBuildStatus(String buildStatus) {
-        this.buildStatus = buildStatus;
-    }
-
-    public String getRepositories() {
-        return repositories;
-    }
-
-    public void setRepositories(String repositories) {
-        this.repositories = repositories;
-    }
-
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
-    }
-
-    public int getEnvironmentId() {
-        return environmentId;
-    }
-
-    public void setEnvironmentId(int environmentId) {
-        this.environmentId = environmentId;
-    }
-
-    public List<Integer> getDependencyIds() {
-        return dependencyIds;
-    }
-
-    public void setDependencyIds(List<Integer> dependencyIds) {
-        this.dependencyIds = dependencyIds;
-    }
 }
