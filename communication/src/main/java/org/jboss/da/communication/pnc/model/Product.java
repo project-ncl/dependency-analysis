@@ -1,4 +1,4 @@
-package org.jboss.da.communcation.pnc.model;
+package org.jboss.da.communication.pnc.model;
 
 import java.util.List;
 

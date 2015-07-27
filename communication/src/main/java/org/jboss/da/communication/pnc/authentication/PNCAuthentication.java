@@ -1,4 +1,4 @@
-package org.jboss.da.communcation.pnc.authentication;
+package org.jboss.da.communication.pnc.authentication;
 
 import java.io.BufferedReader;
 

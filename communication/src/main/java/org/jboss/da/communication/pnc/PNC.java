@@ -1,12 +1,12 @@
-package org.jboss.da.communcation.pnc;
+package org.jboss.da.communication.pnc;
 
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.communcation.pnc.authentication.PNCAuthentication;
-import org.jboss.da.communcation.pnc.model.BuildConfiguration;
-import org.jboss.da.communcation.pnc.model.BuildConfigurationSet;
-import org.jboss.da.communcation.pnc.model.Product;
-import org.jboss.da.communcation.pnc.model.Project;
+import org.jboss.da.communication.pnc.authentication.PNCAuthentication;
+import org.jboss.da.communication.pnc.model.BuildConfiguration;
+import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
+import org.jboss.da.communication.pnc.model.Product;
+import org.jboss.da.communication.pnc.model.Project;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
