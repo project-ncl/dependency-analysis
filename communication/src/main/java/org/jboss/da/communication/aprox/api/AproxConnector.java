@@ -13,10 +13,10 @@ public interface AproxConnector {
      * 
      * @param scmUrl
      * @param revision
-     * @param version
+     * @param pomPath
      * @return dependency tree of revision
      */
-    GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String version);
+    GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String pomPath);
 
     /**
      * Finds dependency trees of specific GAV

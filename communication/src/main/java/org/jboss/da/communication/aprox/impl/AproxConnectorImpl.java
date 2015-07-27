@@ -14,7 +14,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision,
-            String version) {
+            String pomPath) {
         // TODO Auto-generated method stub
         return null;
     }
