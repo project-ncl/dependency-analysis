@@ -1,6 +1,5 @@
 package org.jboss.da.communcation.pnc;
 
-import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communcation.pnc.authentication.PNCAuthentication;
@@ -18,16 +17,13 @@ import java.util.List;
 public class PNC {
 
     private Configuration config;
-    private DAConfig conf;
     private String pncServer;
     private PNCAuthentication pncAuthenticate;
 
     public PNC() throws ConfigurationParseException {
-        Configuration config = new Configuration();
-        DAConfig conf = config.getConfig();
+        config = new Configuration();
         pncServer = config.getConfig().getPncServer();
-
-        PNCAuthentication pncAuthenticate = new PNCAuthentication();
+        pncAuthenticate = new PNCAuthentication();
     }
 
     public ClientRequest getClient(String endpoint, boolean authenticate) {
