@@ -20,8 +20,6 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 
-import javax.inject.Inject;
-
 /**
  * Class obtained from pnc example on OAuth example on PNCProducer:
  * https://github.com/project-ncl/pnc/blob/master/examples/oauth-client/src/main/java/org/jboss/pnc/auth/client/SimpleOAuthConnect.java
@@ -47,7 +45,7 @@ public class PNCAuthentication {
 
     public static String getAccessToken(String url, String clientId, String username, String password)
             throws ClientProtocolException, IOException {
-        Map<String, String> urlParams = new HashMap<String, String>();
+        Map<String, String> urlParams = new HashMap<>();
         urlParams.put("grant_type", "password");
         urlParams.put("client_id", clientId);
         urlParams.put("username", username);
@@ -57,7 +55,7 @@ public class PNCAuthentication {
 
     public static String getrefreshToken(String url, String clientId, String username, String password)
             throws ClientProtocolException, IOException {
-        Map<String, String> urlParams = new HashMap<String, String>();
+        Map<String, String> urlParams = new HashMap<>();
         urlParams.put("grant_type", "password");
         urlParams.put("client_id", clientId);
         urlParams.put("username", username);
@@ -74,7 +72,7 @@ public class PNCAuthentication {
         // add header
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
 
-        List<BasicNameValuePair> urlParameters = new ArrayList<BasicNameValuePair>();
+        List<BasicNameValuePair> urlParameters = new ArrayList<>();
         for (String key : urlParams.keySet()) {
             urlParameters.add(new BasicNameValuePair(key, urlParams.get(key)));
         }
@@ -85,7 +83,7 @@ public class PNCAuthentication {
         String accessToken = "";
         try (BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()))) {
 
-            String line = "";
+            String line;
             while ((line = rd.readLine()) != null) {
                 if (line.contains("refresh_token")) {
                     String[] respContent = line.split(",");
