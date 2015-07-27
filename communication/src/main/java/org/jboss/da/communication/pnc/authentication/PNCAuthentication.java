@@ -118,13 +118,8 @@ public class PNCAuthentication {
             return PNCAuthentication.getAccessToken(
                     keycloakServer + "/auth/realms/" + realm + "/tokens/grants/access",
                     clientId, username, password);
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ConfigurationParseException e) {
-            e.printStackTrace();
+        } catch (IOException | ConfigurationParseException e) {
+            throw new RuntimeException("Failed to authenticate", e);
         }
-        return null;
     }
 }
