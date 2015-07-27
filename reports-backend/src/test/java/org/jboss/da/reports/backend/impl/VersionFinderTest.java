@@ -15,6 +15,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
+import org.jboss.da.communcation.CommunicationException;
 
 /**
  * 
@@ -38,7 +39,7 @@ public class VersionFinderTest {
     private List<String> builtHibernateVersions = Arrays.asList(BUILT_HIBERNATE_VERSIONS);
 
     @Test
-    public void getBestMatchVersionForTest() {
+    public void getBestMatchVersionForTest() throws CommunicationException {
         GA requestedGA = new GA("org.hibernate", "hibernate-core");
         System.err.println("\n\n\n " + builtHibernateVersions);
         when(aproxConnector.getVersionsOfGA(requestedGA)).thenReturn(builtHibernateVersions);
