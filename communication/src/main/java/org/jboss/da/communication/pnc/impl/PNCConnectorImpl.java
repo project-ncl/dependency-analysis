@@ -14,7 +14,9 @@ import org.jboss.resteasy.client.ClientResponse;
 import javax.ws.rs.core.MediaType;
 import java.util.Arrays;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class PNCConnectorImpl implements PNCConnector {
 
     private Configuration config;
