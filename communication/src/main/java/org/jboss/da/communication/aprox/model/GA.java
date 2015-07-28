@@ -22,7 +22,7 @@ public class GA {
 
     @Override
     public String toString() {
-        return groupId+":"+artifactId;
+        return groupId + ":" + artifactId;
     }
 
 }

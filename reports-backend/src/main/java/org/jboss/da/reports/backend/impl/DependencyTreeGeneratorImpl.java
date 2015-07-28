@@ -24,8 +24,8 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     @Override
     public GAVDependencyTree getDependencyTree(SCMLocator scml) {
         try {
-            return aproxConnector.getDependencyTreeOfRevision(scml.getScmUrl(),
-                    scml.getRevision(), scml.getPomPath());
+            return aproxConnector.getDependencyTreeOfRevision(scml.getScmUrl(), scml.getRevision(),
+                    scml.getPomPath());
         } catch (CommunicationException ex) {
             throw new RuntimeException(ex);
         }

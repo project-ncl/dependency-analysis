@@ -18,5 +18,5 @@ public class Versioning {
     @Getter
     @XmlElement
     private Versions versions;
-    
+
 }

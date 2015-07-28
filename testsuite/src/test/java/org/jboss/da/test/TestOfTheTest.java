@@ -14,13 +14,13 @@ import org.junit.runner.RunWith;
 public class TestOfTheTest {
 
     @Deployment
-    public static EnterpriseArchive createDeployment(){
+    public static EnterpriseArchive createDeployment() {
         return AbstractArquillianTest.createDeployment();
     }
 
     @Test
-    public void testTheTest(){
+    public void testTheTest() {
         System.out.println("All systems are go!");
     }
-    
+
 }

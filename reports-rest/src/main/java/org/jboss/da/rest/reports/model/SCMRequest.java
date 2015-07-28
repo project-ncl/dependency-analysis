@@ -19,22 +19,22 @@ import lombok.RequiredArgsConstructor;
 @XmlAccessorType(XmlAccessType.FIELD)
 @RequiredArgsConstructor
 public class SCMRequest {
-    
+
     @Getter
     @NonNull
     @XmlElement(required = true, name = "scm_url")
     private final String scmURL;
-    
+
     @Getter
     @NonNull
     @XmlElement(required = true, name = "commit_id")
     private final String commitRef;
-    
+
     @Getter
     @NonNull
     @XmlElement(required = true, name = "pom_path")
     private final String pomPath;
-    
+
     @Getter
     @NonNull
     @XmlElement(required = true, name = "products")

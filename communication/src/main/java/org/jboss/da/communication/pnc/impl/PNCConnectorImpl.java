@@ -20,7 +20,9 @@ import javax.enterprise.context.ApplicationScoped;
 public class PNCConnectorImpl implements PNCConnector {
 
     private Configuration config;
+
     private String pncServer;
+
     private PNCAuthentication pncAuthenticate;
 
     public PNCConnectorImpl() throws ConfigurationParseException {
@@ -49,13 +51,15 @@ public class PNCConnectorImpl implements PNCConnector {
 
     @Override
     public List<BuildConfiguration> getBuildConfigurations() throws Exception {
-        ClientResponse<BuildConfiguration[]> response = getClient("build-configurations").get(BuildConfiguration[].class);
+        ClientResponse<BuildConfiguration[]> response = getClient("build-configurations").get(
+                BuildConfiguration[].class);
         return Arrays.asList(response.getEntity());
     }
 
     @Override
     public List<BuildConfigurationSet> getBuildConfigurationSets() throws Exception {
-        ClientResponse<BuildConfigurationSet[]> response = getClient("build-configuration-sets").get(BuildConfigurationSet[].class);
+        ClientResponse<BuildConfigurationSet[]> response = getClient("build-configuration-sets")
+                .get(BuildConfigurationSet[].class);
         return Arrays.asList(response.getEntity());
     }
 

@@ -46,7 +46,7 @@ public interface ArtifactService<T extends Artifact> {
      * @return List of found artifacts.
      */
     List<T> getAll();
-    
+
     /**
      * Remove artifact from list
      * 

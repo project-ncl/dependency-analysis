@@ -10,12 +10,13 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public class Product {
+
     @Getter
     @NonNull
     private String name;
-    
+
     @Getter
     @NonNull
     private String version;
-    
+
 }

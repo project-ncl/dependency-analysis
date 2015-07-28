@@ -4,12 +4,16 @@ package org.jboss.da.reports.backend.api;
  *
  * @author Honza Brázdil <janinko.g@gmail.com>
  */
-public class VersionDistance implements Comparable<VersionDistance>{
-    
+public class VersionDistance implements Comparable<VersionDistance> {
+
     private int majorDiff;
+
     private int minorDiff;
+
     private int microDiff;
+
     private String specifierA;
+
     private String specifierB;
 
     public VersionDistance(String versionA, String versionB) {
@@ -26,16 +30,15 @@ public class VersionDistance implements Comparable<VersionDistance>{
     public int compareTo(VersionDistance t) {
         int d;
         d = majorDiff - t.majorDiff;
-        if(d != 0)
+        if (d != 0)
             return d;
         d = minorDiff - t.minorDiff;
-        if(d != 0)
+        if (d != 0)
             return d;
         d = microDiff - t.microDiff;
-        if(d != 0)
+        if (d != 0)
             return d;
         return 0;
     }
-    
-    
+
 }

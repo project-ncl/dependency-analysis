@@ -21,9 +21,9 @@ import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStage;
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
 public abstract class AbstractArquillianTest {
-    
+
     private static final String TEST_JAR = "testsuite.jar";
-    
+
     private static final String TEST_EAR = "testsuite.ear";
 
     private static final String COMMUNICATION_PLACEHOLDER = "${communication}";
@@ -33,17 +33,18 @@ public abstract class AbstractArquillianTest {
     private static final String REPORTS_BACKEND_PLACEHOLDER = "${reports-backend}";
 
     private static final String BC_REST_PLACEHOLDER = "${bc-rest}";
-    
+
     private static final String REPORTS_REST_PLACEHOLDER = "${reports-rest}";
 
     private static final String TEST_PLACEHOLDER = "${testsuite}";
-    
+
     private static final String TYPE_WAR = "war";
 
     private static final String TYPE_EJB = "ejb";
 
-    private static MavenStrategyStage mavenResolve(String groupId, String artifactId, String type){
-        return Maven.resolver().loadPomFromFile("../application/pom.xml").resolve(groupId + ":" + artifactId + ":"+type+":?");
+    private static MavenStrategyStage mavenResolve(String groupId, String artifactId, String type) {
+        return Maven.resolver().loadPomFromFile("../application/pom.xml")
+                .resolve(groupId + ":" + artifactId + ":" + type + ":?");
     }
 
     private static JavaArchive getModule(String groupId, String artifactId) {
@@ -61,14 +62,17 @@ public abstract class AbstractArquillianTest {
      * deployment structure in string. This is needed because deployment structure needs actual file names in .ear and the
      * filenames can vary system to system and even between runs.
      */
-    private static String prepareDeploymentStructure(String communicationName, String bcBackendName,
-            String reportsBackendName, String bcRestName, String reportsRestName) {
+    private static String prepareDeploymentStructure(String communicationName,
+            String bcBackendName, String reportsBackendName, String bcRestName,
+            String reportsRestName) {
         File f = new File("src/test/resources/META-INF/jboss-deployment-structure.xml");
-        return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName, bcRestName, reportsRestName);
+        return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName,
+                bcRestName, reportsRestName);
     }
 
-    private static String replacePlaceholders(File f, String communicationName, String bcBackendName,
-            String reportsBackendName, String bcRestName, String reportsRestName) {
+    private static String replacePlaceholders(File f, String communicationName,
+            String bcBackendName, String reportsBackendName, String bcRestName,
+            String reportsRestName) {
         try (BufferedReader r = new BufferedReader(new FileReader(f))) {
             StringBuilder sb = new StringBuilder();
             for (String line = r.readLine(); line != null; line = r.readLine()) {
@@ -85,18 +89,19 @@ public abstract class AbstractArquillianTest {
             throw new RuntimeException(ex);
         }
     }
-    
-    
+
     private static String prepareApplicationXml(String communicationName, String bcBackendName,
             String reportsBackendName, String bcRestName, String reportsRestName) {
         File f = new File("src/test/resources/META-INF/application.xml");
-        return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName, bcRestName, reportsRestName);
+        return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName,
+                bcRestName, reportsRestName);
     }
-    
+
     /**
      * Regex pattern for file name
      */
     private final static Pattern fileNamePattern = Pattern.compile("(^[a-z-]+[a-z])");
+
     private static File[] getLibs(String groupId, String artifactId, String type) {
         File[] libs = mavenResolve(groupId, artifactId, type).withTransitivity().asFile();
 
@@ -110,28 +115,28 @@ public abstract class AbstractArquillianTest {
         return libsList.toArray(new File[libsList.size()]);
     }
 
-    private static JavaArchive prepareTestsuiteJar(){
+    private static JavaArchive prepareTestsuiteJar() {
         JavaArchive testsuiteJar = ShrinkWrap.create(JavaArchive.class, TEST_JAR);
         testsuiteJar.addPackages(true, "org.jboss.da.test");
         testsuiteJar.addAsManifestResource(new File("src/test/resources/META-INF/beans.xml"));
         return testsuiteJar;
     }
-    
+
     public static EnterpriseArchive createDeployment() {
         JavaArchive communicationJar = getModule("org.jboss.da", "communication");
         JavaArchive bcBackendJar = getModule("org.jboss.da", "bc-backend");
         JavaArchive reportsBackendJar = getModule("org.jboss.da", "reports-backend");
         JavaArchive bcRestJar = getModule("org.jboss.da", "bc-rest");
         WebArchive reportsRestJar = getWebModule("org.jboss.da", "reports-rest");
-        
+
         JavaArchive testsuiteJar = prepareTestsuiteJar();
 
-        String depStruct = prepareDeploymentStructure(communicationJar.getName(), bcBackendJar.getName(),
-                reportsBackendJar.getName(), bcRestJar.getName(), reportsRestJar.getName());
+        String depStruct = prepareDeploymentStructure(communicationJar.getName(),
+                bcBackendJar.getName(), reportsBackendJar.getName(), bcRestJar.getName(),
+                reportsRestJar.getName());
 
         StringAsset deploymentStructure = new StringAsset(depStruct);
-        
-        
+
         EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, TEST_EAR);
         ear.addAsLibraries(getLibs("org.jboss.da", "communication", TYPE_EJB));
         ear.addAsLibraries(getLibs("org.jboss.da", "bc-backend", TYPE_EJB));
@@ -145,11 +150,12 @@ public abstract class AbstractArquillianTest {
         ear.addAsModule(bcRestJar);
         ear.addAsModule(reportsRestJar);
         ear.addAsManifestResource(new File("src/test/resources/META-INF/persistence.xml"));
-        ear.setApplicationXML(new StringAsset(prepareApplicationXml(communicationJar.getName(), bcBackendJar.getName(),
-                reportsBackendJar.getName(), bcRestJar.getName(), reportsRestJar.getName())));
+        ear.setApplicationXML(new StringAsset(prepareApplicationXml(communicationJar.getName(),
+                bcBackendJar.getName(), reportsBackendJar.getName(), bcRestJar.getName(),
+                reportsRestJar.getName())));
         ear.addAsManifestResource(deploymentStructure, "jboss-deployment-structure.xml");
 
         return ear;
     }
-    
+
 }
