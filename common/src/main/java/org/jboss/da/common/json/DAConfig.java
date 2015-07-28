@@ -22,4 +22,10 @@ public class DAConfig {
     @Getter
     private String keycloakRealm;
 
+    @Getter
+    private String aproxServer;
+
+    @Getter
+    private String aproxGroup;
+
 }

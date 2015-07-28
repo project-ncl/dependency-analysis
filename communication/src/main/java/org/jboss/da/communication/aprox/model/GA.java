@@ -20,4 +20,9 @@ public class GA {
     @NonNull
     private String artifactId;
 
+    @Override
+    public String toString() {
+        return groupId+":"+artifactId;
+    }
+
 }

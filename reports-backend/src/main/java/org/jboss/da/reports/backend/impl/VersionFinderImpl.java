@@ -1,5 +1,6 @@
 package org.jboss.da.reports.backend.impl;
 
+import java.util.ArrayList;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GA;
 import org.jboss.da.reports.api.GAV;
@@ -11,6 +12,9 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.jboss.da.communcation.CommunicationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -19,19 +23,31 @@ import java.util.regex.Pattern;
  */
 @ApplicationScoped
 public class VersionFinderImpl implements VersionFinder {
+    
+    Logger log = LoggerFactory.getLogger(VersionFinderImpl.class);
 
     @Inject
     private AproxConnector aproxConnector;
     
     @Override
     public List<String> getVersionsFor(GAV gav) {
-        return aproxConnector.getVersionsOfGA(gavToGA(gav));
+        try {
+            return aproxConnector.getVersionsOfGA(gavToGA(gav));
+        } catch (CommunicationException ex) {
+            log.error("Failed to get versions for " + gav, ex);
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public String getBestMatchVersionFor(GAV gav) {
-        List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gavToGA(gav));
-        return findBiggestMatchingVersion(gav, obtainedVersions);
+        try {
+            List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gavToGA(gav));
+            return findBiggestMatchingVersion(gav, obtainedVersions);
+        } catch (CommunicationException ex) {
+            log.error("Failed to get versions for " + gav, ex);
+            return null;
+        }
     }
 
     private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {

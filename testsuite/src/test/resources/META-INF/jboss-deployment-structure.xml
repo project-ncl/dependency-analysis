@@ -6,6 +6,7 @@
         <dependencies>
             <module name="deployment.testsuite.ear.${bc-rest}"/>
             <module name="deployment.testsuite.ear.${reports-rest}"/>
+            <module name="deployment.testsuite.ear.${communication}"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="${bc-rest}">

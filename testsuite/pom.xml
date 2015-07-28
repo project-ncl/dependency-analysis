@@ -45,6 +45,11 @@
     <dependencies>
         <dependency>
             <groupId>org.jboss.da</groupId>
+            <artifactId>communication</artifactId>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.da</groupId>
             <artifactId>reports-rest</artifactId>
             <type>war</type>
         </dependency>
