@@ -23,12 +23,12 @@ import org.slf4j.LoggerFactory;
  */
 @ApplicationScoped
 public class VersionFinderImpl implements VersionFinder {
-    
+
     Logger log = LoggerFactory.getLogger(VersionFinderImpl.class);
 
     @Inject
     private AproxConnector aproxConnector;
-    
+
     @Override
     public List<String> getVersionsFor(GAV gav) {
         try {
@@ -53,15 +53,15 @@ public class VersionFinderImpl implements VersionFinder {
     private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
-        
+
         String origVersion = gav.getVersion();
         Pattern pattern = Pattern.compile(origVersion + ".*\\.redhat-(\\d+)\\D*");
-        
-        for(String ver : obtainedVersions) {
+
+        for (String ver : obtainedVersions) {
             Matcher matcher = pattern.matcher(ver);
-            if(matcher.matches()) {
+            if (matcher.matches()) {
                 int foundBuildNumber = Integer.parseInt(matcher.group(1));
-                if(foundBuildNumber > biggestBuildNumber) {
+                if (foundBuildNumber > biggestBuildNumber) {
                     bestMatchVersion = ver;
                     biggestBuildNumber = foundBuildNumber;
                 }
@@ -69,7 +69,7 @@ public class VersionFinderImpl implements VersionFinder {
         }
         return bestMatchVersion;
     }
-    
+
     private GA gavToGA(GAV gav) {
         return new GA(gav.getGroupId(), gav.getArtifactId());
     }

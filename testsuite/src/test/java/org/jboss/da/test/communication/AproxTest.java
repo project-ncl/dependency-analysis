@@ -31,8 +31,8 @@ public class AproxTest {
     @Test
     public void testGetVersionsOfGA() throws CommunicationException {
         GA ga = new GA("org.jboss.apiviz", "apiviz");
-        List<String> apivizTest = Arrays.asList(new String[] { "1.3.1.GA-redhat-1", "1.2.5.GA", "1.3.0.GA",
-                "1.3.1.GA-redhat-2", "1.3.2.GA" });
+        List<String> apivizTest = Arrays.asList(new String[] { "1.3.1.GA-redhat-1", "1.2.5.GA",
+                "1.3.0.GA", "1.3.1.GA-redhat-2", "1.3.2.GA" });
         List<String> result = aproxConnector.getVersionsOfGA(ga);
         assertTrue(apivizTest.size() == result.size());
         assertTrue(apivizTest.containsAll(result));

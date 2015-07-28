@@ -45,12 +45,11 @@ public class Artifacts {
     @Path("/white")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value="Add White Artifact")
+    @ApiOperation(value = "Add White Artifact")
     public SuccessResponse addWhiteArtifact(RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(whiteService.addArtifact(artifact.getGroupId(),
-                artifact.getArtifactId(),
-                artifact.getVersion()));
+                artifact.getArtifactId(), artifact.getVersion()));
         return response;
     }
 
@@ -58,12 +57,11 @@ public class Artifacts {
     @Path("/black")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value="Add Black Artifact")
+    @ApiOperation(value = "Add Black Artifact")
     public SuccessResponse addBlackArtifact(RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(blackService.addArtifact(artifact.getGroupId(),
-                artifact.getArtifactId(),
-                artifact.getVersion()));
+                artifact.getArtifactId(), artifact.getVersion()));
         return response;
     }
 
@@ -72,8 +70,7 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Test if artifact is a white artifact")
     public ContainsResponse isWhiteArtifactPresent(@QueryParam("groupid") String groupId,
-                   @QueryParam("artifactid") String artifactId,
-                   @QueryParam("version") String version) {
+            @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         ContainsResponse response = new ContainsResponse();
         response.setContains(whiteService.isArtifactPresent(groupId, artifactId, version));
         return response;
@@ -84,8 +81,7 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Test if artifact is a black artifact")
     public ContainsResponse isBlackArtifactPresent(@QueryParam("groupid") String groupId,
-                   @QueryParam("artifactid") String artifactId,
-                   @QueryParam("version") String version) {
+            @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         ContainsResponse response = new ContainsResponse();
         response.setContains(blackService.isArtifactPresent(groupId, artifactId, version));
         return response;
@@ -119,8 +115,7 @@ public class Artifacts {
     public SuccessResponse removeWhiteArtifact(RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(whiteService.removeArtifact(artifact.getGroupId(),
-                artifact.getArtifactId(),
-                artifact.getVersion()));
+                artifact.getArtifactId(), artifact.getVersion()));
         return response;
     }
 
@@ -132,8 +127,7 @@ public class Artifacts {
     public SuccessResponse removeBlackArtifact(RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(blackService.removeArtifact(artifact.getGroupId(),
-                artifact.getArtifactId(),
-                artifact.getVersion()));
+                artifact.getArtifactId(), artifact.getVersion()));
         return response;
     }
 }

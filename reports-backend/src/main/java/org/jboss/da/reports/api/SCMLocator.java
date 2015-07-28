@@ -10,15 +10,15 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public class SCMLocator {
-    
+
     @Getter
     @NonNull
     private String scmUrl;
-    
+
     @Getter
     @NonNull
     private String revision;
-    
+
     @Getter
     @NonNull
     private String pomPath;

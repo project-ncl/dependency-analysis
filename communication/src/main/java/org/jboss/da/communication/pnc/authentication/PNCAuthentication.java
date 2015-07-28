@@ -43,8 +43,8 @@ public class PNCAuthentication {
         return connect(url, urlParams);
     }
 
-    public static String getAccessToken(String url, String clientId, String username, String password)
-            throws ClientProtocolException, IOException {
+    public static String getAccessToken(String url, String clientId, String username,
+            String password) throws ClientProtocolException, IOException {
         Map<String, String> urlParams = new HashMap<>();
         urlParams.put("grant_type", "password");
         urlParams.put("client_id", clientId);
@@ -53,8 +53,8 @@ public class PNCAuthentication {
         return connect(url, urlParams)[0];
     }
 
-    public static String getrefreshToken(String url, String clientId, String username, String password)
-            throws ClientProtocolException, IOException {
+    public static String getrefreshToken(String url, String clientId, String username,
+            String password) throws ClientProtocolException, IOException {
         Map<String, String> urlParams = new HashMap<>();
         urlParams.put("grant_type", "password");
         urlParams.put("client_id", clientId);
@@ -81,7 +81,8 @@ public class PNCAuthentication {
 
         String refreshToken = "";
         String accessToken = "";
-        try (BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()))) {
+        try (BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity()
+                .getContent()))) {
 
             String line;
             while ((line = rd.readLine()) != null) {
@@ -90,10 +91,12 @@ public class PNCAuthentication {
                     for (int i = 0; i < respContent.length; i++) {
                         String split = respContent[i];
                         if (split.contains("refresh_token")) {
-                            refreshToken = split.split(":")[1].substring(1, split.split(":")[1].length() - 1);
+                            refreshToken = split.split(":")[1].substring(1,
+                                    split.split(":")[1].length() - 1);
                         }
                         if (split.contains("access_token")) {
-                            accessToken = split.split(":")[1].substring(1, split.split(":")[1].length() - 1);
+                            accessToken = split.split(":")[1].substring(1,
+                                    split.split(":")[1].length() - 1);
                         }
                     }
                 }
@@ -101,8 +104,7 @@ public class PNCAuthentication {
         } finally {
             response.close();
         }
-        return new String[]{accessToken, refreshToken};
-
+        return new String[] { accessToken, refreshToken };
 
     }
 
@@ -115,9 +117,8 @@ public class PNCAuthentication {
             String username = conf.getKeycloakUsername();
             String password = conf.getKeycloakPassword();
 
-            return PNCAuthentication.getAccessToken(
-                    keycloakServer + "/auth/realms/" + realm + "/tokens/grants/access",
-                    clientId, username, password);
+            return PNCAuthentication.getAccessToken(keycloakServer + "/auth/realms/" + realm
+                    + "/tokens/grants/access", clientId, username, password);
         } catch (IOException | ConfigurationParseException e) {
             throw new RuntimeException("Failed to authenticate", e);
         }
