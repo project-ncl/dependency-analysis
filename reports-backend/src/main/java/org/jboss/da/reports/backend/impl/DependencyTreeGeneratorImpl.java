@@ -8,6 +8,7 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import org.jboss.da.communcation.CommunicationException;
 
 /**
  *
@@ -22,12 +23,20 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
 
     @Override
     public GAVDependencyTree getDependencyTree(SCMLocator scml) {
-        return aproxConnector.getDependencyTreeOfRevision(scml.getScmUrl(),
-                scml.getRevision(), scml.getPomPath());
+        try {
+            return aproxConnector.getDependencyTreeOfRevision(scml.getScmUrl(),
+                    scml.getRevision(), scml.getPomPath());
+        } catch (CommunicationException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
     public GAVDependencyTree getDependencyTree(GAV gav) {
-        return aproxConnector.getDependencyTreeOfGAV(gav);
+        try {
+            return aproxConnector.getDependencyTreeOfGAV(gav);
+        } catch (CommunicationException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }
