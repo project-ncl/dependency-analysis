@@ -1,34 +1,25 @@
 package org.jboss.da.common.json;
 
+import lombok.Getter;
+
 public class DAConfig {
+
+    @Getter
     private String keycloakServer;
+
+    @Getter
     private String keycloakClientid;
+
+    @Getter
     private String keycloakUsername;
+
+    @Getter
     private String keycloakPassword;
+
+    @Getter
     private String pncServer;
+
+    @Getter
     private String keycloakRealm;
 
-    public String getKeycloakServer() {
-        return keycloakServer;
-    }
-
-    public String getKeycloakClientid() {
-        return keycloakClientid;
-    }
-
-    public String getKeycloakUsername() {
-        return keycloakUsername;
-    }
-
-    public String getKeycloakPassword() {
-        return keycloakPassword;
-    }
-
-    public String getPncServer() {
-        return pncServer;
-    }
-
-    public String getKeycloakRealm() {
-        return keycloakRealm;
-    }
 }

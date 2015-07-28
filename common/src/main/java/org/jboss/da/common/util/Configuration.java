@@ -12,7 +12,7 @@ public class Configuration {
 
         try(InputStream configStream = getConfigStream()) {
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(getConfigStream(), DAConfig.class);
+            return mapper.readValue(configStream, DAConfig.class);
         } catch (Exception e) {
             throw new ConfigurationParseException(e.getMessage());
         }
