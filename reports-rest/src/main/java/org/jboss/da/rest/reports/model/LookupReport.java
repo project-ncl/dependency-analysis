@@ -1,7 +1,6 @@
 package org.jboss.da.rest.reports.model;
 
-import org.jboss.da.reports.api.GAV;
-
+import org.jboss.da.communication.aprox.model.GAV;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

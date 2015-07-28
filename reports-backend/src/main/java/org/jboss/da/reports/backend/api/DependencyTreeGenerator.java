@@ -1,6 +1,7 @@
 package org.jboss.da.reports.backend.api;
 
-import org.jboss.da.reports.api.GAV;
+import org.jboss.da.communication.aprox.model.GAV;
+import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.reports.api.SCMLocator;
 
 /**
@@ -9,8 +10,8 @@ import org.jboss.da.reports.api.SCMLocator;
  */
 public interface DependencyTreeGenerator {
     
-    public ArtifactTree getDependencyTree(SCMLocator scml);
+    public GAVDependencyTree getDependencyTree(SCMLocator scml);
     
-    public ArtifactTree getDependencyTree(GAV gav);
+    public GAVDependencyTree getDependencyTree(GAV gav);
     
 }

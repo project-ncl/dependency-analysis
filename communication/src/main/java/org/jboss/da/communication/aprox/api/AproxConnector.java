@@ -14,11 +14,11 @@ public interface AproxConnector {
      * 
      * @param scmUrl
      * @param revision
-     * @param version
+     * @param pomPath
      * @return dependency tree of revision
      * @throws CommunicationException When there is problem with communication.
      */
-    GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String version) throws CommunicationException;
+    GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String pomPath) throws CommunicationException;
 
     /**
      * Finds dependency trees of specific GAV
