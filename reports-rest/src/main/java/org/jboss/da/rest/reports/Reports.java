@@ -1,5 +1,7 @@
 package org.jboss.da.rest.reports;
 
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.jboss.da.reports.api.GAV;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.rest.reports.model.GAVRequest;
@@ -25,6 +27,7 @@ import java.util.List;
  *
  */
 @Path("/reports")
+@Api(value = "/reports", description = "Get report of dependencies of projects")
 public class Reports {
 
     @Inject
@@ -34,6 +37,7 @@ public class Reports {
     @Path("/scm")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get dependency report for a project specified in a repository url")
     public Report scmGenerator(SCMRequest scmRequest) {
         // TODO Auto-generated method stub
         return null;
@@ -43,6 +47,7 @@ public class Reports {
     @Path("/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get dependency report for a GAV")
     public Report gavGenerator(GAVRequest gavRequest) {
         // TODO Auto-generated method stub
         return null;
@@ -52,6 +57,7 @@ public class Reports {
     @Path("/lookup/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get best matching version for the list of GAVs provided")
     public List<LookupReport> lookupGav(List<GAV> gavRequest) {
         List<LookupReport> reportsList = new ArrayList<>();
         gavRequest.forEach((gav) -> reportsList.add(toLookupReport(gav)));
