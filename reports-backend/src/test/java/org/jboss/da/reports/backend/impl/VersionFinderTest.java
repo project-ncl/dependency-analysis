@@ -15,7 +15,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
-import org.jboss.da.communcation.CommunicationException;
+import org.jboss.da.communication.CommunicationException;
 
 /**
  * 

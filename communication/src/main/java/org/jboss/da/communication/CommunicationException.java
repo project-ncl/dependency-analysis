@@ -1,4 +1,4 @@
-package org.jboss.da.communcation;
+package org.jboss.da.communication;
 
 /**
  *

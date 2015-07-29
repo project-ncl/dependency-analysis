@@ -1,7 +1,7 @@
 package org.jboss.da.communication.aprox.api;
 
 import java.util.List;
-import org.jboss.da.communcation.CommunicationException;
+import org.jboss.da.communication.CommunicationException;
 
 import org.jboss.da.communication.aprox.model.GA;
 import org.jboss.da.communication.aprox.model.GAV;
