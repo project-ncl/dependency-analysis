@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.jboss.da.communcation.CommunicationException;
+import org.jboss.da.communication.CommunicationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -19,7 +19,7 @@ import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.VersionResponse;
 
 import javax.enterprise.context.ApplicationScoped;
-import org.jboss.da.communcation.CommunicationException;
+import org.jboss.da.communication.CommunicationException;
 
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {

@@ -8,7 +8,7 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import org.jboss.da.communcation.CommunicationException;
+import org.jboss.da.communication.CommunicationException;
 
 /**
  *
