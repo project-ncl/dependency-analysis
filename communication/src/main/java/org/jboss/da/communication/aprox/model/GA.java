@@ -2,11 +2,13 @@ package org.jboss.da.communication.aprox.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @EqualsAndHashCode
+@NoArgsConstructor
 @RequiredArgsConstructor
 public class GA {
 
