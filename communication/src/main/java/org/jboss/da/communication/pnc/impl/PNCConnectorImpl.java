@@ -11,6 +11,7 @@ import org.jboss.da.communication.pnc.model.Project;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
+import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 import java.util.Arrays;
 import java.util.List;
@@ -19,20 +20,16 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class PNCConnectorImpl implements PNCConnector {
 
+    @Inject
     private Configuration config;
 
-    private String pncServer;
-
+    @Inject
     private PNCAuthentication pncAuthenticate;
 
-    public PNCConnectorImpl() throws ConfigurationParseException {
-        config = new Configuration();
-        pncServer = config.getConfig().getPncServer();
-        pncAuthenticate = new PNCAuthentication();
-    }
-
-    public ClientRequest getClient(String endpoint, boolean authenticate) {
-        ClientRequest request = new ClientRequest(pncServer + "/pnc-rest/rest/" + endpoint);
+    public ClientRequest getClient(String endpoint, boolean authenticate)
+            throws ConfigurationParseException {
+        ClientRequest request = new ClientRequest(config.getConfig().getPncServer()
+                + "/pnc-rest/rest/" + endpoint);
         request.accept(MediaType.APPLICATION_JSON);
 
         // TODO: instead of getting a new token everytime, check if existing
@@ -45,7 +42,7 @@ public class PNCConnectorImpl implements PNCConnector {
         return request;
     }
 
-    public ClientRequest getClient(String endpoint) {
+    public ClientRequest getClient(String endpoint) throws ConfigurationParseException {
         return getClient(endpoint, false);
     }
 

@@ -5,6 +5,9 @@ import java.io.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jboss.da.common.json.DAConfig;
 
+import javax.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
 public class Configuration {
 
     private static final String CONFIG_SYSPROP = "da-config-file";
