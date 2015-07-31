@@ -3,10 +3,10 @@ package org.jboss.da.rest.reports.model;
 import org.jboss.da.communication.aprox.model.GAV;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.Setter;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class LookupReport {
 
     @Getter
@@ -16,7 +16,6 @@ public class LookupReport {
 
     @Getter
     @Setter
-    @NonNull
     private String bestMatchVersion;
 
 }
