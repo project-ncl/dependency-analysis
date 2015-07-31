@@ -20,7 +20,6 @@ public class TestOfTheTest {
 
     @Test
     public void testTheTest() {
-        System.out.println("All systems are go!");
     }
 
 }

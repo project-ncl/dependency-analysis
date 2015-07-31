@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 @ApplicationScoped
 public class VersionFinderImpl implements VersionFinder {
 
-    Logger log = LoggerFactory.getLogger(VersionFinderImpl.class);
+    private Logger log = LoggerFactory.getLogger(getClass());
 
     @Inject
     private AproxConnector aproxConnector;

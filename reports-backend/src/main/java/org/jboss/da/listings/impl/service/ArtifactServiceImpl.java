@@ -5,6 +5,8 @@ import java.util.List;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.service.ArtifactService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -13,6 +15,8 @@ import org.jboss.da.listings.api.service.ArtifactService;
  */
 public abstract class ArtifactServiceImpl<T extends Artifact> implements ArtifactService<T> {
 
+    private Logger log = LoggerFactory.getLogger(getClass());
+    
     private Class type;
 
     public ArtifactServiceImpl(Class<T> type) {
@@ -34,7 +38,7 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
             getDAO().create(artifact);
             return true;
         } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
+            log.error("Artifact couldn't be added!", e)
         }
         return false;
     }
