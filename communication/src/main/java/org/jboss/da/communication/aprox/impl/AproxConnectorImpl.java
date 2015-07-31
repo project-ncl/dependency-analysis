@@ -43,8 +43,8 @@ public class AproxConnectorImpl implements AproxConnector {
         StringBuilder query = new StringBuilder();
         try {
             query.append(config.getConfig().getAproxServer());
-            query.append("group/");
-            query.append(config.getConfig().getAproxGroup()).append('/');
+            query.append("/api/remote/");
+            query.append(config.getConfig().getAproxRemote()).append('/');
             query.append(ga.getGroupId().replace(".", "/")).append("/");
             query.append(ga.getArtifactId()).append('/');
             query.append("maven-metadata.xml");
