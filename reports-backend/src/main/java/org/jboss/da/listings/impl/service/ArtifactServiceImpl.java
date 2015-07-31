@@ -39,7 +39,7 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
             getDAO().create(artifact);
             return true;
         } catch (InstantiationException | IllegalAccessException e) {
-            log.error("Artifact couldn't be added!", e)
+            log.error("Artifact couldn't be added!", e);
         }
         return false;
     }
