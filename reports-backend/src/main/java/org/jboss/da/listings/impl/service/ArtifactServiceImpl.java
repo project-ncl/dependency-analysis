@@ -18,7 +18,7 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
 
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     
-    private Class type;
+    private Class<T> type;
 
     public ArtifactServiceImpl(Class<T> type) {
         this.type = type;
@@ -32,7 +32,7 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
             return false;
         }
         try {
-            T artifact = (T) type.newInstance();
+            T artifact = type.newInstance();
             artifact.setArtifactId(artifactId);
             artifact.setGroupId(groupId);
             artifact.setVersion(version);
