@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 public abstract class ArtifactServiceImpl<T extends Artifact> implements ArtifactService<T> {
 
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    
+
     private Class<T> type;
 
     public ArtifactServiceImpl(Class<T> type) {

@@ -1,25 +1,24 @@
 package org.jboss.da.communication.aprox.impl;
 
+import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.api.AproxConnector;
+import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.aprox.model.VersionResponse;
+import org.jboss.da.communication.model.GA;
+import org.jboss.da.communication.model.GAV;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
-import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.GA;
-import org.jboss.da.communication.aprox.model.GAV;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
-import org.jboss.da.communication.aprox.model.VersionResponse;
-
-import javax.enterprise.context.ApplicationScoped;
-import org.jboss.da.communication.CommunicationException;
 
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {

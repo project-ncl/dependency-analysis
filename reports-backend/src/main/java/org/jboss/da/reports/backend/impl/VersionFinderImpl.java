@@ -1,23 +1,20 @@
 package org.jboss.da.reports.backend.impl;
 
-import java.lang.invoke.MethodHandles;
-import java.util.ArrayList;
-
+import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.GA;
-import org.jboss.da.communication.aprox.model.GAV;
+import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.backend.api.VersionFinder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.jboss.da.communication.CommunicationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -28,14 +25,14 @@ import org.slf4j.LoggerFactory;
 public class VersionFinderImpl implements VersionFinder {
 
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    
+
     @Inject
     private AproxConnector aproxConnector;
 
     @Override
     public List<String> getVersionsFor(GAV gav) {
         try {
-            return aproxConnector.getVersionsOfGA(gavToGA(gav));
+            return aproxConnector.getVersionsOfGA(gav.getGa());
         } catch (CommunicationException ex) {
             log.error("Failed to get versions for " + gav, ex);
             return new ArrayList<>();
@@ -45,7 +42,7 @@ public class VersionFinderImpl implements VersionFinder {
     @Override
     public String getBestMatchVersionFor(GAV gav) {
         try {
-            List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gavToGA(gav));
+            List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
             return findBiggestMatchingVersion(gav, obtainedVersions);
         } catch (CommunicationException ex) {
             log.error("Failed to get versions for " + gav, ex);
@@ -71,10 +68,6 @@ public class VersionFinderImpl implements VersionFinder {
             }
         }
         return bestMatchVersion;
-    }
-
-    private GA gavToGA(GAV gav) {
-        return new GA(gav.getGroupId(), gav.getArtifactId());
     }
 
 }

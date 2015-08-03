@@ -1,14 +1,14 @@
 package org.jboss.da.reports.backend.impl;
 
+import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.GAV;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import org.jboss.da.communication.CommunicationException;
 
 /**
  *
