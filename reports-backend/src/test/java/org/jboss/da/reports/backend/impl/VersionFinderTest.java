@@ -41,7 +41,6 @@ public class VersionFinderTest {
     @Test
     public void getBestMatchVersionForTest() throws CommunicationException {
         GA requestedGA = new GA("org.hibernate", "hibernate-core");
-        System.err.println("\n\n\n " + builtHibernateVersions);
         when(aproxConnector.getVersionsOfGA(requestedGA)).thenReturn(builtHibernateVersions);
 
         GAV okGAV = new GAV("org.hibernate", "hibernate-core", "1.1.5");

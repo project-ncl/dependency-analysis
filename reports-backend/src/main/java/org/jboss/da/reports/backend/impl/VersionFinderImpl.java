@@ -1,6 +1,8 @@
 package org.jboss.da.reports.backend.impl;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
+
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GA;
 import org.jboss.da.communication.aprox.model.GAV;
@@ -12,6 +14,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.jboss.da.communication.CommunicationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +27,8 @@ import org.slf4j.LoggerFactory;
 @ApplicationScoped
 public class VersionFinderImpl implements VersionFinder {
 
-    Logger log = LoggerFactory.getLogger(VersionFinderImpl.class);
-
+    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    
     @Inject
     private AproxConnector aproxConnector;
 
