@@ -1,4 +1,4 @@
-package org.jboss.da.communication.aprox.model;
+package org.jboss.da.communication.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

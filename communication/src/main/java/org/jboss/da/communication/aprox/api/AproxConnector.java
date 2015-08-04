@@ -1,11 +1,11 @@
 package org.jboss.da.communication.aprox.api;
 
-import java.util.List;
 import org.jboss.da.communication.CommunicationException;
-
-import org.jboss.da.communication.aprox.model.GA;
-import org.jboss.da.communication.aprox.model.GAV;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.model.GA;
+import org.jboss.da.communication.model.GAV;
+
+import java.util.List;
 
 public interface AproxConnector {
 

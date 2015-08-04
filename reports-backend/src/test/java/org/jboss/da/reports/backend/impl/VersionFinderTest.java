@@ -1,11 +1,12 @@
 package org.jboss.da.reports.backend.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.GA;
-import org.jboss.da.communication.aprox.model.GAV;
+import org.jboss.da.communication.model.GA;
+import org.jboss.da.communication.model.GAV;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,7 +16,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
-import org.jboss.da.communication.CommunicationException;
 
 /**
  * 

@@ -1,7 +1,7 @@
 package org.jboss.da.reports.backend.api;
 
-import org.jboss.da.communication.aprox.model.GAV;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.api.SCMLocator;
 
 /**

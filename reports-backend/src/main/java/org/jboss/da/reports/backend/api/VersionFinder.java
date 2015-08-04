@@ -1,6 +1,6 @@
 package org.jboss.da.reports.backend.api;
 
-import org.jboss.da.communication.aprox.model.GAV;
+import org.jboss.da.communication.model.GAV;
 
 import java.util.List;
 

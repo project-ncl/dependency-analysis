@@ -1,5 +1,7 @@
 package org.jboss.da.communication.aprox.model;
 
+import org.jboss.da.communication.model.GAV;
+
 import java.util.Set;
 
 import lombok.Getter;
