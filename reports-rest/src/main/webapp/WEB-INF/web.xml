@@ -11,7 +11,7 @@
         </init-param>
         <init-param>
             <param-name>swagger.api.basepath</param-name>
-            <param-value>/reports-rest/rest</param-value>
+            <param-value>/da/rest</param-value>
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>

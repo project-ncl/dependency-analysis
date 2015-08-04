@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd"
+    version="6">
+
+    <application-name>Dependency-Analysis</application-name>
+    <display-name>Dependency-Analysis</display-name>
+
+    <module>
+        <ejb>common.jar</ejb>
+    </module>
+    <module>
+        <ejb>communication.jar</ejb>
+    </module>
+    <module>
+        <ejb>reports-backend.jar</ejb>
+    </module>
+    <module>
+        <web>
+            <web-uri>reports-rest.war</web-uri>
+            <context-root>da</context-root>
+        </web>
+    </module>
+    <module>
+        <ejb>bc-backend.jar</ejb>
+    </module>
+    <module>
+        <ejb>bc-rest.jar</ejb>
+    </module>
+
+    <library-directory>lib</library-directory>
+
+</application>

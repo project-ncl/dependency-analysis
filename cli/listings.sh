@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target=10.3.10.85:8080/reports-rest/rest/listings
+target=10.3.10.85:8080/da/rest/listings
 
 setColor() {
     case $1 in
