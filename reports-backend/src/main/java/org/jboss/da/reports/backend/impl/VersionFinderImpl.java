@@ -1,6 +1,9 @@
 package org.jboss.da.reports.backend.impl;
 
 import org.jboss.da.communication.CommunicationException;
+import java.util.ArrayList;
+
+import org.jboss.da.common.version.OSGiVersionParser;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.backend.api.VersionFinder;
@@ -29,6 +32,9 @@ public class VersionFinderImpl implements VersionFinder {
     @Inject
     private AproxConnector aproxConnector;
 
+    @Inject
+    private OSGiVersionParser osGiVersionParser;
+
     @Override
     public List<String> getVersionsFor(GAV gav) throws CommunicationException {
         return aproxConnector.getVersionsOfGA(gav.getGa());
@@ -36,6 +42,7 @@ public class VersionFinderImpl implements VersionFinder {
 
     @Override
     public String getBestMatchVersionFor(GAV gav) throws CommunicationException {
+        gav.setVersion(osGiVersionParser.getOSGiVersion(gav.getVersion()));
         List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
         return findBiggestMatchingVersion(gav, obtainedVersions);
     }

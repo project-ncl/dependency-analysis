@@ -28,5 +28,9 @@
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.commonjava.maven.ext</groupId>
+            <artifactId>pom-manipulation-core</artifactId>
+        </dependency>
     </dependencies>
 </project>
