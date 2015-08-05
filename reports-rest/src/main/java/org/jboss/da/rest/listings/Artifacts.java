@@ -26,10 +26,11 @@ import com.wordnik.swagger.annotations.ApiOperation;
 /**
  *
  * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jakub Bartecek <jbartece@redhat.com>
  *
  */
 @Path("/listings")
-@Api(value = "/listings", description = "Listings of black and white artifacts")
+@Api(value = "/listings", description = "Listings of black/white listed artifacts")
 public class Artifacts {
 
     @Inject
@@ -41,56 +42,13 @@ public class Artifacts {
     @Inject
     private BlackArtifactService blackService;
 
-    @POST
-    @Path("/white")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Add White Artifact")
-    public SuccessResponse addWhiteArtifact(RestArtifact artifact) {
-        SuccessResponse response = new SuccessResponse();
-        response.setSuccess(whiteService.addArtifact(artifact.getGroupId(),
-                artifact.getArtifactId(), artifact.getVersion()));
-        return response;
-    }
-
-    @POST
-    @Path("/black")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Add Black Artifact")
-    public SuccessResponse addBlackArtifact(RestArtifact artifact) {
-        SuccessResponse response = new SuccessResponse();
-        response.setSuccess(blackService.addArtifact(artifact.getGroupId(),
-                artifact.getArtifactId(), artifact.getVersion()));
-        return response;
-    }
-
-    @GET
-    @Path("/white")
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Test if artifact is a white artifact")
-    public ContainsResponse isWhiteArtifactPresent(@QueryParam("groupid") String groupId,
-            @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
-        ContainsResponse response = new ContainsResponse();
-        response.setContains(whiteService.isArtifactPresent(groupId, artifactId, version));
-        return response;
-    }
-
-    @GET
-    @Path("/black")
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Test if artifact is a black artifact")
-    public ContainsResponse isBlackArtifactPresent(@QueryParam("groupid") String groupId,
-            @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
-        ContainsResponse response = new ContainsResponse();
-        response.setContains(blackService.isArtifactPresent(groupId, artifactId, version));
-        return response;
-    }
+    // //////////////////////////////////
+    // Whitelist endpoints
 
     @GET
     @Path("/whitelist")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get all the white artifacts")
+    @ApiOperation(value = "Get all artifacts in the whitelist")
     public Collection<RestArtifact> getAllWhiteArtifacts() {
         List<RestArtifact> artifacts = new ArrayList<RestArtifact>();
         artifacts.addAll(convert.toRestArtifacts(whiteService.getAll()));
@@ -98,20 +56,33 @@ public class Artifacts {
     }
 
     @GET
-    @Path("/blacklist")
+    @Path("/whitelist/gav")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get all the black artifacts")
-    public Collection<RestArtifact> getAllBlackArtifacts() {
-        List<RestArtifact> artifacts = new ArrayList<RestArtifact>();
-        artifacts.addAll(convert.toRestArtifacts(blackService.getAll()));
-        return artifacts;
+    @ApiOperation(value = "Check if an artifact is in the whitelist")
+    public ContainsResponse isWhiteArtifactPresent(@QueryParam("groupid") String groupId,
+            @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
+        ContainsResponse response = new ContainsResponse();
+        response.setContains(whiteService.isArtifactPresent(groupId, artifactId, version));
+        return response;
+    }
+
+    @POST
+    @Path("/whitelist/gav")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Add an artifact to the whitelist")
+    public SuccessResponse addWhiteArtifact(RestArtifact artifact) {
+        SuccessResponse response = new SuccessResponse();
+        response.setSuccess(whiteService.addArtifact(artifact.getGroupId(),
+                artifact.getArtifactId(), artifact.getVersion()));
+        return response;
     }
 
     @DELETE
-    @Path("/white")
+    @Path("/whitelist/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Remove white artifact")
+    @ApiOperation(value = "Remove an artifact from the whitelist")
     public SuccessResponse removeWhiteArtifact(RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(whiteService.removeArtifact(artifact.getGroupId(),
@@ -119,11 +90,47 @@ public class Artifacts {
         return response;
     }
 
-    @DELETE
-    @Path("/black")
+    // //////////////////////////////////
+    // Blacklist endpoints
+
+    @GET
+    @Path("/blacklist")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get all artifacts in the blacklist")
+    public Collection<RestArtifact> getAllBlackArtifacts() {
+        List<RestArtifact> artifacts = new ArrayList<RestArtifact>();
+        artifacts.addAll(convert.toRestArtifacts(blackService.getAll()));
+        return artifacts;
+    }
+
+    @GET
+    @Path("/blacklist/gav")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Check if an artifact is in the blacklist")
+    public ContainsResponse isBlackArtifactPresent(@QueryParam("groupid") String groupId,
+            @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
+        ContainsResponse response = new ContainsResponse();
+        response.setContains(blackService.isArtifactPresent(groupId, artifactId, version));
+        return response;
+    }
+
+    @POST
+    @Path("/blacklist/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Remove black artifact")
+    @ApiOperation(value = "Add an artifact to the blacklist")
+    public SuccessResponse addBlackArtifact(RestArtifact artifact) {
+        SuccessResponse response = new SuccessResponse();
+        response.setSuccess(blackService.addArtifact(artifact.getGroupId(),
+                artifact.getArtifactId(), artifact.getVersion()));
+        return response;
+    }
+
+    @DELETE
+    @Path("/blacklist/gav")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Remove an artifact from the blacklist")
     public SuccessResponse removeBlackArtifact(RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(blackService.removeArtifact(artifact.getGroupId(),

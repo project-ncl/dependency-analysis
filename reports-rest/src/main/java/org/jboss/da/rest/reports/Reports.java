@@ -58,7 +58,7 @@ public class Reports {
     @Path("/lookup/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get best matching version for the list of GAVs provided")
+    @ApiOperation(value = "Lookup built versions for the list of provided GAVs")
     public List<LookupReport> lookupGav(List<GAV> gavRequest) {
         List<LookupReport> reportsList = new ArrayList<>();
         gavRequest.forEach((gav) -> reportsList.add(toLookupReport(gav)));

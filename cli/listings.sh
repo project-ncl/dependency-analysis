@@ -41,7 +41,7 @@ delete() {
     setColor $1
     matchGAV $2
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X DELETE -d '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"}' "$target/$color" > $tmpfile
+    curl -s -H "Content-Type: application/json" -X DELETE -d '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"}' "$target/${color}list/gav" > $tmpfile
     if ! grep -q '"success":true' $tmpfile; then
         echo "Error removing $groupId:$artifactId:$version"
         cat $tmpfile
@@ -54,7 +54,7 @@ add() {
     setColor $1
     matchGAV $2
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X POST -d '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"}' "$target/$color" > $tmpfile
+    curl -s -H "Content-Type: application/json" -X POST -d '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"}' "$target/${color}list/gav" > $tmpfile
     if ! grep -q '"success":true' $tmpfile; then
         echo "Error adding $groupId:$artifactId:$version"
         cat $tmpfile
@@ -67,7 +67,7 @@ check() {
     setColor $1
     matchGAV $2
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X GET "$target/$color?groupid=${groupId}&artifactid=${artifactId}&version=${version}" > $tmpfile
+    curl -s -H "Content-Type: application/json" -X GET "$target/${color}list/gav?groupid=${groupId}&artifactid=${artifactId}&version=${version}" > $tmpfile
     if grep -q '"contains":true' $tmpfile; then
         echo "Artifact $groupId:$artifactId:$version is ${color}listed"
     elif grep -q '"contains":false' $tmpfile; then
