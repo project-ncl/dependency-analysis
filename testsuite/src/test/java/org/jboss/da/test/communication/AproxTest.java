@@ -30,13 +30,14 @@ public class AproxTest {
 
     @Test
     public void testGetVersionsOfGA() throws CommunicationException {
-        GA ga = new GA("org.jboss.apiviz", "apiviz");
-        List<String> apivizTest = Arrays.asList(new String[] { "1.3.1.GA-redhat-1", "1.2.5.GA",
-                "1.3.0.GA", "1.3.1.GA-redhat-2", "1.3.2.GA" });
+        GA ga = new GA("org.jboss.ballroom", "ballroom");
+        List<String> ballroomTest = Arrays.asList(new String[] { "1.3.0.Final-redhat-1",
+                "1.4.0.Final-redhat-1", "1.6.0.Final-redhat-1" });
         List<String> result = aproxConnector.getVersionsOfGA(ga);
-        assertTrue(apivizTest.size() == result.size());
-        assertTrue(apivizTest.containsAll(result));
-        assertTrue(result.containsAll(apivizTest));
+        assertTrue(result.size() > 0);
+        // future releases might make the size of result to be bigger
+        assertTrue(ballroomTest.size() <= result.size());
+        assertTrue(result.containsAll(ballroomTest));
     }
 
 }
