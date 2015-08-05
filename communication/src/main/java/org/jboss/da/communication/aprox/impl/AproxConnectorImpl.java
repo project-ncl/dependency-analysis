@@ -14,6 +14,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -52,6 +53,8 @@ public class AproxConnectorImpl implements AproxConnector {
             URLConnection connection = new URL(query.toString()).openConnection();
 
             return parseMetadataFile(connection).getVersioning().getVersions().getVersion();
+        } catch (FileNotFoundException ex) {
+            return null;
         } catch (IOException | ConfigurationParseException | CommunicationException e) {
             throw new CommunicationException("Failed to obtain versions for " + ga.toString(), e);
         }
