@@ -5,14 +5,10 @@ import lombok.Setter;
 
 public class DAConfig {
 
-    @Getter
-    @Setter
-    private String keycloakServer;
-
+    @Getter @Setter private String keycloakServer;
     @Getter
     @Setter
     private String keycloakClientid;
-
     @Getter
     @Setter
     private String keycloakUsername;
