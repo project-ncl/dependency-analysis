@@ -2,11 +2,13 @@ package org.jboss.da.listings.api.service;
 
 import java.util.List;
 
+import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.model.Artifact;
 
 /**
  * 
  * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jakub Bartecek <jbartece@redhat.com>
  *
  */
 public interface ArtifactService<T extends Artifact> {
@@ -31,14 +33,21 @@ public interface ArtifactService<T extends Artifact> {
     T getArtifact(String groupId, String artifactId, String version);
 
     /**
-     * Finds if list contains artifact with specific groupId, artifactId and verison.
+     * Checks if list contains artifact with specific groupId, artifactId and version.
      * 
      * @param groupId
      * @param artifactId
      * @param version
-     * @return True or false if list contains artifact.
+     * @return True if list contains the artifact otherwise false.
      */
     boolean isArtifactPresent(String groupId, String artifactId, String version);
+
+    /**
+     * Checks if list contains artifact with specific GAV.
+     * @param gav
+     * @return True if list contains the artifact otherwise false.
+     */
+    boolean isArtifactPresent(GAV gav);
 
     /**
      * Finds and return all artifacts.

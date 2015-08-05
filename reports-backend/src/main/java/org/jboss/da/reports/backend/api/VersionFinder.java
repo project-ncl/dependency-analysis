@@ -30,4 +30,14 @@ public interface VersionFinder {
      * @throws CommunicationException when there is a problem with communication with remote services.
      */
     String getBestMatchVersionFor(GAV gav) throws CommunicationException;
+
+    /**
+     * Tries to find the RedHat built version of specified artifacts in the provided list of available built versions of artifact.
+     * Tries to find the latest built. If there is not built artifact with given GAV, null is returned.
+     *
+     * @param gav GAV, which specifies the artifact
+     * @param availableVersions Available built versions of the specified artifact
+     * @return Found biggest version of built artifact with given GAV or null if this artifact was not built yet
+     */
+    String getBestMatchVersionFor(GAV gav, List<String> availableVersions);
 }

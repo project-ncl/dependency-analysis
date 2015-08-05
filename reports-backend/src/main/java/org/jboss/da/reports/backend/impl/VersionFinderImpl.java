@@ -16,6 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ *Performs single lookups for the built artifacts
  * 
  * @author Jakub Bartecek <jbartece@redhat.com>
  *
@@ -37,6 +38,11 @@ public class VersionFinderImpl implements VersionFinder {
     public String getBestMatchVersionFor(GAV gav) throws CommunicationException {
         List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
         return findBiggestMatchingVersion(gav, obtainedVersions);
+    }
+
+    @Override
+    public String getBestMatchVersionFor(GAV gav, List<String> availableVersions) {
+        return findBiggestMatchingVersion(gav, availableVersions);
     }
 
     private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
