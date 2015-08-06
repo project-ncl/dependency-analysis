@@ -2,6 +2,9 @@ package org.jboss.da.rest.reports;
 
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
+import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.rest.reports.model.GAVRequest;
 import org.jboss.da.rest.reports.model.LookupReport;
@@ -34,6 +37,12 @@ public class Reports {
 
     @Inject
     private VersionFinder versionFinder;
+
+    @Inject
+    private WhiteArtifactService whiteArtifactService;
+
+    @Inject
+    private BlackArtifactService blackArtifactService;
 
     @POST
     @Path("/scm")
@@ -69,6 +78,18 @@ public class Reports {
     }
 
     private LookupReport toLookupReport(GAV gav) throws CommunicationException {
-        return new LookupReport(gav, versionFinder.getBestMatchVersionFor(gav));
+        return new LookupReport(gav, versionFinder.getBestMatchVersionFor(gav), isBlacklisted(gav),
+                isWhitelisted(gav));
     }
+
+    private boolean isBlacklisted(GAV gav) {
+        return blackArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
+                gav.getVersion());
+    }
+
+    private boolean isWhitelisted(GAV gav) {
+        return whiteArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
+                gav.getVersion());
+    }
+
 }

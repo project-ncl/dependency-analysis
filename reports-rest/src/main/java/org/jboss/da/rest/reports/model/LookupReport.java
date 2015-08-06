@@ -19,4 +19,12 @@ public class LookupReport {
     @Setter
     private String bestMatchVersion;
 
+    @Getter
+    @Setter
+    private boolean blacklisted;
+
+    @Getter
+    @Setter
+    private boolean whitelisted;
+
 }

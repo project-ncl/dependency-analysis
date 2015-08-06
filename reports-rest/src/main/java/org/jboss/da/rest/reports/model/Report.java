@@ -44,4 +44,10 @@ public class Report {
     @Getter
     @NonNull
     private final List<Report> dependencies;
+
+    @Getter
+    private boolean blacklisted;
+
+    @Getter
+    private boolean whitelisted;
 }
