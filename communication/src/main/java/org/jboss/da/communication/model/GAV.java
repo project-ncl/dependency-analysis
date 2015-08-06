@@ -1,38 +1,35 @@
 package org.jboss.da.communication.model;
 
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.NonNull;
 
+@AllArgsConstructor
 @EqualsAndHashCode
-@NoArgsConstructor
 public class GAV {
 
-    public GAV(String groupId, String artifactId, String version) {
+    @NonNull
+    private final GA ga;
+
+    @Getter
+    @NonNull
+    private final String version;
+
+    @JsonCreator
+    public GAV(@JsonProperty("groupId") String groupId,
+            @JsonProperty("artifactId") String artifactId, @JsonProperty("version") String version) {
         this.ga = new GA(groupId, artifactId);
         this.version = version;
     }
 
-    public GAV(GA ga, String version) {
-        this.ga = ga;
-        this.version = version;
-    }
-
-    @Getter
-    @Setter
-    private GA ga;
-
-    @Getter
-    @Setter
-    private String version;
-
-    public void setGroupId(String groupId) {
-        ga.setGroupId(groupId);
-    }
-
-    public void setArtifactId(String artifactId) {
-        ga.setArtifactId(artifactId);
+    @JsonIgnore
+    public GA getGA() {
+        return ga;
     }
 
     public String getGroupId() {

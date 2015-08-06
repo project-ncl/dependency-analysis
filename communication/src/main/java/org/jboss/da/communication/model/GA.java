@@ -1,26 +1,28 @@
 package org.jboss.da.communication.model;
 
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @EqualsAndHashCode
-@NoArgsConstructor
-@RequiredArgsConstructor
 public class GA {
 
-    @Setter
     @Getter
     @NonNull
-    private String groupId;
+    private final String groupId;
 
-    @Setter
     @Getter
     @NonNull
-    private String artifactId;
+    private final String artifactId;
+
+    @JsonCreator
+    public GA(@JsonProperty("groupId") String groupId, @JsonProperty("artifactId") String artifactId) {
+        this.groupId = groupId;
+        this.artifactId = artifactId;
+    }
 
     @Override
     public String toString() {
