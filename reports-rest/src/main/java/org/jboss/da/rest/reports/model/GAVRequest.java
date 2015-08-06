@@ -1,5 +1,8 @@
 package org.jboss.da.rest.reports.model;
 
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -9,7 +12,6 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -17,8 +19,17 @@ import lombok.RequiredArgsConstructor;
  */
 @XmlRootElement(name = "report")
 @XmlAccessorType(XmlAccessType.FIELD)
-@RequiredArgsConstructor
 public class GAVRequest {
+
+    @JsonCreator
+    public GAVRequest(@JsonProperty("groupId") String groupId,
+            @JsonProperty("artifactId") String artifactId, @JsonProperty("version") String version,
+            @JsonProperty("products") List<Product> products) {
+        this.groupId = groupId;
+        this.artifactId = artifactId;
+        this.version = version;
+        this.products = products;
+    }
 
     @Getter
     @NonNull
