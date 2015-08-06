@@ -11,12 +11,12 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import java.lang.invoke.MethodHandles;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ *Performs single lookups for the built artifacts
  * 
  * @author Jakub Bartecek <jbartece@redhat.com>
  *
@@ -30,24 +30,19 @@ public class VersionFinderImpl implements VersionFinder {
     private AproxConnector aproxConnector;
 
     @Override
-    public List<String> getVersionsFor(GAV gav) {
-        try {
-            return aproxConnector.getVersionsOfGA(gav.getGa());
-        } catch (CommunicationException ex) {
-            log.error("Failed to get versions for " + gav, ex);
-            return new ArrayList<>();
-        }
+    public List<String> getVersionsFor(GAV gav) throws CommunicationException {
+        return aproxConnector.getVersionsOfGA(gav.getGa());
     }
 
     @Override
-    public String getBestMatchVersionFor(GAV gav) {
-        try {
-            List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
-            return findBiggestMatchingVersion(gav, obtainedVersions);
-        } catch (CommunicationException ex) {
-            log.error("Failed to get versions for " + gav, ex);
-            return null;
-        }
+    public String getBestMatchVersionFor(GAV gav) throws CommunicationException {
+        List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
+        return findBiggestMatchingVersion(gav, obtainedVersions);
+    }
+
+    @Override
+    public String getBestMatchVersionFor(GAV gav, List<String> availableVersions) {
+        return findBiggestMatchingVersion(gav, availableVersions);
     }
 
     private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {

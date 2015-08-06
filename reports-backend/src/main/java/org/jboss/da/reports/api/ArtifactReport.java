@@ -2,6 +2,7 @@ package org.jboss.da.reports.api;
 
 import org.jboss.da.communication.model.GAV;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,8 +10,10 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
+ * Class, which represents one report for the top-level GAV
  *
  * @author Honza Brázdil <janinko.g@gmail.com>
  */
@@ -21,12 +24,28 @@ public class ArtifactReport {
     @NonNull
     private GAV gav;
 
-    private Set<String> availableVersions = new HashSet<>();
+    @NonNull
+    private final Set<String> availableVersions = new HashSet<>();
 
     @Getter
     private String bestMatchVersion;
 
-    private Set<ArtifactReport> dependencies;
+    @NonNull
+    private final Set<ArtifactReport> dependencies = new HashSet<>();
+
+    /**
+     * Indicator if the artifact was blacklisted
+     */
+    @Getter
+    @Setter
+    private boolean blacklisted;
+
+    /**
+     * Indicator if the artifact was whiteListed
+     */
+    @Getter
+    @Setter
+    private boolean whiteListed;
 
     public void setBestMatchVersion(String version) {
         availableVersions.add(version);
@@ -35,6 +54,10 @@ public class ArtifactReport {
 
     public void addAvailableVersion(String version) {
         availableVersions.add(version);
+    }
+
+    public void addAvailableVersions(Collection<String> version) {
+        availableVersions.addAll(version);
     }
 
     public void addDependency(ArtifactReport dependency) {
@@ -51,6 +74,7 @@ public class ArtifactReport {
 
     /**
      * Returns true if this artifact and all the dependencies of this artifact have a GAV already in PNC/Brew.
+     * @return true if this artifact and all the dependencies of this artifact have a GAV already in PNC/Brew.
      */
     public boolean isDependencyVersionSatisfied() {
         if (bestMatchVersion == null) {

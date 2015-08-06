@@ -1,5 +1,6 @@
 package org.jboss.da.rest.reports;
 
+import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.rest.reports.model.GAVRequest;
@@ -59,13 +60,15 @@ public class Reports {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Lookup built versions for the list of provided GAVs")
-    public List<LookupReport> lookupGav(List<GAV> gavRequest) {
+    public List<LookupReport> lookupGav(List<GAV> gavRequest) throws CommunicationException {
         List<LookupReport> reportsList = new ArrayList<>();
-        gavRequest.forEach((gav) -> reportsList.add(toLookupReport(gav)));
+        for (GAV gav : gavRequest) {
+            reportsList.add(toLookupReport(gav));
+        }
         return reportsList;
     }
 
-    private LookupReport toLookupReport(GAV gav) {
+    private LookupReport toLookupReport(GAV gav) throws CommunicationException {
         return new LookupReport(gav, versionFinder.getBestMatchVersionFor(gav));
     }
 }

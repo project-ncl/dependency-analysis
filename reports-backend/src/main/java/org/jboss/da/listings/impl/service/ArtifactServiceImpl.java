@@ -1,17 +1,19 @@
 package org.jboss.da.listings.impl.service;
 
-import java.lang.invoke.MethodHandles;
-import java.util.List;
-
+import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.service.ArtifactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.invoke.MethodHandles;
+import java.util.List;
+
 /**
  * 
  * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jakub Bartecek <jbartece@redhat.com>
  *
  */
 public abstract class ArtifactServiceImpl<T extends Artifact> implements ArtifactService<T> {
@@ -52,6 +54,11 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
     @Override
     public boolean isArtifactPresent(String groupId, String artifactId, String version) {
         return (getDAO().findArtifact(groupId, artifactId, version) != null);
+    }
+
+    @Override
+    public boolean isArtifactPresent(GAV gav) {
+        return (getDAO().findArtifact(gav.getGroupId(), gav.getArtifactId(), gav.getVersion()) != null);
     }
 
     @Override
