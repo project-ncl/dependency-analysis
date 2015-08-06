@@ -1,6 +1,8 @@
 #!/bin/bash
 
-target=10.3.10.85:8080/da/rest/listings
+target=10.3.10.85:8080/da/rest
+
+basedir=`dirname $0`
 
 setColor() {
     case $1 in
@@ -21,15 +23,23 @@ pretyprintGAV() {
         sed -r 's/(g:([^\t]*)\t|a:([^\t]*)\t|v:([^\t]*)\t)*/\2:\3:\4/'
 }
 
-list() {
-    setColor $1
-    curl -s -H "Content-Type: application/json" -X GET $target/${color}list | pretyprintGAV
+get() {
+    curl -s -H "Content-Type: application/json" -X GET "$target/$1"
+}
+
+post() {
+    echo curl -s -H "Content-Type: application/json" -X POST -d "$2" "$target/$1" >&2
+    curl -s -H "Content-Type: application/json" -X POST -d "$2" "$target/$1"
+}
+
+delete() {
+    curl -s -H "Content-Type: application/json" -X DELETE -d "$2" "$target/$1"
 }
 
 matchGAV() {
     [ -z $1 ] && printUsage
     if ! echo $1 | grep -q "^[^:]\+:[^:]\+:[^:]\+$"; then
-        echo "the GAV is not in format GROUP_ID:ARTIFACT_ID:VERSION"
+        echo "the GAV is not in format GROUP_ID:ARTIFACT_ID:VERSION: $1"
         exit 1
     fi
     groupId=`echo $1 | cut -f1 -d:`
@@ -37,11 +47,20 @@ matchGAV() {
     version=`echo $1 | cut -f3 -d:`
 }
 
+formatGAVjson() {
+    echo '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"'$1'}'
+}
+
+list() {
+    setColor $1
+    get "listings/${color}list" | pretyprintGAV
+}
+
 delete() {
     setColor $1
     matchGAV $2
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X DELETE -d '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"}' "$target/${color}list/gav" > $tmpfile
+    delete "listings/${color}list/gav" "`formatGAVjson`" > $tmpfile
     if ! grep -q '"success":true' $tmpfile; then
         echo "Error removing $groupId:$artifactId:$version"
         cat $tmpfile
@@ -54,7 +73,7 @@ add() {
     setColor $1
     matchGAV $2
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X POST -d '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"}' "$target/${color}list/gav" > $tmpfile
+    post "listings/${color}list/gav" "`formatGAVjson`" > $tmpfile
     if ! grep -q '"success":true' $tmpfile; then
         echo "Error adding $groupId:$artifactId:$version"
         cat $tmpfile
@@ -67,7 +86,7 @@ check() {
     setColor $1
     matchGAV $2
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X GET "$target/${color}list/gav?groupid=${groupId}&artifactid=${artifactId}&version=${version}" > $tmpfile
+    get "listings/${color}list/gav?groupid=${groupId}&artifactid=${artifactId}&version=${version}" > $tmpfile
     if grep -q '"contains":true' $tmpfile; then
         echo "Artifact $groupId:$artifactId:$version is ${color}listed"
     elif grep -q '"contains":false' $tmpfile; then
@@ -77,6 +96,33 @@ check() {
         cat $tmpfile
         echo
     fi
+    rm $tmpfile
+}
+
+report() {
+    matchGAV $1
+    echo `formatGAVjson ', "products":[]'`
+    tmpfile=`mktemp`
+    echo "[" > $tmpfile # WA until there is pretty print for reports
+    post "reports/gav" "`formatGAVjson ', "products":[]'`" >> $tmpfile
+    echo "]" >> $tmpfile # WA until there is pretty print for reports
+    cat $tmpfile | $basedir/pretty-lookup.py
+    rm $tmpfile
+}
+
+lookup() {
+    local query="["
+    local first=true
+    while read line; do
+        matchGAV $line
+        $first || query="$query,"
+        first=false
+        query="$query `formatGAVjson`"
+    done
+    query="$query ]"
+    tmpfile=`mktemp`
+    curl -s -H "Content-Type: application/json" -X POST -d "$query" "$target/reports/lookup/gav" > $tmpfile
+    cat $tmpfile | $basedir/pretty-lookup.py
     rm $tmpfile
 }
 

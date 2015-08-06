@@ -12,6 +12,10 @@ printUsage() {
     echo "    List all artifacts in black or white list"
     echo "$0 pom [--no-transitive]";
     echo "    Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status"
+    echo "$0 lookup";
+    echo "    Read G:A:Vs from standard input and finds corresponding redhat versions"
+    echo "$0 report GROUP_ID:ARTIFACT_ID:VERSION";
+    echo "    Generate dependency report for GROUP_ID:ARTIFACT_ID:VERSION"
     exit
 }
 
@@ -27,6 +31,8 @@ case $action in
     check) check $2 $3;;
     list) list $2;;
     pom) pom $2;;
+    lookup) lookup;;
+    report) report $2;;
     *) printUsage ;;
 esac
 
