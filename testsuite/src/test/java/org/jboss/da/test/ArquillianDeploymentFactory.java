@@ -42,6 +42,8 @@ public class ArquillianDeploymentFactory {
 
     private static final String TYPE_EJB = "ejb";
 
+    private static final String PROJECT_GROUP_ID = "org.jboss.da";
+
     private MavenStrategyStage mavenResolve(String groupId, String artifactId, String type) {
         return Maven.resolver().loadPomFromFile("../application/pom.xml")
                 .resolve(groupId + ":" + artifactId + ":" + type + ":?");
@@ -121,11 +123,11 @@ public class ArquillianDeploymentFactory {
     }
 
     public EnterpriseArchive createDeployment() {
-        JavaArchive communicationJar = getModule("org.jboss.da", "communication");
-        JavaArchive bcBackendJar = getModule("org.jboss.da", "bc-backend");
-        JavaArchive reportsBackendJar = getModule("org.jboss.da", "reports-backend");
-        JavaArchive bcRestJar = getModule("org.jboss.da", "bc-rest");
-        WebArchive reportsRestJar = getWebModule("org.jboss.da", "reports-rest");
+        JavaArchive communicationJar = getModule(PROJECT_GROUP_ID, "communication");
+        JavaArchive bcBackendJar = getModule(PROJECT_GROUP_ID, "bc-backend");
+        JavaArchive reportsBackendJar = getModule(PROJECT_GROUP_ID, "reports-backend");
+        JavaArchive bcRestJar = getModule(PROJECT_GROUP_ID, "bc-rest");
+        WebArchive reportsRestJar = getWebModule(PROJECT_GROUP_ID, "reports-rest");
 
         JavaArchive testsuiteJar = prepareTestsuiteJar();
 
@@ -136,11 +138,11 @@ public class ArquillianDeploymentFactory {
         StringAsset deploymentStructure = new StringAsset(depStruct);
 
         EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, TEST_EAR);
-        ear.addAsLibraries(getLibs("org.jboss.da", "communication", TYPE_EJB));
-        ear.addAsLibraries(getLibs("org.jboss.da", "bc-backend", TYPE_EJB));
-        ear.addAsLibraries(getLibs("org.jboss.da", "reports-backend", TYPE_EJB));
-        ear.addAsLibraries(getLibs("org.jboss.da", "bc-rest", TYPE_EJB));
-        ear.addAsLibraries(getLibs("org.jboss.da", "reports-rest", TYPE_WAR));
+        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "communication", TYPE_EJB));
+        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "bc-backend", TYPE_EJB));
+        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-backend", TYPE_EJB));
+        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "bc-rest", TYPE_EJB));
+        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-rest", TYPE_WAR));
         ear.addAsModule(testsuiteJar);
         ear.addAsModule(communicationJar);
         ear.addAsModule(bcBackendJar);
