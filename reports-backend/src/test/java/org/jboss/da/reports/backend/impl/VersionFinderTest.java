@@ -39,7 +39,7 @@ public class VersionFinderTest {
     private AproxConnector aproxConnector;
 
     @Mock
-    private OSGiVersionParser osGiVersionParserImpl;
+    private OSGiVersionParser osGiVersionParser;
 
     @InjectMocks
     @Spy
@@ -50,10 +50,8 @@ public class VersionFinderTest {
     @Test
     public void getBestMatchVersionForTest() throws CommunicationException {
         GA requestedGA = new GA("org.hibernate", "hibernate-core");
-        System.err.println("\n\n\n " + builtHibernateVersions);
-        when(osGiVersionParserImpl.getOSGiVersion(OSGI_VERSION_OK)).thenReturn(OSGI_VERSION_OK);
-        when(osGiVersionParserImpl.getOSGiVersion(OSGI_VERSION_OB_GAV)).thenReturn(
-                OSGI_VERSION_OB_GAV);
+        when(osGiVersionParser.getOSGiVersion(OSGI_VERSION_OK)).thenReturn(OSGI_VERSION_OK);
+        when(osGiVersionParser.getOSGiVersion(OSGI_VERSION_OB_GAV)).thenReturn(OSGI_VERSION_OB_GAV);
         when(aproxConnector.getVersionsOfGA(requestedGA)).thenReturn(builtHibernateVersions);
 
         GAV okGAV = new GAV("org.hibernate", "hibernate-core", "1.1.5");
@@ -61,6 +59,16 @@ public class VersionFinderTest {
 
         GAV ontBuiltGAV = new GAV("org.hibernate", "hibernate-core", "1.1.3");
         assertEquals(null, versionFinderImpl.getBestMatchVersionFor(ontBuiltGAV));
+    }
+
+    @Test
+    public void getBestMatchForWrongVersionTest() throws CommunicationException {
+        GAV badVersion = new GAV("org.hibernate", "hibernate-core", "1.0");
+        when(osGiVersionParser.getOSGiVersion("1.Final")).thenReturn("1.0.0");
+        when(aproxConnector.getVersionsOfGA(badVersion.getGa())).thenReturn(builtHibernateVersions);
+
+        String bestVersion = versionFinderImpl.getBestMatchVersionFor(badVersion);
+        assertEquals("1.0.0.redhat-18", bestVersion);
     }
 
 }

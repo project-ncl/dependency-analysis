@@ -43,10 +43,6 @@ public class VersionFinderImpl implements VersionFinder {
     @Override
     public String getBestMatchVersionFor(GAV gav) throws CommunicationException {
         List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
-        if (obtainedVersions == null) {
-            gav.setVersion(osGiVersionParser.getOSGiVersion(gav.getVersion()));
-            obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
-        }
         return findBiggestMatchingVersion(gav, obtainedVersions);
     }
 
@@ -57,10 +53,23 @@ public class VersionFinderImpl implements VersionFinder {
 
     private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
         String bestMatchVersion = null;
-        int biggestBuildNumber = 0;
 
         String origVersion = gav.getVersion();
         Pattern pattern = Pattern.compile(origVersion + ".*\\.redhat-(\\d+)\\D*");
+
+        bestMatchVersion = findVersionByPattern(pattern, origVersion, obtainedVersions);
+        if (bestMatchVersion == null) {
+            String osgiVersion = osGiVersionParser.getOSGiVersion(origVersion);
+            pattern = Pattern.compile(osgiVersion + ".*\\.redhat-(\\d+)\\D*");
+            bestMatchVersion = findVersionByPattern(pattern, osgiVersion, obtainedVersions);
+        }
+        return bestMatchVersion;
+    }
+
+    private String findVersionByPattern(Pattern pattern, String version,
+            List<String> obtainedVersions) {
+        String bestMatchVersion = null;
+        int biggestBuildNumber = 0;
 
         for (String ver : obtainedVersions) {
             Matcher matcher = pattern.matcher(ver);
