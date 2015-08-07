@@ -31,12 +31,12 @@ public class VersionFinderImpl implements VersionFinder {
 
     @Override
     public List<String> getVersionsFor(GAV gav) throws CommunicationException {
-        return aproxConnector.getVersionsOfGA(gav.getGa());
+        return aproxConnector.getVersionsOfGA(gav.getGA());
     }
 
     @Override
     public String getBestMatchVersionFor(GAV gav) throws CommunicationException {
-        List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
+        List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGA());
         return findBiggestMatchingVersion(gav, obtainedVersions);
     }
 
