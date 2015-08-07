@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
  */
 @XmlRootElement(name = "report")
 @XmlAccessorType(XmlAccessType.FIELD)
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Report {
 
     @Getter

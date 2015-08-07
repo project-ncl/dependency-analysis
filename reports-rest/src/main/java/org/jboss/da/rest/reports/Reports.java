@@ -1,12 +1,13 @@
 package org.jboss.da.rest.reports;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
-import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.reports.api.ArtifactReport;
+import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.backend.api.VersionFinder;
-import org.jboss.da.rest.reports.model.GAVRequest;
 import org.jboss.da.rest.reports.model.LookupReport;
 import org.jboss.da.rest.reports.model.Report;
 import org.jboss.da.rest.reports.model.SCMRequest;
@@ -39,6 +40,9 @@ public class Reports {
     private VersionFinder versionFinder;
 
     @Inject
+    private ReportsGenerator reportsGenerator;
+
+    @Inject
     private WhiteArtifactService whiteArtifactService;
 
     @Inject
@@ -48,20 +52,22 @@ public class Reports {
     @Path("/scm")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get dependency report for a project specified in a repository url")
+    @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
+            hidden = true)
+    // TODO unhide when the method will be implemented
     public Report scmGenerator(SCMRequest scmRequest) {
-        // TODO Auto-generated method stub
-        return null;
+        throw new NotImplementedException();
     }
 
     @POST
     @Path("/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get dependency report for a GAV")
-    public Report gavGenerator(GAVRequest gavRequest) {
-        // TODO Auto-generated method stub
-        return null;
+    @ApiOperation(
+            value = "Get dependency report for a GAV " // TODO change when dependencies will be implemented
+                    + "(Currently the dependencies and dependency_versions_satisfied don't contains usefull values)")
+    public Report gavGenerator(GAV gavRequest) {
+        return toReport(reportsGenerator.getReport(gavRequest));
     }
 
     @POST
@@ -75,6 +81,14 @@ public class Reports {
             reportsList.add(toLookupReport(gav));
         }
         return reportsList;
+    }
+
+    private Report toReport(ArtifactReport report) {
+        return new Report(report.getGav().getGroupId(), report.getGav().getArtifactId(), report
+                .getGav().getVersion(), new ArrayList<String>(report.getAvailableVersions()),
+        // TODO change when dependencies will be implemented
+                report.getBestMatchVersion(), false, new ArrayList<Report>(),
+                report.isBlacklisted(), report.isWhiteListed());
     }
 
     private LookupReport toLookupReport(GAV gav) throws CommunicationException {
