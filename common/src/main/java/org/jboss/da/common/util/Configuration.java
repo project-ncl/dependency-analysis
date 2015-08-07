@@ -10,7 +10,9 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class Configuration {
 
-    private static final String CONFIG_SYSPROP = "da-config-file";
+    static final String CONFIG_SYSPROP = "da-config-file";
+
+    static final String CONFIG_DEFAULT = "da-config.json";
 
     public DAConfig getConfig() throws ConfigurationParseException {
 
@@ -26,7 +28,7 @@ public class Configuration {
         String configFileName = System.getProperty(CONFIG_SYSPROP);
 
         if (configFileName == null) {
-            configFileName = "da-config.json";
+            configFileName = CONFIG_DEFAULT;
         }
 
         // Try to open stream from full path
@@ -42,6 +44,6 @@ public class Configuration {
             return inStream;
         }
 
-        throw new FileNotFoundException("Missing project config file.");
+        throw new FileNotFoundException("Missing project config file " + configFileName + ".");
     }
 }

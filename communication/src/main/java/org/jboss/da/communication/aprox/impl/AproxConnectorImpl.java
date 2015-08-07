@@ -1,5 +1,6 @@
 package org.jboss.da.communication.aprox.impl;
 
+import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.CommunicationException;
@@ -43,9 +44,10 @@ public class AproxConnectorImpl implements AproxConnector {
     public List<String> getVersionsOfGA(GA ga) throws CommunicationException {
         StringBuilder query = new StringBuilder();
         try {
-            query.append(config.getConfig().getAproxServer());
+            DAConfig config = this.config.getConfig();
+            query.append(config.getAproxServer());
             query.append("/api/remote/");
-            query.append(config.getConfig().getAproxRemote()).append('/');
+            query.append(config.getAproxRemote()).append('/');
             query.append(ga.getGroupId().replace(".", "/")).append("/");
             query.append(ga.getArtifactId()).append('/');
             query.append("maven-metadata.xml");
@@ -56,7 +58,8 @@ public class AproxConnectorImpl implements AproxConnector {
         } catch (FileNotFoundException ex) {
             return null;
         } catch (IOException | ConfigurationParseException | CommunicationException e) {
-            throw new CommunicationException("Failed to obtain versions for " + ga.toString(), e);
+            throw new CommunicationException("Failed to obtain versions for " + ga.toString()
+                    + " from approx server with url " + query.toString(), e);
         }
     }
 
