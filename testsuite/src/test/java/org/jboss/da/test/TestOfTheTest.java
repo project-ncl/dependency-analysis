@@ -15,7 +15,7 @@ public class TestOfTheTest {
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
-        return AbstractArquillianTest.createDeployment();
+        return new ArquillianDeploymentFactory().createDeployment();
     }
 
     @Test

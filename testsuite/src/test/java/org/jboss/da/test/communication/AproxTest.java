@@ -7,7 +7,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GA;
-import org.jboss.da.test.AbstractArquillianTest;
+import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ public class AproxTest {
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
-        return AbstractArquillianTest.createDeployment();
+        return new ArquillianDeploymentFactory().createDeployment();
     }
 
     @Test

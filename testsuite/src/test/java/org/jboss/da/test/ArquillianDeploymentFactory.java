@@ -20,7 +20,7 @@ import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStage;
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
-public abstract class AbstractArquillianTest {
+public class ArquillianDeploymentFactory {
 
     private static final String TEST_JAR = "testsuite.jar";
 
@@ -42,17 +42,17 @@ public abstract class AbstractArquillianTest {
 
     private static final String TYPE_EJB = "ejb";
 
-    private static MavenStrategyStage mavenResolve(String groupId, String artifactId, String type) {
+    private MavenStrategyStage mavenResolve(String groupId, String artifactId, String type) {
         return Maven.resolver().loadPomFromFile("../application/pom.xml")
                 .resolve(groupId + ":" + artifactId + ":" + type + ":?");
     }
 
-    private static JavaArchive getModule(String groupId, String artifactId) {
+    private JavaArchive getModule(String groupId, String artifactId) {
         File file = mavenResolve(groupId, artifactId, "ejb").withoutTransitivity().asSingleFile();
         return ShrinkWrap.createFromZipFile(JavaArchive.class, file);
     }
 
-    private static WebArchive getWebModule(String groupId, String artifactId) {
+    private WebArchive getWebModule(String groupId, String artifactId) {
         File file = mavenResolve(groupId, artifactId, "war").withoutTransitivity().asSingleFile();
         return ShrinkWrap.createFromZipFile(WebArchive.class, file);
     }
@@ -62,7 +62,7 @@ public abstract class AbstractArquillianTest {
      * deployment structure in string. This is needed because deployment structure needs actual file names in .ear and the
      * filenames can vary system to system and even between runs.
      */
-    private static String prepareDeploymentStructure(String communicationName,
+    private String prepareDeploymentStructure(String communicationName,
             String bcBackendName, String reportsBackendName, String bcRestName,
             String reportsRestName) {
         File f = new File("src/test/resources/META-INF/jboss-deployment-structure.xml");
@@ -70,7 +70,7 @@ public abstract class AbstractArquillianTest {
                 bcRestName, reportsRestName);
     }
 
-    private static String replacePlaceholders(File f, String communicationName,
+    private String replacePlaceholders(File f, String communicationName,
             String bcBackendName, String reportsBackendName, String bcRestName,
             String reportsRestName) {
         try (BufferedReader r = new BufferedReader(new FileReader(f))) {
@@ -90,7 +90,7 @@ public abstract class AbstractArquillianTest {
         }
     }
 
-    private static String prepareApplicationXml(String communicationName, String bcBackendName,
+    private String prepareApplicationXml(String communicationName, String bcBackendName,
             String reportsBackendName, String bcRestName, String reportsRestName) {
         File f = new File("src/test/resources/META-INF/application.xml");
         return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName,
@@ -102,7 +102,7 @@ public abstract class AbstractArquillianTest {
      */
     private final static Pattern fileNamePattern = Pattern.compile("(^[a-z-]+[a-z])");
 
-    private static File[] getLibs(String groupId, String artifactId, String type) {
+    private File[] getLibs(String groupId, String artifactId, String type) {
         File[] libs = mavenResolve(groupId, artifactId, type).withTransitivity().asFile();
 
         List<File> libsList = new ArrayList<>();
@@ -115,14 +115,14 @@ public abstract class AbstractArquillianTest {
         return libsList.toArray(new File[libsList.size()]);
     }
 
-    private static JavaArchive prepareTestsuiteJar() {
+    private JavaArchive prepareTestsuiteJar() {
         JavaArchive testsuiteJar = ShrinkWrap.create(JavaArchive.class, TEST_JAR);
         testsuiteJar.addPackages(true, "org.jboss.da.test");
         testsuiteJar.addAsManifestResource(new File("src/test/resources/META-INF/beans.xml"));
         return testsuiteJar;
     }
 
-    public static EnterpriseArchive createDeployment() {
+    public EnterpriseArchive createDeployment() {
         JavaArchive communicationJar = getModule("org.jboss.da", "communication");
         JavaArchive bcBackendJar = getModule("org.jboss.da", "bc-backend");
         JavaArchive reportsBackendJar = getModule("org.jboss.da", "reports-backend");
