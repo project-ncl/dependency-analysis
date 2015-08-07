@@ -14,7 +14,7 @@ import java.util.Set;
  * @author Jozef Mrazek <jmrazek@redhat.com>
  *
  */
-@ApplicationPath("/rest")
+@ApplicationPath("/rest/v-0.2")
 public class ReportsRestActivator extends Application {
 
     @Override
