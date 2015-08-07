@@ -1,6 +1,9 @@
 package org.jboss.da.reports.backend.impl;
 
 import org.jboss.da.communication.CommunicationException;
+import java.util.ArrayList;
+
+import org.jboss.da.common.version.OSGiVersionParser;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.backend.api.VersionFinder;
@@ -29,6 +32,9 @@ public class VersionFinderImpl implements VersionFinder {
     @Inject
     private AproxConnector aproxConnector;
 
+    @Inject
+    private OSGiVersionParser osGiVersionParser;
+
     @Override
     public List<String> getVersionsFor(GAV gav) throws CommunicationException {
         return aproxConnector.getVersionsOfGA(gav.getGA());
@@ -47,10 +53,23 @@ public class VersionFinderImpl implements VersionFinder {
 
     private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
         String bestMatchVersion = null;
-        int biggestBuildNumber = 0;
 
         String origVersion = gav.getVersion();
         Pattern pattern = Pattern.compile(origVersion + ".*\\.redhat-(\\d+)\\D*");
+
+        bestMatchVersion = findVersionByPattern(pattern, origVersion, obtainedVersions);
+        if (bestMatchVersion == null) {
+            String osgiVersion = osGiVersionParser.getOSGiVersion(origVersion);
+            pattern = Pattern.compile(osgiVersion + ".*\\.redhat-(\\d+)\\D*");
+            bestMatchVersion = findVersionByPattern(pattern, osgiVersion, obtainedVersions);
+        }
+        return bestMatchVersion;
+    }
+
+    private String findVersionByPattern(Pattern pattern, String version,
+            List<String> obtainedVersions) {
+        String bestMatchVersion = null;
+        int biggestBuildNumber = 0;
 
         for (String ver : obtainedVersions) {
             Matcher matcher = pattern.matcher(ver);

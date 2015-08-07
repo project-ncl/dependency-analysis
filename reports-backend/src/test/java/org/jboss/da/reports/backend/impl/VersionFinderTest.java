@@ -3,7 +3,7 @@ package org.jboss.da.reports.backend.impl;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.common.version.OSGiVersionParser;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
@@ -17,6 +17,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.List;
 
+import org.jboss.da.communication.CommunicationException;
+
 /**
  * 
  * @author Jakub Bartecek <jbartece@redhat.com>
@@ -29,8 +31,15 @@ public class VersionFinderTest {
             "1.0.20", "1.1.1.redhat-15", "1.1.5.redhat-3", "1.1.4.redhat-20", "1.1.5.redhat-5",
             "1.1.5.redhat-18", "1.1.5.redhat-16" };
 
+    private static final String OSGI_VERSION_OK = "1.1.5";
+
+    private static final String OSGI_VERSION_OB_GAV = "1.1.3";
+
     @Mock
     private AproxConnector aproxConnector;
+
+    @Mock
+    private OSGiVersionParser osGiVersionParser;
 
     @InjectMocks
     @Spy
@@ -41,6 +50,8 @@ public class VersionFinderTest {
     @Test
     public void getBestMatchVersionForTest() throws CommunicationException {
         GA requestedGA = new GA("org.hibernate", "hibernate-core");
+        when(osGiVersionParser.getOSGiVersion(OSGI_VERSION_OK)).thenReturn(OSGI_VERSION_OK);
+        when(osGiVersionParser.getOSGiVersion(OSGI_VERSION_OB_GAV)).thenReturn(OSGI_VERSION_OB_GAV);
         when(aproxConnector.getVersionsOfGA(requestedGA)).thenReturn(builtHibernateVersions);
 
         GAV okGAV = new GAV("org.hibernate", "hibernate-core", "1.1.5");
@@ -48,6 +59,16 @@ public class VersionFinderTest {
 
         GAV ontBuiltGAV = new GAV("org.hibernate", "hibernate-core", "1.1.3");
         assertEquals(null, versionFinderImpl.getBestMatchVersionFor(ontBuiltGAV));
+    }
+
+    @Test
+    public void getBestMatchForWrongVersionTest() throws CommunicationException {
+        GAV badVersion = new GAV("org.hibernate", "hibernate-core", "1.0");
+        when(osGiVersionParser.getOSGiVersion("1.Final")).thenReturn("1.0.0");
+        when(aproxConnector.getVersionsOfGA(badVersion.getGa())).thenReturn(builtHibernateVersions);
+
+        String bestVersion = versionFinderImpl.getBestMatchVersionFor(badVersion);
+        assertEquals("1.0.0.redhat-18", bestVersion);
     }
 
 }
