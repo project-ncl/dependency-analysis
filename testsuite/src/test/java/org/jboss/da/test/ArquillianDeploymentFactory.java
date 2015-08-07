@@ -4,22 +4,26 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStage;
 
-/**
- *
- * @author Honza Brázdil <jbrazdil@redhat.com>
- */
 public class ArquillianDeploymentFactory {
 
     private static final String TEST_JAR = "testsuite.jar";
@@ -44,19 +48,71 @@ public class ArquillianDeploymentFactory {
 
     private static final String PROJECT_GROUP_ID = "org.jboss.da";
 
+    private final boolean useBuildArchives;
+
+    public ArquillianDeploymentFactory() {
+        this.useBuildArchives = System.getProperty("useBuildArchives") != null;
+    }
+
     private MavenStrategyStage mavenResolve(String groupId, String artifactId, String type) {
         return Maven.resolver().loadPomFromFile("../application/pom.xml")
                 .resolve(groupId + ":" + artifactId + ":" + type + ":?");
     }
 
     private JavaArchive getModule(String groupId, String artifactId) {
-        File file = mavenResolve(groupId, artifactId, "ejb").withoutTransitivity().asSingleFile();
-        return ShrinkWrap.createFromZipFile(JavaArchive.class, file);
+        return getArchive(groupId, artifactId, "ejb", JavaArchive.class);
     }
 
     private WebArchive getWebModule(String groupId, String artifactId) {
-        File file = mavenResolve(groupId, artifactId, "war").withoutTransitivity().asSingleFile();
-        return ShrinkWrap.createFromZipFile(WebArchive.class, file);
+        return getArchive(groupId, artifactId, "war", WebArchive.class);
+    }
+
+    private <T extends Archive> T getArchive(String groupId, String artifactId, String type,
+                                             Class<T> archiveClass) {
+        File file = useBuildArchives ? findBuildArchive(groupId, artifactId, type) : mavenResolve(
+                groupId, artifactId, type).withoutTransitivity().asSingleFile();
+        return ShrinkWrap.createFromZipFile(archiveClass, file);
+    }
+
+    private File findBuildArchive(String groupId, String artifactId, final String type) {
+        if (PROJECT_GROUP_ID.equals(groupId)) {
+            File projectTopLevelDir = new File("").getAbsoluteFile();
+            if (!isProjectTopLevelDir(projectTopLevelDir)) {
+                projectTopLevelDir = projectTopLevelDir.getParentFile();
+                if (!isProjectTopLevelDir(projectTopLevelDir)) {
+                    throw new IllegalStateException(
+                            "Can not find project top level directory from "
+                                    + projectTopLevelDir.getAbsolutePath());
+                }
+            }
+            File projectBuildDir = new File(new File(projectTopLevelDir, artifactId), "target");
+            try {
+                DirectoryStream.Filter<? super Path> filter = new DirectoryStream.Filter<Path>() {
+
+                    @Override
+                    public boolean accept(Path path) throws IOException {
+                        File file = path.toFile();
+                        String name = file.getName();
+                        return file.isFile() && name.startsWith(artifactId)
+                                && name.endsWith("war".equals(type) ? ".war" : ".jar");
+                    }
+                };
+                DirectoryStream<Path> directoryStream = Files.newDirectoryStream(
+                        Paths.get(projectBuildDir.getAbsolutePath()), filter);
+                Iterator<Path> iterator = directoryStream.iterator();
+                return iterator.hasNext() ? iterator.next().toFile() : null;
+            } catch (IOException e) {
+                throw new RuntimeException("Can not find archive " + groupId + ":" + artifactId
+                        + " - error " + e.getMessage(), e);
+            }
+        }
+        throw new UnsupportedOperationException("Archive " + groupId + ":" + artifactId
+                + " is not part of this project");
+    }
+
+    private boolean isProjectTopLevelDir(File dir) {
+        File testModule = dir == null ? null : new File(dir, "testsuite");
+        return testModule != null && testModule.exists() && testModule.isDirectory();
     }
 
     /**
@@ -109,7 +165,9 @@ public class ArquillianDeploymentFactory {
         for (File f : libs) {
             Matcher matcher = fileNamePattern.matcher(f.getName());
             if (matcher.find() && !matcher.group(1).equals(artifactId)) {
-                libsList.add(f);
+                if (!(useBuildArchives && f.getParent().startsWith("/tmp"))) {
+                    libsList.add(f);
+                }
             }
         }
         return libsList.toArray(new File[libsList.size()]);
@@ -143,6 +201,11 @@ public class ArquillianDeploymentFactory {
         ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-backend", TYPE_EJB));
         ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "bc-rest", TYPE_EJB));
         ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-rest", TYPE_WAR));
+        if (useBuildArchives) {
+            JavaArchive commonJar = getModule(PROJECT_GROUP_ID, "common");
+            ear.addAsLibraries(communicationJar, commonJar, bcBackendJar, reportsBackendJar);
+
+        }
         ear.addAsModule(testsuiteJar);
         ear.addAsModule(communicationJar);
         ear.addAsModule(bcBackendJar);
@@ -155,7 +218,18 @@ public class ArquillianDeploymentFactory {
                 reportsRestJar.getName())));
         ear.addAsManifestResource(deploymentStructure, "jboss-deployment-structure.xml");
 
+        if (isCreateArchiveCopy()) {
+            writeArchiveToFile(ear, new File(ear.getName()));
+        }
         return ear;
+    }
+
+    private boolean isCreateArchiveCopy() {
+        return System.getProperty("createArchiveCopy") != null;
+    }
+
+    private void writeArchiveToFile(Archive<?> archive, File file) {
+        archive.as(ZipExporter.class).exportTo(file, true);
     }
 
 }
