@@ -42,8 +42,11 @@ public class VersionFinderImpl implements VersionFinder {
 
     @Override
     public String getBestMatchVersionFor(GAV gav) throws CommunicationException {
-        gav.setVersion(osGiVersionParser.getOSGiVersion(gav.getVersion()));
         List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
+        if (obtainedVersions == null) {
+            gav.setVersion(osGiVersionParser.getOSGiVersion(gav.getVersion()));
+            obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGa());
+        }
         return findBiggestMatchingVersion(gav, obtainedVersions);
     }
 
