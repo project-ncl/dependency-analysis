@@ -1,4 +1,4 @@
-package org.jboss.da.test.communication;
+package org.jboss.da.test.server.communication;
 
 import static org.junit.Assert.assertTrue;
 

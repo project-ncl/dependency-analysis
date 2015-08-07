@@ -62,17 +62,15 @@ public class ArquillianDeploymentFactory {
      * deployment structure in string. This is needed because deployment structure needs actual file names in .ear and the
      * filenames can vary system to system and even between runs.
      */
-    private String prepareDeploymentStructure(String communicationName,
-            String bcBackendName, String reportsBackendName, String bcRestName,
-            String reportsRestName) {
+    private String prepareDeploymentStructure(String communicationName, String bcBackendName,
+            String reportsBackendName, String bcRestName, String reportsRestName) {
         File f = new File("src/test/resources/META-INF/jboss-deployment-structure.xml");
         return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName,
                 bcRestName, reportsRestName);
     }
 
-    private String replacePlaceholders(File f, String communicationName,
-            String bcBackendName, String reportsBackendName, String bcRestName,
-            String reportsRestName) {
+    private String replacePlaceholders(File f, String communicationName, String bcBackendName,
+            String reportsBackendName, String bcRestName, String reportsRestName) {
         try (BufferedReader r = new BufferedReader(new FileReader(f))) {
             StringBuilder sb = new StringBuilder();
             for (String line = r.readLine(); line != null; line = r.readLine()) {
@@ -117,7 +115,7 @@ public class ArquillianDeploymentFactory {
 
     private JavaArchive prepareTestsuiteJar() {
         JavaArchive testsuiteJar = ShrinkWrap.create(JavaArchive.class, TEST_JAR);
-        testsuiteJar.addPackages(true, "org.jboss.da.test");
+        testsuiteJar.addPackages(true, "org.jboss.da.test.server");
         testsuiteJar.addAsManifestResource(new File("src/test/resources/META-INF/beans.xml"));
         return testsuiteJar;
     }
