@@ -20,7 +20,7 @@ public class DeploymentTest {
     }
 
     @Test
-    public void testTheTest() {
+    public void testDeployment() {
     }
 
 }
