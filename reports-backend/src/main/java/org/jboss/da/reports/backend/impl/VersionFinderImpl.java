@@ -14,6 +14,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  *Performs single lookups for the built artifacts
@@ -31,7 +32,18 @@ public class VersionFinderImpl implements VersionFinder {
 
     @Override
     public List<String> getVersionsFor(GAV gav) throws CommunicationException {
-        return aproxConnector.getVersionsOfGA(gav.getGA());
+        Pattern pattern = Pattern.compile(".*[\\.-]redhat-(\\d+)\\D*");
+        List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
+
+        if (allVersions == null) {
+            return null;
+        } else {
+            List<String> redhatVersions = allVersions.stream()
+                    .filter(version -> pattern.matcher(version).matches())
+                    .collect(Collectors.toList());
+
+            return redhatVersions.isEmpty() ? null : redhatVersions;
+        }
     }
 
     @Override
@@ -46,11 +58,16 @@ public class VersionFinderImpl implements VersionFinder {
     }
 
     private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
+
+        if (obtainedVersions == null) {
+            return null;
+        }
+
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
 
         String origVersion = gav.getVersion();
-        Pattern pattern = Pattern.compile(origVersion + ".*\\.redhat-(\\d+)\\D*");
+        Pattern pattern = Pattern.compile(origVersion + ".*[\\.-]redhat-(\\d+)\\D*");
 
         for (String ver : obtainedVersions) {
             Matcher matcher = pattern.matcher(ver);
