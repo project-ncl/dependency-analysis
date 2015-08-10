@@ -47,7 +47,7 @@ public class VersionFinderTest {
 
     private static final String BUILT_VERSION_2 = "1.1.4.Final";
 
-    private static final String BUILT_VERSION_2_RH = BUILT_VERSION + "-redhat-10";
+    private static final String BUILT_VERSION_2_RH = BUILT_VERSION_2 + "-redhat-10";
 
     private static final String MULTI_BUILT_VERSION = "1.1.5";
 
@@ -80,11 +80,13 @@ public class VersionFinderTest {
     private static final GAV NO_BUILT_GAV = new GAV(REQUESTED_GA, NO_BUILT_VERSION);
 
     private static final GAV BUILT_GAV = new GAV(REQUESTED_GA, BUILT_VERSION);
+
     private static final GAV BUILT_GAV_2 = new GAV(REQUESTED_GA, BUILT_VERSION_2);
 
     private static final GAV MULTI_BUILT_GAV = new GAV(REQUESTED_GA, MULTI_BUILT_VERSION);
 
     private static final GAV NON_OSGI_GAV = new GAV(REQUESTED_GA, NON_OSGI_VERSION);
+
     private static final GAV NON_OSGI_GAV_2 = new GAV(REQUESTED_GA, NON_OSGI_VERSION_2);
 
     private static final List<String> All_VERSIONS = Arrays.asList(OTHER_RH_VERSION_1,
@@ -95,8 +97,8 @@ public class VersionFinderTest {
 
     private static final List<String> BUILT_VERSIONS = Arrays.asList(OTHER_RH_VERSION_1,
             OTHER_RH_VERSION_2, OTHER_RH_VERSION_3, MULTI_BUILT_VERSION_RH2, BUILT_VERSION_RH,
-            MULTI_BUILT_VERSION_RH1, BUILT_VERSION_2_RH, MULTI_BUILT_VERSION_RH_BEST, MULTI_BUILT_VERSION_RH4,
-            NON_OSGI_VERSION_RHT, NON_OSGI_VERSION_2_RHT);
+            MULTI_BUILT_VERSION_RH1, BUILT_VERSION_2_RH, MULTI_BUILT_VERSION_RH_BEST,
+            MULTI_BUILT_VERSION_RH4, NON_OSGI_VERSION_RHT, NON_OSGI_VERSION_2_RHT);
 
     private void prepare(List<String> versions) throws CommunicationException {
         when(aproxConnector.getVersionsOfGA(REQUESTED_GA)).thenReturn(versions);
@@ -114,7 +116,7 @@ public class VersionFinderTest {
         prepare(All_VERSIONS);
         List<String> versions = versionFinder.getVersionsFor(SOME_GAV);
         assertNotNull(versions);
-        assertEquals(versions.size(), 8);
+        assertEquals(BUILT_VERSIONS.size(), versions.size());
         assertTrue(versions.containsAll(BUILT_VERSIONS));
         assertFalse(versions.contains(NO_BUILT_VERSION));
         assertFalse(versions.contains(NO_BUILT_VERSION_2));
@@ -160,7 +162,8 @@ public class VersionFinderTest {
     }
 
     @Test
-    @Ignore // TODO: remove ignore when parsing of OSGI versions is implemented
+    @Ignore
+    // TODO: remove ignore when parsing of OSGI versions is implemented
     public void getBestMatchVersionForNoOSGIGAV() throws CommunicationException {
         String bmv;
         prepare(All_VERSIONS);
