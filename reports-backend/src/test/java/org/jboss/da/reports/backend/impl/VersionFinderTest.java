@@ -43,7 +43,7 @@ public class VersionFinderTest {
 
     private static final String BUILT_VERSION = "1.1.4";
 
-    private static final String BUILT_VERSION_RH = BUILT_VERSION + ".redhat-20";
+    private static final String BUILT_VERSION_RH = BUILT_VERSION + "-redhat-20";
 
     private static final String BUILT_VERSION_2 = "1.1.4.Final";
 
