@@ -58,16 +58,14 @@ public class VersionFinderImpl implements VersionFinder {
     }
 
     private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
-
-        if (obtainedVersions == null) {
+        if (obtainedVersions == null)
             return null;
-        }
 
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
 
         String origVersion = gav.getVersion();
-        Pattern pattern = Pattern.compile(origVersion + ".*[\\.-]redhat-(\\d+)\\D*");
+        Pattern pattern = Pattern.compile(origVersion + "[.-]redhat-(\\d+)\\D*");
 
         for (String ver : obtainedVersions) {
             Matcher matcher = pattern.matcher(ver);
