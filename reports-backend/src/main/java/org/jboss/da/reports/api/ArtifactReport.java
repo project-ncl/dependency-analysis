@@ -48,7 +48,9 @@ public class ArtifactReport {
     private boolean whiteListed;
 
     public void setBestMatchVersion(String version) {
-        availableVersions.add(version);
+        if (version != null) {
+            availableVersions.add(version);
+        }
         bestMatchVersion = version;
     }
 

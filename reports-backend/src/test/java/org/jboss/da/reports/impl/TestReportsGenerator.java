@@ -171,6 +171,17 @@ public class TestReportsGenerator {
     }
 
     @Test
+    public void artifactReportShouldNotHaveNullValuesInAvailableVersionsWhenBestMatchVersionIsNull()
+            throws CommunicationException {
+        prepare(false, false, daCoreVersionsBest, null, daCoreNoDT);
+        ArtifactReport report = generator.getReport(daCoreGAV);
+        assertNotNull(report);
+        assertNull(report.getBestMatchVersion());
+
+        assertFalse(report.getAvailableVersions().stream().anyMatch(version -> version == null));
+    }
+
+    @Test
     @Ignore
     // TODO: Remove this ignore when AProxCommunicator supports dependencies
     public void testGetMultipleReport() throws CommunicationException {
