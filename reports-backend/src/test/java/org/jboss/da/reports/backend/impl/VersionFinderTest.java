@@ -1,17 +1,13 @@
 package org.jboss.da.reports.backend.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
+import org.jboss.da.common.version.OSGiVersionParser;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -32,6 +28,9 @@ public class VersionFinderTest {
 
     @Mock
     private AproxConnector aproxConnector;
+
+    @Spy
+    private OSGiVersionParser osgiParser = new OSGiVersionParser();
 
     @InjectMocks
     @Spy
@@ -67,7 +66,7 @@ public class VersionFinderTest {
 
     private static final String NON_OSGI_VERSION = "1.3";
 
-    private static final String NON_OSGI_VERSION_RHT = "1.3.0.redhat-4";
+    private static final String NON_OSGI_VERSION_RHT = "1.3.redhat-4";
 
     private static final String NON_OSGI_VERSION_2 = "1.3-Final";
 
@@ -162,8 +161,6 @@ public class VersionFinderTest {
     }
 
     @Test
-    @Ignore
-    // TODO: remove ignore when parsing of OSGI versions is implemented
     public void getBestMatchVersionForNoOSGIGAV() throws CommunicationException {
         String bmv;
         prepare(All_VERSIONS);

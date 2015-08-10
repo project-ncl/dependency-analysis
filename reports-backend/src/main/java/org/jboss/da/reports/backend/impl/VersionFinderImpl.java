@@ -1,5 +1,6 @@
 package org.jboss.da.reports.backend.impl;
 
+import org.jboss.da.common.version.OSGiVersionParser;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GAV;
@@ -17,7 +18,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- *Performs single lookups for the built artifacts
+ * Performs single lookups for the built artifacts
  * 
  * @author Jakub Bartecek <jbartece@redhat.com>
  *
@@ -29,6 +30,9 @@ public class VersionFinderImpl implements VersionFinder {
 
     @Inject
     private AproxConnector aproxConnector;
+
+    @Inject
+    private OSGiVersionParser osgiParser;
 
     @Override
     public List<String> getVersionsFor(GAV gav) throws CommunicationException {
@@ -61,11 +65,23 @@ public class VersionFinderImpl implements VersionFinder {
         if (obtainedVersions == null)
             return null;
 
+        final String patternSuffix = "[.-]redhat-(\\d+)\\D*";
+        String origVersion = gav.getVersion();
+        Pattern pattern = Pattern.compile(origVersion + patternSuffix);
+
+        String bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
+        if (bestMatchVersion == null) {
+            String osgiVersion = osgiParser.getOSGiVersion(origVersion);
+            pattern = Pattern.compile(osgiVersion + patternSuffix);
+            bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
+        }
+
+        return bestMatchVersion;
+    }
+
+    private String findBiggestMatchingVersion(List<String> obtainedVersions, Pattern pattern) {
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
-
-        String origVersion = gav.getVersion();
-        Pattern pattern = Pattern.compile(origVersion + "[.-]redhat-(\\d+)\\D*");
 
         for (String ver : obtainedVersions) {
             Matcher matcher = pattern.matcher(ver);
@@ -77,6 +93,7 @@ public class VersionFinderImpl implements VersionFinder {
                 }
             }
         }
+
         return bestMatchVersion;
     }
 
