@@ -73,7 +73,7 @@ public class Reports {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Report was successfully generated"),
             @ApiResponse(code = 404,
-                    message = "Requested GA was not found or the repository is not available"), })
+                    message = "Requested GA was not found or the repository is not available") })
     public Response gavGenerator(GAV gavRequest) {
         ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
         if (artifactReport == null)
@@ -89,22 +89,34 @@ public class Reports {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Lookup built versions for the list of provided GAVs")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Lookup report was successfully generated"),
-            @ApiResponse(code = 404,
-                    message = "Requested GA was not found or the repository is not available"), })
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Lookup report was successfully generated"),
+                    @ApiResponse(
+                            code = 206,
+                            message = "Lookup report was generated, but at least one of the requested GAs "
+                                    + "was not found or the repository was not available"),
+                    @ApiResponse(
+                            code = 404,
+                            message = "None of the requested GAs was found or the repository is not available") })
     public Response lookupGav(List<GAV> gavRequest) {
-        try {
-            List<LookupReport> reportsList = new ArrayList<>();
-            for (GAV gav : gavRequest)
+        List<LookupReport> reportsList = new ArrayList<>();
+        int responseStatus = 200;
+        for (GAV gav : gavRequest) {
+            try {
                 reportsList.add(toLookupReport(gav));
-
-            return Response.ok().entity(reportsList).build();
-        } catch (CommunicationException e) {
-            return Response.status(Status.NOT_FOUND)
-                    .entity("Requested GA was not found or the repository is not available")
-                    .build();
+            } catch (CommunicationException e) {
+                responseStatus = 206; // Partial Content HTTP code
+            }
         }
+
+        if (reportsList.isEmpty())
+            return Response
+                    .status(Status.NOT_FOUND)
+                    .entity("None of the requested GAs was not found or the repository is not available")
+                    .build();
+        else
+            return Response.status(responseStatus).entity(reportsList).build();
     }
 
     private Report toReport(ArtifactReport report) {
