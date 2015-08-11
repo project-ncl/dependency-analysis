@@ -77,8 +77,9 @@ public class Reports {
     public Response gavGenerator(GAV gavRequest) {
         ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
         if (artifactReport == null)
-            return Response.status(Status.NOT_FOUND)
-                    .entity("Requested GA was not found or the repository is not available")
+            return Response
+                    .status(Status.NOT_FOUND)
+                    .entity("{\"message\": \"Requested GA was not found or the repository is not available\"}")
                     .build();
         else
             return Response.ok().entity(toReport(artifactReport)).build();
@@ -113,7 +114,7 @@ public class Reports {
         if (reportsList.isEmpty())
             return Response
                     .status(Status.NOT_FOUND)
-                    .entity("None of the requested GAs was not found or the repository is not available")
+                    .entity("{\"message\": \"None of the requested GAs was not found or the repository is not available\"}")
                     .build();
         else
             return Response.status(responseStatus).entity(reportsList).build();
