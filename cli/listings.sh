@@ -56,7 +56,7 @@ list() {
     get "listings/${color}list" | pretyprintGAV
 }
 
-delete() {
+deleteGAVFromList() {
     setColor $1
     matchGAV $2
     tmpfile=`mktemp`
@@ -101,10 +101,10 @@ check() {
 
 report() {
     matchGAV $1
-    echo `formatGAVjson ', "products":[]'`
+    echo `formatGAVjson`
     tmpfile=`mktemp`
     echo "[" > $tmpfile # WA until there is pretty print for reports
-    post "reports/gav" "`formatGAVjson ', "products":[]'`" >> $tmpfile
+    post "reports/gav" "`formatGAVjson`" >> $tmpfile
     echo "]" >> $tmpfile # WA until there is pretty print for reports
     cat $tmpfile | $basedir/pretty-lookup.py
     rm $tmpfile

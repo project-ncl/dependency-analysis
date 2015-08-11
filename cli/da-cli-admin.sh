@@ -33,7 +33,7 @@ action=$1
 
 case $action in
     add) add $2 $3;;
-    delete) delete $2 $3;;
+    delete) deleteGAVFromList $2 $3;;
     check) check $2 $3;;
     list) list $2;;
     pom) pom $2;;
