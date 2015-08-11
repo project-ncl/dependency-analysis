@@ -116,7 +116,7 @@ public class Reports {
         if (reportsList.isEmpty())
             return Response
                     .status(Status.NOT_FOUND)
-                    .entity("{\"message\": \"None of the requested GAs was not found or the repository is not available\"}")
+                    .entity("{\"message\": \"None of the requested GAs was found or the repository is not available\"}")
                     .build();
         else
             return Response.status(responseStatus).entity(reportsList).build();
