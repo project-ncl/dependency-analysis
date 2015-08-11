@@ -13,7 +13,7 @@ setColor() {
     esac
 }
 
-pretyprintGAV() {
+prettyPrintGAV() {
     python -m json.tool | \
         egrep '"(artifactId|groupId|version)"' | \
         sed -r 's/ *"groupId": "([^"]*)",?/g:\1\t/;
@@ -53,7 +53,7 @@ formatGAVjson() {
 
 list() {
     setColor $1
-    get "listings/${color}list" | pretyprintGAV
+    get "listings/${color}list" | prettyPrintGAV
 }
 
 deleteGAVFromList() {
