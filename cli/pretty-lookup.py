@@ -18,4 +18,10 @@ for e in jdata:
         lists="black list"
     elif e["whitelisted"]:
         lists="white list"
-    print e["groupId"]+":"+e["artifactId"]+":"+e["version"]+"\t"+str(e["bestMatchVersion"])+"\t"+"["+", ".join(e["availableVersions"])+"]\t"+lists
+
+    if "availableVersions" in e:
+        prettyAvailableVersions = "\t[" + ", ".join(e["availableVersions"]) + "]"
+    else:
+        prettyAvailableVersions = ""
+
+    print e["groupId"]+":"+e["artifactId"]+":"+e["version"]+"\t"+str(e["bestMatchVersion"]) + prettyAvailableVersions + "\t"+lists
