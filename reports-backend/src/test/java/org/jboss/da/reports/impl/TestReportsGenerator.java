@@ -82,7 +82,7 @@ public class TestReportsGenerator {
 
     private void prepare(boolean whitelisted, boolean blacklisted, List<String> versions,
             String best, GAVDependencyTree dependencyTree) throws CommunicationException {
-        when(versionFinderImpl.getVersionsFor(daCoreGAV)).thenReturn(versions);
+        when(versionFinderImpl.getBuiltVersionsFor(daCoreGAV)).thenReturn(versions);
         when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV)).thenReturn(best);
         when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV, versions)).thenReturn(best);
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
@@ -94,14 +94,14 @@ public class TestReportsGenerator {
         prepare(false, false, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
         when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
-        when(versionFinderImpl.getVersionsFor(daUtilGAV)).thenReturn(daCoreVersionsBest);
+        when(versionFinderImpl.getBuiltVersionsFor(daUtilGAV)).thenReturn(daCoreVersionsBest);
         when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV)).thenReturn(bestMatchVersion);
         when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV, daCoreVersionsBest)).thenReturn(
                 bestMatchVersion);
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
         when(whiteArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
 
-        when(versionFinderImpl.getVersionsFor(daCommonGAV)).thenReturn(daCoreVersionsNoBest);
+        when(versionFinderImpl.getBuiltVersionsFor(daCommonGAV)).thenReturn(daCoreVersionsNoBest);
         when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV)).thenReturn(null);
         when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV, daCoreVersionsNoBest))
                 .thenReturn(null);
@@ -121,7 +121,7 @@ public class TestReportsGenerator {
 
     @Test
     public void testNonExistingGAV() throws CommunicationException {
-        when(versionFinderImpl.getVersionsFor(daGAV)).thenReturn(null);
+        when(versionFinderImpl.getBuiltVersionsFor(daGAV)).thenReturn(null);
         ArtifactReport report = generator.getReport(daGAV);
         assertNull(report);
     }
