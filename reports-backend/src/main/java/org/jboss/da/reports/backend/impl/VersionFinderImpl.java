@@ -28,15 +28,18 @@ public class VersionFinderImpl implements VersionFinder {
 
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+    private final String PATTERN_SUFFIX_BUILT_VERSION = "[.-]redhat-(\\d+)\\D*";
+    
     @Inject
     private AproxConnector aproxConnector;
 
     @Inject
     private OSGiVersionParser osgiParser;
+    
 
     @Override
     public List<String> getVersionsFor(GAV gav) throws CommunicationException {
-        Pattern pattern = Pattern.compile(".*[\\.-]redhat-(\\d+)\\D*");
+        Pattern pattern = Pattern.compile(PATTERN_SUFFIX_BUILT_VERSION);
         List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
 
         if (allVersions == null) {
@@ -65,14 +68,13 @@ public class VersionFinderImpl implements VersionFinder {
         if (obtainedVersions == null)
             return null;
 
-        final String patternSuffix = "[.-]redhat-(\\d+)\\D*";
         String origVersion = gav.getVersion();
-        Pattern pattern = Pattern.compile(origVersion + patternSuffix);
+        Pattern pattern = Pattern.compile(origVersion + PATTERN_SUFFIX_BUILT_VERSION);
 
         String bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
         if (bestMatchVersion == null) {
             String osgiVersion = osgiParser.getOSGiVersion(origVersion);
-            pattern = Pattern.compile(osgiVersion + patternSuffix);
+            pattern = Pattern.compile(osgiVersion + PATTERN_SUFFIX_BUILT_VERSION);
             bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
         }
 
