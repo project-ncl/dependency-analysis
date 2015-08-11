@@ -56,7 +56,7 @@ list() {
     get "listings/${color}list" | pretyprintGAV
 }
 
-delete() {
+deleteGAVFromList() {
     setColor $1
     matchGAV $2
     tmpfile=`mktemp`
