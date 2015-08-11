@@ -7,6 +7,7 @@ import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.ReportsGenerator;
+import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.rest.reports.model.LookupReport;
 import org.jboss.da.rest.reports.model.Report;
@@ -20,6 +21,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.wordnik.swagger.annotations.Api;
@@ -92,8 +94,13 @@ public class Reports {
     }
 
     private LookupReport toLookupReport(GAV gav) throws CommunicationException {
-        return new LookupReport(gav, versionFinder.getBestMatchVersionFor(gav), isBlacklisted(gav),
-                isWhitelisted(gav));
+        VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
+        if (lookupResult == null)
+            return new LookupReport(gav, null, Collections.<String> emptyList(),
+                    isBlacklisted(gav), isWhitelisted(gav));
+        else
+            return new LookupReport(gav, lookupResult.getBestMatchVersion(),
+                    lookupResult.getAvailableVersions(), isBlacklisted(gav), isWhitelisted(gav));
     }
 
     private boolean isBlacklisted(GAV gav) {

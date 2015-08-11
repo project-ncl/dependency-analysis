@@ -60,7 +60,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         try {
             if (gav == null)
                 throw new IllegalArgumentException("GAV can't be null");
-            List<String> versions = versionFinderImpl.getVersionsFor(gav);
+            List<String> versions = versionFinderImpl.getBuiltVersionsFor(gav);
             if (versions == null)
                 return null;
             ArtifactReport ar = toArtifactReport(gav, versions);
@@ -87,7 +87,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private void addDependencyReports(ArtifactReport ar, Set<GAVDependencyTree> dependencyTree)
             throws CommunicationException {
         for (GAVDependencyTree dt : dependencyTree) {
-            List<String> versions = versionFinderImpl.getVersionsFor(dt.getGav());
+            List<String> versions = versionFinderImpl.getBuiltVersionsFor(dt.getGav());
             if (versions == null) {
                 log.warn("Versions for dependency {} was not found", dt.getGav());
                 continue;

@@ -3,6 +3,8 @@ package org.jboss.da.rest.reports.model;
 import org.codehaus.jackson.annotate.JsonUnwrapped;
 import org.jboss.da.communication.model.GAV;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
@@ -20,6 +22,10 @@ public class LookupReport {
     @Getter
     @Setter
     private String bestMatchVersion;
+
+    @Getter
+    @Setter
+    private List<String> availableVersions;
 
     @Getter
     @Setter
