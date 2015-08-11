@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target=10.3.10.85:8080/da/rest
+target=10.3.10.85:8080/da/rest/v-0.2
 
 basedir=`dirname $0`
 

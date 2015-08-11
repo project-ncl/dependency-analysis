@@ -17,7 +17,7 @@ public class Root {
     @Produces(MediaType.TEXT_HTML)
     public String getDescription() {
         return "<h1>Dependency analyzer REST</h1>"
-                + "<ul><li><strong>Version:</strong> 1.0.0</li>"
+                + "<ul><li><strong>Version:</strong> 0.2.0</li>"
                 + "<li><strong>Swagger documentation:</strong>/da/doc</li>"
                 + "<li><strong>REST proposal documentation:</strong> https://docs.engineering.redhat.com/display/JP/REST+endpoints+proposal</li></ul>";
     }
