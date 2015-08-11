@@ -10,8 +10,10 @@ printUsage() {
     echo "    Check if artifact GROUP_ID:ARTIFACT_ID:VERSION is in black or white list"
     echo "$0 list (b[lack]|w[hite])"
     echo "    List all artifacts in black or white list"
-    echo "$0 pom [--no-transitive]";
+    echo "$0 pom-bw [--no-transitive]";
     echo "    Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status"
+    echo "$0 pom-report [--no-transitive]";
+    echo "    Check all dependencies from pom in working directory (using dependency:list) and print their report status"
     echo "$0 lookup";
     echo "    Read G:A:Vs from standard input and finds corresponding redhat versions"
     echo "$0 report GROUP_ID:ARTIFACT_ID:VERSION";
@@ -19,7 +21,7 @@ printUsage() {
     exit
 }
 
-    
+
 if [ $# -lt 1 ]; then
     printUsage
     exit
@@ -30,7 +32,8 @@ action=$1
 case $action in
     check) check $2 $3;;
     list) list $2;;
-    pom) pom $2;;
+    pom-bw) pom_bw $2;;
+    pom-report) pom_report $2;;
     lookup) lookup;;
     report) report $2;;
     *) printUsage ;;
