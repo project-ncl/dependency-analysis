@@ -40,7 +40,7 @@ public class VersionFinderImpl implements VersionFinder {
     @Override
     public List<String> getBuiltVersionsFor(GAV gav) throws CommunicationException {
         List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
-        return getBuiltVerionsFor0(allVersions);
+        return getBuiltVersionsFor0(allVersions);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class VersionFinderImpl implements VersionFinder {
             return null;
         else
             return new VersionLookupResult(getBestMatchVersionFor(gav, allVersions),
-                    getBuiltVerionsFor0(allVersions));
+                    getBuiltVersionsFor0(allVersions));
     }
 
     @Override
@@ -64,7 +64,7 @@ public class VersionFinderImpl implements VersionFinder {
         return findBiggestMatchingVersion(gav, availableVersions);
     }
 
-    private List<String> getBuiltVerionsFor0(List<String> allVersions) {
+    private List<String> getBuiltVersionsFor0(List<String> allVersions) {
         Pattern pattern = Pattern.compile(".*" + PATTERN_SUFFIX_BUILT_VERSION);
         if (allVersions == null) {
             return null;
