@@ -2,13 +2,6 @@
 <jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
     <deployment>
     </deployment>
-    <sub-deployment name="${testsuite}">
-        <dependencies>
-            <module name="deployment.testsuite.ear.${bc-rest}"/>
-            <module name="deployment.testsuite.ear.${reports-rest}"/>
-            <module name="deployment.testsuite.ear.${communication}"/>
-        </dependencies>
-    </sub-deployment>
     <sub-deployment name="${bc-rest}">
         <dependencies>
             <module name="deployment.testsuite.ear.${bc-backend}"/>
@@ -16,23 +9,31 @@
     </sub-deployment>
     <sub-deployment name="${reports-rest}">
         <dependencies>
-            <module name="deployment.testsuite.ear.${reports-backend}"/>
+            <module name="deployment.testsuite.ear.${reports-backend}" export="true"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="${reports-backend}">
         <dependencies>
-            <module name="deployment.testsuite.ear.${communication}"/>
+            <module name="deployment.testsuite.ear.${communication}" export="true"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="${bc-backend}">
         <dependencies>
-            <module name="deployment.testsuite.ear.${communication}"/>
-            <module name="deployment.testsuite.ear.${reports-backend}"/>
+            <module name="deployment.testsuite.ear.${communication}" export="true"/>
+            <module name="deployment.testsuite.ear.${reports-backend}" export="true"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="${communication}">
         <dependencies>
+            <module name="deployment.testsuite.ear.${common}" export="true"/>
         </dependencies>
     </sub-deployment>
+    <sub-deployment name="${testsuite}">
+        <dependencies>
+            <module name="deployment.testsuite.ear.${bc-rest}"/>
+            <module name="deployment.testsuite.ear.${reports-rest}"/>
+        </dependencies>
+    </sub-deployment>
+
 </jboss-deployment-structure>
 

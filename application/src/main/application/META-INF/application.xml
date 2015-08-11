@@ -29,6 +29,7 @@
         <ejb>bc-rest.jar</ejb>
     </module>
 
-    <library-directory>lib</library-directory>
 
+
+    <library-directory>lib</library-directory>
 </application>

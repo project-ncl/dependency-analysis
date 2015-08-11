@@ -1,0 +1,11 @@
+{
+  "groupId": "org.jboss",
+  "artifactId": "dependency_analysis",
+  "version": "1.2.3",
+  "products": [
+    {
+      "name": "EAP",
+      "version": "6.4.0"
+    }
+  ]
+}

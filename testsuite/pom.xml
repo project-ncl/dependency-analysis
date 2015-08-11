@@ -65,6 +65,16 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Arquilian dependencies -->
         <dependency>
@@ -100,6 +110,7 @@
                     <systemProperties>
                         <jboss.home>${testsuiteContainer}</jboss.home>
                         <jboss.port>9154</jboss.port>
+                        <arquillianPortConfig>-Djboss.socket.binding.port-offset=100 -Djboss.management.native.port=9054</arquillianPortConfig>
                     </systemProperties>
                 </configuration>
             </plugin>

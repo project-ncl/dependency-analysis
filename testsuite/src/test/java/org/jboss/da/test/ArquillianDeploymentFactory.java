@@ -1,5 +1,15 @@
 package org.jboss.da.test;
 
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStage;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,23 +24,17 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStage;
-
 public class ArquillianDeploymentFactory {
+
+    public static final String DEPLOYMENT_NAME = "testsuite";
 
     private static final String TEST_JAR = "testsuite.jar";
 
-    private static final String TEST_EAR = "testsuite.ear";
+    private static final String TEST_EAR = DEPLOYMENT_NAME + ".ear";
 
     private static final String COMMUNICATION_PLACEHOLDER = "${communication}";
+
+    private static final String COMMON_PLACEHOLDER = "${common}";
 
     private static final String BC_BCAKEND_PLACEHOLDER = "${bc-backend}";
 
@@ -68,7 +72,7 @@ public class ArquillianDeploymentFactory {
     }
 
     private <T extends Archive> T getArchive(String groupId, String artifactId, String type,
-                                             Class<T> archiveClass) {
+            Class<T> archiveClass) {
         File file = useBuildArchives ? findBuildArchive(groupId, artifactId, type) : mavenResolve(
                 groupId, artifactId, type).withoutTransitivity().asSingleFile();
         return ShrinkWrap.createFromZipFile(archiveClass, file);
@@ -87,15 +91,11 @@ public class ArquillianDeploymentFactory {
             }
             File projectBuildDir = new File(new File(projectTopLevelDir, artifactId), "target");
             try {
-                DirectoryStream.Filter<? super Path> filter = new DirectoryStream.Filter<Path>() {
-
-                    @Override
-                    public boolean accept(Path path) throws IOException {
-                        File file = path.toFile();
-                        String name = file.getName();
-                        return file.isFile() && name.startsWith(artifactId)
-                                && name.endsWith("war".equals(type) ? ".war" : ".jar");
-                    }
+                DirectoryStream.Filter<? super Path> filter = path -> {
+                    File file = path.toFile();
+                    String name = file.getName();
+                    return file.isFile() && name.startsWith(artifactId)
+                            && name.endsWith("war".equals(type) ? ".war" : ".jar");
                 };
                 DirectoryStream<Path> directoryStream = Files.newDirectoryStream(
                         Paths.get(projectBuildDir.getAbsolutePath()), filter);
@@ -121,18 +121,20 @@ public class ArquillianDeploymentFactory {
      * filenames can vary system to system and even between runs.
      */
     private String prepareDeploymentStructure(String communicationName, String bcBackendName,
-            String reportsBackendName, String bcRestName, String reportsRestName) {
+            String reportsBackendName, String bcRestName, String reportsRestName,
+            String commonJarName) {
         File f = new File("src/test/resources/META-INF/jboss-deployment-structure.xml");
         return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName,
-                bcRestName, reportsRestName);
+                bcRestName, reportsRestName, commonJarName);
     }
 
     private String replacePlaceholders(File f, String communicationName, String bcBackendName,
-            String reportsBackendName, String bcRestName, String reportsRestName) {
+            String reportsBackendName, String bcRestName, String reportsRestName, String commonName) {
         try (BufferedReader r = new BufferedReader(new FileReader(f))) {
             StringBuilder sb = new StringBuilder();
             for (String line = r.readLine(); line != null; line = r.readLine()) {
                 line = line.replace(COMMUNICATION_PLACEHOLDER, communicationName);
+                line = line.replace(COMMON_PLACEHOLDER, commonName);
                 line = line.replace(BC_BCAKEND_PLACEHOLDER, bcBackendName);
                 line = line.replace(REPORTS_BACKEND_PLACEHOLDER, reportsBackendName);
                 line = line.replace(BC_REST_PLACEHOLDER, bcRestName);
@@ -147,10 +149,10 @@ public class ArquillianDeploymentFactory {
     }
 
     private String prepareApplicationXml(String communicationName, String bcBackendName,
-            String reportsBackendName, String bcRestName, String reportsRestName) {
+            String reportsBackendName, String bcRestName, String reportsRestName, String commonName) {
         File f = new File("src/test/resources/META-INF/application.xml");
         return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName,
-                bcRestName, reportsRestName);
+                bcRestName, reportsRestName, commonName);
     }
 
     /**
@@ -185,43 +187,47 @@ public class ArquillianDeploymentFactory {
         JavaArchive bcBackendJar = getModule(PROJECT_GROUP_ID, "bc-backend");
         JavaArchive reportsBackendJar = getModule(PROJECT_GROUP_ID, "reports-backend");
         JavaArchive bcRestJar = getModule(PROJECT_GROUP_ID, "bc-rest");
-        WebArchive reportsRestJar = getWebModule(PROJECT_GROUP_ID, "reports-rest");
+        JavaArchive commonJar = getModule(PROJECT_GROUP_ID, "common");
+        WebArchive reportsRestWar = getWebModule(PROJECT_GROUP_ID, "reports-rest");
+        updateRestWarWithReplacements(reportsRestWar);
 
         JavaArchive testsuiteJar = prepareTestsuiteJar();
 
         String depStruct = prepareDeploymentStructure(communicationJar.getName(),
                 bcBackendJar.getName(), reportsBackendJar.getName(), bcRestJar.getName(),
-                reportsRestJar.getName());
+                reportsRestWar.getName(), commonJar.getName());
 
         StringAsset deploymentStructure = new StringAsset(depStruct);
 
         EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, TEST_EAR);
         ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "communication", TYPE_EJB));
-        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "bc-backend", TYPE_EJB));
-        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-backend", TYPE_EJB));
-        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "bc-rest", TYPE_EJB));
-        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-rest", TYPE_WAR));
-        if (useBuildArchives) {
-            JavaArchive commonJar = getModule(PROJECT_GROUP_ID, "common");
-            ear.addAsLibraries(communicationJar, commonJar, bcBackendJar, reportsBackendJar);
-
-        }
-        ear.addAsModule(testsuiteJar);
+        // ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "bc-backend", TYPE_EJB));
+        // ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-backend", TYPE_EJB));
+        // ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "bc-rest", TYPE_EJB));
+        // ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-rest", TYPE_WAR));
         ear.addAsModule(communicationJar);
         ear.addAsModule(bcBackendJar);
         ear.addAsModule(reportsBackendJar);
         ear.addAsModule(bcRestJar);
-        ear.addAsModule(reportsRestJar);
+        ear.addAsModule(reportsRestWar);
+        ear.addAsModule(commonJar);
+        ear.addAsModule(testsuiteJar);
         ear.addAsManifestResource(new File("src/test/resources/META-INF/persistence.xml"));
         ear.setApplicationXML(new StringAsset(prepareApplicationXml(communicationJar.getName(),
                 bcBackendJar.getName(), reportsBackendJar.getName(), bcRestJar.getName(),
-                reportsRestJar.getName())));
+                reportsRestWar.getName(), commonJar.getName())));
         ear.addAsManifestResource(deploymentStructure, "jboss-deployment-structure.xml");
 
         if (isCreateArchiveCopy()) {
             writeArchiveToFile(ear, new File(ear.getName()));
         }
         return ear;
+    }
+
+    private void updateRestWarWithReplacements(WebArchive reportsRestWar) {
+        reportsRestWar.delete("WEB-INF/web.xml");
+        reportsRestWar.addAsWebInfResource(new File(
+                "src/test/replacements/reports-rest/webapp/WEB-INF/web.xml"));
     }
 
     private boolean isCreateArchiveCopy() {

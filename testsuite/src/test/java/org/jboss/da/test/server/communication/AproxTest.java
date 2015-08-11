@@ -21,7 +21,7 @@ import java.util.List;
 public class AproxTest {
 
     @Inject
-    AproxConnector aproxConnector;
+    private AproxConnector aproxConnector;
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
