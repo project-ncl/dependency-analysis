@@ -18,12 +18,16 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
 
 /**
  * Main end point for the reports
@@ -66,8 +70,18 @@ public class Reports {
     @ApiOperation(
             value = "Get dependency report for a GAV " // TODO change when dependencies will be implemented
                     + "(Currently the dependencies and dependency_versions_satisfied don't contains usefull values)")
-    public Report gavGenerator(GAV gavRequest) {
-        return toReport(reportsGenerator.getReport(gavRequest));
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Report was successfully generated"),
+            @ApiResponse(code = 404,
+                    message = "Requested GA was not found or the repository is not available"), })
+    public Response gavGenerator(GAV gavRequest) {
+        ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
+        if (artifactReport == null)
+            return Response.status(Status.NOT_FOUND)
+                    .entity("Requested GA was not found or the repository is not available")
+                    .build();
+        else
+            return Response.ok().entity(toReport(artifactReport)).build();
     }
 
     @POST
@@ -75,12 +89,22 @@ public class Reports {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Lookup built versions for the list of provided GAVs")
-    public List<LookupReport> lookupGav(List<GAV> gavRequest) throws CommunicationException {
-        List<LookupReport> reportsList = new ArrayList<>();
-        for (GAV gav : gavRequest) {
-            reportsList.add(toLookupReport(gav));
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Lookup report was successfully generated"),
+            @ApiResponse(code = 404,
+                    message = "Requested GA was not found or the repository is not available"), })
+    public Response lookupGav(List<GAV> gavRequest) {
+        try {
+            List<LookupReport> reportsList = new ArrayList<>();
+            for (GAV gav : gavRequest)
+                reportsList.add(toLookupReport(gav));
+
+            return Response.ok().entity(reportsList).build();
+        } catch (CommunicationException e) {
+            return Response.status(Status.NOT_FOUND)
+                    .entity("Requested GA was not found or the repository is not available")
+                    .build();
         }
-        return reportsList;
     }
 
     private Report toReport(ArtifactReport report) {
