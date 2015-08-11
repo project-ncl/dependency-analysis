@@ -28,7 +28,6 @@ get() {
 }
 
 post() {
-    echo curl -s -H "Content-Type: application/json" -X POST -d "$2" "$target/$1" >&2
     curl -s -H "Content-Type: application/json" -X POST -d "$2" "$target/$1"
 }
 
@@ -101,7 +100,6 @@ check() {
 
 report() {
     matchGAV $1
-    echo `formatGAVjson`
     tmpfile=`mktemp`
     echo "[" > $tmpfile # WA until there is pretty print for reports
     post "reports/gav" "`formatGAVjson`" >> $tmpfile
