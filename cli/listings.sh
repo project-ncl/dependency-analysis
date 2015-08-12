@@ -13,7 +13,7 @@ setColor() {
     esac
 }
 
-pretyprintGAV() {
+prettyPrintGAV() {
     python -m json.tool | \
         egrep '"(artifactId|groupId|version)"' | \
         sed -r 's/ *"groupId": "([^"]*)",?/g:\1\t/;
@@ -28,7 +28,6 @@ get() {
 }
 
 post() {
-    echo curl -s -H "Content-Type: application/json" -X POST -d "$2" "$target/$1" >&2
     curl -s -H "Content-Type: application/json" -X POST -d "$2" "$target/$1"
 }
 
@@ -53,7 +52,7 @@ formatGAVjson() {
 
 list() {
     setColor $1
-    get "listings/${color}list" | pretyprintGAV
+    get "listings/${color}list" | prettyPrintGAV
 }
 
 deleteGAVFromList() {
@@ -101,11 +100,8 @@ check() {
 
 report() {
     matchGAV $1
-    echo `formatGAVjson`
     tmpfile=`mktemp`
-    echo "[" > $tmpfile # WA until there is pretty print for reports
     post "reports/gav" "`formatGAVjson`" >> $tmpfile
-    echo "]" >> $tmpfile # WA until there is pretty print for reports
     cat $tmpfile | $basedir/pretty-lookup.py
     rm $tmpfile
 }
@@ -126,7 +122,7 @@ lookup() {
     rm $tmpfile
 }
 
-pom() {
+pom_bw() {
     mvn_opts=""
     if [ "x$1" = "x--no-transitive" ]; then
         mvn_opts="$mvn_opts -DexcludeTransitive=true"
@@ -174,6 +170,28 @@ pom() {
         else
             echo "${DEFAULT}None list:  $line"
         fi
+    done
+    echo -n "$DEFAULT"
+    rm $tmpfile
+}
+
+
+pom_report() {
+    mvn_opts=""
+    if [ "x$1" = "x--no-transitive" ]; then
+        mvn_opts="$mvn_opts -DexcludeTransitive=true"
+    fi
+
+    tmpfile=`mktemp`
+    mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
+    if [ $? -ne 0 ]; then
+        rm $tmpfile
+        exit
+    fi
+
+    sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | while read line; do
+        report_result=`report $line`
+        echo "$line :: $report_result"
     done
     echo -n "$DEFAULT"
     rm $tmpfile
