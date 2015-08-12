@@ -23,7 +23,6 @@
         <module>bc-rest</module>
         <module>reports-backend</module>
         <module>reports-rest</module>
-        <module>testsuite</module>
         <module>application</module>
     </modules>
 
@@ -205,6 +204,12 @@
                 <version>1.1.1</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client</artifactId>
+                <version>2.3.10.Final</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -374,4 +379,17 @@
         </plugins>
 
     </build>
+    <profiles>
+        <profile>
+            <id>testsuite</id>
+            <activation>
+                <property>
+                    <name>testsuiteContainer</name>
+                </property>
+            </activation>
+            <modules>
+                <module>testsuite</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

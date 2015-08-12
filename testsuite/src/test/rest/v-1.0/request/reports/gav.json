@@ -1,0 +1,5 @@
+{
+  "groupId": "org.hibernate",
+  "artifactId": "hibernate-core",
+  "version": "4.2.18.Final"
+}

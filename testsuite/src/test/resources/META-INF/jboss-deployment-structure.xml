@@ -2,37 +2,36 @@
 <jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
     <deployment>
     </deployment>
-    <sub-deployment name="${testsuite}">
+    <sub-deployment name="bc-rest.jar">
         <dependencies>
-            <module name="deployment.testsuite.ear.${bc-rest}"/>
-            <module name="deployment.testsuite.ear.${reports-rest}"/>
-            <module name="deployment.testsuite.ear.${communication}"/>
+            <module name="deployment.testsuite.ear.bc-backend.jar"/>
         </dependencies>
     </sub-deployment>
-    <sub-deployment name="${bc-rest}">
+    <sub-deployment name="reports-rest.war">
         <dependencies>
-            <module name="deployment.testsuite.ear.${bc-backend}"/>
+            <module name="deployment.testsuite.ear.reports-backend.jar" export="true"/>
         </dependencies>
     </sub-deployment>
-    <sub-deployment name="${reports-rest}">
+    <sub-deployment name="reports-backend.jar">
         <dependencies>
-            <module name="deployment.testsuite.ear.${reports-backend}"/>
+            <module name="deployment.testsuite.ear.communication.jar" export="true"/>
         </dependencies>
     </sub-deployment>
-    <sub-deployment name="${reports-backend}">
+    <sub-deployment name="bc-backend.jar">
         <dependencies>
-            <module name="deployment.testsuite.ear.${communication}"/>
+            <module name="deployment.testsuite.ear.communication.jar" export="true"/>
+            <module name="deployment.testsuite.ear.reports-backend.jar" export="true"/>
         </dependencies>
     </sub-deployment>
-    <sub-deployment name="${bc-backend}">
+    <sub-deployment name="communication.jar">
         <dependencies>
-            <module name="deployment.testsuite.ear.${communication}"/>
-            <module name="deployment.testsuite.ear.${reports-backend}"/>
+            <module name="deployment.testsuite.ear.common.jar" export="true"/>
         </dependencies>
     </sub-deployment>
-    <sub-deployment name="${communication}">
+    <sub-deployment name="testsuite.jar">
         <dependencies>
+            <module name="deployment.testsuite.ear.bc-rest.jar"/>
+            <module name="deployment.testsuite.ear.reports-rest.war"/>
         </dependencies>
     </sub-deployment>
 </jboss-deployment-structure>
-

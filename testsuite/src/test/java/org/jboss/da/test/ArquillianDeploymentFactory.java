@@ -1,32 +1,31 @@
 package org.jboss.da.test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.Assignable;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.importer.ArchiveImportException;
+import org.jboss.shrinkwrap.api.importer.ZipImporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStage;
 
-/**
- *
- * @author Honza Brázdil <jbrazdil@redhat.com>
- */
+import java.io.File;
+import java.io.IOException;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
+
 public class ArquillianDeploymentFactory {
+
+    public static final String DEPLOYMENT_NAME = "testsuite";
 
     private static final String TEST_JAR = "testsuite.jar";
 
-    private static final String TEST_EAR = "testsuite.ear";
+    private static final String TEST_EAR = DEPLOYMENT_NAME + ".ear";
 
     private static final String COMMUNICATION_PLACEHOLDER = "${communication}";
+
+    private static final String COMMON_PLACEHOLDER = "${common}";
 
     private static final String BC_BCAKEND_PLACEHOLDER = "${bc-backend}";
 
@@ -44,118 +43,123 @@ public class ArquillianDeploymentFactory {
 
     private static final String PROJECT_GROUP_ID = "org.jboss.da";
 
-    private MavenStrategyStage mavenResolve(String groupId, String artifactId, String type) {
-        return Maven.resolver().loadPomFromFile("../application/pom.xml")
-                .resolve(groupId + ":" + artifactId + ":" + type + ":?");
-    }
-
-    private JavaArchive getModule(String groupId, String artifactId) {
-        File file = mavenResolve(groupId, artifactId, "ejb").withoutTransitivity().asSingleFile();
-        return ShrinkWrap.createFromZipFile(JavaArchive.class, file);
-    }
-
-    private WebArchive getWebModule(String groupId, String artifactId) {
-        File file = mavenResolve(groupId, artifactId, "war").withoutTransitivity().asSingleFile();
-        return ShrinkWrap.createFromZipFile(WebArchive.class, file);
-    }
-
-    /**
-     * This method reads jboss deployment structure and replace placeholders with actual file names of module jars. It return the
-     * deployment structure in string. This is needed because deployment structure needs actual file names in .ear and the
-     * filenames can vary system to system and even between runs.
-     */
-    private String prepareDeploymentStructure(String communicationName, String bcBackendName,
-            String reportsBackendName, String bcRestName, String reportsRestName) {
-        File f = new File("src/test/resources/META-INF/jboss-deployment-structure.xml");
-        return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName,
-                bcRestName, reportsRestName);
-    }
-
-    private String replacePlaceholders(File f, String communicationName, String bcBackendName,
-            String reportsBackendName, String bcRestName, String reportsRestName) {
-        try (BufferedReader r = new BufferedReader(new FileReader(f))) {
-            StringBuilder sb = new StringBuilder();
-            for (String line = r.readLine(); line != null; line = r.readLine()) {
-                line = line.replace(COMMUNICATION_PLACEHOLDER, communicationName);
-                line = line.replace(BC_BCAKEND_PLACEHOLDER, bcBackendName);
-                line = line.replace(REPORTS_BACKEND_PLACEHOLDER, reportsBackendName);
-                line = line.replace(BC_REST_PLACEHOLDER, bcRestName);
-                line = line.replace(REPORTS_REST_PLACEHOLDER, reportsRestName);
-                line = line.replace(TEST_PLACEHOLDER, TEST_JAR);
-                sb.append(line);
-            }
-            return sb.toString();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
+    public EnterpriseArchive createDeployment() {
+        File earProjectBuildDir = new File(new File(getProjectTopLevelDir(), "application"),
+                "target");
+        File earFile = new File(earProjectBuildDir, "dependency-analysis.ear");
+        EnterpriseArchive ear = createFromZipFile(EnterpriseArchive.class, earFile, TEST_EAR);
+        updateEar(ear);
+        if (isCreateArchiveCopy()) {
+            writeArchiveToFile(ear, new File("target", ear.getName()));
         }
+        return ear;
     }
 
-    private String prepareApplicationXml(String communicationName, String bcBackendName,
-            String reportsBackendName, String bcRestName, String reportsRestName) {
-        File f = new File("src/test/resources/META-INF/application.xml");
-        return replacePlaceholders(f, communicationName, bcBackendName, reportsBackendName,
-                bcRestName, reportsRestName);
+    private void updateEar(EnterpriseArchive ear) {
+        updateManifestResource(ear, "persistence.xml");
+        updateManifestResource(ear, "application.xml");
+        updateManifestResource(ear, "jboss-deployment-structure.xml");
+        WebArchive reportsRestWar = ear.getAsType(WebArchive.class, "reports-rest.war");
+        updateRestWarWithReplacements(reportsRestWar);
+        ear.addAsModule(createTestsuiteJar());
     }
 
-    /**
-     * Regex pattern for file name
-     */
-    private final static Pattern fileNamePattern = Pattern.compile("(^[a-z-]+[a-z])");
-
-    private File[] getLibs(String groupId, String artifactId, String type) {
-        File[] libs = mavenResolve(groupId, artifactId, type).withTransitivity().asFile();
-
-        List<File> libsList = new ArrayList<>();
-        for (File f : libs) {
-            Matcher matcher = fileNamePattern.matcher(f.getName());
-            if (matcher.find() && !matcher.group(1).equals(artifactId)) {
-                libsList.add(f);
-            }
-        }
-        return libsList.toArray(new File[libsList.size()]);
+    private void updateManifestResource(EnterpriseArchive ear, String resource) {
+        ear.delete("META-INF/" + resource);
+        ear.addAsManifestResource(new File("src/test/resources/META-INF/" + resource));
     }
 
-    private JavaArchive prepareTestsuiteJar() {
+    private void updateRestWarWithReplacements(WebArchive reportsRestWar) {
+        reportsRestWar.delete("WEB-INF/web.xml");
+        reportsRestWar.addAsWebInfResource(new File(
+                "src/test/replacements/reports-rest/webapp/WEB-INF/web.xml"));
+    }
+
+    private JavaArchive createTestsuiteJar() {
         JavaArchive testsuiteJar = ShrinkWrap.create(JavaArchive.class, TEST_JAR);
         testsuiteJar.addPackages(true, "org.jboss.da.test.server");
         testsuiteJar.addAsManifestResource(new File("src/test/resources/META-INF/beans.xml"));
         return testsuiteJar;
     }
 
-    public EnterpriseArchive createDeployment() {
-        JavaArchive communicationJar = getModule(PROJECT_GROUP_ID, "communication");
-        JavaArchive bcBackendJar = getModule(PROJECT_GROUP_ID, "bc-backend");
-        JavaArchive reportsBackendJar = getModule(PROJECT_GROUP_ID, "reports-backend");
-        JavaArchive bcRestJar = getModule(PROJECT_GROUP_ID, "bc-rest");
-        WebArchive reportsRestJar = getWebModule(PROJECT_GROUP_ID, "reports-rest");
-
-        JavaArchive testsuiteJar = prepareTestsuiteJar();
-
-        String depStruct = prepareDeploymentStructure(communicationJar.getName(),
-                bcBackendJar.getName(), reportsBackendJar.getName(), bcRestJar.getName(),
-                reportsRestJar.getName());
-
-        StringAsset deploymentStructure = new StringAsset(depStruct);
-
-        EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, TEST_EAR);
-        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "communication", TYPE_EJB));
-        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "bc-backend", TYPE_EJB));
-        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-backend", TYPE_EJB));
-        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "bc-rest", TYPE_EJB));
-        ear.addAsLibraries(getLibs(PROJECT_GROUP_ID, "reports-rest", TYPE_WAR));
-        ear.addAsModule(testsuiteJar);
-        ear.addAsModule(communicationJar);
-        ear.addAsModule(bcBackendJar);
-        ear.addAsModule(reportsBackendJar);
-        ear.addAsModule(bcRestJar);
-        ear.addAsModule(reportsRestJar);
-        ear.addAsManifestResource(new File("src/test/resources/META-INF/persistence.xml"));
-        ear.setApplicationXML(new StringAsset(prepareApplicationXml(communicationJar.getName(),
-                bcBackendJar.getName(), reportsBackendJar.getName(), bcRestJar.getName(),
-                reportsRestJar.getName())));
-        ear.addAsManifestResource(deploymentStructure, "jboss-deployment-structure.xml");
-
-        return ear;
+    private File getProjectTopLevelDir() {
+        File projectTopLevelDir = new File("").getAbsoluteFile();
+        if (!isProjectTopLevelDir(projectTopLevelDir)) {
+            projectTopLevelDir = projectTopLevelDir.getParentFile();
+            if (!isProjectTopLevelDir(projectTopLevelDir)) {
+                throw new IllegalStateException("Can not find project top level directory from "
+                        + projectTopLevelDir.getAbsolutePath());
+            }
+        }
+        return projectTopLevelDir;
     }
 
+    private boolean isProjectTopLevelDir(File dir) {
+        File testModule = dir == null ? null : new File(dir, "testsuite");
+        return testModule != null && testModule.exists() && testModule.isDirectory();
+    }
+
+    private boolean isCreateArchiveCopy() {
+        return System.getProperty("createArchiveCopy") != null;
+    }
+
+    private void writeArchiveToFile(Archive<?> archive, File file) {
+        archive.as(ZipExporter.class).exportTo(file, true);
+    }
+
+    // copied from org.jboss.shrinkwrap.api.ArchiveFactory.createFromZipFile(final Class<T> type, final File archiveFile) -
+    // added parameter archiveName
+    /**
+     * Creates a new archive of the specified type as imported from the specified {@link File}. The file is expected to
+     * be encoded as ZIP (ie. JAR/WAR/EAR). The name of the archive will be set to {@link File#getName()}. The archive
+     * will be be backed by the {@link org.jboss.shrinkwrap.api.Configuration} specific to this {@link org.jboss.shrinkwrap.api.ArchiveFactory}.
+     *
+     * @param type
+     *            The type of the archive e.g. {@link org.jboss.shrinkwrap.api.spec.WebArchive}
+     * @param archiveFile
+     *            the archiveFile to use
+     * @param archiveName
+     *            the name of created archive
+     * @return An {@link Assignable} view
+     * @throws IllegalArgumentException
+     *             If either argument is not supplied, if the specified {@link File} does not exist, or is not a valid
+     *             ZIP file
+     * @throws org.jboss.shrinkwrap.api.importer.ArchiveImportException
+     *             If an error occurred during the import process
+     */
+    public <T extends Assignable> T createFromZipFile(final Class<T> type, final File archiveFile,
+            String archiveName) throws IllegalArgumentException, ArchiveImportException {
+        // Precondition checks
+        if (type == null) {
+            throw new IllegalArgumentException("Type must be specified");
+        }
+        if (archiveFile == null) {
+            throw new IllegalArgumentException("File must be specified");
+        }
+        if (!archiveFile.exists()) {
+            throw new IllegalArgumentException("File for import does not exist: "
+                    + archiveFile.getAbsolutePath());
+        }
+        if (archiveFile.isDirectory()) {
+            throw new IllegalArgumentException("File for import must not be a directory: "
+                    + archiveFile.getAbsolutePath());
+        }
+
+        // Construct ZipFile
+        final ZipFile zipFile;
+        try {
+            zipFile = new ZipFile(archiveFile);
+        } catch (final ZipException ze) {
+            throw new IllegalArgumentException("Does not appear to be a valid ZIP file: "
+                    + archiveFile.getAbsolutePath());
+        } catch (final IOException ioe) {
+            throw new RuntimeException("I/O Error in importing new archive from ZIP: "
+                    + archiveFile.getAbsolutePath(), ioe);
+        }
+
+        // Import
+        return ShrinkWrap.create(type, archiveName).as(ZipImporter.class).importFrom(zipFile)
+                .as(type);
+
+    }
 }

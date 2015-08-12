@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
-    <display-name>test</display-name>
+<application xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd"
+    version="6">
+
+    <application-name>Dependency-Analysis testsuite</application-name>
+    <display-name>Dependency-Analysis testsuite</display-name>
+
     <module>
-        <ejb>${communication}</ejb>
+        <ejb>common.jar</ejb>
     </module>
     <module>
-        <ejb>${bc-backend}</ejb>
+        <ejb>communication.jar</ejb>
     </module>
     <module>
-        <ejb>${reports-backend}</ejb>
-    </module>
-    <module>
-        <ejb>${bc-rest}</ejb>
+        <ejb>reports-backend.jar</ejb>
     </module>
     <module>
         <web>
-            <web-uri>${reports-rest}</web-uri>
+            <web-uri>reports-rest.war</web-uri>
             <context-root>testsuite</context-root>
         </web>
     </module>
     <module>
-        <ejb>${testsuite}</ejb>
+        <ejb>bc-backend.jar</ejb>
+    </module>
+    <module>
+        <ejb>bc-rest.jar</ejb>
+    </module>
+    <module>
+        <ejb>testsuite.jar</ejb>
     </module>
     <library-directory>lib</library-directory>
 </application>
-
