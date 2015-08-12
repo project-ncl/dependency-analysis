@@ -1,7 +1,7 @@
 # Dependency-analysis
 
-
 ## Build a project
+  - mvn clean package
 
-  - Without tests - mvn clean install -DskipTests
-  - With tests - mvn clean install -DtestsuiteContainer=/path/to/EAP-6.4/dir
+### Build a project and run integration tests in testsuite module
+  - mvn clean verify -DtestsuiteContainer=/path/to/EAP-6.4/dir

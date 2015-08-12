@@ -23,7 +23,6 @@
         <module>bc-rest</module>
         <module>reports-backend</module>
         <module>reports-rest</module>
-        <module>testsuite</module>
         <module>application</module>
     </modules>
 
@@ -380,4 +379,17 @@
         </plugins>
 
     </build>
+    <profiles>
+        <profile>
+            <id>testsuite</id>
+            <activation>
+                <property>
+                    <name>testsuiteContainer</name>
+                </property>
+            </activation>
+            <modules>
+                <module>testsuite</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>
