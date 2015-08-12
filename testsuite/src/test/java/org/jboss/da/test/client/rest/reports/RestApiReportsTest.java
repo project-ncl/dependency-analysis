@@ -35,8 +35,6 @@ public class RestApiReportsTest extends AbstractRestApiTest {
     }
 
     @Test
-    @Ignore
-    // FIXME server side throws NPE - have to be handled
     public void testNonexistingGav() throws Exception {
         String path = "/reports/gav";
         ContentType contentType = APPLICATION_JSON;
@@ -50,8 +48,6 @@ public class RestApiReportsTest extends AbstractRestApiTest {
 
         ClientResponse<String> response = request.post(String.class);
 
-        File expectedResponseFile = new ExpectedResponseFilenameBuilder(
-                restApiExpectedResponseFolder, path, contentType, variant).getFile();
-        assertEquals(readFileToString(expectedResponseFile), response.getEntity(String.class));
+        assertEquals(404, response.getStatus());
     }
 }
