@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
+import javax.xml.bind.annotation.XmlTransient;
 
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -28,6 +29,10 @@ public class GAV {
     }
 
     @JsonIgnore
+    @XmlTransient
+    /*
+     * The @XmlTransient annotation is added so that Swagger doesn't try to represent the 'GA' object in its model schema
+     */
     public GA getGA() {
         return ga;
     }

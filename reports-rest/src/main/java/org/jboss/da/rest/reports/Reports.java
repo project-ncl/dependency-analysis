@@ -28,6 +28,7 @@ import java.util.List;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
@@ -59,7 +60,7 @@ public class Reports {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
-            hidden = true)
+            response = Report.class, hidden = true)
     // TODO unhide when the method will be implemented
     public Report scmGenerator(SCMRequest scmRequest) {
         throw new NotImplementedException();
@@ -71,12 +72,15 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
             value = "Get dependency report for a GAV " // TODO change when dependencies will be implemented
-                    + "(Currently the dependencies and dependency_versions_satisfied don't contains usefull values)")
+                    + "(Currently the dependencies and dependency_versions_satisfied don't contains useful values)",
+            response = ArtifactReport.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Report was successfully generated"),
             @ApiResponse(code = 404,
                     message = "Requested GA was not found or the repository is not available") })
-    public Response gavGenerator(GAV gavRequest) {
+    public Response gavGenerator(@ApiParam(
+            value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAV gavRequest) {
+
         ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
         if (artifactReport == null)
             return Response
@@ -91,7 +95,8 @@ public class Reports {
     @Path("/lookup/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Lookup built versions for the list of provided GAVs")
+    @ApiOperation(value = "Lookup built versions for the list of provided GAVs",
+            responseContainer = "List", response = LookupReport.class)
     @ApiResponses(
             value = {
                     @ApiResponse(code = 200, message = "Lookup report was successfully generated"),
@@ -102,7 +107,10 @@ public class Reports {
                     @ApiResponse(
                             code = 404,
                             message = "None of the requested GAs was found or the repository is not available") })
-    public Response lookupGav(List<GAV> gavRequest) {
+    public Response lookupGav(
+            @ApiParam(
+                    value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") List<GAV> gavRequest) {
+
         List<LookupReport> reportsList = new ArrayList<>();
         int responseStatus = 200;
         for (GAV gav : gavRequest) {

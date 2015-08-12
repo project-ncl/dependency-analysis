@@ -22,6 +22,9 @@ import java.util.List;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
 
 /**
  *
@@ -48,7 +51,9 @@ public class Artifacts {
     @GET
     @Path("/whitelist")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get all artifacts in the whitelist")
+    @ApiOperation(value = "Get all artifacts in the whitelist", responseContainer = "List",
+            response = RestArtifact.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public Collection<RestArtifact> getAllWhiteArtifacts() {
         List<RestArtifact> artifacts = new ArrayList<RestArtifact>();
         artifacts.addAll(convert.toRestArtifacts(whiteService.getAll()));
@@ -58,7 +63,9 @@ public class Artifacts {
     @GET
     @Path("/whitelist/gav")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Check if an artifact is in the whitelist")
+    @ApiOperation(value = "Check if an artifact is in the whitelist",
+            response = ContainsResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public ContainsResponse isWhiteArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         ContainsResponse response = new ContainsResponse();
@@ -70,8 +77,10 @@ public class Artifacts {
     @Path("/whitelist/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Add an artifact to the whitelist")
-    public SuccessResponse addWhiteArtifact(RestArtifact artifact) {
+    @ApiOperation(value = "Add an artifact to the whitelist", response = SuccessResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
+    public SuccessResponse addWhiteArtifact(
+            @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(whiteService.addArtifact(artifact.getGroupId(),
                 artifact.getArtifactId(), artifact.getVersion()));
@@ -82,8 +91,10 @@ public class Artifacts {
     @Path("/whitelist/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Remove an artifact from the whitelist")
-    public SuccessResponse removeWhiteArtifact(RestArtifact artifact) {
+    @ApiOperation(value = "Remove an artifact from the whitelist", response = SuccessResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
+    public SuccessResponse removeWhiteArtifact(
+            @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(whiteService.removeArtifact(artifact.getGroupId(),
                 artifact.getArtifactId(), artifact.getVersion()));
@@ -96,7 +107,9 @@ public class Artifacts {
     @GET
     @Path("/blacklist")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get all artifacts in the blacklist")
+    @ApiOperation(value = "Get all artifacts in the blacklist", responseContainer = "List",
+            response = RestArtifact.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public Collection<RestArtifact> getAllBlackArtifacts() {
         List<RestArtifact> artifacts = new ArrayList<RestArtifact>();
         artifacts.addAll(convert.toRestArtifacts(blackService.getAll()));
@@ -106,7 +119,9 @@ public class Artifacts {
     @GET
     @Path("/blacklist/gav")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Check if an artifact is in the blacklist")
+    @ApiOperation(value = "Check if an artifact is in the blacklist",
+            response = ContainsResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public ContainsResponse isBlackArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         ContainsResponse response = new ContainsResponse();
@@ -118,8 +133,10 @@ public class Artifacts {
     @Path("/blacklist/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Add an artifact to the blacklist")
-    public SuccessResponse addBlackArtifact(RestArtifact artifact) {
+    @ApiOperation(value = "Add an artifact to the blacklist", response = SuccessResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
+    public SuccessResponse addBlackArtifact(
+            @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(blackService.addArtifact(artifact.getGroupId(),
                 artifact.getArtifactId(), artifact.getVersion()));
@@ -130,8 +147,10 @@ public class Artifacts {
     @Path("/blacklist/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Remove an artifact from the blacklist")
-    public SuccessResponse removeBlackArtifact(RestArtifact artifact) {
+    @ApiOperation(value = "Remove an artifact from the blacklist", response = SuccessResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
+    public SuccessResponse removeBlackArtifact(
+            @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(blackService.removeArtifact(artifact.getGroupId(),
                 artifact.getArtifactId(), artifact.getVersion()));
