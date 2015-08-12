@@ -18,13 +18,13 @@ public class Root {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String getDescription() {
-        return "<h1>Dependency analyzer REST</h1>"
+        return "<h1>Dependency analysis service REST API</h1>"
                 + "\n"
                 + "<ul><li><strong>Version:</strong> "
                 + REST_API_VERSION
                 + "</li>"
                 + "\n"
-                + "<li><a href=\"../../doc\">Swagger documentation</a></li>"
+                + "<li><a href=\"../doc\">Swagger documentation</a></li>"
                 + "\n"
                 + "<li><strong>REST proposal documentation:</strong> <a href=\"https://docs.engineering.redhat.com/display/JP/REST+endpoints+proposal\">https://docs.engineering.redhat.com/display/JP/REST+endpoints+proposal</a></li></ul>";
     }
