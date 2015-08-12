@@ -2,6 +2,8 @@ package org.jboss.da.reports.api;
 
 import org.jboss.da.communication.model.GAV;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,6 +24,7 @@ public class ArtifactReport {
 
     @Getter
     @NonNull
+    @XmlTransient
     private GAV gav;
 
     @NonNull
@@ -72,6 +75,18 @@ public class ArtifactReport {
 
     public Set<ArtifactReport> getDependencies() {
         return Collections.unmodifiableSet(dependencies);
+    }
+
+    public String getGroupId() {
+        return gav.getGroupId();
+    }
+
+    public String getArtifactId() {
+        return gav.getArtifactId();
+    }
+
+    public String getVersion() {
+        return gav.getVersion();
     }
 
     /**

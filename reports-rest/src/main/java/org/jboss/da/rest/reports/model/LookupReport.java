@@ -3,6 +3,8 @@ package org.jboss.da.rest.reports.model;
 import org.codehaus.jackson.annotate.JsonUnwrapped;
 import org.jboss.da.communication.model.GAV;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ public class LookupReport {
     @Setter
     @NonNull
     @JsonUnwrapped
+    @XmlTransient
     private GAV gav;
 
     @Getter
@@ -35,4 +38,15 @@ public class LookupReport {
     @Setter
     private boolean whitelisted;
 
+    public String getGroupId() {
+        return gav.getGroupId();
+    }
+
+    public String getArtifactId() {
+        return gav.getArtifactId();
+    }
+
+    public String getVersion() {
+        return gav.getVersion();
+    }
 }

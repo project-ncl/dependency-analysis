@@ -4,11 +4,12 @@ import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
-import javax.xml.bind.annotation.XmlTransient;
 
 @AllArgsConstructor
 @EqualsAndHashCode
