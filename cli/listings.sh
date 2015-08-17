@@ -124,7 +124,9 @@ lookup() {
 
 pom_bw() {
     mvn_opts=""
-    if [ "x$1" = "x--no-transitive" ]; then
+    if [ "x$1" = "x--transitive" ]; then
+        mvn_opts="$mvn_opts"
+    else
         mvn_opts="$mvn_opts -DexcludeTransitive=true"
     fi
 
@@ -178,7 +180,9 @@ pom_bw() {
 
 pom_report() {
     mvn_opts=""
-    if [ "x$1" = "x--no-transitive" ]; then
+    if [ "x$1" = "x--transitive" ]; then
+        mvn_opts="$mvn_opts"
+    else
         mvn_opts="$mvn_opts -DexcludeTransitive=true"
     fi
 

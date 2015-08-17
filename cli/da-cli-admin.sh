@@ -19,10 +19,10 @@ printUsage() {
     echo "$0 list (b[lack]|w[hite])"
     echo "    List all artifacts in black or white list"
     echo ""
-    echo "$0 pom-bw [--no-transitive]";
+    echo "$0 pom-bw [--transitive]";
     echo "    Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status"
     echo ""
-    echo "$0 pom-report [--no-transitive]";
+    echo "$0 pom-report [--transitive]";
     echo "    Check all dependencies from pom in working directory (using dependency:list) and print their report status"
     echo "    Output: <groupId>:<artifactId>:<version> :: <groupId>:<artifactId>:<version> <Best Matched Red Hat Version> <Available Versions> <In black/white list?>"
     echo ""
