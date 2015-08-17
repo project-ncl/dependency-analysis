@@ -122,9 +122,54 @@ lookup() {
     rm $tmpfile
 }
 
+parse_pom_bw_report_options() {
+
+    pom_transitive_flag=false;
+
+    local wrong_option=""
+
+    for key in "$@"
+    do
+        case ${key} in
+            --transitive) pom_transitive_flag=true;;
+            -*)           wrong_option="${key}";;
+            *)            pom_path="${key}";;
+        esac
+    done
+
+    # set a default value for pom_path if not specified by user
+    if [ -z "${pom_path}" ]; then
+        pom_path=$(pwd)
+    fi
+
+    # if wrong flag passed
+    if ! [ -z "${wrong_option}" ]; then
+        echo ""
+        echo "Wrong option: '${wrong_option}' specified. Aborting"
+        exit 1
+    fi
+
+    # if path does not exist
+    if ! [ -d "${pom_path}" ]; then
+        echo ""
+        echo "The directory '${pom_path}' does not exist! Aborting"
+        exit 1
+    fi
+
+    # if path does not contain the pom.xml file
+    if ! [ -f "${pom_path}/pom.xml" ]; then
+        echo ""
+        echo "No pom.xml file present in the directory '${pom_path}'. Aborting"
+        exit 1
+    fi
+}
+
 pom_bw() {
+
+    parse_pom_bw_report_options "$@"
+
     mvn_opts=""
-    if [ "x$1" = "x--transitive" ]; then
+    if [ ${pom_transitive_flag} = true ]; then
         mvn_opts="$mvn_opts"
     else
         mvn_opts="$mvn_opts -DexcludeTransitive=true"
@@ -138,7 +183,10 @@ pom_bw() {
     fi
 
     tmpfile=`mktemp`
+    pushd "${pom_path}" > /dev/null
     mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
+    popd > /dev/null
+
     if [ $? -ne 0 ]; then
         rm $tmpfile
         exit
@@ -177,17 +225,23 @@ pom_bw() {
     rm $tmpfile
 }
 
-
 pom_report() {
+
+    parse_pom_bw_report_options "$@"
+
     mvn_opts=""
-    if [ "x$1" = "x--transitive" ]; then
+    if [ ${pom_transitive_flag} = true ]; then
         mvn_opts="$mvn_opts"
     else
         mvn_opts="$mvn_opts -DexcludeTransitive=true"
     fi
 
     tmpfile=`mktemp`
+
+    pushd "${pom_path}" > /dev/null
     mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
+    popd > /dev/null
+
     if [ $? -ne 0 ]; then
         rm $tmpfile
         exit
