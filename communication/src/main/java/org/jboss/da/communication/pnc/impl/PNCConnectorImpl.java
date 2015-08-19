@@ -5,6 +5,7 @@ import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.pnc.authentication.PNCAuthentication;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
+import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.Product;
 import org.jboss.da.communication.pnc.model.Project;
@@ -26,7 +27,7 @@ public class PNCConnectorImpl implements PNCConnector {
     @Inject
     private PNCAuthentication pncAuthenticate;
 
-    public ClientRequest getClient(String endpoint, boolean authenticate)
+    private ClientRequest getClient(String endpoint, boolean authenticate)
             throws ConfigurationParseException {
         ClientRequest request = new ClientRequest(config.getConfig().getPncServer()
                 + "/pnc-rest/rest/" + endpoint);
@@ -46,11 +47,23 @@ public class PNCConnectorImpl implements PNCConnector {
         return getClient(endpoint, false);
     }
 
+    public ClientRequest getAuthenticatedClient(String endpoint) throws ConfigurationParseException {
+        return getClient(endpoint, true);
+    }
+
     @Override
     public List<BuildConfiguration> getBuildConfigurations() throws Exception {
         ClientResponse<BuildConfiguration[]> response = getClient("build-configurations").get(
                 BuildConfiguration[].class);
         return Arrays.asList(response.getEntity());
+    }
+
+    @Override
+    public BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
+            throws Exception {
+        ClientResponse<BuildConfiguration> response = getClient("build-configurations").body(
+                MediaType.APPLICATION_JSON, bc).post(BuildConfiguration.class);
+        return response.getEntity();
     }
 
     @Override
