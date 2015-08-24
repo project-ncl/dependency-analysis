@@ -1,5 +1,6 @@
 package org.jboss.da.reports.api;
 
+import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 
 import java.util.List;
@@ -22,7 +23,8 @@ public interface ReportsGenerator {
      *
      * @param gav Top-level GAV for which is the report generated
      * @return Created report or null if the requested GAV was not found in the repository
+     * @throws CommunicationException when there is a problem with communication with remote services
      */
-    public ArtifactReport getReport(GAV gav);
+    public ArtifactReport getReport(GAV gav) throws CommunicationException;
 
 }

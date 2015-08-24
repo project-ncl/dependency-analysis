@@ -31,6 +31,10 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
+import java.lang.invoke.MethodHandles;
+import org.jboss.da.rest.model.ErrorMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Main end point for the reports
@@ -42,6 +46,8 @@ import com.wordnik.swagger.annotations.ApiResponses;
 @Path("/reports")
 @Api(value = "/reports", description = "Get report of dependencies of projects")
 public class Reports {
+
+    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Inject
     private VersionFinder versionFinder;
@@ -76,19 +82,20 @@ public class Reports {
             response = ArtifactReport.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Report was successfully generated"),
-            @ApiResponse(code = 404,
-                    message = "Requested GA was not found or the repository is not available") })
+            @ApiResponse(code = 404, message = "Requested GA was not found"),
+            @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     public Response gavGenerator(@ApiParam(
             value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAV gavRequest) {
-
-        ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
-        if (artifactReport == null)
-            return Response
-                    .status(Status.NOT_FOUND)
-                    .entity("{\"message\": \"Requested GA was not found or the repository is not available\"}")
-                    .build();
-        else
-            return Response.ok().entity(toReport(artifactReport)).build();
+        try {
+            ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
+            if (artifactReport == null)
+                return Response.status(Status.NOT_FOUND)
+                        .entity(new ErrorMessage("Requested GA was not found")).build();
+            else
+                return Response.ok().entity(toReport(artifactReport)).build();
+        } catch (CommunicationException ex) {
+            return Response.status(502).entity(ex).build();
+        }
     }
 
     @POST
@@ -102,44 +109,44 @@ public class Reports {
                     @ApiResponse(code = 200, message = "Lookup report was successfully generated"),
                     @ApiResponse(
                             code = 206,
-                            message = "Lookup report was generated, but at least one of the requested GAs "
-                                    + "was not found or the repository was not available"),
-                    @ApiResponse(
-                            code = 404,
-                            message = "None of the requested GAs was found or the repository is not available") })
+                            message = "Lookup report was generated, but at least one of the requested GAs was not found."),
+                    @ApiResponse(code = 502,
+                            message = "Communication with remote repository failed") })
     public Response lookupGav(
             @ApiParam(
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") List<GAV> gavRequest) {
 
         List<LookupReport> reportsList = new ArrayList<>();
-        int responseStatus = 200;
+        Status responseStatus = Status.OK;
         for (GAV gav : gavRequest) {
             try {
-                reportsList.add(toLookupReport(gav));
-            } catch (CommunicationException e) {
-                responseStatus = 206; // Partial Content HTTP code
+                VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
+                LookupReport lookupReport = toLookupReport(gav, lookupResult);
+                reportsList.add(lookupReport);
+                if (lookupResult == null) {
+                    responseStatus = Status.PARTIAL_CONTENT;
+                }
+            } catch (CommunicationException ex) {
+                log.error("Communication with remote repository failed", ex);
+                return Response.status(502)
+                        .entity(new ErrorMessage("Communication with remote repository failed"))
+                        .build();
             }
         }
 
-        if (reportsList.isEmpty())
-            return Response
-                    .status(Status.NOT_FOUND)
-                    .entity("{\"message\": \"None of the requested GAs was found or the repository is not available\"}")
-                    .build();
-        else
-            return Response.status(responseStatus).entity(reportsList).build();
+        return Response.status(responseStatus).entity(reportsList).build();
     }
 
     private Report toReport(ArtifactReport report) {
         return new Report(report.getGav().getGroupId(), report.getGav().getArtifactId(), report
-                .getGav().getVersion(), new ArrayList<String>(report.getAvailableVersions()),
-        // TODO change when dependencies will be implemented
-                report.getBestMatchVersion(), false, new ArrayList<Report>(),
-                report.isBlacklisted(), report.isWhiteListed());
+                .getGav().getVersion(), new ArrayList<>(report.getAvailableVersions()),
+                // TODO change when dependencies will be implemented
+                report.getBestMatchVersion(), false, new ArrayList<>(), report.isBlacklisted(),
+                report.isWhiteListed());
     }
 
-    private LookupReport toLookupReport(GAV gav) throws CommunicationException {
-        VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
+    private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult)
+            throws CommunicationException {
         if (lookupResult == null)
             return new LookupReport(gav, null, Collections.<String> emptyList(),
                     isBlacklisted(gav), isWhitelisted(gav));

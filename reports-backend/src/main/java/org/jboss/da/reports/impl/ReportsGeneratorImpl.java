@@ -15,7 +15,7 @@ import javax.inject.Inject;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
+
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
@@ -56,23 +56,17 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public ArtifactReport getReport(GAV gav) {
-        try {
-            if (gav == null)
-                throw new IllegalArgumentException("GAV can't be null");
-            List<String> versions = versionFinderImpl.getBuiltVersionsFor(gav);
-            if (versions == null)
-                return null;
-            ArtifactReport ar = toArtifactReport(gav, versions);
-            // TODO Add dependencies to the reports and reports for the dependencies
-            // GAVDependencyTree dt = aproxClient.getDependencyTreeOfGAV(gav);
-            // addDependencyReports(ar, dt.getDependencyTree());
-            return ar;
-        } catch (CommunicationException ex) {
-            java.util.logging.Logger.getLogger(ReportsGeneratorImpl.class.getName()).log(
-                    Level.SEVERE, null, ex);
+    public ArtifactReport getReport(GAV gav) throws CommunicationException {
+        if (gav == null)
+            throw new IllegalArgumentException("GAV can't be null");
+        List<String> versions = versionFinderImpl.getBuiltVersionsFor(gav);
+        if (versions == null)
             return null;
-        }
+        ArtifactReport ar = toArtifactReport(gav, versions);
+        // TODO Add dependencies to the reports and reports for the dependencies
+        // GAVDependencyTree dt = aproxClient.getDependencyTreeOfGAV(gav);
+        // addDependencyReports(ar, dt.getDependencyTree());
+        return ar;
     }
 
     private ArtifactReport toArtifactReport(GAV gav, List<String> availableVersions) {
