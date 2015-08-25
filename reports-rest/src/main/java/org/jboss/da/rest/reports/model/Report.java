@@ -9,7 +9,6 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -47,8 +46,11 @@ public class Report {
     private final List<Report> dependencies;
 
     @Getter
-    private boolean blacklisted;
+    private final boolean blacklisted;
 
     @Getter
-    private boolean whitelisted;
+    private final boolean whitelisted;
+
+    @Getter
+    private final int notBuiltDependencies;
 }

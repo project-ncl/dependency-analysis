@@ -99,4 +99,14 @@ public class ArtifactReport {
         }
         return dependencies.stream().noneMatch((dependency) -> (!dependency.isDependencyVersionSatisfied()));
     }
+
+    public int getNotBuiltDependencies() {
+        return dependencies.stream().mapToInt((dependency) -> {
+            int number = dependency.getNotBuiltDependencies();
+            if(dependency.bestMatchVersion == null){
+                number ++;
+            }
+            return number;
+        }).sum();
+    }
 }

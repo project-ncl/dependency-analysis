@@ -140,9 +140,9 @@ public class Reports {
     private Report toReport(ArtifactReport report) {
         return new Report(report.getGav().getGroupId(), report.getGav().getArtifactId(), report
                 .getGav().getVersion(), new ArrayList<>(report.getAvailableVersions()),
+                report.getBestMatchVersion(), false, new ArrayList<>(),
                 // TODO change when dependencies will be implemented
-                report.getBestMatchVersion(), false, new ArrayList<>(), report.isBlacklisted(),
-                report.isWhiteListed());
+                report.isBlacklisted(), report.isWhiteListed(), report.getNotBuiltDependencies());
     }
 
     private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult)
