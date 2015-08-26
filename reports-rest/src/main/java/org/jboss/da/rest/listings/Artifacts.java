@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,12 +66,20 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Check if an artifact is in the whitelist",
             response = ContainsResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
-    public ContainsResponse isWhiteArtifactPresent(@QueryParam("groupid") String groupId,
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Artifact is in the whitelist"),
+            @ApiResponse(code = 404, message = "Artifact is not in the whitelist") })
+    public Response isWhiteArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         ContainsResponse response = new ContainsResponse();
-        response.setContains(whiteService.isArtifactPresent(groupId, artifactId, version));
-        return response;
+
+        boolean isArtifactPresent = whiteService.isArtifactPresent(groupId, artifactId, version);
+        response.setContains(isArtifactPresent);
+
+        if (isArtifactPresent) {
+            return Response.ok(response).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).entity(response).build();
+        }
     }
 
     @POST
@@ -121,12 +130,20 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Check if an artifact is in the blacklist",
             response = ContainsResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
-    public ContainsResponse isBlackArtifactPresent(@QueryParam("groupid") String groupId,
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Artifact is in the blacklist"),
+            @ApiResponse(code = 404, message = "Artifact is not in the blacklist") })
+    public Response isBlackArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         ContainsResponse response = new ContainsResponse();
-        response.setContains(blackService.isArtifactPresent(groupId, artifactId, version));
-        return response;
+
+        boolean isArtifactPresent = blackService.isArtifactPresent(groupId, artifactId, version);
+        response.setContains(isArtifactPresent);
+
+        if (isArtifactPresent) {
+            return Response.ok(response).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).entity(response).build();
+        }
     }
 
     @POST
