@@ -117,14 +117,15 @@ public class Reports {
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") List<GAV> gavRequest) {
 
         List<LookupReport> reportsList = new ArrayList<>();
-        Status responseStatus = Status.OK;
+        int responseStatus = Status.OK.getStatusCode();
         for (GAV gav : gavRequest) {
             try {
                 VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
                 LookupReport lookupReport = toLookupReport(gav, lookupResult);
                 reportsList.add(lookupReport);
                 if (lookupResult == null) {
-                    responseStatus = Status.PARTIAL_CONTENT;
+                    // Don't use Status.PARTIAL_CONTENT since it's not available in EAP 6.4
+                    responseStatus = 206;
                 }
             } catch (CommunicationException ex) {
                 log.error("Communication with remote repository failed", ex);

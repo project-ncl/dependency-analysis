@@ -1,6 +1,6 @@
 package org.jboss.da.communication.model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -22,9 +22,8 @@ public class GAVIntegrationTest {
 
         String json = convertToJson(gav);
 
-        String expectedJson = "{\"ga\":{\"groupId\":\"" + groupId + "\",\"artifactId\":\""
-                + artifactId + "\"},\"version\":\"" + version + "\",\"groupId\":\"" + groupId
-                + "\",\"artifactId\":\"" + artifactId + "\"}";
+        String expectedJson = "{\"groupId\":\"" + groupId + "\",\"artifactId\":\"" + artifactId
+                + "\",\"version\":\"" + version + "\"}";
         assertEquals(expectedJson, json);
     }
 
