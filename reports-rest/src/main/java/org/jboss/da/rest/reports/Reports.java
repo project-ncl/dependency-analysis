@@ -99,7 +99,7 @@ public class Reports {
     }
 
     @POST
-    @Path("/lookup/gav")
+    @Path("/lookup/gavs")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Lookup built versions for the list of provided GAVs",

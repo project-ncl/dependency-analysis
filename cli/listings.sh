@@ -117,7 +117,7 @@ lookup() {
     done
     query="$query ]"
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X POST -d "$query" "$target/reports/lookup/gav" > $tmpfile
+    curl -s -H "Content-Type: application/json" -X POST -d "$query" "$target/reports/lookup/gavs" > $tmpfile
     cat $tmpfile | $basedir/pretty-lookup.py
     rm $tmpfile
 }
