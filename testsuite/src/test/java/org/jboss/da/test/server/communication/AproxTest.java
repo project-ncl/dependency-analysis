@@ -1,12 +1,16 @@
 package org.jboss.da.test.server.communication;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
+import org.jboss.da.communication.aprox.NoGAVInRepositoryException;
+import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GA;
+import org.jboss.da.communication.model.GAV;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.Test;
@@ -15,7 +19,10 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RunWith(Arquillian.class)
 public class AproxTest {
@@ -40,4 +47,23 @@ public class AproxTest {
         assertTrue(result.containsAll(ballroomTest));
     }
 
+    @Test
+    public void testGetCorrectDependencies() throws CommunicationException, NoGAVInRepositoryException {
+        GAV gav = new GAV("xom", "xom", "1.2.5");
+        GAVDependencyTree tree = aproxConnector.getDependencyTreeOfGAV(gav);
+
+        Set<String> expectedDependencyGAV = new HashSet<>(
+                Arrays.asList(new String[] {"xalan:xalan:2.7.0", "xerces:xercesImpl:2.8.0", "xml-apis:xml-apis:1.3.03"}));
+
+        Set<String> receivedDependencyGAV = tree.getDependencies().stream()
+                .map(f -> f.getGav().toString()).collect(Collectors.toSet());
+
+        assertEquals(expectedDependencyGAV, receivedDependencyGAV);
+    }
+
+    @Test(expected = NoGAVInRepositoryException.class)
+    public void testNoGAVInRepository() throws CommunicationException, NoGAVInRepositoryException {
+        GAV gav = new GAV("do", "not-exist", "1.0");
+        aproxConnector.getDependencyTreeOfGAV(gav);
+    }
 }

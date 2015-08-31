@@ -1,6 +1,7 @@
 package org.jboss.da.reports.impl;
 
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.NoGAVInRepositoryException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GAV;
@@ -79,7 +80,8 @@ public class ReportsGeneratorImplTest {
     private static final String NO_BEST_MATCH_VERSION = null;
 
     private void prepare(boolean whitelisted, boolean blacklisted, List<String> versions,
-            String best, GAVDependencyTree dependencyTree) throws CommunicationException {
+            String best, GAVDependencyTree dependencyTree) throws CommunicationException,
+            NoGAVInRepositoryException {
         when(versionFinderImpl.getBuiltVersionsFor(daCoreGAV)).thenReturn(versions);
         when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV)).thenReturn(best);
         when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV, versions)).thenReturn(best);
@@ -88,7 +90,7 @@ public class ReportsGeneratorImplTest {
         when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
     }
 
-    private void prepareMulti() throws CommunicationException {
+    private void prepareMulti() throws CommunicationException, NoGAVInRepositoryException {
         prepare(false, false, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
         when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
@@ -113,8 +115,8 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testNonExistingGAV() throws CommunicationException {
-        when(versionFinderImpl.getBuiltVersionsFor(daGAV)).thenReturn(null);
+    public void testNonExistingGAV() throws CommunicationException, NoGAVInRepositoryException {
+        when(aproxClient.getDependencyTreeOfGAV(daGAV)).thenThrow(NoGAVInRepositoryException.class);
 
         ArtifactReport report = generator.getReport(daGAV);
 
@@ -122,7 +124,8 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testNonListedNoBestMatchGAV() throws CommunicationException {
+    public void testNonListedNoBestMatchGAV() throws CommunicationException,
+            NoGAVInRepositoryException {
         prepare(false, false, daCoreVersionsNoBest, null, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(daCoreGAV);
@@ -137,7 +140,8 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testWhiteListedNoBestMatchGAV() throws CommunicationException {
+    public void testWhiteListedNoBestMatchGAV() throws CommunicationException,
+            NoGAVInRepositoryException {
         prepare(true, false, daCoreVersionsNoBest, null, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(daCoreGAV);
@@ -151,7 +155,8 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testBlackListedBestMatchGAV() throws CommunicationException {
+    public void testBlackListedBestMatchGAV() throws CommunicationException,
+            NoGAVInRepositoryException {
         prepare(false, true, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(daCoreGAV);
@@ -166,7 +171,7 @@ public class ReportsGeneratorImplTest {
 
     @Test
     public void testArtifactReportShouldNotHaveNullValuesInAvailableVersionsWhenBestMatchVersionIsNull()
-            throws CommunicationException {
+            throws CommunicationException, NoGAVInRepositoryException {
         prepare(false, false, daCoreVersionsBest, null, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(daCoreGAV);
@@ -176,7 +181,7 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testGetMultipleReport() throws CommunicationException {
+    public void testGetMultipleReport() throws CommunicationException, NoGAVInRepositoryException {
         prepareMulti();
 
         ArtifactReport report = generator.getReport(daCoreGAV);

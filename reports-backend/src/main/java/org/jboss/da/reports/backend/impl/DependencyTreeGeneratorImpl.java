@@ -1,6 +1,7 @@
 package org.jboss.da.reports.backend.impl;
 
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.NoGAVInRepositoryException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GAV;
@@ -35,7 +36,7 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     public GAVDependencyTree getDependencyTree(GAV gav) {
         try {
             return aproxConnector.getDependencyTreeOfGAV(gav);
-        } catch (CommunicationException ex) {
+        } catch (CommunicationException | NoGAVInRepositoryException ex) {
             throw new RuntimeException(ex);
         }
     }
