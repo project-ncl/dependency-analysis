@@ -63,9 +63,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (versions == null)
             return null;
         ArtifactReport ar = toArtifactReport(gav, versions);
-        // TODO Add dependencies to the reports and reports for the dependencies
-        // GAVDependencyTree dt = aproxClient.getDependencyTreeOfGAV(gav);
-        // addDependencyReports(ar, dt.getDependencyTree());
+        GAVDependencyTree dt = aproxClient.getDependencyTreeOfGAV(gav);
+        addDependencyReports(ar, dt.getDependencyTree());
         return ar;
     }
 

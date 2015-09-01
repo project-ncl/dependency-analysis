@@ -14,7 +14,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -182,8 +181,6 @@ public class TestReportsGenerator {
     }
 
     @Test
-    @Ignore
-    // TODO: Remove this ignore when AProxCommunicator supports dependencies
     public void testGetMultipleReport() throws CommunicationException {
         prepareMulti();
         ArtifactReport report = generator.getReport(daCoreGAV);

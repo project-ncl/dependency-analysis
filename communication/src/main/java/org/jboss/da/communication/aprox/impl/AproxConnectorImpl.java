@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Collections;
 import java.util.List;
 
 @ApplicationScoped
@@ -37,7 +38,8 @@ public class AproxConnectorImpl implements AproxConnector {
     @Override
     public GAVDependencyTree getDependencyTreeOfGAV(GAV gav) {
         // TODO Auto-generated method stub
-        return null;
+        // Returning empty dependency tree untill implemented
+        return new GAVDependencyTree(gav, Collections.emptySet());
     }
 
     @Override
