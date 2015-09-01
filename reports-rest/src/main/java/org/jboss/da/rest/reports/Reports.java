@@ -32,6 +32,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 import java.lang.invoke.MethodHandles;
+import java.util.stream.Collectors;
 import org.jboss.da.rest.model.ErrorMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -138,11 +139,14 @@ public class Reports {
         return Response.status(responseStatus).entity(reportsList).build();
     }
 
-    private Report toReport(ArtifactReport report) {
-        return new Report(report.getGav().getGroupId(), report.getGav().getArtifactId(), report
-                .getGav().getVersion(), new ArrayList<>(report.getAvailableVersions()),
-                report.getBestMatchVersion(), false, new ArrayList<>(),
-                // TODO change when dependencies will be implemented
+    private static Report toReport(ArtifactReport report) {
+        List<Report> dependencies = report.getDependencies()
+                .stream()
+                .map(Reports::toReport)
+                .collect(Collectors.toList());
+
+        return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
+                report.getBestMatchVersion(), report.isDependencyVersionSatisfied(), dependencies,
                 report.isBlacklisted(), report.isWhiteListed(), report.getNotBuiltDependencies());
     }
 

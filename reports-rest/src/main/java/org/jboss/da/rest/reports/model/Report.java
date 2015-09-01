@@ -9,6 +9,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
+import org.jboss.da.communication.model.GAV;
 
 /**
  *
@@ -53,4 +54,13 @@ public class Report {
 
     @Getter
     private final int notBuiltDependencies;
+
+    public Report(GAV gav, List<String> availableVersions, String bestMatchVersion,
+            boolean dependencyVersionsSatisfied, List<Report> dependencies, boolean blacklisted,
+            boolean whitelisted, int notBuiltDependencies) {
+        this(gav.getGroupId(), gav.getArtifactId(), gav.getVersion(), availableVersions,
+                bestMatchVersion, dependencyVersionsSatisfied, dependencies, blacklisted,
+                whitelisted, notBuiltDependencies);
+    }
+
 }
