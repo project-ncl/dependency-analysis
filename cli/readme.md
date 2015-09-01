@@ -1,12 +1,12 @@
 # Dependency Analysis CLI tools
 
 These tools are used for communicating with Dependency Analysis service. There are two executable
-scripts, one for developers, the other for admins. Both scripts uses files `listings.sh`, `pretty-lookup.py` and needs to
+scripts, one for developers, the other for admins. Both scripts uses files `listings.sh`, `pretty.py` and needs to
 have these files in the same folder as the executable script.
 
 ### For Developers
 Download: [listings.sh](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/listings.sh),
-[pretty-lookup.py](https://github.com/project-ncl/dependency-analysis/blob/master/cli/pretty-lookup.py),
+[pretty.py](https://github.com/project-ncl/dependency-analysis/blob/master/cli/pretty.py),
 [da-cli.sh](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/da-cli.sh)
 
 Distribution for developers who need just to check artifacts.
@@ -43,7 +43,7 @@ Black list: org.jboss.as:jboss-as-arquillian-container-managed:7.2.0.Final
 ```
 ### For Admins
 Download: [listigs.sh](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/listings.sh),
-[pretty-lookup.py](https://github.com/project-ncl/dependency-analysis/blob/master/cli/pretty-lookup.py),
+[pretty.py](https://github.com/project-ncl/dependency-analysis/blob/master/cli/pretty.py),
 [da-cli-admin.sh](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/bwlist-admin.sh)
 
 Distribution for admins who will be also adding and removing artifacts.
