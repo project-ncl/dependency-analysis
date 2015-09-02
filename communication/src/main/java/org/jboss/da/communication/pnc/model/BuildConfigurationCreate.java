@@ -47,12 +47,10 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    @NonNull
     private int projectId;
 
     @Getter
     @Setter
-    @NonNull
     private int environmentId;
 
     @Getter

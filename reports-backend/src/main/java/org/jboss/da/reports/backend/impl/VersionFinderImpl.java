@@ -6,13 +6,10 @@ import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,8 +23,6 @@ import java.util.stream.Collectors;
  */
 @ApplicationScoped
 public class VersionFinderImpl implements VersionFinder {
-
-    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private final String PATTERN_SUFFIX_BUILT_VERSION = "[.-]redhat-(\\d+)\\D*";
 

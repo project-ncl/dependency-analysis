@@ -1,8 +1,6 @@
 package org.jboss.da.listings.api.model;
 
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import lombok.AccessLevel;
 import lombok.Getter;
