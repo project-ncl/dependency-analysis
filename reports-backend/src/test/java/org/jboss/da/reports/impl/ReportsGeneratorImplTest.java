@@ -8,30 +8,31 @@ import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.backend.api.VersionFinder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import static org.mockito.Mockito.when;
-import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
 @RunWith(MockitoJUnitRunner.class)
-public class TestReportsGenerator {
+public class ReportsGeneratorImplTest {
 
     @Mock
     private AproxConnector aproxClient;
@@ -46,38 +47,36 @@ public class TestReportsGenerator {
     private WhiteArtifactService whiteArtifactService;
 
     @InjectMocks
-    @Spy
-    ReportsGeneratorImpl generator;
+    private ReportsGeneratorImpl generator;
 
-    private static final GAV daGAV = new GAV("org.jboss", "dependency-analysis", "1.0.1");
+    private final GAV daGAV = new GAV("org.jboss", "dependency-analysis", "1.0.1");
 
-    private static final String version = "0.1.0";
+    private final String version = "0.1.0";
 
-    private static final GAV daCoreGAV = new GAV("org.jboss.da", "core", version);
+    private final GAV daCoreGAV = new GAV("org.jboss.da", "core", version);
 
-    private static final List<String> daCoreVersionsNoBest = Arrays.asList("1.1.1.redhat-2",
+    private final List<String> daCoreVersionsNoBest = Arrays.asList("1.1.1.redhat-2",
             "1.2.3.redhat-1", "1.3.4.redhat-3", "1.3.5.redhat-1");
 
-    private static final String bestMatchVersion = version + ".redhat-1";
+    private final String bestMatchVersion = version + ".redhat-1";
 
-    private static final List<String> daCoreVersionsBest = Arrays.asList("1.1.1.redhat-2",
+    private final List<String> daCoreVersionsBest = Arrays.asList("1.1.1.redhat-2",
             "1.2.3.redhat-1", "1.3.4.redhat-3", "1.3.5.redhat-1", bestMatchVersion);
 
-    private static final GAVDependencyTree daCoreNoDT = new GAVDependencyTree(daCoreGAV,
-            new HashSet<>());
+    private final GAVDependencyTree daCoreNoDT = new GAVDependencyTree(daCoreGAV, new HashSet<>());
 
-    private static final GAV daUtilGAV = new GAV("org.jboss.da", "util", version);
+    private final GAV daUtilGAV = new GAV("org.jboss.da", "util", version);
 
-    private static final GAV daCommonGAV = new GAV("org.jboss.da", "common", version);
+    private final GAV daCommonGAV = new GAV("org.jboss.da", "common", version);
 
-    private static final GAVDependencyTree daUtilDT = new GAVDependencyTree(daUtilGAV,
-            new HashSet<>());
+    private final GAVDependencyTree daUtilDT = new GAVDependencyTree(daUtilGAV, new HashSet<>());
 
-    private static final GAVDependencyTree daCommonDT = new GAVDependencyTree(daCommonGAV,
-            new HashSet<>());
+    private final GAVDependencyTree daCommonDT = new GAVDependencyTree(daCommonGAV, new HashSet<>());
 
-    private static final GAVDependencyTree daCoreDT = new GAVDependencyTree(daCoreGAV,
-            new HashSet<>(Arrays.asList(daUtilDT, daCommonDT)));
+    private final GAVDependencyTree daCoreDT = new GAVDependencyTree(daCoreGAV, new HashSet<>(
+            Arrays.asList(daUtilDT, daCommonDT)));
+
+    private static final String NO_BEST_MATCH_VERSION = null;
 
     private void prepare(boolean whitelisted, boolean blacklisted, List<String> versions,
             String best, GAVDependencyTree dependencyTree) throws CommunicationException {
@@ -86,7 +85,7 @@ public class TestReportsGenerator {
         when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV, versions)).thenReturn(best);
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
         when(whiteArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(whitelisted);
-        when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreNoDT);
+        when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
     }
 
     private void prepareMulti() throws CommunicationException {
@@ -108,32 +107,29 @@ public class TestReportsGenerator {
         when(whiteArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testNullGAV() throws CommunicationException {
-        try {
-            generator.getReport(null);
-            fail();
-        } catch (IllegalArgumentException ex) {
-            // ok
-        }
+        generator.getReport(null);
     }
 
     @Test
     public void testNonExistingGAV() throws CommunicationException {
         when(versionFinderImpl.getBuiltVersionsFor(daGAV)).thenReturn(null);
+
         ArtifactReport report = generator.getReport(daGAV);
+
         assertNull(report);
     }
 
     @Test
-    public void testNonListedNoBestMatch() throws CommunicationException {
-        // non-listed, no-best-match GAV
+    public void testNonListedNoBestMatchGAV() throws CommunicationException {
         prepare(false, false, daCoreVersionsNoBest, null, daCoreNoDT);
+
         ArtifactReport report = generator.getReport(daCoreGAV);
-        assertNotNull(report);
+
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
-        assertNull(report.getBestMatchVersion());
+        assertEquals(NO_BEST_MATCH_VERSION, report.getBestMatchVersion());
         assertTrue(report.getDependencies().isEmpty());
         assertFalse(report.isBlacklisted());
         assertFalse(report.isWhiteListed());
@@ -141,28 +137,27 @@ public class TestReportsGenerator {
     }
 
     @Test
-    public void testWhiteListedNoBestMatch() throws CommunicationException {
-        // white-listed, no-best-match GAV
+    public void testWhiteListedNoBestMatchGAV() throws CommunicationException {
         prepare(true, false, daCoreVersionsNoBest, null, daCoreNoDT);
+
         ArtifactReport report = generator.getReport(daCoreGAV);
-        assertNotNull(report);
+
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
-        assertNull(report.getBestMatchVersion());
+        assertEquals(NO_BEST_MATCH_VERSION, report.getBestMatchVersion());
         assertTrue(report.getDependencies().isEmpty());
         assertFalse(report.isBlacklisted());
         assertTrue(report.isWhiteListed());
     }
 
     @Test
-    public void testBlackListedBestMatch() throws CommunicationException {
-        // black-listed, best-match GAV
+    public void testBlackListedBestMatchGAV() throws CommunicationException {
         prepare(false, true, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
+
         ArtifactReport report = generator.getReport(daCoreGAV);
-        assertNotNull(report);
+
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
-        assertNotNull(report.getBestMatchVersion());
         assertEquals(bestMatchVersion, report.getBestMatchVersion());
         assertTrue(report.getDependencies().isEmpty());
         assertTrue(report.isBlacklisted());
@@ -170,30 +165,31 @@ public class TestReportsGenerator {
     }
 
     @Test
-    public void artifactReportShouldNotHaveNullValuesInAvailableVersionsWhenBestMatchVersionIsNull()
+    public void testArtifactReportShouldNotHaveNullValuesInAvailableVersionsWhenBestMatchVersionIsNull()
             throws CommunicationException {
         prepare(false, false, daCoreVersionsBest, null, daCoreNoDT);
-        ArtifactReport report = generator.getReport(daCoreGAV);
-        assertNotNull(report);
-        assertNull(report.getBestMatchVersion());
 
+        ArtifactReport report = generator.getReport(daCoreGAV);
+
+        assertNull(report.getBestMatchVersion());
         assertFalse(report.getAvailableVersions().stream().anyMatch(version -> version == null));
     }
 
     @Test
     public void testGetMultipleReport() throws CommunicationException {
         prepareMulti();
+
         ArtifactReport report = generator.getReport(daCoreGAV);
-        assertNotNull(report);
+
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
-        assertNotNull(report.getBestMatchVersion());
         assertEquals(bestMatchVersion, report.getBestMatchVersion());
-        assertFalse(report.getDependencies().isEmpty());
         assertFalse(report.isBlacklisted());
         assertFalse(report.isWhiteListed());
+        assertMultipleDependencies(report.getDependencies());
+    }
 
-        Set<ArtifactReport> deps = report.getDependencies();
+    private void assertMultipleDependencies(Set<ArtifactReport> deps) {
         assertEquals(2, deps.size());
 
         for (ArtifactReport dep : deps) {

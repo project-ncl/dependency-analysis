@@ -23,26 +23,6 @@ public class ArquillianDeploymentFactory {
 
     private static final String TEST_EAR = DEPLOYMENT_NAME + ".ear";
 
-    private static final String COMMUNICATION_PLACEHOLDER = "${communication}";
-
-    private static final String COMMON_PLACEHOLDER = "${common}";
-
-    private static final String BC_BCAKEND_PLACEHOLDER = "${bc-backend}";
-
-    private static final String REPORTS_BACKEND_PLACEHOLDER = "${reports-backend}";
-
-    private static final String BC_REST_PLACEHOLDER = "${bc-rest}";
-
-    private static final String REPORTS_REST_PLACEHOLDER = "${reports-rest}";
-
-    private static final String TEST_PLACEHOLDER = "${testsuite}";
-
-    private static final String TYPE_WAR = "war";
-
-    private static final String TYPE_EJB = "ejb";
-
-    private static final String PROJECT_GROUP_ID = "org.jboss.da";
-
     public EnterpriseArchive createDeployment() {
         File earProjectBuildDir = new File(new File(getProjectTopLevelDir(), "application"),
                 "target");
