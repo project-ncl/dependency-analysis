@@ -1,6 +1,6 @@
 package org.jboss.da.rest.reports.model;
 
-import org.codehaus.jackson.annotate.JsonUnwrapped;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.jboss.da.communication.model.GAV;
 
 import javax.xml.bind.annotation.XmlTransient;
@@ -15,10 +15,15 @@ import lombok.Setter;
 @AllArgsConstructor
 public class LookupReport {
 
+    /*
+     * Manually unwrap 'gav' via getters so as not to confuse Swagger.
+     * 
+     * Also, use @JsonIgnore so that the getters and setters generated for 'gav' are also ignored by Jackson.
+     */
     @Getter
     @Setter
     @NonNull
-    @JsonUnwrapped
+    @JsonIgnore
     @XmlTransient
     private GAV gav;
 
@@ -38,6 +43,10 @@ public class LookupReport {
     @Setter
     private boolean whitelisted;
 
+    // **************************************************************************
+    // Keep `getGroupId`, `getArtifactId`, and `getVersion` here for Swagger,
+    // and so that Jackson knows how to marshall 'gav' properly!
+    // **************************************************************************
     public String getGroupId() {
         return gav.getGroupId();
     }

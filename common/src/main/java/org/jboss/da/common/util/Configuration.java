@@ -2,7 +2,7 @@ package org.jboss.da.common.util;
 
 import java.io.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.jboss.da.common.json.DAConfig;
 
 import javax.enterprise.context.ApplicationScoped;
