@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target=10.3.10.85:8080/da/rest/v-0.2
+target=ncl-test-vm-01.host.prod.eng.bos.redhat.com:8180/da/rest/v-0.2
 
 basedir=`dirname $0`
 
