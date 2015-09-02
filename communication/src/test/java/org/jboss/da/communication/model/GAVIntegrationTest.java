@@ -35,7 +35,6 @@ public class GAVIntegrationTest {
     }
 
     @Test
-    @Ignore
     public void testParsedJson() throws Exception {
         String groupId = createRandomString();
         String artifactId = createRandomString();
