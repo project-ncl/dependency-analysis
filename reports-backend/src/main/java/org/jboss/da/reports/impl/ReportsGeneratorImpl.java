@@ -8,11 +8,9 @@ import org.jboss.da.reports.api.Product;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 
-import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.Set;
 
@@ -31,7 +29,8 @@ import org.jboss.da.reports.backend.api.VersionFinder;
  */
 public class ReportsGeneratorImpl implements ReportsGenerator {
 
-    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    @Inject
+    private Logger log;
 
     @Inject
     private AproxConnector aproxClient;
