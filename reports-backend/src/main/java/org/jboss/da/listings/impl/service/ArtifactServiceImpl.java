@@ -19,7 +19,7 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
     @Inject
     private Logger log;
 
-    private Class<T> type;
+    private final Class<T> type;
 
     public ArtifactServiceImpl(Class<T> type) {
         this.type = type;

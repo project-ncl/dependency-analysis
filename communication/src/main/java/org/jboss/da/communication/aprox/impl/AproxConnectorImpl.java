@@ -26,7 +26,7 @@ import java.util.List;
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {
 
-    private Configuration config = new Configuration();
+    private final Configuration config = new Configuration();
 
     @Override
     public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision,

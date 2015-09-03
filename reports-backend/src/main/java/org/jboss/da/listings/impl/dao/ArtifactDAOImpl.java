@@ -23,6 +23,7 @@ public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> imple
         super(clazz);
     }
 
+    @Override
     public T findArtifact(String groupId, String artifactId, String version) {
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -39,6 +40,7 @@ public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> imple
         }
     }
 
+    @Override
     public List<T> findAll() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<T> cq = cb.createQuery(type);

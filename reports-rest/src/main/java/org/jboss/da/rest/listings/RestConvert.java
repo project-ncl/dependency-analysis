@@ -17,7 +17,7 @@ import java.util.List;
 public class RestConvert {
 
     public <T extends Artifact> List<RestArtifact> toRestArtifacts(List<T> artifacts) {
-        List<RestArtifact> restArtifacts = new ArrayList<RestArtifact>();
+        List<RestArtifact> restArtifacts = new ArrayList<>();
         for (Artifact a : artifacts) {
             RestArtifact ra = new RestArtifact();
             ra.setArtifactId(a.getArtifactId());

@@ -88,8 +88,7 @@ public class PNCAuthentication {
             while ((line = rd.readLine()) != null) {
                 if (line.contains("refresh_token")) {
                     String[] respContent = line.split(",");
-                    for (int i = 0; i < respContent.length; i++) {
-                        String split = respContent[i];
+                    for (String split : respContent) {
                         if (split.contains("refresh_token")) {
                             refreshToken = split.split(":")[1].substring(1,
                                     split.split(":")[1].length() - 1);

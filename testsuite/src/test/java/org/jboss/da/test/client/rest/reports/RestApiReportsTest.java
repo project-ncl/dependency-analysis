@@ -5,7 +5,6 @@ import org.apache.http.entity.ContentType;
 import org.jboss.da.test.client.AbstractRestApiTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.core.MediaType;
