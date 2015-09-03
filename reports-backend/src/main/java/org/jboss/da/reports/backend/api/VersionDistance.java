@@ -12,18 +12,12 @@ public class VersionDistance implements Comparable<VersionDistance> {
 
     private int microDiff;
 
-    private String specifierA;
-
-    private String specifierB;
-
     public VersionDistance(String versionA, String versionB) {
         String[] vA = versionA.split(".");
         String[] vB = versionB.split(".");
         this.majorDiff = Math.abs(Integer.parseInt(vA[0]) - Integer.parseInt(vB[0]));
         this.minorDiff = Math.abs(Integer.parseInt(vA[1]) - Integer.parseInt(vB[1]));
         this.microDiff = Math.abs(Integer.parseInt(vA[2]) - Integer.parseInt(vB[2]));
-        this.specifierA = vA[3];
-        this.specifierB = vB[3];
     }
 
     @Override

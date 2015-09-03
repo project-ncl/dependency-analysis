@@ -3,7 +3,6 @@ package org.jboss.da.communication;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.authentication.PNCAuthentication;
 import org.jboss.da.communication.pnc.impl.PNCConnectorImpl;
 import org.jboss.resteasy.client.ClientRequest;
@@ -15,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.ws.rs.core.MultivaluedMap;
-import java.util.Map;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;

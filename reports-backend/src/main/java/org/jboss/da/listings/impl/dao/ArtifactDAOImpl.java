@@ -19,7 +19,7 @@ import org.jboss.da.listings.api.model.Artifact;
 public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> implements
         ArtifactDAO<T> {
 
-    public ArtifactDAOImpl(Class clazz) {
+    public ArtifactDAOImpl(Class<T> clazz) {
         super(clazz);
     }
 
