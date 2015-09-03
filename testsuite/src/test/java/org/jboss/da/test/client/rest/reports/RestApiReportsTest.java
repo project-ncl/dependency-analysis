@@ -31,7 +31,8 @@ public class RestApiReportsTest extends AbstractRestApiTest {
 
         File expectedResponseFile = new ExpectedResponseFilenameBuilder(
                 restApiExpectedResponseFolder, path, contentType).getFile();
-        assertEquals(readFileToString(expectedResponseFile), response.getEntity(String.class));
+        assertEquals(readFileToString(expectedResponseFile).trim(), response
+                .getEntity(String.class).trim());
     }
 
     @Test
