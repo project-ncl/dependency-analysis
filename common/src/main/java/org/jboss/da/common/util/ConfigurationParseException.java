@@ -5,6 +5,10 @@ package org.jboss.da.common.util;
  */
 public class ConfigurationParseException extends Exception {
 
+    public ConfigurationParseException(Throwable cause) {
+        super(cause);
+    }
+
     public ConfigurationParseException(String msg) {
         super(msg);
     }
