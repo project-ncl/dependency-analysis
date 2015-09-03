@@ -2,6 +2,7 @@ package org.jboss.da.rest.listings;
 
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.listings.api.service.ArtifactService.STATUS;
 import org.jboss.da.rest.listings.model.ContainsResponse;
 import org.jboss.da.rest.listings.model.RestArtifact;
 import org.jboss.da.rest.listings.model.SuccessResponse;
@@ -95,17 +96,26 @@ public class Artifacts {
     public Response addWhiteArtifact(
             @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
-        boolean blacklisted = blackService.isArtifactPresent(artifact.getGroupId(),
-                artifact.getArtifactId(), artifact.getVersion());
-        if (blacklisted) {
-            return Response
-                    .status(Response.Status.CONFLICT)
-                    .entity(new ErrorMessage(
-                            "Can't add artifact to whitelist, artifact is blacklisted")).build();
-        } else {
-            response.setSuccess(whiteService.addArtifact(artifact.getGroupId(),
-                    artifact.getArtifactId(), artifact.getVersion()));
-            return Response.ok(response).build();
+        STATUS result = whiteService.addArtifact(artifact.getGroupId(), artifact.getArtifactId(),
+                artifact.getVersion());
+        switch (result) {
+            case ADDED:
+                response.setSuccess(true);
+                return Response.ok(response).build();
+            case IS_BLACKLISTED:
+                response.setSuccess(false);
+                return Response
+                        .status(Response.Status.CONFLICT)
+                        .entity(new ErrorMessage(
+                                "Can't add artifact to whitelist, artifact is blacklisted"))
+                        .build();
+            case NOT_MODIFIED:
+                response.setSuccess(false);
+                return Response.ok(response).build();
+            default:
+                response.setSuccess(false);
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                        .entity(new ErrorMessage("Unexpected server error occurred.")).build();
         }
     }
 
@@ -165,17 +175,27 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Add an artifact to the blacklist", response = SuccessResponse.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
-    public SuccessResponse addBlackArtifact(
+    public Response addBlackArtifact(
             @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
-        if (whiteService.isArtifactPresent(artifact.getGroupId(), artifact.getArtifactId(),
-                artifact.getVersion())) {
-            whiteService.removeArtifact(artifact.getGroupId(), artifact.getArtifactId(),
-                    artifact.getVersion());
+        STATUS result = blackService.addArtifact(artifact.getGroupId(), artifact.getArtifactId(),
+                artifact.getVersion());
+        switch (result) {
+            case ADDED:
+                response.setSuccess(true);
+                return Response.ok(response).build();
+            case WAS_WHITELISTED:
+                response.setSuccess(true);
+                response.setMessage("Artifact was moved from whitelist into blacklist");
+                return Response.ok(response).build();
+            case NOT_MODIFIED:
+                response.setSuccess(false);
+                return Response.ok(response).build();
+            default:
+                response.setSuccess(false);
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                        .entity(new ErrorMessage("Unexpected server error occurred.")).build();
         }
-        response.setSuccess(blackService.addArtifact(artifact.getGroupId(),
-                artifact.getArtifactId(), artifact.getVersion()));
-        return response;
     }
 
     @DELETE

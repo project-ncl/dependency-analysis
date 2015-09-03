@@ -13,6 +13,10 @@ import org.jboss.da.listings.api.model.Artifact;
  */
 public interface ArtifactService<T extends Artifact> {
 
+    public enum STATUS {
+        ADDED, NOT_MODIFIED, IS_BLACKLISTED, WAS_WHITELISTED
+    };
+
     /**
      * Add artifact to list.
      * 
@@ -20,7 +24,7 @@ public interface ArtifactService<T extends Artifact> {
      * @param artifactId
      * @param version
      */
-    boolean addArtifact(String groupId, String artifactId, String version);
+    STATUS addArtifact(String groupId, String artifactId, String version);
 
     /**
      * Finds artifact by given group id, artifact id and version. When not found returns null.

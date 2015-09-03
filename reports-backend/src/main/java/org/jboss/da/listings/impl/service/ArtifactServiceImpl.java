@@ -29,24 +29,6 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
     protected abstract ArtifactDAO<T> getDAO();
 
     @Override
-    public boolean addArtifact(String groupId, String artifactId, String version) {
-        if (getDAO().findArtifact(groupId, artifactId, version) != null) {
-            return false;
-        }
-        try {
-            T artifact = type.newInstance();
-            artifact.setArtifactId(artifactId);
-            artifact.setGroupId(groupId);
-            artifact.setVersion(version);
-            getDAO().create(artifact);
-            return true;
-        } catch (InstantiationException | IllegalAccessException e) {
-            log.error("Artifact couldn't be added!", e);
-        }
-        return false;
-    }
-
-    @Override
     public T getArtifact(String groupId, String artifactId, String version) {
         return getDAO().findArtifact(groupId, artifactId, version);
     }

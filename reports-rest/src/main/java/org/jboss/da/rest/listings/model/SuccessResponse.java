@@ -1,9 +1,15 @@
 package org.jboss.da.rest.listings.model;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,11 +27,17 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
+@JsonSerialize(include = Inclusion.NON_NULL)
 public class SuccessResponse {
 
     @Getter
     @Setter
     @XmlElement(required = true, name = "success")
     protected boolean success;
+
+    @Getter
+    @Setter
+    @XmlElement(required = false, name = "success")
+    protected String message;
 
 }
