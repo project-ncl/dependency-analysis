@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class VersionFinderImpl implements VersionFinder {
 
-    private final String PATTERN_SUFFIX_BUILT_VERSION = "[.-]redhat-(\\d+)\\D*";
+    private static final String PATTERN_SUFFIX_BUILT_VERSION = "[.-]redhat-(\\d+)\\D*";
 
     @Inject
     private AproxConnector aproxConnector;

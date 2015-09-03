@@ -12,6 +12,8 @@ import static org.junit.Assert.assertEquals;
 
 public class GAVIntegrationTest {
 
+    private final Random generator = new Random();
+
     @Test
     public void testGeneratedJson() throws Exception {
         String groupId = createRandomString();
@@ -54,6 +56,6 @@ public class GAVIntegrationTest {
     }
 
     private String createRandomString() {
-        return "" + new Random().nextLong();
+        return Long.toString(generator.nextLong());
     }
 }

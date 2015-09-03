@@ -73,8 +73,8 @@ public class PNCAuthentication {
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
 
         List<BasicNameValuePair> urlParameters = new ArrayList<>();
-        for (String key : urlParams.keySet()) {
-            urlParameters.add(new BasicNameValuePair(key, urlParams.get(key)));
+        for (Map.Entry<String, String> e : urlParams.entrySet()) {
+            urlParameters.add(new BasicNameValuePair(e.getKey(), e.getValue()));
         }
         httpPost.setEntity(new UrlEncodedFormEntity(urlParameters));
         CloseableHttpResponse response = httpclient.execute(httpPost);
