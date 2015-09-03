@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target=10.3.10.85:8080/da/rest/v-0.2
+target=ncl-test-vm-01.host.prod.eng.bos.redhat.com:8180/da/rest/v-0.2
 
 basedir=`dirname $0`
 
@@ -21,6 +21,12 @@ prettyPrintGAV() {
                 s/ *"version": "([^"]*)",?/v:\1\t~/;' | \
         tr -d "\n" | tr "~" "\n" | \
         sed -r 's/(g:([^\t]*)\t|a:([^\t]*)\t|v:([^\t]*)\t)*/\2:\3:\4/'
+}
+
+prettyPrint() {
+    pushd "${basedir}" > /dev/null
+    python -c "import pretty; pretty.$1()"
+    popd > /dev/null
 }
 
 get() {
@@ -99,26 +105,43 @@ check() {
 }
 
 report() {
+    type="pretty"
+    if [ "X$1" = "X--raw" ]; then
+        type="raw"
+        shift
+    elif [ "X$1" = "X--json" ]; then
+        type="json"
+        shift
+    fi
     matchGAV $1
     tmpfile=`mktemp`
     post "reports/gav" "`formatGAVjson`" >> $tmpfile
-    cat $tmpfile | $basedir/pretty-lookup.py
+    case $type in
+        pretty) cat $tmpfile | prettyPrint report | column -t -s $'\t' ;;
+        raw) cat $tmpfile | prettyPrint reportRaw ;;
+        json) cat $tmpfile ;;
+    esac
     rm $tmpfile
 }
 
 lookup() {
     local query="["
-    local first=true
-    while read line; do
-        matchGAV $line
-        $first || query="$query,"
-        first=false
+    if [ $# -ge 1 ]; then # G:A:V specified on command line
+        matchGAV $1
         query="$query `formatGAVjson`"
-    done
+    else                  # G:A:Vs specified in standart input
+        local first=true
+        while read line; do
+            matchGAV $line
+            $first || query="$query,"
+            first=false
+            query="$query `formatGAVjson`"
+        done
+    fi
     query="$query ]"
     tmpfile=`mktemp`
-    curl -s -H "Content-Type: application/json" -X POST -d "$query" "$target/reports/lookup/gavs" > $tmpfile
-    cat $tmpfile | $basedir/pretty-lookup.py
+    post "reports/lookup/gavs" "$query" > $tmpfile
+    cat $tmpfile | prettyPrint lookup
     rm $tmpfile
 }
 
@@ -132,6 +155,7 @@ parse_pom_bw_report_options() {
     do
         case ${key} in
             --transitive) pom_transitive_flag=true;;
+            --raw)        raw_output="--raw";;
             -*)           wrong_option="${key}";;
             *)            pom_path="${key}";;
         esac
@@ -248,8 +272,9 @@ pom_report() {
     fi
 
     sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | while read line; do
-        report_result=`report $line`
-        echo "$line :: $report_result"
+        report_result=`report $raw_output $line`
+        echo "$line ::"
+        echo "$report_result" | sed "s/^/  /"
     done
     echo -n "$DEFAULT"
     rm $tmpfile
