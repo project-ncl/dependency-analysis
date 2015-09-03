@@ -83,6 +83,8 @@ add() {
         echo "Error adding $groupId:$artifactId:$version"
         cat $tmpfile
         echo
+    elif grep -q '"message":' $tmpfile; then
+        grep -o '"message":"[^"]*"' $tmpfile
     fi
     rm $tmpfile
 }
