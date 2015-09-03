@@ -5,10 +5,8 @@ import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.service.ArtifactService;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.invoke.MethodHandles;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * 
@@ -18,7 +16,8 @@ import java.util.List;
  */
 public abstract class ArtifactServiceImpl<T extends Artifact> implements ArtifactService<T> {
 
-    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    @Inject
+    private Logger log;
 
     private Class<T> type;
 

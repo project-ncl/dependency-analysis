@@ -31,11 +31,9 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
-import java.lang.invoke.MethodHandles;
 import java.util.stream.Collectors;
 import org.jboss.da.rest.model.ErrorMessage;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Main end point for the reports
@@ -48,7 +46,8 @@ import org.slf4j.LoggerFactory;
 @Api(value = "/reports", description = "Get report of dependencies of projects")
 public class Reports {
 
-    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    @Inject
+    private Logger log;
 
     @Inject
     private VersionFinder versionFinder;
