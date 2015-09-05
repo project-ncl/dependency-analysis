@@ -17,7 +17,9 @@ import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 
@@ -106,15 +108,15 @@ public class VersionFinderTest {
 
     @Test
     public void lookupBuiltVersionsNonExistingGAVTest() throws CommunicationException {
-        prepare(null);
-        VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(SOME_GAV);
-        assertNull(lookupResult);
+        prepare(Collections.EMPTY_LIST);
+        Optional<VersionLookupResult> lookupResult = versionFinder.lookupBuiltVersions(SOME_GAV);
+        assertFalse(lookupResult.isPresent());
     }
 
     @Test
     public void lookupBuiltVersionsBuiltGAVTest() throws CommunicationException {
         prepare(All_VERSIONS);
-        VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(BUILT_GAV);
+        VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(BUILT_GAV).get();
         assertNotNull(lookupResult);
         assertEquals(BUILT_VERSION_RH, lookupResult.getBestMatchVersion());
         assertEquals(BUILT_VERSIONS.size(), lookupResult.getAvailableVersions().size());
@@ -123,15 +125,15 @@ public class VersionFinderTest {
 
     @Test
     public void testVersionsForNonExistingGAV() throws CommunicationException {
-        prepare(null);
-        List<String> versions = versionFinder.getBuiltVersionsFor(SOME_GAV);
-        assertNull(versions);
+        prepare(Collections.EMPTY_LIST);
+        Optional<List<String>> versions = versionFinder.getBuiltVersionsFor(SOME_GAV);
+        assertFalse(versions.isPresent());
     }
 
     @Test
     public void testVersionsForGAV() throws CommunicationException {
         prepare(All_VERSIONS);
-        List<String> versions = versionFinder.getBuiltVersionsFor(SOME_GAV);
+        List<String> versions = versionFinder.getBuiltVersionsFor(SOME_GAV).get();
         assertNotNull(versions);
         assertEquals(BUILT_VERSIONS.size(), versions.size());
         assertTrue(versions.containsAll(BUILT_VERSIONS));

@@ -31,6 +31,8 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
+import java.util.Optional;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import org.jboss.da.rest.model.ErrorMessage;
 import org.slf4j.Logger;
@@ -87,12 +89,11 @@ public class Reports {
     public Response gavGenerator(@ApiParam(
             value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAV gavRequest) {
         try {
-            ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
-            if (artifactReport == null)
-                return Response.status(Status.NOT_FOUND)
-                        .entity(new ErrorMessage("Requested GA was not found")).build();
-            else
-                return Response.ok().entity(toReport(artifactReport)).build();
+            Optional<ArtifactReport> artifactReport = reportsGenerator.getReport(gavRequest);
+            return artifactReport
+                    .map(x -> Response.ok().entity(toReport(x)).build())
+                    .orElseGet(() -> Response.status(Status.NOT_FOUND)
+                            .entity(new ErrorMessage("Requested GA was not found")).build());
         } catch (CommunicationException ex) {
             return Response.status(502).entity(ex).build();
         }
@@ -120,10 +121,10 @@ public class Reports {
         int responseStatus = Status.OK.getStatusCode();
         for (GAV gav : gavRequest) {
             try {
-                VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
+                Optional<VersionLookupResult> lookupResult = versionFinder.lookupBuiltVersions(gav);
                 LookupReport lookupReport = toLookupReport(gav, lookupResult);
                 reportsList.add(lookupReport);
-                if (lookupResult == null) {
+                if (!lookupResult.isPresent()) {
                     // Don't use Status.PARTIAL_CONTENT since it's not available in EAP 6.4
                     responseStatus = 206;
                 }
@@ -149,14 +150,12 @@ public class Reports {
                 report.isBlacklisted(), report.isWhiteListed(), report.getNotBuiltDependencies());
     }
 
-    private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult)
-            throws CommunicationException {
-        if (lookupResult == null)
-            return new LookupReport(gav, null, Collections.<String> emptyList(),
-                    isBlacklisted(gav), isWhitelisted(gav));
-        else
-            return new LookupReport(gav, lookupResult.getBestMatchVersion(),
-                    lookupResult.getAvailableVersions(), isBlacklisted(gav), isWhitelisted(gav));
+    private LookupReport toLookupReport(GAV gav, Optional<VersionLookupResult> lookupResult) {
+        return lookupResult
+                .map(result -> new LookupReport(gav, result.getBestMatchVersion(),
+                        result.getAvailableVersions(), isBlacklisted(gav), isWhitelisted(gav)))
+                .orElseGet(() -> new LookupReport(gav, null, Collections.emptyList(),
+                        isBlacklisted(gav), isWhitelisted(gav)));
     }
 
     private boolean isBlacklisted(GAV gav) {

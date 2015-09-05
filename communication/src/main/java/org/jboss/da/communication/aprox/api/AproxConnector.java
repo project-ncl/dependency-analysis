@@ -31,10 +31,11 @@ public interface AproxConnector {
     GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException;
 
     /**
-     * Finds available versions of specific groupId artifactId
+     * Finds available versions of specific groupId artifactId.
+     * If the provided groupId artifactId is not found in repository, returns empty list.
      * 
      * @param ga
-     * @return list of versions or null when the groupId artifactId is not found
+     * @return list of versions for given groupId artifactId in repository.
      * @throws CommunicationException When there is problem with communication.
      */
     List<String> getVersionsOfGA(GA ga) throws CommunicationException;
