@@ -1,5 +1,6 @@
 package org.jboss.da.reports.api;
 
+import java.util.Optional;
 import org.jboss.da.communication.model.GAV;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class ArtifactReportTest {
         assertEquals(1, ar.getNotBuiltDependencies());
 
         ArtifactReport ar2 = new ArtifactReport(new GAV("otg.example", "dep2", "0.1"));
-        ar2.setBestMatchVersion("0.1.0.redhat-2");
+        ar2.setBestMatchVersion(Optional.of("0.1.0.redhat-2"));
         ar.addDependency(ar2);
 
         assertEquals(1, ar.getNotBuiltDependencies());
@@ -36,7 +37,7 @@ public class ArtifactReportTest {
         assertEquals(2, ar.getNotBuiltDependencies());
 
         ArtifactReport ar12 = new ArtifactReport(new GAV("otg.example", "dep12", "0.1"));
-        ar12.setBestMatchVersion("0.1.0.redhat-2");
+        ar12.setBestMatchVersion(Optional.of("0.1.0.redhat-2"));
         ar12.addDependency(ar12);
 
         assertEquals(2, ar.getNotBuiltDependencies());

@@ -146,13 +146,13 @@ public class Reports {
                 .collect(Collectors.toList());
 
         return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
-                report.getBestMatchVersion(), report.isDependencyVersionSatisfied(), dependencies,
+                report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(), dependencies,
                 report.isBlacklisted(), report.isWhiteListed(), report.getNotBuiltDependencies());
     }
 
     private LookupReport toLookupReport(GAV gav, Optional<VersionLookupResult> lookupResult) {
         return lookupResult
-                .map(result -> new LookupReport(gav, result.getBestMatchVersion(),
+                .map(result -> new LookupReport(gav, result.getBestMatchVersion().orElse(null),
                         result.getAvailableVersions(), isBlacklisted(gav), isWhitelisted(gav)))
                 .orElseGet(() -> new LookupReport(gav, null, Collections.emptyList(),
                         isBlacklisted(gav), isWhitelisted(gav)));

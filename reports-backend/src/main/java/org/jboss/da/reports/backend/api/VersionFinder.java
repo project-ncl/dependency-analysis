@@ -35,22 +35,22 @@ public interface VersionFinder {
 
     /**
      * Tries to find the Red Hat built version of specified artifacts. Tries to find
-     * the latest built. If there is not built artifact with given GAV, null is returned.
+     * the latest built. If there is not built artifact with given GAV, empty Optional is returned.
      * 
      * @param gav GAV, which specifies the artifact
-     * @return Found biggest version of built artifact with given GAV or null if this artifact was not built yet
+     * @return Found biggest version of built artifact with given GAV or empty Optional if this artifact was not built yet
      * @throws CommunicationException when there is a problem with communication with remote services
      */
-    String getBestMatchVersionFor(GAV gav) throws CommunicationException;
+    Optional<String> getBestMatchVersionFor(GAV gav) throws CommunicationException;
 
     /**
      * Tries to find the Red Hat built version of specified artifacts in the provided list of available built versions of artifact.
-     * Tries to find the latest built. If there is not built artifact with given GAV, null is returned.
+     * Tries to find the latest built. If there is not built artifact with given GAV, empty Optional is returned.
      *
      * @param gav GAV, which specifies the artifact
      * @param availableVersions Available built versions of the specified artifact
-     * @return Found biggest version of built artifact with given GAV or null if this artifact was not built yet
+     * @return Found biggest version of built artifact with given GAV or empty Optional if this artifact was not built yet
      */
-    String getBestMatchVersionFor(GAV gav, List<String> availableVersions);
+    Optional<String> getBestMatchVersionFor(GAV gav, List<String> availableVersions);
 
 }

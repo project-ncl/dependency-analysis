@@ -55,13 +55,13 @@ public class VersionFinderImpl implements VersionFinder {
     }
 
     @Override
-    public String getBestMatchVersionFor(GAV gav) throws CommunicationException {
+    public Optional<String> getBestMatchVersionFor(GAV gav) throws CommunicationException {
         List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGA());
         return findBiggestMatchingVersion(gav, obtainedVersions);
     }
 
     @Override
-    public String getBestMatchVersionFor(GAV gav, List<String> availableVersions) {
+    public Optional<String> getBestMatchVersionFor(GAV gav, List<String> availableVersions) {
         return findBiggestMatchingVersion(gav, availableVersions);
     }
 
@@ -74,15 +74,15 @@ public class VersionFinderImpl implements VersionFinder {
         return redhatVersions;
     }
 
-    private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
-        if (obtainedVersions == null)
-            return null;
+    private Optional<String> findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
+        if (obtainedVersions.isEmpty())
+            return Optional.empty();
 
         String origVersion = gav.getVersion();
         Pattern pattern = Pattern.compile(origVersion + PATTERN_SUFFIX_BUILT_VERSION);
 
-        String bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
-        if (bestMatchVersion == null) {
+        Optional<String> bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
+        if (!bestMatchVersion.isPresent()) {
             String osgiVersion = osgiParser.getOSGiVersion(origVersion);
             pattern = Pattern.compile(osgiVersion + PATTERN_SUFFIX_BUILT_VERSION);
             bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
@@ -91,7 +91,8 @@ public class VersionFinderImpl implements VersionFinder {
         return bestMatchVersion;
     }
 
-    private String findBiggestMatchingVersion(List<String> obtainedVersions, Pattern pattern) {
+    private Optional<String> findBiggestMatchingVersion(List<String> obtainedVersions,
+            Pattern pattern) {
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
 
@@ -106,7 +107,7 @@ public class VersionFinderImpl implements VersionFinder {
             }
         }
 
-        return bestMatchVersion;
+        return Optional.ofNullable(bestMatchVersion);
     }
 
 }

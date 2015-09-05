@@ -78,16 +78,16 @@ public class ReportsGeneratorImplTest {
     private final GAVDependencyTree daCoreDT = new GAVDependencyTree(daCoreGAV, new HashSet<>(
             Arrays.asList(daUtilDT, daCommonDT)));
 
-    private static final String NO_BEST_MATCH_VERSION = null;
-
     private void prepare(boolean whitelisted, boolean blacklisted, List<String> versions,
             String best, GAVDependencyTree dependencyTree) throws CommunicationException {
         when(versionFinderImpl.getBuiltVersionsFor(daCoreGAV)).thenReturn(
                 Optional.ofNullable(versions));
         when(versionFinderImpl.lookupBuiltVersions(daCoreGAV)).thenReturn(
-                Optional.of(new VersionLookupResult(best, versions)));
-        when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV)).thenReturn(best);
-        when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV, versions)).thenReturn(best);
+                Optional.of(new VersionLookupResult(Optional.ofNullable(best), versions)));
+        when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV)).thenReturn(
+                Optional.ofNullable(best));
+        when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV, versions)).thenReturn(
+                Optional.ofNullable(best));
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
         when(whiteArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(whitelisted);
         when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
@@ -100,20 +100,22 @@ public class ReportsGeneratorImplTest {
         when(versionFinderImpl.getBuiltVersionsFor(daUtilGAV)).thenReturn(
                 Optional.ofNullable(daCoreVersionsBest));
         when(versionFinderImpl.lookupBuiltVersions(daUtilGAV)).thenReturn(
-                Optional.of(new VersionLookupResult(bestMatchVersion, daCoreVersionsBest)));
-        when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV)).thenReturn(bestMatchVersion);
+                Optional.of(new VersionLookupResult(Optional.ofNullable(bestMatchVersion),
+                        daCoreVersionsBest)));
+        when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV)).thenReturn(
+                Optional.ofNullable(bestMatchVersion));
         when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV, daCoreVersionsBest)).thenReturn(
-                bestMatchVersion);
+                Optional.ofNullable(bestMatchVersion));
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
         when(whiteArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
 
         when(versionFinderImpl.getBuiltVersionsFor(daCommonGAV)).thenReturn(
                 Optional.ofNullable(daCoreVersionsNoBest));
         when(versionFinderImpl.lookupBuiltVersions(daCommonGAV)).thenReturn(
-                Optional.of(new VersionLookupResult(null, daCoreVersionsNoBest)));
-        when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV)).thenReturn(null);
+                Optional.of(new VersionLookupResult(Optional.empty(), daCoreVersionsNoBest)));
+        when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV)).thenReturn(Optional.empty());
         when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV, daCoreVersionsNoBest))
-                .thenReturn(null);
+                .thenReturn(Optional.empty());
         when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
         when(whiteArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
     }
@@ -141,7 +143,7 @@ public class ReportsGeneratorImplTest {
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
-        assertEquals(NO_BEST_MATCH_VERSION, report.getBestMatchVersion());
+        assertFalse(report.getBestMatchVersion().isPresent());
         assertTrue(report.getDependencies().isEmpty());
         assertFalse(report.isBlacklisted());
         assertFalse(report.isWhiteListed());
@@ -156,7 +158,7 @@ public class ReportsGeneratorImplTest {
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
-        assertEquals(NO_BEST_MATCH_VERSION, report.getBestMatchVersion());
+        assertFalse(report.getBestMatchVersion().isPresent());
         assertTrue(report.getDependencies().isEmpty());
         assertFalse(report.isBlacklisted());
         assertTrue(report.isWhiteListed());
@@ -170,7 +172,7 @@ public class ReportsGeneratorImplTest {
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
-        assertEquals(bestMatchVersion, report.getBestMatchVersion());
+        assertEquals(bestMatchVersion, report.getBestMatchVersion().get());
         assertTrue(report.getDependencies().isEmpty());
         assertTrue(report.isBlacklisted());
         assertFalse(report.isWhiteListed());
@@ -183,7 +185,7 @@ public class ReportsGeneratorImplTest {
 
         ArtifactReport report = generator.getReport(daCoreGAV).get();
 
-        assertNull(report.getBestMatchVersion());
+        assertFalse(report.getBestMatchVersion().isPresent());
         assertFalse(report.getAvailableVersions().stream().anyMatch(version -> version == null));
     }
 
@@ -195,7 +197,7 @@ public class ReportsGeneratorImplTest {
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
-        assertEquals(bestMatchVersion, report.getBestMatchVersion());
+        assertEquals(bestMatchVersion, report.getBestMatchVersion().get());
         assertFalse(report.isBlacklisted());
         assertFalse(report.isWhiteListed());
         assertMultipleDependencies(report.getDependencies());
@@ -211,7 +213,7 @@ public class ReportsGeneratorImplTest {
                     assertTrue(dep.getAvailableVersions().containsAll(daCoreVersionsBest));
                     assertEquals(daUtilGAV, dep.getGav());
                     assertNotNull(dep.getBestMatchVersion());
-                    assertEquals(bestMatchVersion, dep.getBestMatchVersion());
+                    assertEquals(bestMatchVersion, dep.getBestMatchVersion().get());
                     assertTrue(dep.getDependencies().isEmpty());
                     assertFalse(dep.isBlacklisted());
                     assertFalse(dep.isWhiteListed());
@@ -220,7 +222,7 @@ public class ReportsGeneratorImplTest {
                 case "common": {
                     assertTrue(dep.getAvailableVersions().containsAll(daCoreVersionsNoBest));
                     assertEquals(daCommonGAV, dep.getGav());
-                    assertNull(dep.getBestMatchVersion());
+                    assertFalse(dep.getBestMatchVersion().isPresent());
                     assertTrue(dep.getDependencies().isEmpty());
                     assertFalse(dep.isBlacklisted());
                     assertFalse(dep.isWhiteListed());
