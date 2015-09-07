@@ -12,12 +12,13 @@ Download: [listings.sh](https://raw.githubusercontent.com/project-ncl/dependency
 Distribution for developers who need just to check artifacts.
 
 Features are:
-* Check if artifact GROUP_ID:ARTIFACT_ID:VERSION is in black or white list
-* List all artifacts in black or white list
-* Check all dependencies from pom in working directory and print their Black/White list status
-* Check if an artifact was built and if so, see the available built versions of that artifact
-* Generate report for an artifact
-* Generate reports based on POM with the information about built artifacts and B/W status
+*      check: Check if an artifact GROUP_ID:ARTIFACT_ID:VERSION is in the black or white list
+*       list: List all artifacts in black or white list
+*     lookup: Check if an artifact was built and if so, see the available built versions of that artifact
+*     report: Generate dependency report for an artifact
+*     pom-bw: Check all dependencies from a pom in working directory and print their Black/White list status
+* pom-report: Generate reports based on a POM with the information about built artifacts, best match versions
+  and B/W status
 
 #### Example
 ```
@@ -31,7 +32,7 @@ org.jboss.hibernate:hibernate-core:3.4.2
 junit:junit:jar:4.11:
 ```
 ```
-$ ./da-cli.sh pom --no-transitive
+$ ./da-cli.sh pom-bw
 None list:  com.fasterxml.jackson.core:jackson-databind:2.4.4
 None list:  javax.enterprise:cdi-api:1.2
 White list: javax.ws.rs:javax.ws.rs-api:2.0
@@ -49,8 +50,8 @@ Download: [listigs.sh](https://raw.githubusercontent.com/project-ncl/dependency-
 Distribution for admins who will be also adding and removing artifacts.
 
 Features are the same as for developers plus:
- * Add artifact GROUP_ID:ARTIFACT_ID:VERSION to black or white list
- * Delete artifact GROUP_ID:ARTIFACT_ID:VERSION from black or white list
+*    add: Add artifact GROUP_ID:ARTIFACT_ID:VERSION to the black or white list
+* delete: Delete artifact GROUP_ID:ARTIFACT_ID:VERSION from the black or white list
 
 #### Example
 ```
