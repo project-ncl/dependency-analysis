@@ -24,6 +24,7 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
         this.type = type;
     }
 
+    @Override
     public void create(T entity) {
         if (entity == null)
             throw new IllegalArgumentException("Provided entity is null.");
@@ -32,10 +33,12 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
         em.persist(entity);
     }
 
+    @Override
     public T read(long id) {
         return em.find(type, id);
     }
 
+    @Override
     public void update(T entity) {
         if (entity == null)
             throw new IllegalArgumentException("Provided entity is null.");
@@ -46,12 +49,14 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
         em.merge(entity);
     }
 
+    @Override
     public void delete(T entity) {
         requireNonNull(entity);
         requireNonNull(entity.getId());
         em.remove(entity);
     }
 
+    @Override
     public void delete(long id) {
         T entity = read(id);
         delete(entity);

@@ -58,7 +58,7 @@ public class Artifacts {
             response = RestArtifact.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public Collection<RestArtifact> getAllWhiteArtifacts() {
-        List<RestArtifact> artifacts = new ArrayList<RestArtifact>();
+        List<RestArtifact> artifacts = new ArrayList<>();
         artifacts.addAll(convert.toRestArtifacts(whiteService.getAll()));
         return artifacts;
     }
@@ -143,7 +143,7 @@ public class Artifacts {
             response = RestArtifact.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public Collection<RestArtifact> getAllBlackArtifacts() {
-        List<RestArtifact> artifacts = new ArrayList<RestArtifact>();
+        List<RestArtifact> artifacts = new ArrayList<>();
         artifacts.addAll(convert.toRestArtifacts(blackService.getAll()));
         return artifacts;
     }

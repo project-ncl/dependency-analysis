@@ -129,7 +129,7 @@ public abstract class AbstractRestApiTest {
         }
 
         private String convertVariant(String path) {
-            return variant == DEFAULT_VARIANT ? "" : "_" + variant;
+            return variant.equals(DEFAULT_VARIANT) ? "" : "_" + variant;
         }
 
         private String convertPath(String path) {
@@ -186,7 +186,7 @@ public abstract class AbstractRestApiTest {
         }
 
         private String convertVariant(String path) {
-            return variant == DEFAULT_VARIANT ? "" : "_" + variant;
+            return variant.equals(DEFAULT_VARIANT) ? "" : "_" + variant;
         }
 
         private String convertPath(String path) {

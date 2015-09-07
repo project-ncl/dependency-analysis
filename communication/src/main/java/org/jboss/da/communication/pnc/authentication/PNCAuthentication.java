@@ -73,8 +73,8 @@ public class PNCAuthentication {
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
 
         List<BasicNameValuePair> urlParameters = new ArrayList<>();
-        for (String key : urlParams.keySet()) {
-            urlParameters.add(new BasicNameValuePair(key, urlParams.get(key)));
+        for (Map.Entry<String, String> e : urlParams.entrySet()) {
+            urlParameters.add(new BasicNameValuePair(e.getKey(), e.getValue()));
         }
         httpPost.setEntity(new UrlEncodedFormEntity(urlParameters));
         CloseableHttpResponse response = httpclient.execute(httpPost);
@@ -88,8 +88,7 @@ public class PNCAuthentication {
             while ((line = rd.readLine()) != null) {
                 if (line.contains("refresh_token")) {
                     String[] respContent = line.split(",");
-                    for (int i = 0; i < respContent.length; i++) {
-                        String split = respContent[i];
+                    for (String split : respContent) {
                         if (split.contains("refresh_token")) {
                             refreshToken = split.split(":")[1].substring(1,
                                     split.split(":")[1].length() - 1);

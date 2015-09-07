@@ -1,7 +1,6 @@
 package org.jboss.da.communication.model;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -12,6 +11,8 @@ import java.util.Random;
 import static org.junit.Assert.assertEquals;
 
 public class GAVIntegrationTest {
+
+    private final Random generator = new Random();
 
     @Test
     public void testGeneratedJson() throws Exception {
@@ -55,6 +56,6 @@ public class GAVIntegrationTest {
     }
 
     private String createRandomString() {
-        return "" + new Random().nextLong();
+        return Long.toString(generator.nextLong());
     }
 }

@@ -19,8 +19,8 @@ public class Configuration {
         try (InputStream configStream = getConfigStream()) {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(configStream, DAConfig.class);
-        } catch (Exception e) {
-            throw new ConfigurationParseException(e.getMessage());
+        } catch (RuntimeException | IOException e) {
+            throw new ConfigurationParseException(e);
         }
     }
 
