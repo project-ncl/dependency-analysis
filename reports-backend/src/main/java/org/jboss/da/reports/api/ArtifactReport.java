@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import lombok.Getter;
@@ -31,7 +32,8 @@ public class ArtifactReport {
     private final Set<String> availableVersions = new HashSet<>();
 
     @Getter
-    private String bestMatchVersion;
+    @NonNull
+    private Optional<String> bestMatchVersion = Optional.empty();
 
     @NonNull
     private final Set<ArtifactReport> dependencies = new HashSet<>();
@@ -50,9 +52,9 @@ public class ArtifactReport {
     @Setter
     private boolean whiteListed;
 
-    public void setBestMatchVersion(String version) {
-        if (version != null) {
-            availableVersions.add(version);
+    public void setBestMatchVersion(Optional<String> version) {
+        if (version.isPresent()) {
+            availableVersions.add(version.get());
         }
         bestMatchVersion = version;
     }
@@ -94,7 +96,7 @@ public class ArtifactReport {
      * @return true if this artifact and all the dependencies of this artifact have a GAV already in PNC/Brew.
      */
     public boolean isDependencyVersionSatisfied() {
-        if (bestMatchVersion == null) {
+        if (!bestMatchVersion.isPresent()) {
             return false;
         }
         return dependencies.stream().noneMatch((dependency) -> (!dependency.isDependencyVersionSatisfied()));
@@ -103,7 +105,7 @@ public class ArtifactReport {
     public int getNotBuiltDependencies() {
         return dependencies.stream().mapToInt((dependency) -> {
             int number = dependency.getNotBuiltDependencies();
-            if(dependency.bestMatchVersion == null){
+            if(!dependency.bestMatchVersion.isPresent()){
                 number ++;
             }
             return number;

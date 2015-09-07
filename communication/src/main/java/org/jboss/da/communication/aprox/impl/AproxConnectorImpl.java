@@ -58,7 +58,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
             return parseMetadataFile(connection).getVersioning().getVersions().getVersion();
         } catch (FileNotFoundException ex) {
-            return null;
+            return Collections.emptyList();
         } catch (IOException | ConfigurationParseException | CommunicationException e) {
             throw new CommunicationException("Failed to obtain versions for " + ga.toString()
                     + " from approx server with url " + query.toString(), e);

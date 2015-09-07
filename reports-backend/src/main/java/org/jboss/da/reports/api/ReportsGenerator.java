@@ -1,9 +1,9 @@
 package org.jboss.da.reports.api;
 
+import java.util.List;
+import java.util.Optional;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
-
-import java.util.List;
 
 /**
  *
@@ -12,9 +12,9 @@ import java.util.List;
  */
 public interface ReportsGenerator {
 
-    public ArtifactReport getReport(SCMLocator scml, List<Product> products);
+    public Optional<ArtifactReport> getReport(SCMLocator scml, List<Product> products);
 
-    public ArtifactReport getReport(GAV gav, List<Product> products);
+    public Optional<ArtifactReport> getReport(GAV gav, List<Product> products);
 
     /**
      * Creates a report about built/not built/blacklisted artifacts. It performs searches
@@ -22,9 +22,9 @@ public interface ReportsGenerator {
      * certain product are applied.
      *
      * @param gav Top-level GAV for which is the report generated
-     * @return Created report or null if the requested GAV was not found in the repository
+     * @return Created report or empty Optional if the requested GAV was not found in the repository
      * @throws CommunicationException when there is a problem with communication with remote services
      */
-    public ArtifactReport getReport(GAV gav) throws CommunicationException;
+    public Optional<ArtifactReport> getReport(GAV gav) throws CommunicationException;
 
 }
