@@ -1,5 +1,5 @@
 {
-  "groupId": "org.hibernate",
-  "artifactId": "hibernate-core",
-  "version": "4.2.18.Final"
+  "groupId": "com.google.guava",
+  "artifactId": "guava",
+  "version": "18.0"
 }

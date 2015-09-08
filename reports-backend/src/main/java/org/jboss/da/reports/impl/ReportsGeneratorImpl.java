@@ -1,6 +1,7 @@
 package org.jboss.da.reports.impl;
 
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.NoGAVInRepositoryException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.api.ArtifactReport;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 
 import javax.inject.Inject;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -60,11 +62,15 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             throw new IllegalArgumentException("GAV can't be null");
         List<String> versions = versionFinderImpl.getBuiltVersionsFor(gav);
         if (versions == null)
-            return null;
+            versions = Collections.emptyList();
         ArtifactReport ar = toArtifactReport(gav, versions);
-        GAVDependencyTree dt = aproxClient.getDependencyTreeOfGAV(gav);
-        addDependencyReports(ar, dt.getDependencyTree());
-        return ar;
+        try {
+            GAVDependencyTree dt = aproxClient.getDependencyTreeOfGAV(gav);
+            addDependencyReports(ar, dt.getDependencies());
+            return ar;
+        } catch (NoGAVInRepositoryException e) {
+            return null;
+        }
     }
 
     private ArtifactReport toArtifactReport(GAV gav, List<String> availableVersions) {
@@ -80,13 +86,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             throws CommunicationException {
         for (GAVDependencyTree dt : dependencyTree) {
             List<String> versions = versionFinderImpl.getBuiltVersionsFor(dt.getGav());
+
             if (versions == null) {
                 log.warn("Versions for dependency {} was not found", dt.getGav());
-                continue;
+                versions = Collections.emptyList();
             }
 
             ArtifactReport dar = toArtifactReport(dt.getGav(), versions);
-            addDependencyReports(dar, dt.getDependencyTree());
+            addDependencyReports(dar, dt.getDependencies());
             ar.addDependency(dar);
         }
     }

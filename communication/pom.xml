@@ -36,6 +36,13 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
+
+        <!-- dependency for aprox -->
+        <dependency>
+            <groupId>org.commonjava.aprox</groupId>
+            <artifactId>aprox-depgraph-client-java</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

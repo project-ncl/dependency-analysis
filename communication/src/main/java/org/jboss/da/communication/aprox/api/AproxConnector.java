@@ -1,6 +1,7 @@
 package org.jboss.da.communication.aprox.api;
 
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.NoGAVInRepositoryException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
@@ -28,7 +29,8 @@ public interface AproxConnector {
      * @return dependency tree of GAV
      * @throws CommunicationException When there is problem with communication.
      */
-    GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException;
+    GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException,
+            NoGAVInRepositoryException;
 
     /**
      * Finds available versions of specific groupId artifactId
