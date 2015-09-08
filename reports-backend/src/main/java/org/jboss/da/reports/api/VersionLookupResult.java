@@ -1,6 +1,7 @@
 package org.jboss.da.reports.api;
 
 import java.util.List;
+import java.util.Optional;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class VersionLookupResult {
 
     @Getter
     @Setter
-    private String bestMatchVersion;
+    private Optional<String> bestMatchVersion;
 
     @Getter
     @Setter

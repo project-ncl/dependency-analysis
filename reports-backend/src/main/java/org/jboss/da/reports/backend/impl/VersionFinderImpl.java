@@ -11,6 +11,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -41,46 +42,39 @@ public class VersionFinderImpl implements VersionFinder {
     @Override
     public VersionLookupResult lookupBuiltVersions(GAV gav) throws CommunicationException {
         List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
-        if (allVersions == null)
-            return null;
-        else
-            return new VersionLookupResult(getBestMatchVersionFor(gav, allVersions),
-                    getBuiltVersionsFor0(allVersions));
+        return new VersionLookupResult(getBestMatchVersionFor(gav, allVersions),
+                getBuiltVersionsFor0(allVersions));
     }
 
     @Override
-    public String getBestMatchVersionFor(GAV gav) throws CommunicationException {
+    public Optional<String> getBestMatchVersionFor(GAV gav) throws CommunicationException {
         List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGA());
         return findBiggestMatchingVersion(gav, obtainedVersions);
     }
 
     @Override
-    public String getBestMatchVersionFor(GAV gav, List<String> availableVersions) {
+    public Optional<String> getBestMatchVersionFor(GAV gav, List<String> availableVersions) {
         return findBiggestMatchingVersion(gav, availableVersions);
     }
 
     private List<String> getBuiltVersionsFor0(List<String> allVersions) {
         Pattern pattern = Pattern.compile(".*" + PATTERN_SUFFIX_BUILT_VERSION);
-        if (allVersions == null) {
-            return null;
-        } else {
-            List<String> redhatVersions = allVersions.stream()
-                    .filter(version -> pattern.matcher(version).matches())
-                    .collect(Collectors.toList());
+        List<String> redhatVersions = allVersions.stream()
+                .filter(version -> pattern.matcher(version).matches())
+                .collect(Collectors.toList());
 
-            return redhatVersions.isEmpty() ? null : redhatVersions;
-        }
+        return redhatVersions;
     }
 
-    private String findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
-        if (obtainedVersions == null)
-            return null;
+    private Optional<String> findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
+        if (obtainedVersions.isEmpty())
+            return Optional.empty();
 
         String origVersion = gav.getVersion();
         Pattern pattern = Pattern.compile(origVersion + PATTERN_SUFFIX_BUILT_VERSION);
 
-        String bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
-        if (bestMatchVersion == null) {
+        Optional<String> bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
+        if (!bestMatchVersion.isPresent()) {
             String osgiVersion = osgiParser.getOSGiVersion(origVersion);
             pattern = Pattern.compile(osgiVersion + PATTERN_SUFFIX_BUILT_VERSION);
             bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
@@ -89,7 +83,8 @@ public class VersionFinderImpl implements VersionFinder {
         return bestMatchVersion;
     }
 
-    private String findBiggestMatchingVersion(List<String> obtainedVersions, Pattern pattern) {
+    private Optional<String> findBiggestMatchingVersion(List<String> obtainedVersions,
+            Pattern pattern) {
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
 
@@ -104,7 +99,7 @@ public class VersionFinderImpl implements VersionFinder {
             }
         }
 
-        return bestMatchVersion;
+        return Optional.ofNullable(bestMatchVersion);
     }
 
 }

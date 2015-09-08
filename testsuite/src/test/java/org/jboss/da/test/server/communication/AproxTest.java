@@ -7,7 +7,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.NoGAVInRepositoryException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
@@ -21,8 +20,10 @@ import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(Arquillian.class)
 public class AproxTest {
@@ -48,22 +49,23 @@ public class AproxTest {
     }
 
     @Test
-    public void testGetCorrectDependencies() throws CommunicationException, NoGAVInRepositoryException {
+    public void testGetCorrectDependencies() throws CommunicationException {
         GAV gav = new GAV("xom", "xom", "1.2.5");
-        GAVDependencyTree tree = aproxConnector.getDependencyTreeOfGAV(gav);
+        Optional<GAVDependencyTree> tree = aproxConnector.getDependencyTreeOfGAV(gav);
 
         Set<String> expectedDependencyGAV = new HashSet<>(
                 Arrays.asList(new String[] {"xalan:xalan:2.7.0", "xerces:xercesImpl:2.8.0", "xml-apis:xml-apis:1.3.03"}));
 
-        Set<String> receivedDependencyGAV = tree.getDependencies().stream()
+        Set<String> receivedDependencyGAV = tree.get().getDependencies().stream()
                 .map(f -> f.getGav().toString()).collect(Collectors.toSet());
 
         assertEquals(expectedDependencyGAV, receivedDependencyGAV);
     }
 
-    @Test(expected = NoGAVInRepositoryException.class)
-    public void testNoGAVInRepository() throws CommunicationException, NoGAVInRepositoryException {
+    @Test()
+    public void testNoGAVInRepository() throws CommunicationException {
         GAV gav = new GAV("do", "not-exist", "1.0");
-        aproxConnector.getDependencyTreeOfGAV(gav);
+        Optional<GAVDependencyTree> tree = aproxConnector.getDependencyTreeOfGAV(gav);
+        assertFalse(tree.isPresent());
     }
 }
