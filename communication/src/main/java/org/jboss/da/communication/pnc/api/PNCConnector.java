@@ -19,6 +19,8 @@ public interface PNCConnector {
 
     BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc) throws Exception;
 
+    BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs) throws Exception;
+
     List<Product> getProducts() throws Exception;
 
     List<Project> getProjects() throws Exception;

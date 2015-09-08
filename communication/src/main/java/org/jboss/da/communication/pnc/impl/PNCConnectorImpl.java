@@ -14,8 +14,10 @@ import org.jboss.resteasy.client.ClientResponse;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
+
 import java.util.Arrays;
 import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -63,6 +65,14 @@ public class PNCConnectorImpl implements PNCConnector {
             throws Exception {
         ClientResponse<BuildConfiguration> response = getClient("build-configurations").body(
                 MediaType.APPLICATION_JSON, bc).post(BuildConfiguration.class);
+        return response.getEntity();
+    }
+
+    @Override
+    public BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs)
+            throws Exception {
+        ClientResponse<BuildConfigurationSet> response = getClient("build-configuration-sets")
+                .body(MediaType.APPLICATION_JSON, bcs).post(BuildConfigurationSet.class);
         return response.getEntity();
     }
 
