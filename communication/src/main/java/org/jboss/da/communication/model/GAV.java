@@ -47,24 +47,6 @@ public class GAV {
     }
 
     @Override
-    public boolean equals(Object other) {
-        boolean result = false;
-        if (other instanceof GAV) {
-            GAV that = (GAV) other;
-            result = (this.getGroupId().equals(that.getGroupId())
-                    && this.getArtifactId().equals(that.getArtifactId()) && this.getVersion()
-                    .equals(that.getVersion()));
-        }
-        return result;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.getGroupId().hashCode() + this.getArtifactId().hashCode()
-                + this.getVersion().hashCode();
-    }
-
-    @Override
     public String toString() {
         return getGroupId() + ":" + getArtifactId() + ":" + getVersion();
     }
