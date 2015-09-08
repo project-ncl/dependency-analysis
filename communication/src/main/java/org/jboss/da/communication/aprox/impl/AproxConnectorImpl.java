@@ -122,28 +122,28 @@ public class AproxConnectorImpl implements AproxConnector {
         gavMapper.put(rootGAV, root);
 
         for (ProjectRelationship<?, ?> rel : export.getRelationships()) {
-
-            ProjectVersionRef declaring = rel.getDeclaring();
-            ProjectVersionRef dependencyArtifact = rel.getTargetArtifact();
-
-            GAV declaringGAV = generateGAV(declaring);
-            GAV dependencyGAV = generateGAV(dependencyArtifact);
-
-            addGAVDependencyTreeToGAVMapper(gavMapper, declaringGAV);
-            addGAVDependencyTreeToGAVMapper(gavMapper, dependencyGAV);
-
             if (rel.getType().equals(RelationshipType.DEPENDENCY)) {
+
+                ProjectVersionRef declaring = rel.getDeclaring();
+                ProjectVersionRef dependencyArtifact = rel.getTargetArtifact();
+
+                GAV declaringGAV = generateGAV(declaring);
+                GAV dependencyGAV = generateGAV(dependencyArtifact);
+
+                GAVDependencyTree declaringDT = addGAVDependencyTreeToGAVMapper(gavMapper,
+                        declaringGAV);
+                GAVDependencyTree dependencyDT = addGAVDependencyTreeToGAVMapper(gavMapper,
+                        dependencyGAV);
+
                 // set the dependency relationship between GAVDependencyTree here
-                gavMapper.get(declaringGAV).addDependency(gavMapper.get(dependencyGAV));
+                declaringDT.addDependency(dependencyDT);
             }
         }
         return root;
     }
 
-    private void addGAVDependencyTreeToGAVMapper(Map<GAV, GAVDependencyTree> gavMapper, GAV gav) {
-        if (!gavMapper.containsKey(gav)) {
-            gavMapper.put(gav, new GAVDependencyTree(gav));
-        }
+    private GAVDependencyTree addGAVDependencyTreeToGAVMapper(Map<GAV, GAVDependencyTree> gavMapper, GAV gav) {
+        return gavMapper.computeIfAbsent(gav, k -> new GAVDependencyTree(k));
     }
 
     private GAV generateGAV(ProjectVersionRef ref) {
