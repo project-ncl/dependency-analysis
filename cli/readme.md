@@ -6,7 +6,7 @@ have these files in the same folder as the executable script.
 
 ### For Developers
 Download: [listings.sh](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/listings.sh),
-[pretty.py](https://github.com/project-ncl/dependency-analysis/blob/master/cli/pretty.py),
+[pretty.py](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/pretty.py),
 [da-cli.sh](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/da-cli.sh)
 
 Distribution for developers who need just to check artifacts.
@@ -44,7 +44,7 @@ Black list: org.jboss.as:jboss-as-arquillian-container-managed:7.2.0.Final
 ```
 ### For Admins
 Download: [listigs.sh](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/listings.sh),
-[pretty.py](https://github.com/project-ncl/dependency-analysis/blob/master/cli/pretty.py),
+[pretty.py](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/pretty.py),
 [da-cli-admin.sh](https://raw.githubusercontent.com/project-ncl/dependency-analysis/master/cli/bwlist-admin.sh)
 
 Distribution for admins who will be also adding and removing artifacts.
