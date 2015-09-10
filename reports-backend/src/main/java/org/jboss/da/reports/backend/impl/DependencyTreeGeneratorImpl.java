@@ -1,7 +1,7 @@
 package org.jboss.da.reports.backend.impl;
 
+import java.util.Optional;
 import org.jboss.da.communication.CommunicationException;
-import org.jboss.da.communication.aprox.NoGAVInRepositoryException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GAV;
@@ -23,21 +23,14 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     private AproxConnector aproxConnector;
 
     @Override
-    public GAVDependencyTree getDependencyTree(SCMLocator scml) {
-        try {
-            return aproxConnector.getDependencyTreeOfRevision(scml.getScmUrl(), scml.getRevision(),
-                    scml.getPomPath());
-        } catch (CommunicationException ex) {
-            throw new RuntimeException(ex);
-        }
+    public Optional<GAVDependencyTree> getDependencyTree(SCMLocator scml)
+            throws CommunicationException {
+        return aproxConnector.getDependencyTreeOfRevision(scml.getScmUrl(), scml.getRevision(),
+                scml.getPomPath());
     }
 
     @Override
-    public GAVDependencyTree getDependencyTree(GAV gav) {
-        try {
-            return aproxConnector.getDependencyTreeOfGAV(gav);
-        } catch (CommunicationException | NoGAVInRepositoryException ex) {
-            throw new RuntimeException(ex);
-        }
+    public Optional<GAVDependencyTree> getDependencyTree(GAV gav) throws CommunicationException {
+        return aproxConnector.getDependencyTreeOfGAV(gav);
     }
 }

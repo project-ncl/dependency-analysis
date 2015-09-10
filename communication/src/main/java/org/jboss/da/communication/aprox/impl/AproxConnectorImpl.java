@@ -14,7 +14,6 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.CommunicationException;
-import org.jboss.da.communication.aprox.NoGAVInRepositoryException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.VersionResponse;
@@ -31,9 +30,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {
@@ -41,15 +42,15 @@ public class AproxConnectorImpl implements AproxConnector {
     private final Configuration config = new Configuration();
 
     @Override
-    public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision,
+    public Optional<GAVDependencyTree> getDependencyTreeOfRevision(String scmUrl, String revision,
             String pomPath) {
         // TODO Auto-generated method stub
-        return null;
+        return Optional.empty();
     }
 
     @Override
-    public GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException,
-            NoGAVInRepositoryException {
+    public Optional<GAVDependencyTree> getDependencyTreeOfGAV(GAV gav)
+            throws CommunicationException {
 
         DepgraphAproxClientModule mod = new DepgraphAproxClientModule();
         try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api", mod).connect()) {
@@ -70,9 +71,9 @@ public class AproxConnectorImpl implements AproxConnector {
             GraphExport export = mod.graph(req);
 
             if (export == null || export.getRelationships() == null) {
-                throw new NoGAVInRepositoryException("Artifact " + gav + " not found by Aprox");
+                return Optional.empty();
             }
-            return generateGAVDependencyTree(export, gav);
+            return Optional.of(generateGAVDependencyTree(export, gav));
         } catch (AproxClientException | ConfigurationParseException e) {
             throw new CommunicationException(e);
         }
@@ -94,7 +95,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
             return parseMetadataFile(connection).getVersioning().getVersions().getVersion();
         } catch (FileNotFoundException ex) {
-            return null;
+            return Collections.emptyList();
         } catch (IOException | ConfigurationParseException | CommunicationException e) {
             throw new CommunicationException("Failed to obtain versions for " + ga.toString()
                     + " from approx server with url " + query.toString(), e);

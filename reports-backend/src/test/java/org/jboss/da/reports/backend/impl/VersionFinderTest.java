@@ -17,7 +17,9 @@ import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 
@@ -106,9 +108,10 @@ public class VersionFinderTest {
 
     @Test
     public void lookupBuiltVersionsNonExistingGAVTest() throws CommunicationException {
-        prepare(null);
+        prepare(Collections.EMPTY_LIST);
         VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(SOME_GAV);
-        assertNull(lookupResult);
+        assertTrue(lookupResult.getAvailableVersions().isEmpty());
+        assertFalse(lookupResult.getBestMatchVersion().isPresent());
     }
 
     @Test
@@ -116,16 +119,16 @@ public class VersionFinderTest {
         prepare(All_VERSIONS);
         VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(BUILT_GAV);
         assertNotNull(lookupResult);
-        assertEquals(BUILT_VERSION_RH, lookupResult.getBestMatchVersion());
+        assertEquals(BUILT_VERSION_RH, lookupResult.getBestMatchVersion().get());
         assertEquals(BUILT_VERSIONS.size(), lookupResult.getAvailableVersions().size());
         assertTrue(lookupResult.getAvailableVersions().containsAll(BUILT_VERSIONS));
     }
 
     @Test
     public void testVersionsForNonExistingGAV() throws CommunicationException {
-        prepare(null);
+        prepare(Collections.EMPTY_LIST);
         List<String> versions = versionFinder.getBuiltVersionsFor(SOME_GAV);
-        assertNull(versions);
+        assertTrue(versions.isEmpty());
     }
 
     @Test
@@ -144,16 +147,16 @@ public class VersionFinderTest {
 
     @Test
     public void getBestMatchVersionForNonExistingGAV() throws CommunicationException {
-        prepare(null);
-        String bmv = versionFinder.getBestMatchVersionFor(SOME_GAV);
-        assertNull(bmv);
+        prepare(Collections.EMPTY_LIST);
+        Optional<String> bmv = versionFinder.getBestMatchVersionFor(SOME_GAV);
+        assertFalse(bmv.isPresent());
     }
 
     @Test
     public void getBestMatchVersionForNotBuiltGAV() throws CommunicationException {
         prepare(All_VERSIONS);
-        String bmv = versionFinder.getBestMatchVersionFor(NO_BUILT_GAV);
-        assertNull(bmv);
+        Optional<String> bmv = versionFinder.getBestMatchVersionFor(NO_BUILT_GAV);
+        assertFalse(bmv.isPresent());
     }
 
     @Test
@@ -161,11 +164,11 @@ public class VersionFinderTest {
         String bmv;
         prepare(All_VERSIONS);
 
-        bmv = versionFinder.getBestMatchVersionFor(BUILT_GAV);
+        bmv = versionFinder.getBestMatchVersionFor(BUILT_GAV).get();
         assertNotNull(bmv);
         assertEquals(BUILT_VERSION_RH, bmv);
 
-        bmv = versionFinder.getBestMatchVersionFor(BUILT_GAV_2);
+        bmv = versionFinder.getBestMatchVersionFor(BUILT_GAV_2).get();
         assertNotNull(bmv);
         assertEquals(BUILT_VERSION_2_RH, bmv);
     }
@@ -173,7 +176,7 @@ public class VersionFinderTest {
     @Test
     public void getBestMatchVersionForMultipleBuiltGAV() throws CommunicationException {
         prepare(All_VERSIONS);
-        String bmv = versionFinder.getBestMatchVersionFor(MULTI_BUILT_GAV);
+        String bmv = versionFinder.getBestMatchVersionFor(MULTI_BUILT_GAV).get();
         assertNotNull(bmv);
         assertEquals(MULTI_BUILT_VERSION_RH_BEST, bmv);
     }
@@ -183,11 +186,11 @@ public class VersionFinderTest {
         String bmv;
         prepare(All_VERSIONS);
 
-        bmv = versionFinder.getBestMatchVersionFor(NON_OSGI_GAV);
+        bmv = versionFinder.getBestMatchVersionFor(NON_OSGI_GAV).get();
         assertNotNull(bmv);
         assertEquals(NON_OSGI_VERSION_RHT, bmv);
 
-        bmv = versionFinder.getBestMatchVersionFor(NON_OSGI_GAV_2);
+        bmv = versionFinder.getBestMatchVersionFor(NON_OSGI_GAV_2).get();
         assertNotNull(bmv);
         assertEquals(NON_OSGI_VERSION_2_RHT, bmv);
     }

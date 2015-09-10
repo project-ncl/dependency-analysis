@@ -23,7 +23,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.wordnik.swagger.annotations.Api;
@@ -31,6 +30,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.jboss.da.rest.model.ErrorMessage;
 import org.slf4j.Logger;
@@ -87,12 +87,11 @@ public class Reports {
     public Response gavGenerator(@ApiParam(
             value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAV gavRequest) {
         try {
-            ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
-            if (artifactReport == null)
-                return Response.status(Status.NOT_FOUND)
-                        .entity(new ErrorMessage("Requested GA was not found")).build();
-            else
-                return Response.ok().entity(toReport(artifactReport)).build();
+            Optional<ArtifactReport> artifactReport = reportsGenerator.getReport(gavRequest);
+            return artifactReport
+                    .map(x -> Response.ok().entity(toReport(x)).build())
+                    .orElseGet(() -> Response.status(Status.NOT_FOUND)
+                            .entity(new ErrorMessage("Requested GA was not found")).build());
         } catch (CommunicationException ex) {
             return Response.status(502).entity(ex).build();
         }
@@ -104,29 +103,19 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Lookup built versions for the list of provided GAVs",
             responseContainer = "List", response = LookupReport.class)
-    @ApiResponses(
-            value = {
-                    @ApiResponse(code = 200, message = "Lookup report was successfully generated"),
-                    @ApiResponse(
-                            code = 206,
-                            message = "Lookup report was generated, but at least one of the requested GAs was not found."),
-                    @ApiResponse(code = 502,
-                            message = "Communication with remote repository failed") })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Lookup report was successfully generated"),
+            @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     public Response lookupGav(
             @ApiParam(
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") List<GAV> gavRequest) {
 
         List<LookupReport> reportsList = new ArrayList<>();
-        int responseStatus = Status.OK.getStatusCode();
         for (GAV gav : gavRequest) {
             try {
                 VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
                 LookupReport lookupReport = toLookupReport(gav, lookupResult);
                 reportsList.add(lookupReport);
-                if (lookupResult == null) {
-                    // Don't use Status.PARTIAL_CONTENT since it's not available in EAP 6.4
-                    responseStatus = 206;
-                }
             } catch (CommunicationException ex) {
                 log.error("Communication with remote repository failed", ex);
                 return Response.status(502)
@@ -135,7 +124,7 @@ public class Reports {
             }
         }
 
-        return Response.status(responseStatus).entity(reportsList).build();
+        return Response.status(Status.OK).entity(reportsList).build();
     }
 
     private static Report toReport(ArtifactReport report) {
@@ -145,18 +134,13 @@ public class Reports {
                 .collect(Collectors.toList());
 
         return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
-                report.getBestMatchVersion(), report.isDependencyVersionSatisfied(), dependencies,
+                report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(), dependencies,
                 report.isBlacklisted(), report.isWhiteListed(), report.getNotBuiltDependencies());
     }
 
-    private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult)
-            throws CommunicationException {
-        if (lookupResult == null)
-            return new LookupReport(gav, null, Collections.<String> emptyList(),
-                    isBlacklisted(gav), isWhitelisted(gav));
-        else
-            return new LookupReport(gav, lookupResult.getBestMatchVersion(),
-                    lookupResult.getAvailableVersions(), isBlacklisted(gav), isWhitelisted(gav));
+    private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {
+        return new LookupReport(gav, lookupResult.getBestMatchVersion().orElse(null),
+                lookupResult.getAvailableVersions(), isBlacklisted(gav), isWhitelisted(gav));
     }
 
     private boolean isBlacklisted(GAV gav) {
