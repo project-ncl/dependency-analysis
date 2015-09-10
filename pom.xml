@@ -151,7 +151,7 @@
             <dependency>
                 <groupId>org.commonjava.aprox</groupId>
                 <artifactId>aprox-depgraph-client-java</artifactId>
-                <version>0.24.0-SNAPSHOT</version>
+                <version>0.24.0</version>
             </dependency>
 
 
