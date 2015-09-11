@@ -77,8 +77,7 @@ public class Reports {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
-            value = "Get dependency report for a GAV " // TODO change when dependencies will be implemented
-                    + "(Currently the dependencies and dependency_versions_satisfied don't contains useful values)",
+            value = "Get dependency report for a GAV ",
             response = ArtifactReport.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Report was successfully generated"),
