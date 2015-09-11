@@ -1,53 +1,66 @@
 package org.jboss.da.test.client.rest.reports;
 
+import static org.apache.commons.io.FileUtils.readFileToString;
+import static org.apache.http.entity.ContentType.APPLICATION_JSON;
+import static org.junit.Assert.assertEquals;
+
 import org.apache.commons.io.FileUtils;
-import org.apache.http.entity.ContentType;
 import org.jboss.da.test.client.AbstractRestApiTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.junit.Test;
 
 import javax.ws.rs.core.MediaType;
-import java.io.File;
 
-import static org.apache.commons.io.FileUtils.readFileToString;
-import static org.apache.http.entity.ContentType.APPLICATION_JSON;
-import static org.junit.Assert.assertEquals;
+import java.io.File;
 
 public class RestApiReportsRemoteTest extends AbstractRestApiTest {
 
-    @Test
-    public void testGav() throws Exception {
-        String path = "/reports/gav";
-        ContentType contentType = APPLICATION_JSON;
-        File jsonRequestFile = new RequestFilenameBuilder(restApiRequestFolder, path).getFile();
-        String jsonRequest = FileUtils.readFileToString(jsonRequestFile, "utf-8");
-        ClientRequest request = new ClientRequest(restApiURL + path);
-        request.header("Content-Type", contentType);
-        request.body(MediaType.APPLICATION_JSON_TYPE, jsonRequest);
+    private static String ENCODING = "utf-8";
 
+    private static String GAV_GUAVA = "guava";
+
+    private static String GAV_NONEXISTING = "gavNonexisting";
+
+    private static String PATH_REPORTS_GAV = "/reports/gav";
+
+    @Test
+    public void gavReportBasicTest() throws Exception {
+        File jsonRequestFile = new RequestFilenameBuilder(restApiRequestFolder, PATH_REPORTS_GAV,
+                APPLICATION_JSON, GAV_GUAVA).getFile();
+
+        ClientRequest request = createClientRequest(
+                FileUtils.readFileToString(jsonRequestFile, ENCODING));
+        
         ClientResponse<String> response = request.post(String.class);
 
         File expectedResponseFile = new ExpectedResponseFilenameBuilder(
-                restApiExpectedResponseFolder, path, contentType).getFile();
+                restApiExpectedResponseFolder, PATH_REPORTS_GAV, APPLICATION_JSON, GAV_GUAVA)
+                .getFile();
+
         assertEquals(readFileToString(expectedResponseFile).trim(), response
                 .getEntity(String.class).trim());
     }
 
     @Test
-    public void testNonexistingGav() throws Exception {
-        String path = "/reports/gav";
-        ContentType contentType = APPLICATION_JSON;
-        String variant = "nonexisting";
-        File jsonRequestFile = new RequestFilenameBuilder(restApiRequestFolder, path, contentType,
-                variant).getFile();
-        String jsonRequest = FileUtils.readFileToString(jsonRequestFile, "utf-8");
-        ClientRequest request = new ClientRequest(restApiURL + path);
-        request.header("Content-Type", contentType);
-        request.body(MediaType.APPLICATION_JSON_TYPE, jsonRequest);
+    public void gavReportNonexistingTest() throws Exception {
+        File jsonRequestFile = new RequestFilenameBuilder(restApiRequestFolder, PATH_REPORTS_GAV,
+                APPLICATION_JSON, GAV_NONEXISTING).getFile();
+
+        ClientRequest request = createClientRequest(
+                FileUtils.readFileToString(jsonRequestFile, ENCODING));
 
         ClientResponse<String> response = request.post(String.class);
 
         assertEquals(404, response.getStatus());
     }
+
+
+    private ClientRequest createClientRequest(String jsonRequest) {
+        ClientRequest request = new ClientRequest(restApiURL + PATH_REPORTS_GAV);
+        request.header("Content-Type", APPLICATION_JSON);
+        request.body(MediaType.APPLICATION_JSON_TYPE, jsonRequest);
+        return request;
+    }
+
 }
