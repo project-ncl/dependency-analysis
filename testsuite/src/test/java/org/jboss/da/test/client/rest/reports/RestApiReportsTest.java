@@ -18,36 +18,35 @@ public class RestApiReportsTest extends AbstractRestApiTest {
 
     private static String ENCODING = "utf-8";
 
-    private static String GAV_GUAVA = "guava";
-
-    private static String GAV_NONEXISTING = "gavNonexisting";
-
     private static String PATH_REPORTS_GAV = "/reports/gav";
+
+    private static String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 
     @Test
     public void gavReportBasicTest() throws Exception {
-        File jsonRequestFile = new RequestFilenameBuilder(restApiRequestFolder, PATH_REPORTS_GAV,
-                APPLICATION_JSON, GAV_GUAVA).getFile();
+        String gavGuava18 = "guava18";
+        File jsonRequestFile = getJsonRequestFile(PATH_REPORTS_GAV, gavGuava18);
 
-        ClientRequest request = createClientRequest(
+        ClientRequest request = createClientRequest(PATH_REPORTS_GAV,
                 FileUtils.readFileToString(jsonRequestFile, ENCODING));
-        
+
         ClientResponse<String> response = request.post(String.class);
 
         File expectedResponseFile = new ExpectedResponseFilenameBuilder(
-                restApiExpectedResponseFolder, PATH_REPORTS_GAV, APPLICATION_JSON, GAV_GUAVA)
+                restApiExpectedResponseFolder, PATH_REPORTS_GAV, APPLICATION_JSON, gavGuava18)
                 .getFile();
 
         assertEquals(readFileToString(expectedResponseFile).trim(), response
                 .getEntity(String.class).trim());
+        assertEquals(200, response.getStatus());
     }
 
     @Test
     public void gavReportNonexistingTest() throws Exception {
-        File jsonRequestFile = new RequestFilenameBuilder(restApiRequestFolder, PATH_REPORTS_GAV,
-                APPLICATION_JSON, GAV_NONEXISTING).getFile();
+        String gavNonexisting = "gavNonexisting";
+        File jsonRequestFile = getJsonRequestFile(PATH_REPORTS_GAV, gavNonexisting);
 
-        ClientRequest request = createClientRequest(
+        ClientRequest request = createClientRequest(PATH_REPORTS_GAV,
                 FileUtils.readFileToString(jsonRequestFile, ENCODING));
 
         ClientResponse<String> response = request.post(String.class);
@@ -55,9 +54,51 @@ public class RestApiReportsTest extends AbstractRestApiTest {
         assertEquals(404, response.getStatus());
     }
 
+    @Test
+    public void gavLookupSingleTest() throws Exception {
+        String gavGuava13 = "guava13";
+        File jsonRequestFile = getJsonRequestFile(PATH_LOOKUP_GAVS, gavGuava13);
 
-    private ClientRequest createClientRequest(String jsonRequest) {
-        ClientRequest request = new ClientRequest(restApiURL + PATH_REPORTS_GAV);
+        ClientRequest request = createClientRequest(PATH_LOOKUP_GAVS,
+                FileUtils.readFileToString(jsonRequestFile, ENCODING));
+
+        ClientResponse<String> response = request.post(String.class);
+
+        File expectedResponseFile = new ExpectedResponseFilenameBuilder(
+                restApiExpectedResponseFolder, PATH_LOOKUP_GAVS, APPLICATION_JSON, gavGuava13)
+                .getFile();
+
+        assertEquals(readFileToString(expectedResponseFile).trim(), response
+                .getEntity(String.class).trim());
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    public void gavLookupListTest() throws Exception {
+        String gavGuava13List = "guava13List";
+        File jsonRequestFile = getJsonRequestFile(PATH_LOOKUP_GAVS, gavGuava13List);
+
+        ClientRequest request = createClientRequest(PATH_LOOKUP_GAVS,
+                FileUtils.readFileToString(jsonRequestFile, ENCODING));
+
+        ClientResponse<String> response = request.post(String.class);
+
+        File expectedResponseFile = new ExpectedResponseFilenameBuilder(
+                restApiExpectedResponseFolder, PATH_LOOKUP_GAVS, APPLICATION_JSON, gavGuava13List)
+                .getFile();
+
+        assertEquals(readFileToString(expectedResponseFile).trim(), response
+                .getEntity(String.class).trim());
+        assertEquals(200, response.getStatus());
+    }
+
+    private File getJsonRequestFile(String path, String variant) {
+        return new RequestFilenameBuilder(restApiRequestFolder, path, APPLICATION_JSON, variant)
+                .getFile();
+    }
+
+    private ClientRequest createClientRequest(String relativePath, String jsonRequest) {
+        ClientRequest request = new ClientRequest(restApiURL + relativePath);
         request.header("Content-Type", APPLICATION_JSON);
         request.body(MediaType.APPLICATION_JSON_TYPE, jsonRequest);
         return request;
