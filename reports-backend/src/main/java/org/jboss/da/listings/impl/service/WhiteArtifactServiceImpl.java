@@ -1,5 +1,10 @@
 package org.jboss.da.listings.impl.service;
 
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
@@ -9,10 +14,6 @@ import org.jboss.da.listings.api.service.WhiteArtifactService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * 

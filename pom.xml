@@ -244,6 +244,12 @@
                 <version>2.3.10.Final</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jackson-provider</artifactId>
+                <version>3.0.12.Final</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -465,7 +471,7 @@
                 <module>testsuite</module>
             </modules>
         </profile>
-        
+
         <profile>
             <id>excludeRemoteTests</id>
             <activation>
@@ -489,6 +495,6 @@
                 </plugins>
             </build>
         </profile>
-        
+
     </profiles>
 </project>
