@@ -6,7 +6,10 @@ import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.service.ArtifactService;
 import org.slf4j.Logger;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.inject.Inject;
+import org.jboss.da.common.version.OSGiVersionParser;
+import org.jboss.da.reports.backend.impl.VersionFinderImpl;
 
 /**
  * 
@@ -21,6 +24,12 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
 
     private final Class<T> type;
 
+    protected Pattern redhatSuffixPattern = Pattern
+            .compile(VersionFinderImpl.PATTERN_SUFFIX_BUILT_VERSION + "$");
+
+    @Inject
+    protected OSGiVersionParser osgiParser;
+
     public ArtifactServiceImpl(Class<T> type) {
         this.type = type;
     }
@@ -28,23 +37,13 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
     protected abstract ArtifactDAO<T> getDAO();
 
     @Override
-    public T getArtifact(String groupId, String artifactId, String version) {
-        return getDAO().findArtifact(groupId, artifactId, version);
-    }
-
-    @Override
-    public boolean isArtifactPresent(String groupId, String artifactId, String version) {
-        return (getDAO().findArtifact(groupId, artifactId, version) != null);
+    public List<T> getAll() {
+        return getDAO().findAll();
     }
 
     @Override
     public boolean isArtifactPresent(GAV gav) {
-        return (getDAO().findArtifact(gav.getGroupId(), gav.getArtifactId(), gav.getVersion()) != null);
-    }
-
-    @Override
-    public List<T> getAll() {
-        return getDAO().findAll();
+        return isArtifactPresent(gav.getGroupId(), gav.getArtifactId(), gav.getVersion());
     }
 
     @Override

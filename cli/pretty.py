@@ -91,5 +91,12 @@ def lookup():
     for artifact in data:
         printLookup(artifact)
 
+def listCheck():
+    data = readInput()
+    versions = []
+    for gav in data["found"]:
+        versions.append(gav["version"])
+    print ", ".join(versions)
+
 def hello():
     print "hi"
