@@ -1,4 +1,4 @@
-package org.jboss.da.scm.test;
+package org.jboss.da.test.server.scm;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.scm.SCM;
