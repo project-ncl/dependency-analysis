@@ -64,7 +64,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     }
 
     private List<GAV> getAllArtifactsFromList(String listUrl) throws Exception {
-        return processGetRequest(new GenericType<List<GAV>>() {}, restApiURL + listUrl);
+        return processGetRequest(new GenericType<List<GAV>>() {
+        }, restApiURL + listUrl);
     }
 
     private <T> T processGetRequest(GenericType<T> type, String url) throws Exception {
@@ -274,7 +275,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
-                .get();
+                .get(String.class);
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavrhresponse");
@@ -291,7 +292,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         addArtifact(ListType.WHITE, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0").get();
+                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
+                .get(String.class);
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavrhresponse");
@@ -308,7 +310,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         addArtifact(ListType.WHITE, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3").get();
+                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3")
+                .get(String.class);
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavrhresponse");
@@ -322,7 +325,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
-                .get();
+                .get(String.class);
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavresponse");
@@ -339,7 +342,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         addArtifact(ListType.BLACK, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0").get();
+                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
+                .get(String.class);
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavresponse");
@@ -356,7 +360,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         addArtifact(ListType.BLACK, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3").get();
+                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3")
+                .get(String.class);
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavresponse");
@@ -374,7 +379,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
         // Get list
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST).get();
+        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST)
+                .get(String.class);
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavwhitelist");
@@ -391,7 +397,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
         // Get list
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST).get();
+        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST)
+                .get(String.class);
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavblacklist");
