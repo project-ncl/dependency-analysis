@@ -45,7 +45,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    // @Before
+    @Before
     public void dropTables() throws Exception{
      List<GAV> whitelistedArtifacts = getAllArtifactsFromList(PATH_WHITE_LIST);
      whitelistedArtifacts.forEach(gav -> removeGavFromList(PATH_WHITE_LISTINGS_GAV, gav));
@@ -57,8 +57,9 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
     private void removeGavFromList(String listUrl, GAV gav) {
         try {
-            createClientRequest(listUrl, mapper.writeValueAsString(gav));
-        } catch (JsonProcessingException e) {
+            ClientRequest request = createClientRequest(listUrl, mapper.writeValueAsString(gav));
+            request.delete(String.class);
+        } catch (Exception e) {
             fail("Failed to remove GAV from the list using URL " + listUrl);
         }
     }
