@@ -47,15 +47,15 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
     @Before
     public void dropTables() throws Exception{
-     List<GAV> whitelistedArtifacts = getAllArtifactsFromList(PATH_WHITE_LIST);
+     List<RestArtifact> whitelistedArtifacts = getAllArtifactsFromList(PATH_WHITE_LIST);
      whitelistedArtifacts.forEach(gav -> removeGavFromList(PATH_WHITE_LISTINGS_GAV, gav));
     
-     List<GAV> blacklistedArtifacts = getAllArtifactsFromList(PATH_BLACK_LIST);
+     List<RestArtifact> blacklistedArtifacts = getAllArtifactsFromList(PATH_BLACK_LIST);
      blacklistedArtifacts.forEach(gav -> removeGavFromList(PATH_WHITE_LISTINGS_GAV, gav));
     
      }
 
-    private void removeGavFromList(String listUrl, GAV gav) {
+    private void removeGavFromList(String listUrl, RestArtifact gav) {
         try {
             ClientRequest request = createClientRequest(listUrl, mapper.writeValueAsString(gav));
             request.delete(String.class);
@@ -64,9 +64,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         }
     }
 
-    private List<GAV> getAllArtifactsFromList(String listUrl) throws Exception {
-        return processGetRequest(new GenericType<List<GAV>>() {
-        }, restApiURL + listUrl);
+    private List<RestArtifact> getAllArtifactsFromList(String listUrl) throws Exception {
+        return processGetRequest(new GenericType<List<RestArtifact>>() {}, restApiURL + listUrl);
     }
 
     private <T> T processGetRequest(GenericType<T> type, String url) throws Exception {
@@ -99,7 +98,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         assertEquals(400, response.getStatus());
     }
 
-    @Ignore
     @Test
     public void testAddBlackArtifact() throws Exception {
         String type = "gav";
@@ -109,7 +107,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         checkExpectedResponse(response, "success");
     }
 
-    @Ignore
     @Test
     public void testAddBlackRHArtifact() throws Exception {
         String type = "gavRh";
@@ -119,7 +116,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         checkExpectedResponse(response, "success");
     }
 
-    @Ignore
     @Test
     public void testAddBlackNonOSGiArtifact() throws Exception {
         String type = "gavNonOSGi";
@@ -129,7 +125,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         checkExpectedResponse(response, "success");
     }
 
-    @Ignore
     @Test
     public void testAddBlacklistedArtifactToWhitelist() throws Exception {
         // Add artifact to blacklist
@@ -144,7 +139,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         assertEquals(409, response.getStatus());
     }
 
-    @Ignore
     @Test
     public void testAddWhitelistedArtifactToBlacklist() throws Exception {
         // Add artifact to whitelist
@@ -174,7 +168,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         checkExpectedResponse(response, "succesmessage");
     }
 
-    @Ignore
     @Test
     public void testAlreadyAddedWhiteArtifact() throws Exception {
         // add first white artifact
@@ -184,10 +177,9 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         // add second white artifact
         ClientResponse<String> response = addArtifact(ListType.WHITE, type, true);
 
-        checkExpectedResponse(response, "succesfalse");
+        checkExpectedResponse(response, "successfalse");
     }
 
-    @Ignore
     @Test
     public void testAlreadyAddedBlackArtifact() throws Exception {
         // add first black artifact
@@ -197,7 +189,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         // add second black artifact
         ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
 
-        checkExpectedResponse(response, "succesfalse");
+        checkExpectedResponse(response, "successfalse");
     }
 
     @Test
@@ -236,7 +228,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         checkExpectedResponse(response, "success");
     }
 
-    @Ignore
     @Test
     public void testDeleteNonExistingWhiteArtifact() throws Exception {
         String type = "gavRh";
@@ -248,11 +239,10 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         ClientResponse<String> response = request.delete(String.class);
         assertEquals(200, response.getStatus());
 
-        checkExpectedResponse(response, "succesfalse");
+        checkExpectedResponse(response, "successfalse");
 
     }
 
-    @Ignore
     @Test
     public void testDeleteNonExistingBlackArtifact() throws Exception {
         String type = "gav";
@@ -264,11 +254,10 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         ClientResponse<String> response = request.delete(String.class);
         assertEquals(200, response.getStatus());
 
-        checkExpectedResponse(response, "succesfalse");
+        checkExpectedResponse(response, "successfalse");
 
     }
 
-    @Ignore
     @Test
     public void testCheckRHWhiteArtifact() throws Exception {
         String type = "gavRh";
@@ -286,7 +275,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * Non RedHat but OSGi compliant white artifact test
      * @throws Exception 
      */
-    @Ignore
     @Test
     public void testCheckNonRHWhiteArtifact() throws Exception {
         String type = "gavRh";
@@ -304,7 +292,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * Non RedHat non OSGi compliant white artifact test
      * @throws Exception 
      */
-    @Ignore
     @Test
     public void testCheckNonRHNonOSGiWhiteArtifact() throws Exception {
         String type = "gavRh";
@@ -318,7 +305,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         checkExpectedResponse(response, "gavrhresponse");
     }
 
-    @Ignore
     @Test
     public void testCheckRHBlackArtifact() throws Exception {
         String type = "gav";
@@ -336,7 +322,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * Non RedHat but OSGi compliant black artifact test
      * @throws Exception 
      */
-    @Ignore
     @Test
     public void testCheckNonRHBlackArtifact() throws Exception {
         String type = "gav";
@@ -354,7 +339,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * Non RedHat non OSGi compliant black artifact test
      * @throws Exception 
      */
-    @Ignore
     @Test
     public void testCheckNonRHNonOSGiBlackArtifact() throws Exception {
         String type = "gav";
@@ -368,7 +352,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         checkExpectedResponse(response, "gavresponse");
     }
 
-    @Ignore
     @Test
     public void testGetAllWhiteArtifacts() throws Exception {
         // Add artifacts to whitelist

@@ -1,6 +1,5 @@
 package org.jboss.da.listings.impl.service;
 
-
 import java.util.List;
 import java.util.Optional;
 
