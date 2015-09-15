@@ -50,6 +50,11 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.da</groupId>
+            <artifactId>source-code-manager</artifactId>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.da</groupId>
             <artifactId>reports-rest</artifactId>
             <type>war</type>
         </dependency>
@@ -110,7 +115,8 @@
                     <systemProperties>
                         <jboss.home>${testsuiteContainer}</jboss.home>
                         <jboss.port>9154</jboss.port>
-                        <arquillianPortConfig>-Djboss.socket.binding.port-offset=100 -Djboss.management.native.port=9054</arquillianPortConfig>
+                        <arquillianPortConfig>-Djboss.socket.binding.port-offset=100
+                            -Djboss.management.native.port=9054</arquillianPortConfig>
                     </systemProperties>
                 </configuration>
             </plugin>
