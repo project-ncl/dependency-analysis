@@ -2,19 +2,15 @@ package org.jboss.da.test.client.rest.listings;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.apache.http.entity.ContentType.APPLICATION_JSON;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.apache.commons.io.FileUtils;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.test.client.AbstractRestApiTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.util.GenericType;
-import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.After;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 import javax.ws.rs.core.MediaType;
 
@@ -22,7 +18,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RestApiListingsTest extends AbstractRestApiTest {
@@ -45,15 +40,14 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    @Before
-    public void dropTables() throws Exception{
-     List<RestArtifact> whitelistedArtifacts = getAllArtifactsFromList(PATH_WHITE_LIST);
-     whitelistedArtifacts.forEach(gav -> removeGavFromList(PATH_WHITE_LISTINGS_GAV, gav));
-    
-     List<RestArtifact> blacklistedArtifacts = getAllArtifactsFromList(PATH_BLACK_LIST);
-     blacklistedArtifacts.forEach(gav -> removeGavFromList(PATH_WHITE_LISTINGS_GAV, gav));
-    
-     }
+    @After
+    public void dropTables() throws Exception {
+        List<RestArtifact> whitelistedArtifacts = getAllArtifactsFromList(PATH_WHITE_LIST);
+        whitelistedArtifacts.forEach(gav -> removeGavFromList(PATH_WHITE_LISTINGS_GAV, gav));
+
+        List<RestArtifact> blacklistedArtifacts = getAllArtifactsFromList(PATH_BLACK_LIST);
+        blacklistedArtifacts.forEach(gav -> removeGavFromList(PATH_BLACK_LISTINGS_GAV, gav));
+    }
 
     private void removeGavFromList(String listUrl, RestArtifact gav) {
         try {
@@ -134,7 +128,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         // Try to add artifact to whitelist
         type = "gavRh";
 
-        ClientResponse<String> response = addArtifact(ListType.WHITE, type, true);
+        ClientResponse<String> response = addArtifact(ListType.WHITE, type, false);
 
         assertEquals(409, response.getStatus());
     }
@@ -273,7 +267,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
     /**
      * Non RedHat but OSGi compliant white artifact test
-     * @throws Exception 
+     * 
+     * @throws Exception
      */
     @Test
     public void testCheckNonRHWhiteArtifact() throws Exception {
@@ -290,7 +285,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
     /**
      * Non RedHat non OSGi compliant white artifact test
-     * @throws Exception 
+     * 
+     * @throws Exception
      */
     @Test
     public void testCheckNonRHNonOSGiWhiteArtifact() throws Exception {
@@ -320,7 +316,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
     /**
      * Non RedHat but OSGi compliant black artifact test
-     * @throws Exception 
+     * 
+     * @throws Exception
      */
     @Test
     public void testCheckNonRHBlackArtifact() throws Exception {
@@ -337,7 +334,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
 
     /**
      * Non RedHat non OSGi compliant black artifact test
-     * @throws Exception 
+     * 
+     * @throws Exception
      */
     @Test
     public void testCheckNonRHNonOSGiBlackArtifact() throws Exception {
