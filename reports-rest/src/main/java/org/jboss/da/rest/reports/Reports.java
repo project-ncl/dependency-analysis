@@ -108,22 +108,28 @@ public class Reports {
     public Response lookupGav(
             @ApiParam(
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") List<GAV> gavRequest) {
-
         List<LookupReport> reportsList = new ArrayList<>();
-        for (GAV gav : gavRequest) {
+
+        boolean communicationSucceded = gavRequest.parallelStream().map((gav) -> {
             try {
                 VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
                 LookupReport lookupReport = toLookupReport(gav, lookupResult);
                 reportsList.add(lookupReport);
+                return true;
             } catch (CommunicationException ex) {
                 log.error("Communication with remote repository failed", ex);
-                return Response.status(502)
-                        .entity(new ErrorMessage("Communication with remote repository failed"))
-                        .build();
+                return false;
             }
-        }
+        }).allMatch(x -> {
+            return x;
+        });
 
-        return Response.status(Status.OK).entity(reportsList).build();
+        if (!communicationSucceded)
+            return Response.status(502)
+                    .entity(new ErrorMessage("Communication with remote repository failed"))
+                    .build();
+        else
+            return Response.status(Status.OK).entity(reportsList).build();
     }
 
     private static Report toReport(ArtifactReport report) {
@@ -133,7 +139,8 @@ public class Reports {
                 .collect(Collectors.toList());
 
         return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
-                report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(), dependencies,
+                report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(),
+                dependencies,
                 report.isBlacklisted(), report.isWhiteListed(), report.getNotBuiltDependencies());
     }
 
