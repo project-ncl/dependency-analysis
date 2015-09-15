@@ -127,12 +127,16 @@ public class Artifacts {
                     return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                             .entity(new ErrorMessage("Unexpected server error occurred.")).build();
             }
-        } catch (IllegalArgumentException ex) {
-            return Response
+        } catch (javax.ejb.EJBException ex) {
+            if(ex.getCause() instanceof IllegalArgumentException){
+                return Response
                     .status(Response.Status.BAD_REQUEST)
                     .entity(new ErrorMessage(
                             "Can't add artifact to whitelist, artifact is not in redhat version."))
                     .build();
+            }else{
+                throw ex;
+            }
         }
     }
 
