@@ -121,7 +121,7 @@ public class Reports {
                 log.error("Communication with remote repository failed", ex);
                 return false;
             }
-        }).anyMatch(x -> {
+        }).allMatch(x -> {
             return x;
         });
 

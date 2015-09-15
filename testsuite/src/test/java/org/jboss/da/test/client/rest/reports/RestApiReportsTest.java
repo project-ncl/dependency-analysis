@@ -23,7 +23,7 @@ public class RestApiReportsTest extends AbstractRestApiTest {
     private static String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 
     @Test
-    public void gavReportBasicTest() throws Exception {
+    public void testGavReportBasic() throws Exception {
         String gavGuava18 = "guava18";
         File jsonRequestFile = getJsonRequestFile(PATH_REPORTS_GAV, gavGuava18);
 
@@ -42,7 +42,7 @@ public class RestApiReportsTest extends AbstractRestApiTest {
     }
 
     @Test
-    public void gavReportNonexistingTest() throws Exception {
+    public void testGavReportNonexisting() throws Exception {
         String gavNonexisting = "gavNonexisting";
         File jsonRequestFile = getJsonRequestFile(PATH_REPORTS_GAV, gavNonexisting);
 
@@ -55,7 +55,7 @@ public class RestApiReportsTest extends AbstractRestApiTest {
     }
 
     @Test
-    public void gavLookupSingleTest() throws Exception {
+    public void testGavLookupSingle() throws Exception {
         String gavGuava13 = "guava13";
         File jsonRequestFile = getJsonRequestFile(PATH_LOOKUP_GAVS, gavGuava13);
 
@@ -74,7 +74,7 @@ public class RestApiReportsTest extends AbstractRestApiTest {
     }
 
     @Test
-    public void gavLookupListTest() throws Exception {
+    public void testGavLookupList() throws Exception {
         String gavGuava13List = "guava13List";
         File jsonRequestFile = getJsonRequestFile(PATH_LOOKUP_GAVS, gavGuava13List);
 
