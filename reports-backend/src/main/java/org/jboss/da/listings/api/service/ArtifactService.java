@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.model.Artifact;
+import org.jboss.da.listings.api.model.WhiteArtifact;
 
 /**
  * 
@@ -23,22 +24,14 @@ public interface ArtifactService<T extends Artifact> {
      * @param groupId
      * @param artifactId
      * @param version
+     * @return Status of addition.
      */
     STATUS addArtifact(String groupId, String artifactId, String version);
 
     /**
-     * Finds artifact by given group id, artifact id and version. When not found returns null.
-     * 
-     * @param groupId
-     * @param artifactId
-     * @param version
-     * @return
-     */
-    T getArtifact(String groupId, String artifactId, String version);
-
-    /**
      * Checks if list contains artifact with specific groupId, artifactId and version.
-     * 
+     * All restrictions and conversions are applied like using getArtifact method of specific list.
+     *
      * @param groupId
      * @param artifactId
      * @param version
@@ -48,6 +41,7 @@ public interface ArtifactService<T extends Artifact> {
 
     /**
      * Checks if list contains artifact with specific GAV.
+     * All restrictions and conversions are applied like using getArtifact method of specific list.
      * @param gav
      * @return True if list contains the artifact otherwise false.
      */
@@ -61,12 +55,13 @@ public interface ArtifactService<T extends Artifact> {
     List<T> getAll();
 
     /**
-     * Remove artifact from list
+     * Remove artifact from list.
+     * Removes only exact match of artifact.
      * 
      * @param groupId
      * @param artifactId
      * @param version
-     * @return
+     * @return True if artifact was deleted.
      */
     boolean removeArtifact(String groupId, String artifactId, String version);
 

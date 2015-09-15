@@ -91,5 +91,19 @@ def lookup():
     for artifact in data:
         printLookup(artifact)
 
+def blacklistCheck():
+    data = readInput()
+    if data["found"]:
+        print data["found"]["version"]
+    else:
+        print ""
+
+def whitelistCheck():
+    data = readInput()
+    versions = []
+    for gav in data["found"]:
+        versions.append(gav["version"])
+    print ", ".join(versions)
+
 def hello():
     print "hi"
