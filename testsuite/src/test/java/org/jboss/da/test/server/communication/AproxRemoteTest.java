@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.assertFalse;
 
 @RunWith(Arquillian.class)
-public class AproxTest {
+public class AproxRemoteTest {
 
     @Inject
     private AproxConnector aproxConnector;

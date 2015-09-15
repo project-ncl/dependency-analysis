@@ -459,5 +459,30 @@
                 <module>testsuite</module>
             </modules>
         </profile>
+        
+        <profile>
+            <id>excludeRemoteTests</id>
+            <activation>
+                <property>
+                    <name>excludeRemoteTests</name>
+                </property>
+            </activation>
+            <modules>
+                <module>testsuite</module>
+            </modules>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/**RemoteTest.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
     </profiles>
 </project>
