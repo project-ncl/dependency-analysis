@@ -1,15 +1,16 @@
 package org.jboss.da.listings.impl.service;
 
+import org.jboss.da.common.version.OSGiVersionParser;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.service.ArtifactService;
-import org.slf4j.Logger;
+import org.jboss.da.reports.backend.impl.VersionFinderImpl;
+
+import javax.inject.Inject;
+
 import java.util.List;
 import java.util.regex.Pattern;
-import javax.inject.Inject;
-import org.jboss.da.common.version.OSGiVersionParser;
-import org.jboss.da.reports.backend.impl.VersionFinderImpl;
 
 /**
  * 
@@ -19,20 +20,11 @@ import org.jboss.da.reports.backend.impl.VersionFinderImpl;
  */
 public abstract class ArtifactServiceImpl<T extends Artifact> implements ArtifactService<T> {
 
-    @Inject
-    private Logger log;
-
-    private final Class<T> type;
-
     protected Pattern redhatSuffixPattern = Pattern
             .compile(VersionFinderImpl.PATTERN_SUFFIX_BUILT_VERSION + "$");
 
     @Inject
     protected OSGiVersionParser osgiParser;
-
-    public ArtifactServiceImpl(Class<T> type) {
-        this.type = type;
-    }
 
     protected abstract ArtifactDAO<T> getDAO();
 

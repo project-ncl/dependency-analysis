@@ -53,7 +53,7 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
     public void delete(T entity) {
         requireNonNull(entity);
         requireNonNull(entity.getId());
-        em.remove(entity);
+        em.remove(em.getReference(type, entity.getId()));
     }
 
     @Override

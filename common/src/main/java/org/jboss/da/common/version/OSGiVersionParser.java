@@ -13,7 +13,7 @@ public class OSGiVersionParser {
      * @param version
      * @return
      */
-    
+
     public String getOSGiVersion(String version) {
         Version osgi;
         if (version.matches(".*[.-]redhat-(\\d+)")) {

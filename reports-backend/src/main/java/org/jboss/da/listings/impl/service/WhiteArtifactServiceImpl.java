@@ -1,30 +1,27 @@
 package org.jboss.da.listings.impl.service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
 import org.jboss.da.communication.model.GAV;
-
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 /**
  * 
  * @author Jozef Mrazek <jmrazek@redhat.com>
  *
  */
-@Stateless
+@ApplicationScoped
 public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact> implements
         WhiteArtifactService {
-
-    public WhiteArtifactServiceImpl() {
-        super(WhiteArtifact.class);
-    }
 
     @Inject
     private BlackArtifactService blackArtifactService;
