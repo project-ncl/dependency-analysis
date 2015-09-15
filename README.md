@@ -5,3 +5,4 @@
 
 ### Build a project and run integration tests in testsuite module
   - mvn clean verify -DtestsuiteContainer=/path/to/EAP-6.4/dir
+  - You can exclude tests, which use remote services, using -PexcludeRemoteTests
