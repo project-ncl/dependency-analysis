@@ -1,11 +1,13 @@
 package org.jboss.da.listings.impl.service;
 
+import org.jboss.da.common.version.OSGiVersionParser;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.reports.backend.api.VersionFinder;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -29,6 +31,9 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     @Inject
     private WhiteArtifactDAO whiteArtifactDAO;
 
+    @Inject
+    private OSGiVersionParser osgiParser;
+
     @Override
     protected ArtifactDAO<WhiteArtifact> getDAO() {
         return whiteArtifactDAO;
@@ -41,6 +46,8 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
             throw new IllegalArgumentException("Version " + version
                     + " doesn't contain redhat suffix");
         }
+
+        version = osgiParser.getOSGiVersion(version);
 
         WhiteArtifact white = new WhiteArtifact(groupId, artifactId, version);
         if (blackArtifactService.isArtifactPresent(groupId, artifactId, version)) {
