@@ -28,6 +28,10 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
+import java.util.Collections;
+import java.util.Optional;
+import org.jboss.da.listings.api.model.BlackArtifact;
+import org.jboss.da.listings.api.model.WhiteArtifact;
 
 /**
  *
@@ -74,13 +78,14 @@ public class Artifacts {
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         ContainsResponse response = new ContainsResponse();
 
-        boolean isArtifactPresent = whiteService.isArtifactPresent(groupId, artifactId, version);
-        response.setContains(isArtifactPresent);
+        List<WhiteArtifact> artifacts = whiteService.getArtifacts(groupId, artifactId, version);
+        response.setFound(convert.toRestArtifacts(artifacts));
+        response.setContains(!artifacts.isEmpty());
 
-        if (isArtifactPresent) {
-            return Response.ok(response).build();
-        } else {
+        if (artifacts.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND).entity(response).build();
+        } else {
+            return Response.ok(response).build();
         }
     }
 
@@ -89,33 +94,45 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Add an artifact to the whitelist", response = SuccessResponse.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Response successfully generated"),
-            @ApiResponse(code = 409,
-                    message = "Can't add artifact to whitelist, artifact is blacklisted") })
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Response successfully generated"),
+                    @ApiResponse(
+                            code = 400,
+                            message = "Can't add artifact to whitelist, artifact is not in redhat version"),
+                    @ApiResponse(code = 409,
+                            message = "Can't add artifact to whitelist, artifact is blacklisted") })
     public Response addWhiteArtifact(
             @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
-        STATUS result = whiteService.addArtifact(artifact.getGroupId(), artifact.getArtifactId(),
-                artifact.getVersion());
-        switch (result) {
-            case ADDED:
-                response.setSuccess(true);
-                return Response.ok(response).build();
-            case IS_BLACKLISTED:
-                response.setSuccess(false);
-                return Response
-                        .status(Response.Status.CONFLICT)
-                        .entity(new ErrorMessage(
-                                "Can't add artifact to whitelist, artifact is blacklisted"))
-                        .build();
-            case NOT_MODIFIED:
-                response.setSuccess(false);
-                return Response.ok(response).build();
-            default:
-                response.setSuccess(false);
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                        .entity(new ErrorMessage("Unexpected server error occurred.")).build();
+        try {
+            STATUS result = whiteService.addArtifact(artifact.getGroupId(),
+                    artifact.getArtifactId(), artifact.getVersion());
+            switch (result) {
+                case ADDED:
+                    response.setSuccess(true);
+                    return Response.ok(response).build();
+                case IS_BLACKLISTED:
+                    response.setSuccess(false);
+                    return Response
+                            .status(Response.Status.CONFLICT)
+                            .entity(new ErrorMessage(
+                                    "Can't add artifact to whitelist, artifact is blacklisted"))
+                            .build();
+                case NOT_MODIFIED:
+                    response.setSuccess(false);
+                    return Response.ok(response).build();
+                default:
+                    response.setSuccess(false);
+                    return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                            .entity(new ErrorMessage("Unexpected server error occurred.")).build();
+            }
+        } catch (IllegalArgumentException ex) {
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .entity(new ErrorMessage(
+                            "Can't add artifact to whitelist, artifact is not in redhat version."))
+                    .build();
         }
     }
 
@@ -159,10 +176,15 @@ public class Artifacts {
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         ContainsResponse response = new ContainsResponse();
 
-        boolean isArtifactPresent = blackService.isArtifactPresent(groupId, artifactId, version);
-        response.setContains(isArtifactPresent);
+        Optional<BlackArtifact> artifact = blackService.getArtifact(groupId, artifactId, version);
+        List<BlackArtifact> artifacts = artifact
+                .map(Collections::singletonList)
+                .orElse(Collections.emptyList());
 
-        if (isArtifactPresent) {
+        response.setContains(artifact.isPresent());
+        response.setFound(convert.toRestArtifacts(artifacts));
+
+        if (artifact.isPresent()) {
             return Response.ok(response).build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).entity(response).build();

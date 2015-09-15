@@ -5,8 +5,8 @@ import org.jboss.da.rest.listings.model.RestArtifact;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -17,15 +17,15 @@ import java.util.List;
 public class RestConvert {
 
     public <T extends Artifact> List<RestArtifact> toRestArtifacts(List<T> artifacts) {
-        List<RestArtifact> restArtifacts = new ArrayList<>();
-        for (Artifact a : artifacts) {
-            RestArtifact ra = new RestArtifact();
-            ra.setArtifactId(a.getArtifactId());
-            ra.setGroupId(a.getGroupId());
-            ra.setVersion(a.getVersion());
-            restArtifacts.add(ra);
-        }
-        return restArtifacts;
+        return artifacts.stream().map(RestConvert::toRestArtifact).collect(Collectors.toList());
+    }
+
+    private static RestArtifact toRestArtifact(Artifact a) {
+        RestArtifact ra = new RestArtifact();
+        ra.setArtifactId(a.getArtifactId());
+        ra.setGroupId(a.getGroupId());
+        ra.setVersion(a.getVersion());
+        return ra;
     }
 
 }
