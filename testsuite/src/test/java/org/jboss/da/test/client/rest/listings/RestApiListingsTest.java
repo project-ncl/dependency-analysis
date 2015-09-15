@@ -145,6 +145,24 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
 
         checkExpectedResponse(response, "succesmessage");
+
+        assertEquals(0, getAllArtifactsFromList(PATH_WHITE_LIST).size());
+    }
+
+    @Test
+    public void testAddWhitelistedNonOSGiArtifactToBlacklist() throws Exception {
+        // Add artifact to whitelist
+        String type = "gavRh";
+        addArtifact(ListType.WHITE, type, true);
+
+        // Add artifact to blacklist
+        type = "gavNonOSGi";
+
+        ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
+
+        checkExpectedResponse(response, "succesmessage");
+
+        assertEquals(0, getAllArtifactsFromList(PATH_WHITE_LIST).size());
     }
 
     @Test
