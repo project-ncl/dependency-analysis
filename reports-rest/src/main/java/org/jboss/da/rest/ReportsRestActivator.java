@@ -9,7 +9,7 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.jboss.da.common.version.Constants.REST_API_VERSION;
+import static org.jboss.da.common.Constants.REST_API_VERSION;
 
 /**
  *

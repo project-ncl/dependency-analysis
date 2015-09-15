@@ -12,7 +12,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.jboss.da.common.version.Constants.REST_API_VERSION;
+import static org.jboss.da.common.Constants.REST_API_VERSION;
 import static org.jboss.da.test.ArquillianDeploymentFactory.DEPLOYMENT_NAME;
 
 @RunWith(Arquillian.class)
