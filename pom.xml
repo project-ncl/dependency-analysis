@@ -4,7 +4,7 @@
 
     <groupId>org.jboss.da</groupId>
     <artifactId>parent</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.4.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>dependency-analyzer</name>
@@ -57,7 +57,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.da>0.3.0-SNAPSHOT</version.da>
+        <version.da>0.4.0-SNAPSHOT</version.da>
         <version.arquillian>1.1.8.Final</version.arquillian>
         <version.shrinkwrap.resolver>2.1.1</version.shrinkwrap.resolver>
         <version.aether>0.9.0.M2</version.aether>
