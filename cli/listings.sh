@@ -1,6 +1,7 @@
 #!/bin/bash
 
 target=ncl-test-vm-01.host.prod.eng.bos.redhat.com:8180/da/rest/v-0.2
+target=localhost:8080/da/rest/v-0.2
 
 basedir=`dirname $0`
 
@@ -95,7 +96,8 @@ check() {
     tmpfile=`mktemp`
     get "listings/${color}list/gav?groupid=${groupId}&artifactid=${artifactId}&version=${version}" > $tmpfile
     if grep -q '"contains":true' $tmpfile; then
-        echo "Artifact $groupId:$artifactId:$version is ${color}listed"
+        echo -n "Artifact $groupId:$artifactId:$version is ${color}listed - actual verisions in list: "
+        cat $tmpfile | prettyPrint ${color}listCheck
     elif grep -q '"contains":false' $tmpfile; then
         echo "Artifact $groupId:$artifactId:$version is NOT ${color}listed"
     else
