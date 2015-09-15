@@ -14,7 +14,7 @@ import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 import static org.junit.Assert.assertEquals;
 
-public class RestApiReportsTest extends AbstractRestApiTest {
+public class RestApiReportsRemoteTest extends AbstractRestApiTest {
 
     @Test
     public void testGav() throws Exception {
