@@ -1,5 +1,7 @@
 package org.jboss.da.communication.aprox.impl;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.maven.scm.ScmException;
 import org.commonjava.aprox.client.core.Aprox;
 import org.commonjava.aprox.client.core.AproxClientException;
 import org.commonjava.aprox.depgraph.client.DepgraphAproxClientModule;
@@ -19,17 +21,24 @@ import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.communication.pom.PomAnalyzer;
+import org.jboss.da.scm.SCM;
+import org.jboss.da.scm.SCMType;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -39,13 +48,38 @@ import java.util.Optional;
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {
 
-    private final Configuration config = new Configuration();
+    @Inject
+    private Configuration config;
+
+    @Inject
+    private SCM scmManager;
+
+    @Inject
+    private PomAnalyzer pomAnalyzer;
 
     @Override
     public Optional<GAVDependencyTree> getDependencyTreeOfRevision(String scmUrl, String revision,
-            String pomPath) {
-        // TODO Auto-generated method stub
-        return Optional.empty();
+            String pomPath) throws ScmException, PomAnalysisException {
+
+        try {
+            // git clone
+            // TODO: hardcoded to git right now
+            File tempDir = Files.createTempDirectory("cloned_repo").toFile();
+
+            try {
+                scmManager.cloneRepository(SCMType.GIT, scmUrl, revision, tempDir.toString());
+
+                GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir,
+                        new File(tempDir, pomPath));
+
+                return Optional.ofNullable(gavDependencyTree);
+            } finally {
+                // cleanup
+                FileUtils.deleteDirectory(tempDir);
+            }
+        } catch (IOException e) {
+            throw new ScmException("Could not create temp directory for cloning the repository", e);
+        }
     }
 
     @Override

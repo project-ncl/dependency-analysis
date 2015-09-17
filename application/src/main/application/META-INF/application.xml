@@ -11,6 +11,9 @@
         <ejb>common.jar</ejb>
     </module>
     <module>
+        <ejb>source-code-manager.jar</ejb>
+    </module>
+    <module>
         <ejb>communication.jar</ejb>
     </module>
     <module>

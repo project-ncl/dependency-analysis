@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
  *
  * @author Honza Brázdil <janinko.g@gmail.com>
  */
-@RequiredArgsConstructor
 public class SCMLocator {
 
     @Getter

@@ -29,6 +29,10 @@
             <artifactId>maven-scm-provider-svnexe</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+        </dependency>
 
         <!-- Test dependencies -->
         <dependency>
@@ -40,13 +44,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-6.0</artifactId>
-            <type>pom</type>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

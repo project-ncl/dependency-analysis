@@ -1,17 +1,21 @@
 package org.jboss.da.rest.reports;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.communication.pom.PomAnalyzer;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.ReportsGenerator;
+import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
+import org.jboss.da.rest.model.ErrorMessage;
 import org.jboss.da.rest.reports.model.LookupReport;
 import org.jboss.da.rest.reports.model.Report;
-import org.jboss.da.rest.reports.model.SCMRequest;
+import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -24,16 +28,14 @@ import javax.ws.rs.core.Response.Status;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import org.jboss.da.rest.model.ErrorMessage;
-import org.slf4j.Logger;
 
 /**
  * Main end point for the reports
@@ -61,15 +63,31 @@ public class Reports {
     @Inject
     private BlackArtifactService blackArtifactService;
 
+    @Inject
+    private PomAnalyzer pomAnalyzer;
+
     @POST
     @Path("/scm")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
-            response = Report.class, hidden = true)
-    // TODO unhide when the method will be implemented
-    public Report scmGenerator(SCMRequest scmRequest) {
-        throw new NotImplementedException();
+            response = ArtifactReport.class)
+    public Response scmGenerator(@ApiParam(value = "scm information") SCMLocator scm)
+            throws Exception {
+
+        try {
+
+            Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(scm);
+
+            return artifactReport
+                    .map(x -> Response.ok().entity(artifactReport.get()).build())
+                    .orElseGet(() -> Response.status(Status.NOT_FOUND)
+                            .entity(new ErrorMessage("No relationship found")).build());
+
+        } catch (ScmException|PomAnalysisException|IllegalArgumentException|CommunicationException e) {
+            log.error("Exception thrown in scm endpoint", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
+        }
     }
 
     @POST
@@ -92,6 +110,7 @@ public class Reports {
                     .orElseGet(() -> Response.status(Status.NOT_FOUND)
                             .entity(new ErrorMessage("Requested GA was not found")).build());
         } catch (CommunicationException ex) {
+            log.error("Communication with remote repository failed", ex);
             return Response.status(502).entity(ex).build();
         }
     }
