@@ -1,6 +1,6 @@
 package org.jboss.da.listings.impl.service;
 
-import org.jboss.da.common.version.OSGiVersionParser;
+import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.model.Artifact;
@@ -20,11 +20,8 @@ import java.util.regex.Pattern;
  */
 public abstract class ArtifactServiceImpl<T extends Artifact> implements ArtifactService<T> {
 
-    protected Pattern redhatSuffixPattern = Pattern
-            .compile(VersionFinderImpl.PATTERN_SUFFIX_BUILT_VERSION + "$");
-
     @Inject
-    protected OSGiVersionParser osgiParser;
+    protected VersionParser versionParser;
 
     protected abstract ArtifactDAO<T> getDAO();
 

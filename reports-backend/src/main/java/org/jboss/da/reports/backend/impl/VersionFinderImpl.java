@@ -1,6 +1,6 @@
 package org.jboss.da.reports.backend.impl;
 
-import org.jboss.da.common.version.OSGiVersionParser;
+import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GAV;
@@ -13,7 +13,6 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -25,13 +24,11 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class VersionFinderImpl implements VersionFinder {
 
-    public static final String PATTERN_SUFFIX_BUILT_VERSION = "[.-]redhat-([1-9]\\d*)";
-
     @Inject
     private AproxConnector aproxConnector;
 
     @Inject
-    private OSGiVersionParser osgiParser;
+    private VersionParser osgiParser;
 
     @Override
     public List<String> getBuiltVersionsFor(GAV gav) throws CommunicationException {
@@ -58,9 +55,8 @@ public class VersionFinderImpl implements VersionFinder {
     }
 
     private List<String> getBuiltVersionsFor0(List<String> allVersions) {
-        Pattern pattern = Pattern.compile(".*" + PATTERN_SUFFIX_BUILT_VERSION);
         List<String> redhatVersions = allVersions.stream()
-                .filter(version -> pattern.matcher(version).matches())
+                .filter(VersionParser::isRedhatVersion)
                 .collect(Collectors.toList());
 
         return redhatVersions;
@@ -71,25 +67,26 @@ public class VersionFinderImpl implements VersionFinder {
             return Optional.empty();
 
         String origVersion = gav.getVersion();
-        Pattern pattern = Pattern.compile(origVersion + PATTERN_SUFFIX_BUILT_VERSION);
 
-        Optional<String> bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
+        Matcher origMatcher = osgiParser.getVersionMatcher(origVersion);
+        Optional<String> bestMatchVersion = findBiggestMatchingVersion(obtainedVersions,
+                origMatcher);
         if (!bestMatchVersion.isPresent()) {
             String osgiVersion = osgiParser.getOSGiVersion(origVersion);
-            pattern = Pattern.compile(osgiVersion + PATTERN_SUFFIX_BUILT_VERSION);
-            bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, pattern);
+            Matcher osgiMatcher = osgiParser.getVersionMatcher(osgiVersion);
+            bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, osgiMatcher);
         }
 
         return bestMatchVersion;
     }
 
     private Optional<String> findBiggestMatchingVersion(List<String> obtainedVersions,
-            Pattern pattern) {
+            Matcher matcher) {
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
 
         for (String ver : obtainedVersions) {
-            Matcher matcher = pattern.matcher(ver);
+            matcher.reset(ver);
             if (matcher.matches()) {
                 int foundBuildNumber = Integer.parseInt(matcher.group(1));
                 if (foundBuildNumber > biggestBuildNumber) {

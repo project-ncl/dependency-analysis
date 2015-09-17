@@ -3,7 +3,7 @@ package org.jboss.da.reports.backend.impl;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
-import org.jboss.da.common.version.OSGiVersionParser;
+import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GA;
@@ -33,7 +33,7 @@ public class VersionFinderTest {
     private AproxConnector aproxConnector;
 
     @Spy
-    private OSGiVersionParser osgiParser = new OSGiVersionParser();
+    private VersionParser osgiParser = new VersionParser();
 
     @InjectMocks
     @Spy
