@@ -73,9 +73,13 @@ public class Artifacts {
     @ApiOperation(value = "Check if an artifact is in the whitelist",
             response = ContainsResponse.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Artifact is in the whitelist"),
-            @ApiResponse(code = 404, message = "Artifact is not in the whitelist") })
+            @ApiResponse(code = 404, message = "Artifact is not in the whitelist"),
+            @ApiResponse(code = 400, message = "All parameters are required") })
     public Response isWhiteArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
+        if (groupId == null || artifactId == null || version == null)
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new ErrorMessage("All parameters are required")).build();
         ContainsResponse response = new ContainsResponse();
 
         List<WhiteArtifact> artifacts = whiteService.getArtifacts(groupId, artifactId, version);
@@ -171,9 +175,13 @@ public class Artifacts {
     @ApiOperation(value = "Check if an artifact is in the blacklist",
             response = ContainsResponse.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Artifact is in the blacklist"),
-            @ApiResponse(code = 404, message = "Artifact is not in the blacklist") })
+            @ApiResponse(code = 404, message = "Artifact is not in the blacklist"),
+            @ApiResponse(code = 400, message = "All parameters are required")})
     public Response isBlackArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
+        if (groupId == null || artifactId == null || version == null)
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new ErrorMessage("All parameters are required")).build();
         ContainsResponse response = new ContainsResponse();
 
         Optional<BlackArtifact> artifact = blackService.getArtifact(groupId, artifactId, version);
