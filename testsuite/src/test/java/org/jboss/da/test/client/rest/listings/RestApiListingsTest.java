@@ -26,6 +26,10 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         BLACK, WHITE
     }
 
+    private enum OperationType {
+        ADD, DELETE
+    }
+
     private static String ENCODING = "utf-8";
 
     private static String PATH_FILES_LISTINGS_GAV = "/listings";
@@ -78,7 +82,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAddWhiteArtifact() throws Exception {
         String type = "gavRh";
 
-        ClientResponse<String> response = addArtifact(ListType.WHITE, type, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
+                type, true);
 
         checkExpectedResponse(response, "success");
     }
@@ -87,7 +92,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAddNonRHWhiteArtifact() throws Exception {
         String type = "gav";
 
-        ClientResponse<String> response = addArtifact(ListType.WHITE, type, false);
+        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
+                type, false);
 
         assertEquals(400, response.getStatus());
     }
@@ -96,7 +102,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAddBlackArtifact() throws Exception {
         String type = "gav";
 
-        ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
+                type, true);
 
         checkExpectedResponse(response, "success");
     }
@@ -105,7 +112,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAddBlackRHArtifact() throws Exception {
         String type = "gavRh";
 
-        ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
+                type, true);
 
         checkExpectedResponse(response, "success");
     }
@@ -114,7 +122,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAddBlackNonOSGiArtifact() throws Exception {
         String type = "gavNonOSGi";
 
-        ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
+                type, true);
 
         checkExpectedResponse(response, "success");
     }
@@ -123,12 +132,13 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAddBlacklistedArtifactToWhitelist() throws Exception {
         // Add artifact to blacklist
         String type = "gav";
-        addArtifact(ListType.BLACK, type, true);
+        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
 
         // Try to add artifact to whitelist
         type = "gavRh";
 
-        ClientResponse<String> response = addArtifact(ListType.WHITE, type, false);
+        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
+                type, false);
 
         assertEquals(409, response.getStatus());
     }
@@ -137,12 +147,13 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAddWhitelistedArtifactToBlacklist() throws Exception {
         // Add artifact to whitelist
         String type = "gavRh";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         // Add artifact to blacklist
         type = "gav";
 
-        ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
+                type, true);
 
         checkExpectedResponse(response, "succesmessage");
 
@@ -153,12 +164,13 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAddWhitelistedNonOSGiArtifactToBlacklist() throws Exception {
         // Add artifact to whitelist
         String type = "gavRh";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         // Add artifact to blacklist
         type = "gavNonOSGi";
 
-        ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
+                type, true);
 
         checkExpectedResponse(response, "succesmessage");
 
@@ -169,13 +181,14 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAddMultipleTimeWhitelistedArtifactToBlacklist() throws Exception {
         // Add artifacts to whitelist
         String type = "gavRh";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         type = "gavRh2";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
         // Add artifact to blacklist
         type = "gav";
-        ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
+                type, true);
 
         checkExpectedResponse(response, "succesmessage");
     }
@@ -184,10 +197,11 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAlreadyAddedWhiteArtifact() throws Exception {
         // add first white artifact
         String type = "gavRh";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         // add second white artifact
-        ClientResponse<String> response = addArtifact(ListType.WHITE, type, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
+                type, true);
 
         checkExpectedResponse(response, "successfalse");
     }
@@ -196,10 +210,11 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testAlreadyAddedBlackArtifact() throws Exception {
         // add first black artifact
         String type = "gav";
-        addArtifact(ListType.BLACK, type, true);
+        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
 
         // add second black artifact
-        ClientResponse<String> response = addArtifact(ListType.BLACK, type, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
+                type, true);
 
         checkExpectedResponse(response, "successfalse");
     }
@@ -208,16 +223,11 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testDeleteWhiteArtifact() throws Exception {
         String type = "gavRh";
         // add artifact
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         // delete artifact
-        File jsonRequestFile = getJsonRequestFile(PATH_FILES_LISTINGS_GAV, type);
-
-        ClientRequest request = createClientRequest(PATH_WHITE_LISTINGS_GAV,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-
-        ClientResponse<String> response = request.delete(String.class);
-        assertEquals(200, response.getStatus());
+        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.DELETE,
+                type, true);
 
         checkExpectedResponse(response, "success");
     }
@@ -226,16 +236,11 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testDeleteBlackArtifact() throws Exception {
         String type = "gav";
         // add artifact
-        addArtifact(ListType.BLACK, type, true);
+        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
 
         // delete artifact
-        File jsonRequestFile = getJsonRequestFile(PATH_FILES_LISTINGS_GAV, type);
-
-        ClientRequest request = createClientRequest(PATH_BLACK_LISTINGS_GAV,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-
-        ClientResponse<String> response = request.delete(String.class);
-        assertEquals(200, response.getStatus());
+        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.DELETE,
+                type, true);
 
         checkExpectedResponse(response, "success");
     }
@@ -243,13 +248,9 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     @Test
     public void testDeleteNonExistingWhiteArtifact() throws Exception {
         String type = "gavRh";
-        File jsonRequestFile = getJsonRequestFile(PATH_FILES_LISTINGS_GAV, type);
 
-        ClientRequest request = createClientRequest(PATH_WHITE_LISTINGS_GAV,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-
-        ClientResponse<String> response = request.delete(String.class);
-        assertEquals(200, response.getStatus());
+        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.DELETE,
+                type, true);
 
         checkExpectedResponse(response, "successfalse");
 
@@ -258,13 +259,9 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     @Test
     public void testDeleteNonExistingBlackArtifact() throws Exception {
         String type = "gav";
-        File jsonRequestFile = getJsonRequestFile(PATH_FILES_LISTINGS_GAV, type);
 
-        ClientRequest request = createClientRequest(PATH_BLACK_LISTINGS_GAV,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-
-        ClientResponse<String> response = request.delete(String.class);
-        assertEquals(200, response.getStatus());
+        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.DELETE,
+                type, true);
 
         checkExpectedResponse(response, "successfalse");
 
@@ -273,7 +270,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     @Test
     public void testCheckRHWhiteArtifact() throws Exception {
         String type = "gavRh";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
@@ -291,7 +288,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     @Test
     public void testCheckNonRHWhiteArtifact() throws Exception {
         String type = "gavRh";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
@@ -309,7 +306,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     @Test
     public void testCheckNonRHNonOSGiWhiteArtifact() throws Exception {
         String type = "gavRh";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3")
@@ -322,7 +319,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     @Test
     public void testCheckRHBlackArtifact() throws Exception {
         String type = "gav";
-        addArtifact(ListType.BLACK, type, true);
+        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
@@ -340,7 +337,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     @Test
     public void testCheckNonRHBlackArtifact() throws Exception {
         String type = "gav";
-        addArtifact(ListType.BLACK, type, true);
+        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
@@ -358,7 +355,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     @Test
     public void testCheckNonRHNonOSGiBlackArtifact() throws Exception {
         String type = "gav";
-        addArtifact(ListType.BLACK, type, true);
+        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3")
@@ -372,10 +369,10 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testGetAllWhiteArtifacts() throws Exception {
         // Add artifacts to whitelist
         String type = "gavRh";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         type = "gavRh2";
-        addArtifact(ListType.WHITE, type, true);
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
 
         // Get list
 
@@ -390,10 +387,10 @@ public class RestApiListingsTest extends AbstractRestApiTest {
     public void testGetAllBlackArtifacts() throws Exception {
         // Add artifacts to blacklist
         String type = "gav";
-        addArtifact(ListType.BLACK, type, true);
+        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
 
         type = "gav2";
-        addArtifact(ListType.BLACK, type, true);
+        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
 
         // Get list
 
@@ -404,8 +401,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         checkExpectedResponse(response, "gavblacklist");
     }
 
-    private ClientResponse<String> addArtifact(ListType list, String file, Boolean checkAdd)
-            throws Exception {
+    private ClientResponse<String> manipulateArtifact(ListType list, OperationType operation,
+            String file, Boolean checkAdd) throws Exception {
         String type = file;
         File jsonRequestFile = getJsonRequestFile(PATH_FILES_LISTINGS_GAV, type);
         String path = null;
@@ -419,8 +416,17 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         }
         ClientRequest request = createClientRequest(path,
                 FileUtils.readFileToString(jsonRequestFile, ENCODING));
+        ClientResponse<String> response = null;
+        switch (operation) {
+            case ADD:
+                response = request.post(String.class);
+                break;
 
-        ClientResponse<String> response = request.post(String.class);
+            case DELETE:
+                response = request.delete(String.class);
+                break;
+        }
+
         if (checkAdd)
             assertEquals(200, response.getStatus());
         return response;
