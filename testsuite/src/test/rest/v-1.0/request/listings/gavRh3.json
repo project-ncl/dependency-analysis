@@ -1,0 +1,5 @@
+{
+    "groupId": "org.jboss.da",
+    "artifactId": "dependency-analyzer",
+    "version": "1.0.0.redhat-2"
+}
