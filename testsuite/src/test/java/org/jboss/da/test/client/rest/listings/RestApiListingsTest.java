@@ -99,6 +99,44 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         assertEquals(400, response.getStatus());
     }
 
+    /**
+     * Added artifacts: 1.0.redhat-1, 1.0.0.redhat-1
+     * Respons after second insertion: 409 Conflict
+     *
+     * @throws Exception
+     */
+    @Test
+    @Ignore
+    public void testAddNonOSGiWhiteArtifactAndOsgiWhiteArtifact() throws Exception {
+        String type1 = "gavRhNonOSGi";
+        String type2 = "gavRh4";
+
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type1, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
+                type2, false);
+
+        assertEquals(409, response.getStatus());
+    }
+
+    /**
+     * Added artifacts: 1.0.0.redhat-1, 1.0.redhat-1
+     * Respons after second insertion: 409 Conflict
+     *
+     * @throws Exception
+     */
+    @Test
+    @Ignore
+    public void testAddOSGiWhiteArtifactAndNonOsgiWhiteArtifact() throws Exception {
+        String type1 = "gavRh4";
+        String type2 = "gavRhNonOSGi";
+
+        manipulateArtifact(ListType.WHITE, OperationType.ADD, type1, true);
+        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
+                type2, false);
+
+        assertEquals(409, response.getStatus());
+    }
+
     @Test
     public void testAddBlackArtifact() throws Exception {
         String type = "gav";
@@ -166,7 +204,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * Artifact added to blacklis: 1.0.redhat-1
      * @throws Exception
      */
-    @Ignore
     @Test
     public void testAddNonOSGiWhitelistedArtifactToBlacklist() throws Exception {
         checkBlacklistingArtifactTest("gavRhNonOSGi", null, "gavRhNonOSGi");
@@ -177,7 +214,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * Artifact added to blacklis: 1.0
      * @throws Exception
      */
-    @Ignore
     @Test
     public void testAddNonOSGiWhitelistedArtifactToBlacklistv2() throws Exception {
         checkBlacklistingArtifactTest("gavRhNonOSGi", null, "gavRhNonOSGiv2");
@@ -221,7 +257,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * Artifact added to blacklis: 1.0.redhat-1
      * @throws Exception
      */
-    @Ignore
     @Test
     public void testAddNonOSGiAndOSGiWhitelistedArtifactsToBlacklist() throws Exception {
         checkBlacklistingArtifactTest("gavRhNonOSGi", "gavRh3", "gavRhNonOSGi");
@@ -232,7 +267,6 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * Artifact added to blacklis: 1.0
      * @throws Exception
      */
-    @Ignore
     @Test
     public void testAddNonOSGiAndOSGiWhitelistedArtifactsToBlacklistv2() throws Exception {
         checkBlacklistingArtifactTest("gavRhNonOSGi", "gavRh3", "gavRhNonOSGiv2");
@@ -407,7 +441,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      */
     @Test
     public void testCheckNonRHNonOSGiWhiteArtifact() throws Exception {
-        checkArtifactTest("gavRh", null, "0.3", "gavRhResponse");
+        checkArtifactTest("gavRh", null, "0.3", "gavRhResponseCheck");
     }
 
     /**
@@ -442,6 +476,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testCheckRHNonOSGiArtifactv3() throws Exception {
         checkArtifactTest("gavRhNonOSGi", null, "1.0.0", "gavRhNonOSGiResponse");
     }
@@ -454,20 +489,9 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void testCheckRHNonOSGiArtifactv4() throws Exception {
         checkArtifactTest("gavRhNonOSGi", null, "1.0.0.redhat-1", "gavRhNonOSGiResponse");
-    }
-
-    /**
-     * Added artifacts: 1.0.redhat-1, 1.0.0.redhat-2
-     * Looking for artifact version: 1.0.redhat-1
-     * Should find artifact: 1.0.redhat-1, 1.0.0.redhat-2
-     * 
-     * @throws Exception
-     */
-    @Test
-    public void testCheckRHNonOSGiandOSGiArtifacts() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", "gavRh3", "1.0.redhat-1", "gavNonOSGiList");
     }
 
     /**
@@ -478,8 +502,8 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * @throws Exception
      */
     @Test
-    public void testCheckRHNonOSGiandOSGiArtifactsv2() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", "gavRh3", "1.0", "gavNonOSGiList");
+    public void testCheckRHNonOSGiandOSGiArtifactsv1() throws Exception {
+        checkArtifactTest("gavRhNonOSGi", "gavRh3", "1.0", "gavNonOSGiList2");
     }
 
     /**
@@ -490,20 +514,9 @@ public class RestApiListingsTest extends AbstractRestApiTest {
      * @throws Exception
      */
     @Test
-    public void testCheckRHNonOSGiandOSGiArtifactsv3() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", "gavRh3", "1.0.0", "gavNonOSGiList");
-    }
-
-    /**
-     * Added artifacts: 1.0.redhat-1, 1.0.0.redhat-2
-     * Looking for artifact version: 1.0.0.redhat-1
-     * Should find artifact: 1.0.redhat-1, 1.0.0.redhat-2
-     * 
-     * @throws Exception
-     */
-    @Test
-    public void testCheckRHNonOSGiandOSGiArtifactsv4() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", "gavRh3", "1.0.0.redhat-1", "gavNonOSGiList");
+    @Ignore
+    public void testCheckRHNonOSGiandOSGiArtifactsv2() throws Exception {
+        checkArtifactTest("gavRhNonOSGi", "gavRh3", "1.0.0", "gavNonOSGiList2");
     }
 
     @Test
@@ -643,7 +656,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
             manipulateArtifact(ListType.WHITE, OperationType.ADD, artifact2, true);
         }
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
+        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LISTINGS_GAV
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=" + testVersion)
                 .get(String.class);
         assertEquals(200, response.getStatus());
