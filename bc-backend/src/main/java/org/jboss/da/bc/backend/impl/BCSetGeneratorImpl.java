@@ -4,10 +4,12 @@ import org.jboss.da.bc.backend.api.BCSetGenerator;
 import org.jboss.da.bc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import java.util.List;
 
+@ApplicationScoped
 public class BCSetGeneratorImpl implements BCSetGenerator {
 
     @Inject
