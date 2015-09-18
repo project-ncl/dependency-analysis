@@ -94,4 +94,10 @@ public class PNCConnectorImpl implements PNCConnector {
         ClientResponse<Project[]> response = getClient("projects").get(Project[].class);
         return Arrays.asList(response.getEntity());
     }
+
+    @Override
+    public BuildConfigurationSet findBuildConfigurationSet(int productVersionId,
+            List<Integer> buildConfigurationIds) {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
 }
