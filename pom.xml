@@ -8,11 +8,11 @@
     <packaging>pom</packaging>
 
     <name>dependency-analyzer</name>
-    <url>https://github.com/project-ncl/dependecy-analysis</url>
+    <url>https://github.com/project-ncl/dependency-analysis</url>
 
     <scm>
-        <connection>scm:git:https://github.com/project-ncl/dependecy-analysis</connection>
-        <url>https://github.com/project-ncl/dependecy-analysis</url>
+        <connection>scm:git:https://github.com/project-ncl/dependency-analysis</connection>
+        <url>https://github.com/project-ncl/dependency-analysis</url>
         <tag>HEAD</tag>
     </scm>
 
