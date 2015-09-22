@@ -29,6 +29,10 @@ prettyPrint() {
     popd > /dev/null
 }
 
+gettmpfile() {
+    mktemp 2>/dev/null || mktemp -t 'pncl'
+}
+
 get() {
     curl -s -H "Content-Type: application/json" -X GET "$target/$1"
 }
@@ -64,7 +68,7 @@ list() {
 deleteGAVFromList() {
     setColor $1
     matchGAV $2
-    tmpfile=`mktemp`
+    tmpfile=`gettmpfile`
     delete "listings/${color}list/gav" "`formatGAVjson`" > $tmpfile
     if ! grep -q '"success":true' $tmpfile; then
         echo "Error removing $groupId:$artifactId:$version"
@@ -77,7 +81,7 @@ deleteGAVFromList() {
 add() {
     setColor $1
     matchGAV $2
-    tmpfile=`mktemp`
+    tmpfile=`gettmpfile`
     post "listings/${color}list/gav" "`formatGAVjson`" > $tmpfile
     if ! grep -q '"success":true' $tmpfile; then
         echo "Error adding $groupId:$artifactId:$version"
@@ -92,7 +96,7 @@ add() {
 check() {
     setColor $1
     matchGAV $2
-    tmpfile=`mktemp`
+    tmpfile=`gettmpfile`
     get "listings/${color}list/gav?groupid=${groupId}&artifactid=${artifactId}&version=${version}" > $tmpfile
     if grep -q '"contains":true' $tmpfile; then
         echo -n "Artifact $groupId:$artifactId:$version is ${color}listed - actual verisions in list: "
@@ -117,7 +121,7 @@ report() {
         shift
     fi
     matchGAV $1
-    tmpfile=`mktemp`
+    tmpfile=`gettmpfile`
     post "reports/gav" "`formatGAVjson`" >> $tmpfile
     case $type in
         pretty) cat $tmpfile | prettyPrint report | column -t -s $'\t' ;;
@@ -142,7 +146,7 @@ lookup() {
         done
     fi
     query="$query ]"
-    tmpfile=`mktemp`
+    tmpfile=`gettmpfile`
     post "reports/lookup/gavs" "$query" > $tmpfile
     cat $tmpfile | prettyPrint lookup
     rm $tmpfile
@@ -209,7 +213,7 @@ pom_bw() {
         DEFAULT="$(tput sgr0)"
     fi
 
-    tmpfile=`mktemp`
+    tmpfile=`gettmpfile`
     pushd "${pom_path}" > /dev/null
     mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
     popd > /dev/null
@@ -263,7 +267,7 @@ pom_report() {
         mvn_opts="$mvn_opts -DexcludeTransitive=true"
     fi
 
-    tmpfile=`mktemp`
+    tmpfile=`gettmpfile`
 
     pushd "${pom_path}" > /dev/null
     mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
