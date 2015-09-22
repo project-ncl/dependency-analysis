@@ -437,8 +437,7 @@ public class RestApiListingsTest extends AbstractRestApiTest {
         File expectedResponseFile = new ExpectedResponseFilenameBuilder(
                 restApiExpectedResponseFolder, PATH_FILES_LISTINGS_GAV, APPLICATION_JSON,
                 expectedFile).getFile();
-        assertEquals(readFileToString(expectedResponseFile).trim(), response
-                .getEntity(String.class).trim());
+        assertEqualsJson(readFileToString(expectedResponseFile), response.getEntity(String.class));
     }
 
     private File getJsonRequestFile(String path, String variant) {

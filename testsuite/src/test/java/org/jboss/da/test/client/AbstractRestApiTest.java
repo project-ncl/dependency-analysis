@@ -6,7 +6,11 @@ import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.json.JSONException;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.skyscreamer.jsonassert.JSONAssert;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -30,8 +34,6 @@ public abstract class AbstractRestApiTest {
     protected final Path restApiRequestFolder;
 
     protected final Path restApiExpectedResponseFolder;
-
-    private String defaultRestApiVersionUrlPart;
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
@@ -146,7 +148,7 @@ public abstract class AbstractRestApiTest {
 
     }
 
-    // TODO convert to builder pattern appropriatelly
+    // TODO convert to builder pattern apropriatelly
     protected static class RequestFilenameBuilder {
 
         protected static final String DEFAULT_VARIANT = "";
@@ -201,5 +203,20 @@ public abstract class AbstractRestApiTest {
             return ".json";
         }
 
+    }
+
+    protected void assertEqualsJson(String expected, String actual) {
+        try {
+            JSONAssert.assertEquals(expected, actual, true);
+        } catch (JSONException ex) {
+            fail("The test wasn't able to compare JSON strings" + ex);
+        }
+    }
+
+    @Test
+    public void testJsonEquals() throws JSONException {
+        String s1 = "[{\"groupId\": \"com.google.guava\", \"artifactId\": \"guava\", \"version\": \"13.0.1\"}]";
+        String s2 = "[{\"groupId\": \"com.google.guava\", \"version\": \"13.0.1\", \"artifactId\": \"guava\"}]";
+        assertEqualsJson(s1, s2);
     }
 }
