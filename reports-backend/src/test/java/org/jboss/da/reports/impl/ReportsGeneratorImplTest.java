@@ -1,15 +1,19 @@
 package org.jboss.da.reports.impl;
 
-import org.jboss.da.communication.CommunicationException;
+import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.ArtifactReport;
+import org.jboss.da.reports.api.SCMLocator;
+import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
-import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -19,12 +23,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import org.jboss.da.reports.api.VersionLookupResult;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;

@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -207,7 +208,8 @@ public abstract class AbstractRestApiTest {
 
     protected void assertEqualsJson(String expected, String actual) {
         try {
-            JSONAssert.assertEquals(expected, actual, true);
+
+            JSONAssert.assertEquals(expected, actual, JSONCompareMode.NON_EXTENSIBLE);
         } catch (JSONException ex) {
             fail("The test wasn't able to compare JSON strings" + ex);
         }
