@@ -55,18 +55,18 @@ public class AproxConnectorImpl implements AproxConnector {
         DepgraphAproxClientModule mod = new DepgraphAproxClientModule();
         try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api", mod).connect()) {
 
+            SimpleProjectVersionRef rootRef = new SimpleProjectVersionRef(gav.getGroupId(),
+                    gav.getArtifactId(), gav.getVersion());
+
             ProjectGraphRequest req = mod
                     .newProjectGraphRequest()
-                    .withWorkspaceId("graph-export")
+                    .withWorkspaceId("export-" + rootRef.toString())
                     .withSource("group:public")
                     .withPatcherIds(DepgraphPatcherConstants.ALL_PATCHERS)
                     .withResolve(true)
                     .withGraph(
-                            mod.newGraphDescription()
-                                    .withRoots(
-                                            new SimpleProjectVersionRef(gav.getGroupId(), gav
-                                                    .getArtifactId(), gav.getVersion()))
-                                    .withPreset("requires").build()).build();
+                            mod.newGraphDescription().withRoots(rootRef).withPreset("requires")
+                                    .build()).build();
 
             GraphExport export = mod.graph(req);
 
