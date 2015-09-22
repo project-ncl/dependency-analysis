@@ -36,8 +36,8 @@ public class RestApiReportsRemoteTest extends AbstractRestApiTest {
                 restApiExpectedResponseFolder, PATH_REPORTS_GAV, APPLICATION_JSON, gavGuava18)
                 .getFile();
 
-        assertEquals(readFileToString(expectedResponseFile).trim(), response
-                .getEntity(String.class).trim());
+        assertEqualsJson(readFileToString(expectedResponseFile).trim(),
+                response.getEntity(String.class).trim());
         assertEquals(200, response.getStatus());
     }
 
@@ -68,8 +68,8 @@ public class RestApiReportsRemoteTest extends AbstractRestApiTest {
                 restApiExpectedResponseFolder, PATH_LOOKUP_GAVS, APPLICATION_JSON, gavGuava13)
                 .getFile();
 
-        assertEquals(readFileToString(expectedResponseFile).trim(), response
-                .getEntity(String.class).trim());
+        assertEqualsJson(readFileToString(expectedResponseFile).trim(),
+                response.getEntity(String.class).trim());
         assertEquals(200, response.getStatus());
     }
 
@@ -87,8 +87,8 @@ public class RestApiReportsRemoteTest extends AbstractRestApiTest {
                 restApiExpectedResponseFolder, PATH_LOOKUP_GAVS, APPLICATION_JSON, gavGuava13List)
                 .getFile();
 
-        assertEquals(readFileToString(expectedResponseFile).trim(), response
-                .getEntity(String.class).trim());
+        assertEqualsJson(readFileToString(expectedResponseFile).trim(),
+                response.getEntity(String.class).trim());
         assertEquals(200, response.getStatus());
     }
 
