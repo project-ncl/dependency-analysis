@@ -77,6 +77,12 @@
             </dependency>
             <dependency>
                 <groupId>org.jboss.da</groupId>
+                <artifactId>source-code-manager</artifactId>
+                <version>${version.da}</version>
+                <type>ejb</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.da</groupId>
                 <artifactId>communication</artifactId>
                 <version>${version.da}</version>
                 <type>ejb</type>
@@ -206,6 +212,17 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>2.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.commonjava.maven.cartographer</groupId>
+                <artifactId>cartographer</artifactId>
+                <version>0.10.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.commonjava.maven.galley</groupId>
+                <artifactId>galley-maven</artifactId>
+                <version>0.10.0</version>
             </dependency>
 
             <dependency>

@@ -1,9 +1,12 @@
 package org.jboss.da.reports.api;
 
-import java.util.List;
-import java.util.Optional;
+import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pom.PomAnalysisException;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -12,7 +15,14 @@ import org.jboss.da.communication.model.GAV;
  */
 public interface ReportsGenerator {
 
-    public Optional<ArtifactReport> getReport(SCMLocator scml, List<Product> products);
+    /**
+     * Create a report about artifacts given an scm-url
+     * The report will only list the top-level dependencies used in the project
+     * @param scml
+     * @return Created report
+     */
+    public Optional<ArtifactReport> getReportFromSCM(SCMLocator scml) throws ScmException,
+            PomAnalysisException, CommunicationException;
 
     public Optional<ArtifactReport> getReport(GAV gav, List<Product> products);
 

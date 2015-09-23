@@ -22,6 +22,8 @@ public class RestApiReportsRemoteTest extends AbstractRestApiTest {
 
     private static String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 
+    private static String PATH_SCM = "/reports/scm";
+
     @Test
     public void testGavReportBasic() throws Exception {
         String gavGuava18 = "guava18";
@@ -85,6 +87,25 @@ public class RestApiReportsRemoteTest extends AbstractRestApiTest {
 
         File expectedResponseFile = new ExpectedResponseFilenameBuilder(
                 restApiExpectedResponseFolder, PATH_LOOKUP_GAVS, APPLICATION_JSON, gavGuava13List)
+                .getFile();
+
+        assertEqualsJson(readFileToString(expectedResponseFile).trim(),
+                response.getEntity(String.class).trim());
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    public void testScmReportBasic() throws Exception {
+        String dependencyAnalysis = "dependency-analysis";
+        File jsonRequestFile = getJsonRequestFile(PATH_SCM, dependencyAnalysis);
+
+        ClientRequest request = createClientRequest(PATH_SCM,
+                FileUtils.readFileToString(jsonRequestFile, ENCODING));
+
+        ClientResponse<String> response = request.post(String.class);
+
+        File expectedResponseFile = new ExpectedResponseFilenameBuilder(
+                restApiExpectedResponseFolder, PATH_SCM, APPLICATION_JSON, dependencyAnalysis)
                 .getFile();
 
         assertEqualsJson(readFileToString(expectedResponseFile).trim(),

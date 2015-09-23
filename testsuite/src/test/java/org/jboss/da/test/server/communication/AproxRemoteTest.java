@@ -3,6 +3,7 @@ package org.jboss.da.test.server.communication;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.apache.maven.scm.ScmException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.CommunicationException;
@@ -10,6 +11,7 @@ import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.Test;
@@ -62,10 +64,60 @@ public class AproxRemoteTest {
         assertEquals(expectedDependencyGAV, receivedDependencyGAV);
     }
 
-    @Test()
+    @Test
     public void testNoGAVInRepository() throws CommunicationException {
         GAV gav = new GAV("do", "not-exist", "1.0");
         Optional<GAVDependencyTree> tree = aproxConnector.getDependencyTreeOfGAV(gav);
         assertFalse(tree.isPresent());
+    }
+
+    @Test
+    public void testGetDependencyTreeOfRevision() throws ScmException, PomAnalysisException {
+        String scmUrl = "https://github.com/project-ncl/dependency-analysis.git";
+
+        // commit id for version 0.3
+        String revision = "f34f4e1e";
+
+        // normal case
+        Optional<GAVDependencyTree> tree = aproxConnector.getDependencyTreeOfRevision(scmUrl,
+                revision, "");
+        assertTrue(tree.isPresent());
+
+        assertTrue(tree.get().getGav().equals(new GAV("org.jboss.da", "parent", "0.3.0")));
+        assertTrue(tree.get().getDependencies().isEmpty());
+
+        // with a slash in the pomPath
+        Optional<GAVDependencyTree> treeWithSlash = aproxConnector.getDependencyTreeOfRevision(
+                scmUrl, revision, "/");
+        assertTrue(treeWithSlash.isPresent());
+
+        assertTrue(treeWithSlash.get().getGav().equals(new GAV("org.jboss.da", "parent", "0.3.0")));
+        assertTrue(treeWithSlash.get().getDependencies().isEmpty());
+
+        // with application in the pomPath
+        Optional<GAVDependencyTree> treeApplication = aproxConnector.getDependencyTreeOfRevision(
+                scmUrl, revision, "application");
+        assertTrue(treeApplication.isPresent());
+
+        assertTrue(treeApplication.get().getGav()
+                .equals(new GAV("org.jboss.da", "application", "0.3.0")));
+        assertFalse(treeApplication.get().getDependencies().isEmpty());
+    }
+
+    @Test(expected = ScmException.class)
+    public void testDependencyTreeOfRevisionWrongRevision() throws ScmException,
+            PomAnalysisException {
+        String scmUrl = "https://github.com/project-ncl/does_not_exist.git";
+        Optional<GAVDependencyTree> tree = aproxConnector.getDependencyTreeOfRevision(scmUrl, "",
+                "");
+    }
+
+    @Test(expected = ScmException.class)
+    public void testDependencyTreeOfRevisionWrongRevision2() throws ScmException,
+            PomAnalysisException {
+        String scmUrl = "https://github.com/project-ncl/dependency-analysis.git";
+        String revision = "doesnotexist";
+        Optional<GAVDependencyTree> tree = aproxConnector.getDependencyTreeOfRevision(scmUrl,
+                revision, "");
     }
 }

@@ -14,6 +14,9 @@
         <ejb>communication.jar</ejb>
     </module>
     <module>
+        <ejb>source-code-manager.jar</ejb>
+    </module>
+    <module>
         <ejb>reports-backend.jar</ejb>
     </module>
     <module>

@@ -1,12 +1,19 @@
 package org.jboss.da.reports.impl;
 
-import org.jboss.da.communication.CommunicationException;
+import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
+import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.Product;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
+import org.jboss.da.reports.api.VersionLookupResult;
+import org.jboss.da.reports.backend.api.VersionFinder;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -14,12 +21,6 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
-import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.WhiteArtifactService;
-import org.jboss.da.reports.api.VersionLookupResult;
-import org.jboss.da.reports.backend.api.VersionFinder;
 
 /**
  * The implementation of reports, which provides information about
@@ -47,8 +48,23 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private WhiteArtifactService whiteArtifactService;
 
     @Override
-    public Optional<ArtifactReport> getReport(SCMLocator scml, List<Product> products) {
-        throw new UnsupportedOperationException();
+    public Optional<ArtifactReport> getReportFromSCM(SCMLocator scml) throws ScmException,
+            PomAnalysisException, CommunicationException {
+        if (scml == null)
+            throw new IllegalArgumentException("SCM information can't be null");
+
+        Optional<GAVDependencyTree> dt = aproxClient.getDependencyTreeOfRevision(scml.getScmUrl(),
+                scml.getRevision(), scml.getPomPath());
+
+        if (!dt.isPresent())
+            return Optional.empty();
+
+        VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(dt.get().getGav());
+        ArtifactReport report = toArtifactReport(dt.get().getGav(), result);
+
+        addDependencyReports(report, dt.get().getDependencies());
+
+        return Optional.of(report);
     }
 
     @Override

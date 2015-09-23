@@ -16,6 +16,11 @@
             <type>ejb</type>
         </dependency>
         <dependency>
+            <groupId>org.jboss.da</groupId>
+            <artifactId>source-code-manager</artifactId>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
         </dependency>
@@ -53,6 +58,21 @@
             <artifactId>jboss-javaee-6.0</artifactId>
             <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
+        <!-- Used for pom.xml analysis -->
+        <dependency>
+            <groupId>org.commonjava.maven.cartographer</groupId>
+            <artifactId>cartographer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>galley-maven</artifactId>
         </dependency>
 
         <!-- Test dependencies -->
