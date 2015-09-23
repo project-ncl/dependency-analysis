@@ -1,7 +1,6 @@
 package org.jboss.da.reports.backend.impl;
 
 import java.util.Optional;
-import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
@@ -12,6 +11,8 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import org.apache.maven.scm.ScmException;
+import org.jboss.da.communication.scm.api.SCMConnector;
 
 /**
  *
@@ -24,10 +25,13 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     @Inject
     private AproxConnector aproxConnector;
 
+    @Inject
+    SCMConnector SCMConnector;
+
     @Override
-    public Optional<GAVDependencyTree> getDependencyTree(SCMLocator scml)
-            throws ScmException, PomAnalysisException, CommunicationException {
-        return aproxConnector.getDependencyTreeOfRevision(scml.getScmUrl(), scml.getRevision(),
+    public Optional<GAVDependencyTree> getDependencyTree(SCMLocator scml) throws ScmException,
+            PomAnalysisException, CommunicationException {
+        return SCMConnector.getDependencyTreeOfRevision(scml.getScmUrl(), scml.getRevision(),
                 scml.getPomPath());
     }
 

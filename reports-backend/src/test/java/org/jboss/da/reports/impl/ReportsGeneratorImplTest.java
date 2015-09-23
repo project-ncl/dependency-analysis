@@ -1,15 +1,12 @@
 package org.jboss.da.reports.impl;
 
-import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
-import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.ArtifactReport;
-import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.junit.runner.RunWith;
@@ -23,6 +20,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
+import org.jboss.da.reports.backend.impl.DependencyTreeGeneratorImpl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -30,6 +29,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
+import org.mockito.Spy;
 
 /**
  *
@@ -49,6 +49,10 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private WhiteArtifactService whiteArtifactService;
+
+    @InjectMocks
+    @Spy
+    private DependencyTreeGenerator dependencyTreeGenerator = new DependencyTreeGeneratorImpl();
 
     @InjectMocks
     private ReportsGeneratorImpl generator;

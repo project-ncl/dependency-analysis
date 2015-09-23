@@ -51,37 +51,6 @@ public class AproxConnectorImpl implements AproxConnector {
     @Inject
     private Configuration config;
 
-    @Inject
-    private SCM scmManager;
-
-    @Inject
-    private PomAnalyzer pomAnalyzer;
-
-    @Override
-    public Optional<GAVDependencyTree> getDependencyTreeOfRevision(String scmUrl, String revision,
-            String pomPath) throws ScmException, PomAnalysisException {
-
-        try {
-            // git clone
-            // TODO: hardcoded to git right now
-            File tempDir = Files.createTempDirectory("cloned_repo").toFile();
-
-            try {
-                scmManager.cloneRepository(SCMType.GIT, scmUrl, revision, tempDir.toString());
-
-                GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir,
-                        new File(tempDir, pomPath));
-
-                return Optional.ofNullable(gavDependencyTree);
-            } finally {
-                // cleanup
-                FileUtils.deleteDirectory(tempDir);
-            }
-        } catch (IOException e) {
-            throw new ScmException("Could not create temp directory for cloning the repository", e);
-        }
-    }
-
     @Override
     public Optional<GAVDependencyTree> getDependencyTreeOfGAV(GAV gav)
             throws CommunicationException {

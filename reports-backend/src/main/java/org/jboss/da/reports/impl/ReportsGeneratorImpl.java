@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
 /**
  * The implementation of reports, which provides information about
@@ -36,9 +37,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private Logger log;
 
     @Inject
-    private AproxConnector aproxClient;
-
-    @Inject
     private VersionFinder versionFinderImpl;
 
     @Inject
@@ -47,14 +45,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Inject
     private WhiteArtifactService whiteArtifactService;
 
+    @Inject
+    private DependencyTreeGenerator dependencyTreeGenerator;
+
     @Override
     public Optional<ArtifactReport> getReportFromSCM(SCMLocator scml) throws ScmException,
             PomAnalysisException, CommunicationException {
         if (scml == null)
             throw new IllegalArgumentException("SCM information can't be null");
 
-        Optional<GAVDependencyTree> dt = aproxClient.getDependencyTreeOfRevision(scml.getScmUrl(),
-                scml.getRevision(), scml.getPomPath());
+        Optional<GAVDependencyTree> dt = dependencyTreeGenerator.getDependencyTree(scml);
 
         if (!dt.isPresent())
             return Optional.empty();
@@ -77,7 +77,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (gav == null)
             throw new IllegalArgumentException("GAV can't be null");
 
-        Optional<GAVDependencyTree> dt = aproxClient.getDependencyTreeOfGAV(gav);
+        Optional<GAVDependencyTree> dt = dependencyTreeGenerator.getDependencyTree(gav);
         if (!dt.isPresent())
             return Optional.empty();
 
