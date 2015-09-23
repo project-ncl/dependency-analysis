@@ -53,17 +53,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (scml == null)
             throw new IllegalArgumentException("SCM information can't be null");
 
-        Optional<GAVDependencyTree> dt = dependencyTreeGenerator.getDependencyTree(scml);
+        GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml);
 
-        if (!dt.isPresent())
-            return Optional.empty();
+        VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(dt.getGav());
+        ArtifactReport report = toArtifactReport(dt.getGav(), result);
 
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
-        VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(dt.get().getGav());
-        ArtifactReport report = toArtifactReport(dt.get().getGav(), result);
-        nodesVisited.add(dt.get());
-
-        addDependencyReports(report, dt.get().getDependencies(), nodesVisited);
+        nodesVisited.add(dt);
+        addDependencyReports(report, dt.getDependencies(), nodesVisited);
 
         return Optional.of(report);
     }

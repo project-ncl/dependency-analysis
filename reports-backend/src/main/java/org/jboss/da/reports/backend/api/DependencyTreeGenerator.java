@@ -10,13 +10,19 @@ import org.jboss.da.reports.api.SCMLocator;
 
 /**
  *
- * @author Honza Brázdil <janinko.g@gmail.com>
+ * @author Honza Brázdil <jbrazdil@redhat.com>
  */
 public interface DependencyTreeGenerator {
 
-    public Optional<GAVDependencyTree> getDependencyTree(SCMLocator scml) throws ScmException,
+    public GAVDependencyTree getDependencyTree(SCMLocator scml) throws ScmException,
             PomAnalysisException, CommunicationException;
 
     public Optional<GAVDependencyTree> getDependencyTree(GAV gav) throws CommunicationException;
+
+    public GAVToplevelDependencies getToplevelDependencies(SCMLocator scml) throws ScmException,
+            PomAnalysisException, CommunicationException;
+
+    public Optional<GAVToplevelDependencies> getToplevelDependencies(GAV gav)
+            throws CommunicationException;
 
 }

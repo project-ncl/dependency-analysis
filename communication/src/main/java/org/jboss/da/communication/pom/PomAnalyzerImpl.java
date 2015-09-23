@@ -105,6 +105,9 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                     }
                 }
 
+                if (root == null) {
+                    throw new PomAnalysisException("Root pom was not found in repository.");
+                }
                 return root;
 
             } finally {

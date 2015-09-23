@@ -30,7 +30,7 @@ public class SCMConnectorImpl implements SCMConnector {
     private PomAnalyzer pomAnalyzer;
 
     @Override
-    public Optional<GAVDependencyTree> getDependencyTreeOfRevision(String scmUrl, String revision,
+    public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision,
             String pomPath) throws ScmException, PomAnalysisException {
 
         try {
@@ -44,7 +44,7 @@ public class SCMConnectorImpl implements SCMConnector {
                 GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir,
                         new File(tempDir, pomPath));
 
-                return Optional.ofNullable(gavDependencyTree);
+                return gavDependencyTree;
             } finally {
                 // cleanup
                 FileUtils.deleteDirectory(tempDir);
