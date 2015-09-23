@@ -1,5 +1,6 @@
 package org.jboss.da.listings.impl.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import org.jboss.da.listings.api.service.WhiteArtifactService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import org.jboss.da.common.version.VersionParser;
 
 /**
  * 
@@ -37,7 +39,7 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     @Override
     public org.jboss.da.listings.api.service.ArtifactService.STATUS addArtifact(String groupId,
             String artifactId, String version) {
-        if (!redhatSuffixPattern.matcher(version).find()) {
+        if (!VersionParser.isRedhatVersion(version)) {
             throw new IllegalArgumentException("Version " + version
                     + " doesn't contain redhat suffix");
         }
@@ -55,13 +57,24 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
 
     @Override
     public List<WhiteArtifact> getArtifacts(String groupId, String artifactId, String version) {
-        if(redhatSuffixPattern.matcher(version).find()){
-            return Optional.ofNullable(whiteArtifactDAO.findArtifact(groupId, artifactId, version))
-                    .map(Collections::singletonList)
-                    .orElse(Collections.emptyList());
-        }else{
-            return whiteArtifactDAO.findRedhatArtifact(groupId, artifactId, version);
+        String orig = version;
+        String osgi = versionParser.getOSGiVersion(version);
+
+        List<WhiteArtifact> whites = new ArrayList<>();
+        if (VersionParser.isRedhatVersion(orig)) {
+            WhiteArtifact origArtifact = whiteArtifactDAO.findArtifact(groupId, artifactId, orig);
+            WhiteArtifact osgiArtifact = whiteArtifactDAO.findArtifact(groupId, artifactId, osgi);
+            if (origArtifact != null) {
+                whites.add(origArtifact);
+            }
+            if (osgiArtifact != null && !osgiArtifact.equals(orig)) {
+                whites.add(osgiArtifact);
+            }
+        } else {
+            whites.addAll(whiteArtifactDAO.findRedhatArtifact(groupId, artifactId, orig));
+            whites.addAll(whiteArtifactDAO.findRedhatArtifact(groupId, artifactId, osgi));
         }
+        return whites;
     }
 
     @Override

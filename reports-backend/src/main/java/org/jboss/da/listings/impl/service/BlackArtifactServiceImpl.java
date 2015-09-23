@@ -1,7 +1,8 @@
 package org.jboss.da.listings.impl.service;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Inject;
@@ -38,7 +39,8 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     public org.jboss.da.listings.api.service.ArtifactService.STATUS addArtifact(String groupId,
             String artifactId, String version) {
 
-        String osgiVersion = osgiParser.getOSGiVersion(removeRedhatSuffix(version));
+        String nonrhVersion = versionParser.removeRedhatSuffix(version);
+        String osgiVersion = versionParser.getNonRedhatOSGiVersion(version);
 
         BlackArtifact artifact = new BlackArtifact(groupId, artifactId, osgiVersion);
 
@@ -46,8 +48,10 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
             return STATUS.NOT_MODIFIED;
         }
 
-        List<WhiteArtifact> whites = whiteArtifactDAO.findRedhatArtifact(groupId, artifactId,
-                osgiVersion);
+        Set<WhiteArtifact> whites = new HashSet<>();
+        whites.addAll(whiteArtifactDAO.findRedhatArtifact(groupId, artifactId, nonrhVersion));
+        whites.addAll(whiteArtifactDAO.findRedhatArtifact(groupId, artifactId, osgiVersion));
+
         STATUS status = STATUS.ADDED;
         for (WhiteArtifact wa : whites) {
             whiteArtifactDAO.delete(wa);
@@ -59,7 +63,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
 
     @Override
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version) {
-        String osgiVersion = osgiParser.getOSGiVersion(removeRedhatSuffix(version));
+        String osgiVersion = versionParser.getNonRedhatOSGiVersion(version);
 
         return Optional.ofNullable(blackArtifactDAO.findArtifact(groupId, artifactId, osgiVersion));
     }
@@ -67,10 +71,6 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Override
     public Optional<BlackArtifact> getArtifact(GAV gav) {
         return getArtifact(gav.getGroupId(), gav.getArtifactId(), gav.getVersion());
-    }
-
-    private String removeRedhatSuffix(String version) {
-        return redhatSuffixPattern.matcher(version).replaceFirst("");
     }
 
     @Override

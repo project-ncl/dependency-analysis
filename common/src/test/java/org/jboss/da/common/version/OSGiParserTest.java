@@ -7,7 +7,7 @@ public class OSGiParserTest {
 
     @Test
     public void testVersionParser() {
-        OSGiVersionParser parser = new OSGiVersionParser();
+        VersionParser parser = new VersionParser();
 
         assertEquals("1.1.0.Final", parser.getOSGiVersion("1.1.Final"));
         assertEquals("1.1.0", parser.getOSGiVersion("1.1"));

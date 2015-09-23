@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import lombok.EqualsAndHashCode;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -17,6 +18,7 @@ import lombok.ToString;
  */
 @ToString
 @MappedSuperclass
+@EqualsAndHashCode
 public abstract class GenericEntity implements Serializable {
 
     @Getter

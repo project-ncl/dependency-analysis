@@ -38,6 +38,7 @@ public class WhiteArtifactDAOImpl extends ArtifactDAOImpl<WhiteArtifact> impleme
                         cb.or(cb.like(artifact.get("version"), dotVersion),
                                 cb.like(artifact.get("version"), dashVersion))));
         TypedQuery<WhiteArtifact> q = em.createQuery(cq);
-        return q.getResultList();
+        List<WhiteArtifact> list = q.getResultList();
+        return list;
     }
 }
