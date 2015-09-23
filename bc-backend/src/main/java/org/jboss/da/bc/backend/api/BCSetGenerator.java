@@ -16,4 +16,5 @@ public interface BCSetGenerator {
      */
     BuildConfigurationSet createBCSet(String name, Integer productVersionId, List<Integer> bcIds);
 
+    int createProduct(String name);
 }

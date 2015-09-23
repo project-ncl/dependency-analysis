@@ -17,5 +17,5 @@ public interface BuildConfigurationGenerator {
 
     GeneratorEntity iterateBCGeneration(GeneratorEntity projects) throws CommunicationException;
 
-    void createBC(GeneratorEntity projects) throws CommunicationException;
+    void createBC(GeneratorEntity projects) throws Exception;
 }
