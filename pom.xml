@@ -97,7 +97,7 @@
                 <groupId>org.jboss.da</groupId>
                 <artifactId>bc-rest</artifactId>
                 <version>${version.da}</version>
-                <type>ejb</type>
+                <type>war</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.da</groupId>
