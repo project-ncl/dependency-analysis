@@ -14,6 +14,12 @@ import lombok.ToString;
 @ToString
 public class GAV {
 
+    public GAV(String groupId, String artifactId, String version) {
+        this.groupId = groupId;
+        this.artifactId = artifactId;
+        this.version = version;
+    }
+
     @Getter
     @Setter
     protected String groupId;
