@@ -1,7 +1,6 @@
 package org.jboss.da.reports.impl;
 
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
@@ -18,6 +17,7 @@ import org.slf4j.Logger;
 
 import javax.inject.Inject;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -26,10 +26,9 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 /**
  * The implementation of reports, which provides information about
  * built/not built artifacts/blacklisted artifacts
- * 
+ *
  * @author Jakub Bartecek <jbartece@redhat.com>
  * @author Honza Brázdil <jbrazdil@redhat.com>
- *
  */
 public class ReportsGeneratorImpl implements ReportsGenerator {
 
@@ -59,10 +58,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (!dt.isPresent())
             return Optional.empty();
 
+        Set<GAVDependencyTree> nodesVisited = new HashSet<>();
         VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(dt.get().getGav());
         ArtifactReport report = toArtifactReport(dt.get().getGav(), result);
+        nodesVisited.add(dt.get());
 
-        addDependencyReports(report, dt.get().getDependencies());
+        addDependencyReports(report, dt.get().getDependencies(), nodesVisited);
 
         return Optional.of(report);
     }
@@ -78,13 +79,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             throw new IllegalArgumentException("GAV can't be null");
 
         Optional<GAVDependencyTree> dt = dependencyTreeGenerator.getDependencyTree(gav);
+
         if (!dt.isPresent())
             return Optional.empty();
 
+        Set<GAVDependencyTree> nodesVisited = new HashSet<>();
         VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(gav);
         ArtifactReport report = toArtifactReport(gav, result);
+        nodesVisited.add(dt.get());
 
-        addDependencyReports(report, dt.get().getDependencies());
+        addDependencyReports(report, dt.get().getDependencies(), nodesVisited);
 
         return Optional.of(report);
     }
@@ -98,14 +102,20 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return report;
     }
 
-    private void addDependencyReports(ArtifactReport ar, Set<GAVDependencyTree> dependencyTree)
-            throws CommunicationException {
+    private void addDependencyReports(ArtifactReport ar, Set<GAVDependencyTree> dependencyTree,
+            Set<GAVDependencyTree> nodesVisited) throws CommunicationException {
         for (GAVDependencyTree dt : dependencyTree) {
+
             VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(dt.getGav());
 
             ArtifactReport dar = toArtifactReport(dt.getGav(), result);
-            addDependencyReports(dar, dt.getDependencies());
+
+            // if dt hasn't been visited yet, add dependencies of dt in the report
+            if (!nodesVisited.contains(dt))
+                addDependencyReports(dar, dt.getDependencies(), nodesVisited);
+
             ar.addDependency(dar);
+            nodesVisited.add(dt);
         }
     }
 
