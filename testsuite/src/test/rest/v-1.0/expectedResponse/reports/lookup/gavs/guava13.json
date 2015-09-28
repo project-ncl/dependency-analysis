@@ -1,1 +1,16 @@
-[{"bestMatchVersion":"13.0.1.redhat-2","availableVersions":["11.0.2-redhat-1","11.0.2-redhat-2","13.0.1-redhat-1","13.0.1.redhat-2"],"blacklisted":false,"whitelisted":false,"groupId":"com.google.guava","artifactId":"guava","version":"13.0.1"}]
+[
+  {
+    "bestMatchVersion": "13.0.1.redhat-2",
+    "availableVersions": [
+      "11.0.2-redhat-1",
+      "11.0.2-redhat-2",
+      "13.0.1-redhat-1",
+      "13.0.1.redhat-2"
+    ],
+    "blacklisted": false,
+    "whitelisted": false,
+    "groupId": "com.google.guava",
+    "artifactId": "guava",
+    "version": "13.0.1"
+  }
+]

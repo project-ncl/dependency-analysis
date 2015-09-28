@@ -1,1 +1,4 @@
-{"success":true,"message":"Artifact was moved from whitelist into blacklist"}
+{
+  "success": true,
+  "message": "Artifact was moved from whitelist into blacklist"
+}

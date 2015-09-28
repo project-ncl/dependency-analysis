@@ -1,1 +1,12 @@
-[{"groupId":"org.jboss.da","artifactId":"dependency-analyzer","version":"0.3.0"},{"groupId":"org.jboss.da","artifactId":"dependency-analyzer","version":"0.3.2"}]
+[
+  {
+    "groupId": "org.jboss.da",
+    "artifactId": "dependency-analyzer",
+    "version": "0.3.0"
+  },
+  {
+    "groupId": "org.jboss.da",
+    "artifactId": "dependency-analyzer",
+    "version": "0.3.2"
+  }
+]
