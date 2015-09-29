@@ -1,5 +1,6 @@
 package org.jboss.da.test;
 
+import org.jboss.arquillian.container.test.api.Testable;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.Assignable;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -39,8 +40,11 @@ public class ArquillianDeploymentFactory {
         updateManifestResource(ear, "persistence.xml");
         updateManifestResource(ear, "application.xml");
         updateManifestResource(ear, "jboss-deployment-structure.xml");
-        WebArchive reportsRestWar = ear.getAsType(WebArchive.class, "reports-rest.war");
+        WebArchive reportsRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class,
+                "reports-rest.war"));
+        WebArchive bcRestWar = ear.getAsType(WebArchive.class, "bc-rest.war");
         updateRestWarWithReplacements(reportsRestWar);
+        updateRestWarWithReplacements(bcRestWar);
         ear.addAsModule(createTestsuiteJar());
     }
 

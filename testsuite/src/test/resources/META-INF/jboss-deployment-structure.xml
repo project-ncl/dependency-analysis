@@ -2,7 +2,7 @@
 <jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
     <deployment>
     </deployment>
-    <sub-deployment name="bc-rest.jar">
+    <sub-deployment name="bc-rest.war">
         <dependencies>
             <module name="deployment.testsuite.ear.bc-backend.jar"/>
         </dependencies>
@@ -31,7 +31,7 @@
     </sub-deployment>
     <sub-deployment name="testsuite.jar">
         <dependencies>
-            <module name="deployment.testsuite.ear.bc-rest.jar"/>
+            <module name="deployment.testsuite.ear.bc-rest.war"/>
             <module name="deployment.testsuite.ear.reports-rest.war"/>
         </dependencies>
     </sub-deployment>
