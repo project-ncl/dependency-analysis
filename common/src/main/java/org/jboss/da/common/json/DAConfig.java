@@ -37,4 +37,8 @@ public class DAConfig {
     @Setter
     private String aproxRemote;
 
+    @Getter
+    @Setter
+    private String repourUrl;
+
 }
