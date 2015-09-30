@@ -1,5 +1,6 @@
 package org.jboss.da.communication.pom;
 
+import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.apache.commons.io.FileUtils;
 import org.commonjava.cartographer.CartoDataException;
 import org.commonjava.cartographer.CartographerCore;
@@ -26,6 +27,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -37,9 +39,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.jboss.da.communication.CommunicationException;
 
 @ApplicationScoped
-public class PomAnalyzer {
+public class PomAnalyzerImpl implements PomAnalyzer {
 
     @Inject
     private PomReader pomReader;
@@ -48,16 +51,7 @@ public class PomAnalyzer {
     @DACartographerCore
     private CartographerCore carto;
 
-    /**
-     * Given the directory of a project, and the directory of the project which
-     * we'll consider as the root project, return the GAVDependencyTree of the
-     * root project.
-     *
-     * @param pomRepoDir Directory of the project to analyze
-     * @param pomPath Directory of the root project to analyze
-     * @return The GAVDependencyTree of the root project
-     * @throws PomAnalysisException
-     */
+    @Override
     public GAVDependencyTree readRelationships(File pomRepoDir, File pomPath)
             throws PomAnalysisException {
 
@@ -248,5 +242,15 @@ public class PomAnalyzer {
                 origin.addDependency(target);
                 break;
         }
+    }
+
+    @Override
+    public Optional<MavenProject> readPom(File pomPath) {
+        return pomReader.analyze(pomPath);
+    }
+
+    @Override
+    public Optional<MavenProject> readPom(InputStream is) throws CommunicationException {
+        return pomReader.analyze(is);
     }
 }

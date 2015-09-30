@@ -2,19 +2,15 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.jboss.da</groupId>
-    <artifactId>parent</artifactId>
-    <version>0.4.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <parent>
+        <groupId>org.jboss.da</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.4.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>child</artifactId>
 
     <name>dependency-analyzer</name>
     <url>https://github.com/project-ncl/dependecy-analysis</url>
-
-    <scm>
-        <connection>scm:git:https://github.com/project-ncl/dependency-analysis</connection>
-        <url>https://github.com/project-ncl/dependency-analysis</url>
-        <tag>0.4</tag>
-    </scm>
 
     <repositories>
         <repository>

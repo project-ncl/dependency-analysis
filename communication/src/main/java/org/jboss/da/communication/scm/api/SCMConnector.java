@@ -4,6 +4,7 @@ import java.util.Optional;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.communication.pom.model.MavenProject;
 
 /**
  *
@@ -24,4 +25,6 @@ public interface SCMConnector {
     Optional<GAVDependencyTree> getDependencyTreeOfRevision(String scmUrl, String revision,
             String pomPath) throws ScmException, PomAnalysisException;
 
+    Optional<MavenProject> getPom(String scmUrl, String revision, String pomPath)
+            throws ScmException;
 }
