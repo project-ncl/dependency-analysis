@@ -17,7 +17,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 
-import java.util.Arrays;
 import java.util.List;
 
 @ApplicationScoped
@@ -66,9 +65,9 @@ public class PNCConnectorImpl implements PNCConnector {
 
     @Override
     public List<BuildConfiguration> getBuildConfigurations() throws Exception {
-        ClientResponse<BuildConfiguration[]> response = getClient("build-configurations").get(
-                BuildConfiguration[].class);
-        return Arrays.asList(response.getEntity());
+        ClientResponse<List<BuildConfiguration>> response = getClient("build-configurations").get(
+                new GenericType<List<BuildConfiguration>>() {});
+        return response.getEntity();
     }
 
     @Override
@@ -89,21 +88,21 @@ public class PNCConnectorImpl implements PNCConnector {
 
     @Override
     public List<BuildConfigurationSet> getBuildConfigurationSets() throws Exception {
-        ClientResponse<BuildConfigurationSet[]> response = getClient("build-configuration-sets")
-                .get(BuildConfigurationSet[].class);
-        return Arrays.asList(response.getEntity());
+        ClientResponse<List<BuildConfigurationSet>> response = getClient("build-configuration-sets")
+                .get(new GenericType<List<BuildConfigurationSet>>() {});
+        return response.getEntity();
     }
 
     @Override
     public List<Product> getProducts() throws Exception {
-        ClientResponse<Product[]> response = getClient("products").get(Product[].class);
-        return Arrays.asList(response.getEntity());
+        ClientResponse<List<Product>> response = getClient("products").get(new GenericType<List<Product>>() {});
+        return response.getEntity();
     }
 
     @Override
     public List<Project> getProjects() throws Exception {
-        ClientResponse<Project[]> response = getClient("projects").get(Project[].class);
-        return Arrays.asList(response.getEntity());
+        ClientResponse<List<Project>> response = getClient("projects").get(new GenericType<List<Project>>() {});
+        return response.getEntity();
     }
 
     @Override
