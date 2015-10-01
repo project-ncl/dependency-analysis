@@ -12,11 +12,4 @@ public class RepositoryClonerImplTest {
         clonner.cloneRepository("", "", SCMType.SVN, "");
     }
 
-    @Test
-    public void testCloneGitRepository() throws Exception {
-        String url = clonner.cloneRepository("https://github.com/project-ncl/dependency-analysis",
-                "master", SCMType.GIT, "TEST_DA3");
-        System.out.println("\n\n" + url + "\n\n");
-    }
-
 }
