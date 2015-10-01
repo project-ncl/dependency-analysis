@@ -95,13 +95,15 @@ public class PNCConnectorImpl implements PNCConnector {
 
     @Override
     public List<Product> getProducts() throws Exception {
-        ClientResponse<List<Product>> response = getClient("products").get(new GenericType<List<Product>>() {});
+        ClientResponse<List<Product>> response = getClient("products").get(
+                new GenericType<List<Product>>() {});
         return response.getEntity();
     }
 
     @Override
     public List<Project> getProjects() throws Exception {
-        ClientResponse<List<Project>> response = getClient("projects").get(new GenericType<List<Project>>() {});
+        ClientResponse<List<Project>> response = getClient("projects").get(
+                new GenericType<List<Project>>() {});
         return response.getEntity();
     }
 
