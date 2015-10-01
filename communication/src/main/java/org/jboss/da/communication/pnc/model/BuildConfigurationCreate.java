@@ -2,10 +2,13 @@ package org.jboss.da.communication.pnc.model;
 
 import java.util.Date;
 import java.util.List;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 public class BuildConfigurationCreate {
 
     @Getter

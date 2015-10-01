@@ -18,12 +18,23 @@ public interface PNCConnector {
 
     List<BuildConfiguration> getBuildConfigurations() throws Exception;
 
+    /**
+     * Gets all BuildConfigurations from PNC with the specific SCM URL and SCM Revision
+     * 
+     * @param scmUrl SCM URL expected in BC
+     * @param scmRevision SCM revision expected in BC
+     * @return List of BCs with specified SCM URL and SCM revision or empty list if no BC was found
+     * @throws Exception Thrown if communication with PNC failed
+     */
+    List<BuildConfiguration> getBuildConfigurations(String scmUrl, String scmRevision)
+            throws Exception;
+
     BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc) throws Exception;
 
     BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs) throws Exception;
 
     /**
-     * Finds BuildConfigurationSet with specific product version id and build configurations ids from pnc 
+     * Finds BuildConfigurationSet with specific product version id and build configurations ids from pnc
      * 
      * @param productVersionId
      * @param buildConfigurationIds
