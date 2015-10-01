@@ -1,27 +1,15 @@
-package org.jboss.da.test.server;
+package org.jboss.da.test.client;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
-/**
- *
- * @author Honza Brázdil <jbrazdil@redhat.com>
- */
-@RunWith(Arquillian.class)
-public class DeploymentTest {
+public abstract class AbstractRestReportsTest extends AbstractRestApiTest {
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
         return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
-    }
-
-    @Test
-    public void testDeployment() {
     }
 
 }

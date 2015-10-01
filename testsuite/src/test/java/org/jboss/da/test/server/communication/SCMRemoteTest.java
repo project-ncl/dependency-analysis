@@ -1,7 +1,9 @@
 package org.jboss.da.test.server.communication;
 
 import java.util.Optional;
+
 import javax.inject.Inject;
+
 import org.apache.maven.scm.ScmException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -10,9 +12,12 @@ import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.test.ArquillianDeploymentFactory;
+import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,7 +33,7 @@ public class SCMRemoteTest {
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment();
+        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
     }
 
     @Test

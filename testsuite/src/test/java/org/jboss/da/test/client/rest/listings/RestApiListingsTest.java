@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.AbstractRestApiTest;
+import org.jboss.da.test.client.AbstractRestReportsTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.util.GenericType;
@@ -21,7 +22,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class RestApiListingsTest extends AbstractRestApiTest {
+public class RestApiListingsTest extends AbstractRestReportsTest {
 
     private enum ListType {
         BLACK, WHITE

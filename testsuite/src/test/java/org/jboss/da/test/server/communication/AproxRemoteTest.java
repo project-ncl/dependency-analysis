@@ -13,6 +13,7 @@ import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.test.ArquillianDeploymentFactory;
+import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import static org.junit.Assert.assertFalse;
 
 @RunWith(Arquillian.class)
@@ -35,7 +37,7 @@ public class AproxRemoteTest {
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment();
+        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
     }
 
     @Test

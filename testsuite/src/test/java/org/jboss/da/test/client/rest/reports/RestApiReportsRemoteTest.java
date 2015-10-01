@@ -5,7 +5,7 @@ import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.io.FileUtils;
-import org.jboss.da.test.client.AbstractRestApiTest;
+import org.jboss.da.test.client.AbstractRestReportsTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 
 import java.io.File;
 
-public class RestApiReportsRemoteTest extends AbstractRestApiTest {
+public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
     private static String ENCODING = "utf-8";
 

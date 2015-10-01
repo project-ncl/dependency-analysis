@@ -18,31 +18,43 @@ import java.util.zip.ZipFile;
 
 public class ArquillianDeploymentFactory {
 
+    public enum DepType {
+        BC, REPORTS
+    }
+
     public static final String DEPLOYMENT_NAME = "testsuite";
 
     private static final String TEST_JAR = "testsuite.jar";
 
     private static final String TEST_EAR = DEPLOYMENT_NAME + ".ear";
 
-    public EnterpriseArchive createDeployment() {
+    public EnterpriseArchive createDeployment(DepType type) {
         File earProjectBuildDir = new File(new File(getProjectTopLevelDir(), "application"),
                 "target");
         File earFile = new File(earProjectBuildDir, "dependency-analysis.ear");
         EnterpriseArchive ear = createFromZipFile(EnterpriseArchive.class, earFile, TEST_EAR);
-        updateEar(ear);
+        updateEar(ear, type);
         if (isCreateArchiveCopy()) {
             writeArchiveToFile(ear, new File("target", ear.getName()));
         }
         return ear;
     }
 
-    private void updateEar(EnterpriseArchive ear) {
+    private void updateEar(EnterpriseArchive ear, DepType type) {
         updateManifestResource(ear, "persistence.xml");
         updateManifestResource(ear, "application.xml");
         updateManifestResource(ear, "jboss-deployment-structure.xml");
-        WebArchive reportsRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class,
-                "reports-rest.war"));
-        WebArchive bcRestWar = ear.getAsType(WebArchive.class, "bc-rest.war");
+        WebArchive reportsRestWar = null;
+        WebArchive bcRestWar = null;
+        if (type == DepType.REPORTS) {
+            reportsRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class,
+                    "reports-rest.war"));
+            bcRestWar = ear.getAsType(WebArchive.class, "bc-rest.war");
+        }
+        if (type == DepType.BC) {
+            reportsRestWar = ear.getAsType(WebArchive.class, "reports-rest.war");
+            bcRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class, "bc-rest.war"));
+        }
         updateRestWarWithReplacements(reportsRestWar);
         updateRestWarWithReplacements(bcRestWar);
         ear.addAsModule(createTestsuiteJar());

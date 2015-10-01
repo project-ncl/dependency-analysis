@@ -1,7 +1,7 @@
 package org.jboss.da.test.client.rest;
 
 import org.apache.http.entity.ContentType;
-import org.jboss.da.test.client.AbstractRestApiTest;
+import org.jboss.da.test.client.AbstractRestReportsTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.apache.http.entity.ContentType.TEXT_HTML;
 import static org.junit.Assert.assertEquals;
 
-public class RestApiIndexTest extends AbstractRestApiTest {
+public class RestApiIndexTest extends AbstractRestReportsTest {
 
     @Test
     public void testIndexHtml() throws Exception {
