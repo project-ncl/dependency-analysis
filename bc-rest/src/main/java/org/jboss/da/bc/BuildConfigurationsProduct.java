@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.wordnik.swagger.annotations.Api;
@@ -71,10 +72,47 @@ public class BuildConfigurationsProduct {
         bctop.setPomPath("/pom.xml");
         bctop.setProjectId(12);
         bctop.setScmRevision("e9f99a8");
-        bctop.setScmUrl("hibernate.url");
+        bctop.setScmUrl("git.hibernate.url");
         bctop.setSelected(true);
         bctop.setUseExistingBc(true);
-        bctop.setDependencies(new ArrayList<BuildConfiguration>());
+        // 2nd level dep
+        BuildConfiguration bc2 = new BuildConfiguration();
+        bc2.setBcExists(true);
+        bc2.setBuildScript("mvn clean deploy");
+        bc2.setCloneRepo(false);
+        bc2.setDescription("junit build configuration");
+        bc2.setEnviromentId(1);
+        bc2.setGav(new GAV("org.junit", "junit", "2"));
+        bc2.setInternallyBuilt("2.0.0.redhat-1");
+        bc2.setName("junit bc");
+        bc2.setPomPath("/pom.xml");
+        bc2.setProjectId(12);
+        bc2.setScmRevision("erf99a8");
+        bc2.setScmUrl("git.junit.url");
+        bc2.setSelected(false);
+        bc2.setUseExistingBc(true);
+
+        BuildConfiguration bc3 = new BuildConfiguration();
+        bc3.setBcExists(false);
+        bc3.setBuildScript("");
+        bc3.setCloneRepo(false);
+        bc3.setDescription("");
+        bc3.setEnviromentId(1);
+        bc3.setGav(new GAV("org.unknown", "unknown-unit", "2.8"));
+        bc3.setInternallyBuilt(null);
+        bc3.setName("");
+        bc3.setPomPath("");
+        bc3.setProjectId(null);
+        bc3.setScmRevision("");
+        bc3.setScmUrl("");
+        bc3.setSelected(false);
+        bc3.setUseExistingBc(false);
+        //
+        List<BuildConfiguration> bclist = new ArrayList<BuildConfiguration>();
+        bclist.add(bc2);
+        bclist.add(bc3);
+        bctop.setDependencies(bclist);
+
         bcset.setTopLevelBc(bctop);
         return bcset;
     }
@@ -112,7 +150,7 @@ public class BuildConfigurationsProduct {
         bc2.setProjectId(12);
         bc2.setScmRevision("erf99a8");
         bc2.setScmUrl("git.junit.url");
-        bc2.setSelected(false);
+        bc2.setSelected(true);
         bc2.setUseExistingBc(true);
 
         BuildConfiguration bc3 = new BuildConfiguration();
@@ -130,7 +168,25 @@ public class BuildConfigurationsProduct {
         bc3.setScmUrl("");
         bc3.setSelected(false);
         bc3.setUseExistingBc(false);
-        //
+
+        // 3rd level
+        BuildConfiguration bc4 = new BuildConfiguration();
+        bc4.setBcExists(false);
+        bc4.setBuildScript("");
+        bc4.setCloneRepo(false);
+        bc4.setDescription("");
+        bc4.setEnviromentId(1);
+        bc4.setGav(new GAV("org.dep", "unknown-unit-dep", "2.6"));
+        bc4.setInternallyBuilt(null);
+        bc4.setName("");
+        bc4.setPomPath("");
+        bc4.setProjectId(null);
+        bc4.setScmRevision("");
+        bc4.setScmUrl("");
+        bc4.setSelected(false);
+        bc4.setUseExistingBc(false);
+        bc2.setDependencies(Arrays.asList(bc4));
+
         List<BuildConfiguration> bclist = new ArrayList<BuildConfiguration>();
         bclist.add(bc2);
         bclist.add(bc3);
