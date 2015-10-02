@@ -1,16 +1,14 @@
 package org.jboss.da.test.client;
 
 import org.apache.http.entity.ContentType;
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.da.test.ArquillianDeploymentFactory;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
+
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -35,11 +33,6 @@ public abstract class AbstractRestApiTest {
     protected final Path restApiRequestFolder;
 
     protected final Path restApiExpectedResponseFolder;
-
-    @Deployment
-    public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment();
-    }
 
     public AbstractRestApiTest() {
         this.hostUrl = readHostUrl();
