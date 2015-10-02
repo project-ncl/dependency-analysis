@@ -7,6 +7,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.test.ArquillianDeploymentFactory;
+import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +30,7 @@ public class PncRemoteTest {
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment();
+        return new ArquillianDeploymentFactory().createDeployment(DepType.BC);
     }
 
     @Test
