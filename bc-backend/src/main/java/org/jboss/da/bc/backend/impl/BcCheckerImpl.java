@@ -29,7 +29,7 @@ public class BcCheckerImpl implements BcChecker {
         if (foundBcs.isEmpty())
             return Optional.empty();
         else
-            return Optional.ofNullable(foundBcs.get(0));
+            return Optional.of(foundBcs.get(0));
     }
 
 }

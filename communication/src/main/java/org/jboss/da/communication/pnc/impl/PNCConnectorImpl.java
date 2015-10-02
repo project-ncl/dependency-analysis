@@ -25,20 +25,21 @@ public class PNCConnectorImpl implements PNCConnector {
     @Inject
     private PNCAuthentication pncAuthenticate;
 
-    private String pncBaseUrl;
+    private final String PNC_BASE_URL;
 
     @Deprecated
     public PNCConnectorImpl() {
+        PNC_BASE_URL = "";
     }
 
     @Inject
     public PNCConnectorImpl(Configuration config) throws ConfigurationParseException {
-        pncBaseUrl = config.getConfig().getPncServer() + "/pnc-rest/rest/";
+        PNC_BASE_URL = config.getConfig().getPncServer() + "/pnc-rest/rest/";
     }
 
     private ClientRequest getClient(String endpoint, boolean authenticate)
             throws ConfigurationParseException {
-        ClientRequest request = new ClientRequest(pncBaseUrl + endpoint);
+        ClientRequest request = new ClientRequest(PNC_BASE_URL + endpoint);
         request.accept(MediaType.APPLICATION_JSON);
 
         checkAutentication(authenticate, request);
