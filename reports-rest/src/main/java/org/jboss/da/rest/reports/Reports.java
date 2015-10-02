@@ -4,7 +4,6 @@ import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
-import org.jboss.da.communication.pom.PomAnalyzer;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.ArtifactReport;
@@ -62,9 +61,6 @@ public class Reports {
 
     @Inject
     private BlackArtifactService blackArtifactService;
-
-    @Inject
-    private PomAnalyzer pomAnalyzer;
 
     @POST
     @Path("/scm")

@@ -1,0 +1,23 @@
+package org.jboss.da.communication.pom.model;
+
+import javax.xml.bind.annotation.XmlElement;
+import lombok.Getter;
+
+/**
+ *
+ * @author Honza Brázdil <jbrazdil@redhat.com>
+ */
+public class MavenParent {
+
+    @Getter
+    @XmlElement(name = "groupId", required = true)
+    private String groupId;
+
+    @Getter
+    @XmlElement(name = "artifactId", required = true)
+    private String artifactId;
+
+    @Getter
+    @XmlElement(name = "version", required = true)
+    private String version;
+}

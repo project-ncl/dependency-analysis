@@ -7,6 +7,7 @@ import org.jboss.da.communication.model.GAV;
 
 import java.util.List;
 import java.util.Optional;
+import org.jboss.da.communication.pom.model.MavenProject;
 
 public interface AproxConnector {
 
@@ -28,4 +29,6 @@ public interface AproxConnector {
      * @throws CommunicationException When there is problem with communication.
      */
     List<String> getVersionsOfGA(GA ga) throws CommunicationException;
+
+    Optional<MavenProject> getPom(GAV gav) throws CommunicationException;
 }

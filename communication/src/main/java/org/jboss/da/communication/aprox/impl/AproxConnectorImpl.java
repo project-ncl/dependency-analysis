@@ -1,7 +1,5 @@
 package org.jboss.da.communication.aprox.impl;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.maven.scm.ScmException;
 import org.commonjava.aprox.client.core.Aprox;
 import org.commonjava.aprox.client.core.AproxClientException;
 import org.commonjava.aprox.depgraph.client.DepgraphAproxClientModule;
@@ -21,10 +19,6 @@ import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
-import org.jboss.da.communication.pom.PomAnalysisException;
-import org.jboss.da.communication.pom.PomAnalyzer;
-import org.jboss.da.scm.SCM;
-import org.jboss.da.scm.SCMType;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -32,24 +26,27 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.Files;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import org.jboss.da.communication.pom.api.PomAnalyzer;
+import org.jboss.da.communication.pom.model.MavenProject;
 
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {
 
     @Inject
     private Configuration config;
+
+    @Inject
+    private PomAnalyzer pomAnalyzer;
 
     @Override
     public Optional<GAVDependencyTree> getDependencyTreeOfGAV(GAV gav)
@@ -101,6 +98,28 @@ public class AproxConnectorImpl implements AproxConnector {
             return Collections.emptyList();
         } catch (IOException | ConfigurationParseException | CommunicationException e) {
             throw new CommunicationException("Failed to obtain versions for " + ga.toString()
+                    + " from approx server with url " + query.toString(), e);
+        }
+    }
+
+    @Override
+    public Optional<MavenProject> getPom(GAV gav) throws CommunicationException {
+        StringBuilder query = new StringBuilder();
+        try {
+            DAConfig cfg = this.config.getConfig();
+            query.append(cfg.getAproxServer());
+            query.append("/api/group/public/");
+            query.append(gav.getGroupId().replace(".", "/")).append("/");
+            query.append(gav.getArtifactId()).append('/');
+            query.append(gav.getVersion()).append('/');
+            query.append(gav.getArtifactId()).append('-').append(gav.getVersion()).append(".pom");
+
+            URLConnection connection = new URL(query.toString()).openConnection();
+            return pomAnalyzer.readPom(connection.getInputStream());
+        } catch (FileNotFoundException ex) {
+            return Optional.empty();
+        } catch (IOException | ConfigurationParseException e) {
+            throw new CommunicationException("Failed to obtain pom for " + gav.toString()
                     + " from approx server with url " + query.toString(), e);
         }
     }
