@@ -1,12 +1,12 @@
 package org.jboss.da.communication.pnc.api;
 
-import java.util.List;
-
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.Product;
 import org.jboss.da.communication.pnc.model.Project;
+
+import java.util.List;
 
 /**
  *
@@ -30,6 +30,24 @@ public interface PNCConnector {
             throws Exception;
 
     BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc) throws Exception;
+
+    /**
+     * Deletes BuildConfiguration from PNC by ID of the BC
+     * 
+     * @param bc BC to be deleted
+     * @return True, if the BC was successfully removed, otherwise false
+     * @throws Exception Thrown if the communication with PNC failed
+     */
+    boolean deleteBuildConfiguration(BuildConfiguration bc) throws Exception;
+
+    /**
+     * Deletes BuildConfiguration from PNC by ID of the BC
+     * 
+     * @param bcId ID of BC to be deleted
+     * @return True, if the BC was successfully removed, otherwise false
+     * @throws Exception Thrown if the communication with PNC failed
+     */
+    boolean deleteBuildConfiguration(int bcId) throws Exception;
 
     BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs) throws Exception;
 
