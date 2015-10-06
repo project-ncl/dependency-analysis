@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.Optional;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
 
@@ -29,5 +30,17 @@ public interface PomAnalyzer {
      * @throws PomAnalysisException
      */
     GAVDependencyTree readRelationships(File pomRepoDir, File pomPath) throws PomAnalysisException;
+
+    /**
+     * Given the directory of a project, and the gav of the project which
+     * we'll consider as the root project, return the GAVDependencyTree of the
+     * root project.
+     *
+     * @param pomRepoDir Directory of the project to analyze
+     * @param gav GAV of the root project to analyze
+     * @return The GAVDependencyTree of the root project
+     * @throws PomAnalysisException
+     */
+    GAVDependencyTree readRelationships(File pomRepoDir, GAV gav) throws PomAnalysisException;
 
 }

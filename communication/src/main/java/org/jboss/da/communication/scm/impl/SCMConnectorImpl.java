@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
@@ -28,6 +29,27 @@ public class SCMConnectorImpl implements SCMConnector {
 
     @Inject
     private PomAnalyzer pomAnalyzer;
+
+    @Override
+    public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, GAV gav)
+            throws ScmException, PomAnalysisException {
+        try {
+            // git clone
+            // TODO: hardcoded to git right now
+            File tempDir = Files.createTempDirectory("cloned_repo").toFile();
+
+            try {
+                scmManager.cloneRepository(SCMType.GIT, scmUrl, revision, tempDir.toString());
+                GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, gav);
+                return gavDependencyTree;
+            } finally {
+                // cleanup
+                FileUtils.deleteDirectory(tempDir);
+            }
+        } catch (IOException e) {
+            throw new ScmException("Could not create temp directory for cloning the repository", e);
+        }
+    }
 
     @Override
     public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision,

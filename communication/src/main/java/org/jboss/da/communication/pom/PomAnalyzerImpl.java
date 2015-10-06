@@ -120,6 +120,40 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         }
     }
 
+    @Override
+    public GAVDependencyTree readRelationships(File pomRepoDir, GAV gav)
+            throws PomAnalysisException {
+        try {
+            File tempDir = Files.createTempDirectory("deps").toFile();
+            try {
+                // map of file and ProjectVersionRefs that represent all the pom.xmls found in the pomRepoDir directory
+                Map<File, ProjectVersionRef> projectVersionRefs = getProjectVersionRefs(tempDir,
+                        findAllPomFiles(pomRepoDir));
+
+                File pomPath = null;
+
+                for (Map.Entry<File, ProjectVersionRef> entry : projectVersionRefs.entrySet()) {
+                    if (isProjectVersionRefSameAsGAV(entry.getValue(), gav)) {
+                        pomPath = entry.getKey();
+                        break;
+                    }
+                }
+
+                if (pomPath == null) {
+                    throw new PomAnalysisException("Could not find the GAV " + gav
+                            + " in the project");
+                } else {
+                    return readRelationships(pomRepoDir, pomPath);
+                }
+
+            } finally {
+                FileUtils.deleteDirectory(tempDir);
+            }
+        } catch (TransferException | IOException e) {
+            throw new PomAnalysisException(e);
+        }
+    }
+
     /**
      * Return an existing GAVDependencyTree if present in the map, otherwise create a new GAVDependencyTree
      * and map the GAV to the GAVDependencyTree
@@ -255,5 +289,14 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     @Override
     public Optional<MavenProject> readPom(InputStream is) throws CommunicationException {
         return pomReader.analyze(is);
+    }
+
+    private boolean isProjectVersionRefSameAsGAV(ProjectVersionRef f, GAV gav) {
+        String version = f.getVersionString();
+        String groupId = f.getGroupId();
+        String artifactId = f.getArtifactId();
+
+        return gav.getGroupId().equals(groupId) && gav.getArtifactId().equals(artifactId)
+                && gav.getVersion().equals(version);
     }
 }
