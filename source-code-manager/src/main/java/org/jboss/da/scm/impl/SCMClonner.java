@@ -1,5 +1,6 @@
-package org.jboss.da.scm;
+package org.jboss.da.scm.impl;
 
+import org.jboss.da.scm.api.SCMType;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
 import org.apache.maven.scm.ScmTag;
@@ -12,16 +13,17 @@ import org.apache.maven.scm.repository.ScmRepository;
 import org.apache.maven.scm.repository.ScmRepositoryException;
 import javax.enterprise.context.ApplicationScoped;
 import java.io.File;
+import org.apache.maven.scm.command.checkout.CheckOutScmResult;
 
 /**
  * This code is mostly based from the SCM code in pnc-local, written by Ahmed Abu Lawi (@ahmedlawi92)
  */
 @ApplicationScoped
-public class SCM {
+public class SCMClonner {
 
     private ScmManager scmManager;
 
-    public SCM() {
+    public SCMClonner() {
         scmManager = new BasicScmManager();
 
         // Add new providers here
@@ -29,18 +31,19 @@ public class SCM {
         scmManager.setScmProvider(SCMType.SVN.toString(), new SvnExeScmProvider());
     }
 
-    public boolean cloneRepository(SCMType scmType, String scmUrl, String revision, String cloneTo)
+    public void cloneRepository(SCMType scmType, String scmUrl, String revision, File cloneTo)
             throws ScmException {
 
-        File buildDir = new File(cloneTo);
-        if (!buildDir.exists()) {
-            buildDir.mkdir();
+        if (!cloneTo.exists()) {
+            cloneTo.mkdir();
         }
 
-        ScmRepository repo = getScmRepository(
-                String.format("scm:%s:%s", scmType.toString(), scmUrl), scmManager);
-        return scmManager.checkOut(repo, new ScmFileSet(buildDir), new ScmTag(revision))
-                .isSuccess();
+        ScmRepository repo = getScmRepository(scmType.getSCMUrl(scmUrl), scmManager);
+        CheckOutScmResult checkOut = scmManager.checkOut(repo, new ScmFileSet(cloneTo), new ScmTag(
+                revision));
+        if (!checkOut.isSuccess()) {
+            throw new ScmException("Repository was not clonned: " + checkOut.getProviderMessage());
+        }
     }
 
     private ScmRepository getScmRepository(String scmUrl, ScmManager scmManager)

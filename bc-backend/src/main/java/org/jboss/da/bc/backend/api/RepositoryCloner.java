@@ -1,6 +1,6 @@
 package org.jboss.da.bc.backend.api;
 
-import org.jboss.da.scm.SCMType;
+import org.jboss.da.scm.api.SCMType;
 
 /**
  * 
