@@ -18,12 +18,12 @@ public interface SCMConnector {
      * @param scmUrl
      * @param revision
      * @param pomPath
-     * @return Optional of dependency tree of revision
+     * @return Dependency tree of revision
      * @throws PomAnalysisException When there is problem with the pom analysis
      * @throws ScmException When checking out the repository failed
      */
-    Optional<GAVDependencyTree> getDependencyTreeOfRevision(String scmUrl, String revision,
-            String pomPath) throws ScmException, PomAnalysisException;
+    GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String pomPath)
+            throws ScmException, PomAnalysisException;
 
     Optional<MavenProject> getPom(String scmUrl, String revision, String pomPath)
             throws ScmException;

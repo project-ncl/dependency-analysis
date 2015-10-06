@@ -40,4 +40,10 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
         return bcSet;
     }
 
+    @Override
+    public int createProduct(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose Tools |
+                                                                       // Templates.
+    }
+
 }

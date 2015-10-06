@@ -1,7 +1,5 @@
 package org.jboss.da.test.server.communication;
 
-import java.util.Optional;
-
 import javax.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
@@ -44,36 +42,31 @@ public class SCMRemoteTest {
         String revision = "f34f4e1e";
 
         // normal case
-        Optional<GAVDependencyTree> tree = scmConnector.getDependencyTreeOfRevision(scmUrl,
-                revision, "");
-        assertTrue(tree.isPresent());
+        GAVDependencyTree tree = scmConnector.getDependencyTreeOfRevision(scmUrl, revision, "");
 
-        assertTrue(tree.get().getGav().equals(new GAV("org.jboss.da", "parent", "0.3.0")));
-        assertTrue(tree.get().getDependencies().isEmpty());
+        assertTrue(tree.getGav().equals(new GAV("org.jboss.da", "parent", "0.3.0")));
+        assertTrue(tree.getDependencies().isEmpty());
 
         // with a slash in the pomPath
-        Optional<GAVDependencyTree> treeWithSlash = scmConnector.getDependencyTreeOfRevision(
-                scmUrl, revision, "/");
-        assertTrue(treeWithSlash.isPresent());
+        GAVDependencyTree treeWithSlash = scmConnector.getDependencyTreeOfRevision(scmUrl,
+                revision, "/");
 
-        assertTrue(treeWithSlash.get().getGav().equals(new GAV("org.jboss.da", "parent", "0.3.0")));
-        assertTrue(treeWithSlash.get().getDependencies().isEmpty());
+        assertTrue(treeWithSlash.getGav().equals(new GAV("org.jboss.da", "parent", "0.3.0")));
+        assertTrue(treeWithSlash.getDependencies().isEmpty());
 
         // with application in the pomPath
-        Optional<GAVDependencyTree> treeApplication = scmConnector.getDependencyTreeOfRevision(
-                scmUrl, revision, "application");
-        assertTrue(treeApplication.isPresent());
+        GAVDependencyTree treeApplication = scmConnector.getDependencyTreeOfRevision(scmUrl,
+                revision, "application");
 
-        assertTrue(treeApplication.get().getGav()
-                .equals(new GAV("org.jboss.da", "application", "0.3.0")));
-        assertFalse(treeApplication.get().getDependencies().isEmpty());
+        assertTrue(treeApplication.getGav().equals(new GAV("org.jboss.da", "application", "0.3.0")));
+        assertFalse(treeApplication.getDependencies().isEmpty());
     }
 
     @Test(expected = ScmException.class)
     public void testDependencyTreeOfRevisionWrongRevision() throws ScmException,
             PomAnalysisException {
         String scmUrl = "https://github.com/project-ncl/does_not_exist.git";
-        Optional<GAVDependencyTree> tree = scmConnector.getDependencyTreeOfRevision(scmUrl, "", "");
+        scmConnector.getDependencyTreeOfRevision(scmUrl, "", "");
     }
 
     @Test(expected = ScmException.class)
@@ -81,7 +74,6 @@ public class SCMRemoteTest {
             PomAnalysisException {
         String scmUrl = "https://github.com/project-ncl/dependency-analysis.git";
         String revision = "doesnotexist";
-        Optional<GAVDependencyTree> tree = scmConnector.getDependencyTreeOfRevision(scmUrl,
-                revision, "");
+        scmConnector.getDependencyTreeOfRevision(scmUrl, revision, "");
     }
 }
