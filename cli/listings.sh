@@ -1,6 +1,8 @@
 #!/bin/bash
 
-target=ncl-test-vm-01.host.prod.eng.bos.redhat.com:8180/da/rest/v-0.3
+DA_MAIN_SERVER="ncl-test-vm-01.host.prod.eng.bos.redhat.com:8180/da/rest/v-0.3"
+# DA_TEST_SERVER is defined in the da-cli-test.sh script
+target="${DA_TEST_SERVER:-${DA_MAIN_SERVER}}"
 
 basedir=`dirname $0`
 
