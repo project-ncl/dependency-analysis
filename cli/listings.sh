@@ -218,12 +218,19 @@ pom_bw() {
     tmpfile=`gettmpfile`
     pushd "${pom_path}" > /dev/null
     mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
-    popd > /dev/null
 
     if [ $? -ne 0 ]; then
         rm $tmpfile
+        echo ""
+        echo ""
+        echo "================================================================="
+        echo "'mvn dependency:list' command failed."
+        echo "Consider running 'mvn clean install' before running the pom-bw command again to fix the issue"
+        echo "================================================================="
         exit
     fi
+
+    popd > /dev/null
 
     sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | while read line; do
         wresp=`check white $line`
@@ -273,12 +280,19 @@ pom_report() {
 
     pushd "${pom_path}" > /dev/null
     mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
-    popd > /dev/null
 
     if [ $? -ne 0 ]; then
         rm $tmpfile
+        echo ""
+        echo ""
+        echo "================================================================="
+        echo "'mvn dependency:list' command failed."
+        echo "Consider running 'mvn clean install' before running the pom-report command again to fix the issue"
+        echo "================================================================="
         exit
     fi
+
+    popd > /dev/null
 
     sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | while read line; do
         report_result=`report $raw_output $line`
