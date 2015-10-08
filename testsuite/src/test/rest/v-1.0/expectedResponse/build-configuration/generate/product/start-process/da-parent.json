@@ -1,0 +1,25 @@
+{
+    "name":"Dependency analysis",
+    "bcSetName":"Build configuration set for org.jboss.da:parent:0.3.0",
+    "pomPath":"pom.xml",
+    "topLevelBc":{
+        "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
+        "scmRevision":"0.3.0",
+        "cloneRepo":true,
+        "projectId":null,
+        "buildScript":"",
+        "name":"parent-0.3.0",
+        "description":"Build Configuration for org.jboss.da:parent:0.3.0 - dependency-analyzer.",
+        "internallyBuilt":null,
+        "bcExists":false,
+        "useExistingBc":false,
+        "gav":{
+            "groupId":"org.jboss.da",
+            "artifactId":"parent",
+            "version":"0.3.0"
+        },
+        "environmentId":null,
+        "dependencies":[],
+        "selected":true
+    }
+}
