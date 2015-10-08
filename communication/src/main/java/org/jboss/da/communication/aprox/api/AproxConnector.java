@@ -14,7 +14,7 @@ import org.jboss.da.communication.pom.model.MavenProject;
 public interface AproxConnector {
 
     public enum RepositoryManipulationStatus {
-        DONE, NAME_NOT_EXIST, NAME_EXIST_DIFFERENT_URL, NAME_EXIST;
+        DONE, NAME_NOT_EXIST, NAME_EXIST_DIFFERENT_URL;
     };
 
     /**

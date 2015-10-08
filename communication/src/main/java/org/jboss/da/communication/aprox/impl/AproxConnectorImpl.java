@@ -142,12 +142,13 @@ public class AproxConnectorImpl implements AproxConnector {
                 new AproxStoresClientModule()).connect()) {
             RemoteRepository repo = aprox.stores().load(StoreType.remote, repository.getName(),
                     RemoteRepository.class);
-            if (repo != null) {
-                return RepositoryManipulationStatus.NAME_EXIST;
+            if (repo != null && !repo.getUrl().equals(repository.getUrl())) {
+                return RepositoryManipulationStatus.NAME_EXIST_DIFFERENT_URL;
+            } else if (repo == null) {
+                repo = aprox.stores().create(
+                        new RemoteRepository(repository.getName(), repository.getUrl()),
+                        "Add remote repo", RemoteRepository.class);
             }
-            repo = aprox.stores().create(
-                    new RemoteRepository(repository.getName(), repository.getUrl()),
-                    "Add remote repo", RemoteRepository.class);
 
             Group group = aprox.stores().load(StoreType.group, "DA", Group.class);
 

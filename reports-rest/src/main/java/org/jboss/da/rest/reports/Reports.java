@@ -166,7 +166,8 @@ public class Reports {
             @ApiResponse(code = 200,
                     message = "Repository successfully added to group for searching"),
             @ApiResponse(code = 502, message = "Communication with remote repository failed"),
-            @ApiResponse(code = 409, message = "Repository with this name already exists") })
+            @ApiResponse(code = 409,
+                    message = "Repository with this name already exists with different url") })
     public Response addRepository(@ApiParam(value = "repository data") Repository repository) {
         SuccessResponse response = new SuccessResponse();
         RepositoryManipulationStatus status;
@@ -182,9 +183,9 @@ public class Reports {
             case DONE:
                 response.setSuccess(true);
                 return Response.status(Status.OK).entity(response).build();
-            case NAME_EXIST:
+            case NAME_EXIST_DIFFERENT_URL:
                 response.setSuccess(false);
-                response.setMessage("Repository with this name already exists");
+                response.setMessage("Repository with this name already exists with different url");
                 return Response.status(Status.CONFLICT).entity(response).build();
             default:
                 response.setSuccess(false);
