@@ -1,6 +1,6 @@
 package org.jboss.da.bc.backend.impl;
 
-import org.jboss.da.scm.SCMType;
+import org.jboss.da.scm.api.SCMType;
 import org.junit.Test;
 
 public class RepositoryClonerImplTest {

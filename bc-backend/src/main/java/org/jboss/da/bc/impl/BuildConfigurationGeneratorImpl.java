@@ -29,7 +29,7 @@ import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 import org.jboss.da.reports.backend.api.VersionFinder;
-import org.jboss.da.scm.SCMType;
+import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
 
 /**

@@ -1,8 +1,8 @@
 package org.jboss.da.test.server.scm;
 
 import org.apache.commons.io.FileUtils;
-import org.jboss.da.scm.SCM;
-import org.jboss.da.scm.SCMType;
+import org.jboss.da.scm.impl.SCMClonner;
+import org.jboss.da.scm.api.SCMType;
 import org.junit.Test;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,16 +16,13 @@ public class SCMTest {
     @Test
     public void shouldCloneGitRepository() throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_git_clone");
-        SCM scm = new SCM();
+        SCMClonner scm = new SCMClonner();
 
         try {
             // the git commit is actually the one for tag 0.2.0
-            boolean result = scm.cloneRepository(SCMType.GIT,
+            scm.cloneRepository(SCMType.GIT,
                     "https://github.com/project-ncl/dependency-analysis.git", "05ea9e1",
-                    tempDir.toString());
-
-            // make sure the method itself says the cloning was fine
-            assertTrue(result);
+                    tempDir.toFile());
 
             Path pomPath = Paths.get(tempDir.toString(), "pom.xml");
             assertTrue(pomPath.toFile().exists());
@@ -51,16 +48,13 @@ public class SCMTest {
     @Test
     public void shouldCloneSvnRepository() throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_svn_checkout");
-        SCM scm = new SCM();
+        SCMClonner scm = new SCMClonner();
 
         try {
             // revision makes no sense for SVN
-            boolean result = scm.cloneRepository(SCMType.SVN,
+            scm.cloneRepository(SCMType.SVN,
                     "http://svn.apache.org/repos/asf/commons/proper/cli/tags/cli-1.3.1/", "",
-                    tempDir.toString());
-
-            // make sure the method itself says the cloning was fine
-            assertTrue(result);
+                    tempDir.toFile());
 
             Path pomPath = Paths.get(tempDir.toString(), "pom.xml");
             assertTrue(pomPath.toFile().exists());

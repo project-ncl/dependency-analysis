@@ -6,7 +6,7 @@ import org.jboss.da.bc.model.RepourRequest;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.util.HttpUtil;
-import org.jboss.da.scm.SCMType;
+import org.jboss.da.scm.api.SCMType;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
