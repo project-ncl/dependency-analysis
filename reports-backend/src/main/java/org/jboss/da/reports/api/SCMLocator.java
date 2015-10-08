@@ -1,6 +1,7 @@
 package org.jboss.da.reports.api;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
  * @author Honza Brázdil <janinko.g@gmail.com>
  */
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class SCMLocator {
 
     @Getter
