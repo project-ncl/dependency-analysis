@@ -30,22 +30,12 @@ public class SCMConnectorImpl implements SCMConnector {
     @Override
     public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, GAV gav)
             throws ScmException, PomAnalysisException {
-        try {
-            // git clone
-            // TODO: hardcoded to git right now
-            File tempDir = Files.createTempDirectory("cloned_repo").toFile();
+        // git clone
+        // TODO: hardcoded to git right now
+        File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
-            try {
-                scmManager.cloneRepository(SCMType.GIT, scmUrl, revision, tempDir.toString());
-                GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, gav);
-                return gavDependencyTree;
-            } finally {
-                // cleanup
-                FileUtils.deleteDirectory(tempDir);
-            }
-        } catch (IOException e) {
-            throw new ScmException("Could not create temp directory for cloning the repository", e);
-        }
+        GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, gav);
+        return gavDependencyTree;
     }
 
     @Override
