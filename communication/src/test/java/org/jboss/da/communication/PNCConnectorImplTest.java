@@ -47,15 +47,14 @@ public class PNCConnectorImplTest {
     }
 
     @Test
-    public void shouldGenerateRightUriBasedOnPncServerAndEndpointAuthenticated() throws Exception {
-        ClientRequest req = pncConnectorImpl.getClient("gabriella");
+    public void shouldGenerateRightUriForRequest() throws Exception {
+        ClientRequest req = pncConnectorImpl.getClient("gabriella", "");
         assertEquals(PNC_BASE_URL + "/pnc-rest/rest/gabriella", req.getUri());
     }
 
     @Test
-    public void shouldAddAuthenticationTokenToHeaderForAuthenticatedEndpoint() throws Exception {
-        when(pncAuthenticate.getAccessToken()).thenReturn(token);
-        ClientRequest req = pncConnectorImpl.getClient("testme");
+    public void shouldAddAuthenticationTokenToHeader() throws Exception {
+        ClientRequest req = pncConnectorImpl.getClient("testme", token);
 
         MultivaluedMap<String, String> headers = req.getHeaders();
         assertTrue(headers.containsKey("Authorization"));

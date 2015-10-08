@@ -25,8 +25,7 @@ public class PncAuthenticationInterceptor {
         try {
             return ctx.proceed();
         } catch (AuthenticationException e) {
-            // TODO solve multiple authentication because of concurrency
-            pncAuthentication.authenticate();
+            pncAuthentication.authenticate(e.getAccessToken());
             return ctx.proceed();
         }
     }

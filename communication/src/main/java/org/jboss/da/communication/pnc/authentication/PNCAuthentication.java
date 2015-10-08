@@ -39,23 +39,41 @@ public class PNCAuthentication {
     @Inject
     private Configuration config;
 
-    @Getter
     private String accessToken;
 
-    public void authenticate() {
-        try {
-            DAConfig conf = config.getConfig();
-            String keycloakServer = conf.getKeycloakServer();
-            String realm = conf.getKeycloakRealm();
-            String clientId = conf.getKeycloakClientid();
-            String username = conf.getKeycloakUsername();
-            String password = conf.getKeycloakPassword();
+    /**
+     * Authenticates to PNC using Keycloak server, if the current accessToken the same as the
+     * accessToken passed as a parameter
+     *  
+     * @param oldAccessToken Old accessToken, which failed to authorize a request to PNC
+     */
+    public void authenticate(String oldAccessToken) {
+        if (accessToken == null
+                || (oldAccessToken != null && oldAccessToken.equals(this.accessToken))) {
+            try {
+                DAConfig conf = config.getConfig();
+                String keycloakServer = conf.getKeycloakServer();
+                String realm = conf.getKeycloakRealm();
+                String clientId = conf.getKeycloakClientid();
+                String username = conf.getKeycloakUsername();
+                String password = conf.getKeycloakPassword();
 
-            accessToken = getAccessToken(keycloakServer + "/auth/realms/" + realm
-                    + "/tokens/grants/access", clientId, username, password);
-        } catch (IOException | ConfigurationParseException e) {
-            throw new RuntimeException("Failed to authenticate", e);
+                accessToken = getAccessToken(keycloakServer + "/auth/realms/" + realm
+                        + "/tokens/grants/access", clientId, username, password);
+            } catch (IOException | ConfigurationParseException e) {
+                throw new RuntimeException("Failed to authenticate", e);
+            }
         }
+    }
+
+    /**
+     * Gets the current accessToken obtained from Keycloak server
+     * 
+     * @return AccessToken or null if the authentication haven't proceeded yes
+     */
+    @Lock(LockType.READ)
+    public String getAccessToken() {
+        return accessToken;
     }
 
     private String getAccessToken(String url, Map<String, String> urlParams)
