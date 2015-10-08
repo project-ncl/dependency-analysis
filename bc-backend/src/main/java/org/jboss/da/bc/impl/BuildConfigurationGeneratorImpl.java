@@ -85,7 +85,7 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
     @Override
     public GeneratorEntity iterateBCGeneration(GeneratorEntity projects)
             throws CommunicationException {
-        iterateDependencies(projects.getToplevelBc());
+        iterateDependencies(projects.getToplevelBc(), projects);
         return projects;
     }
 
@@ -96,20 +96,38 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
         bcSetGenerator.createBCSet(projects.getName(), productVersionId, new ArrayList(ids));
     }
 
-    private ProjectHiearchy iterateDependencies(ProjectHiearchy hiearchy) throws CommunicationException {
+    private ProjectHiearchy iterateDependencies(ProjectHiearchy hiearchy, GeneratorEntity entity)
+            throws CommunicationException {
         Optional<Set<ProjectHiearchy>> deps = hiearchy.getDependencies();
         if (hiearchy.isSelected() && deps.isPresent()) {
             if (deps.get().isEmpty()) {
                 GAV gav = hiearchy.getProject().getGav();
-                Optional<GAVToplevelDependencies> gavs = depGenerator.getToplevelDependencies(gav);
-                hiearchy.setDependencies(gavs.map(x -> toProjectHierarchies(x.getDependencies())));
+                hiearchy.setDependencies(getDependencies(gav, entity));
             } else {
                 for (ProjectHiearchy dep : deps.get()) {
-                    iterateDependencies(dep);
+                    iterateDependencies(dep, entity);
                 }
             }
         }
         return hiearchy;
+    }
+
+    /**
+     * Tries to find dependencies in AProx, if not found in AProx, try to found in the original SCM
+     * repository.
+     */
+    private Optional<Set<ProjectHiearchy>> getDependencies(GAV gav, GeneratorEntity entity) throws CommunicationException {
+        Optional<GAVToplevelDependencies> gavs = depGenerator.getToplevelDependencies(gav);
+        if(!gavs.isPresent()){
+            ProjectDetail project = entity.getToplevelProject();
+            try {
+                gavs = Optional.of(depGenerator.getToplevelDependencies(project.getScmUrl(), project.getScmRevision(), gav));
+            } catch (ScmException | PomAnalysisException ex) {
+                return Optional.empty();
+            }
+        }
+
+        return gavs.map(x -> toProjectHierarchies(x.getDependencies()));
     }
 
     private Set toProjectHierarchies(Collection<GAV> gavs){
