@@ -12,4 +12,9 @@ public abstract class AbstractRestReportsTest extends AbstractRestApiTest {
         return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
     }
 
+    @Override
+    protected String getContextRoot() {
+        return ArquillianDeploymentFactory.DEPLOYMENT_NAME;
+    }
+
 }

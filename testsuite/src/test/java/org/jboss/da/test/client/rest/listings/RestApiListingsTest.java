@@ -1,11 +1,9 @@
 package org.jboss.da.test.client.rest.listings;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
-import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 import static org.junit.Assert.*;
 
 import org.apache.commons.io.FileUtils;
-import org.jboss.da.test.client.AbstractRestApiTest;
 import org.jboss.da.test.client.AbstractRestReportsTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
@@ -667,21 +665,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
 
     private void checkExpectedResponse(ClientResponse<String> response, String expectedFile)
             throws IOException {
-        File expectedResponseFile = new ExpectedResponseFilenameBuilder(
-                restApiExpectedResponseFolder, PATH_FILES_LISTINGS_GAV, APPLICATION_JSON,
-                expectedFile).getFile();
+        File expectedResponseFile = getJsonResponseFile(PATH_FILES_LISTINGS_GAV, expectedFile);
         assertEqualsJson(readFileToString(expectedResponseFile), response.getEntity(String.class));
     }
 
-    private File getJsonRequestFile(String path, String variant) {
-        return new RequestFilenameBuilder(restApiRequestFolder, path, APPLICATION_JSON, variant)
-                .getFile();
-    }
-
-    private ClientRequest createClientRequest(String relativePath, String jsonRequest) {
-        ClientRequest request = new ClientRequest(restApiURL + relativePath);
-        request.header("Content-Type", APPLICATION_JSON);
-        request.body(MediaType.APPLICATION_JSON_TYPE, jsonRequest);
-        return request;
-    }
 }

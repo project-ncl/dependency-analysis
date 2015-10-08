@@ -12,4 +12,8 @@ public abstract class AbstractRestBCTest extends AbstractRestApiTest {
         return new ArquillianDeploymentFactory().createDeployment(DepType.BC);
     }
 
+    @Override
+    protected String getContextRoot() {
+        return "testsuite-bc";
+    }
 }
