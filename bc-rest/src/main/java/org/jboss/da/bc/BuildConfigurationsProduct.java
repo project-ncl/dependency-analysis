@@ -1,37 +1,37 @@
 package org.jboss.da.bc;
 
+import org.apache.maven.scm.ScmException;
+import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.model.BuildConfiguration;
 import org.jboss.da.bc.model.EntryEntity;
 import org.jboss.da.bc.model.FinishResponse;
-import org.jboss.da.bc.model.InfoEntity;
-
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
-import com.wordnik.swagger.annotations.ApiResponse;
-import com.wordnik.swagger.annotations.ApiResponses;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
-import org.apache.maven.scm.ScmException;
-import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.model.GeneratorEntity;
+import org.jboss.da.bc.model.InfoEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
+
+import javax.inject.Inject;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.Path;
+import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
 
 @Path("/build-configuration/generate/product")
 @Api(value = "/build-configuration/generate/product", description = "BC generator for product")

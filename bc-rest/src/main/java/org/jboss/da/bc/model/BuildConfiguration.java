@@ -1,7 +1,10 @@
 package org.jboss.da.bc.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
+import org.jboss.da.communication.model.GAV;
+
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+
 import java.util.List;
 
 import lombok.EqualsAndHashCode;
@@ -9,7 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.jboss.da.communication.model.GAV;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
