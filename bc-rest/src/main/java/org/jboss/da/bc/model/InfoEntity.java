@@ -24,6 +24,10 @@ public class InfoEntity {
 
     @Getter
     @Setter
+    protected String pomPath;
+
+    @Getter
+    @Setter
     protected BuildConfiguration topLevelBc;
 
 }

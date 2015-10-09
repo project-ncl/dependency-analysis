@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.jboss.da.communication.model.GAV;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
@@ -19,10 +20,6 @@ public class BuildConfiguration {
     @Getter
     @Setter
     protected String scmUrl;
-
-    @Getter
-    @Setter
-    protected String pomPath;
 
     @Getter
     @Setter
@@ -66,7 +63,7 @@ public class BuildConfiguration {
 
     @Getter
     @Setter
-    protected Integer enviromentId;
+    protected Integer environmentId;
 
     @Getter
     @Setter
