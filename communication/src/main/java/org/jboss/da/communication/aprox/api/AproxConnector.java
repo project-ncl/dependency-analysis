@@ -2,14 +2,20 @@ package org.jboss.da.communication.aprox.api;
 
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.aprox.model.Repository;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.jboss.da.communication.pom.model.MavenProject;
 
 public interface AproxConnector {
+
+    public enum RepositoryManipulationStatus {
+        DONE, NAME_NOT_EXIST, NAME_EXIST_DIFFERENT_URL;
+    };
 
     /**
      * Finds dependency trees of specific GAV
@@ -31,4 +37,12 @@ public interface AproxConnector {
     List<String> getVersionsOfGA(GA ga) throws CommunicationException;
 
     Optional<MavenProject> getPom(GAV gav) throws CommunicationException;
+
+    RepositoryManipulationStatus addRepositoryToGroup(Repository repository)
+            throws CommunicationException;
+
+    RepositoryManipulationStatus removeRepositoryFromGroup(Repository repository)
+            throws CommunicationException;
+
+    List<Repository> getAllRepositoriesFromGroup() throws CommunicationException;
 }

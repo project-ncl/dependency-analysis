@@ -2,7 +2,13 @@ package org.jboss.da.communication.aprox.impl;
 
 import org.commonjava.aprox.client.core.Aprox;
 import org.commonjava.aprox.client.core.AproxClientException;
+import org.commonjava.aprox.client.core.AproxClientModule;
+import org.commonjava.aprox.client.core.module.AproxStoresClientModule;
 import org.commonjava.aprox.depgraph.client.DepgraphAproxClientModule;
+import org.commonjava.aprox.model.core.Group;
+import org.commonjava.aprox.model.core.RemoteRepository;
+import org.commonjava.aprox.model.core.StoreKey;
+import org.commonjava.aprox.model.core.StoreType;
 import org.commonjava.cartographer.graph.discover.patch.DepgraphPatcherConstants;
 import org.commonjava.cartographer.request.ProjectGraphRequest;
 import org.commonjava.cartographer.result.GraphExport;
@@ -10,12 +16,15 @@ import org.commonjava.maven.atlas.graph.rel.ProjectRelationship;
 import org.commonjava.maven.atlas.graph.rel.RelationshipType;
 import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
 import org.commonjava.maven.atlas.ident.ref.SimpleProjectVersionRef;
+import org.eclipse.jgit.lib.RepositoryState;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
+import org.jboss.da.communication.aprox.api.AproxConnector.RepositoryManipulationStatus;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.aprox.model.Repository;
 import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
@@ -31,11 +40,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
 
@@ -121,6 +132,78 @@ public class AproxConnectorImpl implements AproxConnector {
         } catch (IOException | ConfigurationParseException e) {
             throw new CommunicationException("Failed to obtain pom for " + gav.toString()
                     + " from approx server with url " + query.toString(), e);
+        }
+    }
+
+    @Override
+    public RepositoryManipulationStatus addRepositoryToGroup(Repository repository)
+            throws CommunicationException {
+        try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api",
+                new AproxStoresClientModule()).connect()) {
+            RemoteRepository repo = aprox.stores().load(StoreType.remote, repository.getName(),
+                    RemoteRepository.class);
+            if (repo != null && !repo.getUrl().equals(repository.getUrl())) {
+                return RepositoryManipulationStatus.NAME_EXIST_DIFFERENT_URL;
+            } else if (repo == null) {
+                repo = aprox.stores().create(
+                        new RemoteRepository(repository.getName(), repository.getUrl()),
+                        "Add remote repo", RemoteRepository.class);
+            }
+
+            Group group = aprox.stores().load(StoreType.group, "DA", Group.class);
+
+            group.addConstituent(repo);
+
+            if (aprox.stores().update(group, "Add repository to group"))
+                return RepositoryManipulationStatus.DONE;
+        } catch (AproxClientException | ConfigurationParseException e) {
+            throw new CommunicationException(e);
+        }
+        return null;
+    }
+
+    @Override
+    public RepositoryManipulationStatus removeRepositoryFromGroup(Repository repository)
+            throws CommunicationException {
+        try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api",
+                new AproxStoresClientModule()).connect()) {
+            RemoteRepository repo = aprox.stores().load(StoreType.remote, repository.getName(),
+                    RemoteRepository.class);
+
+            Group group = aprox.stores().load(StoreType.group, "DA", Group.class);
+
+            if (repo == null) {
+                return RepositoryManipulationStatus.NAME_NOT_EXIST;
+            }
+            if (repo.getUrl().equals(repository.getUrl())) {
+                group.removeConstituent(repo);
+            } else {
+                return RepositoryManipulationStatus.NAME_EXIST_DIFFERENT_URL;
+            }
+
+            aprox.stores().update(group, "Remove repository from group");
+            return RepositoryManipulationStatus.DONE;
+        } catch (AproxClientException | ConfigurationParseException e) {
+            throw new CommunicationException(e);
+        }
+    }
+
+    @Override
+    public List<Repository> getAllRepositoriesFromGroup() throws CommunicationException {
+        try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api",
+                new AproxStoresClientModule()).connect()) {
+            List<Repository> repoList = new ArrayList<Repository>();
+            Group daGroup = aprox.stores().load(StoreType.group, "DA", Group.class);
+            for (StoreKey key : daGroup.getConstituents()) {
+                if (key.getType() == StoreType.remote) {
+                    RemoteRepository repo = aprox.stores().load(StoreType.remote, key.getName(),
+                            RemoteRepository.class);
+                    repoList.add(new Repository(key.getName(), repo.getUrl()));
+                }
+            }
+            return repoList;
+        } catch (AproxClientException | ConfigurationParseException e) {
+            throw new CommunicationException(e);
         }
     }
 
