@@ -6,6 +6,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
+import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
@@ -49,6 +50,46 @@ public class PncRemoteTest {
                 "https://not.existing.url", "not.existing.tag");
 
         assertEquals(0, obtainedBcs.size());
+    }
+
+    @Test
+    public void testCreateRemoveBC() throws Exception {
+        String bcName = "BCTestName";
+        int environmentId = 3;
+        int projectId = 7;
+
+        BuildConfigurationCreate bc = new BuildConfigurationCreate();
+        bc.setName(bcName);
+        bc.setEnvironmentId(environmentId);
+        bc.setProjectId(projectId);
+
+        // Create a BC
+        BuildConfiguration obtainedBc = pncConnector.createBuildConfiguration(bc);
+        assertNotNull(obtainedBc);
+        assertNotNull(obtainedBc.getId());
+        assertEquals(bcName, obtainedBc.getName());
+        assertEquals(environmentId, obtainedBc.getEnvironmentId());
+        assertEquals(projectId, obtainedBc.getProjectId());
+        assertTrue(testBcWithNameExists(bcName));
+
+        // Delete created BC
+        boolean obtainedEcode = pncConnector.deleteBuildConfiguration(obtainedBc);
+        assertTrue(obtainedEcode);
+        assertFalse(testBcWithNameExists(bcName));
+
+    }
+
+    private boolean testBcWithNameExists(String bcName) throws Exception {
+        List<BuildConfiguration> allBcs = pncConnector.getBuildConfigurations();
+        return allBcs.parallelStream().map((bc) -> {
+            if (bc.getName().equals(bcName))
+                return true;
+                else
+                    return false;
+            }).anyMatch(x -> {
+            return x;
+        });
+
     }
 
     private void testBcValues(BuildConfiguration bc) {

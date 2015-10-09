@@ -4,6 +4,7 @@ import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.authentication.PNCAuthentication;
+import org.jboss.da.communication.pnc.authentication.PncAuthenticated;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
@@ -16,9 +17,18 @@ import org.jboss.resteasy.util.GenericType;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response.Status;
 
 import java.util.List;
 
+/**
+ * Class, which integrates with PNC and process direct calls to PNC REST interface
+ * 
+ * @author Dustin Kut Moy Cheung <dcheung@redhat.com>
+ * @author Jakub Bartecek <jbartece@redhat.com>
+ *
+ */
+@PncAuthenticated
 @ApplicationScoped
 public class PNCConnectorImpl implements PNCConnector {
 
@@ -37,75 +47,79 @@ public class PNCConnectorImpl implements PNCConnector {
         PNC_BASE_URL = config.getConfig().getPncServer() + "/pnc-rest/rest/";
     }
 
-    private ClientRequest getClient(String endpoint, boolean authenticate)
+    public ClientRequest getClient(String endpoint, String accessToken)
             throws ConfigurationParseException {
         ClientRequest request = new ClientRequest(PNC_BASE_URL + endpoint);
         request.accept(MediaType.APPLICATION_JSON);
-
-        checkAutentication(authenticate, request);
+        request.header("Authorization", "Bearer " + accessToken);
 
         return request;
     }
 
-    private void checkAutentication(boolean authenticate, ClientRequest request) {
-        // TODO: instead of getting a new token every time, check if existing
-        // TODO: token is expired before asking for a new one
-        if (authenticate) {
-            String token = pncAuthenticate.authenticate();
-            request.header("Authorization", "Bearer " + token);
-        }
-    }
-
-    public ClientRequest getClient(String endpoint) throws ConfigurationParseException {
-        return getClient(endpoint, false);
-    }
-
-    public ClientRequest getAuthenticatedClient(String endpoint) throws ConfigurationParseException {
-        return getClient(endpoint, true);
-    }
-
     @Override
     public List<BuildConfiguration> getBuildConfigurations() throws Exception {
-        ClientResponse<List<BuildConfiguration>> response = getClient("build-configurations").get(
-                new GenericType<List<BuildConfiguration>>() {});
-        return response.getEntity();
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse<List<BuildConfiguration>> response = getClient("build-configurations",
+                accessToken).get(new GenericType<List<BuildConfiguration>>() {});
+        return checkAndReturn(response, accessToken);
     }
 
     @Override
     public BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
             throws Exception {
-        ClientResponse<BuildConfiguration> response = getClient("build-configurations").body(
-                MediaType.APPLICATION_JSON, bc).post(BuildConfiguration.class);
-        return response.getEntity();
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse<BuildConfiguration> response = getClient("build-configurations", accessToken)
+                .body(MediaType.APPLICATION_JSON, bc).post(BuildConfiguration.class);
+        return checkAndReturn(response, accessToken);
+    }
+
+    @Override
+    public boolean deleteBuildConfiguration(BuildConfiguration bc) throws Exception {
+        return deleteBuildConfiguration(bc.getId());
+    }
+
+    @Override
+    public boolean deleteBuildConfiguration(int bcId) throws Exception {
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse<String> response = getClient("build-configurations/" + bcId, accessToken)
+                .delete(String.class);
+        return checkReturnCode(response, accessToken);
     }
 
     @Override
     public BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs)
             throws Exception {
-        ClientResponse<BuildConfigurationSet> response = getClient("build-configuration-sets")
-                .body(MediaType.APPLICATION_JSON, bcs).post(BuildConfigurationSet.class);
-        return response.getEntity();
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse<BuildConfigurationSet> response = getClient("build-configuration-sets",
+                accessToken).body(MediaType.APPLICATION_JSON, bcs)
+                .post(BuildConfigurationSet.class);
+
+        return checkAndReturn(response, accessToken);
     }
 
     @Override
     public List<BuildConfigurationSet> getBuildConfigurationSets() throws Exception {
-        ClientResponse<List<BuildConfigurationSet>> response = getClient("build-configuration-sets")
-                .get(new GenericType<List<BuildConfigurationSet>>() {});
-        return response.getEntity();
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse<List<BuildConfigurationSet>> response = getClient(
+                "build-configuration-sets", accessToken).get(
+                new GenericType<List<BuildConfigurationSet>>() {});
+        return checkAndReturn(response, accessToken);
     }
 
     @Override
     public List<Product> getProducts() throws Exception {
-        ClientResponse<List<Product>> response = getClient("products").get(
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse<List<Product>> response = getClient("products", accessToken).get(
                 new GenericType<List<Product>>() {});
-        return response.getEntity();
+        return checkAndReturn(response, accessToken);
     }
 
     @Override
     public List<Project> getProjects() throws Exception {
-        ClientResponse<List<Project>> response = getClient("projects").get(
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse<List<Project>> response = getClient("projects", accessToken).get(
                 new GenericType<List<Project>>() {});
-        return response.getEntity();
+        return checkAndReturn(response, accessToken);
     }
 
     @Override
@@ -117,10 +131,27 @@ public class PNCConnectorImpl implements PNCConnector {
     @Override
     public List<BuildConfiguration> getBuildConfigurations(String scmUrl, String scmRevision)
             throws Exception {
-        ClientResponse<List<BuildConfiguration>> response = getClient(
-                String.format("build-configurations?q=scmRepoURL=='%s';scmRevision=='%s'", scmUrl,
-                        scmRevision)).get(new GenericType<List<BuildConfiguration>>() {});
-        return response.getEntity();
+        String accessToken = pncAuthenticate.getAccessToken();
+        String requestUrl = String.format(
+                "build-configurations?q=scmRepoURL=='%s';scmRevision=='%s'", scmUrl, scmRevision);
+        ClientResponse<List<BuildConfiguration>> response = getClient(requestUrl, accessToken).get(
+                new GenericType<List<BuildConfiguration>>() {});
+        return checkAndReturn(response, accessToken);
     }
 
+    private <T> T checkAndReturn(ClientResponse<T> response, String accessToken)
+            throws AuthenticationException {
+        if (response.getResponseStatus().getStatusCode() == Status.UNAUTHORIZED.getStatusCode())
+            throw new AuthenticationException(accessToken);
+        else
+            return response.getEntity();
+    }
+
+    private boolean checkReturnCode(ClientResponse<String> response, String accessToken)
+            throws AuthenticationException {
+        if (response.getResponseStatus().getStatusCode() == Status.UNAUTHORIZED.getStatusCode())
+            throw new AuthenticationException(accessToken);
+        else
+            return response.getResponseStatus().getStatusCode() == Status.OK.getStatusCode();
+    }
 }

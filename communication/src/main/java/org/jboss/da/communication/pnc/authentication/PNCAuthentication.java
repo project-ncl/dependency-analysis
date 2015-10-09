@@ -1,14 +1,5 @@
 package org.jboss.da.communication.pnc.authentication;
 
-import java.io.BufferedReader;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -20,31 +11,88 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Lock;
+import javax.ejb.LockType;
+import javax.ejb.Singleton;
+import javax.inject.Inject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import lombok.Getter;
+
 /**
  * Class obtained from pnc example on OAuth example on PNCProducer:
- * https://github.com/project-ncl/pnc/blob/master/examples/oauth-client/src/main/java/org/jboss/pnc/auth/client/SimpleOAuthConnect.java
+ * https://github.com/project-ncl/pnc/blob/master/examples/oauth-client/src/main/java/org/jboss/pnc/auth/client/
+ * SimpleOAuthConnect.java
  */
+@SuppressWarnings("unused")
+@Singleton
 public class PNCAuthentication {
 
-    Configuration config = new Configuration();
+    @Inject
+    private Configuration config;
 
-    public static String getAccessToken(String url, Map<String, String> urlParams)
+    private String accessToken;
+
+    /**
+     * Authenticates to PNC using Keycloak server, if the current accessToken the same as the
+     * accessToken passed as a parameter
+     *  
+     * @param oldAccessToken Old accessToken, which failed to authorize a request to PNC
+     */
+    public void authenticate(String oldAccessToken) {
+        if (accessToken == null
+                || (oldAccessToken != null && oldAccessToken.equals(this.accessToken))) {
+            try {
+                DAConfig conf = config.getConfig();
+                String keycloakServer = conf.getKeycloakServer();
+                String realm = conf.getKeycloakRealm();
+                String clientId = conf.getKeycloakClientid();
+                String username = conf.getKeycloakUsername();
+                String password = conf.getKeycloakPassword();
+
+                accessToken = getAccessToken(keycloakServer + "/auth/realms/" + realm
+                        + "/tokens/grants/access", clientId, username, password);
+            } catch (IOException | ConfigurationParseException e) {
+                throw new RuntimeException("Failed to authenticate", e);
+            }
+        }
+    }
+
+    /**
+     * Gets the current accessToken obtained from Keycloak server
+     * 
+     * @return AccessToken or null if the authentication haven't proceeded yes
+     */
+    @Lock(LockType.READ)
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    private String getAccessToken(String url, Map<String, String> urlParams)
             throws ClientProtocolException, IOException {
         return connect(url, urlParams)[0];
     }
 
-    public static String getRefreshToken(String url, Map<String, String> urlParams)
+    private String getRefreshToken(String url, Map<String, String> urlParams)
             throws ClientProtocolException, IOException {
         return connect(url, urlParams)[1];
     }
 
-    public static String[] getTokens(String url, Map<String, String> urlParams)
+    private String[] getTokens(String url, Map<String, String> urlParams)
             throws ClientProtocolException, IOException {
         return connect(url, urlParams);
     }
 
-    public static String getAccessToken(String url, String clientId, String username,
-            String password) throws ClientProtocolException, IOException {
+    private String getAccessToken(String url, String clientId, String username, String password)
+            throws ClientProtocolException, IOException {
         Map<String, String> urlParams = new HashMap<>();
         urlParams.put("grant_type", "password");
         urlParams.put("client_id", clientId);
@@ -53,8 +101,8 @@ public class PNCAuthentication {
         return connect(url, urlParams)[0];
     }
 
-    public static String getrefreshToken(String url, String clientId, String username,
-            String password) throws ClientProtocolException, IOException {
+    private String getrefreshToken(String url, String clientId, String username, String password)
+            throws ClientProtocolException, IOException {
         Map<String, String> urlParams = new HashMap<>();
         urlParams.put("grant_type", "password");
         urlParams.put("client_id", clientId);
@@ -63,7 +111,7 @@ public class PNCAuthentication {
         return connect(url, urlParams)[1];
     }
 
-    private static String[] connect(String url, Map<String, String> urlParams)
+    private String[] connect(String url, Map<String, String> urlParams)
             throws ClientProtocolException, IOException {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -105,21 +153,5 @@ public class PNCAuthentication {
         }
         return new String[] { accessToken, refreshToken };
 
-    }
-
-    public String authenticate() {
-        try {
-            DAConfig conf = config.getConfig();
-            String keycloakServer = conf.getKeycloakServer();
-            String realm = conf.getKeycloakRealm();
-            String clientId = conf.getKeycloakClientid();
-            String username = conf.getKeycloakUsername();
-            String password = conf.getKeycloakPassword();
-
-            return PNCAuthentication.getAccessToken(keycloakServer + "/auth/realms/" + realm
-                    + "/tokens/grants/access", clientId, username, password);
-        } catch (IOException | ConfigurationParseException e) {
-            throw new RuntimeException("Failed to authenticate", e);
-        }
     }
 }

@@ -26,7 +26,7 @@ public class PNCConnectorImplTest {
 
     private final String token = "magic_token";
 
-    private final String PNC_BASE_URL = "http://10.19.208.25:8180";
+    private final String PNC_BASE_URL = "http://10.10.10.10:8080";
 
     @Spy
     private Configuration configuration = new Configuration();
@@ -47,22 +47,14 @@ public class PNCConnectorImplTest {
     }
 
     @Test
-    public void shouldGenerateRightUriBasedOnPncServerAndEndpoint() throws Exception {
-        ClientRequest req = pncConnectorImpl.getClient("matin");
-        assertEquals(PNC_BASE_URL + "/pnc-rest/rest/matin", req.getUri());
-    }
-
-    @Test
-    public void shouldGenerateRightUriBasedOnPncServerAndEndpointAuthenticated() throws Exception {
-        ClientRequest req = pncConnectorImpl.getAuthenticatedClient("gabriella");
+    public void shouldGenerateRightUriForRequest() throws Exception {
+        ClientRequest req = pncConnectorImpl.getClient("gabriella", "");
         assertEquals(PNC_BASE_URL + "/pnc-rest/rest/gabriella", req.getUri());
     }
 
     @Test
-    public void shouldAddAuthenticationTokenToHeaderForAuthenticatedEndpoint() throws Exception {
-        when(pncAuthenticate.authenticate()).thenReturn(token);
-
-        ClientRequest req = pncConnectorImpl.getAuthenticatedClient("testme");
+    public void shouldAddAuthenticationTokenToHeader() throws Exception {
+        ClientRequest req = pncConnectorImpl.getClient("testme", token);
 
         MultivaluedMap<String, String> headers = req.getHeaders();
         assertTrue(headers.containsKey("Authorization"));
