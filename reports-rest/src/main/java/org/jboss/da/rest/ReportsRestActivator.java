@@ -2,6 +2,7 @@ package org.jboss.da.rest;
 
 import org.jboss.da.rest.listings.Artifacts;
 import org.jboss.da.rest.reports.Reports;
+import org.jboss.da.rest.repositories.Repositories;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -46,5 +47,6 @@ public class ReportsRestActivator extends Application {
         resources.add(Root.class);
         resources.add(Artifacts.class);
         resources.add(Reports.class);
+        resources.add(Repositories.class);
     }
 }
