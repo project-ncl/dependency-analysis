@@ -22,6 +22,7 @@ import com.wordnik.swagger.annotations.ApiResponses;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
+import javax.ws.rs.core.Response;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.model.GeneratorEntity;
@@ -43,17 +44,18 @@ public class BuildConfigurationsProduct {
     @Path("/start-process")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Start initial analyse of product", response = InfoEntity.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated") })
-    public InfoEntity startAnalyse(
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated"),
+            @ApiResponse(code = 500, message = "Response failed") })
+    public Response startAnalyse(
             @ApiParam(value = "Basic information about analysed product") EntryEntity product) {
 
         SCMLocator scm = new SCMLocator(product.getScmUrl(), product.getScmRevision(),
                 product.getPomPath());
         try {
             GeneratorEntity entity = bcg.startBCGeneration(scm, product.getName());
-            return toInfoEntity(entity);
+            return Response.ok().entity(toInfoEntity(entity)).build();
         } catch (ScmException | PomAnalysisException | CommunicationException ex) {
-            throw new RuntimeException(ex);
+            return Response.serverError().entity(ex).build();
         }
     }
 
@@ -61,15 +63,17 @@ public class BuildConfigurationsProduct {
     @Path("/analyse-next-level")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Analyse next level of product dependencies", response = InfoEntity.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated") })
-    public InfoEntity analyseNextLevel(
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated"),
+            @ApiResponse(code = 500, message = "Response failed") })
+    public Response analyseNextLevel(
             @ApiParam(value = "Detail information needed to create BCs") InfoEntity bc) {
         try {
             GeneratorEntity ge = toGeneratorEntity(bc);
             ge = bcg.iterateBCGeneration(ge);
-            return toInfoEntity(ge);
+            return Response.ok().entity(toInfoEntity(ge)).build();
         } catch (CommunicationException ex) {
-            throw new RuntimeException(ex);
+            return Response.serverError().entity(new AnalyseNextLevelExceptionContainer(ex, bc))
+                    .build();
         }
     }
 
