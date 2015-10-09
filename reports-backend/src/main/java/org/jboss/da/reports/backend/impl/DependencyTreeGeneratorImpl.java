@@ -33,7 +33,7 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
 
     @Override
     public GAVDependencyTree getDependencyTree(SCMLocator scml) throws ScmException,
-            PomAnalysisException, CommunicationException {
+            PomAnalysisException {
         return SCMConnector.getDependencyTreeOfRevision(scml.getScmUrl(), scml.getRevision(),
                 scml.getPomPath());
     }
@@ -44,16 +44,28 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     }
 
     @Override
-    public GAVToplevelDependencies getToplevelDependencies(SCMLocator scml) throws ScmException,
-            PomAnalysisException, CommunicationException {
-        GAVDependencyTree tree = getDependencyTree(scml);
+    public GAVDependencyTree getDependencyTree(String url, String revision, GAV gav)
+            throws ScmException, PomAnalysisException {
+        return SCMConnector.getDependencyTreeOfRevision(url, revision, gav);
+    }
 
+    @Override
+    public GAVToplevelDependencies getToplevelDependencies(SCMLocator scml) throws ScmException,
+            PomAnalysisException {
+        GAVDependencyTree tree = getDependencyTree(scml);
         return treeToToplevel(tree);
     }
 
     @Override
     public Optional<GAVToplevelDependencies> getToplevelDependencies(GAV gav) throws CommunicationException {
         return getDependencyTree(gav).map(tree -> treeToToplevel(tree));
+    }
+
+    @Override
+    public GAVToplevelDependencies getToplevelDependencies(String url, String revision, GAV gav)
+            throws ScmException, PomAnalysisException {
+        GAVDependencyTree tree = getDependencyTree(url, revision, gav);
+        return treeToToplevel(tree);
     }
 
     private GAVToplevelDependencies treeToToplevel(GAVDependencyTree tree){

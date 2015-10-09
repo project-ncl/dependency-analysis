@@ -15,14 +15,20 @@ import org.jboss.da.reports.api.SCMLocator;
 public interface DependencyTreeGenerator {
 
     public GAVDependencyTree getDependencyTree(SCMLocator scml) throws ScmException,
-            PomAnalysisException, CommunicationException;
+            PomAnalysisException;
 
     public Optional<GAVDependencyTree> getDependencyTree(GAV gav) throws CommunicationException;
 
+    public GAVDependencyTree getDependencyTree(String url, String revision, GAV gav)
+            throws ScmException, PomAnalysisException;
+
     public GAVToplevelDependencies getToplevelDependencies(SCMLocator scml) throws ScmException,
-            PomAnalysisException, CommunicationException;
+            PomAnalysisException;
 
     public Optional<GAVToplevelDependencies> getToplevelDependencies(GAV gav)
             throws CommunicationException;
+
+    public GAVToplevelDependencies getToplevelDependencies(String url, String revision, GAV gav)
+            throws ScmException, PomAnalysisException;
 
 }
