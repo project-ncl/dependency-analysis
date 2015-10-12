@@ -20,6 +20,10 @@ public class FinishResponse {
 
     @Getter
     @Setter
+    protected String message;
+
+    @Getter
+    @Setter
     protected InfoEntity entity;
 
 }

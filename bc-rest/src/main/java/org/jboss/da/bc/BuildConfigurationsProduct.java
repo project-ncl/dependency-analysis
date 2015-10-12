@@ -32,6 +32,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
 
 @Path("/build-configuration/generate/product")
 @Api(value = "/build-configuration/generate/product", description = "BC generator for product")
@@ -39,6 +40,9 @@ public class BuildConfigurationsProduct {
 
     @Inject
     BuildConfigurationGenerator bcg;
+
+    @Inject
+    Logger log;
 
     @POST
     @Path("/start-process")
@@ -84,90 +88,19 @@ public class BuildConfigurationsProduct {
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated") })
     public FinishResponse finishAnalyse(@ApiParam(
             value = "Complete detail information needed to create BCs") InfoEntity bc) {
-        return getFinishAnalyseResponse();
-    }
-
-    private InfoEntity getAnalyseNextLevelResponse() {
-        InfoEntity bcset = new InfoEntity();
-        bcset.setBcSetName("EAP BCSet");
-        bcset.setName("EAP");
-        bcset.setPomPath("/pom.xml");
-        BuildConfiguration bctop = new BuildConfiguration();
-        bctop.setBcExists(true);
-        bctop.setBuildScript("mvn clean deploy");
-        bctop.setCloneRepo(false);
-        bctop.setDescription("hibernate build configuration");
-        bctop.setEnvironmentId(1);
-        bctop.setGav(new GAV("org.jboss", "hibernate-core", "10"));
-        bctop.setInternallyBuilt("null");
-        bctop.setName("hibernate bc");
-        bctop.setProjectId(12);
-        bctop.setScmRevision("e9f99a8");
-        bctop.setScmUrl("git.hibernate.url");
-        bctop.setSelected(true);
-        bctop.setUseExistingBc(true);
-        // 2nd level dep
-        BuildConfiguration bc2 = new BuildConfiguration();
-        bc2.setBcExists(true);
-        bc2.setBuildScript("mvn clean deploy");
-        bc2.setCloneRepo(false);
-        bc2.setDescription("junit build configuration");
-        bc2.setEnvironmentId(1);
-        bc2.setGav(new GAV("org.junit", "junit", "2"));
-        bc2.setInternallyBuilt("2.0.0.redhat-1");
-        bc2.setName("junit bc");
-        bc2.setProjectId(12);
-        bc2.setScmRevision("erf99a8");
-        bc2.setScmUrl("git.junit.url");
-        bc2.setSelected(true);
-        bc2.setUseExistingBc(true);
-
-        BuildConfiguration bc3 = new BuildConfiguration();
-        bc3.setBcExists(false);
-        bc3.setBuildScript("");
-        bc3.setCloneRepo(false);
-        bc3.setDescription("");
-        bc3.setEnvironmentId(1);
-        bc3.setGav(new GAV("org.unknown", "unknown-unit", "2.8"));
-        bc3.setInternallyBuilt(null);
-        bc3.setName("");
-        bc3.setProjectId(null);
-        bc3.setScmRevision("");
-        bc3.setScmUrl("");
-        bc3.setSelected(false);
-        bc3.setUseExistingBc(false);
-
-        // 3rd level
-        BuildConfiguration bc4 = new BuildConfiguration();
-        bc4.setBcExists(false);
-        bc4.setBuildScript("");
-        bc4.setCloneRepo(false);
-        bc4.setDescription("");
-        bc4.setEnvironmentId(1);
-        bc4.setGav(new GAV("org.dep", "unknown-unit-dep", "2.6"));
-        bc4.setInternallyBuilt(null);
-        bc4.setName("");
-        bc4.setProjectId(null);
-        bc4.setScmRevision("");
-        bc4.setScmUrl("");
-        bc4.setSelected(false);
-        bc4.setUseExistingBc(false);
-        bc2.setDependencies(Arrays.asList(bc4));
-
-        List<BuildConfiguration> bclist = new ArrayList<BuildConfiguration>();
-        bclist.add(bc2);
-        bclist.add(bc3);
-        bctop.setDependencies(bclist);
-
-        bcset.setTopLevelBc(bctop);
-        return bcset;
-    }
-
-    private FinishResponse getFinishAnalyseResponse() {
         FinishResponse response = new FinishResponse();
-        response.setSuccess(true);
-        response.setEntity(getAnalyseNextLevelResponse());
-        return response;
+        response.setEntity(bc);
+        try {
+            GeneratorEntity ge = toGeneratorEntity(bc);
+            bcg.createBC(ge);
+            response.setSuccess(true);
+            return response;
+        } catch (Exception ex) {
+            log.warn("Could not finish: ", ex);
+            response.setSuccess(false);
+            response.setMessage(ex.toString());
+            return response;
+        }
     }
 
     private InfoEntity toInfoEntity(GeneratorEntity entity) {
