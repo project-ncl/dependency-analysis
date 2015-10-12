@@ -188,8 +188,12 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
             }else{
                 bcc = toBC(project, deps);
                 if(project.isCloneRepo()){
-                    String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
-                    bcc.setScmRepoURL(newScmUrl);
+                    try{
+                        String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
+                        bcc.setScmRepoURL(newScmUrl);
+                    }catch(Exception ex){
+                        log.error("Failed to clone repo.", ex);
+                    }
                 }
             }
             BuildConfiguration bc = pnc.createBuildConfiguration(bcc);
