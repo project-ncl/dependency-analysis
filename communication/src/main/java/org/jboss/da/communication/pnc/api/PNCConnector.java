@@ -4,8 +4,7 @@ import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.Product;
-import org.jboss.da.communication.pnc.model.Project;
-
+import org.jboss.da.communication.pnc.model.ProductVersion;
 import java.util.List;
 
 /**
@@ -59,4 +58,7 @@ public interface PNCConnector {
     BuildConfigurationSet findBuildConfigurationSet(int productVersionId,
             List<Integer> buildConfigurationIds);
 
+    Product createProduct(Product p) throws Exception;
+
+    ProductVersion createProductVersion(ProductVersion pv) throws Exception;
 }
