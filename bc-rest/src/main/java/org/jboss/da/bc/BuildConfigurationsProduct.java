@@ -1,36 +1,37 @@
 package org.jboss.da.bc;
 
+import org.apache.maven.scm.ScmException;
+import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.model.BuildConfiguration;
 import org.jboss.da.bc.model.EntryEntity;
 import org.jboss.da.bc.model.FinishResponse;
-import org.jboss.da.bc.model.InfoEntity;
-
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
-import com.wordnik.swagger.annotations.ApiResponse;
-import com.wordnik.swagger.annotations.ApiResponses;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import javax.inject.Inject;
-import org.apache.maven.scm.ScmException;
-import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.model.GeneratorEntity;
+import org.jboss.da.bc.model.InfoEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
+
+import javax.inject.Inject;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.Path;
+import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
 
 @Path("/build-configuration/generate/product")
 @Api(value = "/build-configuration/generate/product", description = "BC generator for product")
@@ -43,17 +44,18 @@ public class BuildConfigurationsProduct {
     @Path("/start-process")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Start initial analyse of product", response = InfoEntity.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated") })
-    public InfoEntity startAnalyse(
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated"),
+            @ApiResponse(code = 500, message = "Response failed") })
+    public Response startAnalyse(
             @ApiParam(value = "Basic information about analysed product") EntryEntity product) {
 
         SCMLocator scm = new SCMLocator(product.getScmUrl(), product.getScmRevision(),
                 product.getPomPath());
         try {
             GeneratorEntity entity = bcg.startBCGeneration(scm, product.getName());
-            return toInfoEntity(entity);
+            return Response.ok().entity(toInfoEntity(entity)).build();
         } catch (ScmException | PomAnalysisException | CommunicationException ex) {
-            throw new RuntimeException(ex);
+            return Response.serverError().entity(ex).build();
         }
     }
 
@@ -61,15 +63,17 @@ public class BuildConfigurationsProduct {
     @Path("/analyse-next-level")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Analyse next level of product dependencies", response = InfoEntity.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated") })
-    public InfoEntity analyseNextLevel(
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated"),
+            @ApiResponse(code = 500, message = "Response failed") })
+    public Response analyseNextLevel(
             @ApiParam(value = "Detail information needed to create BCs") InfoEntity bc) {
         try {
             GeneratorEntity ge = toGeneratorEntity(bc);
             ge = bcg.iterateBCGeneration(ge);
-            return toInfoEntity(ge);
+            return Response.ok().entity(toInfoEntity(ge)).build();
         } catch (CommunicationException ex) {
-            throw new RuntimeException(ex);
+            return Response.serverError().entity(new AnalyseNextLevelExceptionContainer(ex, bc))
+                    .build();
         }
     }
 
