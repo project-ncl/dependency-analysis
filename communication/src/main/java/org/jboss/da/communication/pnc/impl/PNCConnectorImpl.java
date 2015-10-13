@@ -8,6 +8,7 @@ import org.jboss.da.communication.pnc.authentication.PncAuthenticated;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
+import org.jboss.da.communication.pnc.model.PNCResponseWrapper;
 import org.jboss.da.communication.pnc.model.Product;
 import org.jboss.da.communication.pnc.model.Project;
 import org.jboss.resteasy.client.ClientRequest;
@@ -68,9 +69,11 @@ public class PNCConnectorImpl implements PNCConnector {
     public BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
             throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<BuildConfiguration> response = getClient("build-configurations", accessToken)
-                .body(MediaType.APPLICATION_JSON, bc).post(BuildConfiguration.class);
-        return checkAndReturn(response, accessToken);
+        ClientResponse<PNCResponseWrapper<BuildConfiguration>> response = getClient(
+                "build-configurations", accessToken).body(MediaType.APPLICATION_JSON, bc).post(
+                new GenericType<PNCResponseWrapper<BuildConfiguration>>() {});
+
+        return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override

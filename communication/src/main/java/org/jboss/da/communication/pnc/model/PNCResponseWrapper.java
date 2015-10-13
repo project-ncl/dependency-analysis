@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString(callSuper = true)
-@NoArgsConstructor
+@ToString
 @AllArgsConstructor
-public class BuildConfiguration extends BuildConfigurationCreate {
+@NoArgsConstructor
+public class PNCResponseWrapper<T> {
 
     @Getter
     @Setter
-    private int id;
+    T content;
 }
