@@ -45,6 +45,6 @@ public class RepositoryClonerImpl implements RepositoryCloner {
                 new RepourRequest(repositoryName, scmType.name().toLowerCase(), revision, url),
                 repourPullUrl);
 
-        return response.getUrl().getReadwrite();
+        return response.getUrl().getReadonly();
     }
 }
