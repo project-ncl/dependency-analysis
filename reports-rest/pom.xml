@@ -45,5 +45,9 @@
             <groupId>com.wordnik</groupId>
             <artifactId>swagger-jaxrs_2.10</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+        </dependency>
     </dependencies>
 </project>
