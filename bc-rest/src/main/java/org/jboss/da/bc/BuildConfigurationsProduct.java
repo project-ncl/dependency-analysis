@@ -99,7 +99,7 @@ public class BuildConfigurationsProduct {
         } catch (Exception ex) {
             log.warn("Could not finish: ", ex);
             response.setSuccess(false);
-            response.setMessage(ex.toString());
+            response.setMessage(ex.toString() + ":" + ex.getMessage());
             return response;
         }
     }
