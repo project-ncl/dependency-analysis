@@ -64,13 +64,14 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
     private RepositoryCloner repoCloner;
 
     @Override
-    public GeneratorEntity startBCGeneration(SCMLocator scm, String productName)
-            throws CommunicationException, ScmException, PomAnalysisException {
+    public GeneratorEntity startBCGeneration(SCMLocator scm, String productName,
+            String productVersion) throws CommunicationException, ScmException,
+            PomAnalysisException {
         GAVToplevelDependencies deps = depGenerator.getToplevelDependencies(scm);
         Optional<POMInfo> pomInfo = pom.getPomInfo(scm.getScmUrl(), scm.getRevision(),
                 scm.getPomPath());
 
-        GeneratorEntity ge = new GeneratorEntity(scm, productName, deps.getGav());
+        GeneratorEntity ge = new GeneratorEntity(scm, productName, deps.getGav(), productVersion);
         ge.setBcSetName(String.format("Build configuration set for %s", deps.getGav()));
 
         setProjectInfoFromPom(ge.getToplevelProject(), pomInfo);
@@ -92,7 +93,8 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
     @Override
     public void createBC(GeneratorEntity projects) throws Exception {
         Set<Integer> ids = create(projects.getToplevelBc());
-        int productVersionId = bcSetGenerator.createProduct(projects.getName());
+        int productVersionId = bcSetGenerator.createProduct(projects.getName(),
+                projects.getProductVersion());
         bcSetGenerator.createBCSet(projects.getName(), productVersionId, new ArrayList(ids));
     }
 

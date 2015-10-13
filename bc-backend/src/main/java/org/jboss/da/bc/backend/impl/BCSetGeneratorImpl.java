@@ -3,6 +3,8 @@ package org.jboss.da.bc.backend.impl;
 import org.jboss.da.bc.backend.api.BCSetGenerator;
 import org.jboss.da.bc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.api.PNCConnector;
+import org.jboss.da.communication.pnc.model.Product;
+import org.jboss.da.communication.pnc.model.ProductVersion;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -41,9 +43,10 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
     }
 
     @Override
-    public int createProduct(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose Tools |
-                                                                       // Templates.
+    public int createProduct(String name, String productVersion) throws Exception {
+        Product p = pnc.createProduct(new Product(name));
+        ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, p.getId()));
+        return pv.getId();
     }
 
 }

@@ -29,7 +29,11 @@ public class GeneratorEntity {
     @Setter
     ProjectHiearchy toplevelBc;
 
-    public GeneratorEntity(SCMLocator scm, String name, GAV gav) {
+    @Getter
+    @Setter
+    String productVersion;
+
+    public GeneratorEntity(SCMLocator scm, String name, GAV gav, String productVersion) {
         ProjectDetail pd = new ProjectDetail(gav);
         pd.setScmUrl(scm.getScmUrl());
         pd.setScmRevision(scm.getRevision());
@@ -37,6 +41,7 @@ public class GeneratorEntity {
         this.name = name;
         this.pomPath = scm.getPomPath();
         this.toplevelBc = new ProjectHiearchy(pd, true);
+        this.productVersion = productVersion;
     }
 
     public ProjectDetail getToplevelProject() {

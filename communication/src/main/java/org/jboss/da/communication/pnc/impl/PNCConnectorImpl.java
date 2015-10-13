@@ -107,7 +107,8 @@ public class PNCConnectorImpl implements PNCConnector {
     @Override
     public BuildConfigurationSet findBuildConfigurationSet(int productVersionId,
             List<Integer> buildConfigurationIds) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        // TODO implement
+        return null;
     }
 
     @Override

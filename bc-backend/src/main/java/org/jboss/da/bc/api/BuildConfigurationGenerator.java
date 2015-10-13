@@ -12,8 +12,8 @@ import org.jboss.da.reports.api.SCMLocator;
  */
 public interface BuildConfigurationGenerator {
 
-    GeneratorEntity startBCGeneration(SCMLocator scm, String productName) throws ScmException,
-            PomAnalysisException, CommunicationException;
+    GeneratorEntity startBCGeneration(SCMLocator scm, String productName, String productVersion)
+            throws ScmException, PomAnalysisException, CommunicationException;
 
     GeneratorEntity iterateBCGeneration(GeneratorEntity projects) throws CommunicationException;
 

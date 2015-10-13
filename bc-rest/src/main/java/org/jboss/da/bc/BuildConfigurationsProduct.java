@@ -52,7 +52,8 @@ public class BuildConfigurationsProduct {
         SCMLocator scm = new SCMLocator(product.getScmUrl(), product.getScmRevision(),
                 product.getPomPath());
         try {
-            GeneratorEntity entity = bcg.startBCGeneration(scm, product.getName());
+            GeneratorEntity entity = bcg.startBCGeneration(scm, product.getName(),
+                    product.getVersion());
             return Response.ok().entity(toInfoEntity(entity)).build();
         } catch (ScmException | PomAnalysisException | CommunicationException ex) {
             return Response.serverError().entity(ex).build();
@@ -176,6 +177,7 @@ public class BuildConfigurationsProduct {
         ie.setName(entity.getName());
         ie.setPomPath(entity.getPomPath());
         ie.setTopLevelBc(toBuildConfiguration(entity.getToplevelBc()));
+        ie.setProductVersion(entity.getProductVersion());
         return ie;
     }
 
@@ -214,7 +216,7 @@ public class BuildConfigurationsProduct {
         SCMLocator scml = new SCMLocator(url, revision, path);
         GAV gav = bc.getTopLevelBc().getGav();
 
-        GeneratorEntity ge = new GeneratorEntity(scml, bc.getName(), gav);
+        GeneratorEntity ge = new GeneratorEntity(scml, bc.getName(), gav, bc.getProductVersion());
 
         ge.setBcSetName(bc.getBcSetName());
         ge.setToplevelBc(toProjectHiearchy(bc.getTopLevelBc()));
