@@ -60,9 +60,11 @@ public class PNCConnectorImpl implements PNCConnector {
     @Override
     public List<BuildConfiguration> getBuildConfigurations() throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<List<BuildConfiguration>> response = getClient("build-configurations",
-                accessToken).get(new GenericType<List<BuildConfiguration>>() {});
-        return checkAndReturn(response, accessToken);
+        ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = getClient(
+                "build-configurations?pageIndex=0&pageSize=5000", // TODO solve pagination
+                accessToken)
+                .get(new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {});
+        return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override
@@ -135,11 +137,15 @@ public class PNCConnectorImpl implements PNCConnector {
     public List<BuildConfiguration> getBuildConfigurations(String scmUrl, String scmRevision)
             throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        String requestUrl = String.format(
-                "build-configurations?q=scmRepoURL=='%s';scmRevision=='%s'", scmUrl, scmRevision);
-        ClientResponse<List<BuildConfiguration>> response = getClient(requestUrl, accessToken).get(
-                new GenericType<List<BuildConfiguration>>() {});
-        return checkAndReturn(response, accessToken);
+        String requestUrl = String
+                .format(
+                // TODO solve pagination
+                "build-configurations?q=scmRepoURL=='%s';scmRevision=='%s'&pageIndex=0&pageSize=500",
+                        scmUrl, scmRevision);
+        ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = getClient(
+                requestUrl, accessToken).get(
+                new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {});
+        return checkAndReturn(response, accessToken).getContent();
     }
 
     private <T> T checkAndReturn(ClientResponse<T> response, String accessToken)
