@@ -20,6 +20,7 @@ import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -145,7 +146,13 @@ public class PNCConnectorImpl implements PNCConnector {
         ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = getClient(
                 requestUrl, accessToken).get(
                 new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {});
-        return checkAndReturn(response, accessToken).getContent();
+
+        if (response.getEntity() == null
+                && response.getResponseStatus().getStatusCode() == Status.NO_CONTENT
+                        .getStatusCode())
+            return Collections.emptyList();
+        else
+            return checkAndReturn(response, accessToken).getContent();
     }
 
     private <T> T checkAndReturn(ClientResponse<T> response, String accessToken)
