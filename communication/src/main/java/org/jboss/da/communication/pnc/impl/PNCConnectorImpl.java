@@ -10,6 +10,7 @@ import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.PNCResponseWrapper;
 import org.jboss.da.communication.pnc.model.Product;
+import org.jboss.da.communication.pnc.model.ProductVersion;
 import org.jboss.da.communication.pnc.model.Project;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
@@ -106,7 +107,8 @@ public class PNCConnectorImpl implements PNCConnector {
     @Override
     public BuildConfigurationSet findBuildConfigurationSet(int productVersionId,
             List<Integer> buildConfigurationIds) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        // TODO implement
+        return null;
     }
 
     @Override
@@ -128,6 +130,23 @@ public class PNCConnectorImpl implements PNCConnector {
             return Collections.emptyList();
         else
             return checkAndReturn(response, accessToken).getContent();
+    }
+
+    @Override
+    public Product createProduct(Product p) throws Exception {
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse<Product> response = getClient("products", accessToken).body(
+                MediaType.APPLICATION_JSON, p).post(Product.class);
+        return checkAndReturn(response, accessToken);
+    }
+
+    @Override
+    public ProductVersion createProductVersion(ProductVersion pv) throws Exception {
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse<ProductVersion> response = getClient("product-versions", accessToken).body(
+                MediaType.APPLICATION_JSON, pv).post(ProductVersion.class);
+        checkAndReturn(response, accessToken);
+        return null;
     }
 
     private <T> T checkAndReturn(ClientResponse<T> response, String accessToken)

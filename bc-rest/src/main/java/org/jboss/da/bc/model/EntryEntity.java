@@ -28,6 +28,10 @@ public class EntryEntity {
 
     @Getter
     @Setter
+    protected String version;
+
+    @Getter
+    @Setter
     protected String name;
 
 }

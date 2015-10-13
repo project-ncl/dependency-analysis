@@ -1,9 +1,15 @@
 package org.jboss.da.communication.pnc.model;
 
 import java.util.List;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Product {
 
     @Getter
@@ -12,6 +18,7 @@ public class Product {
 
     @Getter
     @Setter
+    @NonNull
     private String name;
 
     @Getter

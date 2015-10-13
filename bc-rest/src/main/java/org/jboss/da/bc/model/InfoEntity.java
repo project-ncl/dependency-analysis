@@ -28,6 +28,10 @@ public class InfoEntity {
 
     @Getter
     @Setter
+    protected String productVersion;
+
+    @Getter
+    @Setter
     protected BuildConfiguration topLevelBc;
 
 }
