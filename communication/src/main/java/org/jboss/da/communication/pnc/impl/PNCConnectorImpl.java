@@ -96,11 +96,11 @@ public class PNCConnectorImpl implements PNCConnector {
     public BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs)
             throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<BuildConfigurationSet> response = getClient("build-configuration-sets",
-                accessToken).body(MediaType.APPLICATION_JSON, bcs)
-                .post(BuildConfigurationSet.class);
+        ClientResponse<PNCResponseWrapper<BuildConfigurationSet>> response = getClient(
+                "build-configuration-sets", accessToken).body(MediaType.APPLICATION_JSON, bcs)
+                .post(new GenericType<PNCResponseWrapper<BuildConfigurationSet>>() {});
 
-        return checkAndReturn(response, accessToken);
+        return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override
