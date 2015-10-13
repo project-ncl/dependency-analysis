@@ -8,6 +8,7 @@ import org.jboss.da.communication.pnc.authentication.PncAuthenticated;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
+import org.jboss.da.communication.pnc.model.PNCResponseWrapper;
 import org.jboss.da.communication.pnc.model.Product;
 import org.jboss.da.communication.pnc.model.Project;
 import org.jboss.resteasy.client.ClientRequest;
@@ -19,6 +20,7 @@ import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -59,18 +61,22 @@ public class PNCConnectorImpl implements PNCConnector {
     @Override
     public List<BuildConfiguration> getBuildConfigurations() throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<List<BuildConfiguration>> response = getClient("build-configurations",
-                accessToken).get(new GenericType<List<BuildConfiguration>>() {});
-        return checkAndReturn(response, accessToken);
+        ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = getClient(
+                "build-configurations?pageIndex=0&pageSize=5000", // TODO solve pagination
+                accessToken)
+                .get(new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {});
+        return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override
     public BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
             throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<BuildConfiguration> response = getClient("build-configurations", accessToken)
-                .body(MediaType.APPLICATION_JSON, bc).post(BuildConfiguration.class);
-        return checkAndReturn(response, accessToken);
+        ClientResponse<PNCResponseWrapper<BuildConfiguration>> response = getClient(
+                "build-configurations", accessToken).body(MediaType.APPLICATION_JSON, bc).post(
+                new GenericType<PNCResponseWrapper<BuildConfiguration>>() {});
+
+        return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override
@@ -90,36 +96,11 @@ public class PNCConnectorImpl implements PNCConnector {
     public BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs)
             throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<BuildConfigurationSet> response = getClient("build-configuration-sets",
-                accessToken).body(MediaType.APPLICATION_JSON, bcs)
-                .post(BuildConfigurationSet.class);
+        ClientResponse<PNCResponseWrapper<BuildConfigurationSet>> response = getClient(
+                "build-configuration-sets", accessToken).body(MediaType.APPLICATION_JSON, bcs)
+                .post(new GenericType<PNCResponseWrapper<BuildConfigurationSet>>() {});
 
-        return checkAndReturn(response, accessToken);
-    }
-
-    @Override
-    public List<BuildConfigurationSet> getBuildConfigurationSets() throws Exception {
-        String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<List<BuildConfigurationSet>> response = getClient(
-                "build-configuration-sets", accessToken).get(
-                new GenericType<List<BuildConfigurationSet>>() {});
-        return checkAndReturn(response, accessToken);
-    }
-
-    @Override
-    public List<Product> getProducts() throws Exception {
-        String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<List<Product>> response = getClient("products", accessToken).get(
-                new GenericType<List<Product>>() {});
-        return checkAndReturn(response, accessToken);
-    }
-
-    @Override
-    public List<Project> getProjects() throws Exception {
-        String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<List<Project>> response = getClient("projects", accessToken).get(
-                new GenericType<List<Project>>() {});
-        return checkAndReturn(response, accessToken);
+        return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override
@@ -132,11 +113,21 @@ public class PNCConnectorImpl implements PNCConnector {
     public List<BuildConfiguration> getBuildConfigurations(String scmUrl, String scmRevision)
             throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        String requestUrl = String.format(
-                "build-configurations?q=scmRepoURL=='%s';scmRevision=='%s'", scmUrl, scmRevision);
-        ClientResponse<List<BuildConfiguration>> response = getClient(requestUrl, accessToken).get(
-                new GenericType<List<BuildConfiguration>>() {});
-        return checkAndReturn(response, accessToken);
+        String requestUrl = String
+                .format(
+                // TODO solve pagination
+                "build-configurations?q=scmRepoURL=='%s';scmRevision=='%s'&pageIndex=0&pageSize=500",
+                        scmUrl, scmRevision);
+        ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = getClient(
+                requestUrl, accessToken).get(
+                new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {});
+
+        if (response.getEntity() == null
+                && response.getResponseStatus().getStatusCode() == Status.NO_CONTENT
+                        .getStatusCode())
+            return Collections.emptyList();
+        else
+            return checkAndReturn(response, accessToken).getContent();
     }
 
     private <T> T checkAndReturn(ClientResponse<T> response, String accessToken)
