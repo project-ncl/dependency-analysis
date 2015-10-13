@@ -124,9 +124,7 @@ public class PNCConnectorImpl implements PNCConnector {
                 requestUrl, accessToken).get(
                 new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {});
 
-        if (response.getEntity() == null
-                && response.getResponseStatus().getStatusCode() == Status.NO_CONTENT
-                        .getStatusCode())
+        if (response.getEntity() == null && response.getResponseStatus() == Status.NO_CONTENT)
             return Collections.emptyList();
         else
             return checkAndReturn(response, accessToken).getContent();
@@ -151,18 +149,28 @@ public class PNCConnectorImpl implements PNCConnector {
     }
 
     private <T> T checkAndReturn(ClientResponse<T> response, String accessToken)
-            throws AuthenticationException {
-        if (response.getResponseStatus().getStatusCode() == Status.UNAUTHORIZED.getStatusCode())
-            throw new AuthenticationException(accessToken);
-        else
-            return response.getEntity();
+            throws AuthenticationException, PNCRequestException {
+        switch (response.getResponseStatus()) {
+            case OK:
+            case CREATED:
+                return response.getEntity();
+            case UNAUTHORIZED:
+                throw new AuthenticationException(accessToken);
+            default:
+                throw new PNCRequestException(response.getEntity(String.class));
+        }
+
     }
 
     private boolean checkReturnCode(ClientResponse<String> response, String accessToken)
-            throws AuthenticationException {
-        if (response.getResponseStatus().getStatusCode() == Status.UNAUTHORIZED.getStatusCode())
-            throw new AuthenticationException(accessToken);
-        else
-            return response.getResponseStatus().getStatusCode() == Status.OK.getStatusCode();
+            throws AuthenticationException, PNCRequestException {
+        switch (response.getResponseStatus()) {
+            case OK:
+                return true;
+            case UNAUTHORIZED:
+                throw new AuthenticationException(accessToken);
+            default:
+                throw new PNCRequestException(response.getEntity(String.class));
+        }
     }
 }
