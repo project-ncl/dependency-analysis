@@ -10,10 +10,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import org.apache.commons.lang.StringUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.backend.api.BCSetGenerator;
 import org.jboss.da.bc.backend.api.BcChecker;
+import org.jboss.da.bc.backend.api.Finalizer;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
 import org.jboss.da.bc.backend.api.RepositoryCloner;
 import org.jboss.da.bc.model.GeneratorEntity;
@@ -43,25 +45,19 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
     private Logger log;
 
     @Inject
-    private PNCConnector pnc;
-
-    @Inject
     private DependencyTreeGenerator depGenerator;
 
     @Inject
     private POMInfoGenerator pom;
 
     @Inject
-    private BcChecker bcFinder;
-
-    @Inject
     private VersionFinder versionFinder;
 
     @Inject
-    private BCSetGenerator bcSetGenerator;
+    private Finalizer finalizer;
 
     @Inject
-    private RepositoryCloner repoCloner;
+    private BcChecker bcFinder;
 
     @Override
     public GeneratorEntity startBCGeneration(SCMLocator scm, String productName,
@@ -92,10 +88,16 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
 
     @Override
     public void createBC(GeneratorEntity projects) throws Exception {
-        Set<Integer> ids = create(projects.getToplevelBc());
-        int productVersionId = bcSetGenerator.createProduct(projects.getName(),
-                projects.getProductVersion());
-        bcSetGenerator.createBCSet(projects.getName(), productVersionId, new ArrayList(ids));
+        if (StringUtils.isBlank(projects.getBcSetName()))
+            throw new IllegalStateException("BCSet name is blank.");
+        if (StringUtils.isBlank(projects.getName()))
+            throw new IllegalStateException("Product name is blank.");
+        if (StringUtils.isBlank(projects.getProductVersion()))
+            throw new IllegalStateException("Product version is blank.");
+
+        validate(projects.getToplevelBc());
+
+        finalizer.createBCs(projects.getName(), projects.getProductVersion(), projects.getToplevelBc(), projects.getBcSetName());
     }
 
     private ProjectHiearchy iterateDependencies(ProjectHiearchy hiearchy, GeneratorEntity entity)
@@ -174,36 +176,6 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
         }
     }
 
-    private Set<Integer> create(ProjectHiearchy hiearchy) throws Exception {
-        Set<Integer> deps = new HashSet<>();
-        if (hiearchy.isSelected()) {
-
-            for (ProjectHiearchy dep : hiearchy.getDependencies().orElseGet(Collections::emptySet)) {
-                deps.addAll(create(dep));
-            }
-
-            ProjectDetail project = hiearchy.getProject();
-            BuildConfigurationCreate bcc;
-            if(project.isUseExistingBc()){
-                Optional<BuildConfiguration> bc = bcFinder.lookupBcByScm(project.getScmUrl(), project.getScmRevision());
-                bcc = bc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
-            }else{
-                bcc = toBC(project, deps);
-                if(project.isCloneRepo()){
-                    try{
-                        String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
-                        bcc.setScmRepoURL(newScmUrl);
-                    }catch(Exception ex){
-                        log.error("Failed to clone repo.", ex);
-                    }
-                }
-            }
-            BuildConfiguration bc = pnc.createBuildConfiguration(bcc);
-            deps.add(bc.getId());
-        }
-        return deps;
-    }
-
     private String getDescription(POMInfo pomInfo) {
         Optional<String> name = pomInfo.getName();
 
@@ -215,18 +187,6 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
         return String.format("%s-%s", gav.getArtifactId(), gav.getVersion());
     }
 
-    private BuildConfigurationCreate toBC(ProjectDetail project, Set<Integer> deps) {
-        BuildConfigurationCreate bc = new BuildConfigurationCreate();
-        bc.setBuildScript(project.getBuildScript());
-        bc.setDependencyIds(new ArrayList<>(deps));
-        bc.setDescription(project.getDescription());
-        bc.setEnvironmentId(project.getEnvironmentId());
-        bc.setName(project.getName());
-        bc.setProjectId(project.getProjectId());
-        bc.setScmRepoURL(project.getScmUrl());
-        bc.setScmRevision(project.getScmRevision());
-        return bc;
-    }
 
     private void setSCMData(ProjectDetail project, Optional<POMInfo> pomInfo) {
         pomInfo.flatMap(POMInfo::getScmURL).ifPresent(url -> project.setScmUrl(url));
@@ -244,6 +204,28 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
             return bcFinder.lookupBcByScm(url.get(), revision.get());
         }else{
             return Optional.empty();
+        }
+    }
+
+    private void validate(ProjectHiearchy hiearchy) throws IllegalStateException {
+        if (!hiearchy.isSelected())
+            return;
+
+        ProjectDetail project = hiearchy.getProject();
+
+        if (project.isUseExistingBc() && !project.isBcExists())
+            throw new IllegalStateException(
+                    "Use existing build configuration is checked, but apperently there is not existing build configuration for "
+                            + project.getGav());
+
+        if (project.getEnvironmentId() == null)
+            throw new IllegalStateException("Environment id is null for " + project.getGav());
+
+        if (project.getProjectId() == null)
+            throw new IllegalStateException("Project id is null for " + project.getGav());
+
+        for (ProjectHiearchy dep : hiearchy.getDependencies().orElse(Collections.emptySet())) {
+            validate(dep);
         }
     }
 }
