@@ -57,7 +57,7 @@ public class BuildConfigurationsProduct {
                 product.getPomPath());
         try {
             GeneratorEntity entity = bcg.startBCGeneration(scm, product.getName(),
-                    product.getVersion());
+                    product.getProductVersion());
             return Response.ok().entity(toInfoEntity(entity)).build();
         } catch (ScmException | PomAnalysisException | CommunicationException ex) {
             return Response.serverError().entity(ex).build();

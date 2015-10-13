@@ -135,18 +135,19 @@ public class PNCConnectorImpl implements PNCConnector {
     @Override
     public Product createProduct(Product p) throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<Product> response = getClient("products", accessToken).body(
-                MediaType.APPLICATION_JSON, p).post(Product.class);
-        return checkAndReturn(response, accessToken);
+        ClientResponse<PNCResponseWrapper<Product>> response = getClient("products", accessToken)
+                .body(MediaType.APPLICATION_JSON, p).post(
+                        new GenericType<PNCResponseWrapper<Product>>() {});
+        return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override
     public ProductVersion createProductVersion(ProductVersion pv) throws Exception {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<ProductVersion> response = getClient("product-versions", accessToken).body(
-                MediaType.APPLICATION_JSON, pv).post(ProductVersion.class);
-        checkAndReturn(response, accessToken);
-        return null;
+        ClientResponse<PNCResponseWrapper<ProductVersion>> response = getClient("product-versions",
+                accessToken).body(MediaType.APPLICATION_JSON, pv).post(
+                new GenericType<PNCResponseWrapper<ProductVersion>>() {});
+        return checkAndReturn(response, accessToken).getContent();
     }
 
     private <T> T checkAndReturn(ClientResponse<T> response, String accessToken)
