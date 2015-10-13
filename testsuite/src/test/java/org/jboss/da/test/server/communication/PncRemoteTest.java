@@ -55,8 +55,8 @@ public class PncRemoteTest {
     @Test
     public void testCreateRemoveBC() throws Exception {
         String bcName = "BCTestName";
-        int environmentId = 3;
-        int projectId = 7;
+        int environmentId = 1;
+        int projectId = 1;
 
         BuildConfigurationCreate bc = new BuildConfigurationCreate();
         bc.setName(bcName);
