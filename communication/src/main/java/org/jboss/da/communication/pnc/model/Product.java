@@ -1,5 +1,6 @@
 package org.jboss.da.communication.pnc.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
@@ -14,7 +15,7 @@ public class Product {
 
     @Getter
     @Setter
-    private int id;
+    private Integer id;
 
     @Getter
     @Setter
@@ -39,6 +40,6 @@ public class Product {
 
     @Getter
     @Setter
-    private List<Integer> productVersionIds;
+    private List<Integer> productVersionIds = new ArrayList<>();
 
 }

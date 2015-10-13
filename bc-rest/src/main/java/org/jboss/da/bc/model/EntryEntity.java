@@ -28,7 +28,7 @@ public class EntryEntity {
 
     @Getter
     @Setter
-    protected String version;
+    protected String productVersion;
 
     @Getter
     @Setter
