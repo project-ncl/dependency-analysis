@@ -14,8 +14,6 @@ import java.util.List;
  */
 public interface PNCConnector {
 
-    List<BuildConfigurationSet> getBuildConfigurationSets() throws Exception;
-
     List<BuildConfiguration> getBuildConfigurations() throws Exception;
 
     /**
@@ -60,9 +58,5 @@ public interface PNCConnector {
      */
     BuildConfigurationSet findBuildConfigurationSet(int productVersionId,
             List<Integer> buildConfigurationIds);
-
-    List<Product> getProducts() throws Exception;
-
-    List<Project> getProjects() throws Exception;
 
 }

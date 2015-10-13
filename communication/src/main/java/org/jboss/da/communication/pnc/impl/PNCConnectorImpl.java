@@ -104,31 +104,6 @@ public class PNCConnectorImpl implements PNCConnector {
     }
 
     @Override
-    public List<BuildConfigurationSet> getBuildConfigurationSets() throws Exception {
-        String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<List<BuildConfigurationSet>> response = getClient(
-                "build-configuration-sets", accessToken).get(
-                new GenericType<List<BuildConfigurationSet>>() {});
-        return checkAndReturn(response, accessToken);
-    }
-
-    @Override
-    public List<Product> getProducts() throws Exception {
-        String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<List<Product>> response = getClient("products", accessToken).get(
-                new GenericType<List<Product>>() {});
-        return checkAndReturn(response, accessToken);
-    }
-
-    @Override
-    public List<Project> getProjects() throws Exception {
-        String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<List<Project>> response = getClient("projects", accessToken).get(
-                new GenericType<List<Project>>() {});
-        return checkAndReturn(response, accessToken);
-    }
-
-    @Override
     public BuildConfigurationSet findBuildConfigurationSet(int productVersionId,
             List<Integer> buildConfigurationIds) {
         throw new UnsupportedOperationException("Not implemented yet.");
