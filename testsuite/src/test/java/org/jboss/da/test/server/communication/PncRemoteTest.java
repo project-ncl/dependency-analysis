@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Remote tests, which tests communication with PNC
@@ -54,7 +55,7 @@ public class PncRemoteTest {
 
     @Test
     public void testCreateRemoveBC() throws Exception {
-        String bcName = "BCTestName";
+        String bcName = "BCTestName-" + UUID.randomUUID().toString();
         int environmentId = 1;
         int projectId = 1;
 
