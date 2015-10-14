@@ -68,7 +68,7 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
                 scm.getPomPath());
 
         GeneratorEntity ge = new GeneratorEntity(scm, productName, deps.getGav(), productVersion);
-        ge.setBcSetName(String.format("Build configuration set for %s", deps.getGav()));
+        ge.setBcSetName(deps.getGav().toString());
 
         setProjectInfoFromPom(ge.getToplevelProject(), pomInfo);
         ge.getToplevelProject().setName(getName(deps.getGav()));
