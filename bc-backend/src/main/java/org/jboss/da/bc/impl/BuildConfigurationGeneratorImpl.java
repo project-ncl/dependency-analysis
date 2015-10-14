@@ -50,7 +50,8 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
                 scm.getPomPath());
 
         GeneratorEntity ge = new GeneratorEntity(scm, productName, deps.getGav(), productVersion);
-        ge.setBcSetName(deps.getGav().toString() + " " + UUID.randomUUID().toString().substring(0, 5));
+        ge.setBcSetName(deps.getGav().toString() + " "
+                + UUID.randomUUID().toString().substring(0, 5));
 
         ge.getToplevelProject().setDescription(
                 ProjectHiearchyCreator.getDescription(pomInfo, deps.getGav()));
