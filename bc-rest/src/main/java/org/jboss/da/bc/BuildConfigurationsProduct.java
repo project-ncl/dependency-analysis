@@ -93,13 +93,14 @@ public class BuildConfigurationsProduct {
         response.setEntity(bc);
         try {
             GeneratorEntity ge = toGeneratorEntity(bc);
-            bcg.createBC(ge);
+            response.setProductVersionId(bcg.createBC(ge));
             response.setSuccess(true);
             return response;
         } catch (Exception ex) {
             log.warn("Could not finish: ", ex);
             response.setSuccess(false);
-            response.setMessage(ex.toString() + ":" + ex.getMessage());
+            response.setErrorType(ex.getClass().toString());
+            response.setMessage(ex.getMessage());
             return response;
         }
     }

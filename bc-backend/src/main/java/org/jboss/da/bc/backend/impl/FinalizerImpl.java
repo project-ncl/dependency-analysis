@@ -43,16 +43,17 @@ public class FinalizerImpl implements Finalizer {
     private BcChecker bcFinder;
 
     @Override
-    @Asynchronous
-    public void createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
+    public Integer createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
             String bcSetName) {
         try {
             Set<Integer> ids = create(toplevelBc);
             int productVersionId = bcSetGenerator.createProduct(name, productVersion);
             bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList(ids));
+            return productVersionId;
         } catch (Exception ex) {
             log.error("Failed to finalize produc import process", ex);
         }
+        return null;
     }
 
     private Set<Integer> create(ProjectHiearchy hiearchy) throws Exception {
