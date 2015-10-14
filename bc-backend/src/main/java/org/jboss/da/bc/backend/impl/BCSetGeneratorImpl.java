@@ -1,8 +1,8 @@
 package org.jboss.da.bc.backend.impl;
 
 import org.jboss.da.bc.backend.api.BCSetGenerator;
-import org.jboss.da.bc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.api.PNCConnector;
+import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.Product;
 import org.jboss.da.communication.pnc.model.ProductVersion;
 
@@ -18,7 +18,7 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
     private PNCConnector pnc;
 
     public BuildConfigurationSet createBCSet(String name, Integer productVersionId,
-            List<Integer> bcIds) {
+            List<Integer> bcIds) throws Exception {
         BuildConfigurationSet bcSet = toBCSet(pnc
                 .findBuildConfigurationSet(productVersionId, bcIds));
         if (bcSet == null) {
@@ -27,7 +27,8 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
             bcSet.setName(name);
             bcSet.setProductVersionId(productVersionId);
         }
-        return bcSet;
+
+        return pnc.createBuildConfigurationSet(bcSet);
     }
 
     private BuildConfigurationSet toBCSet(
