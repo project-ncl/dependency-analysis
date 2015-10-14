@@ -141,7 +141,7 @@ public class ProjectHiearchyCreator {
         findExistingBuildConfiguration(project); // bcExists, useExistingBc
         checkInternallyBuilt(project); // internallyBuilt
 
-        return new ProjectHiearchy(null, false);
+        return new ProjectHiearchy(project, false);
     }
 
     public static String getName(GAV gav) {
