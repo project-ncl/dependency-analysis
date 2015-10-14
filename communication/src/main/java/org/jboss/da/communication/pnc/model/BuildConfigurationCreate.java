@@ -1,5 +1,7 @@
 package org.jboss.da.communication.pnc.model;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BuildConfigurationCreate {
 
     @Getter

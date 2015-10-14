@@ -8,7 +8,7 @@ public class BuildConfigurationSet {
 
     @Getter
     @Setter
-    private int id;
+    private Integer id;
 
     @Getter
     @Setter
