@@ -38,13 +38,14 @@ public class FinalizerImpl implements Finalizer {
 
     @Inject
     private RepositoryCloner repoCloner;
-    
+
     @Inject
     private BcChecker bcFinder;
 
     @Override
     @Asynchronous
-    public void createBCs(String name, String productVersion, ProjectHiearchy toplevelBc, String bcSetName) {
+    public void createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
+            String bcSetName) {
         try {
             Set<Integer> ids = create(toplevelBc);
             int productVersionId = bcSetGenerator.createProduct(name, productVersion);
@@ -83,7 +84,6 @@ public class FinalizerImpl implements Finalizer {
         }
         return deps;
     }
-
 
     private BuildConfigurationCreate toBC(ProjectDetail project, Set<Integer> deps) {
         BuildConfigurationCreate bc = new BuildConfigurationCreate();
