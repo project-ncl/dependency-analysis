@@ -157,7 +157,8 @@ public class PNCConnectorImpl implements PNCConnector {
             case UNAUTHORIZED:
                 throw new AuthenticationException(accessToken);
             default:
-                throw new PNCRequestException(response.getEntity(String.class));
+                throw new PNCRequestException(response.getResponseStatus() + " "
+                        + response.getEntity(String.class));
         }
 
     }
@@ -170,7 +171,8 @@ public class PNCConnectorImpl implements PNCConnector {
             case UNAUTHORIZED:
                 throw new AuthenticationException(accessToken);
             default:
-                throw new PNCRequestException(response.getEntity(String.class));
+                throw new PNCRequestException(response.getResponseStatus() + " "
+                        + response.getEntity(String.class));
         }
     }
 }

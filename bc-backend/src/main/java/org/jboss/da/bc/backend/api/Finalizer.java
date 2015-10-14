@@ -8,6 +8,7 @@ import org.jboss.da.bc.model.ProjectHiearchy;
  */
 public interface Finalizer {
 
-    public void createBCs(String name, String productVersion, ProjectHiearchy toplevelBc, String bcSetName);
+    public void createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
+            String bcSetName);
 
 }

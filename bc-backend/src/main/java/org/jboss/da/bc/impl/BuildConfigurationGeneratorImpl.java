@@ -97,7 +97,8 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
 
         validate(projects.getToplevelBc());
 
-        finalizer.createBCs(projects.getName(), projects.getProductVersion(), projects.getToplevelBc(), projects.getBcSetName());
+        finalizer.createBCs(projects.getName(), projects.getProductVersion(),
+                projects.getToplevelBc(), projects.getBcSetName());
     }
 
     private ProjectHiearchy iterateDependencies(ProjectHiearchy hiearchy, GeneratorEntity entity)
@@ -186,7 +187,6 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
     private String getName(GAV gav) {
         return String.format("%s-%s", gav.getArtifactId(), gav.getVersion());
     }
-
 
     private void setSCMData(ProjectDetail project, Optional<POMInfo> pomInfo) {
         pomInfo.flatMap(POMInfo::getScmURL).ifPresent(url -> project.setScmUrl(url));
