@@ -5,9 +5,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import javax.ejb.Asynchronous;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+
 import org.jboss.da.bc.backend.api.BCSetGenerator;
 import org.jboss.da.bc.backend.api.BcChecker;
 import org.jboss.da.bc.backend.api.Finalizer;
@@ -44,16 +45,11 @@ public class FinalizerImpl implements Finalizer {
 
     @Override
     public Integer createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
-            String bcSetName) {
-        try {
-            Set<Integer> ids = create(toplevelBc);
-            int productVersionId = bcSetGenerator.createProduct(name, productVersion);
-            bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList(ids));
-            return productVersionId;
-        } catch (Exception ex) {
-            log.error("Failed to finalize produc import process", ex);
-        }
-        return null;
+            String bcSetName) throws Exception {
+        Set<Integer> ids = create(toplevelBc);
+        int productVersionId = bcSetGenerator.createProduct(name, productVersion);
+        bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList<>(ids));
+        return productVersionId;
     }
 
     private Set<Integer> create(ProjectHiearchy hiearchy) throws Exception {

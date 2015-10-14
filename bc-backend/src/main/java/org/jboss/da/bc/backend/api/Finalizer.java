@@ -9,6 +9,6 @@ import org.jboss.da.bc.model.ProjectHiearchy;
 public interface Finalizer {
 
     public Integer createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
-            String bcSetName);
+            String bcSetName) throws Exception;
 
 }
