@@ -3,6 +3,7 @@ package org.jboss.da.bc.impl;
 import java.util.Collections;
 import org.jboss.da.bc.backend.api.POMInfo;
 import java.util.Optional;
+import java.util.UUID;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.apache.commons.lang.StringUtils;
@@ -49,7 +50,7 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
                 scm.getPomPath());
 
         GeneratorEntity ge = new GeneratorEntity(scm, productName, deps.getGav(), productVersion);
-        ge.setBcSetName(deps.getGav().toString());
+        ge.setBcSetName(deps.getGav().toString() + " " + UUID.randomUUID().toString().substring(0, 5));
 
         ge.getToplevelProject().setDescription(
                 ProjectHiearchyCreator.getDescription(pomInfo, deps.getGav()));
