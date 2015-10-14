@@ -87,7 +87,7 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
     }
 
     @Override
-    public void createBC(GeneratorEntity projects) throws Exception {
+    public Integer createBC(GeneratorEntity projects) throws Exception {
         if (StringUtils.isBlank(projects.getBcSetName()))
             throw new IllegalStateException("BCSet name is blank.");
         if (StringUtils.isBlank(projects.getName()))
@@ -97,7 +97,7 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
 
         validate(projects.getToplevelBc());
 
-        finalizer.createBCs(projects.getName(), projects.getProductVersion(),
+        return finalizer.createBCs(projects.getName(), projects.getProductVersion(),
                 projects.getToplevelBc(), projects.getBcSetName());
     }
 
