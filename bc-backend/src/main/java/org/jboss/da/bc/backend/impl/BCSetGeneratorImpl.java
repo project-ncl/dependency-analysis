@@ -43,7 +43,7 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
     }
 
     @Override
-    public int createProduct(String name, String productVersion) throws Exception {
+    public Integer createProduct(String name, String productVersion) throws Exception {
         Product p = pnc.createProduct(new Product(name));
         ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, p.getId()));
         return pv.getId();
