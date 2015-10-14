@@ -20,7 +20,15 @@ public class FinishResponse {
 
     @Getter
     @Setter
+    protected String errorType;
+
+    @Getter
+    @Setter
     protected String message;
+
+    @Getter
+    @Setter
+    protected Integer productVersionId;
 
     @Getter
     @Setter
