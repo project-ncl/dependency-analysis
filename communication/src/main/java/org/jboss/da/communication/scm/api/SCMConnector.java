@@ -39,6 +39,20 @@ public interface SCMConnector {
     GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, GAV gav)
             throws ScmException, PomAnalysisException;
 
+    /**
+     * Returns true when GAV is in given repository.
+     *
+     * @param scmUrl
+     * @param revision
+     * @param gav
+     * @return True when GAV is present in given repository
+     * @throws ScmException When checking out the repository failed
+     */
+    boolean isGAVInRepository(String scmUrl, String revision, GAV gav) throws ScmException;
+
     Optional<MavenProject> getPom(String scmUrl, String revision, String pomPath)
+            throws ScmException;
+
+    public Optional<MavenProject> getPom(String scmUrl, String scmRevision, GAV gav)
             throws ScmException;
 }

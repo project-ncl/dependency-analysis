@@ -25,7 +25,7 @@ public class POMInfoGeneratorImpl implements POMInfoGenerator {
     AproxConnector aprox;
 
     @Override
-    public Optional<POMInfo> getPomInfo(String url, String revision, String pomPath) throws ScmException, PomAnalysisException {
+    public Optional<POMInfo> getPomInfo(String url, String revision, String pomPath) throws ScmException {
         Optional<MavenProject> pom = scm.getPom(url, revision, pomPath);
         return pom.map(x -> toPomInfo(x));
     }
@@ -43,4 +43,9 @@ public class POMInfoGeneratorImpl implements POMInfoGenerator {
         return new POMInfo(gav, url, tag, pom.getName());
     }
 
+    @Override
+    public Optional<POMInfo> getPomInfo(String scmUrl, String scmRevision, GAV gav) throws ScmException {
+        Optional<MavenProject> pom = scm.getPom(scmUrl, scmRevision, gav);
+        return pom.map(x -> toPomInfo(x));
+    }
 }

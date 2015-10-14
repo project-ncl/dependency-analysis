@@ -154,6 +154,13 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         }
     }
 
+    @Override
+    public Optional<File> getPOMFileForGAV(File pomRepoDir, GAV gav) {
+        return findAllPomFiles(pomRepoDir).stream()
+                .filter(file -> isProjectVersionRefSameAsGAV((new PomPeek(file)).getKey(), gav))
+                .findAny();
+    }
+
     /**
      * Return an existing GAVDependencyTree if present in the map, otherwise create a new GAVDependencyTree
      * and map the GAV to the GAVDependencyTree

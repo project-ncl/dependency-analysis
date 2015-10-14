@@ -13,9 +13,12 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 public interface POMInfoGenerator {
 
     public Optional<POMInfo> getPomInfo(String url, String revision, String pomPath)
-            throws ScmException, PomAnalysisException;
+            throws ScmException;
 
     public Optional<POMInfo> getPomInfo(GAV gav) throws CommunicationException,
             PomAnalysisException;
+
+    public Optional<POMInfo> getPomInfo(String scmUrl, String scmRevision, GAV gav)
+            throws ScmException;
 
 }
