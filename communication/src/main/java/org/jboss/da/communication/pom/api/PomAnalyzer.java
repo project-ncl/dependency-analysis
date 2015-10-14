@@ -43,4 +43,6 @@ public interface PomAnalyzer {
      */
     GAVDependencyTree readRelationships(File pomRepoDir, GAV gav) throws PomAnalysisException;
 
+    public Optional<File> getPOMFileForGAV(File tempDir, GAV gav);
+
 }

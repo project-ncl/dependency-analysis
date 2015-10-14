@@ -65,4 +65,22 @@ public class SCMConnectorImpl implements SCMConnector {
         return pomAnalyzer.readPom(new File(tempDir, pomPath));
     }
 
+    @Override
+    public boolean isGAVInRepository(String scmUrl, String revision, GAV gav) throws ScmException {
+        // git clone
+        // TODO: hardcoded to git right now
+        File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
+
+        return pomAnalyzer.getPOMFileForGAV(tempDir, gav).isPresent();
+    }
+
+    @Override
+    public Optional<MavenProject> getPom(String scmUrl, String revision, GAV gav) throws ScmException {
+        // git clone
+        // TODO: hardcoded to git right now
+        File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
+
+        return pomAnalyzer.getPOMFileForGAV(tempDir, gav)
+                .flatMap(file -> pomAnalyzer.readPom(file));
+    }
 }
