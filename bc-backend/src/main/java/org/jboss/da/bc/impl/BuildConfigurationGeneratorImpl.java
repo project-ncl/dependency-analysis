@@ -94,10 +94,10 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
                     "Use existing build configuration is checked, but apperently there is not existing build configuration for "
                             + project.getGav());
 
-        if (project.getEnvironmentId() == null)
+        if (!project.isUseExistingBc() && project.getEnvironmentId() == null)
             throw new IllegalStateException("Environment id is null for " + project.getGav());
 
-        if (project.getProjectId() == null)
+        if (!project.isUseExistingBc() && project.getProjectId() == null)
             throw new IllegalStateException("Project id is null for " + project.getGav());
 
         for (ProjectHiearchy dep : hiearchy.getDependencies().orElse(Collections.emptySet())) {
