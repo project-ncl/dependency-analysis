@@ -21,7 +21,11 @@
         <init-param>
             <param-name>allowedMethods</param-name>
             <param-value>GET,POST,OPTIONS,HEAD</param-value>
-        </init-param>        
+        </init-param>
+        <init-param>
+            <param-name>allowedHeaders</param-name>
+            <param-value>X-Requested-With,Content-Type,Accept,Origin,Authorization</param-value>
+        </init-param>
         <init-param>
             <param-name>chainPreflight</param-name>
             <param-value>false</param-value>
