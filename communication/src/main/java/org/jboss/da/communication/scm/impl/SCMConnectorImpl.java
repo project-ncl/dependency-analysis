@@ -32,6 +32,7 @@ public class SCMConnectorImpl implements SCMConnector {
             throws ScmException, PomAnalysisException {
         // git clone
         // TODO: hardcoded to git right now
+        // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
         GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, gav);
@@ -43,6 +44,7 @@ public class SCMConnectorImpl implements SCMConnector {
             String pomPath) throws ScmException, PomAnalysisException {
         // git clone
         // TODO: hardcoded to git right now
+        // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
         GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, new File(
