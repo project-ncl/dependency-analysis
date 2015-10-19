@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GAV;
@@ -40,7 +41,12 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
 
     @Override
     public Optional<GAVDependencyTree> getDependencyTree(GAV gav) throws CommunicationException {
-        return aproxConnector.getDependencyTreeOfGAV(gav);
+        try {
+            return aproxConnector.getDependencyTreeOfGAV(gav);
+        } catch (FindGAVDependencyException e) {
+            // TODO: better handle this later in DA-170
+            return Optional.empty();
+        }
     }
 
     @Override

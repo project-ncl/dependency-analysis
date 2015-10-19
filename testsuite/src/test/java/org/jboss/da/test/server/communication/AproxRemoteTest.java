@@ -3,15 +3,14 @@ package org.jboss.da.test.server.communication;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.maven.scm.ScmException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
-import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
@@ -53,7 +52,7 @@ public class AproxRemoteTest {
     }
 
     @Test
-    public void testGetCorrectDependencies() throws CommunicationException {
+    public void testGetCorrectDependencies() throws CommunicationException, FindGAVDependencyException {
         GAV gav = new GAV("xom", "xom", "1.2.5");
         Optional<GAVDependencyTree> tree = aproxConnector.getDependencyTreeOfGAV(gav);
 
@@ -66,11 +65,26 @@ public class AproxRemoteTest {
         assertEquals(expectedDependencyGAV, receivedDependencyGAV);
     }
 
-    @Test
-    public void testNoGAVInRepository() throws CommunicationException {
+    @Test(expected = FindGAVDependencyException.class)
+    public void testNoGAVInRepository() throws CommunicationException, FindGAVDependencyException {
         GAV gav = new GAV("do", "not-exist", "1.0");
-        Optional<GAVDependencyTree> tree = aproxConnector.getDependencyTreeOfGAV(gav);
-        assertFalse(tree.isPresent());
+        aproxConnector.getDependencyTreeOfGAV(gav);
+    }
+
+    @Test
+    public void noDependenciesForGAV() throws CommunicationException, FindGAVDependencyException {
+        GAV gav = new GAV("org.scala-lang", "scala-library", "2.11.7");
+        Optional<GAVDependencyTree> reply = aproxConnector.getDependencyTreeOfGAV(gav);
+        assertTrue(reply.get().getDependencies().isEmpty());
+    }
+
+    @Test
+    public void findIfGAVInPublicRepo() throws CommunicationException {
+        GAV not_exist = new GAV("do", "not-exist", "2.0");
+        assertFalse(aproxConnector.doesGAVExistInPublicRepo(not_exist));
+
+        GAV exist = new GAV("xom", "xom", "1.2.5");
+        assertTrue(aproxConnector.doesGAVExistInPublicRepo(exist));
     }
 
 }
