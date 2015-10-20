@@ -3,6 +3,7 @@ package org.jboss.da.test.server.scm;
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.scm.impl.SCMClonner;
 import org.jboss.da.scm.api.SCMType;
+import org.junit.Ignore;
 import org.junit.Test;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -45,6 +46,7 @@ public class SCMTest {
         }
     }
 
+    @Ignore
     @Test
     public void shouldCloneSvnRepository() throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_svn_checkout");
