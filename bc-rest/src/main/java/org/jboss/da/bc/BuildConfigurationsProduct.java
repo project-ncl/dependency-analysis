@@ -10,19 +10,20 @@ import org.jboss.da.bc.model.InfoEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
+import org.slf4j.Logger;
 
 import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.Path;
-import javax.ws.rs.POST;
-import javax.ws.rs.Produces;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
-import org.slf4j.Logger;
 
 @Path("/build-configuration/generate/product")
 @Api(value = "/build-configuration/generate/product", description = "BC generator for product")
@@ -85,7 +85,7 @@ public class BuildConfigurationsProduct {
     @POST
     @Path("/finish-process")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Finish analyse and create BCs", response = FinishResponse.class)
+    @ApiOperation(value = "Finish analysis and create BCs", response = FinishResponse.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated") })
     public FinishResponse finishAnalyse(@ApiParam(
             value = "Complete detail information needed to create BCs") InfoEntity bc) {
@@ -173,10 +173,11 @@ public class BuildConfigurationsProduct {
 
         ProjectHiearchy ph = new ProjectHiearchy(pd, bc.isSelected());
 
-        if(bc.getDependencies() == null){
+        if (bc.getDependencies() == null) {
             ph.setDependencies(Optional.empty());
-        }else{
-            ph.setDependencies(Optional.of(bc.getDependencies().stream().map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet())));
+        } else {
+            ph.setDependencies(Optional.of(bc.getDependencies().stream()
+                    .map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet())));
         }
         return ph;
     }
