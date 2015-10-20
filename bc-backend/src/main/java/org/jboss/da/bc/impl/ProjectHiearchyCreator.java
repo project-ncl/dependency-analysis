@@ -145,7 +145,7 @@ public class ProjectHiearchyCreator {
     }
 
     public static String getName(GAV gav) {
-        return String.format("%s-%s %s", gav.getArtifactId(), gav.getVersion(), UUID.randomUUID()
+        return String.format("%s-%s-%s", gav.getArtifactId(), gav.getVersion(), UUID.randomUUID()
                 .toString().substring(0, 5));
     }
 

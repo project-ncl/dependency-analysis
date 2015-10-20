@@ -1,15 +1,10 @@
 package org.jboss.da.bc.impl;
 
-import java.util.Collections;
-import org.jboss.da.bc.backend.api.POMInfo;
-import java.util.Optional;
-import java.util.UUID;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.backend.api.Finalizer;
+import org.jboss.da.bc.backend.api.POMInfo;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
 import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
@@ -18,7 +13,15 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
-import org.slf4j.Logger;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
+import java.util.Collections;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -27,8 +30,8 @@ import org.slf4j.Logger;
 @ApplicationScoped
 public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenerator {
 
-    @Inject
-    private Logger log;
+    private final Pattern bcNamePattern = Pattern
+            .compile("^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*(?<!\\.git)$");
 
     @Inject
     private DependencyTreeGenerator depGenerator;
@@ -50,7 +53,7 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
                 scm.getPomPath());
 
         GeneratorEntity ge = new GeneratorEntity(scm, productName, deps.getGav(), productVersion);
-        ge.setBcSetName(deps.getGav().toString() + " "
+        ge.setBcSetName(deps.getGav().toString() + "-"
                 + UUID.randomUUID().toString().substring(0, 5));
 
         ge.getToplevelProject().setDescription(
@@ -99,6 +102,12 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
 
         if (!project.isUseExistingBc() && project.getProjectId() == null)
             throw new IllegalStateException("Project id is null for " + project.getGav());
+
+        Matcher m = bcNamePattern.matcher(project.getName());
+        if (!m.matches())
+            throw new IllegalStateException(
+                    "BuildConfiguration name doesn't match expected format. BuildConfiguration name: "
+                            + project.getName());
 
         for (ProjectHiearchy dep : hiearchy.getDependencies().orElse(Collections.emptySet())) {
             validate(dep);
