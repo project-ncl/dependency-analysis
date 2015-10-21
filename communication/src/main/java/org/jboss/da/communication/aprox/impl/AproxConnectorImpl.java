@@ -63,7 +63,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
         if (!doesGAVExistInPublicRepo(gav)) {
             throw new FindGAVDependencyException("Could not find: " + gav
-                    + "in public repo of Aprox");
+                    + " in public repo of Aprox");
         }
 
         DepgraphAproxClientModule mod = new DepgraphAproxClientModule();

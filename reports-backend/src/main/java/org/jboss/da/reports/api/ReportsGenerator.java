@@ -2,6 +2,7 @@ package org.jboss.da.reports.api;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 
@@ -35,6 +36,7 @@ public interface ReportsGenerator {
      * @return Created report or empty Optional if the requested GAV was not found in the repository
      * @throws CommunicationException when there is a problem with communication with remote services
      */
-    public Optional<ArtifactReport> getReport(GAV gav) throws CommunicationException;
+    public ArtifactReport getReport(GAV gav) throws CommunicationException,
+            FindGAVDependencyException;
 
 }

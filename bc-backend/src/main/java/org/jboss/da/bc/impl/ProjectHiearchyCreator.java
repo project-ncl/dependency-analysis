@@ -15,6 +15,7 @@ import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -100,22 +101,23 @@ public class ProjectHiearchyCreator {
      * repository.
      */
     private Optional<GAVToplevelDependencies> getDependencies(GAV gav) {
+        Optional<GAVToplevelDependencies> dependencies;
         try {
-            Optional<GAVToplevelDependencies> dependencies = depGenerator
-                    .getToplevelDependencies(gav);
-            if (!dependencies.isPresent()) {
-                ProjectDetail project = entity.getToplevelProject();
-                try {
-                    dependencies = Optional.of(depGenerator.getToplevelDependencies(
-                            project.getScmUrl(), project.getScmRevision(), gav));
-                } catch (ScmException | PomAnalysisException ex) {
-                    return Optional.empty();
-                }
-            }
+            dependencies = depGenerator.getToplevelDependencies(gav);
             return dependencies;
+
         } catch (CommunicationException ex) {
             log.warn("Failed to get dependencies for " + gav, ex);
             return Optional.empty();
+        } catch (FindGAVDependencyException ex) {
+            ProjectDetail project = entity.getToplevelProject();
+            try {
+                dependencies = Optional.of(depGenerator.getToplevelDependencies(
+                        project.getScmUrl(), project.getScmRevision(), gav));
+                return dependencies;
+            } catch (ScmException | PomAnalysisException ex_scm) {
+                return Optional.empty();
+            }
         }
     }
 

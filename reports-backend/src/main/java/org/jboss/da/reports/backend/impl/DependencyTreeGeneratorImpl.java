@@ -40,13 +40,9 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     }
 
     @Override
-    public Optional<GAVDependencyTree> getDependencyTree(GAV gav) throws CommunicationException {
-        try {
-            return aproxConnector.getDependencyTreeOfGAV(gav);
-        } catch (FindGAVDependencyException e) {
-            // TODO: better handle this later in DA-170
-            return Optional.empty();
-        }
+    public Optional<GAVDependencyTree> getDependencyTree(GAV gav) throws CommunicationException,
+            FindGAVDependencyException {
+        return aproxConnector.getDependencyTreeOfGAV(gav);
     }
 
     @Override
@@ -63,7 +59,7 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     }
 
     @Override
-    public Optional<GAVToplevelDependencies> getToplevelDependencies(GAV gav) throws CommunicationException {
+    public Optional<GAVToplevelDependencies> getToplevelDependencies(GAV gav) throws CommunicationException, FindGAVDependencyException {
         return getDependencyTree(gav).map(tree -> treeToToplevel(tree));
     }
 
