@@ -224,6 +224,8 @@ public class ProjectHiearchyCreator {
                     project.getScmRevision());
             project.setBcExists(found.isPresent());
             project.setUseExistingBc(found.isPresent());
+            project.setBcId(found.isPresent() ? found.get().getId() : null);
+
         } catch (Exception ex) {
             log.warn("Failed to lookup existing BC for " + project.getGav(), ex);
         }
