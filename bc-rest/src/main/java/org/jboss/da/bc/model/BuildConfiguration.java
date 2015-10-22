@@ -21,6 +21,10 @@ public class BuildConfiguration {
 
     @Getter
     @Setter
+    protected DependencyAnalysisStatus analysisStatus;
+
+    @Getter
+    @Setter
     protected String scmUrl;
 
     @Getter

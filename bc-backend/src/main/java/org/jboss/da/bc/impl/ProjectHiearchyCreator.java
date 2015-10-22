@@ -11,6 +11,7 @@ import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.backend.api.BcChecker;
 import org.jboss.da.bc.backend.api.POMInfo;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
+import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
@@ -18,6 +19,7 @@ import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
+import org.jboss.da.communication.pnc.model.Project;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
@@ -81,16 +83,12 @@ public class ProjectHiearchyCreator {
         if (!hiearchy.isSelected())
             return; // Not selected, ignoring
 
-        Optional<Set<ProjectHiearchy>> dependencies = hiearchy.getDependencies();
-        if (!dependencies.isPresent())
-            return; // Dependencies were already check with error, ignoring
-
-        if (dependencies.get().isEmpty()) { // Dependencies not yet processed, get and process them
-            GAV gav = hiearchy.getProject().getGav();
-            Optional<GAVToplevelDependencies> deps = getDependencies(gav);
-            hiearchy.setDependencies(toProjectHiearchies(deps));
+        if (hiearchy.getAnalysisStatus().equals(DependencyAnalysisStatus.NOT_ANALYSED)
+                && hiearchy.getDependencies().get().isEmpty()) { // Dependencies not yet processed, get
+            // and process them
+            setDependencies(hiearchy);
         } else { // Dependencies already processed, search next level
-            for (ProjectHiearchy dep : dependencies.get()) {
+            for (ProjectHiearchy dep : hiearchy.getDependencies().get()) {
                 iterate(dep);
             }
         }
@@ -100,23 +98,27 @@ public class ProjectHiearchyCreator {
      * Tries to find dependencies in AProx, if not found in AProx, try to found in the original SCM
      * repository.
      */
-    private Optional<GAVToplevelDependencies> getDependencies(GAV gav) {
+    private void setDependencies(ProjectHiearchy hiearchy) {
+        GAV gav = hiearchy.getProject().getGav();
         Optional<GAVToplevelDependencies> dependencies;
         try {
             dependencies = depGenerator.getToplevelDependencies(gav);
-            return dependencies;
+            hiearchy.setDependencies(toProjectHiearchies(dependencies));
+            hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
 
         } catch (CommunicationException ex) {
             log.warn("Failed to get dependencies for " + gav, ex);
-            return Optional.empty();
+            hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
+
         } catch (FindGAVDependencyException ex) {
             ProjectDetail project = entity.getToplevelProject();
             try {
                 dependencies = Optional.of(depGenerator.getToplevelDependencies(
                         project.getScmUrl(), project.getScmRevision(), gav));
-                return dependencies;
+                hiearchy.setDependencies(toProjectHiearchies(dependencies));
+                hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
             } catch (ScmException | PomAnalysisException ex_scm) {
-                return Optional.empty();
+                hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
             }
         }
     }
