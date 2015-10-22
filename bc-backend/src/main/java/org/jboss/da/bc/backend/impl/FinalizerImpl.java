@@ -61,14 +61,15 @@ public class FinalizerImpl implements Finalizer {
                 nextLevelDependencyIds.add(create(dep, allDependencyIds));
             }
         }
-
+        
+        BuildConfiguration bc;
         ProjectDetail project = hiearchy.getProject();
-        BuildConfigurationCreate bcc;
         if (project.isUseExistingBc()) {
-            Optional<BuildConfiguration> bc = bcFinder.lookupBcByScm(project.getScmUrl(), project.getScmRevision());
-            bcc = bc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
+            Optional<BuildConfiguration> optionalBc = bcFinder.lookupBcByScm(project.getScmUrl(), project.getScmRevision());
+            bc = optionalBc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
         } else {
-            bcc = toBC(project, nextLevelDependencyIds);
+            BuildConfigurationCreate bcc = toBC(project, nextLevelDependencyIds);
+            bc = pnc.createBuildConfiguration(bcc);
             if (project.isCloneRepo()) {
                 try {
                     String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
@@ -78,9 +79,8 @@ public class FinalizerImpl implements Finalizer {
                 }
             }
         }
-        BuildConfiguration bc = pnc.createBuildConfiguration(bcc);
-        allDependencyIds.add(bc.getId());
 
+        allDependencyIds.add(bc.getId());
         return bc.getId();
     }
 
