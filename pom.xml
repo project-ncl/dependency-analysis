@@ -64,7 +64,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <jboss.bom.version>6.3.2.GA</jboss.bom.version>
-        <url-pattern>/*</url-pattern>
+        <corsUrlPattern>/*</corsUrlPattern>
     </properties>
 
     <dependencyManagement>
