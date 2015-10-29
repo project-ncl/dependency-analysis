@@ -1,42 +1,42 @@
 {
-  "gav": {
-    "groupId": "org.jboss.da",
-    "artifactId": "common",
-    "version": "0.1.0"
-  },
+  "groupId": "org.jboss.da",
+  "artifactId": "common",
+  "version": "0.1.0",
   "availableVersions": [],
-  "bestMatchVersion": {
-    "present": false
-  },
+  "bestMatchVersion": null,
+  "dependencyVersionsSatisfied": false,
   "dependencies": [
     {
-      "gav": {
-        "groupId": "junit",
-        "artifactId": "junit",
-        "version": "4.11"
-      },
+      "groupId": "com.fasterxml.jackson.core",
+      "artifactId": "jackson-databind",
+      "version": "2.4.4",
+      "availableVersions": [],
+      "bestMatchVersion": null,
+      "dependencyVersionsSatisfied": false,
+      "dependencies": [],
+      "blacklisted": false,
+      "whitelisted": false,
+      "notBuiltDependencies": 0
+    },
+    {
+      "groupId": "junit",
+      "artifactId": "junit",
+      "version": "4.11",
       "availableVersions": [
         "4.10-redhat-2",
         "4.11-redhat-1"
       ],
-      "bestMatchVersion": {
-        "present": true
-      },
+      "bestMatchVersion": "4.11-redhat-1",
+      "dependencyVersionsSatisfied": true,
       "dependencies": [],
       "blacklisted": false,
-      "whiteListed": false,
-      "groupId": "junit",
-      "artifactId": "junit",
-      "dependencyVersionSatisfied": true,
-      "notBuiltDependencies": 0,
-      "version": "4.11"
+      "whitelisted": false,
+      "notBuiltDependencies": 0
     },
     {
-      "gav": {
-        "groupId": "javax.enterprise",
-        "artifactId": "cdi-api",
-        "version": "1.2"
-      },
+      "groupId": "javax.enterprise",
+      "artifactId": "cdi-api",
+      "version": "1.2",
       "availableVersions": [
         "1.0-SP4-redhat-4",
         "1.0-SP4.redhat-3",
@@ -44,43 +44,15 @@
         "1.0-SP4-redhat-1",
         "1.0-SP4-redhat-2"
       ],
-      "bestMatchVersion": {
-        "present": false
-      },
+      "bestMatchVersion": null,
+      "dependencyVersionsSatisfied": false,
       "dependencies": [],
       "blacklisted": false,
-      "whiteListed": false,
-      "groupId": "javax.enterprise",
-      "artifactId": "cdi-api",
-      "dependencyVersionSatisfied": false,
-      "notBuiltDependencies": 0,
-      "version": "1.2"
-    },
-    {
-      "gav": {
-        "groupId": "com.fasterxml.jackson.core",
-        "artifactId": "jackson-databind",
-        "version": "2.4.4"
-      },
-      "availableVersions": [],
-      "bestMatchVersion": {
-        "present": false
-      },
-      "dependencies": [],
-      "blacklisted": false,
-      "whiteListed": false,
-      "groupId": "com.fasterxml.jackson.core",
-      "artifactId": "jackson-databind",
-      "dependencyVersionSatisfied": false,
-      "notBuiltDependencies": 0,
-      "version": "2.4.4"
+      "whitelisted": false,
+      "notBuiltDependencies": 0
     }
   ],
   "blacklisted": false,
-  "whiteListed": false,
-  "groupId": "org.jboss.da",
-  "artifactId": "common",
-  "dependencyVersionSatisfied": false,
-  "notBuiltDependencies": 2,
-  "version": "0.1.0"
+  "whitelisted": false,
+  "notBuiltDependencies": 2
 }
