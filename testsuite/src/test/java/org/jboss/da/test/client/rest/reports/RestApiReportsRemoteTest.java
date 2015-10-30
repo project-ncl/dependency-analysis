@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.AbstractRestReportsTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -55,6 +56,17 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
     public void testScmReportBasic() throws Exception {
         ClientResponse<String> response = assertResponseForRequest(PATH_SCM, "dependency-analysis");
         assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    @Ignore
+    public void testReportWithoutDependencies() throws Exception {
+        ClientResponse<String> responseWith = assertResponseForRequest(PATH_REPORTS_GAV,
+                "withDependencies");
+        assertEquals(200, responseWith.getStatus());
+        ClientResponse<String> responseWithout = assertResponseForRequest(PATH_REPORTS_GAV,
+                "withoutDependencies");
+        assertEquals(200, responseWithout.getStatus());
     }
 
 }

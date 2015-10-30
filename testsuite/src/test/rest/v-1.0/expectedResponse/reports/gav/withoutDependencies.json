@@ -1,0 +1,20 @@
+{  
+    "groupId":"org.codehaus.jackson",
+    "artifactId":"jackson-core-asl",
+    "version":"1.9.9",
+    "availableVersions":[  
+        "1.9.2-redhat-1",
+        "1.9.9.redhat-3",
+        "1.9.2-redhat-2",
+        "1.9.9-redhat-2",
+        "1.9.9.redhat-4"
+    ],
+    "bestMatchVersion":"1.9.9.redhat-4",
+    "dependencyVersionsSatisfied":true,
+    "dependencies":[  
+
+    ],
+    "blacklisted":false,
+    "whitelisted":false,
+    "notBuiltDependencies":0
+}
