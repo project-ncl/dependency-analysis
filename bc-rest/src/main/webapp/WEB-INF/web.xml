@@ -33,6 +33,6 @@
     </filter>
     <filter-mapping>
         <filter-name>cross-origin</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>${corsUrlPattern}</url-pattern>
     </filter-mapping>
 </web-app>
