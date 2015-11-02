@@ -53,6 +53,10 @@ public class BuildConfiguration {
 
     @Getter
     @Setter
+    protected Integer bcId;
+
+    @Getter
+    @Setter
     protected boolean bcExists;
 
     @Getter

@@ -130,6 +130,7 @@ public class BuildConfigurationsProduct {
         bc.setProjectId(p.getProjectId());
         bc.setScmRevision(p.getScmRevision());
         bc.setScmUrl(p.getScmUrl());
+        bc.setBcId(p.getBcId());
         bc.setSelected(ph.isSelected());
         bc.setUseExistingBc(p.isUseExistingBc());
 
@@ -170,6 +171,7 @@ public class BuildConfigurationsProduct {
         pd.setScmRevision(bc.getScmRevision());
         pd.setScmUrl(bc.getScmUrl());
         pd.setUseExistingBc(bc.isUseExistingBc());
+        pd.setBcId(bc.getBcId());
 
         ProjectHiearchy ph = new ProjectHiearchy(pd, bc.isSelected());
 

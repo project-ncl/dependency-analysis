@@ -49,6 +49,10 @@ public class ProjectDetail {
 
     @Getter
     @Setter
+    private Integer bcId;
+
+    @Getter
+    @Setter
     private boolean bcExists = false; // generated, unmodifiable
 
     @Getter
