@@ -7,6 +7,8 @@ import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
 
+import java.util.Optional;
+
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
@@ -18,5 +20,6 @@ public interface BuildConfigurationGenerator {
 
     GeneratorEntity iterateBCGeneration(GeneratorEntity projects) throws CommunicationException;
 
-    Integer createBC(GeneratorEntity projects) throws CommunicationException, PNCRequestException;
+    Optional<Integer> createBC(GeneratorEntity projects) throws CommunicationException,
+            PNCRequestException;
 }

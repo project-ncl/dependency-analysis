@@ -4,7 +4,7 @@ import org.jboss.da.communication.model.GAV;
 
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
-
+import java.util.EnumSet;
 import java.util.List;
 
 import lombok.EqualsAndHashCode;
@@ -82,5 +82,9 @@ public class BuildConfiguration {
     @Getter
     @Setter
     protected boolean selected;
+
+    @Getter
+    @Setter
+    protected EnumSet<BcError> errors;
 
 }

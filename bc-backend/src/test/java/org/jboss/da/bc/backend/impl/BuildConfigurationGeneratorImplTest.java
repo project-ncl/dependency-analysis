@@ -2,6 +2,7 @@ package org.jboss.da.bc.backend.impl;
 
 import org.jboss.da.bc.backend.api.Finalizer;
 import org.jboss.da.bc.impl.BuildConfigurationGeneratorImpl;
+import org.jboss.da.bc.model.BcError;
 import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
@@ -31,10 +32,12 @@ public class BuildConfigurationGeneratorImplTest {
     @InjectMocks
     private BuildConfigurationGeneratorImpl bcGenerator;
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testInvalidBcName() throws Exception {
         GeneratorEntity genEntity = prepareGeneratorEntity("testName:1");
         bcGenerator.createBC(genEntity);
+        assertEquals(genEntity.getToplevelBc().getProject().getErrors().size(), 1);
+        assertTrue(genEntity.getToplevelBc().getProject().getErrors().contains(BcError.NO_NAME));
     }
 
     @Test
@@ -44,7 +47,7 @@ public class BuildConfigurationGeneratorImplTest {
                 finalizer.createBCs(genEntity.getName(), genEntity.getProductVersion(),
                         genEntity.getToplevelBc(), genEntity.getBcSetName())).thenReturn(1);
 
-        assertEquals(new Integer(1), bcGenerator.createBC(genEntity));
+        assertEquals(new Integer(1), bcGenerator.createBC(genEntity).get());
     }
 
     private GeneratorEntity prepareGeneratorEntity(String bcName) {

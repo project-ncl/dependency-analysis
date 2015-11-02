@@ -58,8 +58,12 @@ public class BuildConfigurationsProduct {
             GeneratorEntity entity = bcg.startBCGeneration(scm, product.getName(),
                     product.getProductVersion());
             return Response.ok().entity(toInfoEntity(entity)).build();
-        } catch (ScmException | PomAnalysisException | CommunicationException ex) {
-            return Response.serverError().entity(ex).build();
+        } catch (ScmException ex) {
+            return Response.serverError().entity("Error during SCM analysis occured").build();
+        } catch (PomAnalysisException ex) {
+            return Response.serverError().entity("Error during POM analysis occured.").build();
+        } catch (CommunicationException ex) {
+            return Response.serverError().entity("Error during communication occured").build();
         }
     }
 
@@ -92,8 +96,9 @@ public class BuildConfigurationsProduct {
         response.setEntity(bc);
         try {
             GeneratorEntity ge = toGeneratorEntity(bc);
-            response.setProductVersionId(bcg.createBC(ge));
-            response.setSuccess(true);
+            Optional<Integer> id = bcg.createBC(ge);
+            response.setSuccess(id.isPresent()); 
+            id.ifPresent(x -> response.setProductVersionId(id.get()));           
             return response;
         } catch (CommunicationException | PNCRequestException ex) {
             log.warn("Could not finish: ", ex);
@@ -133,6 +138,7 @@ public class BuildConfigurationsProduct {
         bc.setSelected(ph.isSelected());
         bc.setUseExistingBc(p.isUseExistingBc());
         bc.setAnalysisStatus(ph.getAnalysisStatus());
+        bc.setErrors(p.getErrors());
 
         List<BuildConfiguration> dependencies = ph.getDependencies()
                 .stream()
@@ -169,6 +175,7 @@ public class BuildConfigurationsProduct {
         pd.setProjectId(bc.getProjectId());
         pd.setScmRevision(bc.getScmRevision());
         pd.setScmUrl(bc.getScmUrl());
+        pd.setErrors(bc.getErrors());
         pd.setUseExistingBc(bc.isUseExistingBc());
         pd.setBcId(bc.getBcId());
 

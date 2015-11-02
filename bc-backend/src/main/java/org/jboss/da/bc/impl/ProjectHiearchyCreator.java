@@ -14,6 +14,7 @@ import org.jboss.da.bc.backend.api.BcChecker;
 import org.jboss.da.bc.backend.api.POMInfo;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
 import org.jboss.da.bc.model.DependencyAnalysisStatus;
+import org.jboss.da.bc.model.BcError;
 import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
@@ -88,6 +89,7 @@ public class ProjectHiearchyCreator {
         if (hiearchy.getAnalysisStatus().equals(DependencyAnalysisStatus.NOT_ANALYSED)
                 && hiearchy.getDependencies().isEmpty()) {
             // Dependencies not yet processed, get and process them
+            hiearchy.getProject().addError(BcError.NO_DEPENDENCY);
             setDependencies(hiearchy);
         } else if (hiearchy.getAnalysisStatus().equals(DependencyAnalysisStatus.ANALYZED)) {
             // Dependencies already processed, search next level
@@ -100,6 +102,8 @@ public class ProjectHiearchyCreator {
     /**
      * Tries to find dependencies in AProx, if not found in AProx, try to found in the original SCM
      * repository.
+     * @throws PomAnalysisException 
+     * @throws ScmException 
      */
     private void setDependencies(ProjectHiearchy hiearchy) {
         GAV gav = hiearchy.getProject().getGav();
@@ -108,7 +112,6 @@ public class ProjectHiearchyCreator {
             dependencies = depGenerator.getToplevelDependencies(gav);
             hiearchy.setDependencies(toProjectHiearchies(dependencies));
             hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
-
         } catch (CommunicationException ex) {
             log.warn("Failed to get dependencies for " + gav, ex);
             hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
@@ -120,9 +123,14 @@ public class ProjectHiearchyCreator {
                         project.getScmRevision(), gav);
                 hiearchy.setDependencies(toProjectHiearchies(dependencies));
                 hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
-            } catch (ScmException | PomAnalysisException ex_scm) {
+            } catch (ScmException ex_scm) {
+                hiearchy.getProject().addError(BcError.SCM_EXCEPTION);
+                hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
+            } catch (PomAnalysisException ex_pom) {
+                hiearchy.getProject().addError(BcError.POM_EXCEPTION);
                 hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
             }
+
         }
     }
 
@@ -160,7 +168,7 @@ public class ProjectHiearchyCreator {
         Optional<String> name = pomInfo.flatMap(p -> p.getName());
 
         return name.map(n -> String.format("Build Configuration for %s - %s.", gav, n))
-                   .orElse(String.format("Build Configuration for %s.", gav));
+                .orElse(String.format("Build Configuration for %s.", gav));
     }
 
     private Optional<POMInfo> getPomInfo(GAV gav) {
@@ -190,20 +198,20 @@ public class ProjectHiearchyCreator {
         Optional<String> url = pomInfo.flatMap(p -> p.getScmURL());
         Optional<String> rev = pomInfo.flatMap(p -> p.getScmRevision());
 
-        if(!url.isPresent() || !rev.isPresent()){
+        if (!url.isPresent() || !rev.isPresent()) {
             try {
                 boolean gavInRepository = scm.isGAVInRepository(scmUrl, revison, project.getGav());
-                if(gavInRepository){
-                    if(url.isPresent()){
-                        if(url.get().equals(scmUrl)){
+                if (gavInRepository) {
+                    if (url.isPresent()) {
+                        if (url.get().equals(scmUrl)) {
                             rev = Optional.of(revison);
                         }
-                    }else{
-                        if(rev.isPresent()){
-                            if(rev.get().equals(revison)){
+                    } else {
+                        if (rev.isPresent()) {
+                            if (rev.get().equals(revison)) {
                                 url = Optional.of(scmUrl);
                             }
-                        }else{
+                        } else {
                             url = Optional.of(scmUrl);
                             rev = Optional.of(revison);
                         }
