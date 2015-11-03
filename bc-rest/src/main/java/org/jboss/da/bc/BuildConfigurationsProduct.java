@@ -3,6 +3,7 @@ package org.jboss.da.bc;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.model.BuildConfiguration;
+import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.EntryEntity;
 import org.jboss.da.bc.model.FinishResponse;
 import org.jboss.da.bc.model.GeneratorEntity;
@@ -133,6 +134,7 @@ public class BuildConfigurationsProduct {
         bc.setBcId(p.getBcId());
         bc.setSelected(ph.isSelected());
         bc.setUseExistingBc(p.isUseExistingBc());
+        bc.setAnalysisStatus(ph.getAnalysisStatus());
 
         List<BuildConfiguration> dependencies = ph.getDependencies()
                 .map(deps -> deps.stream()
@@ -181,6 +183,9 @@ public class BuildConfigurationsProduct {
             ph.setDependencies(Optional.of(bc.getDependencies().stream()
                     .map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet())));
         }
+
+        ph.setAnalysisStatus(bc.getAnalysisStatus());
+
         return ph;
     }
 }

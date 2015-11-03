@@ -1,5 +1,6 @@
 package org.jboss.da.reports.impl;
 
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.CommunicationException;
@@ -85,7 +86,8 @@ public class ReportsGeneratorImplTest {
             Arrays.asList(daUtilDT, daCommonDT)));
 
     private void prepare(boolean whitelisted, boolean blacklisted, List<String> versions,
-            String best, GAVDependencyTree dependencyTree) throws CommunicationException {
+            String best, GAVDependencyTree dependencyTree) throws CommunicationException,
+            FindGAVDependencyException {
         when(versionFinderImpl.getBuiltVersionsFor(daCoreGAV)).thenReturn(versions);
         when(versionFinderImpl.lookupBuiltVersions(daCoreGAV)).thenReturn(
                 new VersionLookupResult(Optional.ofNullable(best), versions));
@@ -99,7 +101,7 @@ public class ReportsGeneratorImplTest {
                 Optional.ofNullable(dependencyTree));
     }
 
-    private void prepareMulti() throws CommunicationException {
+    private void prepareMulti() throws CommunicationException, FindGAVDependencyException {
         prepare(false, false, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
         when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(
                 Optional.ofNullable(daCoreDT));
@@ -127,24 +129,23 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNullGAV() throws CommunicationException {
+    public void testNullGAV() throws CommunicationException, FindGAVDependencyException {
         generator.getReport(null);
     }
 
-    @Test
-    public void testNonExistingGAV() throws CommunicationException {
-        when(aproxClient.getDependencyTreeOfGAV(daGAV)).thenReturn(Optional.empty());
+    @Test(expected = FindGAVDependencyException.class)
+    public void testNonExistingGAV() throws CommunicationException, FindGAVDependencyException {
+        when(aproxClient.getDependencyTreeOfGAV(daGAV)).thenThrow(FindGAVDependencyException.class);
 
-        Optional<ArtifactReport> report = generator.getReport(daGAV);
-
-        assertFalse(report.isPresent());
+        ArtifactReport report = generator.getReport(daGAV);
     }
 
     @Test
-    public void testNonListedNoBestMatchGAV() throws CommunicationException {
+    public void testNonListedNoBestMatchGAV() throws CommunicationException,
+            FindGAVDependencyException {
         prepare(false, false, daCoreVersionsNoBest, null, daCoreNoDT);
 
-        ArtifactReport report = generator.getReport(daCoreGAV).get();
+        ArtifactReport report = generator.getReport(daCoreGAV);
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
@@ -156,10 +157,11 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testWhiteListedNoBestMatchGAV() throws CommunicationException {
+    public void testWhiteListedNoBestMatchGAV() throws CommunicationException,
+            FindGAVDependencyException {
         prepare(true, false, daCoreVersionsNoBest, null, daCoreNoDT);
 
-        ArtifactReport report = generator.getReport(daCoreGAV).get();
+        ArtifactReport report = generator.getReport(daCoreGAV);
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
@@ -170,10 +172,11 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testBlackListedBestMatchGAV() throws CommunicationException {
+    public void testBlackListedBestMatchGAV() throws CommunicationException,
+            FindGAVDependencyException {
         prepare(false, true, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
 
-        ArtifactReport report = generator.getReport(daCoreGAV).get();
+        ArtifactReport report = generator.getReport(daCoreGAV);
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
@@ -185,20 +188,20 @@ public class ReportsGeneratorImplTest {
 
     @Test
     public void testArtifactReportShouldNotHaveNullValuesInAvailableVersionsWhenBestMatchVersionIsNull()
-            throws CommunicationException {
+            throws CommunicationException, FindGAVDependencyException {
         prepare(false, false, daCoreVersionsBest, null, daCoreNoDT);
 
-        ArtifactReport report = generator.getReport(daCoreGAV).get();
+        ArtifactReport report = generator.getReport(daCoreGAV);
 
         assertFalse(report.getBestMatchVersion().isPresent());
         assertFalse(report.getAvailableVersions().stream().anyMatch(version -> version == null));
     }
 
     @Test
-    public void testGetMultipleReport() throws CommunicationException {
+    public void testGetMultipleReport() throws CommunicationException, FindGAVDependencyException {
         prepareMulti();
 
-        ArtifactReport report = generator.getReport(daCoreGAV).get();
+        ArtifactReport report = generator.getReport(daCoreGAV);
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());

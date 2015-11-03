@@ -2,7 +2,6 @@ package org.jboss.da.communication.aprox.impl;
 
 import org.commonjava.aprox.client.core.Aprox;
 import org.commonjava.aprox.client.core.AproxClientException;
-import org.commonjava.aprox.client.core.AproxClientModule;
 import org.commonjava.aprox.client.core.module.AproxStoresClientModule;
 import org.commonjava.aprox.depgraph.client.DepgraphAproxClientModule;
 import org.commonjava.aprox.model.core.Group;
@@ -16,13 +15,12 @@ import org.commonjava.maven.atlas.graph.rel.ProjectRelationship;
 import org.commonjava.maven.atlas.graph.rel.RelationshipType;
 import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
 import org.commonjava.maven.atlas.ident.ref.SimpleProjectVersionRef;
-import org.eclipse.jgit.lib.RepositoryState;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.api.AproxConnector.RepositoryManipulationStatus;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.Repository;
 import org.jboss.da.communication.aprox.model.VersionResponse;
@@ -61,7 +59,12 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public Optional<GAVDependencyTree> getDependencyTreeOfGAV(GAV gav)
-            throws CommunicationException {
+            throws CommunicationException, FindGAVDependencyException {
+
+        if (!doesGAVExistInPublicRepo(gav)) {
+            throw new FindGAVDependencyException("Could not find: " + gav
+                    + " in public repo of Aprox");
+        }
 
         DepgraphAproxClientModule mod = new DepgraphAproxClientModule();
         try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api", mod).connect()) {
@@ -82,6 +85,7 @@ public class AproxConnectorImpl implements AproxConnector {
             GraphExport export = mod.graph(req);
 
             if (export == null || export.getRelationships() == null) {
+                // no dependencies found
                 return Optional.empty();
             }
             return Optional.of(generateGAVDependencyTree(export, gav));
@@ -204,6 +208,44 @@ public class AproxConnectorImpl implements AproxConnector {
             return repoList;
         } catch (AproxClientException | ConfigurationParseException e) {
             throw new CommunicationException(e);
+        }
+    }
+
+    @Override
+    /**
+     * Implementation note: dcheung tried to initially use HttpURLConnection
+     * and send a 'HEAD' request to the resource. Even though that worked,
+     * for some reason this completely makes Arquillian fail to deploy the testsuite.
+     * For that reason, dcheung switched to using a simple URL object instead with the
+     * try-catch logic.
+     *
+     * No dcheung doesn't usually talks about himself in the third person..
+     */
+    public boolean doesGAVExistInPublicRepo(GAV gav) throws CommunicationException {
+        StringBuilder query = new StringBuilder();
+
+        try {
+            DAConfig config = this.config.getConfig();
+            query.append(config.getAproxServer());
+            query.append("/api/group/public/");
+            query.append(gav.getGroupId().replace(".", "/")).append("/");
+            query.append(gav.getArtifactId()).append('/');
+            query.append(gav.getVersion()).append('/');
+            query.append(gav.getArtifactId()).append("-").append(gav.getVersion()).append(".pom");
+
+            URLConnection connection = new URL(query.toString()).openConnection();
+            try {
+                connection.getInputStream();
+                // if we've reached here, then it means the pom exists
+                return true;
+            } catch (FileNotFoundException e) {
+                // if we've reached here, the resource is not available
+                return false;
+            }
+
+        } catch (IOException | ConfigurationParseException e) {
+            throw new CommunicationException("Failed to establish a connection with Aprox: "
+                    + query.toString(), e);
         }
     }
 

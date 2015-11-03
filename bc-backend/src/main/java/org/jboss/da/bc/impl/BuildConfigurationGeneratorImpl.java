@@ -6,6 +6,7 @@ import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.backend.api.Finalizer;
 import org.jboss.da.bc.backend.api.POMInfo;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
+import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
@@ -63,6 +64,8 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
         ge.getToplevelBc().setDependencies(
                 Optional.of(nextLevel.processDependencies(ge, deps.getDependencies())));
 
+        // the top level bc has had its dependencies analyzed
+        ge.getToplevelBc().setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
         return ge;
     }
 

@@ -18,6 +18,10 @@ public class ProjectHiearchy {
 
     @Getter
     @Setter
+    private DependencyAnalysisStatus analysisStatus = DependencyAnalysisStatus.NOT_ANALYSED;
+
+    @Getter
+    @Setter
     @JsonUnwrapped
     private ProjectDetail project;
 
