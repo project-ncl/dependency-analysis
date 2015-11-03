@@ -82,7 +82,7 @@ public class Reports {
             Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(scm);
 
             return artifactReport
-                    .map(x -> Response.ok().entity(artifactReport.get()).build())
+                    .map(x -> Response.ok().entity(toReport(x)).build())
                     .orElseGet(() -> Response.status(Status.NOT_FOUND)
                             .entity(new ErrorMessage("No relationship found")).build());
 
