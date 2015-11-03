@@ -101,7 +101,7 @@ public class Reports {
             response = ArtifactReport.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Report was successfully generated"),
-            @ApiResponse(code = 404, message = "Requested GA was not found"),
+            @ApiResponse(code = 404, message = "Requested GAV was not found in repository"),
             @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     public Response gavGenerator(@ApiParam(
             value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAV gavRequest) {
@@ -110,7 +110,7 @@ public class Reports {
             return artifactReport
                     .map(x -> Response.ok().entity(toReport(x)).build())
                     .orElseGet(() -> Response.status(Status.NOT_FOUND)
-                            .entity(new ErrorMessage("Requested GA was not found")).build());
+                            .entity(new ErrorMessage("Requested GAV was not found in repository")).build());
         } catch (CommunicationException ex) {
             log.error("Communication with remote repository failed", ex);
             return Response.status(502).entity(ex).build();
