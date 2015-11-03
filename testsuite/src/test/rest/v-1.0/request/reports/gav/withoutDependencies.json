@@ -1,0 +1,5 @@
+{
+    "groupId":"org.codehaus.jackson",
+    "artifactId":"jackson-core-asl",
+    "version":"1.9.9"
+}
