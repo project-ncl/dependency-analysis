@@ -40,9 +40,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.jboss.da.communication.CommunicationException;
+import org.slf4j.Logger;
 
 @ApplicationScoped
 public class PomAnalyzerImpl implements PomAnalyzer {
+
+    @Inject
+    private Logger log;
 
     @Inject
     private PomReader pomReader;
@@ -244,6 +248,10 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
         for (File pomFile : poms) {
             PomPeek peek = new PomPeek(pomFile);
+            if (peek.getKey() == null) {
+                log.warn("Could not parse " + pomFile.getAbsolutePath());
+                continue;
+            }
             projectVersionRefs.put(pomFile.getParentFile().getAbsoluteFile(), peek.getKey());
 
             String path = ArtifactPathUtils.formatArtifactPath(peek.getKey().asPomArtifact(), carto
