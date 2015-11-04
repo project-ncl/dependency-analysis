@@ -1,0 +1,5 @@
+{
+  "scmUrl": "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
+  "revision": "1.6.0.Final-redhat",
+  "pomPath": "./distribution/eap6-server-dist/pom.xml"
+}
