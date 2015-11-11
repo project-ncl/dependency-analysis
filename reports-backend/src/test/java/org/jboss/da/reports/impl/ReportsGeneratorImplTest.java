@@ -97,14 +97,12 @@ public class ReportsGeneratorImplTest {
                 Optional.ofNullable(best));
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
         when(whiteArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(whitelisted);
-        when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(
-                Optional.ofNullable(dependencyTree));
+        when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
     }
 
     private void prepareMulti() throws CommunicationException, FindGAVDependencyException {
         prepare(false, false, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
-        when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(
-                Optional.ofNullable(daCoreDT));
+        when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
         when(versionFinderImpl.getBuiltVersionsFor(daUtilGAV)).thenReturn(daCoreVersionsBest);
         when(versionFinderImpl.lookupBuiltVersions(daUtilGAV)).thenReturn(
