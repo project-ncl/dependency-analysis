@@ -5,11 +5,14 @@ import org.jboss.da.scm.impl.SCMClonner;
 import org.jboss.da.scm.api.SCMType;
 import org.junit.Ignore;
 import org.junit.Test;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class SCMTest {
@@ -41,6 +44,36 @@ public class SCMTest {
                 }
             }
             assertTrue(checkoutZeroTwoZeroVersionPom);
+        } finally {
+            FileUtils.deleteDirectory(tempDir.toFile());
+        }
+    }
+
+    @Test
+    public void shouldBeAbleToCloneGitTag() throws Exception {
+
+        // this test should use the shallow cloning feature
+        Path tempDir = Files.createTempDirectory("da_temp_git_clone");
+        SCMClonner scm = new SCMClonner();
+
+        try {
+            scm.cloneRepository(SCMType.GIT,
+                    "https://github.com/project-ncl/dependency-analysis.git", "0.4.2",
+                    tempDir.toFile());
+
+            // make sure we shallow cloned
+            ProcessBuilder pb = new ProcessBuilder("git", "rev-list", "HEAD", "--count");
+            pb.directory(tempDir.toFile());
+            Process p = pb.start();
+            int status = p.waitFor();
+            assertEquals(0, status);
+
+            InputStreamReader inputStreamReader = new InputStreamReader(p.getInputStream());
+
+            try (BufferedReader in = new BufferedReader(inputStreamReader)) {
+                assertEquals("1", in.readLine());
+            }
+
         } finally {
             FileUtils.deleteDirectory(tempDir.toFile());
         }
