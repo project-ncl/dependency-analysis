@@ -26,6 +26,9 @@ import org.jboss.da.communication.aprox.model.Repository;
 import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pom.api.PomAnalyzer;
+import org.jboss.da.communication.pom.model.MavenProject;
+import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -45,12 +48,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.jboss.da.communication.pom.api.PomAnalyzer;
-import org.jboss.da.communication.pom.model.MavenProject;
-
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {
 
+    @Inject
+    private Logger log;
+    
     @Inject
     private Configuration config;
 
@@ -58,8 +61,8 @@ public class AproxConnectorImpl implements AproxConnector {
     private PomAnalyzer pomAnalyzer;
 
     @Override
-    public Optional<GAVDependencyTree> getDependencyTreeOfGAV(GAV gav)
-            throws CommunicationException, FindGAVDependencyException {
+    public GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException,
+            FindGAVDependencyException {
 
         if (!doesGAVExistInPublicRepo(gav)) {
             throw new FindGAVDependencyException("Could not find: " + gav
@@ -83,12 +86,15 @@ public class AproxConnectorImpl implements AproxConnector {
                                     .build()).build();
 
             GraphExport export = mod.graph(req);
-
-            if (export == null || export.getRelationships() == null) {
-                // no dependencies found
-                return Optional.of(new GAVDependencyTree(gav));
+            if(export == null) {
+                log.warn("Analysis of the Dependency Tree of GAV: " + gav + " failed!");
+                return new GAVDependencyTree(gav);
             }
-            return Optional.of(generateGAVDependencyTree(export, gav));
+            
+            if (export.getRelationships() == null)
+                return new GAVDependencyTree(gav);
+            else
+                return generateGAVDependencyTree(export, gav);
         } catch (AproxClientException | ConfigurationParseException e) {
             throw new CommunicationException(e);
         }
@@ -235,7 +241,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
             URLConnection connection = new URL(query.toString()).openConnection();
             try {
-                connection.getInputStream();
+                connection.getInputStream().close();
                 // if we've reached here, then it means the pom exists
                 return true;
             } catch (FileNotFoundException e) {
