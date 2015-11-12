@@ -59,7 +59,6 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
     }
 
     @Test
-    @Ignore
     public void testReportWithoutDependencies() throws Exception {
         ClientResponse<String> responseWith = assertResponseForRequest(PATH_REPORTS_GAV,
                 "withDependencies");
