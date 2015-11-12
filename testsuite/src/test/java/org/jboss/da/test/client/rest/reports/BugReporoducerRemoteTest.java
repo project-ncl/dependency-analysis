@@ -34,7 +34,6 @@ public class BugReporoducerRemoteTest extends AbstractRestReportsTest {
     }
 
     @Test
-    @Ignore
     public void testDA179() throws Exception {
         String gavNonexisting = "pnc-3de7ed5";
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, gavNonexisting);
