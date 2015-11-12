@@ -54,12 +54,12 @@ public class AproxRemoteTest {
     @Test
     public void testGetCorrectDependencies() throws CommunicationException, FindGAVDependencyException {
         GAV gav = new GAV("xom", "xom", "1.2.5");
-        Optional<GAVDependencyTree> tree = aproxConnector.getDependencyTreeOfGAV(gav);
+        GAVDependencyTree tree = aproxConnector.getDependencyTreeOfGAV(gav);
 
         Set<String> expectedDependencyGAV = new HashSet<>(
                 Arrays.asList(new String[] {"xalan:xalan:2.7.0", "xerces:xercesImpl:2.8.0", "xml-apis:xml-apis:1.3.03"}));
 
-        Set<String> receivedDependencyGAV = tree.get().getDependencies().stream()
+        Set<String> receivedDependencyGAV = tree.getDependencies().stream()
                 .map(f -> f.getGav().toString()).collect(Collectors.toSet());
 
         assertEquals(expectedDependencyGAV, receivedDependencyGAV);
@@ -74,8 +74,8 @@ public class AproxRemoteTest {
     @Test
     public void noDependenciesForGAV() throws CommunicationException, FindGAVDependencyException {
         GAV gav = new GAV("org.scala-lang", "scala-library", "2.11.7");
-        Optional<GAVDependencyTree> reply = aproxConnector.getDependencyTreeOfGAV(gav);
-        assertTrue(reply.get().getDependencies().isEmpty());
+        GAVDependencyTree reply = aproxConnector.getDependencyTreeOfGAV(gav);
+        assertTrue(reply.getDependencies().isEmpty());
     }
 
     @Test

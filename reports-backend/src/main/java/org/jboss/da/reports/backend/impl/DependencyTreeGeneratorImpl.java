@@ -42,7 +42,7 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     @Override
     public Optional<GAVDependencyTree> getDependencyTree(GAV gav) throws CommunicationException {
         try {
-            return aproxConnector.getDependencyTreeOfGAV(gav);
+            return Optional.of(aproxConnector.getDependencyTreeOfGAV(gav));
         } catch (FindGAVDependencyException e) {
             // TODO: better handle this later in DA-170
             return Optional.empty();

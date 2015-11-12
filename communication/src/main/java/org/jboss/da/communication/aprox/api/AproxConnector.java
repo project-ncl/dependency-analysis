@@ -22,11 +22,11 @@ public interface AproxConnector {
      * Finds dependency trees of specific GAV
      * 
      * @param gav
-     * @return Optional of dependency tree of GAV
+     * @return Dependency tree of GAV
      * @throws CommunicationException When there is problem with communication.
      *         FindGAVDependencyException if the GAV cannot be analyzed
      */
-    Optional<GAVDependencyTree> getDependencyTreeOfGAV(GAV gav) throws CommunicationException,
+    GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException,
             FindGAVDependencyException;
 
     /**
