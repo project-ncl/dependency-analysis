@@ -133,6 +133,7 @@ public class BuildConfigurationsProduct {
         bc.setBcId(p.getBcId());
         bc.setSelected(ph.isSelected());
         bc.setUseExistingBc(p.isUseExistingBc());
+        bc.setAnalysisStatus(ph.getAnalysisStatus());
 
         List<BuildConfiguration> dependencies = ph.getDependencies()
                 .map(deps -> deps.stream()
@@ -181,6 +182,7 @@ public class BuildConfigurationsProduct {
             ph.setDependencies(Optional.of(bc.getDependencies().stream()
                     .map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet())));
         }
+        ph.setAnalysisStatus(bc.getAnalysisStatus());
         return ph;
     }
 }

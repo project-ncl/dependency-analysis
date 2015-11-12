@@ -2,6 +2,7 @@ package org.jboss.da.rest.reports;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -90,9 +91,7 @@ public class Reports {
     @Path("/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get dependency report for a GAV ",
-            response = ArtifactReport.class)
+    @ApiOperation(value = "Get dependency report for a GAV ", response = ArtifactReport.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Report was successfully generated"),
             @ApiResponse(code = 404, message = "Requested GAV was not found in repository"),
@@ -100,14 +99,15 @@ public class Reports {
     public Response gavGenerator(@ApiParam(
             value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAV gavRequest) {
         try {
-            Optional<ArtifactReport> artifactReport = reportsGenerator.getReport(gavRequest);
-            return artifactReport
-                    .map(x -> Response.ok().entity(toReport(x)).build())
-                    .orElseGet(() -> Response.status(Status.NOT_FOUND)
-                            .entity(new ErrorMessage("Requested GAV was not found in repository")).build());
+            ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
+            return Response.ok().entity(toReport(artifactReport)).build();
         } catch (CommunicationException ex) {
             log.error("Communication with remote repository failed", ex);
             return Response.status(502).entity(ex).build();
+        } catch (FindGAVDependencyException ex) {
+            log.error("Could not find gav in AProx", ex);
+            return Response.status(Status.NOT_FOUND)
+                    .entity(new ErrorMessage("Requested GA was not found")).build();
         }
     }
 
