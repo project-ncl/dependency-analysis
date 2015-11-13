@@ -138,3 +138,15 @@ pom_report() {
     local mode="$2"
     echo "$(${SCRIPT_DIR}/da-cli.sh pom-report "$2" "$1")"
 }
+
+# ------------------------------------------------------------------------------
+# Usage: scm_report <scm> <tag> <path>
+#
+# Analyze dependencies for an scm
+# ------------------------------------------------------------------------------
+scm_report() {
+    local scm="$1"
+    local tag="$2"
+    local path="$3"
+    echo "$(${SCRIPT_DIR}/da-cli.sh scm-report "$1" "$2" "$3")"
+}

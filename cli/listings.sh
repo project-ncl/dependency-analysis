@@ -1,5 +1,4 @@
 #!/bin/bash
-
 DA_MAIN_SERVER="ncl-test-vm-01.host.prod.eng.bos.redhat.com:8180/da/rest/v-0.3"
 # DA_TEST_SERVER is defined in the da-cli-test.sh script
 target="${DA_TEST_SERVER:-${DA_MAIN_SERVER}}"
@@ -301,4 +300,20 @@ pom_report() {
     done
     echo -n "$DEFAULT"
     rm $tmpfile
+}
+
+scm_report() {
+    local scm="$1"
+    local tag="$2"
+    local pom_path="$3"
+
+
+    if [ -z "${scm}" ] || [ -z "${tag}" ] || [ -z "${pom_path}" ]; then
+        echo "Error: You have to specify the scm, scm tag and the pom path to analyze"
+        exit 1
+    fi
+    local scmJSON="{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}"
+
+    local report="$(post "reports/scm" "${scmJSON}")"
+    echo "$report" | prettyPrint report
 }
