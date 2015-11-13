@@ -53,7 +53,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Inject
     private Logger log;
-    
+
     @Inject
     private Configuration config;
 
@@ -86,11 +86,11 @@ public class AproxConnectorImpl implements AproxConnector {
                                     .build()).build();
 
             GraphExport export = mod.graph(req);
-            if(export == null) {
+            if (export == null) {
                 log.warn("Analysis of the Dependency Tree of GAV: " + gav + " failed!");
                 return new GAVDependencyTree(gav);
             }
-            
+
             if (export.getRelationships() == null)
                 return new GAVDependencyTree(gav);
             else

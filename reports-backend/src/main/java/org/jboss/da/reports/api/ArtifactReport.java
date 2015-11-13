@@ -46,11 +46,11 @@ public class ArtifactReport {
     private boolean blacklisted;
 
     /**
-     * Indicator if the artifact was whiteListed
+     * Indicator if the artifact was whitelisted
      */
     @Getter
     @Setter
-    private boolean whiteListed;
+    private boolean whitelisted;
 
     public void setBestMatchVersion(Optional<String> version) {
         if (version.isPresent()) {
