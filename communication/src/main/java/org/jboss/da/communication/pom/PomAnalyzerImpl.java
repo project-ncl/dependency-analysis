@@ -33,6 +33,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -58,8 +59,8 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     private CartographerCore carto;
 
     @Override
-    public GAVDependencyTree readRelationships(File pomRepoDir, File pomPath)
-            throws PomAnalysisException {
+    public GAVDependencyTree readRelationships(File pomRepoDir, File pomPath,
+            List<String> repositories) throws PomAnalysisException {
 
         try {
 
@@ -85,7 +86,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
                     // find all the dependencies / plugins / parents / plugins etc for each pom.xml
                     Set<ProjectRelationship<?, ?>> relationships = getDiscoveryResult(tempDir,
-                            pomRepoDir, entry.getValue()).getAcceptedRelationships();
+                            pomRepoDir, entry.getValue(), repositories).getAcceptedRelationships();
 
                     // convert from ProjectVersionRef to GAV
                     GAV originGAV = generateGAV(entry.getValue());
@@ -149,7 +150,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                     throw new PomAnalysisException("Could not find the GAV " + gav
                             + " in the project");
                 } else {
-                    return readRelationships(pomRepoDir, pomPath);
+                    return readRelationships(pomRepoDir, pomPath, Collections.emptyList());
                 }
 
             } finally {
@@ -183,11 +184,13 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         return new GAV(ref.getGroupId(), ref.getArtifactId(), ref.getVersionString());
     }
 
-    private DiscoveryResult getDiscoveryResult(File tempDir, File repoDir, ProjectVersionRef ref)
-            throws GalleyMavenException, URISyntaxException, CartoDataException {
+    private DiscoveryResult getDiscoveryResult(File tempDir, File repoDir, ProjectVersionRef ref,
+            List<String> repositories) throws GalleyMavenException, URISyntaxException,
+            CartoDataException {
 
         MavenPomReader mavenPomReader = carto.getGalley().getPomReader();
-        MavenPomView pomView = mavenPomReader.read(ref, getRepoLocations(tempDir, repoDir));
+        MavenPomView pomView = mavenPomReader.read(ref,
+                getRepoLocations(tempDir, repoDir, repositories));
 
         URI src = new URI(new SimpleLocation("file:" + tempDir.getAbsolutePath()).getUri());
 
@@ -200,7 +203,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         return processor.readRelationships(pomView, src, disConf);
     }
 
-    private List<Location> getRepoLocations(File cacheDir, File repoDir) {
+    private List<Location> getRepoLocations(File cacheDir, File repoDir, List<String> repositories) {
 
         List<Location> repoLocations = new LinkedList<>();
         // add local location
@@ -212,6 +215,12 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         // add all the repositories mentioned in the pom.xml
         List<SimpleLocation> locationsInPom = getLocationsDefinedInPom(repoDir);
         repoLocations.addAll(locationsInPom);
+
+        if (repositories != null) {
+            repoLocations.addAll(repositories.stream()
+                    .map(repository -> new SimpleLocation(repository, repository))
+                    .collect(Collectors.toList()));
+        }
 
         return repoLocations;
     }

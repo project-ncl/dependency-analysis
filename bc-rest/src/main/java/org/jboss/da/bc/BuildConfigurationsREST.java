@@ -50,7 +50,7 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
             @ApiResponse(code = 500, message = "Response failed") })
     public Response startAnalyse(EntryEntity entry) {
         SCMLocator scm = new SCMLocator(entry.getScmUrl(), entry.getScmRevision(),
-                entry.getPomPath());
+                entry.getPomPath(), entry.getRepositories());
         try {
             I infoEntity = start(scm, entry);
             return Response.ok().entity(infoEntity).build();

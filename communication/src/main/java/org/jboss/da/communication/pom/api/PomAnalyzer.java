@@ -2,6 +2,7 @@ package org.jboss.da.communication.pom.api;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Optional;
 
 import org.jboss.da.common.CommunicationException;
@@ -27,10 +28,12 @@ public interface PomAnalyzer {
      *
      * @param pomRepoDir Directory of the project to analyze
      * @param pomPath Directory of the root project to analyze
+     * @param repositories Additional repositories to analyze
      * @return The GAVDependencyTree of the root project
      * @throws PomAnalysisException
      */
-    GAVDependencyTree readRelationships(File pomRepoDir, File pomPath) throws PomAnalysisException;
+    GAVDependencyTree readRelationships(File pomRepoDir, File pomPath, List<String> repositories)
+            throws PomAnalysisException;
 
     /**
      * Given the directory of a project, and the gav of the project which

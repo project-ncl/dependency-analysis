@@ -31,13 +31,13 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     private AproxConnector aproxConnector;
 
     @Inject
-    SCMConnector SCMConnector;
+    SCMConnector scmConnector;
 
     @Override
     public GAVDependencyTree getDependencyTree(SCMLocator scml) throws ScmException,
             PomAnalysisException {
-        return SCMConnector.getDependencyTreeOfRevision(scml.getScmUrl(), scml.getRevision(),
-                scml.getPomPath());
+        return scmConnector.getDependencyTreeOfRevision(scml.getScmUrl(), scml.getRevision(),
+                scml.getPomPath(), scml.getRepositories());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     @Override
     public GAVDependencyTree getDependencyTree(String url, String revision, GAV gav)
             throws ScmException, PomAnalysisException {
-        return SCMConnector.getDependencyTreeOfRevision(url, revision, gav);
+        return scmConnector.getDependencyTreeOfRevision(url, revision, gav);
     }
 
     @Override
