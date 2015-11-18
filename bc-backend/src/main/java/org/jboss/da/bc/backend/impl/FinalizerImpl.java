@@ -56,7 +56,7 @@ public class FinalizerImpl implements Finalizer {
     private Integer create(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws Exception {
         Set<Integer> nextLevelDependencyIds = new HashSet<>();
 
-        for (ProjectHiearchy dep : hiearchy.getDependencies().orElseGet(Collections::emptySet)) {
+        for (ProjectHiearchy dep : hiearchy.getDependencies()) {
             if (dep.isSelected()) {
                 nextLevelDependencyIds.add(create(dep, allDependencyIds));
             }

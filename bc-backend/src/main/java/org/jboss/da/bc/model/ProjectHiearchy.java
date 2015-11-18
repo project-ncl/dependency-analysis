@@ -29,14 +29,14 @@ public class ProjectHiearchy {
     private boolean selected;
 
     @Getter
-    private Optional<Set<ProjectHiearchy>> dependencies = Optional.of(Collections.emptySet());
+    private Set<ProjectHiearchy> dependencies = Collections.emptySet();
 
     public ProjectHiearchy(ProjectDetail project, boolean nextLevel) {
         this.project = project;
         this.selected = nextLevel;
     }
 
-    public void setDependencies(Optional<Set<ProjectHiearchy>> dependencies) {
+    public void setDependencies(Set<ProjectHiearchy> dependencies) {
         this.dependencies = dependencies;
     }
 

@@ -77,16 +77,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (gav == null)
             throw new IllegalArgumentException("GAV can't be null");
 
-        Optional<GAVDependencyTree> dt = dependencyTreeGenerator.getDependencyTree(gav);
+        GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gav);
 
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
         VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(gav);
         ArtifactReport report = toArtifactReport(gav, result);
 
-        if (dt.isPresent()) {
-            nodesVisited.add(dt.get());
-            addDependencyReports(report, dt.get().getDependencies(), nodesVisited);
-        }
+        nodesVisited.add(dt);
+        addDependencyReports(report, dt.getDependencies(), nodesVisited);
 
         return report;
     }

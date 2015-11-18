@@ -62,7 +62,7 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
         ge.getToplevelProject().setName(ProjectHiearchyCreator.getName(deps.getGav()));
 
         ge.getToplevelBc().setDependencies(
-                Optional.of(nextLevel.processDependencies(ge, deps.getDependencies())));
+                nextLevel.processDependencies(ge, deps.getDependencies()));
 
         // the top level BC has its dependencies analyzed
         ge.getToplevelBc().setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
@@ -113,7 +113,7 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
                     "BuildConfiguration name doesn't match expected format. BuildConfiguration name: "
                             + project.getName());
 
-        for (ProjectHiearchy dep : hiearchy.getDependencies().orElse(Collections.emptySet())) {
+        for (ProjectHiearchy dep : hiearchy.getDependencies()) {
             validate(dep);
         }
     }

@@ -83,11 +83,12 @@ public class ProjectHiearchyCreator {
             return; // Not selected, ignoring
 
         if (hiearchy.getAnalysisStatus().equals(DependencyAnalysisStatus.NOT_ANALYSED)
-                && hiearchy.getDependencies().get().isEmpty()) {
+                && hiearchy.getDependencies().isEmpty()) {
             // Dependencies not yet processed, get and process them
             setDependencies(hiearchy);
-        } else { // Dependencies already processed, search next level
-            for (ProjectHiearchy dep : hiearchy.getDependencies().get()) {
+        } else if (hiearchy.getAnalysisStatus().equals(DependencyAnalysisStatus.ANALYZED)) {
+            // Dependencies already processed, search next level
+            for (ProjectHiearchy dep : hiearchy.getDependencies()) {
                 iterate(dep);
             }
         }
@@ -99,7 +100,7 @@ public class ProjectHiearchyCreator {
      */
     private void setDependencies(ProjectHiearchy hiearchy) {
         GAV gav = hiearchy.getProject().getGav();
-        Optional<GAVToplevelDependencies> dependencies;
+        GAVToplevelDependencies dependencies;
         try {
             dependencies = depGenerator.getToplevelDependencies(gav);
             hiearchy.setDependencies(toProjectHiearchies(dependencies));
@@ -112,8 +113,8 @@ public class ProjectHiearchyCreator {
             ProjectDetail project = entity.getToplevelProject();
             try {
                 // try to get dependencies from scm url instead
-                dependencies = Optional.of(depGenerator.getToplevelDependencies(
-                        project.getScmUrl(), project.getScmRevision(), gav));
+                dependencies = depGenerator.getToplevelDependencies(project.getScmUrl(),
+                        project.getScmRevision(), gav);
                 hiearchy.setDependencies(toProjectHiearchies(dependencies));
                 hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
             } catch (ScmException | PomAnalysisException ex_scm) {
@@ -122,8 +123,8 @@ public class ProjectHiearchyCreator {
         }
     }
 
-    private Optional<Set<ProjectHiearchy>> toProjectHiearchies(Optional<GAVToplevelDependencies> deps) {
-        return deps.map(x -> toProjectHiearchies(x.getDependencies()));
+    private Set<ProjectHiearchy> toProjectHiearchies(GAVToplevelDependencies deps) {
+        return toProjectHiearchies(deps.getDependencies());
     }
 
     private Set<ProjectHiearchy> toProjectHiearchies(Collection<GAV> gavs) {
