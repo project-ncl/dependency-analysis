@@ -23,6 +23,8 @@ import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
 
+import java.util.List;
+
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
@@ -49,10 +51,21 @@ public class FinalizerImpl implements Finalizer {
     public Integer createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
             String bcSetName) throws CommunicationException, PNCRequestException {
         Set<Integer> ids = new HashSet<>();
-        create(toplevelBc, ids);
-        int productVersionId = bcSetGenerator.createProduct(name, productVersion);
-        bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList<>(ids));
-        return productVersionId;
+        try {
+            create(toplevelBc, ids);
+            int productVersionId = bcSetGenerator.createProduct(name, productVersion);
+            bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList<>(ids));
+            return productVersionId;
+        } catch (CommunicationException | PNCRequestException | RuntimeException ex) {
+            for (Integer id : ids) {
+                try {
+                    pnc.deleteBuildConfiguration(id);
+                } catch (Exception e) { // including Runtime Exception
+                    log.error("Rollback: Failed to delete configuration " + id, e);
+                }
+            }
+            throw new RuntimeException("Fail while finishing import process. Rolled back.", ex);
+        }
     }
 
     private Integer create(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws CommunicationException, PNCRequestException {
