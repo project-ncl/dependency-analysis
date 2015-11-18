@@ -27,6 +27,9 @@ printUsage() {
     echo "$0 pom-bw [--transitive] [path]";
     echo "    Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status."
     echo ""
+    echo "$0 pom-bw-junit-xml [--transitive] [path]";
+    echo "    Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status, and generate a JUnit XML file"
+    echo ""
     echo "$0 pom-report [--transitive] [--raw] [path]";
     echo "    Check all dependencies from pom in working directory (using dependency:list) and print their report status."
     echo "    Output: "
@@ -48,6 +51,7 @@ case $action in
     check) check $2 $3;;
     list) list $2;;
     pom-bw) pom_bw $2 $3;;
+    pom-bw-junit-xml) pom_bw_junit_xml $2 $3;;
     pom-report) pom_report $2 $3;;
     lookup) lookup $2;;
     report) report $2 $3;;
