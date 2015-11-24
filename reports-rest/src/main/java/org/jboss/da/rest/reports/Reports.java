@@ -162,7 +162,7 @@ public class Reports {
         return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
                 report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(),
                 dependencies,
-                report.isBlacklisted(), report.isWhiteListed(), report.getNotBuiltDependencies());
+                report.isBlacklisted(), report.isWhitelisted(), report.getNotBuiltDependencies());
     }
 
     private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {

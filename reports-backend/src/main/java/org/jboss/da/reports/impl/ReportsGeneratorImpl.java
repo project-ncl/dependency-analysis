@@ -95,7 +95,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         report.addAvailableVersions(result.getAvailableVersions());
         report.setBestMatchVersion(result.getBestMatchVersion());
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
-        report.setWhiteListed(whiteArtifactService.isArtifactPresent(gav));
+        report.setWhitelisted(whiteArtifactService.isArtifactPresent(gav));
         return report;
     }
 

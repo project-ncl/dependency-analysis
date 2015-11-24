@@ -337,6 +337,24 @@ test_pom_report() {
     set + e
 }
 
+test_scm_report() {
+    set -e
+
+    echo "--- Test report scm ---"
+    local scm="https://github.com/project-ncl/dependency-analysis.git"
+    local tag="master"
+    local path="pom.xml"
+    echo -n "> test that scm report output is not empty"
+    report_scm="$(scm_report "${scm}" "${tag}" "${path}")"
+    assert_string_not_empty "${report_scm}"
+
+    echo -n "> test that report non-admin output is not empty"
+    local report_scm_non_admin="$(scm_report "${scm}" "${tag}" "${path}")"
+    assert_string_not_empty "${report_scm_non_admin}"
+    echo ""
+    set +e
+}
+
 # ==============================================================================
 # Tests to run
 # ==============================================================================
@@ -349,3 +367,4 @@ test_lookup_gav
 test_report_gav
 test_pom_bw
 test_pom_report
+test_scm_report

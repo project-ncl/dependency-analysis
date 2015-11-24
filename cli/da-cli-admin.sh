@@ -39,6 +39,12 @@ printUsage() {
     echo "    <groupId>:<artifactId>:<version> ::"
     echo "      <groupId>:<artifactId>:<version> <Best Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
+    echo "$0 scm-report [scm] [tag] [pom-path]";
+    echo "    Check all dependencies from git-scm link"
+    echo "    Output: "
+    echo "    <groupId>:<artifactId>:<version> ::"
+    echo "      <groupId>:<artifactId>:<version> <Best Matched Red Hat Version> <In black/white list?> <Available Versions>"
+    echo ""
     exit
 }
 
@@ -57,6 +63,7 @@ case $action in
     list) list $2;;
     pom-bw) pom_bw $2 $3;;
     pom-report) pom_report $2 $3;;
+    scm-report) scm_report $2 $3 $4;;
     lookup) lookup $2;;
     report) report $2 $3;;
     *) printUsage ;;

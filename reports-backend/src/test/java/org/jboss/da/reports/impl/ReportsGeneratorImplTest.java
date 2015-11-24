@@ -152,7 +152,7 @@ public class ReportsGeneratorImplTest {
         assertFalse(report.getBestMatchVersion().isPresent());
         assertTrue(report.getDependencies().isEmpty());
         assertFalse(report.isBlacklisted());
-        assertFalse(report.isWhiteListed());
+        assertFalse(report.isWhitelisted());
 
     }
 
@@ -168,7 +168,7 @@ public class ReportsGeneratorImplTest {
         assertFalse(report.getBestMatchVersion().isPresent());
         assertTrue(report.getDependencies().isEmpty());
         assertFalse(report.isBlacklisted());
-        assertTrue(report.isWhiteListed());
+        assertTrue(report.isWhitelisted());
     }
 
     @Test
@@ -183,7 +183,7 @@ public class ReportsGeneratorImplTest {
         assertEquals(bestMatchVersion, report.getBestMatchVersion().get());
         assertTrue(report.getDependencies().isEmpty());
         assertTrue(report.isBlacklisted());
-        assertFalse(report.isWhiteListed());
+        assertFalse(report.isWhitelisted());
     }
 
     @Test
@@ -207,7 +207,7 @@ public class ReportsGeneratorImplTest {
         assertEquals(daCoreGAV, report.getGav());
         assertEquals(bestMatchVersion, report.getBestMatchVersion().get());
         assertFalse(report.isBlacklisted());
-        assertFalse(report.isWhiteListed());
+        assertFalse(report.isWhitelisted());
         assertMultipleDependencies(report.getDependencies());
     }
 
@@ -224,7 +224,7 @@ public class ReportsGeneratorImplTest {
                     assertEquals(bestMatchVersion, dep.getBestMatchVersion().get());
                     assertTrue(dep.getDependencies().isEmpty());
                     assertFalse(dep.isBlacklisted());
-                    assertFalse(dep.isWhiteListed());
+                    assertFalse(dep.isWhitelisted());
                     break;
                 }
                 case "common": {
@@ -233,7 +233,7 @@ public class ReportsGeneratorImplTest {
                     assertFalse(dep.getBestMatchVersion().isPresent());
                     assertTrue(dep.getDependencies().isEmpty());
                     assertFalse(dep.isBlacklisted());
-                    assertFalse(dep.isWhiteListed());
+                    assertFalse(dep.isWhitelisted());
                     break;
                 }
                 default: {
