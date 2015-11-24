@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class BCSetGeneratorImpl implements BCSetGenerator {
@@ -19,9 +20,12 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
 
     public BuildConfigurationSet createBCSet(String name, Integer productVersionId,
             List<Integer> bcIds) throws Exception {
-        BuildConfigurationSet bcSet = toBCSet(pnc
-                .findBuildConfigurationSet(productVersionId, bcIds));
-        if (bcSet == null) {
+        Optional<BuildConfigurationSet> bcs = pnc
+                .findBuildConfigurationSet(productVersionId, bcIds);
+        BuildConfigurationSet bcSet;
+        if (bcs.isPresent()) {
+            bcSet = toBCSet(bcs.get());
+        } else {
             bcSet = new BuildConfigurationSet();
             bcSet.setBuildConfigurationIds(bcIds);
             bcSet.setName(name);
@@ -33,8 +37,7 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
 
     private BuildConfigurationSet toBCSet(
             org.jboss.da.communication.pnc.model.BuildConfigurationSet pncBCSet) {
-        if (pncBCSet == null)
-            return null;
+
         BuildConfigurationSet bcSet = new BuildConfigurationSet();
         bcSet.setId(pncBCSet.getId());
         bcSet.setName(pncBCSet.getName());
@@ -45,9 +48,33 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
 
     @Override
     public Integer createProduct(String name, String productVersion) throws Exception {
-        Product p = pnc.createProduct(new Product(name));
-        ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, p.getId()));
-        return pv.getId();
+        Optional<Product> product = pnc.findProduct(name);
+
+        // product exists in PNC
+        if (product.isPresent()) {
+            return createOrGetProductVersionForExistingProject(product.get(), productVersion);
+        } else {
+            Product p = pnc.createProduct(new Product(name));
+            ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, p
+                    .getId()));
+            return pv.getId();
+        }
+    }
+
+    private Integer createOrGetProductVersionForExistingProject(Product product,
+            String productVersion) throws Exception {
+
+        Optional<ProductVersion> potentialPV = pnc.findProductVersion(product, productVersion);
+
+        // check if product version exists, if yes, return the id
+        if (potentialPV.isPresent()) {
+            return potentialPV.get().getId();
+        } else {
+            // else create a new one
+            ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, product
+                    .getId()));
+            return pv.getId();
+        }
     }
 
 }
