@@ -10,7 +10,7 @@ import lombok.Getter;
  * @author Jakub Bartecek <jbartece@redhat.com>
  *
  */
-public class AuthenticationException extends Exception {
+public class AuthenticationException extends RuntimeException {
 
     /**
      * Access token with which authentication failed

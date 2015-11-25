@@ -9,15 +9,14 @@ import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.InfoEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
-import org.jboss.da.communication.CommunicationException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -96,7 +95,7 @@ public class BuildConfigurationsProduct {
             response.setProductVersionId(bcg.createBC(ge));
             response.setSuccess(true);
             return response;
-        } catch (Exception ex) {
+        } catch (CommunicationException | PNCRequestException ex) {
             log.warn("Could not finish: ", ex);
             response.setSuccess(false);
             response.setErrorType(ex.getClass().toString());

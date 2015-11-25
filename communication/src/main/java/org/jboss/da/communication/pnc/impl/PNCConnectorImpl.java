@@ -1,7 +1,9 @@
 package org.jboss.da.communication.pnc.impl;
 
+import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.authentication.PNCAuthentication;
 import org.jboss.da.communication.pnc.authentication.PncAuthenticated;
@@ -58,48 +60,78 @@ public class PNCConnectorImpl implements PNCConnector {
         return request;
     }
 
+    private <T> ClientResponse<T> get(String url, GenericType type, String accessToken)
+            throws CommunicationException {
+        try {
+            ClientRequest request = getClient(url, accessToken);
+            return request.get(type);
+        } catch (Exception ex) {
+            throw new CommunicationException("Error while contacting PNC", ex);
+        }
+    }
+
+    private <T> ClientResponse<T> post(String url, Object body, GenericType type, String accessToken)
+            throws CommunicationException {
+        try {
+            ClientRequest request = getClient(url, accessToken);
+            return request.body(MediaType.APPLICATION_JSON, body).post(type);
+        } catch (Exception ex) {
+            throw new CommunicationException("Error while contacting PNC", ex);
+        }
+    }
+
+    private <T> ClientResponse<T> delete(String url, Class type, String accessToken)
+            throws CommunicationException {
+        try {
+            ClientRequest request = getClient(url, accessToken);
+            return request.delete(type);
+        } catch (Exception ex) {
+            throw new CommunicationException("Error while contacting PNC", ex);
+        }
+    }
+
     @Override
-    public List<BuildConfiguration> getBuildConfigurations() throws Exception {
+    public List<BuildConfiguration> getBuildConfigurations() throws CommunicationException,
+            PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = getClient(
+        ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = get(
                 "build-configurations?pageIndex=0&pageSize=5000", // TODO solve pagination
-                accessToken)
-                .get(new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {});
+                new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {}, accessToken);
         return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override
     public BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
-            throws Exception {
+            throws CommunicationException, PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<PNCResponseWrapper<BuildConfiguration>> response = getClient(
-                "build-configurations", accessToken).body(MediaType.APPLICATION_JSON, bc).post(
-                new GenericType<PNCResponseWrapper<BuildConfiguration>>() {});
-
+        ClientResponse<PNCResponseWrapper<BuildConfiguration>> response = post(
+                "build-configurations", bc,
+                new GenericType<PNCResponseWrapper<BuildConfiguration>>() {}, accessToken);
         return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override
-    public boolean deleteBuildConfiguration(BuildConfiguration bc) throws Exception {
+    public boolean deleteBuildConfiguration(BuildConfiguration bc) throws CommunicationException,
+            PNCRequestException {
         return deleteBuildConfiguration(bc.getId());
     }
 
     @Override
-    public boolean deleteBuildConfiguration(int bcId) throws Exception {
+    public boolean deleteBuildConfiguration(int bcId) throws CommunicationException,
+            PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<String> response = getClient("build-configurations/" + bcId, accessToken)
-                .delete(String.class);
+        ClientResponse<String> response = delete("build-configurations/" + bcId, String.class,
+                accessToken);
         return checkReturnCode(response, accessToken);
     }
 
     @Override
     public BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs)
-            throws Exception {
+            throws CommunicationException, PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<PNCResponseWrapper<BuildConfigurationSet>> response = getClient(
-                "build-configuration-sets", accessToken).body(MediaType.APPLICATION_JSON, bcs)
-                .post(new GenericType<PNCResponseWrapper<BuildConfigurationSet>>() {});
-
+        ClientResponse<PNCResponseWrapper<BuildConfigurationSet>> response = post(
+                "build-configuration-sets", bcs,
+                new GenericType<PNCResponseWrapper<BuildConfigurationSet>>() {}, accessToken);
         return checkAndReturn(response, accessToken).getContent();
     }
 
@@ -112,16 +144,16 @@ public class PNCConnectorImpl implements PNCConnector {
 
     @Override
     public List<BuildConfiguration> getBuildConfigurations(String scmUrl, String scmRevision)
-            throws Exception {
+            throws CommunicationException, PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
         String requestUrl = String
                 .format(
                 // TODO solve pagination
                 "build-configurations?q=scmRepoURL=='%s';scmRevision=='%s'&pageIndex=0&pageSize=500",
                         scmUrl, scmRevision);
-        ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = getClient(
-                requestUrl, accessToken).get(
-                new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {});
+
+        ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = get(requestUrl,
+                new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {}, accessToken);
 
         if (response.getEntity() == null && response.getResponseStatus() == Status.NO_CONTENT)
             return Collections.emptyList();
@@ -130,20 +162,20 @@ public class PNCConnectorImpl implements PNCConnector {
     }
 
     @Override
-    public Product createProduct(Product p) throws Exception {
+    public Product createProduct(Product p) throws CommunicationException, PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<PNCResponseWrapper<Product>> response = getClient("products", accessToken)
-                .body(MediaType.APPLICATION_JSON, p).post(
-                        new GenericType<PNCResponseWrapper<Product>>() {});
+        ClientResponse<PNCResponseWrapper<Product>> response = post("products", p,
+                new GenericType<PNCResponseWrapper<Product>>() {}, accessToken);
+
         return checkAndReturn(response, accessToken).getContent();
     }
 
     @Override
-    public ProductVersion createProductVersion(ProductVersion pv) throws Exception {
+    public ProductVersion createProductVersion(ProductVersion pv) throws CommunicationException,
+            PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<PNCResponseWrapper<ProductVersion>> response = getClient("product-versions",
-                accessToken).body(MediaType.APPLICATION_JSON, pv).post(
-                new GenericType<PNCResponseWrapper<ProductVersion>>() {});
+        ClientResponse<PNCResponseWrapper<ProductVersion>> response = post("product-versions", pv,
+                new GenericType<PNCResponseWrapper<ProductVersion>>() {}, accessToken);
         return checkAndReturn(response, accessToken).getContent();
     }
 

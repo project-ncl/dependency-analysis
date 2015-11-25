@@ -1,6 +1,6 @@
 package org.jboss.da.reports.backend.api;
 
-import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.api.VersionLookupResult;
 

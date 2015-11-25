@@ -1,5 +1,6 @@
 package org.jboss.da.bc.backend.api;
 
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.scm.api.SCMType;
 
 /**
@@ -17,9 +18,9 @@ public interface RepositoryCloner {
      * @param scmType Type of the repository. Currently is supported only GIT
      * @param repositoryName Name of the new repository
      * @return URL to the new repository
-     * @throws Exception Thrown if the cloning process failed
+     * @throws CommunicationException Thrown if the cloning process failed
      */
     String cloneRepository(String url, String revision, SCMType scmType, String repositoryName)
-            throws Exception;
+            throws CommunicationException;
 
 }

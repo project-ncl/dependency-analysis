@@ -1,8 +1,8 @@
 package org.jboss.da.rest.reports;
 
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -69,8 +69,7 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
             response = ArtifactReport.class)
-    public Response scmGenerator(@ApiParam(value = "scm information") SCMLocator scm)
-            throws Exception {
+    public Response scmGenerator(@ApiParam(value = "scm information") SCMLocator scm) {
 
         try {
 

@@ -1,11 +1,13 @@
 package org.jboss.da.bc.backend.impl;
 
 import java.util.Optional;
+
 import javax.inject.Inject;
+
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.backend.api.POMInfo;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
-import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;

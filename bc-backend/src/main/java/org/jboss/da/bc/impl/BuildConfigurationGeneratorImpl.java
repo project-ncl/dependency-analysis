@@ -10,6 +10,8 @@ import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
+import org.jboss.da.common.CommunicationException;
+import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
@@ -76,7 +78,8 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
     }
 
     @Override
-    public Integer createBC(GeneratorEntity projects) throws Exception {
+    public Integer createBC(GeneratorEntity projects) throws CommunicationException,
+            PNCRequestException {
         if (StringUtils.isBlank(projects.getBcSetName()))
             throw new IllegalStateException("BCSet name is blank.");
         if (StringUtils.isBlank(projects.getName()))

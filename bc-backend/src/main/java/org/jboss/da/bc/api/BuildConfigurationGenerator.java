@@ -2,7 +2,8 @@ package org.jboss.da.bc.api;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.model.GeneratorEntity;
-import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.common.CommunicationException;
+import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
 
@@ -17,5 +18,5 @@ public interface BuildConfigurationGenerator {
 
     GeneratorEntity iterateBCGeneration(GeneratorEntity projects) throws CommunicationException;
 
-    Integer createBC(GeneratorEntity projects) throws Exception;
+    Integer createBC(GeneratorEntity projects) throws CommunicationException, PNCRequestException;
 }

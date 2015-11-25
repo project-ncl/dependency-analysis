@@ -2,7 +2,8 @@ package org.jboss.da.reports.backend.impl;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.jboss.da.communication.CommunicationException;
+
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
@@ -13,6 +14,7 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
