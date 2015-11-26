@@ -29,9 +29,13 @@ public class RepositoryClonerImpl implements RepositoryCloner {
     private Configuration configuration;
 
     @PostConstruct
-    private void init() throws ConfigurationParseException {
-        repourBaseUrl = configuration.getConfig().getRepourUrl();
-        repourPullUrl = repourBaseUrl + "/pull";
+    private void init() {
+        try {
+            repourBaseUrl = configuration.getConfig().getRepourUrl();
+            repourPullUrl = repourBaseUrl + "/pull";
+        } catch (ConfigurationParseException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override

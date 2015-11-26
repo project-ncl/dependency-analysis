@@ -124,8 +124,7 @@ public class Repositories {
             @ApiResponse(code = 200, message = "Repositories successfully returned"),
             @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     public Response getAllRepositories() throws CommunicationException {
-        List<Repository> repositories = new ArrayList<Repository>();
-        repositories = aprox.getAllRepositoriesFromGroup();
+        List<Repository> repositories = aprox.getAllRepositoriesFromGroup();
         return Response.status(Status.OK).entity(repositories).build();
     }
 

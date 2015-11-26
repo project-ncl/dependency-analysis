@@ -5,12 +5,10 @@ import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.service.ArtifactService;
-import org.jboss.da.reports.backend.impl.VersionFinderImpl;
 
 import javax.inject.Inject;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * 

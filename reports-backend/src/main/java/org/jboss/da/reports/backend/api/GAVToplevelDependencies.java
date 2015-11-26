@@ -1,12 +1,11 @@
 package org.jboss.da.reports.backend.api;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
+
 import lombok.Getter;
 import lombok.NonNull;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+
 import org.jboss.da.communication.model.GAV;
 
 /**

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.model.Artifact;
-import org.jboss.da.listings.api.model.WhiteArtifact;
 
 /**
  * 
