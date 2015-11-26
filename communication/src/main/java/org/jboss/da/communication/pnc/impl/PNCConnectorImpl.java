@@ -11,7 +11,6 @@ import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.PNCResponseWrapper;
 import org.jboss.da.communication.pnc.model.Product;
 import org.jboss.da.communication.pnc.model.ProductVersion;
-import org.jboss.da.communication.pnc.model.Project;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.util.GenericType;

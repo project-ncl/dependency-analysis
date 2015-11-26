@@ -1,9 +1,7 @@
 package org.jboss.da.listings.impl.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
@@ -14,6 +12,7 @@ import org.jboss.da.listings.api.service.WhiteArtifactService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+
 import org.jboss.da.common.version.VersionParser;
 
 /**
@@ -67,7 +66,7 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
             if (origArtifact != null) {
                 whites.add(origArtifact);
             }
-            if (osgiArtifact != null && !osgiArtifact.equals(orig)) {
+            if (osgiArtifact != null && !osgiArtifact.equals(origArtifact)) {
                 whites.add(osgiArtifact);
             }
         } else {

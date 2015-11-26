@@ -11,7 +11,6 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
@@ -24,8 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import lombok.Getter;
 
 /**
  * Class obtained from pnc example on OAuth example on PNCProducer:
@@ -76,21 +73,6 @@ public class PNCAuthentication {
         return accessToken;
     }
 
-    private String getAccessToken(String url, Map<String, String> urlParams)
-            throws ClientProtocolException, IOException {
-        return connect(url, urlParams)[0];
-    }
-
-    private String getRefreshToken(String url, Map<String, String> urlParams)
-            throws ClientProtocolException, IOException {
-        return connect(url, urlParams)[1];
-    }
-
-    private String[] getTokens(String url, Map<String, String> urlParams)
-            throws ClientProtocolException, IOException {
-        return connect(url, urlParams);
-    }
-
     private String getAccessToken(String url, String clientId, String username, String password)
             throws ClientProtocolException, IOException {
         Map<String, String> urlParams = new HashMap<>();
@@ -99,16 +81,6 @@ public class PNCAuthentication {
         urlParams.put("username", username);
         urlParams.put("password", password);
         return connect(url, urlParams)[0];
-    }
-
-    private String getrefreshToken(String url, String clientId, String username, String password)
-            throws ClientProtocolException, IOException {
-        Map<String, String> urlParams = new HashMap<>();
-        urlParams.put("grant_type", "password");
-        urlParams.put("client_id", clientId);
-        urlParams.put("username", username);
-        urlParams.put("password", password);
-        return connect(url, urlParams)[1];
     }
 
     private String[] connect(String url, Map<String, String> urlParams)

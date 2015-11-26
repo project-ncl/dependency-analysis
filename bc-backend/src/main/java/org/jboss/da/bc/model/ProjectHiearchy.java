@@ -1,7 +1,6 @@
 package org.jboss.da.bc.model;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import lombok.Getter;

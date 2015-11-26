@@ -202,7 +202,7 @@ public class AproxConnectorImpl implements AproxConnector {
     public List<Repository> getAllRepositoriesFromGroup() throws CommunicationException {
         try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api",
                 new AproxStoresClientModule()).connect()) {
-            List<Repository> repoList = new ArrayList<Repository>();
+            List<Repository> repoList = new ArrayList<>();
             Group daGroup = aprox.stores().load(StoreType.group, "DA", Group.class);
             for (StoreKey key : daGroup.getConstituents()) {
                 if (key.getType() == StoreType.remote) {

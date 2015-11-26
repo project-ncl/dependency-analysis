@@ -24,9 +24,9 @@ public class PNCConnectorImplTest {
 
     private final DAConfig daConfig = new DAConfig();
 
-    private final String token = "magic_token";
+    private static final String TOKEN = "magic_token";
 
-    private final String PNC_BASE_URL = "http://10.10.10.10:8080";
+    private static final String PNC_BASE_URL = "http://10.10.10.10:8080";
 
     @Spy
     private Configuration configuration = new Configuration();
@@ -54,10 +54,10 @@ public class PNCConnectorImplTest {
 
     @Test
     public void shouldAddAuthenticationTokenToHeader() throws Exception {
-        ClientRequest req = pncConnectorImpl.getClient("testme", token);
+        ClientRequest req = pncConnectorImpl.getClient("testme", TOKEN);
 
         MultivaluedMap<String, String> headers = req.getHeaders();
         assertTrue(headers.containsKey("Authorization"));
-        assertEquals("Bearer " + token, headers.getFirst("Authorization"));
+        assertEquals("Bearer " + TOKEN, headers.getFirst("Authorization"));
     }
 }

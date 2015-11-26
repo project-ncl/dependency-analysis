@@ -17,6 +17,7 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
     @Inject
     private PNCConnector pnc;
 
+    @Override
     public BuildConfigurationSet createBCSet(String name, Integer productVersionId,
             List<Integer> bcIds) throws Exception {
         BuildConfigurationSet bcSet = toBCSet(pnc

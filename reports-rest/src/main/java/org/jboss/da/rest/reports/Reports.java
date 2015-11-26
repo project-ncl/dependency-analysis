@@ -2,9 +2,6 @@ package org.jboss.da.rest.reports;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.CommunicationException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.api.AproxConnector.RepositoryManipulationStatus;
-import org.jboss.da.communication.aprox.model.Repository;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -14,7 +11,6 @@ import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
-import org.jboss.da.rest.listings.model.SuccessResponse;
 import org.jboss.da.rest.model.ErrorMessage;
 import org.jboss.da.rest.reports.model.LookupReport;
 import org.jboss.da.rest.reports.model.Report;
@@ -22,8 +18,6 @@ import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
