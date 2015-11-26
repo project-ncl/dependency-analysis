@@ -196,6 +196,44 @@ parse_pom_bw_report_options() {
     fi
 }
 
+pom_bw_junit_xml() {
+    parse_pom_bw_report_options "$@"
+
+    mvn_opts=""
+    if [ ${pom_transitive_flag} = true ]; then
+        mvn_opts="$mvn_opts"
+    else
+        mvn_opts="$mvn_opts -DexcludeTransitive=true"
+    fi
+
+    local tmpfile=`gettmpfile`
+    pushd "${pom_path}" > /dev/null
+    mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
+
+    if [ $? -ne 0 ]; then
+        rm $tmpfile
+        echo ""
+        echo ""
+        echo "================================================================="
+        echo "'mvn dependency:list' command failed."
+        echo "Consider running 'mvn clean install' before running the pom-bw command again to fix the issue"
+        echo "================================================================="
+        exit
+    fi
+
+    popd > /dev/null
+
+    local pkg_list_file=`gettmpfile`
+    sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | while read line; do
+        echo "${line}" >> ${pkg_list_file}
+    done
+
+    python ${basedir}/testsuite.py ${pkg_list_file}
+
+    rm ${tmpfile}
+    rm ${pkg_list_file}
+}
+
 pom_bw() {
 
     parse_pom_bw_report_options "$@"
