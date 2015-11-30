@@ -302,6 +302,14 @@ pom_bw() {
     rm $tmpfile
 }
 
+pom_report_parallel() {
+    local line=$1
+    local raw_output=$2
+
+    echo "$line ::"
+    report $raw_output $line | sed "s/^/  /"
+}
+
 pom_report() {
 
     parse_pom_bw_report_options "$@"
@@ -331,12 +339,24 @@ pom_report() {
 
     popd > /dev/null
 
-    sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | while read line; do
-        report_result=`report $raw_output $line`
-        echo "$line ::"
-        echo "$report_result" | sed "s/^/  /"
+    paraltmpfile=`gettmpfile`
+    local i=0
+
+    sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | ( while read line; do
+        pom_report_parallel $line $raw_output > ${paraltmpfile}.$i &
+        echo ${paraltmpfile}.$i >> $paraltmpfile
+        let i++
     done
+    wait
+    )
+
+    while read line; do
+        cat $line
+        rm $line
+    done < $paraltmpfile
+
     echo -n "$DEFAULT"
+    rm $paraltmpfile
     rm $tmpfile
 }
 
