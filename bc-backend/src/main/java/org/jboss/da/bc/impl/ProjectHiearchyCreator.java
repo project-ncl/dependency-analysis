@@ -5,8 +5,10 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.backend.api.BcChecker;
 import org.jboss.da.bc.backend.api.POMInfo;
@@ -15,9 +17,10 @@ import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
-import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.scm.api.SCMConnector;
@@ -230,7 +233,7 @@ public class ProjectHiearchyCreator {
             project.setUseExistingBc(found.isPresent());
             project.setBcId(found.isPresent() ? found.get().getId() : null);
 
-        } catch (Exception ex) {
+        } catch (CommunicationException | PNCRequestException ex) {
             log.warn("Failed to lookup existing BC for " + project.getGav(), ex);
         }
     }

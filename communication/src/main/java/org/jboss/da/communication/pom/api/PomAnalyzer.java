@@ -3,7 +3,8 @@ package org.jboss.da.communication.pom.api;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Optional;
-import org.jboss.da.communication.CommunicationException;
+
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;

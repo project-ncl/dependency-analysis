@@ -1,5 +1,7 @@
 package org.jboss.da.bc.backend.api;
 
+import org.jboss.da.common.CommunicationException;
+import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 
 import java.util.Optional;
@@ -18,8 +20,10 @@ public interface BcChecker {
      * @param scmUrl Expected SCM URL in BC
      * @param scmRevision Expected SCM revision in BC
      * @return Optional entity with BuildConfiguration
-     * @throws Exception Thrown if communication with PNC failed
+     * @throws CommunicationException Thrown if communication with PNC failed
+     * @throws PNCRequestException Thrown if PNC returns an error
      */
-    Optional<BuildConfiguration> lookupBcByScm(String scmUrl, String scmRevision) throws Exception;
+    Optional<BuildConfiguration> lookupBcByScm(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException;
 
 }

@@ -1,6 +1,6 @@
 package org.jboss.da.communication.aprox.api;
 
-import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.Repository;

@@ -25,6 +25,7 @@ import org.jboss.da.communication.pom.qualifier.DACartographerCore;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,7 +40,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.jboss.da.communication.CommunicationException;
+
+import org.jboss.da.common.CommunicationException;
 import org.slf4j.Logger;
 
 @ApplicationScoped

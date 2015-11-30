@@ -1,8 +1,8 @@
 package org.jboss.da.reports.api;
 
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 

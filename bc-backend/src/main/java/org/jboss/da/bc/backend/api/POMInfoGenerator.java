@@ -1,8 +1,9 @@
 package org.jboss.da.bc.backend.api;
 
 import java.util.Optional;
+
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 

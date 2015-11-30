@@ -1,4 +1,4 @@
-package org.jboss.da.communication.pnc.impl;
+package org.jboss.da.communication.pnc.api;
 
 /**
  * 

@@ -15,7 +15,9 @@ import org.jboss.da.bc.backend.api.Finalizer;
 import org.jboss.da.bc.backend.api.RepositoryCloner;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCConnector;
+import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.scm.api.SCMType;
@@ -45,7 +47,7 @@ public class FinalizerImpl implements Finalizer {
 
     @Override
     public Integer createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
-            String bcSetName) throws Exception {
+            String bcSetName) throws CommunicationException, PNCRequestException {
         Set<Integer> ids = new HashSet<>();
         create(toplevelBc, ids);
         int productVersionId = bcSetGenerator.createProduct(name, productVersion);
@@ -53,7 +55,7 @@ public class FinalizerImpl implements Finalizer {
         return productVersionId;
     }
 
-    private Integer create(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws Exception {
+    private Integer create(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws CommunicationException, PNCRequestException {
         Set<Integer> nextLevelDependencyIds = new HashSet<>();
 
         for (ProjectHiearchy dep : hiearchy.getDependencies()) {
@@ -74,7 +76,7 @@ public class FinalizerImpl implements Finalizer {
                 try {
                     String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
                     bcc.setScmRepoURL(newScmUrl);
-                } catch (Exception ex) {
+                } catch (CommunicationException ex) {
                     log.error("Failed to clone repo.", ex);
                 }
             }

@@ -3,6 +3,7 @@ package org.jboss.da.bc.backend.impl;
 import org.jboss.da.bc.backend.api.RepositoryCloner;
 import org.jboss.da.bc.model.RepourPullResponse;
 import org.jboss.da.bc.model.RepourRequest;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.util.HttpUtil;
@@ -40,7 +41,7 @@ public class RepositoryClonerImpl implements RepositoryCloner {
 
     @Override
     public String cloneRepository(String url, String revision, SCMType scmType,
-            String repositoryName) throws Exception {
+            String repositoryName) throws CommunicationException {
         if (scmType != SCMType.GIT)
             throw new UnsupportedOperationException(
                     "Currently it is possible to clone only GIT repositories.");

@@ -1,5 +1,6 @@
 package org.jboss.da.common.util;
 
+import org.jboss.da.common.CommunicationException;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
@@ -21,14 +22,18 @@ public class HttpUtil {
      * @param clazz Class to which the data are unmarshalled
      * @param url Request URL
      * @return Unmarshalled entity data
-     * @throws Exception Thrown if some error occurs in communication with server
+     * @throws CommunicationException Thrown if some error occurs in communication with server
      */
-    public static <T> T processGetRequest(Class<T> clazz, String url) throws Exception {
+    public static <T> T processGetRequest(Class<T> clazz, String url) throws CommunicationException {
         ClientRequest request = new ClientRequest(url);
         request.accept(MediaType.APPLICATION_JSON);
 
-        ClientResponse<T> response = request.get(clazz);
-        return response.getEntity();
+        try {
+            ClientResponse<T> response = request.get(clazz);
+            return response.getEntity();
+        } catch (Exception ex) {
+            throw new CommunicationException(ex);
+        }
     }
 
     /**
@@ -37,9 +42,9 @@ public class HttpUtil {
      * 
      * @param url Request URL
      * @return Unmarshalled entity data
-     * @throws Exception Thrown if some error occurs in communication with server
+     * @throws CommunicationException Thrown if some error occurs in communication with server
      */
-    public static String processGetRequest(String url) throws Exception {
+    public static String processGetRequest(String url) throws CommunicationException {
         return processGetRequest(String.class, url);
     }
 
@@ -51,15 +56,19 @@ public class HttpUtil {
      * @param requestBody Body of the request in JSON
      * @param url Request URL
      * @return Unmarshalled entity data
-     * @throws Exception Thrown if some error occurs in communication with server
+     * @throws CommunicationException Thrown if some error occurs in communication with server
      */
     public static <T> T processPostRequest(Class<T> clazz, Object requestBody, String url)
-            throws Exception {
+            throws CommunicationException {
         ClientRequest request = new ClientRequest(url);
         request.accept(MediaType.APPLICATION_JSON);
         request.body(MediaType.APPLICATION_JSON, requestBody);
 
-        ClientResponse<T> response = request.post(clazz);
-        return response.getEntity();
+        try {
+            ClientResponse<T> response = request.post(clazz);
+            return response.getEntity();
+        } catch (Exception ex) {
+            throw new CommunicationException(ex);
+        }
     }
 }

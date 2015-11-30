@@ -1,6 +1,6 @@
 package org.jboss.da.rest.repositories;
 
-import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.api.AproxConnector.RepositoryManipulationStatus;
 import org.jboss.da.communication.aprox.model.Repository;

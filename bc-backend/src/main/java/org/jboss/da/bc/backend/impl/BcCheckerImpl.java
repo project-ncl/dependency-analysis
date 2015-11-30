@@ -1,7 +1,9 @@
 package org.jboss.da.bc.backend.impl;
 
 import org.jboss.da.bc.backend.api.BcChecker;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCConnector;
+import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 
 import javax.inject.Inject;
@@ -23,7 +25,7 @@ public class BcCheckerImpl implements BcChecker {
 
     @Override
     public Optional<BuildConfiguration> lookupBcByScm(String scmUrl, String scmRevision)
-            throws Exception {
+            throws CommunicationException, PNCRequestException {
         List<BuildConfiguration> foundBcs = pncConnector
                 .getBuildConfigurations(scmUrl, scmRevision);
         if (foundBcs.isEmpty())
