@@ -1,6 +1,5 @@
 package org.jboss.da.reports.backend.impl;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.jboss.da.communication.CommunicationException;
@@ -40,13 +39,9 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     }
 
     @Override
-    public Optional<GAVDependencyTree> getDependencyTree(GAV gav) throws CommunicationException {
-        try {
-            return Optional.of(aproxConnector.getDependencyTreeOfGAV(gav));
-        } catch (FindGAVDependencyException e) {
-            // TODO: better handle this later in DA-170
-            return Optional.empty();
-        }
+    public GAVDependencyTree getDependencyTree(GAV gav) throws CommunicationException,
+            FindGAVDependencyException {
+        return aproxConnector.getDependencyTreeOfGAV(gav);
     }
 
     @Override
@@ -63,8 +58,9 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     }
 
     @Override
-    public Optional<GAVToplevelDependencies> getToplevelDependencies(GAV gav) throws CommunicationException {
-        return getDependencyTree(gav).map(tree -> treeToToplevel(tree));
+    public GAVToplevelDependencies getToplevelDependencies(GAV gav) throws CommunicationException,
+            FindGAVDependencyException {
+        return treeToToplevel(getDependencyTree(gav));
     }
 
     @Override

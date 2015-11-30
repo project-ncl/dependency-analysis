@@ -1,8 +1,8 @@
 package org.jboss.da.reports.backend.api;
 
-import java.util.Optional;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -17,7 +17,8 @@ public interface DependencyTreeGenerator {
     public GAVDependencyTree getDependencyTree(SCMLocator scml) throws ScmException,
             PomAnalysisException;
 
-    public Optional<GAVDependencyTree> getDependencyTree(GAV gav) throws CommunicationException;
+    public GAVDependencyTree getDependencyTree(GAV gav) throws CommunicationException,
+            FindGAVDependencyException;
 
     public GAVDependencyTree getDependencyTree(String url, String revision, GAV gav)
             throws ScmException, PomAnalysisException;
@@ -25,8 +26,8 @@ public interface DependencyTreeGenerator {
     public GAVToplevelDependencies getToplevelDependencies(SCMLocator scml) throws ScmException,
             PomAnalysisException;
 
-    public Optional<GAVToplevelDependencies> getToplevelDependencies(GAV gav)
-            throws CommunicationException;
+    public GAVToplevelDependencies getToplevelDependencies(GAV gav) throws CommunicationException,
+            FindGAVDependencyException;
 
     public GAVToplevelDependencies getToplevelDependencies(String url, String revision, GAV gav)
             throws ScmException, PomAnalysisException;

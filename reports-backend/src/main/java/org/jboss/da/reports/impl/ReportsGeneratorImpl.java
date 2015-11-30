@@ -1,6 +1,7 @@
 package org.jboss.da.reports.impl;
 
 import org.apache.maven.scm.ScmException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.CommunicationException;
 import org.jboss.da.communication.model.GAV;
@@ -71,23 +72,21 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public Optional<ArtifactReport> getReport(GAV gav) throws CommunicationException {
+    public ArtifactReport getReport(GAV gav) throws CommunicationException,
+            FindGAVDependencyException {
         if (gav == null)
             throw new IllegalArgumentException("GAV can't be null");
 
-        Optional<GAVDependencyTree> dt = dependencyTreeGenerator.getDependencyTree(gav);
-
-        if (!dt.isPresent())
-            return Optional.empty();
+        GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gav);
 
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
         VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(gav);
         ArtifactReport report = toArtifactReport(gav, result);
-        nodesVisited.add(dt.get());
 
-        addDependencyReports(report, dt.get().getDependencies(), nodesVisited);
+        nodesVisited.add(dt);
+        addDependencyReports(report, dt.getDependencies(), nodesVisited);
 
-        return Optional.of(report);
+        return report;
     }
 
     private ArtifactReport toArtifactReport(GAV gav, VersionLookupResult result) {

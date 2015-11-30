@@ -133,12 +133,12 @@ public class BuildConfigurationsProduct {
         bc.setBcId(p.getBcId());
         bc.setSelected(ph.isSelected());
         bc.setUseExistingBc(p.isUseExistingBc());
+        bc.setAnalysisStatus(ph.getAnalysisStatus());
 
         List<BuildConfiguration> dependencies = ph.getDependencies()
-                .map(deps -> deps.stream()
-                        .map(x -> toBuildConfiguration(x))
-                        .collect(Collectors.toList()))
-                .orElse(null);
+                .stream()
+                .map(x -> toBuildConfiguration(x))
+                .collect(Collectors.toList());
         bc.setDependencies(dependencies);
 
         return bc;
@@ -175,12 +175,11 @@ public class BuildConfigurationsProduct {
 
         ProjectHiearchy ph = new ProjectHiearchy(pd, bc.isSelected());
 
-        if (bc.getDependencies() == null) {
-            ph.setDependencies(Optional.empty());
-        } else {
-            ph.setDependencies(Optional.of(bc.getDependencies().stream()
-                    .map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet())));
+        if (bc.getDependencies() != null) {
+            ph.setDependencies(bc.getDependencies().stream()
+                    .map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet()));
         }
+        ph.setAnalysisStatus(bc.getAnalysisStatus());
         return ph;
     }
 }
