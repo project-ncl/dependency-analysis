@@ -1,10 +1,15 @@
 package org.jboss.da.bc.model;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Optional;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
+
 import org.jboss.da.communication.model.GAV;
 
 /**
@@ -67,8 +72,17 @@ public class ProjectDetail {
     @Setter
     private boolean cloneRepo = true; // required, default true
 
+    @Getter
+    @Setter
+    private EnumSet<BcError> errors;
+
+    public void addError(BcError e) {
+        errors.add(e);
+    }
+
     public ProjectDetail(GAV gav) {
         this.gav = gav;
+        errors = EnumSet.noneOf(BcError.class);
     }
 
 }

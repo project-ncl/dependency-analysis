@@ -1,12 +1,20 @@
 package org.jboss.da.bc.impl;
 
+import org.jboss.da.bc.backend.api.POMInfo;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.api.BuildConfigurationGenerator;
 import org.jboss.da.bc.backend.api.Finalizer;
-import org.jboss.da.bc.backend.api.POMInfo;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
 import org.jboss.da.bc.model.DependencyAnalysisStatus;
+import org.jboss.da.bc.model.BcError;
 import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
@@ -17,12 +25,6 @@ import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
-import java.util.Collections;
-import java.util.Optional;
-import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -78,7 +80,7 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
     }
 
     @Override
-    public Integer createBC(GeneratorEntity projects) throws CommunicationException,
+    public Optional<Integer> createBC(GeneratorEntity projects) throws CommunicationException,
             PNCRequestException {
         if (StringUtils.isBlank(projects.getBcSetName()))
             throw new IllegalStateException("BCSet name is blank.");
@@ -87,37 +89,46 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
         if (StringUtils.isBlank(projects.getProductVersion()))
             throw new IllegalStateException("Product version is blank.");
 
-        validate(projects.getToplevelBc());
+        if (!validate(projects.getToplevelBc()))
+            return Optional.empty();
 
-        return finalizer.createBCs(projects.getName(), projects.getProductVersion(),
-                projects.getToplevelBc(), projects.getBcSetName());
+        return Optional.of(finalizer.createBCs(projects.getName(), projects.getProductVersion(),
+                projects.getToplevelBc(), projects.getBcSetName()));
     }
 
-    private void validate(ProjectHiearchy hiearchy) throws IllegalStateException {
+    private boolean validate(ProjectHiearchy hiearchy) throws IllegalStateException {
         if (!hiearchy.isSelected())
-            return;
+            return true;
+
+        boolean noerror = true;
 
         ProjectDetail project = hiearchy.getProject();
 
-        if (project.isUseExistingBc() && !project.isBcExists())
-            throw new IllegalStateException(
-                    "Use existing build configuration is checked, but apperently there is not existing build configuration for "
-                            + project.getGav());
+        if (project.isUseExistingBc() && !project.isBcExists()) {
+            project.addError(BcError.NO_EXISTING_BC);
+            project.setUseExistingBc(false);
+            noerror = false;
+        }
 
-        if (!project.isUseExistingBc() && project.getEnvironmentId() == null)
-            throw new IllegalStateException("Environment id is null for " + project.getGav());
+        if (!project.isUseExistingBc() && project.getEnvironmentId() == null) {
+            project.addError(BcError.NO_ENV_SELECTED);
+            noerror = false;
+        }
 
-        if (!project.isUseExistingBc() && project.getProjectId() == null)
-            throw new IllegalStateException("Project id is null for " + project.getGav());
+        if (!project.isUseExistingBc() && project.getProjectId() == null) {
+            project.addError(BcError.NO_PROJECT_SELECTED);
+            noerror = false;
+        }
 
         Matcher m = bcNamePattern.matcher(project.getName());
-        if (!m.matches())
-            throw new IllegalStateException(
-                    "BuildConfiguration name doesn't match expected format. BuildConfiguration name: "
-                            + project.getName());
+        if (!m.matches()) {
+            project.addError(BcError.NO_NAME);
+            noerror = false;
+        }
 
         for (ProjectHiearchy dep : hiearchy.getDependencies()) {
-            validate(dep);
+            noerror &= validate(dep);
         }
+        return noerror;
     }
 }
