@@ -8,6 +8,7 @@ import org.jboss.da.communication.pnc.model.Product;
 import org.jboss.da.communication.pnc.model.ProductVersion;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -62,10 +63,48 @@ public interface PNCConnector {
      * 
      * @param productVersionId
      * @param buildConfigurationIds
-     * @return BuildConfigurationSet or null if it is not found
+     * @return Optional.empty() if buildConfigurationSet not found, else the BuildConfigurationSet
+     * @throws CommunicationException Thrown if the communication with PNC failed
+     * @throws PNCRequestException Thrown if PNC returns an error
      */
-    BuildConfigurationSet findBuildConfigurationSet(int productVersionId,
-            List<Integer> buildConfigurationIds);
+    Optional<BuildConfigurationSet> findBuildConfigurationSet(int productVersionId,
+            List<Integer> buildConfigurationIds) throws CommunicationException, PNCRequestException;
+
+    /**
+     * Find ProductVersion assigned to a particular product and having a specific
+     * version. Since each product has unique product versions, we can only find
+     * one such ProductVersion
+     * @param product the product entity
+     * @param version the version to find
+     * @return Optional.empty() if productVersion not found, else the productVersion
+     * @throws CommunicationException Thrown if the communication with PNC failed
+     * @throws PNCRequestException Thrown if PNC returns an error
+     */
+    Optional<ProductVersion> findProductVersion(Product product, String version)
+            throws CommunicationException, PNCRequestException;
+
+    /**
+     * Find ProductVersion assigned to a particular product and having a specific
+     * version. Since each product has unique product versions, we can only find
+     * one such ProductVersion
+     * @param productId the product id
+     * @param version version to find
+     * @return Optional.empty() if productVersion not found, else the productVersion
+     * @throws CommunicationException Thrown if the communication with PNC failed
+     * @throws PNCRequestException Thrown if PNC returns an error
+     */
+    Optional<ProductVersion> findProductVersion(int productId, String version)
+            throws CommunicationException, PNCRequestException;
+
+    /**
+     * Find product having a particular name. Since each product has a unique
+     * name, we can only find one such product with that name
+     *
+     * @param name name of product
+     * @return Optional.empty() if product not found, else the Product
+     * @throws Exception
+     */
+    Optional<Product> findProduct(String name) throws CommunicationException, PNCRequestException;
 
     Product createProduct(Product p) throws CommunicationException, PNCRequestException;
 

@@ -1,7 +1,6 @@
 package org.jboss.da.bc.backend.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -22,8 +21,6 @@ import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
-
-import java.util.List;
 
 /**
  *

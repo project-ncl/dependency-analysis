@@ -12,6 +12,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class BCSetGeneratorImpl implements BCSetGenerator {
@@ -22,36 +23,47 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
     @Override
     public BuildConfigurationSet createBCSet(String name, Integer productVersionId,
             List<Integer> bcIds) throws CommunicationException, PNCRequestException {
-        BuildConfigurationSet bcSet = toBCSet(pnc
-                .findBuildConfigurationSet(productVersionId, bcIds));
-        if (bcSet == null) {
-            bcSet = new BuildConfigurationSet();
-            bcSet.setBuildConfigurationIds(bcIds);
-            bcSet.setName(name);
-            bcSet.setProductVersionId(productVersionId);
+
+        Optional<BuildConfigurationSet> existingBcSet = pnc.findBuildConfigurationSet(
+                productVersionId, bcIds);
+
+        if (existingBcSet.isPresent()) {
+            // bcSet already exists, this should not happen. return an error
+            throw new PNCRequestException("Build Configuration Set already exists!");
         }
 
-        return pnc.createBuildConfigurationSet(bcSet);
-    }
-
-    private BuildConfigurationSet toBCSet(
-            org.jboss.da.communication.pnc.model.BuildConfigurationSet pncBCSet) {
-        if (pncBCSet == null)
-            return null;
         BuildConfigurationSet bcSet = new BuildConfigurationSet();
-        bcSet.setId(pncBCSet.getId());
-        bcSet.setName(pncBCSet.getName());
-        bcSet.setProductVersionId(pncBCSet.getProductVersionId());
-        bcSet.setBuildConfigurationIds(pncBCSet.getBuildConfigurationIds());
-        return bcSet;
+        bcSet.setBuildConfigurationIds(bcIds);
+        bcSet.setName(name);
+        bcSet.setProductVersionId(productVersionId);
+
+        return pnc.createBuildConfigurationSet(bcSet);
     }
 
     @Override
     public Integer createProduct(String name, String productVersion) throws CommunicationException,
             PNCRequestException {
-        Product p = pnc.createProduct(new Product(name));
-        ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, p.getId()));
+        Optional<Product> p = pnc.findProduct(name);
+
+        Product product;
+
+        // create product if it does not exist
+        if (!p.isPresent()) {
+            product = pnc.createProduct(new Product(name));
+        } else {
+            product = p.get();
+        }
+
+        Optional<ProductVersion> potentialPV = pnc.findProductVersion(p.get(), productVersion);
+
+        if (potentialPV.isPresent()) {
+            return potentialPV.get().getId();
+        }
+        // if product version doesn't exist yet, create a new one
+        ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, product
+                .getId()));
         return pv.getId();
+
     }
 
 }

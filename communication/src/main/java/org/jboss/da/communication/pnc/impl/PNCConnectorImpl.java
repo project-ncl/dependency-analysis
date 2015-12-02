@@ -24,6 +24,8 @@ import javax.ws.rs.core.Response.Status;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Class, which integrates with PNC and process direct calls to PNC REST interface
@@ -136,10 +138,43 @@ public class PNCConnectorImpl implements PNCConnector {
     }
 
     @Override
-    public BuildConfigurationSet findBuildConfigurationSet(int productVersionId,
-            List<Integer> buildConfigurationIds) {
-        // TODO implement
-        return null;
+    public Optional<BuildConfigurationSet> findBuildConfigurationSet(int productVersionId,
+                                                                     List<Integer> buildConfigurationIds)
+            throws CommunicationException, PNCRequestException {
+
+        String accessToken = pncAuthenticate.getAccessToken();
+        String commaDelimitedIds = buildConfigurationIds.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
+        String requestUrl = String
+                .format(
+                        "build-configuration-sets?q=productVersion.id==%s;buildConfigurations.id=in=(%s)",
+                        productVersionId, commaDelimitedIds);
+
+        ClientResponse<PNCResponseWrapper<List<BuildConfigurationSet>>> response =
+                get(requestUrl,
+                    new GenericType<PNCResponseWrapper<List<BuildConfigurationSet>>>() {},
+                    accessToken);
+
+        return processFindResponse(response, accessToken);
+    }
+
+    @Override
+    public Optional<ProductVersion> findProductVersion(Product p, String version)
+            throws CommunicationException, PNCRequestException {
+        return findProductVersion(p.getId(), version);
+    }
+
+    @Override
+    public Optional<ProductVersion> findProductVersion(int productId, String version)
+            throws CommunicationException, PNCRequestException {
+        String accessToken = pncAuthenticate.getAccessToken();
+        String requestUrl = String.format("product-versions?q=product.id==%s;version=='%s'",
+                productId, version);
+        ClientResponse<PNCResponseWrapper<List<ProductVersion>>> response = get(requestUrl,
+                new GenericType<PNCResponseWrapper<List<ProductVersion>>>() {}, accessToken);
+
+        return processFindResponse(response, accessToken);
     }
 
     @Override
@@ -159,6 +194,17 @@ public class PNCConnectorImpl implements PNCConnector {
             return Collections.emptyList();
         else
             return checkAndReturn(response, accessToken).getContent();
+    }
+
+    @Override
+    public Optional<Product> findProduct(String name) throws CommunicationException,
+            PNCRequestException {
+        String accessToken = pncAuthenticate.getAccessToken();
+        String requestUrl = String.format("products?q=name=='%s'", name);
+        ClientResponse<PNCResponseWrapper<List<Product>>> response = get(requestUrl,
+                new GenericType<PNCResponseWrapper<List<Product>>>() {}, accessToken);
+
+        return processFindResponse(response, accessToken);
     }
 
     @Override
@@ -204,6 +250,22 @@ public class PNCConnectorImpl implements PNCConnector {
             default:
                 throw new PNCRequestException(response.getResponseStatus() + " "
                         + response.getEntity(String.class));
+        }
+    }
+
+    private <T> Optional<T> processFindResponse(
+            ClientResponse<PNCResponseWrapper<List<T>>> response, String accessToken)
+            throws AuthenticationException, PNCRequestException {
+
+        // if there is no product with that name on PNC, the response code
+        // will be NO_CONTENT
+        if (response.getResponseStatus().equals(Status.NO_CONTENT)) {
+            return Optional.empty();
+        } else {
+            // since the name of a product is unique, there'll only be one
+            // item in the list
+            List<T> items = checkAndReturn(response, accessToken).getContent();
+            return Optional.of(items.get(0));
         }
     }
 }
