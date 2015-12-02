@@ -22,6 +22,8 @@ import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.pom.model.MavenRepository;
 import org.jboss.da.communication.pom.qualifier.DACartographerCore;
+import org.jboss.da.communication.CommunicationException;
+import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -41,9 +43,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import org.jboss.da.common.CommunicationException;
-import org.slf4j.Logger;
 
 @ApplicationScoped
 public class PomAnalyzerImpl implements PomAnalyzer {
@@ -81,40 +80,47 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                 Map<File, ProjectVersionRef> projectVersionRefs = getProjectVersionRefs(tempDir,
                         findAllPomFiles(pomRepoDir));
 
+                ProjectVersionRef rootProject = null;
+
                 // for each pom.xml
                 for (Map.Entry<File, ProjectVersionRef> entry : projectVersionRefs.entrySet()) {
-
-                    // find all the dependencies / plugins / parents / plugins etc for each pom.xml
-                    Set<ProjectRelationship<?, ?>> relationships = getDiscoveryResult(tempDir,
-                            pomRepoDir, entry.getValue(), repositories).getAcceptedRelationships();
-
-                    // convert from ProjectVersionRef to GAV
-                    GAV originGAV = generateGAV(entry.getValue());
-
-                    // get the origin GAVDependencyTree
-                    GAVDependencyTree originScmGAVTree = addGAVDependencyTreeToMapper(
-                            gavDependencyTreeMap, originGAV);
-
-                    // need to use canonical path to get better way of knowing if 2 paths are the same
-                    if (pomPath.getCanonicalPath().equals(entry.getKey().getCanonicalPath()))
-                        root = originScmGAVTree;
-
-                    for (ProjectRelationship<?, ?> relationship : relationships) {
-                        ProjectVersionRef target = relationship.getTarget();
-
-                        GAV targetGAV = generateGAV(target);
-
-                        GAVDependencyTree targetScmGavTree = addGAVDependencyTreeToMapper(
-                                gavDependencyTreeMap, targetGAV);
-
-                        addTargetToGAVDependencyTree(originScmGAVTree, targetScmGavTree,
-                                relationship);
+                    // if pomPath is the same as what we found analysis the root repository
+                    if (pomPath.getCanonicalPath().equals(entry.getKey().getCanonicalPath())) {
+                        rootProject = entry.getValue();
+                        break;
                     }
                 }
 
-                if (root == null) {
+                // if we didn't find it
+                if (rootProject == null) {
                     throw new PomAnalysisException("Root pom was not found in repository.");
                 }
+
+                // find all the dependencies / plugins / parents / plugins etc for the pom.xml
+                Set<ProjectRelationship<?, ?>> relationships = getDiscoveryResult(tempDir,
+                        pomRepoDir, rootProject, repositories).getAcceptedRelationships();
+
+                // convert from ProjectVersionRef to GAV
+                GAV originGAV = generateGAV(rootProject);
+
+                // get the origin GAVDependencyTree
+                GAVDependencyTree originScmGAVTree = addGAVDependencyTreeToMapper(
+                        gavDependencyTreeMap, originGAV);
+
+                // need to use canonical path to get better way of knowing if 2 paths are the same
+                root = originScmGAVTree;
+
+                for (ProjectRelationship<?, ?> relationship : relationships) {
+                    ProjectVersionRef target = relationship.getTarget();
+
+                    GAV targetGAV = generateGAV(target);
+
+                    GAVDependencyTree targetScmGavTree = addGAVDependencyTreeToMapper(
+                            gavDependencyTreeMap, targetGAV);
+
+                    addTargetToGAVDependencyTree(originScmGAVTree, targetScmGavTree, relationship);
+                }
+
                 return root;
 
             } finally {
@@ -163,8 +169,9 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
     @Override
     public Optional<File> getPOMFileForGAV(File pomRepoDir, GAV gav) {
+
         return findAllPomFiles(pomRepoDir).stream()
-                .filter(file -> isProjectVersionRefSameAsGAV((new PomPeek(file)).getKey(), gav))
+                .filter(file -> isProjectVersionRefSameAsGAV(file, gav))
                 .findAny();
     }
 
@@ -324,5 +331,16 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
         return gav.getGroupId().equals(groupId) && gav.getArtifactId().equals(artifactId)
                 && gav.getVersion().equals(version);
+    }
+
+    private boolean isProjectVersionRefSameAsGAV(File file, GAV gav) {
+
+        PomPeek pk = new PomPeek(file);
+
+        if (pk.getKey() == null) {
+            return false;
+        } else {
+            return isProjectVersionRefSameAsGAV(pk.getKey(), gav);
+        }
     }
 }
