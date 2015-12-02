@@ -1,5 +1,6 @@
 {
   "scmUrl": "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
   "revision": "1.6.0.Final-redhat",
-  "pomPath": "./distribution/eap6-server-dist/pom.xml"
+  "pomPath": "./distribution/eap6-server-dist/pom.xml",
+  "repositories": ["http://download.lab.bos.redhat.com/brewroot/repos/jb-iam-1.0-build/latest/maven/"]
 }

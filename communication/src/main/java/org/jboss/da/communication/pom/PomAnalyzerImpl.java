@@ -22,7 +22,7 @@ import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.pom.model.MavenRepository;
 import org.jboss.da.communication.pom.qualifier.DACartographerCore;
-import org.jboss.da.communication.CommunicationException;
+import org.jboss.da.common.CommunicationException;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
