@@ -4,7 +4,7 @@
     version="3.0">
         <servlet>
         <servlet-name>SwaggerClass</servlet-name>
-        <servlet-class>com.wordnik.swagger.jaxrs.config.DefaultJaxrsConfig</servlet-class>
+        <servlet-class>io.swagger.jaxrs.config.DefaultJaxrsConfig</servlet-class>
         <init-param>
             <param-name>api.version</param-name>
             <param-value>0.3.0</param-value>

@@ -188,9 +188,9 @@
                 <version>2.0</version>
             </dependency>
             <dependency>
-                <groupId>com.wordnik</groupId>
-                <artifactId>swagger-jaxrs_2.10</artifactId>
-                <version>1.3.11</version>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-jaxrs</artifactId>
+                <version>1.5.4</version>
             </dependency>
 
             <!-- maven scm libraries -->
