@@ -23,15 +23,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
-import com.wordnik.swagger.annotations.ApiResponse;
-import com.wordnik.swagger.annotations.ApiResponses;
 import java.util.Collections;
 import java.util.Optional;
+
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.WhiteArtifact;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 /**
  *
@@ -40,7 +42,7 @@ import org.jboss.da.listings.api.model.WhiteArtifact;
  *
  */
 @Path("/listings")
-@Api(value = "/listings", description = "Listings of black/white listed artifacts")
+@Api(value = "listings")
 public class Artifacts {
 
     @Inject
