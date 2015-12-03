@@ -10,13 +10,15 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.bc.api.BuildConfigurationGenerator;
+import org.jboss.da.bc.api.ProductBuildConfigurationGenerator;
+import org.jboss.da.bc.api.ProjectBuildConfigurationGenerator;
 import org.jboss.da.bc.backend.api.Finalizer;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
 import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.BcError;
-import org.jboss.da.bc.model.GeneratorEntity;
+import org.jboss.da.bc.model.ProductGeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
+import org.jboss.da.bc.model.ProjectGeneratorEntity;
 import org.jboss.da.bc.model.ProjectHiearchy;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
@@ -27,13 +29,17 @@ import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.jboss.da.bc.model.GeneratorEntity;
+import org.jboss.da.bc.model.GeneratorEntity.EntityConstructor;
+import org.jboss.da.communication.model.GAV;
 
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
 @ApplicationScoped
-public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenerator {
+public class BuildConfigurationGeneratorImpl implements ProductBuildConfigurationGenerator,
+        ProjectBuildConfigurationGenerator {
 
     private final Pattern bcNamePattern = Pattern
             .compile("^[a-zA-Z0-9_.][a-zA-Z0-9_.-]*(?<!\\.git)$");
@@ -50,38 +56,66 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
     @Inject
     private ProjectHiearchyCreator nextLevel;
 
-    @Override
-    public GeneratorEntity startBCGeneration(SCMLocator scm, String productName,
-            String productVersion) throws ScmException, PomAnalysisException {
+    private <T extends GeneratorEntity> T prepareEntity(EntityConstructor<T> constructor,
+            SCMLocator scm, String name) throws ScmException, PomAnalysisException {
         GAVToplevelDependencies deps = depGenerator.getToplevelDependencies(scm);
+
         Optional<POMInfo> pomInfo = pom.getPomInfo(scm.getScmUrl(), scm.getRevision(),
                 scm.getPomPath());
 
-        GeneratorEntity ge = new GeneratorEntity(scm, productName, deps.getGav(), productVersion);
-        ge.setBcSetName(deps.getGav().toString() + "-"
-                + UUID.randomUUID().toString().substring(0, 5));
+        T entity = constructor.construct(scm, name, deps.getGav());
 
-        ge.getToplevelProject().setDescription(
+        entity.getToplevelProject().setDescription(
                 ProjectHiearchyCreator.getDescription(pomInfo, deps.getGav()));
-        ge.getToplevelProject().setName(ProjectHiearchyCreator.getName(deps.getGav()));
 
-        ge.getToplevelBc().setDependencies(
-                nextLevel.processDependencies(ge, deps.getDependencies()));
+        entity.getToplevelProject().setName(ProjectHiearchyCreator.getName(deps.getGav()));
+
+        ProjectHiearchy ph = entity.getToplevelBc();
+
+        ph.setDependencies(nextLevel.processDependencies(ph, deps.getDependencies()));
 
         // the top level BC has its dependencies analyzed
-        ge.getToplevelBc().setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
+        ph.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
 
-        return ge;
+        return entity;
     }
 
     @Override
-    public GeneratorEntity iterateBCGeneration(GeneratorEntity projects) {
-        return nextLevel.iterateNextLevel(projects);
+    public ProductGeneratorEntity startBCGeneration(SCMLocator scm, String productName,
+            String productVersion) throws ScmException, PomAnalysisException {
+        ProductGeneratorEntity entity = prepareEntity(
+                ProductGeneratorEntity.getConstructor(productVersion), scm, productName);
+
+        GAV gav = entity.getToplevelProject().getGav();
+        entity.setBcSetName(gav.toString() + "-" + UUID.randomUUID().toString().substring(0, 5));
+
+        return entity;
     }
 
     @Override
-    public Optional<Integer> createBC(GeneratorEntity projects) throws CommunicationException,
-            PNCRequestException {
+    public ProjectGeneratorEntity startBCGeneration(SCMLocator scm, String projectName)
+            throws ScmException, PomAnalysisException {
+        ProjectGeneratorEntity entity = prepareEntity(ProjectGeneratorEntity.getConstructor(), scm,
+                projectName);
+
+        return entity;
+    }
+
+    @Override
+    public ProductGeneratorEntity iterateBCGeneration(ProductGeneratorEntity projects) {
+        nextLevel.iterateNextLevel(projects.getToplevelBc());
+        return projects;
+    }
+
+    @Override
+    public ProjectGeneratorEntity iterateBCGeneration(ProjectGeneratorEntity projects) {
+        nextLevel.iterateNextLevel(projects.getToplevelBc());
+        return projects;
+    }
+
+    @Override
+    public Optional<Integer> createBC(ProductGeneratorEntity projects)
+            throws CommunicationException, PNCRequestException {
         if (StringUtils.isBlank(projects.getBcSetName()))
             throw new IllegalStateException("BCSet name is blank.");
         if (StringUtils.isBlank(projects.getName()))
@@ -94,6 +128,18 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
 
         return Optional.of(finalizer.createBCs(projects.getName(), projects.getProductVersion(),
                 projects.getToplevelBc(), projects.getBcSetName()));
+    }
+
+    @Override
+    public Optional<Integer> createBC(ProjectGeneratorEntity projects)
+            throws CommunicationException, PNCRequestException {
+        if (StringUtils.isBlank(projects.getName()))
+            throw new IllegalStateException("Project name is blank.");
+
+        if (!validate(projects.getToplevelBc()))
+            return Optional.empty();
+
+        return Optional.of(finalizer.createBCs(projects.getName(), projects.getToplevelBc()));
     }
 
     private boolean validate(ProjectHiearchy hiearchy) throws IllegalStateException {
@@ -131,4 +177,5 @@ public class BuildConfigurationGeneratorImpl implements BuildConfigurationGenera
         }
         return noerror;
     }
+
 }

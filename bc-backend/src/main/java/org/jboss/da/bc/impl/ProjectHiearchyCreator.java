@@ -15,7 +15,6 @@ import org.jboss.da.bc.backend.api.POMInfo;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
 import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.BcError;
-import org.jboss.da.bc.model.GeneratorEntity;
 import org.jboss.da.bc.model.ProjectDetail;
 import org.jboss.da.bc.model.ProjectHiearchy;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
@@ -55,26 +54,25 @@ public class ProjectHiearchyCreator {
     @Inject
     private VersionFinder versionFinder;
 
-    private GeneratorEntity entity;
+    private ProjectHiearchy toplevel;
 
     private String scmUrl;
 
     private String revison;
 
-    public GeneratorEntity iterateNextLevel(GeneratorEntity entity) {
-        this.entity = entity;
-        this.scmUrl = entity.getToplevelProject().getScmUrl();
-        this.revison = entity.getToplevelProject().getScmRevision();
+    public void iterateNextLevel(ProjectHiearchy toplevel) {
+        this.toplevel = toplevel;
+        this.scmUrl = toplevel.getProject().getScmUrl();
+        this.revison = toplevel.getProject().getScmRevision();
 
-        iterate(entity.getToplevelBc());
-        return entity;
+        iterate(toplevel);
     }
 
-    public Set<ProjectHiearchy> processDependencies(GeneratorEntity entity,
+    public Set<ProjectHiearchy> processDependencies(ProjectHiearchy toplevel,
             Collection<GAV> dependencies) {
-        this.entity = entity;
-        this.scmUrl = entity.getToplevelProject().getScmUrl();
-        this.revison = entity.getToplevelProject().getScmRevision();
+        this.toplevel = toplevel;
+        this.scmUrl = toplevel.getProject().getScmUrl();
+        this.revison = toplevel.getProject().getScmRevision();
 
         return toProjectHiearchies(dependencies);
     }
@@ -116,7 +114,7 @@ public class ProjectHiearchyCreator {
             log.warn("Failed to get dependencies for " + gav, ex);
             hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
         } catch (FindGAVDependencyException ex) {
-            ProjectDetail project = entity.getToplevelProject();
+            ProjectDetail project = toplevel.getProject();
             try {
                 // try to get dependencies from scm url instead
                 dependencies = depGenerator.getToplevelDependencies(project.getScmUrl(),

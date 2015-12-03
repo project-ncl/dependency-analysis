@@ -35,5 +35,6 @@ public class BCRestActivator extends Application {
      */
     public void addProjectResources(Set<Class<?>> resources) {
         resources.add(BuildConfigurationsProduct.class);
+        resources.add(BuildConfigurationsProject.class);
     }
 }
