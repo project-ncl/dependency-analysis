@@ -7,6 +7,9 @@
         <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
         <class>org.jboss.da.listings.api.model.WhiteArtifact</class>
         <class>org.jboss.da.listings.api.model.BlackArtifact</class>
+        <class>org.jboss.da.listings.api.model.GA</class>
+        <class>org.jboss.da.listings.api.model.Product</class>
+        <class>org.jboss.da.listings.api.model.ProductVersion</class>
         <properties>
             <property name="org.hibernate.FlushMode" value="always" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />

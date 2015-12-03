@@ -10,8 +10,10 @@ import javax.inject.Inject;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
+import org.jboss.da.listings.api.dao.GADAO;
 import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
 import org.jboss.da.listings.api.model.BlackArtifact;
+import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 
@@ -30,32 +32,39 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Inject
     private WhiteArtifactDAO whiteArtifactDAO;
 
+    @Inject
+    private GADAO gaDAO;
+
     @Override
     protected ArtifactDAO<BlackArtifact> getDAO() {
         return blackArtifactDAO;
     }
 
     @Override
-    public org.jboss.da.listings.api.service.ArtifactService.STATUS addArtifact(String groupId,
-            String artifactId, String version) {
+    public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(
+            String groupId, String artifactId, String version) {
 
         String nonrhVersion = versionParser.removeRedhatSuffix(version);
-        String osgiVersion = versionParser.getNonRedhatOSGiVersion(version);
 
-        BlackArtifact artifact = new BlackArtifact(groupId, artifactId, osgiVersion);
+        GA ga = gaDAO.findOrCreate(groupId, artifactId);
 
-        if (blackArtifactDAO.findArtifact(groupId, artifactId, osgiVersion) != null) {
-            return STATUS.NOT_MODIFIED;
+        BlackArtifact artifact = new BlackArtifact(ga, version);
+
+        if (blackArtifactDAO.findArtifact(groupId, artifactId, version).isPresent()) {
+            return ArtifactStatus.NOT_MODIFIED;
         }
 
         Set<WhiteArtifact> whites = new HashSet<>();
-        whites.addAll(whiteArtifactDAO.findRedhatArtifact(groupId, artifactId, nonrhVersion));
-        whites.addAll(whiteArtifactDAO.findRedhatArtifact(groupId, artifactId, osgiVersion));
+        Optional<WhiteArtifact> rhA = whiteArtifactDAO.findArtifact(groupId, artifactId,
+                nonrhVersion);
+        rhA.ifPresent(x -> whites.add(rhA.get()));
+        Optional<WhiteArtifact> a = whiteArtifactDAO.findArtifact(groupId, artifactId, version);
+        a.ifPresent(x -> whites.add(a.get()));
 
-        STATUS status = STATUS.ADDED;
+        ArtifactStatus status = ArtifactStatus.ADDED;
         for (WhiteArtifact wa : whites) {
             whiteArtifactDAO.delete(wa);
-            status = STATUS.WAS_WHITELISTED;
+            status = ArtifactStatus.WAS_WHITELISTED;
         }
         blackArtifactDAO.create(artifact);
         return status;
@@ -65,7 +74,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version) {
         String osgiVersion = versionParser.getNonRedhatOSGiVersion(version);
 
-        return Optional.ofNullable(blackArtifactDAO.findArtifact(groupId, artifactId, osgiVersion));
+        return blackArtifactDAO.findArtifact(groupId, artifactId, osgiVersion);
     }
 
     @Override
@@ -78,4 +87,14 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
         return getArtifact(groupId, artifactId, version).isPresent();
     }
 
+    @Override
+    public boolean removeArtifact(String groupId, String artifactId, String version) {
+        Optional<BlackArtifact> artifact = blackArtifactDAO.findArtifact(groupId, artifactId,
+                version);
+        if (artifact.isPresent()) {
+            blackArtifactDAO.delete(artifact.get());
+            return true;
+        }
+        return false;
+    }
 }

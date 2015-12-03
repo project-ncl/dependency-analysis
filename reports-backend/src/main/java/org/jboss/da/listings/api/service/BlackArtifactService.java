@@ -1,6 +1,7 @@
 package org.jboss.da.listings.api.service;
 
 import java.util.Optional;
+
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.model.BlackArtifact;
 
@@ -17,8 +18,7 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
      * version. It also removes all redhat suffixed artifacts (with given groupId, artifactId and
      * OSGi verison) from whitelist.
      */
-    @Override
-    public STATUS addArtifact(String groupId, String artifactId, String version);
+    public ArtifactStatus addArtifact(String groupId, String artifactId, String version);
 
     /**
      * Checks if blacklist contains artifact with specific groupId, artifactId and version.
@@ -36,4 +36,15 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
      * @return found artifact
      */
     public Optional<BlackArtifact> getArtifact(GAV gav);
+
+    /**
+     * Remove artifact from list.
+     * Removes only exact match of artifact.
+     * 
+     * @param groupId
+     * @param artifactId
+     * @param version
+     * @return True if artifact was deleted.
+     */
+    public boolean removeArtifact(String groupId, String artifactId, String version);
 }

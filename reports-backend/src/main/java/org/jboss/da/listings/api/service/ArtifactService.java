@@ -13,19 +13,17 @@ import org.jboss.da.listings.api.model.Artifact;
  */
 public interface ArtifactService<T extends Artifact> {
 
-    public enum STATUS {
-        ADDED, NOT_MODIFIED, IS_BLACKLISTED, WAS_WHITELISTED
+    public enum SortBy {
+        GAV, SUPPORT, PRODUCT;
     };
 
-    /**
-     * Add artifact to list.
-     * 
-     * @param groupId
-     * @param artifactId
-     * @param version
-     * @return Status of addition.
-     */
-    STATUS addArtifact(String groupId, String artifactId, String version);
+    public enum SupportStatus {
+        SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN
+    };
+
+    public enum ArtifactStatus {
+        ADDED, NOT_MODIFIED, IS_BLACKLISTED, WAS_WHITELISTED
+    };
 
     /**
      * Checks if list contains artifact with specific groupId, artifactId and version.
@@ -52,16 +50,5 @@ public interface ArtifactService<T extends Artifact> {
      * @return List of found artifacts.
      */
     List<T> getAll();
-
-    /**
-     * Remove artifact from list.
-     * Removes only exact match of artifact.
-     * 
-     * @param groupId
-     * @param artifactId
-     * @param version
-     * @return True if artifact was deleted.
-     */
-    boolean removeArtifact(String groupId, String artifactId, String version);
 
 }
