@@ -34,7 +34,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @Path("/build-configuration/generate/product")
-@Api(value = "/build-configuration/generate/product", description = "BC generator for product")
+@Api(value = "product")
 public class BuildConfigurationsProduct {
 
     @Inject

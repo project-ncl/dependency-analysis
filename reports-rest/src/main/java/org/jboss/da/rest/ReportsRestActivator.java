@@ -35,6 +35,7 @@ public class ReportsRestActivator extends Application {
     public void addSwaggerResources(Set<Class<?>> resources) {
         resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
         resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+        resources.add(SwaggerConfiguration.class);
     }
 
     /**

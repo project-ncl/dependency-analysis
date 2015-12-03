@@ -45,7 +45,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Path("/reports")
-@Api(value = "/reports", description = "Get report of dependencies of projects")
+@Api(value = "reports")
 public class Reports {
 
     @Inject

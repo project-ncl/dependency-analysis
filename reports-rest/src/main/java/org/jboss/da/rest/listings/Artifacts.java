@@ -42,7 +42,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Path("/listings")
-@Api(value = "/listings", description = "Listings of black/white listed artifacts")
+@Api(value = "listings")
 public class Artifacts {
 
     @Inject

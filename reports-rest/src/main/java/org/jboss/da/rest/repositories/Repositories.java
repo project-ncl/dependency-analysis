@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @Path("/repositories")
-@Api(value = "/repositories", description = "Get repositories used in analyse")
+@Api(value = "config")
 public class Repositories {
 
     @Inject
