@@ -2,6 +2,7 @@
     "name":"Dependency analysis",
     "bcSetName":"Build configuration set for org.jboss.da:application:0.3.0",
     "pomPath":"application/pom.xml",
+    "productVersion": "0.3",
     "topLevelBc":{
         "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
         "scmRevision":"0.3.0",
@@ -19,6 +20,7 @@
             "version":"0.3.0"
         },
         "environmentId":null,
+        "analysisStatus": "ANALYSED",
         "dependencies":[
             {
                 "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
@@ -37,6 +39,7 @@
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "NOT_ANALYSED",
                 "dependencies":[],
                 "selected":true
             },
@@ -57,6 +60,7 @@
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "NOT_ANALYSED",
                 "dependencies":[],
                 "selected":false
             },
@@ -77,6 +81,7 @@
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "NOT_ANALYSED",
                 "dependencies":[],
                 "selected":false
             },
@@ -97,6 +102,7 @@
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "NOT_ANALYSED",
                 "dependencies":[],
                 "selected":false
             },
@@ -117,6 +123,7 @@
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "NOT_ANALYSED",
                 "dependencies":[],
                 "selected":false
             }

@@ -1,7 +1,7 @@
 {
     "name":"Dependency analysis",
-    "bcSetName":"Build configuration set for org.jboss.da:application:0.3.0",
     "pomPath":"application/pom.xml",
+    "productVersion":"0.3",
     "topLevelBc":{
         "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
         "scmRevision":"0.3.0",
@@ -11,14 +11,15 @@
         "name":"application-0.3.0",
         "description":"Build Configuration for org.jboss.da:application:0.3.0.",
         "internallyBuilt":null,
-        "bcExists":false,
         "useExistingBc":false,
+        "errors" : [  ],
         "gav":{
             "groupId":"org.jboss.da",
             "artifactId":"application",
             "version":"0.3.0"
         },
         "environmentId":null,
+        "analysisStatus": "ANALYSED",
         "dependencies":[
             {
                 "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
@@ -26,17 +27,17 @@
                 "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
-                "name":"communication-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
                 "useExistingBc":false,
+                "errors" : [  ],
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"communication",
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "ANALYSED",
                 "dependencies":[
                     {
                         "scmUrl":"http://github.com/rzwitserloot/lombok",
@@ -44,17 +45,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"lombok-1.16.4",
                         "description":"Build Configuration for org.projectlombok:lombok:1.16.4 - Project Lombok.",
                         "internallyBuilt":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"org.projectlombok",
                             "artifactId":"lombok",
                             "version":"1.16.4"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -64,17 +64,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"resteasy-jaxrs-2.3.10.Final",
                         "description":"Build Configuration for org.jboss.resteasy:resteasy-jaxrs:2.3.10.Final - RESTEasy JAX-RS Implementation.",
                         "internallyBuilt":"2.3.10.Final-redhat-1",
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"org.jboss.resteasy",
                             "artifactId":"resteasy-jaxrs",
                             "version":"2.3.10.Final"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -84,17 +83,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"cdi-api-1.2",
                         "description":"Build Configuration for javax.enterprise:cdi-api:1.2 - CDI APIs.",
                         "internallyBuilt":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"javax.enterprise",
                             "artifactId":"cdi-api",
                             "version":"1.2"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -104,17 +102,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"jackson-mapper-asl-1.9.9",
                         "description":"Build Configuration for org.codehaus.jackson:jackson-mapper-asl:1.9.9 - Data Mapper for Jackson.",
                         "internallyBuilt":"1.9.9.redhat-4",
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"org.codehaus.jackson",
                             "artifactId":"jackson-mapper-asl",
                             "version":"1.9.9"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -124,17 +121,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"common-0.3.0",
                         "description":null,
                         "internallyBuilt":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"org.jboss.da",
                             "artifactId":"common",
                             "version":"0.3.0"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -144,17 +140,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"mockito-all-1.10.19",
                         "description":"Build Configuration for org.mockito:mockito-all:1.10.19 - Mockito.",
                         "internallyBuilt":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"org.mockito",
                             "artifactId":"mockito-all",
                             "version":"1.10.19"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -164,17 +159,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"javax.ws.rs-api-2.0",
                         "description":"Build Configuration for javax.ws.rs:javax.ws.rs-api:2.0 - javax.ws.rs-api.",
                         "internallyBuilt":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"javax.ws.rs",
                             "artifactId":"javax.ws.rs-api",
                             "version":"2.0"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -184,17 +178,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"aprox-depgraph-client-java-0.24.0",
                         "description":"Build Configuration for org.commonjava.aprox:aprox-depgraph-client-java:0.24.0 - AProx :: Add-Ons :: DepGraph :: Java Client.",
                         "internallyBuilt":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"org.commonjava.aprox",
                             "artifactId":"aprox-depgraph-client-java",
                             "version":"0.24.0"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -204,17 +197,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"commons-logging-1.1.1",
                         "description":"Build Configuration for commons-logging:commons-logging:1.1.1 - Commons Logging.",
                         "internallyBuilt":"1.1.1-redhat-2",
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"commons-logging",
                             "artifactId":"commons-logging",
                             "version":"1.1.1"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -224,17 +216,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"slf4j-api-1.7.7",
                         "description":"Build Configuration for org.slf4j:slf4j-api:1.7.7 - SLF4J API Module.",
                         "internallyBuilt":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"org.slf4j",
                             "artifactId":"slf4j-api",
                             "version":"1.7.7"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -244,17 +235,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"junit-4.11",
                         "description":"Build Configuration for junit:junit:4.11 - JUnit.",
                         "internallyBuilt":"4.11-redhat-1",
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"junit",
                             "artifactId":"junit",
                             "version":"4.11"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     },
@@ -264,17 +254,16 @@
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "name":"jboss-javaee-6.0-3.0.2.Final",
                         "description":"Build Configuration for org.jboss.spec:jboss-javaee-6.0:3.0.2.Final - JBoss Java EE 6 Specification APIs.",
                         "internallyBuilt":"3.0.2.Final-redhat-15",
-                        "bcExists":false,
-                        "useExistingBc":false,
+                        "errors" : [  ],
                         "gav":{
                             "groupId":"org.jboss.spec",
                             "artifactId":"jboss-javaee-6.0",
                             "version":"3.0.2.Final"
                         },
                         "environmentId":null,
+                        "analysisStatus": "NOT_ANALYSED",
                         "dependencies":[],
                         "selected":false
                     }
@@ -287,17 +276,17 @@
                 "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
-                "name":"bc-backend-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
                 "useExistingBc":false,
+                "errors" : [  ],
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"bc-backend",
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "NOT_ANALYSED",
                 "dependencies":[],
                 "selected":false
             },
@@ -307,17 +296,17 @@
                 "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
-                "name":"bc-rest-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
                 "useExistingBc":false,
+                "errors" : [  ],
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"bc-rest",
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "NOT_ANALYSED",
                 "dependencies":[],
                 "selected":false
             },
@@ -327,17 +316,17 @@
                 "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
-                "name":"reports-backend-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
                 "useExistingBc":false,
+                "errors" : [  ],
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"reports-backend",
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "NOT_ANALYSED",
                 "dependencies":[],
                 "selected":false
             },
@@ -347,17 +336,17 @@
                 "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
-                "name":"reports-rest-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
                 "useExistingBc":false,
+                "errors" : [  ],
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"reports-rest",
                     "version":"0.3.0"
                 },
                 "environmentId":null,
+                "analysisStatus": "NOT_ANALYSED",
                 "dependencies":[],
                 "selected":false
             }
