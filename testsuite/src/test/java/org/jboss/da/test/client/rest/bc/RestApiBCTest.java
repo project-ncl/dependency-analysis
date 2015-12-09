@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class RestApiBCTests extends AbstractRestBCTest {
+public class RestApiBCTest extends AbstractRestBCTest {
 
     private static final String PATH_BC_START = "/build-configuration/generate/product/start-process";
 
