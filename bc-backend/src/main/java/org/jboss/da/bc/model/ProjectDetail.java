@@ -74,7 +74,8 @@ public class ProjectDetail {
 
     @Getter
     @Setter
-    private EnumSet<BcError> errors;
+    @NonNull
+    private EnumSet<BcError> errors = EnumSet.noneOf(BcError.class);
 
     public void addError(BcError e) {
         errors.add(e);
@@ -82,7 +83,6 @@ public class ProjectDetail {
 
     public ProjectDetail(GAV gav) {
         this.gav = gav;
-        errors = EnumSet.noneOf(BcError.class);
     }
 
 }

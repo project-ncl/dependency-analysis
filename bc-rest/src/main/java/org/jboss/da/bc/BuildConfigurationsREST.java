@@ -123,7 +123,8 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
         pd.setProjectId(bc.getProjectId());
         pd.setScmRevision(bc.getScmRevision());
         pd.setScmUrl(bc.getScmUrl());
-        pd.setErrors(bc.getErrors());
+        if(bc.getErrors() != null)
+            pd.setErrors(bc.getErrors());
         pd.setUseExistingBc(bc.isUseExistingBc());
         pd.setBcId(bc.getBcId());
 
