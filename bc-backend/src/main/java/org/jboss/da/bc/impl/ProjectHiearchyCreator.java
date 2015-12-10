@@ -88,7 +88,7 @@ public class ProjectHiearchyCreator {
                 && hiearchy.getDependencies().isEmpty()) {
             // Dependencies not yet processed, get and process them
             setDependencies(hiearchy);
-        } else if (hiearchy.getAnalysisStatus().equals(DependencyAnalysisStatus.ANALYZED)) {
+        } else if (hiearchy.getAnalysisStatus().equals(DependencyAnalysisStatus.ANALYSED)) {
             // Dependencies already processed, search next level
             for (ProjectHiearchy dep : hiearchy.getDependencies()) {
                 iterate(dep);
@@ -108,7 +108,7 @@ public class ProjectHiearchyCreator {
         try {
             dependencies = depGenerator.getToplevelDependencies(gav);
             hiearchy.setDependencies(toProjectHiearchies(dependencies));
-            hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
+            hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYSED);
         } catch (CommunicationException ex) {
             log.warn("Failed to get dependencies for " + gav, ex);
             hiearchy.getProject().addError(BcError.NO_DEPENDENCY);
@@ -120,7 +120,7 @@ public class ProjectHiearchyCreator {
                 dependencies = depGenerator.getToplevelDependencies(project.getScmUrl(),
                         project.getScmRevision(), gav);
                 hiearchy.setDependencies(toProjectHiearchies(dependencies));
-                hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
+                hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYSED);
             } catch (ScmException ex_scm) {
                 hiearchy.getProject().addError(BcError.SCM_EXCEPTION);
                 hiearchy.getProject().addError(BcError.NO_DEPENDENCY);
