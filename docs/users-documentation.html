@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+
+<title>Dependency Analyser - User's documentation</title>
+<meta name="author" content="Dependency analysis team">
+<meta name="description" content="User's documentation of Dependency Analyser" />
+<link rel="stylesheet" href="users-documentation.css" />
+
+</head>
+
+
+<body>
+    <div id="main">
+        <h1>Dependency Analyser - User's documentation</h1>
+
+        <h2>Introduction</h2>
+        <p>This project is a service, which provides information about built artifacts and
+            analyse the projects' dependencies. It can lookup the Red Hat build artifacts and inform
+            the users about alternatives instead of the artifacts used in their projects, produces
+            dependency reports of artifacts and resolves dependency tree.</p>
+
+        <p>The Dependency Analyser also maintains a database of whitelisted and blacklisted
+            artifacts, which should help the user to decide, which artifacts to use in their
+            projects.</p>
+        <p>
+            This project is hosted on
+            <a href="https://github.com/project-ncl/dependency-analysis">GitHub</a>
+            and developed mainly by the JBoss Productization team, but external contributors are
+            welcome.
+        </p>
+
+        <h3>Blacklist / Whitelist</h3>
+        <p>The service maintains the database of the whitelisted and blacklisted artifacts. This
+            data in the database can be change by any user right now, but in future it will be
+            restricted only to authorized users.</p>
+        <p>The meaning of the this lists is:</p>
+        <ul>
+            <li>
+                <span class="strong">Whitelist</span>
+                - contains artifacts, which are the best option to be used in the projects. This
+                artifacts are used in the latest versions of the most important products and
+                therefore they are supported. The inserted artifacts are restricted to RedHat build
+                versions of artifacts (e.g. 4.2.18.Final).
+            </li>
+            <li>
+                <span class="strong">Blacklist</span>
+                - contains artifacts, which should not be used in the projects. There are typically
+                artifacts, which cannot be built, has unacceptable license, contains
+                vulnerabilities, etc. The inserted artifacts are restricted to community versions of
+                artifacts (e.g. 4.2.18.Final).
+            </li>
+        </ul>
+
+        <p>Artifacts, which are not in any of the lists are treated as graylisted, so there is
+            no guarantee, they are suitable to be used in products and they should be judged
+            manually.</p>
+
+        <h3>Lookup of built artifacts</h3>
+        <p>The Dependency Analyser can lookup the Red Hat built artifacts and tell the user if
+            the artifact was built or not and provide him alternative versions of the artifact. The
+            user gets the information about:
+        </p>
+        <ul>
+            <li>The latest built version of the artifact</li>
+            <li>All built versions of artifacts with the same GroupId, ArtifactId</li>
+            <li>Blacklist/whitelist status of the requested artifact</li>
+        </ul>
+        
+        
+        <h3>Dependency reports</h3>
+            The system is able to provide information about the dependencies of a project. 
+            It can analyse a specific GAV or a repository specified by the URL (+ revision).
+
+            This feature extends the lookup and it resolves whole dependency tree and provides information for every artifact in the tree 
+            and also some helper data like how many dependencies are not built. 
+
+        <h3>Data source</h3>
+        <p>
+            Currently data about built artifacts are gathered from the public product repository (
+            <a href="http://maven.repository.redhat.com/ga">maven.repository.redhat.com</a>
+            ). The dependency analyser has an option to easily add any Maven repository as a source
+            of supported built artifacts.
+        </p>
+        <p>There is no direct integration with Brew, because in Brew it is hard to verify, which
+            artifacts are valid and supported. But it is possible to add any Mead repository as a
+            source repository for the Dependency Analyser (e.g. repositories of the latest products
+            builds).</p>
+        <p>In future the Dependency Analyser will provide also built artifacts from the Project
+            Newcastle build system, but now the builds from the Project Newcastle are not
+            reproducible and supported.</p>
+
+
+        <h2>Interfaces</h2>
+        <p>
+            The Dependency Analyser is a server side application and there are two ways how to use
+            it. The
+            <span class="strong">REST API</span>
+            , which provides the main logic of the system and provides an easy way to use it in
+            other applications, and the
+            <span class="strong">CLI tools</span>
+            , which are more handy for the manual usage. The CLI tools are mainly a thin client,
+            which performs gets all data from the service using the REST API.
+        </p>
+        <p>It's planned to have a third interface, which will be the UI of the Project Newcastle
+            build system.</p>
+
+        <h3>REST API</h3>
+        <p>
+            The REST API is based on the Swagger documentation, which provides an easy way to have
+            an up to date documentation and also a simple way to try the REST API from the browser.
+            The path to the Swagger documentation is
+            <span class="strong">/da/doc </span>
+            . From this endpoint there is also link to the latest API version.
+        </p>
+        <p>This interface is also versioned in the URL (e.g. v-0.3). The same version
+            guarantees, that there are no backward incompatible changes. Currently only the latest
+            version of REST API is maintained, but in production there can be more running API
+            versions.</p>
+
+        <h3>CLI tools</h3>
+        <p>The CLI tools are more handy for the manual usage. Most of the data is obtained from
+            the server application, so it is not possible to use the CLI tools without connection to
+            the server. The tools are a simple Bash/Python scripts, which requires to have installed
+            interprets for Bash and Python 2.7.</p>
+        <p>There are 2 CLI tools:</p>
+
+        <ol>
+            <li>
+                <span class="strong">The users tool</span>
+                - provides all operations except modification of the Blacklist/Whitelist.
+            </li>
+            <li>
+                <span class="strong">The admin tool</span>
+                - provides all operations. In future this tool will require authentication.
+            </li>
+        </ol>
+
+
+
+        <h2>Coming in next version</h2>
+        <p>New versions of the Dependency Analyser should be released in the week 2015/12/14 -
+            2015/12/18 and it should contains this new features:</p>
+        <ul>
+            <li>Whitelist will contains also information about products in which they are used
+                and products' support status</li>
+            <li>Reports in the CLI tool will be improved</li>
+            <li>CLI tool will provide an option to analyse any Git repository</li>
+        </ul>
+        
+        
+
+        <h2>CLI tools manual</h2>
+        <p>In this section will be described how to use the CLI tools and what are their
+            options.</p>
+
+        <h3>Installation</h3>
+        <p>
+            The easiest way to make the CLI tools running is to
+            <a
+                href="https://github.com/project-ncl/dependency-analysis/blob/master/cli/da-cli-0.4.2.zip?raw=true">download
+                the ZIP archive</a>
+            from GitHub, which contains all the required support scripts and both CLI tools. The
+            latest versions of the tools are always placed in the folder /cli. When you download the
+            ZIP file, you can unzip the file and start using it.
+        </p>
+        <p>Note: There is no configuration option to specify the URL of the server. Currently it
+            is hardcoded in the scripts to simplify the distribution to the users, but of course it
+            will be added later.</p>
+
+
+        <h3>Options description</h3>
+        All available options in the CLI tool are:
+
+        <ul id="options">
+            <li>
+                <span class="strong">No parameters</span>
+                - The tool will print the help with a basic description of options
+            </li>
+
+            <li>
+                <span class="strong">check (b[lack]|w[hite]) GROUP_ID:ARTIFACT_ID:VERSION</span>
+                - Check if an artifact GROUP_ID:ARTIFACT_ID:VERSION is in the blacklist/whitelist
+            </li>
+
+            <li>
+                <span class="strong">list (b[lack]|w[hite])</span>
+                - List all artifacts in blacklist/whitelist
+            </li>
+
+            <li>
+                <span class="strong">lookup [GROUP_ID:ARTIFACT_ID:VERSION]</span>
+                - When GROUP_ID:ARTIFACT_ID:VERSION is specified finds corresponding redhat versions
+                for it.
+                <br />
+                When it is not specified, reads G:A:Vs from standard input and finds corresponding
+                redhat versions for all of them.
+                <br />
+                Output: &lt;groupId>:&lt;artifactId>:&lt;version> &lt;Best Matched Red Hat Version>
+                &lt;In black/white list?> &lt;Available Versions>
+            </li>
+
+            <li>
+                <span class="strong">report [--raw|--json] GROUP_ID:ARTIFACT_ID:VERSION</span>
+                - Generate dependency report for GROUP_ID:ARTIFACT_ID:VERSION..
+                <br />
+                Output: &lt;Tree of groupId:artifactId:version> &lt;Best Matched Red Hat Version>
+                &lt;In black/white list?> &lt;Number of not built dependencies> &lt;Number of
+                available versions>.
+                <br />
+                --raw output: &lt;groupId>:&lt;artifactId>:&lt;version> &lt;Best Matched Red Hat
+                Version> &lt;In black/white list?> &lt;Number of not built dependencies>
+                &lt;Available Versions>.
+                <br />
+                --json output: json aquiered from server
+            </li>
+
+            <li>
+                <span class="strong">pom-bw [--transitive] [path]</span>
+                - Check all dependencies from pom in working directory (using dependency:list) and
+                print their Black/White list status.
+            </li>
+            <li>
+                <span class="strong">pom-bw-junit-xml [--transitive] [path]</span>
+                - Check all dependencies from pom in working directory (using dependency:list) and
+                print their Black/White list status, and generate a JUnit XML file
+            </li>
+            <li>
+                <span class="strong">pom-report [--transitive] [--raw] [path]</span>
+                -Check all dependencies from pom in working directory (using dependency:list) and
+                print their report status. Output:
+                <br />
+                &lt;groupId>:&lt;artifactId>:&lt;version> ::
+                <br />
+                &lt;groupId>:&lt;artifactId>:&lt;version> &lt;Best Matched Red Hat Version> &lt;In
+                black/white list?> &lt;Available Versions>
+                <br />
+
+
+            </li>
+            <li>
+                <span class="strong">scm-report [scm] [tag] [pom-path]</span>
+                - Check all dependencies from git-scm link Output:
+                <br />
+                &lt;groupId>:&lt;artifactId>:&lt;version> ::
+                <br />
+                &lt;groupId>:&lt;artifactId>:&lt;version> &lt;Best Matched Red Hat Version> &lt;In
+                black/white list?> &lt;Available Versions>
+                <br />
+
+            </li>
+        </ul>
+
+
+        <h3>Examples</h3>
+        <dl>
+            <dt>List all artifacts in the whitelist</dt>
+            <dd>./da-cli.sh list white</dd>
+
+            <dt>Add an artifact to whitelist</dt>
+            <dd>./da-cli-admin.sh add white org.jboss.hibernate:hibernate-core:3.4.2.redhat-1</dd>
+
+            <dt>Remove an artifact from blacklist</dt>
+            <dd>./da-cli-admin.sh delete black org.jboss.hibernate:hibernate-core:3.4.2</dd>
+
+            <dt>Check all dependencies from pom and print their black/white list status</dt>
+            <dd>./da-cli.sh pom-bw &lt;PATH_TO_DIRECTORY&gt;</dd>
+
+            <dt>Check all dependencies from pom and print their report status</dt>
+            <dd>./da-cli.sh pom-report &lt;PATH_TO_DIRECTORY&gt;</dd>
+
+            <dt>Lookup built versions of an artifact</dt>
+            <dd>./da-cli.sh lookup org.hibernate:hibernate-core:4.2.18.Final</dd>
+
+            <dt>Create dependency report of an artifact</dt>
+            <dd>./da-cli.sh report org.hibernate:hibernate-core:4.2.18.Final</dd>
+        </dl>
+
+    </div>
+</body>
+</html>
+

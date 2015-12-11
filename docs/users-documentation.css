@@ -1,0 +1,62 @@
+h1, h2, h3, h4, h5, h6, p {
+    color: #3B3738;
+}
+
+body {
+    background: #C63D0F;
+    text-align: center;  
+}
+
+#main {
+    margin: auto;
+    width: 1000px;
+    text-align: left;   
+    background:  #FDF3E7;
+    padding: 40px;
+    border-radius: 50px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ac3d18;
+}
+
+h1 {
+    text-align: center;
+}
+
+a {
+    color: #C63D0F;
+}
+
+.strong {
+    color: #333;
+    font-weight: bold;
+}
+
+p, li {
+    text-align: justify;
+}
+
+dl {
+    margin: 0 0 0 20px; 
+}
+
+dt {
+    margin: 10px 0 3px 0;
+    font-size: 13pt;
+}
+
+dd {
+}
+
+#options {
+}
+
+#options li {
+    padding: 3px 0 3px 0;
+}
+
+
+
+
+
