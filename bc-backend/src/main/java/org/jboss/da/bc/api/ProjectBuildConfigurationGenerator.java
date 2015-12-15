@@ -1,25 +1,25 @@
 package org.jboss.da.bc.api;
 
+import java.util.Optional;
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.bc.model.GeneratorEntity;
+import org.jboss.da.bc.model.ProjectGeneratorEntity;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
 
-import java.util.Optional;
-
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
-public interface BuildConfigurationGenerator {
+public interface ProjectBuildConfigurationGenerator {
 
-    GeneratorEntity startBCGeneration(SCMLocator scm, String productName, String productVersion)
+    ProjectGeneratorEntity startBCGeneration(SCMLocator scm, String projectName)
             throws ScmException, PomAnalysisException, CommunicationException;
 
-    GeneratorEntity iterateBCGeneration(GeneratorEntity projects) throws CommunicationException;
+    ProjectGeneratorEntity iterateBCGeneration(ProjectGeneratorEntity projects)
+            throws CommunicationException;
 
-    Optional<Integer> createBC(GeneratorEntity projects) throws CommunicationException,
+    Optional<Integer> createBC(ProjectGeneratorEntity projects) throws CommunicationException,
             PNCRequestException;
 }

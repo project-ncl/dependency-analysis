@@ -1,6 +1,7 @@
 package org.jboss.da.bc;
 
 import org.jboss.da.bc.model.InfoEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

@@ -2,7 +2,6 @@ package org.jboss.da.bc.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.api.SCMLocator;
 
@@ -10,8 +9,7 @@ import org.jboss.da.reports.api.SCMLocator;
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
-@ToString
-public class GeneratorEntity {
+public abstract class GeneratorEntity {
 
     @Getter
     @Setter
@@ -29,11 +27,7 @@ public class GeneratorEntity {
     @Setter
     ProjectHiearchy toplevelBc;
 
-    @Getter
-    @Setter
-    String productVersion;
-
-    public GeneratorEntity(SCMLocator scm, String name, GAV gav, String productVersion) {
+    protected GeneratorEntity(SCMLocator scm, String name, GAV gav) {
         ProjectDetail pd = new ProjectDetail(gav);
         pd.setScmUrl(scm.getScmUrl());
         pd.setScmRevision(scm.getRevision());
@@ -41,10 +35,15 @@ public class GeneratorEntity {
         this.name = name;
         this.pomPath = scm.getPomPath();
         this.toplevelBc = new ProjectHiearchy(pd, true);
-        this.productVersion = productVersion;
     }
 
     public ProjectDetail getToplevelProject() {
         return toplevelBc.getProject();
+    }
+
+    @FunctionalInterface
+    public interface EntityConstructor<T extends GeneratorEntity> {
+
+        T construct(SCMLocator scm, String name, GAV gav);
     }
 }

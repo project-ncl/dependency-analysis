@@ -1,22 +1,20 @@
 package org.jboss.da.bc.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import lombok.EqualsAndHashCode;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@XmlAccessorType(XmlAccessType.FIELD)
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString
-public class FinishResponse {
+/**
+ *
+ * @author Honza Brázdil <jbrazdil@redhat.com>
+ */
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public abstract class FinishResponse {
 
     @Getter
     @Setter
-    protected Boolean success;
+    protected Boolean success = false;
 
     @Getter
     @Setter
@@ -26,12 +24,6 @@ public class FinishResponse {
     @Setter
     protected String message;
 
-    @Getter
-    @Setter
-    protected Integer productVersionId;
-
-    @Getter
-    @Setter
-    protected InfoEntity entity;
+    public abstract void setCreatedEntityId(Integer id);
 
 }

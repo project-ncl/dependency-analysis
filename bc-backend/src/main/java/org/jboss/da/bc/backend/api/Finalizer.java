@@ -13,4 +13,6 @@ public interface Finalizer {
     public Integer createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
             String bcSetName) throws CommunicationException, PNCRequestException;
 
+    public Integer createBCs(String name, ProjectHiearchy toplevelBc)
+            throws CommunicationException, PNCRequestException;;
 }

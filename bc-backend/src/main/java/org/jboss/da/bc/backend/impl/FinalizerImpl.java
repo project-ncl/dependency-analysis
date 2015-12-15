@@ -68,6 +68,14 @@ public class FinalizerImpl implements Finalizer {
         }
     }
 
+    @Override
+    public Integer createBCs(String name, ProjectHiearchy toplevelBc)
+            throws CommunicationException, PNCRequestException {
+        Set<Integer> ids = new HashSet<>();
+        create(toplevelBc, ids);
+        return create(toplevelBc, ids);
+    }
+
     private Integer create(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws CommunicationException, PNCRequestException {
         Set<Integer> nextLevelDependencyIds = new HashSet<>();
 
