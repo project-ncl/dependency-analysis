@@ -116,12 +116,12 @@
                         "selected":false
                     },
                     {
-                        "scmUrl":null,
-                        "scmRevision":null,
+                        "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
+                        "scmRevision": "0.3.0",
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
-                        "description":null,
+                        "description":"Build Configuration for org.jboss.da:common:0.3.0.",
                         "internallyBuilt":null,
                         "errors" : [  ],
                         "gav":{
@@ -155,7 +155,7 @@
                     },
                     {
                         "scmUrl":"http://java.net/projects/jax-rs-spec/sources/git/show",
-                        "scmRevision":null,
+                        "scmRevision":"2.0",
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
@@ -250,7 +250,7 @@
                     },
                     {
                         "scmUrl":"https://github.com/jboss/jboss-javaee-specs",
-                        "scmRevision":null,
+                        "scmRevision":"3.0.2.Final",
                         "cloneRepo":true,
                         "projectId":null,
                         "buildScript":"",
