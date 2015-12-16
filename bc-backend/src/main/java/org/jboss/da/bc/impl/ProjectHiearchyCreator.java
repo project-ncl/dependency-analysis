@@ -87,7 +87,6 @@ public class ProjectHiearchyCreator {
         if (hiearchy.getAnalysisStatus().equals(DependencyAnalysisStatus.NOT_ANALYSED)
                 && hiearchy.getDependencies().isEmpty()) {
             // Dependencies not yet processed, get and process them
-            hiearchy.getProject().addError(BcError.NO_DEPENDENCY);
             setDependencies(hiearchy);
         } else if (hiearchy.getAnalysisStatus().equals(DependencyAnalysisStatus.ANALYZED)) {
             // Dependencies already processed, search next level
@@ -112,6 +111,7 @@ public class ProjectHiearchyCreator {
             hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
         } catch (CommunicationException ex) {
             log.warn("Failed to get dependencies for " + gav, ex);
+            hiearchy.getProject().addError(BcError.NO_DEPENDENCY);
             hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
         } catch (FindGAVDependencyException ex) {
             ProjectDetail project = toplevel.getProject();
@@ -123,9 +123,11 @@ public class ProjectHiearchyCreator {
                 hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
             } catch (ScmException ex_scm) {
                 hiearchy.getProject().addError(BcError.SCM_EXCEPTION);
+                hiearchy.getProject().addError(BcError.NO_DEPENDENCY);
                 hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
             } catch (PomAnalysisException ex_pom) {
                 hiearchy.getProject().addError(BcError.POM_EXCEPTION);
+                hiearchy.getProject().addError(BcError.NO_DEPENDENCY);
                 hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
             }
 
