@@ -9,18 +9,36 @@ import java.util.List;
 public interface BCSetGenerator {
 
     /**
-     * Finds if BuildConfigurationSet with specified parameters already exists if not creates it
+     * Create a new BuildConfigurationSet.
+     * If the BuildConfigurationSet already exists, then throw a PNCRequestException.
+     *
+     * From DA-169, we have to report an error if the BuildConfigurationSet already
+     * exists.
      * 
      * @param name
      * @param productVersionId
      * @param bcIds
      * @return BuildConfigurationSet
      * @throws CommunicationException Thrown if communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if PNC returns an error, or if the
+     *         BuildConfigurationSet already exists
      */
     BuildConfigurationSet createBCSet(String name, Integer productVersionId, List<Integer> bcIds)
             throws CommunicationException, PNCRequestException;
 
+    /**
+     * Find the Product on PNC and create the product version for that product.
+     * If the Product already exists, re-use it.
+     *
+     * From DA-167, if the ProductVersion already exists, we will re-use it
+     * and create a new BuildConfigurationSet
+     *
+     * @param name name of product to find
+     * @param productVersion version of product to create
+     * @return The id of the product version created, or found
+     * @throws CommunicationException Thrown if communication with PNC failed
+     * @throws PNCRequestException Thrown if PNC returns an error
+     */
     Integer createProduct(String name, String productVersion) throws CommunicationException,
             PNCRequestException;
 }
