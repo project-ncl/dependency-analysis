@@ -2,6 +2,7 @@ package org.jboss.da.bc.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,5 +34,9 @@ public class EntryEntity {
     @Getter
     @Setter
     protected String name;
+
+    @Getter
+    @Setter
+    protected List<String> repositories;
 
 }

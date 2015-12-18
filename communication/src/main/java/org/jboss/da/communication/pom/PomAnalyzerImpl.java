@@ -22,6 +22,8 @@ import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.pom.model.MavenRepository;
 import org.jboss.da.communication.pom.qualifier.DACartographerCore;
+import org.jboss.da.common.CommunicationException;
+import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -33,6 +35,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,9 +43,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import org.jboss.da.common.CommunicationException;
-import org.slf4j.Logger;
 
 @ApplicationScoped
 public class PomAnalyzerImpl implements PomAnalyzer {
@@ -58,8 +58,8 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     private CartographerCore carto;
 
     @Override
-    public GAVDependencyTree readRelationships(File pomRepoDir, File pomPath)
-            throws PomAnalysisException {
+    public GAVDependencyTree readRelationships(File pomRepoDir, File pomPath,
+            List<String> repositories) throws PomAnalysisException {
 
         try {
 
@@ -80,40 +80,47 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                 Map<File, ProjectVersionRef> projectVersionRefs = getProjectVersionRefs(tempDir,
                         findAllPomFiles(pomRepoDir));
 
+                ProjectVersionRef rootProject = null;
+
                 // for each pom.xml
                 for (Map.Entry<File, ProjectVersionRef> entry : projectVersionRefs.entrySet()) {
-
-                    // find all the dependencies / plugins / parents / plugins etc for each pom.xml
-                    Set<ProjectRelationship<?, ?>> relationships = getDiscoveryResult(tempDir,
-                            pomRepoDir, entry.getValue()).getAcceptedRelationships();
-
-                    // convert from ProjectVersionRef to GAV
-                    GAV originGAV = generateGAV(entry.getValue());
-
-                    // get the origin GAVDependencyTree
-                    GAVDependencyTree originScmGAVTree = addGAVDependencyTreeToMapper(
-                            gavDependencyTreeMap, originGAV);
-
-                    // need to use canonical path to get better way of knowing if 2 paths are the same
-                    if (pomPath.getCanonicalPath().equals(entry.getKey().getCanonicalPath()))
-                        root = originScmGAVTree;
-
-                    for (ProjectRelationship<?, ?> relationship : relationships) {
-                        ProjectVersionRef target = relationship.getTarget();
-
-                        GAV targetGAV = generateGAV(target);
-
-                        GAVDependencyTree targetScmGavTree = addGAVDependencyTreeToMapper(
-                                gavDependencyTreeMap, targetGAV);
-
-                        addTargetToGAVDependencyTree(originScmGAVTree, targetScmGavTree,
-                                relationship);
+                    // if pomPath is the same as what we found analysis the root repository
+                    if (pomPath.getCanonicalPath().equals(entry.getKey().getCanonicalPath())) {
+                        rootProject = entry.getValue();
+                        break;
                     }
                 }
 
-                if (root == null) {
+                // if we didn't find it
+                if (rootProject == null) {
                     throw new PomAnalysisException("Root pom was not found in repository.");
                 }
+
+                // find all the dependencies / plugins / parents / plugins etc for the pom.xml
+                Set<ProjectRelationship<?, ?>> relationships = getDiscoveryResult(tempDir,
+                        pomRepoDir, rootProject, repositories).getAcceptedRelationships();
+
+                // convert from ProjectVersionRef to GAV
+                GAV originGAV = generateGAV(rootProject);
+
+                // get the origin GAVDependencyTree
+                GAVDependencyTree originScmGAVTree = addGAVDependencyTreeToMapper(
+                        gavDependencyTreeMap, originGAV);
+
+                // need to use canonical path to get better way of knowing if 2 paths are the same
+                root = originScmGAVTree;
+
+                for (ProjectRelationship<?, ?> relationship : relationships) {
+                    ProjectVersionRef target = relationship.getTarget();
+
+                    GAV targetGAV = generateGAV(target);
+
+                    GAVDependencyTree targetScmGavTree = addGAVDependencyTreeToMapper(
+                            gavDependencyTreeMap, targetGAV);
+
+                    addTargetToGAVDependencyTree(originScmGAVTree, targetScmGavTree, relationship);
+                }
+
                 return root;
 
             } finally {
@@ -149,7 +156,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                     throw new PomAnalysisException("Could not find the GAV " + gav
                             + " in the project");
                 } else {
-                    return readRelationships(pomRepoDir, pomPath);
+                    return readRelationships(pomRepoDir, pomPath, Collections.emptyList());
                 }
 
             } finally {
@@ -162,8 +169,9 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
     @Override
     public Optional<File> getPOMFileForGAV(File pomRepoDir, GAV gav) {
+
         return findAllPomFiles(pomRepoDir).stream()
-                .filter(file -> isProjectVersionRefSameAsGAV((new PomPeek(file)).getKey(), gav))
+                .filter(file -> isProjectVersionRefSameAsGAV(file, gav))
                 .findAny();
     }
 
@@ -183,11 +191,13 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         return new GAV(ref.getGroupId(), ref.getArtifactId(), ref.getVersionString());
     }
 
-    private DiscoveryResult getDiscoveryResult(File tempDir, File repoDir, ProjectVersionRef ref)
-            throws GalleyMavenException, URISyntaxException, CartoDataException {
+    private DiscoveryResult getDiscoveryResult(File tempDir, File repoDir, ProjectVersionRef ref,
+            List<String> repositories) throws GalleyMavenException, URISyntaxException,
+            CartoDataException {
 
         MavenPomReader mavenPomReader = carto.getGalley().getPomReader();
-        MavenPomView pomView = mavenPomReader.read(ref, getRepoLocations(tempDir, repoDir));
+        MavenPomView pomView = mavenPomReader.read(ref,
+                getRepoLocations(tempDir, repoDir, repositories));
 
         URI src = new URI(new SimpleLocation("file:" + tempDir.getAbsolutePath()).getUri());
 
@@ -200,7 +210,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         return processor.readRelationships(pomView, src, disConf);
     }
 
-    private List<Location> getRepoLocations(File cacheDir, File repoDir) {
+    private List<Location> getRepoLocations(File cacheDir, File repoDir, List<String> repositories) {
 
         List<Location> repoLocations = new LinkedList<>();
         // add local location
@@ -212,6 +222,12 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         // add all the repositories mentioned in the pom.xml
         List<SimpleLocation> locationsInPom = getLocationsDefinedInPom(repoDir);
         repoLocations.addAll(locationsInPom);
+
+        if (repositories != null) {
+            repoLocations.addAll(repositories.stream()
+                    .map(repository -> new SimpleLocation(repository, repository))
+                    .collect(Collectors.toList()));
+        }
 
         return repoLocations;
     }
@@ -315,5 +331,16 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
         return gav.getGroupId().equals(groupId) && gav.getArtifactId().equals(artifactId)
                 && gav.getVersion().equals(version);
+    }
+
+    private boolean isProjectVersionRefSameAsGAV(File file, GAV gav) {
+
+        PomPeek pk = new PomPeek(file);
+
+        if (pk.getKey() == null) {
+            return false;
+        } else {
+            return isProjectVersionRefSameAsGAV(pk.getKey(), gav);
+        }
     }
 }

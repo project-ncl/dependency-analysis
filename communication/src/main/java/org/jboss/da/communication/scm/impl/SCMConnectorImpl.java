@@ -1,6 +1,7 @@
 package org.jboss.da.communication.scm.impl;
 
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -41,14 +42,14 @@ public class SCMConnectorImpl implements SCMConnector {
 
     @Override
     public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision,
-            String pomPath) throws ScmException, PomAnalysisException {
+            String pomPath, List<String> repositories) throws ScmException, PomAnalysisException {
         // git clone
         // TODO: hardcoded to git right now
         // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
         GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, new File(
-                tempDir, pomPath));
+                tempDir, pomPath), repositories);
 
         return gavDependencyTree;
     }

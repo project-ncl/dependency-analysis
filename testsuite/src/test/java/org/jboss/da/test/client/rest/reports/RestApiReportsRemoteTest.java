@@ -59,6 +59,12 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
     }
 
     @Test
+    public void testScmOptionalRepository() throws Exception {
+        ClientResponse<String> response = assertResponseForRequest(PATH_SCM, "keycloak-1.6.0.Final");
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
     public void testReportWithoutDependencies() throws Exception {
         ClientResponse<String> responseWith = assertResponseForRequest(PATH_REPORTS_GAV,
                 "withDependencies");
