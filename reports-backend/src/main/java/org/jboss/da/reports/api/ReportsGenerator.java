@@ -18,12 +18,27 @@ public interface ReportsGenerator {
 
     /**
      * Create a report about artifacts given an scm-url
-     * The report will only list the top-level dependencies used in the project
      * @param scml
      * @return Created report
      */
     public Optional<ArtifactReport> getReportFromSCM(SCMLocator scml) throws ScmException,
             PomAnalysisException, CommunicationException;
+
+    /**
+     * Create an advanced report about artifacts given an scm-url
+     * The advanced report will also contain lists of the top-level module dependencies
+     * which are:
+     * - blacklisted
+     * - whitelisted,
+     * - community gavs with a best match version
+     * - community gavs with built versions
+     * - community gavs
+     *
+     * @param scml
+     * @return Created report
+     */
+    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml)
+            throws ScmException, PomAnalysisException, CommunicationException;
 
     public Optional<ArtifactReport> getReport(GAV gav, List<Product> products);
 

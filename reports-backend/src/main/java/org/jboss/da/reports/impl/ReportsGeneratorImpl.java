@@ -1,23 +1,29 @@
 package org.jboss.da.reports.impl;
 
 import org.apache.maven.scm.ScmException;
+import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.Product;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
+import org.jboss.da.scm.api.SCM;
+import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +55,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Inject
     private DependencyTreeGenerator dependencyTreeGenerator;
 
+    @Inject
+    private SCM scmManager;
+
+    @Inject
+    private PomAnalyzer pomAnalyzer;
+
     @Override
     public Optional<ArtifactReport> getReportFromSCM(SCMLocator scml) throws ScmException,
             PomAnalysisException, CommunicationException {
@@ -65,6 +77,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         addDependencyReports(report, dt.getDependencies(), nodesVisited);
 
         return Optional.of(report);
+    }
+
+    @Override
+    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml) throws ScmException,
+            PomAnalysisException, CommunicationException {
+        Optional<ArtifactReport> artifactReport = getReportFromSCM(scml);
+        // TODO: hardcoded to git
+        // hopefully we'll get the cached cloned folder for this repo
+        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(), scml.getRevision());
+        return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder));
     }
 
     @Override
@@ -114,6 +136,63 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             ar.addDependency(dar);
             nodesVisited.add(dt);
         }
+    }
+
+    private AdvancedArtifactReport generateAdvancedArtifactReport(ArtifactReport report,
+            File repoFolder) {
+        AdvancedArtifactReport advancedReport = new AdvancedArtifactReport();
+        advancedReport.setArtifactReport(report);
+        Set<GAV> modulesAnalyzed = new HashSet<>();
+
+        // hopefully we'll get the folder already cloned from before
+        populateAdvancedArtifactReportFields(advancedReport, report, modulesAnalyzed, repoFolder);
+        return advancedReport;
+    }
+
+    private void populateAdvancedArtifactReportFields(AdvancedArtifactReport advancedReport,
+            ArtifactReport report, Set<GAV> modulesAnalyzed, File repoFolder) {
+        for (ArtifactReport dep : report.getDependencies()) {
+            if (modulesAnalyzed.contains(dep.getGav())) {
+                // if module already analyzed, skip
+                continue;
+            } else if (isDependencyAModule(repoFolder, dep)) {
+                // if dependency is a module, but not yet analyzed
+                modulesAnalyzed.add(dep.getGav());
+                populateAdvancedArtifactReportFields(advancedReport, dep, modulesAnalyzed,
+                        repoFolder);
+            } else {
+                // only generate populate advanced report with community GAVs
+                if (VersionParser.isRedhatVersion(dep.getVersion()))
+                    continue;
+
+                // we have a top-level module dependency
+                if (dep.isWhitelisted())
+                    advancedReport.addWhitelistArtifact(dep.getGav());
+                if (dep.isBlacklisted())
+                    advancedReport.addBlacklistArtifact(dep.getGav());
+
+                if (dep.getBestMatchVersion().isPresent()) {
+                    advancedReport.addCommunityGavWithBestMatchVersion(dep.getGav());
+                } else if (!dep.getAvailableVersions().isEmpty()
+                        || hasWhitelistedGA(dep.getGroupId(), dep.getArtifactId())) {
+                    advancedReport.addCommunityGavWithBuiltVersion(dep.getGav());
+                } else {
+                    advancedReport.addCommunityGav(dep.getGav());
+                }
+            }
+        }
+    }
+
+    private boolean hasWhitelistedGA(String groupId, String artifactId) {
+        if (whiteArtifactService.getAll() == null) {
+            return false;
+        }
+        return whiteArtifactService.getAll().stream()
+                .anyMatch(white -> white.getArtifactId().equals(artifactId) && white.getGroupId().equals(groupId));
+    }
+
+    private boolean isDependencyAModule(File repoFolder, ArtifactReport dependency) {
+        return pomAnalyzer.getPOMFileForGAV(repoFolder, dependency.getGav()).isPresent();
     }
 
 }
