@@ -123,8 +123,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                 // cleanup
                 FileUtils.deleteDirectory(tempDir);
             }
-        } catch (TransferException | URISyntaxException | CartoDataException
-                | IOException e) {
+        } catch (TransferException | URISyntaxException | CartoDataException | IOException e) {
             throw new PomAnalysisException(e);
         }
     }

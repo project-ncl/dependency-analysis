@@ -60,7 +60,10 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
     @Test
     public void testScmOptionalRepository() throws Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_SCM, "keycloak-1.6.0.Final");
+        File jsonRequestFile = getJsonRequestFile(PATH_SCM, "keycloak-1.6.0.Final");
+        ClientRequest request = createClientRequest(PATH_SCM,
+                FileUtils.readFileToString(jsonRequestFile, ENCODING));
+        ClientResponse<String> response = request.post(String.class);
         assertEquals(200, response.getStatus());
     }
 
