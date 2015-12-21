@@ -7,12 +7,14 @@ import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.rest.model.ErrorMessage;
+import org.jboss.da.rest.reports.model.AdvancedReport;
 import org.jboss.da.rest.reports.model.LookupReport;
 import org.jboss.da.rest.reports.model.Report;
 import org.slf4j.Logger;
@@ -77,6 +79,29 @@ public class Reports {
 
             return artifactReport
                     .map(x -> Response.ok().entity(toReport(x)).build())
+                    .orElseGet(() -> Response.status(Status.NOT_FOUND)
+                            .entity(new ErrorMessage("No relationship found")).build());
+
+        } catch (ScmException|PomAnalysisException|IllegalArgumentException|CommunicationException e) {
+            log.error("Exception thrown in scm endpoint", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
+        }
+    }
+
+    @POST
+    @Path("/scm-advanced")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
+            response = AdvancedReport.class)
+    public Response advancedScmGenerator(@ApiParam(value = "scm information") SCMLocator scm) {
+
+        try {
+
+            Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator.getAdvancedReportFromSCM(scm);
+
+            return advancedArtifactReport
+                    .map(x -> Response.ok().entity(toAdvancedReport(x)).build())
                     .orElseGet(() -> Response.status(Status.NOT_FOUND)
                             .entity(new ErrorMessage("No relationship found")).build());
 
@@ -156,6 +181,16 @@ public class Reports {
                 report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(),
                 dependencies,
                 report.isBlacklisted(), report.isWhitelisted(), report.getNotBuiltDependencies());
+    }
+
+    private static AdvancedReport toAdvancedReport(AdvancedArtifactReport advancedArtifactReport) {
+
+        Report report = toReport(advancedArtifactReport.getArtifactReport());
+        return new AdvancedReport(report, advancedArtifactReport.getBlacklistArtifacts(),
+                advancedArtifactReport.getWhitelistArtifacts(),
+                advancedArtifactReport.getCommunityGavsWithBestMatchVersions(),
+                advancedArtifactReport.getCommunityGavsWithBuiltVersions(),
+                advancedArtifactReport.getCommunityGavs());
     }
 
     private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {

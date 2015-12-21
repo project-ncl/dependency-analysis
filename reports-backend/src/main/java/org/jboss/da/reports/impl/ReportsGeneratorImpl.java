@@ -8,6 +8,7 @@ import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.Product;
 import org.jboss.da.reports.api.ReportsGenerator;
@@ -65,6 +66,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         addDependencyReports(report, dt.getDependencies(), nodesVisited);
 
         return Optional.of(report);
+    }
+
+    @Override
+    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml) throws ScmException,
+            PomAnalysisException, CommunicationException {
+        Optional<ArtifactReport> artifactReport = getReportFromSCM(scml);
+
+        return artifactReport.map(r -> new AdvancedArtifactReport(r, whiteArtifactService));
     }
 
     @Override
