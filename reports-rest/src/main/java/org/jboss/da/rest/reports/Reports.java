@@ -68,7 +68,7 @@ public class Reports {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
-            response = ArtifactReport.class)
+            response = Report.class)
     public Response scmGenerator(@ApiParam(value = "scm information") SCMLocator scm) {
 
         try {
@@ -90,7 +90,7 @@ public class Reports {
     @Path("/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get dependency report for a GAV ", response = ArtifactReport.class)
+    @ApiOperation(value = "Get dependency report for a GAV ", response = Report.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Report was successfully generated"),
             @ApiResponse(code = 404, message = "Requested GAV was not found in repository"),
