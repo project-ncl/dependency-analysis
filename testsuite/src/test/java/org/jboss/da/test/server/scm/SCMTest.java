@@ -1,7 +1,7 @@
 package org.jboss.da.test.server.scm;
 
 import org.apache.commons.io.FileUtils;
-import org.jboss.da.scm.impl.SCMClonner;
+import org.jboss.da.scm.impl.ScmFacade;
 import org.jboss.da.scm.api.SCMType;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -20,11 +20,11 @@ public class SCMTest {
     @Test
     public void shouldCloneGitRepository() throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_git_clone");
-        SCMClonner scm = new SCMClonner();
+        ScmFacade scm = new ScmFacade();
 
         try {
             // the git commit is actually the one for tag 0.2.0
-            scm.cloneRepository(SCMType.GIT,
+            scm.shallowCloneRepository(SCMType.GIT,
                     "https://github.com/project-ncl/dependency-analysis.git", "05ea9e1",
                     tempDir.toFile());
 
@@ -54,10 +54,10 @@ public class SCMTest {
 
         // this test should use the shallow cloning feature
         Path tempDir = Files.createTempDirectory("da_temp_git_clone");
-        SCMClonner scm = new SCMClonner();
+        ScmFacade scm = new ScmFacade();
 
         try {
-            scm.cloneRepository(SCMType.GIT,
+            scm.shallowCloneRepository(SCMType.GIT,
                     "https://github.com/project-ncl/dependency-analysis.git", "0.4.2",
                     tempDir.toFile());
 
@@ -83,11 +83,11 @@ public class SCMTest {
     @Test
     public void shouldCloneSvnRepository() throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_svn_checkout");
-        SCMClonner scm = new SCMClonner();
+        ScmFacade scm = new ScmFacade();
 
         try {
             // revision makes no sense for SVN
-            scm.cloneRepository(SCMType.SVN,
+            scm.shallowCloneRepository(SCMType.SVN,
                     "http://svn.apache.org/repos/asf/commons/proper/cli/tags/cli-1.3.1/", "",
                     tempDir.toFile());
 

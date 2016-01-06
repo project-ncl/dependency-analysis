@@ -28,7 +28,7 @@ public class SCMImpl implements SCM {
     Logger log;
 
     @Inject
-    SCMClonner scm;
+    ScmFacade scm;
 
     private Map<SCMSpecifier, DirectoryReference> cache = new HashMap<>();
 
@@ -49,7 +49,7 @@ public class SCMImpl implements SCM {
             File tempDir = Files.createTempDirectory("cloned_repo").toFile();
             log.debug("Cached repository for {} not found. Cloning to {}", spec, tempDir);
             try {
-                scm.cloneRepository(scmType, scmUrl, revision, tempDir);
+                scm.shallowCloneRepository(scmType, scmUrl, revision, tempDir);
                 DirectoryReference ref = new DirectoryReference(tempDir);
                 cache.put(spec, ref);
                 return tempDir;
