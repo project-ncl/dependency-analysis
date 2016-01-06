@@ -13,7 +13,10 @@ import org.jboss.da.reports.api.SCMLocator;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import java.util.Optional;
@@ -21,6 +24,8 @@ import java.util.Optional;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Path("/build-configuration/generate/project")
 @Api(value = "project")
@@ -47,6 +52,10 @@ public class BuildConfigurationsProject extends
     }
 
     @Override
+    @POST
+    // When annotations @Post, @Path and @Produces were on parent, the endpoint was not found (I dont know why, jbrazdil)
+    @Path("/analyse-next-level")
+    @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Analyse next level of project dependencies",
             response = ProjectInfoEntity.class)
     public Response analyseNextLevel(
@@ -62,6 +71,10 @@ public class BuildConfigurationsProject extends
     }
 
     @Override
+    @POST
+    // When annotations @Post, @Path and @Produces were on parent, the endpoint was not found (I dont know why, jbrazdil)
+    @Path("/finish-process")
+    @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Finish analysis and create BCs", response = ProjectFinishResponse.class)
     public ProjectFinishResponse finishAnalyse(@ApiParam(
             value = "Complete detail information needed to create BCs") ProjectInfoEntity bc) {
