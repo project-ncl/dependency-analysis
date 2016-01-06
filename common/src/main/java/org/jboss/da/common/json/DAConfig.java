@@ -39,6 +39,10 @@ public class DAConfig {
 
     @Getter
     @Setter
+    private String backupScmUrl;
+
+    @Getter
+    @Setter
     private String repourUrl;
 
 }
