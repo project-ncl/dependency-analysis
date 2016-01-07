@@ -30,7 +30,7 @@ printUsage() {
     echo "$0 pom-bw-junit-xml [--transitive] [path]";
     echo "    Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status, and generate a JUnit XML file"
     echo ""
-    echo "$0 scm-report [scm] [tag] [pom-path]";
+    echo "$0 scm-report [--raw|--json] scm tag pom-path";
     echo "    Check all dependencies from git-scm link"
     echo "    Output: "
     echo "    <groupId>:<artifactId>:<version> ::"
@@ -68,7 +68,7 @@ case $action in
     pom-bw) pom_bw $2 $3;;
     pom-bw-junit-xml) pom_bw_junit_xml $2 $3;;
     pom-report) echo "This option was deprecated, use scm-report instead." ;;
-    scm-report) scm_report $2 $3 $4;;
+    scm-report) scm_report $2 $3 $4 $5;;
     scm-report-advanced) scm_report_adv $2 $3 $4 $5;;
     lookup) lookup $2;;
     report) report $2 $3;;

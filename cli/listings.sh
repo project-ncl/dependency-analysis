@@ -303,10 +303,18 @@ pom_bw() {
 }
 
 scm_report() {
+    local type="pretty"
+    if [ "X$1" = "X--raw" ]; then
+        type="raw"
+        shift
+    elif [ "X$1" = "X--json" ]; then
+        type="json"
+        shift
+    fi
+
     local scm="$1"
     local tag="$2"
     local pom_path="$3"
-
 
     if [ -z "${scm}" ] || [ -z "${tag}" ] || [ -z "${pom_path}" ]; then
         echo "Error: You have to specify the scm, scm tag and the pom path to analyze"
@@ -315,7 +323,11 @@ scm_report() {
     local scmJSON="{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}"
 
     local report="$(post "reports/scm" "${scmJSON}")"
-    echo "$report" | prettyPrint report
+    case $type in
+      pretty) echo "$report" | prettyPrint report | column -t -s $'\t' ;;
+      raw) echo "$report" | prettyPrint reportRaw ;;
+      json) echo "$report" ;;
+    esac
 }
 
 scm_report_adv() {
