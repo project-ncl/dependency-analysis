@@ -48,6 +48,17 @@ printUsage() {
     echo "    <groupId>:<artifactId>:<version> ::"
     echo "      <groupId>:<artifactId>:<version> <Best Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
+    echo "$0 scm-report-advanced [--json] scm tag pom-path";
+    echo "    Check all dependencies from git-scm link and print sumrarized information"
+    echo "    Output: "
+    echo "    Blacklisted artifacts: <groupId>:<artifactId>:<version>..."
+    echo "    Whitelisted artifacts: <groupId>:<artifactId>:<version>..."
+    echo "    Built community artifacts: <groupId>:<artifactId>:<version>..."
+    echo "    Community artifacts with other built version: <groupId>:<artifactId>:<version>..."
+    echo "    Community artifacts: <groupId>:<artifactId>:<version>..."
+    echo "    <groupId>:<artifactId>:<version> ::"
+    echo "      <groupId>:<artifactId>:<version> <Best Matched Red Hat Version> <In black/white list?> <Available Versions>"
+    echo ""
     exit
 }
 
@@ -68,6 +79,7 @@ case $action in
     pom-bw-junit-xml) pom_bw_junit_xml $2 $3;;
     pom-report) pom_report $2 $3;;
     scm-report) scm_report $2 $3 $4;;
+    scm-report-advanced) scm_report_adv $2 $3 $4 $5;;
     lookup) lookup $2;;
     report) report $2 $3;;
     *) printUsage ;;

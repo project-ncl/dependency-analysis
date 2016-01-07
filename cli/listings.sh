@@ -375,3 +375,31 @@ scm_report() {
     local report="$(post "reports/scm" "${scmJSON}")"
     echo "$report" | prettyPrint report
 }
+
+scm_report_adv() {
+    local type="pretty"
+    if [ "X$1" = "X--json" ]; then
+        type="json"
+        shift
+    fi
+
+    local scm="$1"
+    local tag="$2"
+    local pom_path="$3"
+
+    if [ -z "$scm" ] || [ -z "$tag" ] || [ -z "$pom_path" ]; then
+        echo "Error: You have to specify the scm, scm tag and the pom path to analyze"
+        exit 1
+    fi
+    local scmJSON="{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}"
+
+    tmpfile=`gettmpfile`
+    post "reports/scm-advanced" "$scmJSON" >> $tmpfile
+    case $type in
+        pretty) cat $tmpfile | prettyPrint reportAdv | column -t -s $'\t' ;;
+        json) cat $tmpfile ;;
+    esac
+    rm $tmpfile
+}
+
+
