@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Facade, which simplifies opperations with the SCM repositories
+ * Facade, which simplifies operations with the SCM repositories
  * 
  */
 @ApplicationScoped
@@ -44,6 +44,17 @@ public class ScmFacade {
         scmManager.setScmProvider(SCMType.SVN.toString(), new SvnExeScmProvider());
     }
 
+    /**
+     * Tries to do a shallow clone (clone only the requested revision) of the remote repository
+     * to the local directory.
+     * If it is not possible to do that, then it does the full clone.
+     * 
+     * @param scmType Type of the repository
+     * @param scmUrl URL to the repository
+     * @param revision Revision of the repository, which should be cloned
+     * @param cloneTo Directory, where the repository should be cloned
+     * @throws ScmException Thrown if the clone of the repository fails
+     */
     public void shallowCloneRepository(SCMType scmType, String scmUrl, String revision, File cloneTo)
             throws ScmException {
         if (!cloneTo.exists()) {
@@ -57,6 +68,15 @@ public class ScmFacade {
         cloneRepository(scmType, scmUrl, revision, cloneTo);
     }
 
+    /**
+     * Process full clone of the remote repository to the local directory.
+     * 
+     * @param scmType Type of the repository
+     * @param scmUrl URL to the repository
+     * @param revision Revision of the repository, which should be cloned
+     * @param cloneTo Directory, where the repository should be cloned
+     * @throws ScmException Thrown if the clone of the repository fails
+     */
     public void cloneRepository(SCMType scmType, String scmUrl, String revision, File cloneTo)
             throws ScmException {
         // if we can't shallow clone, then do the full git clone
@@ -68,8 +88,18 @@ public class ScmFacade {
         }
     }
 
-    public void commitAndPush(SCMType scmType, String scmUrl, String branch, File baseDir,
-            List<File> files, String commitMessage) throws ScmException {
+    /**
+     * Stages selected local files in the SCM repository and pushes them to the remote repository.
+     * 
+     * @param scmType Type of the repository
+     * @param scmUrl URL to the repository
+     * @param baseDir Directory of the local repository
+     * @param files Files, which should be pushed to the remote
+     * @param commitMessage Commit message
+     * @throws ScmException Thrown if the operation with the repository fails
+     */
+    public void commitAndPush(SCMType scmType, String scmUrl, File baseDir, List<File> files,
+            String commitMessage) throws ScmException {
         ScmRepository repo = getScmRepository(scmType.getSCMUrl(scmUrl), scmManager);
         ScmFileSet scmFileSet = new ScmFileSet(baseDir, files);
         AddScmResult addResult = scmManager.add(repo, scmFileSet);

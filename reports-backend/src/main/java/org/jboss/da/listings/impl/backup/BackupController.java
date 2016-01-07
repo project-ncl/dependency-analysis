@@ -38,7 +38,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author Jakub Bartecek <jbartece@redhat.com>
  *
  */
-@NoArgsConstructor
 @Stateless
 public class BackupController {
 
@@ -86,8 +85,8 @@ public class BackupController {
             scmFacade.cloneRepository(SCMType.GIT, backupScmUrl, BACKUP_BRANCH, tempDirectory);
 
             List<File> filesToCommit = createFile(tempDirectory, backupString);
-            scmFacade.commitAndPush(SCMType.GIT, backupScmUrl, BACKUP_BRANCH, tempDirectory,
-                    filesToCommit, ZonedDateTime.now() + ": Backup of the whitelist and blacklist");
+            scmFacade.commitAndPush(SCMType.GIT, backupScmUrl, tempDirectory, filesToCommit,
+                    ZonedDateTime.now() + ": Backup of the whitelist and blacklist");
         } catch (ScmException | IOException ex) {
             log.warn("Backup of the blacklist and whitelist FAILED!", ex);
             return;
