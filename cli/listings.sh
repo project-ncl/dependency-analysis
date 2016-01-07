@@ -291,80 +291,30 @@ pom_bw() {
         if $wl && $bl; then
             echo "${YELLOW}Both lists: $line"
         elif $wl; then
-            echo "${GREEN}White list: $line"
+            echo "${GREEN}whitelisted: $line"
         elif $bl; then
-            echo "${RED}Black list: $line"
+            echo "${RED}blacklisted: $line"
         else
-            echo "${DEFAULT}None list:  $line"
+            echo "${DEFAULT}graylisted:  $line"
         fi
     done
     echo -n "$DEFAULT"
     rm $tmpfile
 }
 
-pom_report_parallel() {
-    local line=$1
-    local raw_output=$2
-
-    echo "$line ::"
-    report $raw_output $line | sed "s/^/  /"
-}
-
-pom_report() {
-
-    parse_pom_bw_report_options "$@"
-
-    mvn_opts=""
-    if [ ${pom_transitive_flag} = true ]; then
-        mvn_opts="$mvn_opts"
-    else
-        mvn_opts="$mvn_opts -DexcludeTransitive=true"
-    fi
-
-    tmpfile=`gettmpfile`
-
-    pushd "${pom_path}" > /dev/null
-    mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
-
-    if [ $? -ne 0 ]; then
-        rm $tmpfile
-        echo ""
-        echo ""
-        echo "================================================================="
-        echo "'mvn dependency:list' command failed."
-        echo "Consider running 'mvn clean install' before running the pom-report command again to fix the issue"
-        echo "================================================================="
-        exit
-    fi
-
-    popd > /dev/null
-
-    paraltmpfile=`gettmpfile`
-    local i=0
-
-    sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | ( while read line; do
-        pom_report_parallel $line $raw_output > ${paraltmpfile}.$i &
-        echo ${paraltmpfile}.$i >> $paraltmpfile
-        let i++
-    done
-    wait
-    )
-
-    while read line; do
-        cat $line
-        rm $line
-    done < $paraltmpfile
-
-    echo -n "$DEFAULT"
-    rm $paraltmpfile
-    rm $tmpfile
-}
-
 scm_report() {
+    local type="pretty"
+    if [ "X$1" = "X--raw" ]; then
+        type="raw"
+        shift
+    elif [ "X$1" = "X--json" ]; then
+        type="json"
+        shift
+    fi
+
     local scm="$1"
     local tag="$2"
     local pom_path="$3"
-
 
     if [ -z "${scm}" ] || [ -z "${tag}" ] || [ -z "${pom_path}" ]; then
         echo "Error: You have to specify the scm, scm tag and the pom path to analyze"
@@ -373,5 +323,37 @@ scm_report() {
     local scmJSON="{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}"
 
     local report="$(post "reports/scm" "${scmJSON}")"
-    echo "$report" | prettyPrint report
+    case $type in
+      pretty) echo "$report" | prettyPrint report | column -t -s $'\t' ;;
+      raw) echo "$report" | prettyPrint reportRaw ;;
+      json) echo "$report" ;;
+    esac
 }
+
+scm_report_adv() {
+    local type="pretty"
+    if [ "X$1" = "X--json" ]; then
+        type="json"
+        shift
+    fi
+
+    local scm="$1"
+    local tag="$2"
+    local pom_path="$3"
+
+    if [ -z "$scm" ] || [ -z "$tag" ] || [ -z "$pom_path" ]; then
+        echo "Error: You have to specify the scm, scm tag and the pom path to analyze"
+        exit 1
+    fi
+    local scmJSON="{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}"
+
+    tmpfile=`gettmpfile`
+    post "reports/scm-advanced" "$scmJSON" >> $tmpfile
+    case $type in
+        pretty) cat $tmpfile | prettyPrint reportAdv | column -t -s $'\t' ;;
+        json) cat $tmpfile ;;
+    esac
+    rm $tmpfile
+}
+
+

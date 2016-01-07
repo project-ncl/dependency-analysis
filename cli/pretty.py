@@ -8,11 +8,11 @@ def getList(artifact):
     if artifact["blacklisted"] and artifact["whitelisted"]:
         return "both lists"
     elif artifact["blacklisted"]:
-        return "black list"
+        return "blacklisted"
     elif artifact["whitelisted"]:
-        return "white list"
+        return "whitelisted"
     else:
-        return "no list"
+        return "graylisted"
 
 def getAvailableVersions(artifact, raw):
     if "availableVersions" in artifact:
@@ -25,6 +25,9 @@ def getAvailableVersions(artifact, raw):
 
 def getGAV(artifact):
     return artifact["groupId"]+":"+artifact["artifactId"]+":"+artifact["version"]
+
+def getGAVList(artifacts):
+    return ", ".join(map(getGAV,artifacts))
 
 def getDependencyVersionsSatisfied(artifact):
     if artifact["dependencyVersionsSatisfied"]:
@@ -53,6 +56,15 @@ def printReport(artifact, depth = None):
             printReport(dep)
         else:
             printReport(dep, depth + 1)
+
+def printReportAdv(data):
+    print "Blacklisted artifacts: " + getGAVList(data["blacklistedArtifacts"])
+    print "Whitelisted artifacts: " + getGAVList(data["whitelistedArtifacts"])
+    print "Built community artifacts: " + getGAVList(data["communityGavsWithBestMatchVersions"])
+    print "Community artifacts with other built version: " + getGAVList(data["communityGavsWithBuiltVersions"])
+    print "Community artifacts: " + getGAVList(data["communityGavs"])
+    print "tree of GAVs\tBest Match Version\tBlack/White list\t# of not built dependencies\t# of available versions"
+    printReport(data["report"],0)
 
 def printLookup(artifact):
     gav = getGAV(artifact)
@@ -84,6 +96,11 @@ def reportRaw():
     data = readInput()
     checkError(data)
     printReport(data)
+
+def reportAdv():
+    data = readInput()
+    checkError(data)
+    printReportAdv(data)
     
 def lookup():
     data = readInput()
