@@ -302,64 +302,6 @@ pom_bw() {
     rm $tmpfile
 }
 
-pom_report_parallel() {
-    local line=$1
-    local raw_output=$2
-
-    echo "$line ::"
-    report $raw_output $line | sed "s/^/  /"
-}
-
-pom_report() {
-
-    parse_pom_bw_report_options "$@"
-
-    mvn_opts=""
-    if [ ${pom_transitive_flag} = true ]; then
-        mvn_opts="$mvn_opts"
-    else
-        mvn_opts="$mvn_opts -DexcludeTransitive=true"
-    fi
-
-    tmpfile=`gettmpfile`
-
-    pushd "${pom_path}" > /dev/null
-    mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
-
-    if [ $? -ne 0 ]; then
-        rm $tmpfile
-        echo ""
-        echo ""
-        echo "================================================================="
-        echo "'mvn dependency:list' command failed."
-        echo "Consider running 'mvn clean install' before running the pom-report command again to fix the issue"
-        echo "================================================================="
-        exit
-    fi
-
-    popd > /dev/null
-
-    paraltmpfile=`gettmpfile`
-    local i=0
-
-    sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | ( while read line; do
-        pom_report_parallel $line $raw_output > ${paraltmpfile}.$i &
-        echo ${paraltmpfile}.$i >> $paraltmpfile
-        let i++
-    done
-    wait
-    )
-
-    while read line; do
-        cat $line
-        rm $line
-    done < $paraltmpfile
-
-    echo -n "$DEFAULT"
-    rm $paraltmpfile
-    rm $tmpfile
-}
-
 scm_report() {
     local scm="$1"
     local tag="$2"
