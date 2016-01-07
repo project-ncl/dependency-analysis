@@ -8,11 +8,11 @@ def getList(artifact):
     if artifact["blacklisted"] and artifact["whitelisted"]:
         return "both lists"
     elif artifact["blacklisted"]:
-        return "black list"
+        return "blacklisted"
     elif artifact["whitelisted"]:
-        return "white list"
+        return "whitelisted"
     else:
-        return "no list"
+        return "graylisted"
 
 def getAvailableVersions(artifact, raw):
     if "availableVersions" in artifact:

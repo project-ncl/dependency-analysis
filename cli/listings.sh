@@ -291,11 +291,11 @@ pom_bw() {
         if $wl && $bl; then
             echo "${YELLOW}Both lists: $line"
         elif $wl; then
-            echo "${GREEN}White list: $line"
+            echo "${GREEN}whitelisted: $line"
         elif $bl; then
-            echo "${RED}Black list: $line"
+            echo "${RED}blacklisted: $line"
         else
-            echo "${DEFAULT}None list:  $line"
+            echo "${DEFAULT}graylisted:  $line"
         fi
     done
     echo -n "$DEFAULT"
