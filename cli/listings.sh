@@ -43,7 +43,18 @@ post() {
 }
 
 delete() {
-    curl -s -H "Content-Type: application/json" -X DELETE -d "$2" "$target/$1"
+    case $1 in
+        white)
+            if [ -z "$3" ]; then
+                ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} delete --white $2
+            else
+                ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} delete --white $2 --product $3
+            fi
+            ;;
+        black) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} delete --black $2;;
+        whitelist-product) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} delete --whitelist-product $2;;
+        *) echo "I don't know this option"
+    esac
 }
 
 matchGAV() {
@@ -62,36 +73,32 @@ formatGAVjson() {
 }
 
 list() {
-    setColor $1
-    get "listings/${color}list" | prettyPrintGAV
-}
 
-deleteGAVFromList() {
-    setColor $1
-    matchGAV $2
-    tmpfile=`gettmpfile`
-    delete "listings/${color}list/gav" "`formatGAVjson`" > $tmpfile
-    if ! grep -q '"success":true' $tmpfile; then
-        echo "Error removing $groupId:$artifactId:$version"
-        cat $tmpfile
-        echo
-    fi
-    rm $tmpfile
+    case $1 in
+        white) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --white $2;;
+        black) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --black;;
+        whitelist-products) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --whitelist-products $2;;
+        whitelist-ga) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --whitelist-ga $2 $3;;
+        whitelist-gavs) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --whitelist-gavs $2;;
+        *) echo "I don't know this option"
+    esac
 }
 
 add() {
-    setColor $1
-    matchGAV $2
-    tmpfile=`gettmpfile`
-    post "listings/${color}list/gav" "`formatGAVjson`" > $tmpfile
-    if ! grep -q '"success":true' $tmpfile; then
-        echo "Error adding $groupId:$artifactId:$version"
-        cat $tmpfile
-        echo
-    elif grep -q '"message":' $tmpfile; then
-        grep -o '"message":"[^"]*"' $tmpfile
-    fi
-    rm $tmpfile
+    case $1 in
+        white) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} add --white $2 $3;;
+        black) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} add --black $2;;
+        whitelist-product) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} add --whitelist-product $2 $3;;
+        *) echo "I don't know this option"
+    esac
+
+}
+
+update() {
+    case $1 in
+        whitelist-product) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} update --whitelist-product $2 $3;;
+        *) echo "I don't know this option"
+    esac
 }
 
 check() {
