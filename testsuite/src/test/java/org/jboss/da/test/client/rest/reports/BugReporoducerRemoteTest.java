@@ -20,7 +20,6 @@ public class BugReporoducerRemoteTest extends AbstractRestReportsTest {
     private static final String PATH_SCM = "/reports/scm";
 
     @Test
-    @Ignore
     public void testDA176() throws Exception {
         String gavNonexisting = "keycloak-1.6.0.Final";
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, gavNonexisting);
