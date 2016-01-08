@@ -69,8 +69,8 @@ public class PncRemoteTest {
         assertNotNull(obtainedBc);
         assertNotNull(obtainedBc.getId());
         assertEquals(bcName, obtainedBc.getName());
-        assertEquals(environmentId, obtainedBc.getEnvironmentId());
-        assertEquals(projectId, obtainedBc.getProjectId());
+        assertEquals(environmentId, obtainedBc.getEnvironment().getId());
+        assertEquals(projectId, obtainedBc.getProject().getId());
         assertTrue(testBcWithNameExists(bcName));
 
         // Delete created BC

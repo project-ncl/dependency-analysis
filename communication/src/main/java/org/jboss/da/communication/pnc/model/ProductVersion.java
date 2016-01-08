@@ -33,17 +33,17 @@ public class ProductVersion {
     @Getter
     @Setter
     @NonNull
-    private List<Integer> buildConfigurationSetIds = new ArrayList<>();
+    private List<BuildConfigurationSet> buildConfigurationSets = new ArrayList<>();
 
     @Getter
     @Setter
     @NonNull
-    private List<Integer> buildConfigurationIds = new ArrayList<>();
+    private List<BuildConfiguration> buildConfigurations = new ArrayList<>();
 
     @Getter
     @Setter
     @NonNull
-    private List<Integer> productMilestones = new ArrayList<>();
+    private List<ProductMilestone> productMilestones = new ArrayList<>();
 
     @Getter
     @Setter
