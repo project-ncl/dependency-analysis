@@ -12,7 +12,7 @@
       "version": "1.6.0.Final",
       "availableVersions": [],
       "bestMatchVersion": null,
-      "dependencyVersionsSatisfied": false,
+      "dependencyVersionsSatisfied": true,
       "dependencies": [],
       "blacklisted": false,
       "whitelisted": false,
@@ -26,7 +26,7 @@
         "7.1.2.Final-redhat-1"
       ],
       "bestMatchVersion": null,
-      "dependencyVersionsSatisfied": false,
+      "dependencyVersionsSatisfied": true,
       "dependencies": [],
       "blacklisted": false,
       "whitelisted": false,

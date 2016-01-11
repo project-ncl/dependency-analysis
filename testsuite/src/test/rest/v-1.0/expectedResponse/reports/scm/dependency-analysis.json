@@ -12,7 +12,7 @@
       "version": "2.4.4",
       "availableVersions": [],
       "bestMatchVersion": null,
-      "dependencyVersionsSatisfied": false,
+      "dependencyVersionsSatisfied": true,
       "dependencies": [],
       "blacklisted": false,
       "whitelisted": false,
@@ -45,7 +45,7 @@
         "1.0-SP4-redhat-2"
       ],
       "bestMatchVersion": null,
-      "dependencyVersionsSatisfied": false,
+      "dependencyVersionsSatisfied": true,
       "dependencies": [],
       "blacklisted": false,
       "whitelisted": false,
