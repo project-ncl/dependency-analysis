@@ -80,55 +80,50 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                 Map<File, ProjectVersionRef> projectVersionRefs = getProjectVersionRefs(tempDir,
                         findAllPomFiles(pomRepoDir));
 
-                ProjectVersionRef rootProject = null;
-
                 // for each pom.xml
                 for (Map.Entry<File, ProjectVersionRef> entry : projectVersionRefs.entrySet()) {
-                    // if pomPath is the same as what we found analysis the root repository
-                    if (pomPath.getCanonicalPath().equals(entry.getKey().getCanonicalPath())) {
-                        rootProject = entry.getValue();
-                        break;
+                    Set<ProjectRelationship<?, ?>> relationships;
+                    try {
+                        // find all the dependencies / plugins / parents / plugins etc for each pom.xml
+                        relationships = getDiscoveryResult(tempDir, pomRepoDir, entry.getValue(),
+                                repositories).getAcceptedRelationships();
+                    } catch (GalleyMavenException e) {
+                        log.warn("Could not parse pom file: " + entry.getKey(), e);
+                        continue;
+                    }
+
+                    // convert from ProjectVersionRef to GAV
+                    GAV originGAV = generateGAV(entry.getValue());
+
+                    // get the origin GAVDependencyTree
+                    GAVDependencyTree originScmGAVTree = addGAVDependencyTreeToMapper(
+                            gavDependencyTreeMap, originGAV);
+
+                    // need to use canonical path to get better way of knowing if 2 paths are the same
+                    if (pomPath.getCanonicalPath().equals(entry.getKey().getCanonicalPath()))
+                        root = originScmGAVTree;
+
+                    for (ProjectRelationship<?, ?> relationship : relationships) {
+                        ProjectVersionRef target = relationship.getTarget();
+
+                        GAV targetGAV = generateGAV(target);
+
+                        GAVDependencyTree targetScmGavTree = addGAVDependencyTreeToMapper(
+                                gavDependencyTreeMap, targetGAV);
+
+                        addTargetToGAVDependencyTree(originScmGAVTree, targetScmGavTree,
+                                relationship);
                     }
                 }
-
-                // if we didn't find it
-                if (rootProject == null) {
+                if (root == null) {
                     throw new PomAnalysisException("Root pom was not found in repository.");
                 }
-
-                // find all the dependencies / plugins / parents / plugins etc for the pom.xml
-                Set<ProjectRelationship<?, ?>> relationships = getDiscoveryResult(tempDir,
-                        pomRepoDir, rootProject, repositories).getAcceptedRelationships();
-
-                // convert from ProjectVersionRef to GAV
-                GAV originGAV = generateGAV(rootProject);
-
-                // get the origin GAVDependencyTree
-                GAVDependencyTree originScmGAVTree = addGAVDependencyTreeToMapper(
-                        gavDependencyTreeMap, originGAV);
-
-                // need to use canonical path to get better way of knowing if 2 paths are the same
-                root = originScmGAVTree;
-
-                for (ProjectRelationship<?, ?> relationship : relationships) {
-                    ProjectVersionRef target = relationship.getTarget();
-
-                    GAV targetGAV = generateGAV(target);
-
-                    GAVDependencyTree targetScmGavTree = addGAVDependencyTreeToMapper(
-                            gavDependencyTreeMap, targetGAV);
-
-                    addTargetToGAVDependencyTree(originScmGAVTree, targetScmGavTree, relationship);
-                }
-
                 return root;
-
             } finally {
                 // cleanup
                 FileUtils.deleteDirectory(tempDir);
             }
-        } catch (TransferException | GalleyMavenException | URISyntaxException | CartoDataException
-                | IOException e) {
+        } catch (TransferException | URISyntaxException | CartoDataException | IOException e) {
             throw new PomAnalysisException(e);
         }
     }
