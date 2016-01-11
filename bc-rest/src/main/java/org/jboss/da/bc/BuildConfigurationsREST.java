@@ -66,9 +66,6 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
         }
     }
 
-    @POST
-    @Path("/analyse-next-level")
-    @Produces(MediaType.APPLICATION_JSON)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated"),
             @ApiResponse(code = 500, message = "Response failed") })
     public Response analyseNextLevel(I bc) {
@@ -81,9 +78,6 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
         }
     }
 
-    @POST
-    @Path("/finish-process")
-    @Produces(MediaType.APPLICATION_JSON)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated") })
     public O finishAnalyse(I bc) {
         O response = getFinishResponse(bc);
@@ -123,7 +117,8 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
         pd.setProjectId(bc.getProjectId());
         pd.setScmRevision(bc.getScmRevision());
         pd.setScmUrl(bc.getScmUrl());
-        pd.setErrors(bc.getErrors());
+        if(bc.getErrors() != null)
+            pd.setErrors(bc.getErrors());
         pd.setUseExistingBc(bc.isUseExistingBc());
         pd.setBcId(bc.getBcId());
 

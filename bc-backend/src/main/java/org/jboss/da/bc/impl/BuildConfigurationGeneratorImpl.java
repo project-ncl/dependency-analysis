@@ -75,7 +75,7 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
         ph.setDependencies(nextLevel.processDependencies(ph, deps.getDependencies()));
 
         // the top level BC has its dependencies analyzed
-        ph.setAnalysisStatus(DependencyAnalysisStatus.ANALYZED);
+        ph.setAnalysisStatus(DependencyAnalysisStatus.ANALYSED);
 
         return entity;
     }

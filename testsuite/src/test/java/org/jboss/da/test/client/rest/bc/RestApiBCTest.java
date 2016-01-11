@@ -3,15 +3,20 @@ package org.jboss.da.test.client.rest.bc;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
+
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.AbstractRestBCTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
+import org.json.JSONException;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
-public class RestApiBCTests extends AbstractRestBCTest {
+public class RestApiBCTest extends AbstractRestBCTest {
 
     private static final String PATH_BC_START = "/build-configuration/generate/product/start-process";
 
@@ -54,6 +59,16 @@ public class RestApiBCTests extends AbstractRestBCTest {
                 input.replace("PLACEHOLDER", number));
         ClientResponse<String> response = request.post(String.class);
         System.out.println("Response: " + response.getEntity());
+    }
+
+    @Override
+    protected void assertEqualsJson(String expected, String actual) {
+        try {
+            System.out.println("actual: " + actual);
+            JSONAssert.assertEquals(expected, actual, JSONCompareMode.LENIENT);
+        } catch (JSONException ex) {
+            fail("The test wasn't able to compare JSON strings" + ex);
+        }
     }
 
 }
