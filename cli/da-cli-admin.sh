@@ -10,14 +10,52 @@ printUsage() {
     echo "$0 check (b[lack]|w[hite]) GROUP_ID:ARTIFACT_ID:VERSION"
     echo "    Check if artifact GROUP_ID:ARTIFACT_ID:VERSION is in black or white list."
     echo ""
-    echo "$0 list (b[lack]|w[hite])"
-    echo "    List all artifacts in black or white list."
+    echo "$0 list black"
+    echo "    List all artifacts in blacklist."
     echo ""
-    echo "$0 add (b[lack]|w[hite]) GROUP_ID:ARTIFACT_ID:VERSION"
-    echo "    Add artifact GROUP_ID:ARTIFACT_ID:VERSION to black or white list"
+    echo "$0 list white [GROUP_ID:ARTIFACT_ID:VERSION]"
     echo ""
-    echo "$0 delete (b[lack]|w[hite]) GROUP_ID:ARTIFACT_ID:VERSION"
-    echo "    Delete artifact GROUP_ID:ARTIFACT_ID:VERSION from black or white list"
+    echo "    Each artifact in the white list is associated to a product."
+    echo "    List all artifacts and its associated product in the white list."
+    echo "    You can optionally specify which GAV to show, and it will show"
+    echo "    in which product the GAV is associated with"
+    echo ""
+    echo "$0 list whitelist-products [GROUP_ID:ARTIFACT_ID:VERSION]"
+    echo "    List all products in the white list"
+    echo "    You can optionally list products which have a particular GAV"
+    echo ""
+    echo "$0 list whitelist-ga GROUP_ID:ARTIFACT_ID STATUS"
+    echo "    List all artifacts in the white list with a particular GA and status"
+    echo "    STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
+    echo ""
+    echo "$0 list whitelist-gavs STATUS"
+    echo "    List all artifacts in the white list with a particular status"
+    echo "    STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
+    echo ""
+    echo "$0 add black GROUP_ID:ARTIFACT_ID:VERSION"
+    echo "    Add artifact GROUP_ID:ARTIFACT_ID:VERSION to blacklist"
+    echo ""
+    echo "$0 add white GROUP_ID:ARTIFACT_ID:VERSION PRODUCT_NAME:VERSION"
+    echo "    Add artifact GROUP_ID:ARTIFACT_ID:VERSION to white list for a particular product"
+    echo ""
+    echo "$0 add whitelist-product PRODUCT_NAME:VERSION STATUS"
+    echo "    Add whitelist-product and status"
+    echo "    STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
+    echo ""
+    echo "$0 update whitelist-product PRODUCT_NAME:VERSION STATUS"
+    echo "    Update whitelist-product with a particular status"
+    echo "    STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
+    echo ""
+    echo "$0 delete black GROUP_ID:ARTIFACT_ID:VERSION"
+    echo "    Delete artifact GROUP_ID:ARTIFACT_ID:VERSION from black list"
+    echo ""
+    echo "$0 delete white GROUP_ID:ARTIFACT_ID:VERSION [PRODUCT_NAME:VERSION]"
+    echo "    Delete artifact GROUP_ID:ARTIFACT_ID:VERSION from white list"
+    echo "    Each artifact is associated to a product in the white list. You can delete all the artifacts with a particular GROUP_ID:ARTIFACT_ID:VERSION,"
+    echo "    or delete artifacts with a particular GROUP_ID:ARTIFACT_ID:VERSION and PRODUCT_NAME:VERSION from the white list"
+    echo ""
+    echo "$0 delete whitelist-product PRODUCT_NAME:VERSION"
+    echo "    Delete product from white list"
     echo ""
     echo "$0 lookup [GROUP_ID:ARTIFACT_ID:VERSION]";
     echo "    When GROUP_ID:ARTIFACT_ID:VERSION is specified finds corresponding redhat versions for it."
@@ -69,10 +107,11 @@ fi
 action=$1
 
 case $action in
-    add) add $2 $3;;
-    delete) deleteGAVFromList $2 $3;;
+    add) add $2 $3 $4;;
+    delete) delete $2 $3 $4;;
     check) check $2 $3;;
-    list) list $2;;
+    list) list $2 $3 $4;;
+    update) update $2 $3 $4;;
     pom-bw) pom_bw $2 $3;;
     pom-bw-junit-xml) pom_bw_junit_xml $2 $3;;
     pom-report) echo "This option was deprecated, use scm-report instead." ;;
