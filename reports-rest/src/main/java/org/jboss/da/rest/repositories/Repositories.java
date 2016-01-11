@@ -43,11 +43,11 @@ public class Repositories {
     @ApiOperation(value = "Add repository to group for searching ",
             response = SuccessResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200,
-                    message = "Repository successfully added to group for searching"),
-            @ApiResponse(code = 502, message = "Communication with remote repository failed"),
+            @ApiResponse(code = 502, message = "Communication with remote repository failed",
+                    response = ErrorMessage.class),
             @ApiResponse(code = 409,
-                    message = "Repository with this name already exists with different url") })
+                    message = "Repository with this name already exists with different url",
+                    response = SuccessResponse.class) })
     public Response addRepository(@ApiParam(value = "repository data") Repository repository) {
         SuccessResponse response = new SuccessResponse();
         RepositoryManipulationStatus status;
@@ -79,12 +79,13 @@ public class Repositories {
     @ApiOperation(value = "Remove repository from group for searching ",
             response = SuccessResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200,
-                    message = "Repository successfully removed from group for searching"),
-            @ApiResponse(code = 502, message = "Communication with remote repository failed"),
+            @ApiResponse(code = 502, message = "Communication with remote repository failed",
+                    response = ErrorMessage.class),
             @ApiResponse(code = 409,
-                    message = "Repository with this name has different url than entered url"),
-            @ApiResponse(code = 404, message = "Repository with this name was not found") })
+                    message = "Repository with this name has different url than entered url",
+                    response = SuccessResponse.class),
+            @ApiResponse(code = 404, message = "Repository with this name was not found",
+                    response = SuccessResponse.class) })
     public Response removeRepository(Repository repository) {
         SuccessResponse response = new SuccessResponse();
         RepositoryManipulationStatus status;
@@ -119,9 +120,8 @@ public class Repositories {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get all repositories from group for searching ",
             responseContainer = "List", response = Repository.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Repositories successfully returned"),
-            @ApiResponse(code = 502, message = "Communication with remote repository failed") })
+    @ApiResponses(value = { @ApiResponse(code = 502,
+            message = "Communication with remote repository failed") })
     public Response getAllRepositories() throws CommunicationException {
         List<Repository> repositories = aprox.getAllRepositoriesFromGroup();
         return Response.status(Status.OK).entity(repositories).build();

@@ -117,8 +117,8 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a GAV ", response = Report.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Report was successfully generated"),
-            @ApiResponse(code = 404, message = "Requested GAV was not found in repository"),
+            @ApiResponse(code = 404, message = "Requested GAV was not found in repository",
+                    response = ErrorMessage.class),
             @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     public Response gavGenerator(@ApiParam(
             value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAV gavRequest) {
@@ -142,7 +142,6 @@ public class Reports {
     @ApiOperation(value = "Lookup built versions for the list of provided GAVs",
             responseContainer = "List", response = LookupReport.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Lookup report was successfully generated"),
             @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     public Response lookupGav(
             @ApiParam(

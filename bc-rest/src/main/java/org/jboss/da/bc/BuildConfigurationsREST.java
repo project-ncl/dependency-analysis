@@ -46,8 +46,7 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
     @POST
     @Path("/start-process")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated"),
-            @ApiResponse(code = 500, message = "Response failed") })
+    @ApiResponses(value = { @ApiResponse(code = 500, message = "Response failed") })
     public Response startAnalyse(EntryEntity entry) {
         SCMLocator scm = new SCMLocator(entry.getScmUrl(), entry.getScmRevision(),
                 entry.getPomPath(), entry.getRepositories());
@@ -66,8 +65,8 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
         }
     }
 
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated"),
-            @ApiResponse(code = 500, message = "Response failed") })
+    @ApiResponses(value = { @ApiResponse(code = 500, message = "Response failed",
+            response = AnalyseNextLevelExceptionContainer.class) })
     public Response analyseNextLevel(I bc) {
         try {
             I infoEntity = nextLevel(bc);
@@ -78,7 +77,6 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
         }
     }
 
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response succesfully generated") })
     public O finishAnalyse(I bc) {
         O response = getFinishResponse(bc);
         try {

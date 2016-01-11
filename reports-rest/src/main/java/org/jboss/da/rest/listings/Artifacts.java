@@ -31,7 +31,6 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -78,7 +77,6 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get all artifacts in the whitelist", responseContainer = "List",
             response = RestProductGAV.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public Collection<RestProductGAV> getAllWhiteArtifacts() {
         return convert.toRestProductGAVList(productVersionService.getAll());
     }
@@ -88,9 +86,11 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Check if an artifact is in the whitelist",
             response = ContainsResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Artifact is in the whitelist"),
-            @ApiResponse(code = 404, message = "Artifact is not in the whitelist"),
-            @ApiResponse(code = 400, message = "All parameters are required") })
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "Artifact is not in the whitelist",
+                    response = ContainsResponse.class),
+            @ApiResponse(code = 400, message = "All parameters are required",
+                    response = ErrorMessage.class) })
     public Response isWhiteArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         if (groupId == null || artifactId == null || version == null)
@@ -114,10 +114,9 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Add an artifact to the whitelist", response = SuccessResponse.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Response successfully generated"),
-            @ApiResponse(code = 409,
-                    message = "Can't add artifact to whitelist, artifact is blacklisted") })
+    @ApiResponses(value = { @ApiResponse(code = 409,
+            message = "Can't add artifact to whitelist, artifact is blacklisted",
+            response = ErrorMessage.class) })
     public Response addWhiteArtifact(
             @ApiParam(
                     value = "JSON object with keys 'groupId', 'artifactId', 'version' and 'productId'") RestProductArtifact artifact) {
@@ -158,7 +157,6 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Remove an artifact from the whitelist", response = SuccessResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public SuccessResponse removeWhiteArtifact(
             @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
@@ -172,7 +170,6 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Remove an artifact from the product", response = SuccessResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public SuccessResponse removeWhiteArtifactFromProduct(
             @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestProductArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
@@ -189,8 +186,8 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Add a product to the whitelist", response = SuccessResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated"),
-            @ApiResponse(code = 400, message = "Name and version parameters are required") })
+    @ApiResponses(value = { @ApiResponse(code = 400,
+            message = "Name and version parameters are required", response = ErrorMessage.class) })
     public Response addProduct(
             @ApiParam(value = "JSON object with keys 'name', 'version' and optional 'status'") RestProductInput product) {
         SuccessResponse response = new SuccessResponse();
@@ -211,8 +208,8 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Remove a product from the whitelist", response = SuccessResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated"),
-            @ApiResponse(code = 404, message = "Product not found") })
+    @ApiResponses(value = { @ApiResponse(code = 404, message = "Product not found",
+            response = ErrorMessage.class) })
     public Response removeProduct(
             @ApiParam(value = "JSON object with keys 'name'and 'version'") RestProductInput product) {
         SuccessResponse response = new SuccessResponse();
@@ -232,9 +229,10 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Change support status of product in whitelist",
             response = SuccessResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated"),
-            @ApiResponse(code = 404, message = "Product not found"),
-            @ApiResponse(code = 400, message = "All parameters are required") })
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "Product not found", response = ErrorMessage.class),
+            @ApiResponse(code = 400, message = "All parameters are required",
+                    response = ErrorMessage.class) })
     public Response changeProductStatus(@ApiParam(
             value = "JSON object with keys 'name', 'version' and 'status'") RestProductInput product) {
         SuccessResponse response = new SuccessResponse();
@@ -256,7 +254,6 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get all products from the whitelist", responseContainer = "List",
             response = RestProduct.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public Collection<RestProduct> getProducts() {
         return convert.toRestProductList(productVersionService.getAll());
     }
@@ -340,7 +337,6 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get all artifacts in the blacklist", responseContainer = "List",
             response = RestArtifact.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public Collection<RestArtifact> getAllBlackArtifacts() {
         List<RestArtifact> artifacts = new ArrayList<>();
         artifacts.addAll(convert.toRestArtifacts(blackService.getAll()));
@@ -352,9 +348,10 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Check if an artifact is in the blacklist",
             response = ContainsResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Artifact is in the blacklist"),
-            @ApiResponse(code = 404, message = "Artifact is not in the blacklist"),
-            @ApiResponse(code = 400, message = "All parameters are required") })
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "Artifact is not in the blacklist",
+            response = ContainsResponse.class),
+            @ApiResponse(code = 400, message = "All parameters are required", response = ErrorMessage.class)})
     public Response isBlackArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         if (groupId == null || artifactId == null || version == null)
@@ -382,7 +379,6 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Add an artifact to the blacklist", response = SuccessResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public Response addBlackArtifact(
             @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
@@ -411,7 +407,6 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Remove an artifact from the blacklist", response = SuccessResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
     public SuccessResponse removeBlackArtifact(
             @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
