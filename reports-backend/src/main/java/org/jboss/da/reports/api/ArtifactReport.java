@@ -92,14 +92,11 @@ public class ArtifactReport {
     }
 
     /**
-     * Returns true if this artifact and all the dependencies of this artifact have a GAV already in PNC/Brew.
-     * @return true if this artifact and all the dependencies of this artifact have a GAV already in PNC/Brew.
+     * Returns true if all the dependencies of this artifact have a GAV already in PNC/Brew.
+     * @return true if all the dependencies of this artifact have a GAV already in PNC/Brew.
      */
     public boolean isDependencyVersionSatisfied() {
-        if (!bestMatchVersion.isPresent()) {
-            return false;
-        }
-        return dependencies.stream().noneMatch((dependency) -> (!dependency.isDependencyVersionSatisfied()));
+        return getNotBuiltDependencies() == 0;
     }
 
     public int getNotBuiltDependencies() {

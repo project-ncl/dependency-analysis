@@ -9,7 +9,7 @@
     "13.0.1-redhat-1"
   ],
   "bestMatchVersion": null,
-  "dependencyVersionsSatisfied": false,
+  "dependencyVersionsSatisfied": true,
   "dependencies": [
     {
       "groupId": "com.google.code.findbugs",
