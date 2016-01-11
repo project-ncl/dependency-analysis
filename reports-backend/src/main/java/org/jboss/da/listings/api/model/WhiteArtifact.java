@@ -1,11 +1,13 @@
 package org.jboss.da.listings.api.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 
@@ -13,12 +15,23 @@ import lombok.NoArgsConstructor;
  *
  */
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
+@ToString(callSuper = true)
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "groupId", "artifactId", "version" }))
 public class WhiteArtifact extends Artifact {
 
-    public WhiteArtifact(String groupId, String artifactId, String version) {
-        super(groupId, artifactId, version);
+    @Setter
+    @Getter
+    private boolean is3rdParty;
+
+    @Setter
+    @Getter
+    @NonNull
+    private String osgiVersion;
+
+    public WhiteArtifact(GA ga, String version, String osgiVersion, boolean is3rdParty) {
+        super(ga, version);
+        this.is3rdParty = is3rdParty;
+        this.osgiVersion = osgiVersion;
     }
 
 }

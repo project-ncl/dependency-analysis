@@ -32,14 +32,4 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
     public boolean isArtifactPresent(GAV gav) {
         return isArtifactPresent(gav.getGroupId(), gav.getArtifactId(), gav.getVersion());
     }
-
-    @Override
-    public boolean removeArtifact(String groupId, String artifactId, String version) {
-        T artifact = getDAO().findArtifact(groupId, artifactId, version);
-        if (artifact != null) {
-            getDAO().delete(artifact);
-            return true;
-        }
-        return false;
-    }
 }

@@ -80,12 +80,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml) throws ScmException,
+    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml)
+            throws ScmException,
             PomAnalysisException, CommunicationException {
         Optional<ArtifactReport> artifactReport = getReportFromSCM(scml);
         // TODO: hardcoded to git
         // hopefully we'll get the cached cloned folder for this repo
-        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(), scml.getRevision());
+        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(),
+                scml.getRevision());
         return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder));
     }
 
@@ -187,8 +189,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (whiteArtifactService.getAll() == null) {
             return false;
         }
-        return whiteArtifactService.getAll().stream()
-                .anyMatch(white -> white.getArtifactId().equals(artifactId) && white.getGroupId().equals(groupId));
+        return whiteArtifactService
+                .getAll()
+                .stream()
+                .anyMatch(
+                        white -> white.getGa().getArtifactId().equals(artifactId)
+                                && white.getGa().getGroupId().equals(groupId));
     }
 
     private boolean isDependencyAModule(File repoFolder, ArtifactReport dependency) {

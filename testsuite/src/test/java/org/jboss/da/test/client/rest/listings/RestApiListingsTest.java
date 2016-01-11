@@ -79,6 +79,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAddWhiteArtifact() throws Exception {
         String type = "gavRh";
 
@@ -89,6 +91,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAddNonRHWhiteArtifact() throws Exception {
         String type = "gav";
 
@@ -137,6 +141,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAddBlackArtifact() throws Exception {
         String type = "gav";
 
@@ -147,6 +153,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAddBlackRHArtifact() throws Exception {
         String type = "gavRh";
 
@@ -157,6 +165,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAddBlackNonOSGiArtifact() throws Exception {
         String type = "gavNonOSGi";
 
@@ -167,6 +177,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAddBlacklistedArtifactToWhitelist() throws Exception {
         // Add artifact to blacklist
         String type = "gav";
@@ -182,6 +194,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAddWhitelistedArtifactToBlacklist() throws Exception {
         // Add artifact to whitelist
         String type = "gavRh";
@@ -204,6 +218,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testAddNonOSGiWhitelistedArtifactToBlacklist() throws Exception {
         checkBlacklistingArtifactTest("gavRhNonOSGi", null, "gavRhNonOSGi");
     }
@@ -214,6 +230,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testAddNonOSGiWhitelistedArtifactToBlacklistv2() throws Exception {
         checkBlacklistingArtifactTest("gavRhNonOSGi", null, "gavRhNonOSGiv2");
     }
@@ -257,6 +275,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testAddNonOSGiAndOSGiWhitelistedArtifactsToBlacklist() throws Exception {
         checkBlacklistingArtifactTest("gavRhNonOSGi", "gavRh3", "gavRhNonOSGi");
     }
@@ -267,6 +287,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testAddNonOSGiAndOSGiWhitelistedArtifactsToBlacklistv2() throws Exception {
         checkBlacklistingArtifactTest("gavRhNonOSGi", "gavRh3", "gavRhNonOSGiv2");
     }
@@ -294,6 +316,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAddWhitelistedNonOSGiArtifactToBlacklist() throws Exception {
         // Add artifact to whitelist
         String type = "gavRh";
@@ -311,6 +335,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAddMultipleTimeWhitelistedArtifactToBlacklist() throws Exception {
         // Add artifacts to whitelist
         String type = "gavRh";
@@ -327,6 +353,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAlreadyAddedWhiteArtifact() throws Exception {
         // add first white artifact
         String type = "gavRh";
@@ -340,6 +368,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testAlreadyAddedBlackArtifact() throws Exception {
         // add first black artifact
         String type = "gav";
@@ -353,6 +383,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testDeleteWhiteArtifact() throws Exception {
         String type = "gavRh";
         // add artifact
@@ -366,6 +398,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testDeleteBlackArtifact() throws Exception {
         String type = "gav";
         // add artifact
@@ -379,6 +413,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testDeleteNonExistingWhiteArtifact() throws Exception {
         String type = "gavRh";
 
@@ -390,6 +426,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testDeleteNonExistingBlackArtifact() throws Exception {
         String type = "gav";
 
@@ -401,6 +439,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testCheckRHWhiteArtifact() throws Exception {
         String type = "gavRh";
         manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
@@ -419,6 +459,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testCheckNonRHWhiteArtifact() throws Exception {
         String type = "gavRh";
         manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
@@ -439,6 +481,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testCheckNonRHNonOSGiWhiteArtifact() throws Exception {
         checkArtifactTest("gavRh", null, "0.3", "gavRhResponseCheck");
     }
@@ -451,6 +495,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testCheckRHNonOSGiArtifact() throws Exception {
         checkArtifactTest("gavRhNonOSGi", null, "1.0.redhat-1", "gavRhNonOSGiResponse");
     }
@@ -463,6 +509,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testCheckRHNonOSGiArtifactv2() throws Exception {
         checkArtifactTest("gavRhNonOSGi", null, "1.0", "gavRhNonOSGiResponse");
     }
@@ -501,6 +549,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testCheckRHNonOSGiandOSGiArtifactsv1() throws Exception {
         checkArtifactTest("gavRhNonOSGi", "gavRh3", "1.0", "gavNonOSGiList2");
     }
@@ -519,6 +569,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testCheckRHBlackArtifact() throws Exception {
         String type = "gav";
         manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
@@ -537,6 +589,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testCheckNonRHBlackArtifact() throws Exception {
         String type = "gav";
         manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
@@ -555,6 +609,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
+    @Ignore
+    //
     public void testCheckNonRHNonOSGiBlackArtifact() throws Exception {
         String type = "gav";
         manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
@@ -568,6 +624,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testGetAllWhiteArtifacts() throws Exception {
         // Add artifacts to whitelist
         String type = "gavRh";
@@ -586,6 +644,8 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
+    @Ignore
+    //
     public void testGetAllBlackArtifacts() throws Exception {
         // Add artifacts to blacklist
         String type = "gav";

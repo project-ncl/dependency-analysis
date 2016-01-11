@@ -1,15 +1,18 @@
 package org.jboss.da.listings.impl.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.model.Artifact;
+import org.jboss.da.listings.api.model.GA;
 
 /**
  * 
@@ -24,19 +27,20 @@ public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> imple
     }
 
     @Override
-    public T findArtifact(String groupId, String artifactId, String version) {
+    public Optional<T> findArtifact(String groupId, String artifactId, String version) {
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<T> cq = cb.createQuery(type);
             Root<T> artifact = cq.from(type);
+            Join<T, GA> ga = artifact.join("ga");
             cq.select(artifact).where(
-                    cb.and(cb.equal(artifact.get("artifactId"), artifactId),
-                            cb.equal(artifact.get("groupId"), groupId),
+                    cb.and(cb.equal(ga.get("artifactId"), artifactId),
+                            cb.equal(ga.get("groupId"), groupId),
                             cb.equal(artifact.get("version"), version)));
             TypedQuery<T> q = em.createQuery(cq);
-            return q.getSingleResult();
+            return Optional.of(q.getSingleResult());
         } catch (NoResultException e) {
-            return null;
+            return Optional.empty();
         }
     }
 

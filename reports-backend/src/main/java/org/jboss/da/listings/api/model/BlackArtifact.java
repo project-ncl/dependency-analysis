@@ -1,9 +1,6 @@
 package org.jboss.da.listings.api.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -14,11 +11,10 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "groupId", "artifactId", "version" }))
 public class BlackArtifact extends Artifact {
 
-    public BlackArtifact(String groupId, String artifactId, String version) {
-        super(groupId, artifactId, version);
+    public BlackArtifact(GA ga, String version) {
+        super(ga, version);
     }
 
 }

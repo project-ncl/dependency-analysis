@@ -1,11 +1,17 @@
 package org.jboss.da.listings.impl.service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
+import org.jboss.da.listings.api.dao.GADAO;
+import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
+import org.jboss.da.listings.api.model.GA;
+import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
@@ -30,50 +36,95 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     @Inject
     private WhiteArtifactDAO whiteArtifactDAO;
 
+    @Inject
+    private GADAO gaDAO;
+
+    @Inject
+    private ProductVersionDAO productVersionDAO;
+
     @Override
     protected ArtifactDAO<WhiteArtifact> getDAO() {
         return whiteArtifactDAO;
     }
 
     @Override
-    public org.jboss.da.listings.api.service.ArtifactService.STATUS addArtifact(String groupId,
-            String artifactId, String version) {
+    public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(
+            String groupId, String artifactId, String version, Long productVersionId) {
+        boolean is3rdParty = false;
         if (!VersionParser.isRedhatVersion(version)) {
-            throw new IllegalArgumentException("Version " + version
-                    + " doesn't contain redhat suffix");
+            is3rdParty = true;
         }
 
-        WhiteArtifact white = new WhiteArtifact(groupId, artifactId, version);
+        GA ga = gaDAO.findOrCreate(groupId, artifactId);
+
+        WhiteArtifact white = new WhiteArtifact(ga, version, versionParser.getOSGiVersion(version),
+                is3rdParty);
+
         if (blackArtifactService.isArtifactPresent(groupId, artifactId, version)) {
-            return STATUS.IS_BLACKLISTED;
+            return ArtifactStatus.IS_BLACKLISTED;
         }
-        if (whiteArtifactDAO.findArtifact(groupId, artifactId, version) != null) {
-            return STATUS.NOT_MODIFIED;
+        Optional<WhiteArtifact> dbWhite = whiteArtifactDAO.findArtifact(groupId, artifactId,
+                version);
+        ProductVersion p = productVersionDAO.read(productVersionId);
+        if (p == null) {
+            throw new IllegalArgumentException("Wrong productId, product with this id not found");
+        }
+        if (dbWhite.isPresent()) {
+            if (p.getWhiteArtifacts().contains(dbWhite.get())) {
+                return ArtifactStatus.NOT_MODIFIED;
+            } else {
+                p.addArtifact(dbWhite.get());
+                productVersionDAO.update(p);
+                return ArtifactStatus.ADDED;
+            }
+
         }
         whiteArtifactDAO.create(white);
-        return STATUS.ADDED;
+        p.addArtifact(white);
+        productVersionDAO.update(p);
+        return ArtifactStatus.ADDED;
+    }
+
+    public boolean removeArtifractFromProductVersion(String groupId, String artifactId,
+            String version, Long productVersionId) {
+        ProductVersion pv = productVersionDAO.read(productVersionId);
+        if (pv == null) {
+            return false;
+        }
+        Optional<WhiteArtifact> a = whiteArtifactDAO.findArtifact(groupId, artifactId, version);
+        if (a.isPresent()) {
+            pv.removeArtifact(a.get());
+            productVersionDAO.update(pv);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public List<WhiteArtifact> getArtifacts(String groupId, String artifactId, String version) {
-        String orig = version;
         String osgi = versionParser.getOSGiVersion(version);
 
         List<WhiteArtifact> whites = new ArrayList<>();
-        if (VersionParser.isRedhatVersion(orig)) {
-            WhiteArtifact origArtifact = whiteArtifactDAO.findArtifact(groupId, artifactId, orig);
-            WhiteArtifact osgiArtifact = whiteArtifactDAO.findArtifact(groupId, artifactId, osgi);
-            if (origArtifact != null) {
-                whites.add(origArtifact);
+        if (VersionParser.isRedhatVersion(version)) {
+            Optional<WhiteArtifact> origArtifact = whiteArtifactDAO
+                    .findArtifact(groupId, artifactId, version);
+            Optional<WhiteArtifact> osgiArtifact = whiteArtifactDAO.findArtifact(groupId,
+                    artifactId, osgi);
+            if (origArtifact.isPresent()) {
+                whites.add(origArtifact.get());
             }
-            if (osgiArtifact != null && !osgiArtifact.equals(origArtifact)) {
-                whites.add(osgiArtifact);
+            if (osgiArtifact.isPresent() && !osgiArtifact.equals(origArtifact)) {
+                whites.add(osgiArtifact.get());
             }
         } else {
-            whites.addAll(whiteArtifactDAO.findRedhatArtifact(groupId, artifactId, orig));
-            whites.addAll(whiteArtifactDAO.findRedhatArtifact(groupId, artifactId, osgi));
+            Optional<WhiteArtifact> rhA = whiteArtifactDAO.findArtifact(groupId, artifactId,
+                    osgi);
+            rhA.ifPresent(x -> whites.add(rhA.get()));
+            Optional<WhiteArtifact> a = whiteArtifactDAO.findArtifact(groupId, artifactId, version);
+            a.ifPresent(x -> whites.add(a.get()));
         }
-        return whites;
+        List<WhiteArtifact> nonDupWhites = new ArrayList<>(new LinkedHashSet<>(whites));
+        return nonDupWhites;
     }
 
     @Override
@@ -86,4 +137,20 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
         return !getArtifacts(groupId, artifactId, version).isEmpty();
     }
 
+    @Override
+    public boolean removeArtifact(String groupId, String artifactId, String version) {
+        Optional<WhiteArtifact> artifact = whiteArtifactDAO.findArtifact(groupId, artifactId,
+                version);
+        if (artifact.isPresent()) {
+            List<ProductVersion> productVersions = productVersionDAO
+                    .findProductVersionsWithArtifact(groupId, artifactId, version);
+            for (ProductVersion pv : productVersions) {
+                pv.removeArtifact(artifact.get());
+                productVersionDAO.update(pv);
+            }
+            whiteArtifactDAO.delete(artifact.get());
+            return true;
+        }
+        return false;
+    }
 }

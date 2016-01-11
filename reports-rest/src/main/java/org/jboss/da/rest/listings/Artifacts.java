@@ -1,18 +1,27 @@
 package org.jboss.da.rest.listings;
 
+import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
 import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.ProductService;
+import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
-import org.jboss.da.listings.api.service.ArtifactService.STATUS;
+import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
 import org.jboss.da.rest.listings.model.ContainsResponse;
 import org.jboss.da.rest.listings.model.RestArtifact;
+import org.jboss.da.rest.listings.model.RestProduct;
+import org.jboss.da.rest.listings.model.RestProductArtifact;
+import org.jboss.da.rest.listings.model.RestProductGAV;
+import org.jboss.da.rest.listings.model.RestProductInput;
 import org.jboss.da.rest.listings.model.SuccessResponse;
 import org.jboss.da.rest.model.ErrorMessage;
 
 import javax.inject.Inject;
+import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -22,11 +31,12 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+import java.util.NoSuchElementException;
 import java.util.Collections;
 import java.util.Optional;
 
 import org.jboss.da.listings.api.model.BlackArtifact;
+import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 
 import io.swagger.annotations.Api;
@@ -54,6 +64,12 @@ public class Artifacts {
     @Inject
     private BlackArtifactService blackService;
 
+    @Inject
+    private ProductService productService;
+
+    @Inject
+    private ProductVersionService productVersionService;
+
     // //////////////////////////////////
     // Whitelist endpoints
 
@@ -61,12 +77,10 @@ public class Artifacts {
     @Path("/whitelist")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get all artifacts in the whitelist", responseContainer = "List",
-            response = RestArtifact.class)
+            response = RestProductGAV.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
-    public Collection<RestArtifact> getAllWhiteArtifacts() {
-        List<RestArtifact> artifacts = new ArrayList<>();
-        artifacts.addAll(convert.toRestArtifacts(whiteService.getAll()));
-        return artifacts;
+    public Collection<RestProductGAV> getAllWhiteArtifacts() {
+        return convert.toRestProductGAVList(productVersionService.getAll());
     }
 
     @GET
@@ -100,20 +114,17 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Add an artifact to the whitelist", response = SuccessResponse.class)
-    @ApiResponses(
-            value = {
-                    @ApiResponse(code = 200, message = "Response successfully generated"),
-                    @ApiResponse(
-                            code = 400,
-                            message = "Can't add artifact to whitelist, artifact is not in redhat version"),
-                    @ApiResponse(code = 409,
-                            message = "Can't add artifact to whitelist, artifact is blacklisted") })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Response successfully generated"),
+            @ApiResponse(code = 409,
+                    message = "Can't add artifact to whitelist, artifact is blacklisted") })
     public Response addWhiteArtifact(
-            @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
+            @ApiParam(
+                    value = "JSON object with keys 'groupId', 'artifactId', 'version' and 'productId'") RestProductArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         try {
-            STATUS result = whiteService.addArtifact(artifact.getGroupId(),
-                    artifact.getArtifactId(), artifact.getVersion());
+            ArtifactStatus result = whiteService.addArtifact(artifact.getGroupId(),
+                    artifact.getArtifactId(), artifact.getVersion(), artifact.getProductId());
             switch (result) {
                 case ADDED:
                     response.setSuccess(true);
@@ -156,6 +167,171 @@ public class Artifacts {
         return response;
     }
 
+    @DELETE
+    @Path("/whitelist/gavproduct")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Remove an artifact from the product", response = SuccessResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
+    public SuccessResponse removeWhiteArtifactFromProduct(
+            @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestProductArtifact artifact) {
+        SuccessResponse response = new SuccessResponse();
+        response.setSuccess(whiteService.removeArtifractFromProductVersion(artifact.getGroupId(),
+                artifact.getArtifactId(), artifact.getVersion(), artifact.getProductId()));
+        return response;
+    }
+
+    // //////////////////////////////
+    // whitelist products endpoints
+
+    @POST
+    @Path("/whitelist/product")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Add a product to the whitelist", response = SuccessResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated"),
+            @ApiResponse(code = 400, message = "Name and version parameters are required") })
+    public Response addProduct(
+            @ApiParam(value = "JSON object with keys 'name', 'version' and optional 'status'") RestProductInput product) {
+        SuccessResponse response = new SuccessResponse();
+        if (product.getName().isEmpty() || product.getVersion().isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new ErrorMessage("Name and version parameters are required")).build();
+        }
+        if (product.getSupportStatus() == null) {
+            product.setSupportStatus(SupportStatus.SUPPORTED);
+        }
+        response.setSuccess(productService.addProduct(product.getName(), product.getVersion(),
+                product.getSupportStatus()));
+        return Response.ok(response).build();
+    }
+
+    @DELETE
+    @Path("/whitelist/product")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Remove a product from the whitelist", response = SuccessResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated"),
+            @ApiResponse(code = 404, message = "Product not found") })
+    public Response removeProduct(
+            @ApiParam(value = "JSON object with keys 'name'and 'version'") RestProductInput product) {
+        SuccessResponse response = new SuccessResponse();
+        try {
+            response.setSuccess(productService.removeProduct(product.getName(),
+                    product.getVersion()));
+        } catch (EntityNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(new ErrorMessage("Product not found")).build();
+        }
+        return Response.ok(response).build();
+    }
+
+    @PUT
+    @Path("/whitelist/product")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Change support status of product in whitelist",
+            response = SuccessResponse.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated"),
+            @ApiResponse(code = 404, message = "Product not found"),
+            @ApiResponse(code = 400, message = "All parameters are required") })
+    public Response changeProductStatus(@ApiParam(
+            value = "JSON object with keys 'name', 'version' and 'status'") RestProductInput product) {
+        SuccessResponse response = new SuccessResponse();
+        if (product.getSupportStatus() == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new ErrorMessage("All parameters are required")).build();
+        }
+        if (!productService.changeProductStatus(product.getName(), product.getVersion(),
+                product.getSupportStatus())) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(new ErrorMessage("Product not found")).build();
+        }
+        response.setSuccess(true);
+        return Response.ok(response).build();
+    }
+
+    @GET
+    @Path("/whitelist/products")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get all products from the whitelist", responseContainer = "List",
+            response = RestProduct.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Response successfully generated") })
+    public Collection<RestProduct> getProducts() {
+        return convert.toRestProductList(productVersionService.getAll());
+    }
+
+    @GET
+    @Path("/whitelist/product")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get product from the whitelist", responseContainer = "List",
+            response = RestProduct.class)
+    public Collection<RestProduct> getProduct(@QueryParam("id") Long id,
+            @QueryParam("name") String name, @QueryParam("version") String version,
+            @QueryParam("supportStatus") SupportStatus supportStatus) {
+        return convert.toRestProductList(productVersionService.getProductVersions(id, name,
+                version, supportStatus));
+    }
+
+    // //////////////////////////////
+    // whitelist search endpoints
+
+    @GET
+    @Path("/whitelist/artifacts/product")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get all artifacts of product from the whitelist",
+            responseContainer = "List", response = RestProductGAV.class)
+    public Response artifactsOfProduct(@QueryParam("name") String name,
+            @QueryParam("version") String version) {
+        Optional<ProductVersion> pv = productVersionService.getProductVersion(name, version);
+        if (pv.isPresent()) {
+            return Response.ok(convert.toRestProductGAV(pv.get())).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND)
+                .entity(new ErrorMessage("Product not found")).build();
+
+    }
+
+    @GET
+    @Path("/whitelist/artifacts/gav")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get all artifacts with specified GAV from the whitelist",
+            responseContainer = "List", response = RestProductGAV.class)
+    public Response productsWithArtifactGAV(@QueryParam("groupid") String groupId,
+            @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
+
+        return Response.ok(
+                convert.fromRelationshipToRestProductGAVList(productVersionService
+                        .getProductVersionsWithArtifactByGAV(groupId, artifactId, version)))
+                .build();
+    }
+
+    @GET
+    @Path("/whitelist/artifacts/status")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get all artifacts with specified status from the whitelist",
+            responseContainer = "List", response = RestProductGAV.class)
+    public Response productsWithArtifactStatus(@QueryParam("status") SupportStatus status) {
+
+        return Response.ok(
+                convert.toRestProductGAVList(productVersionService
+                        .getProductVersionsWithArtifactsByStatus(status))).build();
+    }
+
+    @GET
+    @Path("/whitelist/artifacts/gastatus")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get all artifacts with specified GA and status from the whitelist",
+            responseContainer = "List", response = RestProductGAV.class)
+    public Response productsWithArtifactGAAndStatus(@QueryParam("groupid") String groupId,
+            @QueryParam("artifactid") String artifactId, @QueryParam("status") SupportStatus status) {
+
+        return Response.ok(
+                convert.fromRelationshipToRestProductGAVList(productVersionService
+                        .getProductVersionsWithArtifactsByGAStatus(groupId, artifactId, status)))
+                .build();
+    }
+
     // //////////////////////////////////
     // Blacklist endpoints
 
@@ -178,7 +354,7 @@ public class Artifacts {
             response = ContainsResponse.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Artifact is in the blacklist"),
             @ApiResponse(code = 404, message = "Artifact is not in the blacklist"),
-            @ApiResponse(code = 400, message = "All parameters are required")})
+            @ApiResponse(code = 400, message = "All parameters are required") })
     public Response isBlackArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         if (groupId == null || artifactId == null || version == null)
@@ -210,8 +386,8 @@ public class Artifacts {
     public Response addBlackArtifact(
             @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
-        STATUS result = blackService.addArtifact(artifact.getGroupId(), artifact.getArtifactId(),
-                artifact.getVersion());
+        ArtifactStatus result = blackService.addArtifact(artifact.getGroupId(),
+                artifact.getArtifactId(), artifact.getVersion());
         switch (result) {
             case ADDED:
                 response.setSuccess(true);

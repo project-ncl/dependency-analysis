@@ -1,7 +1,7 @@
 package org.jboss.da.listings.api.model;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,17 +18,16 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
-@MappedSuperclass
-public class Artifact extends GenericEntity {
+@Entity
+public class GA extends GenericEntity {
 
     @Setter
     @Getter
     @NonNull
-    @ManyToOne
-    private GA ga;
+    private String groupId;
 
     @Setter
     @Getter
     @NonNull
-    private String version;
+    private String artifactId;
 }

@@ -1,6 +1,7 @@
 package org.jboss.da.listings.api.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jboss.da.listings.api.model.Artifact;
 
@@ -17,9 +18,9 @@ public interface ArtifactDAO<T extends Artifact> extends GenericDAO<T> {
      * @param groupId Group id of desired artifact.
      * @param artifactId Artifact id of desired artifact.
      * @param version Version of desired artifact.s
-     * @return Found artifact or null when not found.
+     * @return Optional of artifact or empty when not found.
      */
-    T findArtifact(String groupId, String artifactId, String version);
+    Optional<T> findArtifact(String groupId, String artifactId, String version);
 
     /**
      * Finds and return all artifacts.
