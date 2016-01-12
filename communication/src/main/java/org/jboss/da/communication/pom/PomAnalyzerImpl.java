@@ -123,7 +123,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                 // cleanup
                 FileUtils.deleteDirectory(tempDir);
             }
-        } catch (TransferException | URISyntaxException | CartoDataException | IOException e) {
+        } catch (URISyntaxException | CartoDataException | IOException e) {
             throw new PomAnalysisException(e);
         }
     }
@@ -157,7 +157,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             } finally {
                 FileUtils.deleteDirectory(tempDir);
             }
-        } catch (TransferException | IOException e) {
+        } catch (IOException e) {
             throw new PomAnalysisException(e);
         }
     }
@@ -255,7 +255,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
      * @throws IOException
      */
     private Map<File, ProjectVersionRef> getProjectVersionRefs(File tempDir, List<File> poms)
-            throws TransferException, IOException {
+            throws IOException {
 
         Map<File, ProjectVersionRef> projectVersionRefs = new HashMap<>();
 
@@ -265,14 +265,18 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                 log.warn("Could not parse " + pomFile.getAbsolutePath());
                 continue;
             }
-            projectVersionRefs.put(pomFile.getParentFile().getAbsoluteFile(), peek.getKey());
 
-            String path = ArtifactPathUtils.formatArtifactPath(peek.getKey().asPomArtifact(), carto
-                    .getGalley().getTypeMapper());
+            try {
+                String path = ArtifactPathUtils.formatArtifactPath(peek.getKey().asPomArtifact(),
+                        carto.getGalley().getTypeMapper());
+                projectVersionRefs.put(pomFile.getParentFile().getAbsoluteFile(), peek.getKey());
 
-            File f = new File(tempDir, path);
-            f.getParentFile().mkdirs();
-            FileUtils.copyFile(pomFile, f);
+                File f = new File(tempDir, path);
+                f.getParentFile().mkdirs();
+                FileUtils.copyFile(pomFile, f);
+            } catch (TransferException | RuntimeException ex) {
+                log.warn("Could not parse " + pomFile.getAbsolutePath(), ex);
+            }
         }
         return projectVersionRefs;
     }
