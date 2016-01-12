@@ -6,5 +6,6 @@
   "keycloakRealm": "",
   "pncServer": "",
   "aproxServer": "",
-  "aproxRemote": ""
+  "backupScmUrl": "",
+  "aproxGroup": ""
 }

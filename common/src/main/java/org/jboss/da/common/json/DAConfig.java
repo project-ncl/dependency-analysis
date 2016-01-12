@@ -35,7 +35,7 @@ public class DAConfig {
 
     @Getter
     @Setter
-    private String aproxRemote;
+    private String aproxGroup;
 
     @Getter
     @Setter

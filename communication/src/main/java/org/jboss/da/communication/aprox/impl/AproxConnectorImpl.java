@@ -106,8 +106,8 @@ public class AproxConnectorImpl implements AproxConnector {
         try {
             DAConfig config = this.config.getConfig();
             query.append(config.getAproxServer());
-            query.append("/api/remote/");
-            query.append(config.getAproxRemote()).append('/');
+            query.append("/api/group/");
+            query.append(config.getAproxGroup()).append('/');
             query.append(ga.getGroupId().replace(".", "/")).append("/");
             query.append(ga.getArtifactId()).append('/');
             query.append("maven-metadata.xml");
@@ -296,7 +296,8 @@ public class AproxConnectorImpl implements AproxConnector {
         return root;
     }
 
-    private GAVDependencyTree addGAVDependencyTreeToGAVMapper(Map<GAV, GAVDependencyTree> gavMapper, GAV gav) {
+    private GAVDependencyTree addGAVDependencyTreeToGAVMapper(
+            Map<GAV, GAVDependencyTree> gavMapper, GAV gav) {
         return gavMapper.computeIfAbsent(gav, k -> new GAVDependencyTree(k));
     }
 
