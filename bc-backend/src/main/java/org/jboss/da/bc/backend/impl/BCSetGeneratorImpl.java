@@ -54,7 +54,7 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
             product = p.get();
         }
 
-        Optional<ProductVersion> potentialPV = pnc.findProductVersion(p.get(), productVersion);
+        Optional<ProductVersion> potentialPV = pnc.findProductVersion(product, productVersion);
 
         if (potentialPV.isPresent()) {
             return potentialPV.get().getId();
