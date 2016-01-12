@@ -107,7 +107,7 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
         Join<ProductVersion, Product> product = productVersion.join("product");
         List<Predicate> predicates = new ArrayList<Predicate>();
         if (id != null) {
-            predicates.add(cb.equal(product.get("id"), id));
+            predicates.add(cb.equal(productVersion.get("id"), id));
         }
         if (name != null) {
             predicates.add(cb.equal(product.get("name"), name));
