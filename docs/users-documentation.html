@@ -39,7 +39,8 @@
         <ul>
             <li>
                 <span class="strong">Whitelist</span>
-                - contains artifacts, which are the best option to be used in the projects. This
+                - contains artifacts, which are the best option to be used in the projects. Each
+                artifact is associated to a particular product. These
                 artifacts are used in the latest versions of the most important products and
                 therefore they are supported. The inserted artifacts are restricted to RedHat build
                 versions of artifacts (e.g. 4.2.18.Final).
@@ -54,7 +55,7 @@
         </ul>
 
         <p>Artifacts, which are not in any of the lists are treated as graylisted, so there is
-            no guarantee, they are suitable to be used in products and they should be judged
+            no guarantee they are suitable to be used in products and they should instead be judged
             manually.</p>
 
         <h3>Lookup of built artifacts</h3>
@@ -76,16 +77,16 @@
 
         <h3>Data source</h3>
         <p>
-            Currently data about built artifacts are gathered from the public product repository (
-            <a href="http://maven.repository.redhat.com/ga">maven.repository.redhat.com</a>
-            ). The dependency analyser has an option to easily add any Maven repository as a source
+            Currently data about built artifacts are gathered from the public product repository
+            (<a href="http://maven.repository.redhat.com/ga">maven.repository.redhat.com</a>).
+            The dependency analyser has an option to easily add any Maven repository as a source
             of supported built artifacts.
         </p>
         <p>There is no direct integration with Brew, because in Brew it is hard to verify, which
             artifacts are valid and supported. But it is possible to add any Mead repository as a
             source repository for the Dependency Analyser (e.g. repositories of the latest products
             builds).</p>
-        <p>In future the Dependency Analyser will provide also built artifacts from the Project
+        <p>In the future the Dependency Analyser will provide also built artifacts from the Project
             Newcastle build system, but now the builds from the Project Newcastle are not
             reproducible and supported.</p>
 
@@ -94,11 +95,11 @@
         <p>
             The Dependency Analyser is a server side application and there are two ways how to use
             it. The
-            <span class="strong">REST API</span>
-            , which provides the main logic of the system and provides an easy way to use it in
+            <span class="strong">REST API</span>,
+            which provides the main logic of the system and provides an easy way to use it in
             other applications, and the
-            <span class="strong">CLI tools</span>
-            , which are more handy for the manual usage. The CLI tools are mainly a thin client,
+            <span class="strong">CLI tools</span>,
+            which are more handy for the manual usage. The CLI tools are mainly a thin client,
             which performs gets all data from the service using the REST API.
         </p>
         <p>It's planned to have a third interface, which will be the UI of the Project Newcastle
@@ -308,8 +309,11 @@
             <dt>List all artifacts in the whitelist</dt>
             <dd>./da-cli.sh list white</dd>
 
+            <dt>Add a product to whitelist</dt>
+            <dd>./da-cli-admin.sh add whitelist-product eap:7.0.0 SUPPORTED</dd>
+
             <dt>Add an artifact to whitelist</dt>
-            <dd>./da-cli-admin.sh add white org.jboss.hibernate:hibernate-core:3.4.2.redhat-1</dd>
+            <dd>./da-cli-admin.sh add white org.jboss.hibernate:hibernate-core:3.4.2.redhat-1 eap:7.0.0</dd>
 
             <dt>Remove an artifact from blacklist</dt>
             <dd>./da-cli-admin.sh delete black org.jboss.hibernate:hibernate-core:3.4.2</dd>
