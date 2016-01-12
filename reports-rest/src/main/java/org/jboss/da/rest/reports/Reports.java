@@ -185,8 +185,8 @@ public class Reports {
     private static AdvancedReport toAdvancedReport(AdvancedArtifactReport advancedArtifactReport) {
 
         Report report = toReport(advancedArtifactReport.getArtifactReport());
-        return new AdvancedReport(report, advancedArtifactReport.getBlacklistArtifacts(),
-                advancedArtifactReport.getWhitelistArtifacts(),
+        return new AdvancedReport(report, advancedArtifactReport.getBlacklistedArtifacts(),
+                advancedArtifactReport.getWhitelistedArtifacts(),
                 advancedArtifactReport.getCommunityGavsWithBestMatchVersions(),
                 advancedArtifactReport.getCommunityGavsWithBuiltVersions(),
                 advancedArtifactReport.getCommunityGavs());

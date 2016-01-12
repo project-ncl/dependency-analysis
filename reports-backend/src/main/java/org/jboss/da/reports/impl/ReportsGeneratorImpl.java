@@ -169,9 +169,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
                 // we have a top-level module dependency
                 if (dep.isWhitelisted())
-                    advancedReport.addWhitelistArtifact(dep.getGav());
+                    advancedReport.addWhitelistedArtifact(dep.getGav());
                 if (dep.isBlacklisted())
-                    advancedReport.addBlacklistArtifact(dep.getGav());
+                    advancedReport.addBlacklistedArtifact(dep.getGav());
 
                 if (dep.getBestMatchVersion().isPresent()) {
                     advancedReport.addCommunityGavWithBestMatchVersion(dep.getGav());
