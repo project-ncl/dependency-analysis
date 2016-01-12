@@ -13,10 +13,10 @@ public class AdvancedArtifactReport {
     private ArtifactReport artifactReport;
 
     @Getter
-    private Set<GAV> blacklistArtifacts = new HashSet<>();
+    private Set<GAV> blacklistedArtifacts = new HashSet<>();
 
     @Getter
-    private Set<GAV> whitelistArtifacts = new HashSet<>();
+    private Set<GAV> whitelistedArtifacts = new HashSet<>();
 
     @Getter
     private Set<GAV> communityGavsWithBestMatchVersions = new HashSet<>();
@@ -27,12 +27,12 @@ public class AdvancedArtifactReport {
     @Getter
     private Set<GAV> communityGavs = new HashSet<>();
 
-    public void addBlacklistArtifact(GAV gav) {
-        blacklistArtifacts.add(gav);
+    public void addBlacklistedArtifact(GAV gav) {
+        blacklistedArtifacts.add(gav);
     }
 
-    public void addWhitelistArtifact(GAV gav) {
-        whitelistArtifacts.add(gav);
+    public void addWhitelistedArtifact(GAV gav) {
+        whitelistedArtifacts.add(gav);
     }
 
     public void addCommunityGavWithBestMatchVersion(GAV gav) {

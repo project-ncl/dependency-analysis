@@ -16,11 +16,11 @@ public class AdvancedReport {
 
     @Getter
     @NonNull
-    private Set<GAV> blacklistArtifacts;
+    private Set<GAV> blacklistedArtifacts;
 
     @Getter
     @NonNull
-    private Set<GAV> whitelistArtifacts;
+    private Set<GAV> whitelistedArtifacts;
 
     @Getter
     @NonNull
