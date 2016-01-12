@@ -116,7 +116,6 @@ public class Repositories {
     }
 
     @GET
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get all repositories from group for searching ",
             responseContainer = "List", response = Repository.class)
