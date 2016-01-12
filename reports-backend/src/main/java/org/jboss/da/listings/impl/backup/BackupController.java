@@ -44,7 +44,7 @@ public class BackupController {
     @Inject
     private Logger log;
 
-    private static final String BACKUP_FILE_NAME = "blackWhiteListsBackup.txt";
+    private static final String BACKUP_FILE_NAME = "blackWhiteListsBackup.json";
 
     private static final String BACKUP_BRANCH = "master";
 
