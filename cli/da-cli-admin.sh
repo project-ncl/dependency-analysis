@@ -13,7 +13,7 @@ printUsage() {
     echo ""
     echo "BLACK & WHITE LISTS"
     echo "    An artifact (groupId:artifactId:version) can be either whitelisted in some products, blacklisted in all product or graylisted."
-    echo "    Each whitelisted artifact is whitelisted in one or more product versions. Each product can also be in one of the following states: supported, superseded, unsupported or unknown. Whitelisted artifacts are in their -redhat version."
+    echo "    Each whitelisted artifact is whitelisted in one or more product versions. Each product can also be in one of the following states: supported, superseded, unsupported or unknown. Whitelisted artifacts are in their community or -redhat version."
     echo "    Blaclisted artifact is not associated with any product. When artifact is blacklisted, it is blacklisted across all products. Blacklisted artifacts are in their community versions."
     echo "    Graylisted artifacts are artifacts that are neither whitelisted nor blacklisted."
     echo ""
