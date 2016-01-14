@@ -19,15 +19,12 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.io.FileUtils;
 import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 
-import static org.jboss.da.common.Constants.REST_API_VERSION;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
 @RunWith(Arquillian.class)
 @RunAsClient
 public abstract class AbstractRestApiTest {
-
-    private static final String DEFAULT_REST_API_VERSION = "v-" + REST_API_VERSION;
 
     private static final String ENCODING = "utf-8";
 
@@ -75,23 +72,23 @@ public abstract class AbstractRestApiTest {
         return readConfigurationValue("testsuite.hostUrl", "http://localhost:8180");
     }
 
-    private String readRestApiVersion() {
-        return readConfigurationValue("testsuite.restApiVersion", DEFAULT_REST_API_VERSION);
-    }
+    protected abstract String readRestApiVersion();
 
     private String readRestApiUrl() {
         return readConfigurationValue("testsuite.restApiUrl", hostUrl + "/" + getContextRoot()
                 + "/rest" + (restApiVersion == null ? "" : "/" + restApiVersion));
     }
 
-    abstract protected String getContextRoot();
+    abstract String getContextRoot();
 
-    private String convertRestApiVersionToFolderName() {
-        if (DEFAULT_REST_API_VERSION == null)
+    abstract String convertRestApiVersionToFolderName();
+
+    protected String getFolderName(String apiVersion) {
+        if (apiVersion == null)
             return null;
-        if (DEFAULT_REST_API_VERSION.startsWith("v-0"))
+        if (apiVersion.startsWith("v-0"))
             return "v-1.0";
-        return DEFAULT_REST_API_VERSION;
+        return apiVersion;
     }
 
     protected File getJsonRequestFile(String path, String variant) {

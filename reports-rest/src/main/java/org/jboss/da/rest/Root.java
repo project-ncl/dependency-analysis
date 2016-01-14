@@ -5,7 +5,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import static org.jboss.da.common.Constants.REST_API_VERSION;
+import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
+import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
 
 /**
  *
@@ -20,8 +21,16 @@ public class Root {
     public String getDescription() {
         return "<h1>Dependency analysis service REST API</h1>"
                 + "\n"
-                + "<ul><li><strong>Version:</strong> "
-                + REST_API_VERSION
+                + "<ul><li><strong>DA Version:</strong> "
+                + "0.5.1"
+                + "</li>"
+                + "\n"
+                + "<li><strong>BC REST API Version:</strong> "
+                + REST_API_VERSION_BC
+                + "</li>"
+                + "\n"
+                + "<li><strong>Reports REST API Version:</strong> "
+                + REST_API_VERSION_REPORTS
                 + "</li>"
                 + "\n"
                 + "<li><a href=\"../doc\">Swagger documentation</a></li>"
