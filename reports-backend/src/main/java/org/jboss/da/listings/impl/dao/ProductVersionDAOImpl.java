@@ -158,7 +158,7 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
 
     @Override
     public List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactsByGAStatus(
-            String groupId, String artifactId, SupportStatus status) {
+            String groupId, String artifactId, Optional<SupportStatus> status) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductVersionArtifactRelationship> cq = cb
                 .createQuery(ProductVersionArtifactRelationship.class);
@@ -167,12 +167,16 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
         Join<WhiteArtifact, GA> ga = artifact.join("ga");
         Expression<Collection<WhiteArtifact>> artifacts = productVersion.get("whiteArtifacts");
         cq.multiselect(productVersion, artifact);
-        cq.where(cb.and(cb.isMember(artifact, artifacts),
-                cb.equal(ga.get("artifactId"), artifactId), cb.equal(ga.get("groupId"), groupId),
-                cb.equal(productVersion.get("support"), status)));
+
+        Predicate restriction = cb.and(
+                cb.isMember(artifact, artifacts),
+                cb.equal(ga.get("artifactId"), artifactId),
+                cb.equal(ga.get("groupId"), groupId));
+        status.ifPresent(x -> {cb.and(restriction, cb.equal(productVersion.get("support"), x));});
+
+        cq.where(restriction);
         TypedQuery<ProductVersionArtifactRelationship> q = em.createQuery(cq);
         List<ProductVersionArtifactRelationship> l = q.getResultList();
         return l;
     }
-
 }
