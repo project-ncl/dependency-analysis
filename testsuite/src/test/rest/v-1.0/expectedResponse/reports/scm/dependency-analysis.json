@@ -15,7 +15,7 @@
       "dependencyVersionsSatisfied": true,
       "dependencies": [],
       "blacklisted": false,
-      "whitelisted": false,
+      "whitelisted": [],
       "notBuiltDependencies": 0
     },
     {
@@ -30,7 +30,7 @@
       "dependencyVersionsSatisfied": true,
       "dependencies": [],
       "blacklisted": false,
-      "whitelisted": false,
+      "whitelisted": [],
       "notBuiltDependencies": 0
     },
     {
@@ -48,11 +48,11 @@
       "dependencyVersionsSatisfied": true,
       "dependencies": [],
       "blacklisted": false,
-      "whitelisted": false,
+      "whitelisted": [],
       "notBuiltDependencies": 0
     }
   ],
   "blacklisted": false,
-  "whitelisted": false,
+  "whitelisted": [],
   "notBuiltDependencies": 2
 }

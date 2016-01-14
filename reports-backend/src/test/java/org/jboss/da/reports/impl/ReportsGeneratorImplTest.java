@@ -5,6 +5,9 @@ import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.listings.api.model.Product;
+import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.ArtifactReport;
@@ -31,6 +34,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
+
+import java.util.Collections;
 
 /**
  *
@@ -85,9 +90,12 @@ public class ReportsGeneratorImplTest {
     private final GAVDependencyTree daCoreDT = new GAVDependencyTree(daCoreGAV, new HashSet<>(
             Arrays.asList(daUtilDT, daCommonDT)));
 
-    private void prepare(boolean whitelisted, boolean blacklisted, List<String> versions,
-            String best, GAVDependencyTree dependencyTree) throws CommunicationException,
-            FindGAVDependencyException {
+    private final ProductVersion productEAP = new ProductVersion(new Product("EAP"), "7.0",
+            SupportStatus.UNKNOWN);
+
+    private void prepare(List<ProductVersion> whitelisted, boolean blacklisted,
+            List<String> versions, String best, GAVDependencyTree dependencyTree)
+            throws CommunicationException, FindGAVDependencyException {
         when(versionFinderImpl.getBuiltVersionsFor(daCoreGAV)).thenReturn(versions);
         when(versionFinderImpl.lookupBuiltVersions(daCoreGAV)).thenReturn(
                 new VersionLookupResult(Optional.ofNullable(best), versions));
@@ -96,12 +104,13 @@ public class ReportsGeneratorImplTest {
         when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV, versions)).thenReturn(
                 Optional.ofNullable(best));
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
-        when(whiteArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(whitelisted);
+        // when(whiteArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(whitelisted); // TODO - set service to properly
+        // set whitelisted
         when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
     }
 
     private void prepareMulti() throws CommunicationException, FindGAVDependencyException {
-        prepare(false, false, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
+        prepare(Collections.emptyList(), false, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
         when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
         when(versionFinderImpl.getBuiltVersionsFor(daUtilGAV)).thenReturn(daCoreVersionsBest);
@@ -113,7 +122,8 @@ public class ReportsGeneratorImplTest {
         when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV, daCoreVersionsBest)).thenReturn(
                 Optional.ofNullable(bestMatchVersion));
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
-        when(whiteArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
+        // when(whiteArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false); // TODO - set service to properly set
+        // whitelisted to empty list
 
         when(versionFinderImpl.getBuiltVersionsFor(daCommonGAV)).thenReturn(daCoreVersionsNoBest);
         when(versionFinderImpl.lookupBuiltVersions(daCommonGAV)).thenReturn(
@@ -123,7 +133,8 @@ public class ReportsGeneratorImplTest {
         when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV, daCoreVersionsNoBest))
                 .thenReturn(Optional.empty());
         when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
-        when(whiteArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
+        // when(whiteArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false); // TODO - set service to properly set
+        // whitelisted to empty list
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -141,7 +152,7 @@ public class ReportsGeneratorImplTest {
     @Test
     public void testNonListedNoBestMatchGAV() throws CommunicationException,
             FindGAVDependencyException {
-        prepare(false, false, daCoreVersionsNoBest, null, daCoreNoDT);
+        prepare(Collections.emptyList(), false, daCoreVersionsNoBest, null, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(daCoreGAV);
 
@@ -150,14 +161,15 @@ public class ReportsGeneratorImplTest {
         assertFalse(report.getBestMatchVersion().isPresent());
         assertTrue(report.getDependencies().isEmpty());
         assertFalse(report.isBlacklisted());
-        assertFalse(report.isWhitelisted());
+        assertTrue(report.getWhitelisted().isEmpty());
 
     }
 
     @Test
     public void testWhiteListedNoBestMatchGAV() throws CommunicationException,
             FindGAVDependencyException {
-        prepare(true, false, daCoreVersionsNoBest, null, daCoreNoDT);
+        List<ProductVersion> whitelisted = Arrays.asList(productEAP);
+        prepare(whitelisted, false, daCoreVersionsNoBest, null, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(daCoreGAV);
 
@@ -166,13 +178,14 @@ public class ReportsGeneratorImplTest {
         assertFalse(report.getBestMatchVersion().isPresent());
         assertTrue(report.getDependencies().isEmpty());
         assertFalse(report.isBlacklisted());
-        assertTrue(report.isWhitelisted());
+        assertFalse(report.getWhitelisted().isEmpty());
+        assertEquals(1, report.getWhitelisted().size());
     }
 
     @Test
     public void testBlackListedBestMatchGAV() throws CommunicationException,
             FindGAVDependencyException {
-        prepare(false, true, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
+        prepare(Collections.emptyList(), true, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(daCoreGAV);
 
@@ -181,13 +194,13 @@ public class ReportsGeneratorImplTest {
         assertEquals(bestMatchVersion, report.getBestMatchVersion().get());
         assertTrue(report.getDependencies().isEmpty());
         assertTrue(report.isBlacklisted());
-        assertFalse(report.isWhitelisted());
+        assertTrue(report.getWhitelisted().isEmpty());
     }
 
     @Test
     public void testArtifactReportShouldNotHaveNullValuesInAvailableVersionsWhenBestMatchVersionIsNull()
             throws CommunicationException, FindGAVDependencyException {
-        prepare(false, false, daCoreVersionsBest, null, daCoreNoDT);
+        prepare(Collections.emptyList(), false, daCoreVersionsBest, null, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(daCoreGAV);
 
@@ -205,7 +218,7 @@ public class ReportsGeneratorImplTest {
         assertEquals(daCoreGAV, report.getGav());
         assertEquals(bestMatchVersion, report.getBestMatchVersion().get());
         assertFalse(report.isBlacklisted());
-        assertFalse(report.isWhitelisted());
+        assertTrue(report.getWhitelisted().isEmpty());
         assertMultipleDependencies(report.getDependencies());
     }
 
@@ -222,7 +235,7 @@ public class ReportsGeneratorImplTest {
                     assertEquals(bestMatchVersion, dep.getBestMatchVersion().get());
                     assertTrue(dep.getDependencies().isEmpty());
                     assertFalse(dep.isBlacklisted());
-                    assertFalse(dep.isWhitelisted());
+                    assertTrue(dep.getWhitelisted().isEmpty());
                     break;
                 }
                 case "common": {
@@ -231,7 +244,7 @@ public class ReportsGeneratorImplTest {
                     assertFalse(dep.getBestMatchVersion().isPresent());
                     assertTrue(dep.getDependencies().isEmpty());
                     assertFalse(dep.isBlacklisted());
-                    assertFalse(dep.isWhitelisted());
+                    assertTrue(dep.getWhitelisted().isEmpty());
                     break;
                 }
                 default: {

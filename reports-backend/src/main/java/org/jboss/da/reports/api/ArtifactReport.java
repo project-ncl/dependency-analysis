@@ -1,12 +1,14 @@
 package org.jboss.da.reports.api;
 
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.listings.api.model.ProductVersion;
 
 import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -46,11 +48,11 @@ public class ArtifactReport {
     private boolean blacklisted;
 
     /**
-     * Indicator if the artifact was whitelisted
+     * List of product where this artifact is whitelisted
      */
     @Getter
     @Setter
-    private boolean whitelisted;
+    private List<ProductVersion> whitelisted;
 
     public void setBestMatchVersion(Optional<String> version) {
         if (version.isPresent()) {

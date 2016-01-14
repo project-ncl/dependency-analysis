@@ -13,6 +13,25 @@ import org.jboss.da.listings.api.model.BlackArtifact;
 public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
 
     /**
+     * Checks if list contains artifact with specific groupId, artifactId and version.
+     * All restrictions and conversions are applied like using getArtifact method of specific list.
+     *
+     * @param groupId
+     * @param artifactId
+     * @param version
+     * @return True if list contains the artifact otherwise false.
+     */
+    boolean isArtifactPresent(String groupId, String artifactId, String version);
+
+    /**
+     * Checks if list contains artifact with specific GAV.
+     * All restrictions and conversions are applied like using getArtifact method of specific list.
+     * @param gav
+     * @return True if list contains the artifact otherwise false.
+     */
+    boolean isArtifactPresent(GAV gav);
+
+    /**
      * Add artifact to blacklist.
      * If the version contains redhat suffix it is removed. Then the version is converted to OSGi
      * version. It also removes all redhat suffixed artifacts (with given groupId, artifactId and
