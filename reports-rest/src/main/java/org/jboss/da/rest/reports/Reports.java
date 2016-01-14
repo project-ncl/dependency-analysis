@@ -5,6 +5,7 @@ import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
@@ -13,6 +14,7 @@ import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
+import org.jboss.da.rest.listings.model.RestProductInput;
 import org.jboss.da.rest.model.ErrorMessage;
 import org.jboss.da.rest.reports.model.AdvancedReport;
 import org.jboss.da.rest.reports.model.LookupReport;
@@ -179,7 +181,7 @@ public class Reports {
         return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
                 report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(),
                 dependencies,
-                report.isBlacklisted(), report.isWhitelisted(), report.getNotBuiltDependencies());
+                report.isBlacklisted(), toWhitelisted(report.getWhitelisted()), report.getNotBuiltDependencies());
     }
 
     private static AdvancedReport toAdvancedReport(AdvancedArtifactReport advancedArtifactReport) {
@@ -194,16 +196,20 @@ public class Reports {
 
     private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {
         return new LookupReport(gav, lookupResult.getBestMatchVersion().orElse(null),
-                lookupResult.getAvailableVersions(), isBlacklisted(gav), isWhitelisted(gav));
+                lookupResult.getAvailableVersions(), isBlacklisted(gav),
+                toWhitelisted(getWhitelisted(gav)));
+    }
+
+    private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
+        throw new UnsupportedOperationException("Not supported yet."); // TODO
+    }
+
+    private List<ProductVersion> getWhitelisted(GAV gav) {
+        throw new UnsupportedOperationException("Not supported yet.");// TODO
     }
 
     private boolean isBlacklisted(GAV gav) {
         return blackArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
-                gav.getVersion());
-    }
-
-    private boolean isWhitelisted(GAV gav) {
-        return whiteArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
                 gav.getVersion());
     }
 

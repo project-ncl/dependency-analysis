@@ -8,6 +8,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
+import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
@@ -119,7 +120,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         report.addAvailableVersions(result.getAvailableVersions());
         report.setBestMatchVersion(result.getBestMatchVersion());
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
-        report.setWhitelisted(whiteArtifactService.isArtifactPresent(gav));
+        report.setWhitelisted(getWhitelistedProducts(gav));
         return report;
     }
 
@@ -199,6 +200,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private boolean isDependencyAModule(File repoFolder, ArtifactReport dependency) {
         return pomAnalyzer.getPOMFileForGAV(repoFolder, dependency.getGav()).isPresent();
+    }
+
+    private List<ProductVersion> getWhitelistedProducts(GAV gav) {
+        throw new UnsupportedOperationException("Not supported yet."); // TODO
     }
 
 }

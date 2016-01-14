@@ -81,34 +81,6 @@ public class Artifacts {
         return convert.toRestProductGAVList(productVersionService.getAll());
     }
 
-    @GET
-    @Path("/whitelist/gav")
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Check if an artifact is in the whitelist",
-            response = ContainsResponse.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Artifact is not in the whitelist",
-                    response = ContainsResponse.class),
-            @ApiResponse(code = 400, message = "All parameters are required",
-                    response = ErrorMessage.class) })
-    public Response isWhiteArtifactPresent(@QueryParam("groupid") String groupId,
-            @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
-        if (groupId == null || artifactId == null || version == null)
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(new ErrorMessage("All parameters are required")).build();
-        ContainsResponse response = new ContainsResponse();
-
-        List<WhiteArtifact> artifacts = whiteService.getArtifacts(groupId, artifactId, version);
-        response.setFound(convert.toRestArtifacts(artifacts));
-        response.setContains(!artifacts.isEmpty());
-
-        if (artifacts.isEmpty()) {
-            return Response.status(Response.Status.NOT_FOUND).entity(response).build();
-        } else {
-            return Response.ok(response).build();
-        }
-    }
-
     @POST
     @Path("/whitelist/gav")
     @Consumes(MediaType.APPLICATION_JSON)
