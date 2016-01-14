@@ -4,13 +4,30 @@ import sys
 import fileinput
 
 
-def getList(artifact):
+def formatProduct(product):
+    return product["name"] + ":" + product["version"] + " " + product["supportStatus"]
+
+def getBestSupportStatus(products):
+    status = "UNKNOWN"
+    for product in products:
+        ps = product["supportStatus"]
+        if (  (status == "UNKNOWN" and ps in {"UNSUPPORTED", "SUPERSEDED", "SUPPORTED"})
+           or (status == "UNSUPPORTED" and ps in {"SUPERSEDED", "SUPPORTED"})
+           or (status == "SUPERSEDED" and ps in {"SUPPORTED"}) ):
+            status = product["supportStatus"]
+    return status
+
+def getList(artifact, raw):
     if artifact["blacklisted"] and artifact["whitelisted"]:
         return "both lists"
     elif artifact["blacklisted"]:
         return "blacklisted"
     elif artifact["whitelisted"]:
-        return "whitelisted"
+        products = artifact["whitelisted"]
+        if raw:
+            return ",".join(map(formatProduct, products))
+        else:
+            return "whitelisted (" + str(len(products)) + ", " + getBestSupportStatus(products) + ")"
     else:
         return "graylisted"
 
@@ -36,7 +53,7 @@ def getDependencyVersionsSatisfied(artifact):
         return str(artifact["notBuiltDependencies"]) + " dependencies not built"
 
 def printReport(artifact, depth = None):
-    lists = getList(artifact)
+    lists = getList(artifact, depth is None)
     versions = getAvailableVersions(artifact, depth is None)
     gav = getGAV(artifact)
     bestMatch = str(artifact["bestMatchVersion"])
@@ -69,7 +86,7 @@ def printReportAdv(data):
 def printLookup(artifact):
     gav = getGAV(artifact)
     bestMatch = str(artifact["bestMatchVersion"])
-    lists = getList(artifact)
+    lists = getList(artifact, True)
     versions = getAvailableVersions(artifact, True)
 
     print gav + "\t" + bestMatch + "\t" + lists + "\t" + versions
