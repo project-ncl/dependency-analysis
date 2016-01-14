@@ -166,26 +166,25 @@ parse_pom_bw_report_options() {
 
     local wrong_option=""
 
-    for key in "$@"
-    do
-        case ${key} in
-            --transitive) pom_transitive_flag=true;;
-            --raw)        raw_output="--raw";;
-            -*)           wrong_option="${key}";;
-            *)            pom_path="${key}";;
-        esac
-    done
-
-    # set a default value for pom_path if not specified by user
-    if [ -z "${pom_path}" ]; then
-        pom_path=$(pwd)
-    fi
+    case $1 in
+        --transitive) pom_transitive_flag=true;;
+        -*)           wrong_option="${key}";;
+        *)            pom_path="${key}";;
+    esac
 
     # if wrong flag passed
     if ! [ -z "${wrong_option}" ]; then
         echo ""
         echo "Wrong option: '${wrong_option}' specified. Aborting"
         exit 1
+    fi
+
+    if [ ${pom_transitive_flag} == true ]; then
+        pom_path="$2"
+        prod_version="$3"
+    else
+        pom_path="$1"
+        prod_version="$2"
     fi
 
     # if path does not exist
@@ -235,7 +234,7 @@ pom_bw_junit_xml() {
         echo "${line}" >> ${pkg_list_file}
     done
 
-    python ${basedir}/testsuite.py ${pkg_list_file}
+    python ${basedir}/testsuite.py ${pkg_list_file} ${prod_version}
 
     rm ${tmpfile}
     rm ${pkg_list_file}
