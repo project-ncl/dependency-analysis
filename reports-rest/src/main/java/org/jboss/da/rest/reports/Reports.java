@@ -14,9 +14,12 @@ import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
+import org.jboss.da.rest.listings.model.RestGavProducts;
 import org.jboss.da.rest.listings.model.RestProductInput;
 import org.jboss.da.rest.model.ErrorMessage;
 import org.jboss.da.rest.reports.model.AdvancedReport;
+import org.jboss.da.rest.reports.model.GAVAvailableVersions;
+import org.jboss.da.rest.reports.model.GAVBestMatchVersion;
 import org.jboss.da.rest.reports.model.LookupReport;
 import org.jboss.da.rest.reports.model.Report;
 import org.slf4j.Logger;
@@ -32,7 +35,9 @@ import javax.ws.rs.core.Response.Status;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
@@ -185,13 +190,46 @@ public class Reports {
     }
 
     private static AdvancedReport toAdvancedReport(AdvancedArtifactReport advancedArtifactReport) {
-
         Report report = toReport(advancedArtifactReport.getArtifactReport());
         return new AdvancedReport(report, advancedArtifactReport.getBlacklistedArtifacts(),
-                advancedArtifactReport.getWhitelistedArtifacts(),
-                advancedArtifactReport.getCommunityGavsWithBestMatchVersions(),
-                advancedArtifactReport.getCommunityGavsWithBuiltVersions(),
+                toRestGAVProducts(advancedArtifactReport.getWhitelistedArtifacts()),
+                toGAVBestMatchVersions(advancedArtifactReport
+                        .getCommunityGavsWithBestMatchVersions()),
+                toGAVAvailableVersions(advancedArtifactReport.getCommunityGavsWithBuiltVersions()),
                 advancedArtifactReport.getCommunityGavs());
+    }
+
+    private static Set<GAVBestMatchVersion> toGAVBestMatchVersions(Map<GAV, String> bestMatchVersions){
+        return bestMatchVersions.entrySet().stream()
+                .map(e -> new GAVBestMatchVersion(e.getKey(), e.getValue()))
+                .collect(Collectors.toSet());
+
+    }
+
+    private static Set<GAVAvailableVersions> toGAVAvailableVersions(Map<GAV, Set<String>> buildVersions){
+        return buildVersions.entrySet().stream()
+                .map(e -> new GAVAvailableVersions(e.getKey(), e.getValue()))
+                .collect(Collectors.toSet());
+    }
+
+    private static Set<RestGavProducts> toRestGAVProducts(Map<GAV, Set<ProductVersion>> whitelistedArtifacts){
+        return whitelistedArtifacts.entrySet().stream()
+                .map(e -> new RestGavProducts(e.getKey(), toRestProductInputs(e.getValue())))
+                .collect(Collectors.toSet());
+    }
+
+    private static Set<RestProductInput> toRestProductInputs(Set<ProductVersion> product){
+        return product.stream()
+                .map(p -> toRestProductInput(p))
+                .collect(Collectors.toSet());
+    }
+
+    private static RestProductInput toRestProductInput(ProductVersion product) {
+        RestProductInput ret = new RestProductInput();
+        ret.setName(product.getProduct().getName());
+        ret.setVersion(product.getProductVersion());
+        ret.setSupportStatus(product.getSupport());
+        return ret;
     }
 
     private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {

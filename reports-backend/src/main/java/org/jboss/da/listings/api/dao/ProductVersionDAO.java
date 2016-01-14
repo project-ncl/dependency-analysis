@@ -96,5 +96,5 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
      * @return
      */
     List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactsByGAStatus(
-            String groupId, String artifactId, SupportStatus status);
+            String groupId, String artifactId, Optional<SupportStatus> status);
 }
