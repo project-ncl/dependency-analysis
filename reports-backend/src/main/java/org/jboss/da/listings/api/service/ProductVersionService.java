@@ -69,7 +69,7 @@ public interface ProductVersionService {
 
     /**
      *  Find ProductVersions with specific status that contains Artifact with specific groupId, artifactId
-     * 
+     *
      * @param groupId
      * @param artifactId
      * @param status
@@ -77,4 +77,15 @@ public interface ProductVersionService {
      */
     List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(
             String groupId, String artifactId, SupportStatus status);
+
+    /**
+     *  Find ProductVersions with any status that contains Artifact with specific groupId, artifactId
+     *
+     * @param groupId
+     * @param artifactId
+     * @return
+     */
+    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGA(String groupId,
+            String artifactId);
+
 }

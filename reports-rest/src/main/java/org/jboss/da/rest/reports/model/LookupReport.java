@@ -2,6 +2,7 @@ package org.jboss.da.rest.reports.model;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.rest.listings.model.RestProductInput;
 
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -41,7 +42,7 @@ public class LookupReport {
 
     @Getter
     @Setter
-    private boolean whitelisted;
+    private List<RestProductInput> whitelisted;
 
     // **************************************************************************
     // Keep `getGroupId`, `getArtifactId`, and `getVersion` here for Swagger,

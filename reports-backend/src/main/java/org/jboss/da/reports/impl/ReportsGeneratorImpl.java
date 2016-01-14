@@ -8,8 +8,9 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
+import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.Product;
@@ -31,6 +32,8 @@ import java.util.Set;
 
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
+import java.util.stream.Collectors;
+
 /**
  * The implementation of reports, which provides information about
  * built/not built artifacts/blacklisted artifacts
@@ -50,9 +53,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private BlackArtifactService blackArtifactService;
 
     @Inject
-    private WhiteArtifactService whiteArtifactService;
-
-    @Inject
     private DependencyTreeGenerator dependencyTreeGenerator;
 
     @Inject
@@ -60,6 +60,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Inject
     private PomAnalyzer pomAnalyzer;
+
+    @Inject
+    private ProductVersionService productVersionService;
 
     @Override
     public Optional<ArtifactReport> getReportFromSCM(SCMLocator scml) throws ScmException,
@@ -80,14 +83,11 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml)
-            throws ScmException,
-            PomAnalysisException, CommunicationException {
+    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml) throws ScmException, PomAnalysisException, CommunicationException {
         Optional<ArtifactReport> artifactReport = getReportFromSCM(scml);
         // TODO: hardcoded to git
         // hopefully we'll get the cached cloned folder for this repo
-        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(),
-                scml.getRevision());
+        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(), scml.getRevision());
         return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder));
     }
 
@@ -119,7 +119,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         report.addAvailableVersions(result.getAvailableVersions());
         report.setBestMatchVersion(result.getBestMatchVersion());
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
-        report.setWhitelisted(whiteArtifactService.isArtifactPresent(gav));
+        report.setWhitelisted(getWhitelistedProducts(gav));
         return report;
     }
 
@@ -154,12 +154,13 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private void populateAdvancedArtifactReportFields(AdvancedArtifactReport advancedReport,
             ArtifactReport report, Set<GAV> modulesAnalyzed, File repoFolder) {
         for (ArtifactReport dep : report.getDependencies()) {
-            if (modulesAnalyzed.contains(dep.getGav())) {
+            final GAV gav = dep.getGav();
+            if (modulesAnalyzed.contains(gav)) {
                 // if module already analyzed, skip
                 continue;
             } else if (isDependencyAModule(repoFolder, dep)) {
                 // if dependency is a module, but not yet analyzed
-                modulesAnalyzed.add(dep.getGav());
+                modulesAnalyzed.add(gav);
                 populateAdvancedArtifactReportFields(advancedReport, dep, modulesAnalyzed,
                         repoFolder);
             } else {
@@ -168,37 +169,41 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                     continue;
 
                 // we have a top-level module dependency
-                if (dep.isWhitelisted())
-                    advancedReport.addWhitelistedArtifact(dep.getGav());
+                if (!dep.getWhitelisted().isEmpty())
+                    advancedReport.addWhitelistedArtifact(gav, new HashSet<>(dep.getWhitelisted()));
                 if (dep.isBlacklisted())
-                    advancedReport.addBlacklistedArtifact(dep.getGav());
+                    advancedReport.addBlacklistedArtifact(gav);
 
                 if (dep.getBestMatchVersion().isPresent()) {
-                    advancedReport.addCommunityGavWithBestMatchVersion(dep.getGav());
-                } else if (!dep.getAvailableVersions().isEmpty()
-                        || hasWhitelistedGA(dep.getGroupId(), dep.getArtifactId())) {
-                    advancedReport.addCommunityGavWithBuiltVersion(dep.getGav());
+                    advancedReport.addCommunityGavWithBestMatchVersion(gav, dep
+                            .getBestMatchVersion().get());
                 } else {
-                    advancedReport.addCommunityGav(dep.getGav());
+                    Set<String> versions = getWhitelistedVersions(dep.getGroupId(),
+                            dep.getArtifactId());
+                    if (!dep.getAvailableVersions().isEmpty() || !versions.isEmpty()) {
+                        versions.addAll(dep.getAvailableVersions());
+                        advancedReport.addCommunityGavWithBuiltVersion(dep.getGav(), versions);
+                    } else {
+                        advancedReport.addCommunityGav(gav);
+                    }
                 }
             }
         }
     }
 
-    private boolean hasWhitelistedGA(String groupId, String artifactId) {
-        if (whiteArtifactService.getAll() == null) {
-            return false;
-        }
-        return whiteArtifactService
-                .getAll()
+    private Set<String> getWhitelistedVersions(String groupId, String artifactId) {
+        return productVersionService.getProductVersionsWithArtifactsByGA(groupId, artifactId)
                 .stream()
-                .anyMatch(
-                        white -> white.getGa().getArtifactId().equals(artifactId)
-                                && white.getGa().getGroupId().equals(groupId));
+                .map(rel -> rel.getArtifact().getVersion())
+                .collect(Collectors.toCollection(() -> new HashSet<>()));
     }
 
     private boolean isDependencyAModule(File repoFolder, ArtifactReport dependency) {
         return pomAnalyzer.getPOMFileForGAV(repoFolder, dependency.getGav()).isPresent();
+    }
+
+    private List<ProductVersion> getWhitelistedProducts(GAV gav) {
+        throw new UnsupportedOperationException("Not supported yet."); // TODO
     }
 
 }

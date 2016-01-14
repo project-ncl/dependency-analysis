@@ -83,6 +83,11 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     }
 
     @Override
+    public boolean isArtifactPresent(GAV gav) {
+        return isArtifactPresent(gav.getGroupId(), gav.getArtifactId(), gav.getVersion());
+    }
+
+    @Override
     public boolean isArtifactPresent(String groupId, String artifactId, String version) {
         return getArtifact(groupId, artifactId, version).isPresent();
     }

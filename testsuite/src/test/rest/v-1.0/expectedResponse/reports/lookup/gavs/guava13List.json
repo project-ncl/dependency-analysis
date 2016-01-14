@@ -8,7 +8,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
@@ -22,7 +22,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
@@ -36,7 +36,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
@@ -50,7 +50,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
@@ -64,7 +64,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
@@ -78,7 +78,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
@@ -92,7 +92,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
@@ -106,7 +106,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
@@ -120,7 +120,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
@@ -134,7 +134,7 @@
       "13.0.1.redhat-2"
     ],
     "blacklisted": false,
-    "whitelisted": false,
+    "whitelisted": [],
     "groupId": "com.google.guava",
     "artifactId": "guava",
     "version": "13.0.1"
