@@ -61,6 +61,7 @@ class DependencyAnalysis:
         list_group.add_argument('--whitelist-products', help='Show Whitelisted products',
                                 const='all', nargs='?', metavar=GAV)
         list_group.add_argument('--whitelist-ga', help='Show Whitelisted GAs', nargs=2, metavar=(GA, 'status'))
+        list_group.add_argument('--whitelist-gav', help='Show Whitelisted GAV', nargs='+', metavar=(GAV, 'status'))
         list_group.add_argument('--whitelist-gavs', help='Show Whitelisted GAVs', metavar='status')
 
 
@@ -126,6 +127,18 @@ class DependencyAnalysis:
             self.validate_ga_format(ga)
             self.validate_status_string(status)
             self.print_whitelist_ga(ga, status)
+        elif self.args.whitelist_gav:
+            gav = self.args.whitelist_gav[0]
+            statuses = []
+            if len(self.args.whitelist_gav) > 1:
+                statuses = self.args.whitelist_gav[1:]
+
+            for status in statuses:
+                self.validate_status_string(status)
+            self.validate_gav_format(gav)
+
+            self.print_whitelist_gav(gav, statuses)
+
         elif self.args.whitelist_gavs:
             status = self.args.whitelist_gavs
             self.validate_status_string(status)
@@ -234,6 +247,20 @@ class DependencyAnalysis:
 
         r = requests.get(self.da_server + endpoint)
         helper_print_white_artifacts_products(r.json())
+
+    def print_whitelist_gav(self, gav, statuses):
+        gid, aid, ver = gav.split(':')
+        endpoint = "/listings/whitelist/artifacts/gav?groupid={}&artifactid={}&version={}".format(gid, aid, ver)
+        r = requests.get(self.da_server + endpoint)
+        response = r.json()
+
+        # filter response if the status is specified
+        filtered_response = response
+
+        if type(response) == list and r.status_code == 200 and statuses:
+            filtered_response = [gav for gav in response if gav['supportStatus'] in statuses]
+
+        helper_print_white_artifacts_products(filtered_response, show_artifacts=True)
 
     def print_whitelist_gavs(self, status):
         endpoint = "/listings/whitelist/artifacts/status?status=" + status
