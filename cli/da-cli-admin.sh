@@ -64,9 +64,6 @@ printUsage() {
     echo "    $0 delete whitelist-product PRODUCT_NAME:VERSION"
     echo "        Delete product from white list"
     echo ""
-    echo "    $0 pom-bw [--transitive] [path]";
-    echo "        Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status."
-    echo ""
     echo "    $0 pom-bw-junit-xml [--transitive] [path]";
     echo "        Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status, and generate a JUnit XML file"
     echo ""
@@ -102,6 +99,9 @@ printUsage() {
     echo "          <groupId>:<artifactId>:<version> <Best Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
     echo "DEPRECATED"
+    echo "    $0 pom-bw";
+    echo "        This option was deprecated, use scm-report-advanced instead."
+    echo ""
     echo "    $0 pom-report";
     echo "        This option was deprecated, use scm-report instead."
     echo ""
@@ -122,7 +122,7 @@ case $action in
     check) check $2 $3;;
     list) list $2 $3 $4;;
     update) update $2 $3 $4;;
-    pom-bw) pom_bw $2 $3;;
+    pom-bw) echo "This option was deprecated, use scm-report-advanced instead." ;;
     pom-bw-junit-xml) pom_bw_junit_xml $2 $3;;
     pom-report) echo "This option was deprecated, use scm-report instead." ;;
     scm-report) scm_report $2 $3 $4 $5;;
