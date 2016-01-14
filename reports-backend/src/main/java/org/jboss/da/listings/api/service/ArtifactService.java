@@ -2,7 +2,6 @@ package org.jboss.da.listings.api.service;
 
 import java.util.List;
 
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.model.Artifact;
 
 /**
@@ -24,25 +23,6 @@ public interface ArtifactService<T extends Artifact> {
     public enum ArtifactStatus {
         ADDED, NOT_MODIFIED, IS_BLACKLISTED, WAS_WHITELISTED
     };
-
-    /**
-     * Checks if list contains artifact with specific groupId, artifactId and version.
-     * All restrictions and conversions are applied like using getArtifact method of specific list.
-     *
-     * @param groupId
-     * @param artifactId
-     * @param version
-     * @return True if list contains the artifact otherwise false.
-     */
-    boolean isArtifactPresent(String groupId, String artifactId, String version);
-
-    /**
-     * Checks if list contains artifact with specific GAV.
-     * All restrictions and conversions are applied like using getArtifact method of specific list.
-     * @param gav
-     * @return True if list contains the artifact otherwise false.
-     */
-    boolean isArtifactPresent(GAV gav);
 
     /**
      * Finds and return all artifacts.
