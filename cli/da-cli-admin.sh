@@ -70,8 +70,9 @@ printUsage() {
     echo "    $0 delete whitelist-product PRODUCT_NAME:VERSION"
     echo "        Delete product from white list"
     echo ""
-    echo "    $0 pom-bw-junit-xml [--transitive] [path]";
+    echo "    $0 pom-bw-junit-xml [--transitive] path [PRODUCT_NAME:VERSION]";
     echo "        Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status, and generate a JUnit XML file"
+    echo "        If PRODUCT_NAME:VERSION is specified, the dependencies which are in the white list of the product will be considered as PASS; anything else will be considered as FAIL"
     echo ""
     echo "DEPENDENCY REPORTS"
     echo "    Dependency reports can be used to get detail information about artifact or project dependencies."
@@ -129,7 +130,7 @@ case $action in
     list) list $2 $3 $4;;
     update) update $2 $3 $4;;
     pom-bw) echo "This option was deprecated, use scm-report-advanced instead." ;;
-    pom-bw-junit-xml) pom_bw_junit_xml $2 $3;;
+    pom-bw-junit-xml) pom_bw_junit_xml $2 $3 $4;;
     pom-report) echo "This option was deprecated, use scm-report instead." ;;
     scm-report) scm_report $2 $3 $4 $5;;
     scm-report-advanced) scm_report_adv $2 $3 $4 $5;;

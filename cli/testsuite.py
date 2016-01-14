@@ -55,37 +55,61 @@ class Testsuite:
         with open(xml_file, "w") as f:
             f.write(xml_str)
 
+def is_blacklisted(pkgs_blacklist, gav):
+    gid, aid, ver = gav.split(':')
+    for pkg in pkgs_blacklist:
+        if pkg['groupId'] == gid and \
+           pkg['artifactId'] == aid and \
+           pkg['version'] == ver:
+               return True
 
-def is_in_list(type_of_list, gav):
-    """
-    type_of_list can be: 'whitelist' or 'blacklist'
-    """
-    gav_broken = gav.split(':')
-    group_id = gav_broken[0]
-    artifact_id = gav_broken[1]
-    version = gav_broken[2].strip()
+    return False
 
-    request = "listings/" + type_of_list + \
-              "/gav?groupid=" + group_id + \
-              "&artifactid=" + artifact_id + \
-              "&version=" + version
+def is_whitelisted(pkgs_whitelist, gav):
+    gid, aid, ver = gav.split(':')
+    for pkg in pkgs_whitelist:
+        pkg = pkg['gav']
+        if pkg['groupId'] == gid and \
+           pkg['artifactId'] == aid and \
+           pkg['version'] == ver:
+               return True
 
-    full_request = "http://" + DA_MAIN_SERVER + "/" + request
-    r = requests.get(full_request)
+    return False
 
-    return r.status_code == 200
-
-
-def is_blacklisted(gav):
-    return is_in_list('blacklist', gav)
-
-
-def is_whitelisted(gav):
-    return is_in_list('whitelist', gav)
+def get_list(color):
+    endpoint = "/listings/" + color + "list"
+    r = requests.get("http://" + DA_MAIN_SERVER + endpoint )
+    return r.json()
 
 
-def main(filename, xml_file):
+def pkgs_in_whitelist(product_version):
+    pkgs = get_list('white')
 
+    if product_version:
+        product, version = product_version.split(':')
+
+        # filter whitelist based on the product name and version
+        filtered_pkgs_in_whitelist = []
+
+        for pkg in pkgs:
+            if pkg['name'] == product and pkg['version'] == version:
+                filtered_pkgs_in_whitelist.append(pkg)
+
+        pkgs = filtered_pkgs_in_whitelist
+
+    return pkgs
+
+def pkgs_in_blacklist():
+    return get_list('black')
+
+def main(filename, xml_file, product_version):
+
+    # [ {'name': <>, 'version': <>, 'supportStatus': <>,
+    # 'gav': {'groupId': <>, 'artifactId': <>, 'version': <>}]
+    packages_in_whitelist = pkgs_in_whitelist(product_version)
+
+    # [ {'groupId': <>, 'artifactId': <>, 'version': <>} ]
+    packages_in_blacklist = pkgs_in_blacklist()
 
     packages = set()
     testsuite = Testsuite()
@@ -96,13 +120,19 @@ def main(filename, xml_file):
 
     for gav in packages:
 
-        if is_whitelisted(gav):
+        if is_whitelisted(packages_in_whitelist, gav):
             testsuite.add_passing_testcase('whitelist', gav)
-        elif is_blacklisted(gav):
+        elif is_blacklisted(packages_in_blacklist, gav):
             testsuite.add_failing_testcase('blacklist', gav, gav + ' is in the blacklist')
         else:
-            # if not in list, consider it as passed
-            testsuite.add_passing_testcase('no-list', gav)
+            # See DA-227
+            # if not in list, and product_version not specified, consider it as passed
+            if product_version is None:
+                testsuite.add_passing_testcase('graylist', gav)
+            else:
+                # if not in list, and product_version specified, consider it as failed
+                testsuite.add_failing_testcase('Not In the GAVs for the product ' + \
+                    product_version, gav, gav + ' is not in the whitelisted GAVs for the product ' + product_version)
 
     testsuite.write_doc(xml_file)
 
@@ -110,7 +140,18 @@ def main(filename, xml_file):
 if __name__ == '__main__':
     if len(sys.argv) <= 1:
         print("Not enough paramaters")
-        print("<script> <file of GAVs>")
+        print("<script> <file of GAVs> [PRODUCT_NAME:VERSION]")
         sys.exit(1)
 
-    main(sys.argv[1], 'junit.xml')
+    product_version = None
+
+    if len(sys.argv) > 2:
+        product_version = sys.argv[2]
+
+    # validate the input
+    if product_version and product_version.count(':') != 1:
+        print("PRODUCT_NAME:VERSION format has to be used!")
+        print("Exiting")
+        sys.exit(1)
+
+    main(sys.argv[1], 'junit.xml', product_version)
