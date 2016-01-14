@@ -79,6 +79,7 @@ list() {
         black) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --black;;
         whitelist-products) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --whitelist-products $2;;
         whitelist-ga) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --whitelist-ga $2 $3;;
+        whitelist-gav) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --whitelist-gav $2 $3;;
         whitelist-gavs) ${basedir}/da-cli-script.py --server http://${DA_MAIN_SERVER} list --whitelist-gavs $2;;
         *) echo "I don't know this option"
     esac
