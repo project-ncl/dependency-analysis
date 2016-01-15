@@ -1,11 +1,15 @@
 package org.jboss.da.rest.reports.model;
 
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.rest.listings.model.RestGavProducts;
+import org.jboss.da.rest.listings.model.RestProductInput;
+
+import java.util.Map;
 import java.util.Set;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @RequiredArgsConstructor
 public class AdvancedReport {
@@ -20,15 +24,15 @@ public class AdvancedReport {
 
     @Getter
     @NonNull
-    private Set<GAV> whitelistedArtifacts;
+    private Set<RestGavProducts> whitelistedArtifacts;
 
     @Getter
     @NonNull
-    private Set<GAV> communityGavsWithBestMatchVersions;
+    private Set<GAVBestMatchVersion> communityGavsWithBestMatchVersions;
 
     @Getter
     @NonNull
-    private Set<GAV> communityGavsWithBuiltVersions;
+    private Set<GAVAvailableVersions> communityGavsWithBuiltVersions;
 
     @Getter
     @NonNull

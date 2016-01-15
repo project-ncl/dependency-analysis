@@ -28,8 +28,4 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
         return getDAO().findAll();
     }
 
-    @Override
-    public boolean isArtifactPresent(GAV gav) {
-        return isArtifactPresent(gav.getGroupId(), gav.getArtifactId(), gav.getVersion());
-    }
 }

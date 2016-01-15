@@ -9,7 +9,10 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
+
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.rest.listings.model.RestProduct;
+import org.jboss.da.rest.listings.model.RestProductInput;
 
 /**
  *
@@ -50,14 +53,14 @@ public class Report {
     private final boolean blacklisted;
 
     @Getter
-    private final boolean whitelisted;
+    private final List<RestProductInput> whitelisted;
 
     @Getter
     private final int notBuiltDependencies;
 
     public Report(GAV gav, List<String> availableVersions, String bestMatchVersion,
             boolean dependencyVersionsSatisfied, List<Report> dependencies, boolean blacklisted,
-            boolean whitelisted, int notBuiltDependencies) {
+            List<RestProductInput> whitelisted, int notBuiltDependencies) {
         this(gav.getGroupId(), gav.getArtifactId(), gav.getVersion(), availableVersions,
                 bestMatchVersion, dependencyVersionsSatisfied, dependencies, blacklisted,
                 whitelisted, notBuiltDependencies);

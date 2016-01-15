@@ -357,7 +357,10 @@ scm_report_adv() {
     tmpfile=`gettmpfile`
     post "reports/scm-advanced" "$scmJSON" >> $tmpfile
     case $type in
-        pretty) cat $tmpfile | prettyPrint reportAdv | column -t -s $'\t' ;;
+        pretty) cat $tmpfile | prettyPrint reportAdvSum | column -t -s $'\t'
+                echo
+                cat $tmpfile | prettyPrint reportAdv | column -t -s $'\t'
+            ;;
         json) cat $tmpfile ;;
     esac
     rm $tmpfile

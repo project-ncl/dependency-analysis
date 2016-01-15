@@ -1,8 +1,13 @@
 package org.jboss.da.reports.api;
 
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.listings.api.model.ProductVersion;
+
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,34 +18,34 @@ public class AdvancedArtifactReport {
     private ArtifactReport artifactReport;
 
     @Getter
-    private Set<GAV> blacklistedArtifacts = new HashSet<>();
+    private final Set<GAV> blacklistedArtifacts = new HashSet<>();
 
     @Getter
-    private Set<GAV> whitelistedArtifacts = new HashSet<>();
+    private final Map<GAV, Set<ProductVersion>> whitelistedArtifacts = new HashMap<>();
 
     @Getter
-    private Set<GAV> communityGavsWithBestMatchVersions = new HashSet<>();
+    private final Map<GAV, String> communityGavsWithBestMatchVersions = new HashMap<>();
 
     @Getter
-    private Set<GAV> communityGavsWithBuiltVersions = new HashSet<>();
+    private final Map<GAV, Set<String>> communityGavsWithBuiltVersions = new HashMap<>();
 
     @Getter
-    private Set<GAV> communityGavs = new HashSet<>();
+    private final Set<GAV> communityGavs = new HashSet<>();
 
     public void addBlacklistedArtifact(GAV gav) {
         blacklistedArtifacts.add(gav);
     }
 
-    public void addWhitelistedArtifact(GAV gav) {
-        whitelistedArtifacts.add(gav);
+    public void addWhitelistedArtifact(GAV gav, Set<ProductVersion> products) {
+        whitelistedArtifacts.put(gav, products);
     }
 
-    public void addCommunityGavWithBestMatchVersion(GAV gav) {
-        communityGavsWithBestMatchVersions.add(gav);
+    public void addCommunityGavWithBestMatchVersion(GAV gav, String bestMatch) {
+        communityGavsWithBestMatchVersions.put(gav, bestMatch);
     }
 
-    public void addCommunityGavWithBuiltVersion(GAV gav) {
-        communityGavsWithBuiltVersions.add(gav);
+    public void addCommunityGavWithBuiltVersion(GAV gav, Set<String> versions) {
+        communityGavsWithBuiltVersions.put(gav, versions);
     }
 
     public void addCommunityGav(GAV gav) {
