@@ -167,26 +167,25 @@ parse_pom_bw_report_options() {
 
     local wrong_option=""
 
-    for key in "$@"
-    do
-        case ${key} in
-            --transitive) pom_transitive_flag=true;;
-            --raw)        raw_output="--raw";;
-            -*)           wrong_option="${key}";;
-            *)            pom_path="${key}";;
-        esac
-    done
-
-    # set a default value for pom_path if not specified by user
-    if [ -z "${pom_path}" ]; then
-        pom_path=$(pwd)
-    fi
+    case $1 in
+        --transitive) pom_transitive_flag=true;;
+        -*)           wrong_option="${key}";;
+        *)            pom_path="${key}";;
+    esac
 
     # if wrong flag passed
     if ! [ -z "${wrong_option}" ]; then
         echo ""
         echo "Wrong option: '${wrong_option}' specified. Aborting"
         exit 1
+    fi
+
+    if [ ${pom_transitive_flag} == true ]; then
+        pom_path="$2"
+        prod_version="$3"
+    else
+        pom_path="$1"
+        prod_version="$2"
     fi
 
     # if path does not exist
@@ -236,78 +235,10 @@ pom_bw_junit_xml() {
         echo "${line}" >> ${pkg_list_file}
     done
 
-    python ${basedir}/testsuite.py ${pkg_list_file}
+    python ${basedir}/testsuite.py ${pkg_list_file} ${prod_version}
 
     rm ${tmpfile}
     rm ${pkg_list_file}
-}
-
-pom_bw() {
-
-    parse_pom_bw_report_options "$@"
-
-    mvn_opts=""
-    if [ ${pom_transitive_flag} = true ]; then
-        mvn_opts="$mvn_opts"
-    else
-        mvn_opts="$mvn_opts -DexcludeTransitive=true"
-    fi
-
-    if [ -t 1 ]; then
-        RED="$(tput setaf 1)"
-        GREEN="$(tput setaf 2)"
-        YELLOW="$(tput setaf 3)"
-        DEFAULT="$(tput sgr0)"
-    fi
-
-    tmpfile=`gettmpfile`
-    pushd "${pom_path}" > /dev/null
-    mvn -q dependency:list -DoutputFile=$tmpfile -DappendOutput=true $mvn_opts
-
-    if [ $? -ne 0 ]; then
-        rm $tmpfile
-        echo ""
-        echo ""
-        echo "================================================================="
-        echo "'mvn dependency:list' command failed."
-        echo "Consider running 'mvn clean install' before running the pom-bw command again to fix the issue"
-        echo "================================================================="
-        exit
-    fi
-
-    popd > /dev/null
-
-    sort -u $tmpfile | grep "^ *.*:.*:.*:.*"| sed "s/^ *//" | awk 'BEGIN {IFS=":"; FS=":"; OFS=":"} {print $1,$2,$4}' | while read line; do
-        wresp=`check white $line`
-        bresp=`check black $line`
-        if echo $wresp | grep -q "is whitelisted"; then
-            wl=true
-        elif echo $wresp | grep -q "is NOT whitelisted"; then
-            wl=false
-        else
-            echo "Error communicating with Black&White list service"
-            break
-        fi
-        if echo $bresp | grep -q "is blacklisted"; then
-            bl=true
-        elif echo $bresp | grep -q "is NOT blacklisted"; then
-            bl=false
-        else
-            echo "Error communicating with Black&White list service"
-            break
-        fi
-        if $wl && $bl; then
-            echo "${YELLOW}Both lists: $line"
-        elif $wl; then
-            echo "${GREEN}whitelisted: $line"
-        elif $bl; then
-            echo "${RED}blacklisted: $line"
-        else
-            echo "${DEFAULT}graylisted:  $line"
-        fi
-    done
-    echo -n "$DEFAULT"
-    rm $tmpfile
 }
 
 scm_report() {

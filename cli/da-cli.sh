@@ -48,11 +48,9 @@ printUsage() {
     echo "        List all artifacts in the white list with a particular status"
     echo "        STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
     echo ""
-    echo "    $0 pom-bw [--transitive] [path]";
-    echo "        Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status."
-    echo ""
-    echo "    $0 pom-bw-junit-xml [--transitive] [path]";
+    echo "    $0 pom-bw-junit-xml [--transitive] path [PRODUCT_NAME:VERSION]";
     echo "        Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status, and generate a JUnit XML file"
+    echo "        If PRODUCT_NAME:VERSION is specified, the dependencies which are in the white list of the product will be considered as PASS; anything else will be considered as FAIL"
     echo ""
     echo "DEPENDENCY REPORTS"
     echo "    Dependency reports can be used to get detail information about artifact or project dependencies."
@@ -86,6 +84,9 @@ printUsage() {
     echo "          <groupId>:<artifactId>:<version> <Best Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
     echo "DEPRECATED"
+    echo "    $0 pom-bw";
+    echo "        This option was deprecated, use scm-report-advanced instead."
+    echo ""
     echo "    $0 pom-report";
     echo "        This option was deprecated, use scm-report instead."
     echo ""
@@ -103,8 +104,8 @@ action=$1
 case $action in
     check) check $2 $3;;
     list) list $2 $3 $4;;
-    pom-bw) pom_bw $2 $3;;
-    pom-bw-junit-xml) pom_bw_junit_xml $2 $3;;
+    pom-bw) echo "This option was deprecated, use scm-report-advanced instead." ;;
+    pom-bw-junit-xml) pom_bw_junit_xml $2 $3 $4;;
     pom-report) echo "This option was deprecated, use scm-report instead." ;;
     scm-report) scm_report $2 $3 $4 $5;;
     scm-report-advanced) scm_report_adv $2 $3 $4 $5;;
