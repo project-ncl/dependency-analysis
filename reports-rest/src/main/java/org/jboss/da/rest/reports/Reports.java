@@ -6,7 +6,9 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
@@ -34,6 +36,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -68,6 +71,9 @@ public class Reports {
 
     @Inject
     private WhiteArtifactService whiteArtifactService;
+
+    @Inject
+    private ProductVersionService productVersionService;
 
     @Inject
     private BlackArtifactService blackArtifactService;
@@ -239,11 +245,14 @@ public class Reports {
     }
 
     private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
-        throw new UnsupportedOperationException("Not supported yet."); // TODO
+        return whitelisted.stream()
+                .map(pv -> new RestProductInput(pv.getProduct().getName(), pv.getProductVersion(), pv.getSupport()))
+                .collect(Collectors.toList());
     }
 
     private List<ProductVersion> getWhitelisted(GAV gav) {
-        throw new UnsupportedOperationException("Not supported yet.");// TODO
+        return productVersionService.getProductVersionsOfArtifact(gav.getGroupId(),
+                gav.getArtifactId(), gav.getVersion());
     }
 
     private boolean isBlacklisted(GAV gav) {

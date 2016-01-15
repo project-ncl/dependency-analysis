@@ -9,6 +9,7 @@ import org.jboss.da.listings.api.model.Product;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
 import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.VersionLookupResult;
@@ -55,6 +56,9 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private WhiteArtifactService whiteArtifactService;
+
+    @Mock
+    private ProductVersionService productVersionService;
 
     @InjectMocks
     @Spy
@@ -104,8 +108,9 @@ public class ReportsGeneratorImplTest {
         when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV, versions)).thenReturn(
                 Optional.ofNullable(best));
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
-        // when(whiteArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(whitelisted); // TODO - set service to properly
-        // set whitelisted
+        when(
+                productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),
+                        daCoreGAV.getArtifactId(), daCoreGAV.getVersion())).thenReturn(whitelisted);
         when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
     }
 
@@ -122,8 +127,10 @@ public class ReportsGeneratorImplTest {
         when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV, daCoreVersionsBest)).thenReturn(
                 Optional.ofNullable(bestMatchVersion));
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
-        // when(whiteArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false); // TODO - set service to properly set
-        // whitelisted to empty list
+        when(
+                productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),
+                        daCoreGAV.getArtifactId(), daCoreGAV.getVersion())).thenReturn(
+                Collections.EMPTY_LIST);
 
         when(versionFinderImpl.getBuiltVersionsFor(daCommonGAV)).thenReturn(daCoreVersionsNoBest);
         when(versionFinderImpl.lookupBuiltVersions(daCommonGAV)).thenReturn(
@@ -133,8 +140,10 @@ public class ReportsGeneratorImplTest {
         when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV, daCoreVersionsNoBest))
                 .thenReturn(Optional.empty());
         when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
-        // when(whiteArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false); // TODO - set service to properly set
-        // whitelisted to empty list
+        when(
+                productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),
+                        daCoreGAV.getArtifactId(), daCoreGAV.getVersion())).thenReturn(
+                Collections.EMPTY_LIST);
     }
 
     @Test(expected = IllegalArgumentException.class)
