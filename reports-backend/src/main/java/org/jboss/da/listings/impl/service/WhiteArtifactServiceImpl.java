@@ -133,11 +133,6 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     }
 
     @Override
-    public boolean isArtifactPresent(String groupId, String artifactId, String version) {
-        return !getArtifacts(groupId, artifactId, version).isEmpty();
-    }
-
-    @Override
     public boolean removeArtifact(String groupId, String artifactId, String version) {
         Optional<WhiteArtifact> artifact = whiteArtifactDAO.findArtifact(groupId, artifactId,
                 version);

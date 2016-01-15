@@ -1,11 +1,12 @@
 package org.jboss.da.rest.listings.model;
 
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
+import org.jboss.da.communication.model.GAV;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -14,17 +15,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@XmlRootElement(name = "product")
-@XmlAccessorType(XmlAccessType.FIELD)
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class RestProductInput {
+public class RestGavProducts {
 
     @Getter
     @Setter
-    protected String name;
+    protected String groupId;
+
+    @Getter
+    @Setter
+    protected String artifactId;
 
     @Getter
     @Setter
@@ -32,6 +35,10 @@ public class RestProductInput {
 
     @Getter
     @Setter
-    @XmlAttribute(required = false)
-    protected SupportStatus supportStatus;
+    protected Set<RestProductInput> products;
+
+    public RestGavProducts(GAV gav, Set<RestProductInput> products) {
+        this(gav.getGroupId(), gav.getArtifactId(), gav.getVersion(), products);
+    }
+
 }

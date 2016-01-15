@@ -5,7 +5,10 @@ import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
@@ -13,8 +16,12 @@ import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
+import org.jboss.da.rest.listings.model.RestGavProducts;
+import org.jboss.da.rest.listings.model.RestProductInput;
 import org.jboss.da.rest.model.ErrorMessage;
 import org.jboss.da.rest.reports.model.AdvancedReport;
+import org.jboss.da.rest.reports.model.GAVAvailableVersions;
+import org.jboss.da.rest.reports.model.GAVBestMatchVersion;
 import org.jboss.da.rest.reports.model.LookupReport;
 import org.jboss.da.rest.reports.model.Report;
 import org.slf4j.Logger;
@@ -29,8 +36,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
@@ -61,6 +71,9 @@ public class Reports {
 
     @Inject
     private WhiteArtifactService whiteArtifactService;
+
+    @Inject
+    private ProductVersionService productVersionService;
 
     @Inject
     private BlackArtifactService blackArtifactService;
@@ -179,31 +192,71 @@ public class Reports {
         return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
                 report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(),
                 dependencies,
-                report.isBlacklisted(), report.isWhitelisted(), report.getNotBuiltDependencies());
+                report.isBlacklisted(), toWhitelisted(report.getWhitelisted()), report.getNotBuiltDependencies());
     }
 
     private static AdvancedReport toAdvancedReport(AdvancedArtifactReport advancedArtifactReport) {
-
         Report report = toReport(advancedArtifactReport.getArtifactReport());
         return new AdvancedReport(report, advancedArtifactReport.getBlacklistedArtifacts(),
-                advancedArtifactReport.getWhitelistedArtifacts(),
-                advancedArtifactReport.getCommunityGavsWithBestMatchVersions(),
-                advancedArtifactReport.getCommunityGavsWithBuiltVersions(),
+                toRestGAVProducts(advancedArtifactReport.getWhitelistedArtifacts()),
+                toGAVBestMatchVersions(advancedArtifactReport
+                        .getCommunityGavsWithBestMatchVersions()),
+                toGAVAvailableVersions(advancedArtifactReport.getCommunityGavsWithBuiltVersions()),
                 advancedArtifactReport.getCommunityGavs());
+    }
+
+    private static Set<GAVBestMatchVersion> toGAVBestMatchVersions(Map<GAV, String> bestMatchVersions){
+        return bestMatchVersions.entrySet().stream()
+                .map(e -> new GAVBestMatchVersion(e.getKey(), e.getValue()))
+                .collect(Collectors.toSet());
+
+    }
+
+    private static Set<GAVAvailableVersions> toGAVAvailableVersions(Map<GAV, Set<String>> buildVersions){
+        return buildVersions.entrySet().stream()
+                .map(e -> new GAVAvailableVersions(e.getKey(), e.getValue()))
+                .collect(Collectors.toSet());
+    }
+
+    private static Set<RestGavProducts> toRestGAVProducts(Map<GAV, Set<ProductVersion>> whitelistedArtifacts){
+        return whitelistedArtifacts.entrySet().stream()
+                .map(e -> new RestGavProducts(e.getKey(), toRestProductInputs(e.getValue())))
+                .collect(Collectors.toSet());
+    }
+
+    private static Set<RestProductInput> toRestProductInputs(Set<ProductVersion> product){
+        return product.stream()
+                .map(p -> toRestProductInput(p))
+                .collect(Collectors.toSet());
+    }
+
+    private static RestProductInput toRestProductInput(ProductVersion product) {
+        RestProductInput ret = new RestProductInput();
+        ret.setName(product.getProduct().getName());
+        ret.setVersion(product.getProductVersion());
+        ret.setSupportStatus(product.getSupport());
+        return ret;
     }
 
     private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {
         return new LookupReport(gav, lookupResult.getBestMatchVersion().orElse(null),
-                lookupResult.getAvailableVersions(), isBlacklisted(gav), isWhitelisted(gav));
+                lookupResult.getAvailableVersions(), isBlacklisted(gav),
+                toWhitelisted(getWhitelisted(gav)));
+    }
+
+    private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
+        return whitelisted.stream()
+                .map(pv -> new RestProductInput(pv.getProduct().getName(), pv.getProductVersion(), pv.getSupport()))
+                .collect(Collectors.toList());
+    }
+
+    private List<ProductVersion> getWhitelisted(GAV gav) {
+        return productVersionService.getProductVersionsOfArtifact(gav.getGroupId(),
+                gav.getArtifactId(), gav.getVersion());
     }
 
     private boolean isBlacklisted(GAV gav) {
         return blackArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
-                gav.getVersion());
-    }
-
-    private boolean isWhitelisted(GAV gav) {
-        return whiteArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
                 gav.getVersion());
     }
 
