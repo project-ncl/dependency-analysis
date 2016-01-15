@@ -203,7 +203,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private List<ProductVersion> getWhitelistedProducts(GAV gav) {
-        throw new UnsupportedOperationException("Not supported yet."); // TODO
+        return productVersionService.getProductVersionsOfArtifact(gav.getGroupId(),
+                gav.getArtifactId(), gav.getVersion());
     }
 
 }
