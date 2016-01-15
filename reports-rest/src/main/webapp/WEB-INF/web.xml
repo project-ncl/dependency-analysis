@@ -11,7 +11,7 @@
         </init-param>
         <init-param>
             <param-name>swagger.api.basepath</param-name>
-            <param-value>/da/rest/v-0.3</param-value>
+            <param-value>/da/rest/v-0.4</param-value>
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>
