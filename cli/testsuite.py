@@ -2,7 +2,7 @@ from xml.dom import minidom
 import sys
 import requests
 
-DA_MAIN_SERVER="ncl-test-vm-01.host.prod.eng.bos.redhat.com:8180/da/rest/v-0.3"
+DA_MAIN_SERVER="ncl-test-vm-01.host.prod.eng.bos.redhat.com:8180/da/rest/v-0.4"
 class Testsuite:
     """
     Class used to create and generate JUnit XML definitions
