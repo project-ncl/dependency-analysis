@@ -10,14 +10,16 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.jboss.da.common.Constants.REST_API_VERSION;
+import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
+
+;
 
 /**
  *
  * @author Jozef Mrazek <jmrazek@redhat.com>
  *
  */
-@ApplicationPath("/rest/v-" + REST_API_VERSION)
+@ApplicationPath("/rest/v-" + REST_API_VERSION_REPORTS)
 public class ReportsRestActivator extends Application {
 
     @Override

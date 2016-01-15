@@ -1,6 +1,6 @@
 package org.jboss.da.bc;
 
-import static org.jboss.da.common.Constants.REST_API_VERSION;
+import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -8,7 +8,7 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-@ApplicationPath("/rest/v-" + REST_API_VERSION)
+@ApplicationPath("/rest/v-" + REST_API_VERSION_BC)
 public class BCRestActivator extends Application {
 
     @Override
