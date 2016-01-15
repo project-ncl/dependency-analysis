@@ -6,7 +6,6 @@ import sys
 GAV = "GROUP_ID:ARTIFACT_ID:VERSION"
 GA  = "GROUP_ID:ARTIFACT_ID"
 PRODUCT_VERSION = "PRODUCT_NAME:VERSION"
-PRODUCT_VERSION_STATUS = "PRODUCT_NAME:VERSION:SUPPORT_STATUS"
 STATUS_VALUES   = ['SUPPORTED', 'UNSUPPORTED', 'SUPERSEDED', 'UNKNOWN']
 
 def verify_response(response, failure_msg):
@@ -94,7 +93,7 @@ class DependencyAnalysis:
         delete_group.add_argument('--white', help='Delete Whitelisted GAV, Use --product to specify product',
                                   metavar=GAV)
         delete_group.add_argument('--black', help='Delete Blacklisted GAV', metavar=GAV)
-        delete_group.add_argument('--whitelist-product', help='Delete Whitelisted Product', metavar=PRODUCT_VERSION_STATUS)
+        delete_group.add_argument('--whitelist-product', help='Delete Whitelisted Product', metavar=PRODUCT_VERSION)
 
         # parse the input
         args = parser.parse_args()
@@ -178,9 +177,9 @@ class DependencyAnalysis:
             self.validate_gav_format(gav)
             self.delete_black_artifact(gav)
         elif self.args.whitelist_product:
-            product_version_status = self.args.whitelist_product
-            self.validate_product_version_status_format(product_version_status)
-            self.delete_whitelist_product(product_version_status) 
+            product_version = self.args.whitelist_product
+            self.validate_product_version_format(product_version)
+            self.delete_whitelist_product(product_version)
     def update_artifacts(self):
         if self.args.whitelist_product:
             product_version, status = self.args.whitelist_product
@@ -196,9 +195,6 @@ class DependencyAnalysis:
 
     def validate_product_version_format(self, product_version):
         self.validate(product_version, 1, PRODUCT_VERSION)
-
-    def validate_product_version_status_format(self, product_version_status):
-        self.validate(product_version_status, 2, PRODUCT_VERSION_STATUS)
 
     def validate_gav_format(self, gav):
         self.validate(gav, 2, GAV)
@@ -361,13 +357,12 @@ class DependencyAnalysis:
     def delete_black_artifact(self, gav):
         self.delete_artifact(gav, 'black')
 
-    def delete_whitelist_product(self, product_version_support):
-        product, version, support = product_version_support.split(':')
+    def delete_whitelist_product(self, product_version):
+        product, version = product_version.split(':')
         endpoint = '/listings/whitelist/product'
         json_request = {}
         json_request['name'] = product
         json_request['version'] = version
-        json_request['supportStatus'] = support
         r = requests.delete(self.da_server + endpoint, json=json_request)
         verify_response(r.json(), "Deletion of whitelist product failed")
 
