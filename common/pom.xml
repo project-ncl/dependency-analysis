@@ -11,18 +11,18 @@
     <dependencies>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>  
+            <artifactId>resteasy-jaxrs</artifactId>
         </dependency>
-    
+
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jackson-provider</artifactId>
-        </dependency>   
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -47,4 +47,40 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>maven-replacer-plugin</artifactId>
+                <version>1.4.0</version>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <file>src/main/templates/org/jboss/da/common/Constants.java</file>
+                    <outputFile>src/main/java/org/jboss/da/common/Constants.java</outputFile>
+                    <replacements>
+                        <replacement>
+                            <token>@version.da@</token>
+                            <value>${version.da}</value>
+                        </replacement>
+                        <replacement>
+                            <token>@version.bc.rest@</token>
+                            <value>${version.bc.rest}</value>
+                        </replacement>
+                        <replacement>
+                            <token>@version.reports.rest@</token>
+                            <value>${version.reports.rest}</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
