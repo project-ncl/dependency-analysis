@@ -33,6 +33,9 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     private WhiteArtifactDAO whiteArtifactDAO;
 
     @Inject
+    private WhiteArtifactServiceImpl whiteService;
+
+    @Inject
     private GADAO gaDAO;
 
     @Override
@@ -63,7 +66,8 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
 
         ArtifactStatus status = ArtifactStatus.ADDED;
         for (WhiteArtifact wa : whites) {
-            whiteArtifactDAO.delete(wa);
+            whiteService.removeArtifact(wa.getGa().getGroupId(), wa.getGa().getArtifactId(),
+                    wa.getVersion());
             status = ArtifactStatus.WAS_WHITELISTED;
         }
         blackArtifactDAO.create(artifact);
