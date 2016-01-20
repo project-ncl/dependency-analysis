@@ -8,6 +8,41 @@ GA  = "GROUP_ID:ARTIFACT_ID"
 PRODUCT_VERSION = "PRODUCT_NAME:VERSION"
 STATUS_VALUES   = ['SUPPORTED', 'UNSUPPORTED', 'SUPERSEDED', 'UNKNOWN']
 
+def requests_post(link, json_request):
+    return requests_wrapper(requests.post, link, json_request)
+
+def requests_put(link, json_request):
+    return requests_wrapper(requests.put, link, json_request)
+
+def requests_delete(link, json_request):
+    return requests_wrapper(requests.delete, link, json_request)
+
+def requests_get(link):
+    return requests_wrapper(requests.get, link)
+
+def requests_wrapper(requests_method, link, json_request=None):
+    try:
+        if json_request:
+            reply = requests_method(link, json=json_request)
+        else:
+            reply = requests_method(link)
+
+        # this call throws an exception if the status is 4xx or 5xx
+        # we have an exception for 404, since 404 can indicate other
+        # normal stuff to the caller of the method
+        if reply.status_code != 404:
+            reply.raise_for_status()
+
+        return reply
+    except requests.exceptions.HTTPError:
+        print(">>> ERROR: Request to: {} failed <<<".format(link))
+        print(">>> Status: {} <<<".format(reply.status_code))
+
+        if json_request:
+            print(">>> JSON Data: {} <<<".format(json_request))
+
+        sys.exit(1)
+
 def verify_response(response, failure_msg):
     if 'success' in response and not response['success']:
         print(failure_msg)
@@ -210,7 +245,7 @@ class DependencyAnalysis:
             sys.exit(1)
 
     def print_black_artifacts(self):
-        r = requests.get(self.da_server + "/listings/blacklist")
+        r = requests_get(self.da_server + "/listings/blacklist")
 
         for item in r.json():
             print(item['groupId'] + ':' + item['artifactId'] + ':' + item['version'])
@@ -223,7 +258,7 @@ class DependencyAnalysis:
             endpoint = "/listings/whitelist/artifacts/product?" + \
                        "name=" + product + "&version=" + version
 
-        r = requests.get(self.da_server + endpoint)
+        r = requests_get(self.da_server + endpoint)
         helper_print_white_artifacts_products(r.json())
 
     def print_whitelist_products(self, gav=None):
@@ -234,20 +269,20 @@ class DependencyAnalysis:
         else:
             endpoint += "/products"
 
-        r = requests.get(self.da_server + endpoint)
+        r = requests_get(self.da_server + endpoint)
         helper_print_white_artifacts_products(r.json(), show_artifacts=False)
 
     def print_whitelist_ga(self, ga, status):
         gid, aid = ga.split(':')
         endpoint = "/listings/whitelist/artifacts/gastatus?groupid={}&artifactid={}&status={}".format(gid, aid, status)
 
-        r = requests.get(self.da_server + endpoint)
+        r = requests_get(self.da_server + endpoint)
         helper_print_white_artifacts_products(r.json())
 
     def print_whitelist_gav(self, gav, statuses):
         gid, aid, ver = gav.split(':')
         endpoint = "/listings/whitelist/artifacts/gav?groupid={}&artifactid={}&version={}".format(gid, aid, ver)
-        r = requests.get(self.da_server + endpoint)
+        r = requests_get(self.da_server + endpoint)
         response = r.json()
 
         # filter response if the status is specified
@@ -260,7 +295,7 @@ class DependencyAnalysis:
 
     def print_whitelist_gavs(self, status):
         endpoint = "/listings/whitelist/artifacts/status?status=" + status
-        r = requests.get(self.da_server + endpoint)
+        r = requests_get(self.da_server + endpoint)
         helper_print_white_artifacts_products(r.json())
 
 
@@ -271,7 +306,7 @@ class DependencyAnalysis:
         json_request['groupId'] = gid
         json_request['artifactId'] = aid
         json_request['version'] = ver
-        r = requests.post(self.da_server + endpoint, json=json_request)
+        r = requests_post(self.da_server + endpoint, json_request=json_request)
         verify_response(r.json(), "Addition failed")
 
     def add_white_artifact(self, gav, product_version):
@@ -283,13 +318,13 @@ class DependencyAnalysis:
         json_request['artifactId'] = aid
         json_request['version'] = ver
         json_request['productId'] = productId
-        r = requests.post(self.da_server + endpoint, json=json_request)
+        r = requests_post(self.da_server + endpoint, json_request=json_request)
         verify_response(r.json(), "Addition failed")
 
     def find_product_version_id(self, product_version):
         product, version = product_version.split(':')
         endpoint = "/listings/whitelist/product?name={}&version={}".format(product, version)
-        r = requests.get(self.da_server + endpoint)
+        r = requests_get(self.da_server + endpoint)
 
         response = r.json()
         if len(response) == 0:
@@ -306,7 +341,7 @@ class DependencyAnalysis:
         json_request['version']  = version
         json_request['supportStatus'] = status
 
-        r = requests.post(self.da_server + endpoint, json=json_request)
+        r = requests_post(self.da_server + endpoint, json_request=json_request)
         verify_response(r.json(), "Addition failed")
 
     def update_whitelist_product(self, product_version, status):
@@ -318,7 +353,7 @@ class DependencyAnalysis:
         json_request['version']  = version
         json_request['supportStatus'] = status
 
-        r = requests.put(self.da_server + endpoint, json=json_request)
+        r = requests_put(self.da_server + endpoint, json_request=json_request)
 
         if r.status_code == 404:
             print('Product not found!')
@@ -332,7 +367,7 @@ class DependencyAnalysis:
         json_request['groupId'] = gid
         json_request['artifactId'] = aid
         json_request['version'] = ver
-        r = requests.delete(self.da_server + endpoint, json=json_request)
+        r = requests_delete(self.da_server + endpoint, json_request=json_request)
         verify_response(r.json(), "Deletion of artifact failed")
 
     def delete_white_artifact_from_product(self, gav, product_version):
@@ -344,7 +379,7 @@ class DependencyAnalysis:
         json_request['artifactId'] = aid
         json_request['version'] = ver
         json_request['productId'] = productId
-        r = requests.delete(self.da_server + endpoint, json=json_request)
+        r = requests_delete(self.da_server + endpoint, json_request=json_request)
         verify_response(r.json(), "Deletion of artifact failed")
 
 
@@ -363,7 +398,7 @@ class DependencyAnalysis:
         json_request = {}
         json_request['name'] = product
         json_request['version'] = version
-        r = requests.delete(self.da_server + endpoint, json=json_request)
+        r = requests_delete(self.da_server + endpoint, json_request=json_request)
         verify_response(r.json(), "Deletion of whitelist product failed")
 
 if __name__ == "__main__":
