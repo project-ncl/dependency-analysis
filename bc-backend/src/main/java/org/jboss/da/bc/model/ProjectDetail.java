@@ -12,6 +12,8 @@ import lombok.ToString;
 
 import org.jboss.da.communication.model.GAV;
 
+import javax.validation.constraints.Pattern;
+
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
