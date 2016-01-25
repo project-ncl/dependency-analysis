@@ -143,33 +143,32 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
     }
 
     private boolean validate(ProjectHiearchy hiearchy) throws IllegalStateException {
-        if (!hiearchy.isSelected())
-            return true;
-
         boolean noerror = true;
 
-        ProjectDetail project = hiearchy.getProject();
+        if(hiearchy.isSelected()){
+            ProjectDetail project = hiearchy.getProject();
 
-        if (project.isUseExistingBc() && !project.isBcExists()) {
-            project.addError(BcError.NO_EXISTING_BC);
-            project.setUseExistingBc(false);
-            noerror = false;
-        }
+            if (project.isUseExistingBc() && !project.isBcExists()) {
+                project.addError(BcError.NO_EXISTING_BC);
+                project.setUseExistingBc(false);
+                noerror = false;
+            }
 
-        if (!project.isUseExistingBc() && project.getEnvironmentId() == null) {
-            project.addError(BcError.NO_ENV_SELECTED);
-            noerror = false;
-        }
+            if (!project.isUseExistingBc() && project.getEnvironmentId() == null) {
+                project.addError(BcError.NO_ENV_SELECTED);
+                noerror = false;
+            }
 
-        if (!project.isUseExistingBc() && project.getProjectId() == null) {
-            project.addError(BcError.NO_PROJECT_SELECTED);
-            noerror = false;
-        }
+            if (!project.isUseExistingBc() && project.getProjectId() == null) {
+                project.addError(BcError.NO_PROJECT_SELECTED);
+                noerror = false;
+            }
 
-        Matcher m = bcNamePattern.matcher(project.getName());
-        if (!m.matches()) {
-            project.addError(BcError.NO_NAME);
-            noerror = false;
+            Matcher m = bcNamePattern.matcher(project.getName());
+            if (!m.matches()) {
+                project.addError(BcError.NO_NAME);
+                noerror = false;
+            }
         }
 
         for (ProjectHiearchy dep : hiearchy.getDependencies()) {
