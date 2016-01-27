@@ -145,7 +145,7 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
     private boolean validate(ProjectHiearchy hiearchy) throws IllegalStateException {
         boolean noerror = true;
 
-        if(hiearchy.isSelected()){
+        if (hiearchy.isSelected()) {
             ProjectDetail project = hiearchy.getProject();
 
             if (project.isUseExistingBc() && !project.isBcExists()) {

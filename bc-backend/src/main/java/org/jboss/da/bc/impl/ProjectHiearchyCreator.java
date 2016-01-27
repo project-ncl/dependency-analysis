@@ -82,13 +82,14 @@ public class ProjectHiearchyCreator {
      */
     private void iterate(ProjectHiearchy hiearchy) {
         DependencyAnalysisStatus status = hiearchy.getAnalysisStatus();
-        if(DependencyAnalysisStatus.ANALYSED.equals(status) || !hiearchy.isSelected()){
+        if (DependencyAnalysisStatus.ANALYSED.equals(status) || !hiearchy.isSelected()) {
             // Dependencies already processed, search next level
             // or this dependency is not selected, but can have selected childs
             for (ProjectHiearchy dep : hiearchy.getDependencies()) {
                 iterate(dep);
             }
-        }else if(DependencyAnalysisStatus.NOT_ANALYSED.equals(status) && hiearchy.getDependencies().isEmpty()){
+        } else if (DependencyAnalysisStatus.NOT_ANALYSED.equals(status)
+                && hiearchy.getDependencies().isEmpty()) {
             // Dependencies not yet processed, get and process them
             setDependencies(hiearchy);
         }
