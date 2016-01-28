@@ -53,11 +53,11 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    private int projectId;
+    private Project project;
 
     @Getter
     @Setter
-    private int environmentId;
+    private Environment environment;
 
     @Getter
     @Setter
@@ -67,4 +67,15 @@ public class BuildConfigurationCreate {
     @Setter
     private List<Integer> productVersionIds;
 
+    public void setEnvironmentId(int id) {
+        Environment env = new Environment();
+        env.setId(id);
+        this.environment = env;
+    }
+
+    public void setProjectId(int id) {
+        Project proj = new Project();
+        proj.setId(id);
+        this.project = proj;
+    }
 }
