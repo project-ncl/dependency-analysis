@@ -6,7 +6,6 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
@@ -36,11 +35,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
@@ -159,9 +158,11 @@ public class Reports {
     public Response lookupGav(
             @ApiParam(
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") List<GAV> gavRequest) {
-        List<LookupReport> reportsList = new ArrayList<>();
 
-        boolean communicationSucceded = gavRequest.parallelStream().map((gav) -> {
+        // Use a concurrent list since we're using parallel stream to add stuff to the list
+        CopyOnWriteArrayList<LookupReport> reportsList = new CopyOnWriteArrayList<>();
+
+        boolean communicationSucceeded = gavRequest.parallelStream().map((gav) -> {
             try {
                 VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
                 LookupReport lookupReport = toLookupReport(gav, lookupResult);
@@ -175,7 +176,7 @@ public class Reports {
             return x;
         });
 
-        if (!communicationSucceded)
+        if (!communicationSucceeded)
             return Response.status(502)
                     .entity(new ErrorMessage("Communication with remote repository failed"))
                     .build();
