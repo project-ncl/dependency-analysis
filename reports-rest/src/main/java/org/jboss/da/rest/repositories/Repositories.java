@@ -47,6 +47,8 @@ public class Repositories {
                     response = ErrorMessage.class),
             @ApiResponse(code = 409,
                     message = "Repository with this name already exists with different url",
+                    response = SuccessResponse.class),
+            @ApiResponse(code = 400, message = "Name or url contain not allowed characters",
                     response = SuccessResponse.class) })
     public Response addRepository(@ApiParam(value = "repository data") Repository repository) {
         SuccessResponse response = new SuccessResponse();
@@ -67,6 +69,10 @@ public class Repositories {
                 response.setSuccess(false);
                 response.setMessage("Repository with this name already exists with different url");
                 return Response.status(Status.CONFLICT).entity(response).build();
+            case WRONG_NAME_OR_URL:
+                response.setSuccess(false);
+                response.setMessage("Name or url contain not allowed characters");
+                return Response.status(Status.BAD_REQUEST).entity(response).build();
             default:
                 response.setSuccess(false);
                 return Response.status(Status.INTERNAL_SERVER_ERROR).entity(response).build();
@@ -122,8 +128,13 @@ public class Repositories {
     @ApiResponses(value = { @ApiResponse(code = 502,
             message = "Communication with remote repository failed") })
     public Response getAllRepositories() throws CommunicationException {
-        List<Repository> repositories = aprox.getAllRepositoriesFromGroup();
-        return Response.status(Status.OK).entity(repositories).build();
+        try {
+            List<Repository> repositories = aprox.getAllRepositoriesFromGroup();
+            return Response.status(Status.OK).entity(repositories).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage("Incorect data in aprox server")).build();
+        }
     }
 
 }

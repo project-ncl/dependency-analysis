@@ -150,8 +150,13 @@ public class AproxConnectorImpl implements AproxConnector {
             throws CommunicationException {
         try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api",
                 new AproxStoresClientModule()).connect()) {
-            RemoteRepository repo = aprox.stores().load(StoreType.remote, repository.getName(),
-                    RemoteRepository.class);
+            RemoteRepository repo;
+            try {
+                repo = aprox.stores().load(StoreType.remote, repository.getName(),
+                        RemoteRepository.class);
+            } catch (IllegalArgumentException e) {
+                return RepositoryManipulationStatus.WRONG_NAME_OR_URL;
+            }
             if (repo != null && !repo.getUrl().equals(repository.getUrl())) {
                 return RepositoryManipulationStatus.NAME_EXIST_DIFFERENT_URL;
             } else if (repo == null) {
