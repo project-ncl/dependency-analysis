@@ -7,6 +7,7 @@ import javax.ws.rs.core.MediaType;
 
 import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
 import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
+import static org.jboss.da.common.Constants.DA_VERSION;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Root {
         return "<h1>Dependency analysis service REST API</h1>"
                 + "\n"
                 + "<ul><li><strong>DA Version:</strong> "
-                + "0.5.1"
+                + DA_VERSION
                 + "</li>"
                 + "\n"
                 + "<li><strong>BC REST API Version:</strong> "

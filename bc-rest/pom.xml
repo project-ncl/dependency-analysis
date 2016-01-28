@@ -52,6 +52,15 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>**/*.html</include>
+                            </includes>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
         </plugins>
