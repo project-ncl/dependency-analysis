@@ -22,6 +22,8 @@ import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
 
+import java.util.Collections;
+
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
@@ -70,38 +72,47 @@ public class FinalizerImpl implements Finalizer {
             throws CommunicationException, PNCRequestException {
         Set<Integer> ids = new HashSet<>();
         create(toplevelBc, ids);
-        return create(toplevelBc, ids);
+        return create(toplevelBc, ids).iterator().next(); // get single integer
     }
 
-    private Integer create(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws CommunicationException, PNCRequestException {
+    /**
+     * Creates Build configurations.
+     * @return Set containing:
+     *      a) single integer, when the hiearchy object is selected
+     *      b) multiple integers, when the hiearchy object is not selected AND it has selected dependencies
+     *      c) NO integer, when the hiearchy object is not selected AND it has NO selected dependencies
+     */
+    Set<Integer> create(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws CommunicationException, PNCRequestException {
         Set<Integer> nextLevelDependencyIds = new HashSet<>();
 
         for (ProjectHiearchy dep : hiearchy.getDependencies()) {
-            if (dep.isSelected()) {
-                nextLevelDependencyIds.add(create(dep, allDependencyIds));
-            }
-        }
-        
-        BuildConfiguration bc;
-        ProjectDetail project = hiearchy.getProject();
-        if (project.isUseExistingBc()) {
-            Optional<BuildConfiguration> optionalBc = bcFinder.lookupBcByScm(project.getScmUrl(), project.getScmRevision());
-            bc = optionalBc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
-        } else {
-            BuildConfigurationCreate bcc = toBC(project, nextLevelDependencyIds);
-            bc = pnc.createBuildConfiguration(bcc);
-            if (project.isCloneRepo()) {
-                try {
-                    String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
-                    bcc.setScmRepoURL(newScmUrl);
-                } catch (CommunicationException ex) {
-                    log.error("Failed to clone repo.", ex);
-                }
-            }
+            nextLevelDependencyIds.addAll(create(dep, allDependencyIds));
         }
 
-        allDependencyIds.add(bc.getId());
-        return bc.getId();
+        if(hiearchy.isSelected()){
+            BuildConfiguration bc;
+            ProjectDetail project = hiearchy.getProject();
+            if (project.isUseExistingBc()) {
+                Optional<BuildConfiguration> optionalBc = bcFinder.lookupBcByScm(project.getScmUrl(), project.getScmRevision());
+                bc = optionalBc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
+            } else {
+                BuildConfigurationCreate bcc = toBC(project, nextLevelDependencyIds);
+                if (project.isCloneRepo()) {
+                    try {
+                        String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
+                        bcc.setScmRepoURL(newScmUrl);
+                    } catch (CommunicationException ex) {
+                        log.error("Failed to clone repo.", ex);
+                    }
+                }
+                bc = pnc.createBuildConfiguration(bcc);
+            }
+
+            allDependencyIds.add(bc.getId());
+            return Collections.singleton(bc.getId());
+        }else{
+            return nextLevelDependencyIds;
+        }
     }
 
     private BuildConfigurationCreate toBC(ProjectDetail project, Set<Integer> deps) {
