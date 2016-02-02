@@ -47,7 +47,7 @@ public class BuildConfigurationsProduct extends
     @Override
     protected ProductInfoEntity start(SCMLocator scm, EntryEntity entry) throws ScmException,
             PomAnalysisException, CommunicationException {
-        ProductGeneratorEntity entity = bcg.startBCGeneration(scm, entry.getName(),
+        ProductGeneratorEntity entity = bcg.startBCGeneration(scm, entry.getId(),
                 entry.getProductVersion());
         return toInfoEntity(entity);
     }

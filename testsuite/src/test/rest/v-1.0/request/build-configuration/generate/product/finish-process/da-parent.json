@@ -1,5 +1,5 @@
 {
-    "name":"Dependency analysis - PLACEHOLDER",
+    "id":1,
     "bcSetName":"Build configuration set for org.jboss.da:parent:0.3.0",
     "pomPath":"pom.xml",
     "productVersion": "0.3",

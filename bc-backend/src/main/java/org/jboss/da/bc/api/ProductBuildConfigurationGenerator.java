@@ -15,9 +15,8 @@ import java.util.Optional;
  */
 public interface ProductBuildConfigurationGenerator {
 
-    ProductGeneratorEntity startBCGeneration(SCMLocator scm, String productName,
-            String productVersion) throws ScmException, PomAnalysisException,
-            CommunicationException;
+    ProductGeneratorEntity startBCGeneration(SCMLocator scm, int productId, String productVersion)
+            throws ScmException, PomAnalysisException, CommunicationException;
 
     ProductGeneratorEntity iterateBCGeneration(ProductGeneratorEntity projects)
             throws CommunicationException;

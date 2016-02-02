@@ -13,7 +13,7 @@ public class InfoEntity {
 
     @Getter
     @Setter
-    protected String name;
+    protected int id;
 
     @Getter
     @Setter

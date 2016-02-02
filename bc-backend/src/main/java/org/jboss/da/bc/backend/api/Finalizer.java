@@ -10,9 +10,9 @@ import org.jboss.da.communication.pnc.api.PNCRequestException;
  */
 public interface Finalizer {
 
-    public Integer createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
+    public Integer createBCs(int id, String productVersion, ProjectHiearchy toplevelBc,
             String bcSetName) throws CommunicationException, PNCRequestException;
 
-    public Integer createBCs(String name, ProjectHiearchy toplevelBc)
-            throws CommunicationException, PNCRequestException;;
+    public Integer createBCs(int id, ProjectHiearchy toplevelBc) throws CommunicationException,
+            PNCRequestException;;
 }

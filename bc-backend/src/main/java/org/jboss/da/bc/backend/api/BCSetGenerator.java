@@ -28,17 +28,17 @@ public interface BCSetGenerator {
 
     /**
      * Find the Product on PNC and create the product version for that product.
-     * If the Product already exists, re-use it.
+     * The product must already exist.
      *
      * From DA-167, if the ProductVersion already exists, we will re-use it
      * and create a new BuildConfigurationSet
      *
-     * @param name name of product to find
+     * @param productId id of product to use
      * @param productVersion version of product to create
      * @return The id of the product version created, or found
      * @throws CommunicationException Thrown if communication with PNC failed
      * @throws PNCRequestException Thrown if PNC returns an error
      */
-    Integer createProduct(String name, String productVersion) throws CommunicationException,
-            PNCRequestException;
+    Integer createProductVersion(int productId, String productVersion)
+            throws CommunicationException, PNCRequestException;
 }

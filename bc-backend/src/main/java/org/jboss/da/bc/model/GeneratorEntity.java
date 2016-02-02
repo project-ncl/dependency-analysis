@@ -13,7 +13,7 @@ public abstract class GeneratorEntity {
 
     @Getter
     @Setter
-    String name;
+    int id;
 
     @Getter
     @Setter
@@ -27,12 +27,12 @@ public abstract class GeneratorEntity {
     @Setter
     ProjectHiearchy toplevelBc;
 
-    protected GeneratorEntity(SCMLocator scm, String name, GAV gav) {
+    protected GeneratorEntity(SCMLocator scm, int id, GAV gav) {
         ProjectDetail pd = new ProjectDetail(gav);
         pd.setScmUrl(scm.getScmUrl());
         pd.setScmRevision(scm.getRevision());
 
-        this.name = name;
+        this.id = id;
         this.pomPath = scm.getPomPath();
         this.toplevelBc = new ProjectHiearchy(pd, true);
     }
@@ -44,6 +44,6 @@ public abstract class GeneratorEntity {
     @FunctionalInterface
     public interface EntityConstructor<T extends GeneratorEntity> {
 
-        T construct(SCMLocator scm, String name, GAV gav);
+        T construct(SCMLocator scm, int id, GAV gav);
     }
 }

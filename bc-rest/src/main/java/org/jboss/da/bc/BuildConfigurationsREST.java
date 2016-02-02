@@ -162,7 +162,7 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
 
     protected void fillInfoEntity(InfoEntity ie, GeneratorEntity ge) {
         ie.setBcSetName(ge.getBcSetName());
-        ie.setName(ge.getName());
+        ie.setId(ge.getId());
         ie.setPomPath(ge.getPomPath());
         ie.setTopLevelBc(toBuildConfiguration(ge.getToplevelBc()));
     }
@@ -175,7 +175,7 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
         SCMLocator scml = new SCMLocator(url, revision, path);
         GAV gav = ie.getTopLevelBc().getGav();
 
-        T ge = constructor.construct(scml, ie.getName(), gav);
+        T ge = constructor.construct(scml, ie.getId(), gav);
 
         ge.setBcSetName(ie.getBcSetName());
         ge.setToplevelBc(toProjectHiearchy(ie.getTopLevelBc()));

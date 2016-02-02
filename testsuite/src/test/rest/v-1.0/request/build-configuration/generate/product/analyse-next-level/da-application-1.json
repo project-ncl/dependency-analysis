@@ -1,5 +1,5 @@
 {
-    "name":"Dependency analysis",
+    "id":1,
     "bcSetName":"Build configuration set for org.jboss.da:application:0.3.0",
     "pomPath":"application/pom.xml",
     "productVersion": "0.3",

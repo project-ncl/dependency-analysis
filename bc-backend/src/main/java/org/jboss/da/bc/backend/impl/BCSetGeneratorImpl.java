@@ -41,27 +41,16 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
     }
 
     @Override
-    public Integer createProduct(String name, String productVersion) throws CommunicationException,
-            PNCRequestException {
-        Optional<Product> p = pnc.findProduct(name);
+    public Integer createProductVersion(int productId, String productVersion)
+            throws CommunicationException, PNCRequestException {
 
-        Product product;
-
-        // create product if it does not exist
-        if (!p.isPresent()) {
-            product = pnc.createProduct(new Product(name));
-        } else {
-            product = p.get();
-        }
-
-        Optional<ProductVersion> potentialPV = pnc.findProductVersion(product, productVersion);
+        Optional<ProductVersion> potentialPV = pnc.findProductVersion(productId, productVersion);
 
         if (potentialPV.isPresent()) {
             return potentialPV.get().getId();
         }
         // if product version doesn't exist yet, create a new one
-        ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, product
-                .getId()));
+        ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, productId));
         return pv.getId();
 
     }
