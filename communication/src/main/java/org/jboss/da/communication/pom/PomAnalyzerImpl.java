@@ -1,7 +1,7 @@
 package org.jboss.da.communication.pom;
 
-import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.apache.commons.io.FileUtils;
+import org.apache.maven.scm.ScmException;
 import org.commonjava.cartographer.CartoDataException;
 import org.commonjava.cartographer.CartographerCore;
 import org.commonjava.cartographer.graph.MavenModelProcessor;
@@ -17,13 +17,19 @@ import org.commonjava.maven.galley.maven.parse.PomPeek;
 import org.commonjava.maven.galley.maven.util.ArtifactPathUtils;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
+import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GAV;
+import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.pom.model.MavenRepository;
 import org.jboss.da.communication.pom.qualifier.DACartographerCore;
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GA;
+import org.jboss.da.scm.api.SCM;
+import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -35,6 +41,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -55,8 +62,14 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     private PomReader pomReader;
 
     @Inject
+    private SCM scmManager;
+
+    @Inject
     @DACartographerCore
     private CartographerCore carto;
+
+    @Inject
+    private Configuration config;
 
     @Override
     public GAVDependencyTree readRelationships(File pomRepoDir, File pomPath,
@@ -185,6 +198,58 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
     private GAV generateGAV(ProjectVersionRef ref) {
         return new GAV(ref.getGroupId(), ref.getArtifactId(), ref.getVersionString());
+    }
+
+    @Override
+    public List<MavenPomView> getGitPomView(String scmUrl, String revision, String pomPath,
+            List<String> repositories) throws PomAnalysisException {
+        File tempDir = null;
+        try {
+            File clonedDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
+
+            tempDir = Files.createTempDirectory("deps").toFile();
+
+            File pom = new File(clonedDir, pomPath);
+
+            Map<File, ProjectVersionRef> projectVersionRefs = getProjectVersionRefs(tempDir,
+                    Collections.singletonList(pom));
+            List<MavenPomView> poms = new ArrayList<MavenPomView>();
+            MavenPomReader mavenPomReader = carto.getGalley().getPomReader();
+            for (Map.Entry<File, ProjectVersionRef> entry : projectVersionRefs.entrySet()) {
+                poms.add(mavenPomReader.read(entry.getValue(),
+                        getRepoLocations(tempDir, clonedDir, repositories)));
+            }
+
+            return poms;
+        } catch (ScmException | IOException | GalleyMavenException e) {
+            log.warn(e.getMessage());
+        } finally {
+            FileUtils.deleteQuietly(tempDir);
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public MavenPomView getMavenPomView(InputStream is) throws ConfigurationParseException,
+            GalleyMavenException {
+        PomPeek pom = new PomPeek(is);
+
+        if (pom.getKey() == null) {
+            log.warn("Could not parse pom for GAV");
+        }
+        StringBuilder query = new StringBuilder();
+        DAConfig cfg = this.config.getConfig();
+        query.append(cfg.getAproxServer());
+        query.append("/api/group/public/");
+        Location repoLocation = new SimpleLocation(query.toString());
+
+        List<Location> repos = new ArrayList<Location>();
+        repos.add(repoLocation);
+
+        MavenPomReader mavenPomReader = carto.getGalley().getPomReader();
+        MavenPomView pomView = mavenPomReader.read(pom.getKey(), repos);
+
+        return pomView;
     }
 
     private DiscoveryResult getDiscoveryResult(File tempDir, File repoDir, ProjectVersionRef ref,
@@ -318,11 +383,12 @@ public class PomAnalyzerImpl implements PomAnalyzer {
      */
     private List<File> findAllPomFiles(File folderDir) {
 
-        Collection<File> pomFilePaths = FileUtils.listFiles(folderDir, new String[]{"xml"}, true);
+        Collection<File> pomFilePaths = FileUtils
+                .listFiles(folderDir, new String[] { "xml" }, true);
 
         List<File> paths = pomFilePaths.stream()
-                                    .filter(f -> f.getName().equals("pom.xml"))
-                                    .collect(Collectors.toList());
+                .filter(f -> f.getName().equals("pom.xml"))
+                .collect(Collectors.toList());
 
         return paths;
     }

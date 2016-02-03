@@ -29,6 +29,11 @@ public class ProductVersionServiceImpl implements ProductVersionService {
     }
 
     @Override
+    public Optional<ProductVersion> getProductVersion(long id) {
+        return Optional.ofNullable(productVersionDAO.read(id));
+    }
+
+    @Override
     public List<ProductVersion> getProductVersionsOfArtifact(String groupId, String artifactId,
             String version) {
         return productVersionDAO.findProductVersionsWithArtifact(groupId, artifactId, version);

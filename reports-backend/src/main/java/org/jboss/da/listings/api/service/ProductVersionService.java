@@ -19,6 +19,14 @@ public interface ProductVersionService {
     Optional<ProductVersion> getProductVersion(String name, String version);
 
     /**
+     * Get ProductVersion with specific id
+     * 
+     * @param id
+     * @return Optional of productVersion or empty
+     */
+    Optional<ProductVersion> getProductVersion(long id);
+
+    /**
      * Get all ProductVersions
      * 
      * @return List of productVersions
