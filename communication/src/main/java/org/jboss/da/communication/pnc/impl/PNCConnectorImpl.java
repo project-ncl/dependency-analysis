@@ -190,7 +190,7 @@ public class PNCConnectorImpl implements PNCConnector {
         ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = get(requestUrl,
                 new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {}, accessToken);
 
-        if (response.getEntity() == null && response.getResponseStatus() == Status.NO_CONTENT)
+        if (response.getResponseStatus() == Status.NO_CONTENT)
             return Collections.emptyList();
         else
             return checkAndReturn(response, accessToken).getContent();
