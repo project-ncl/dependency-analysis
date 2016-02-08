@@ -17,8 +17,8 @@ public class ProductGeneratorEntity extends GeneratorEntity {
     @Setter
     String productVersion;
 
-    public ProductGeneratorEntity(SCMLocator scm, String name, GAV gav, String productVersion) {
-        super(scm, name, gav);
+    public ProductGeneratorEntity(SCMLocator scm, int id, GAV gav, String productVersion) {
+        super(scm, id, gav);
 
         this.productVersion = productVersion;
     }

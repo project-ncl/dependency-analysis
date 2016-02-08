@@ -44,7 +44,7 @@ public class BuildConfigurationGeneratorImplTest {
     public void testValidBcName() throws Exception {
         ProductGeneratorEntity genEntity = prepareGeneratorEntity("testName-1_0");
         when(
-                finalizer.createBCs(genEntity.getName(), genEntity.getProductVersion(),
+                finalizer.createBCs(genEntity.getId(), genEntity.getProductVersion(),
                         genEntity.getToplevelBc(), genEntity.getBcSetName())).thenReturn(1);
 
         assertEquals(new Integer(1), bcGenerator.createBC(genEntity).get());
@@ -59,10 +59,10 @@ public class BuildConfigurationGeneratorImplTest {
         projectHierarchy.setSelected(true);
 
         ProductGeneratorEntity genEntity = new ProductGeneratorEntity(new SCMLocator("", "", ""),
-                null, null, null);
+                0, null, null);
         genEntity.setBcSetName("BCSetName");
         genEntity.setProductVersion("1.1");
-        genEntity.setName("ProductName");
+        genEntity.setId(0);
         genEntity.setToplevelBc(projectHierarchy);
         return genEntity;
     }

@@ -57,13 +57,13 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
     private ProjectHiearchyCreator nextLevel;
 
     private <T extends GeneratorEntity> T prepareEntity(EntityConstructor<T> constructor,
-            SCMLocator scm, String name) throws ScmException, PomAnalysisException {
+            SCMLocator scm, int id) throws ScmException, PomAnalysisException {
         GAVToplevelDependencies deps = depGenerator.getToplevelDependencies(scm);
 
         Optional<POMInfo> pomInfo = pom.getPomInfo(scm.getScmUrl(), scm.getRevision(),
                 scm.getPomPath());
 
-        T entity = constructor.construct(scm, name, deps.getGav());
+        T entity = constructor.construct(scm, id, deps.getGav());
 
         entity.getToplevelProject().setDescription(
                 ProjectHiearchyCreator.getDescription(pomInfo, deps.getGav()));
@@ -81,10 +81,10 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
     }
 
     @Override
-    public ProductGeneratorEntity startBCGeneration(SCMLocator scm, String productName,
+    public ProductGeneratorEntity startBCGeneration(SCMLocator scm, int productId,
             String productVersion) throws ScmException, PomAnalysisException {
         ProductGeneratorEntity entity = prepareEntity(
-                ProductGeneratorEntity.getConstructor(productVersion), scm, productName);
+                ProductGeneratorEntity.getConstructor(productVersion), scm, productId);
 
         GAV gav = entity.getToplevelProject().getGav();
         entity.setBcSetName(gav.toString() + "-" + UUID.randomUUID().toString().substring(0, 5));
@@ -93,10 +93,10 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
     }
 
     @Override
-    public ProjectGeneratorEntity startBCGeneration(SCMLocator scm, String projectName)
+    public ProjectGeneratorEntity startBCGeneration(SCMLocator scm, int projectId)
             throws ScmException, PomAnalysisException {
         ProjectGeneratorEntity entity = prepareEntity(ProjectGeneratorEntity.getConstructor(), scm,
-                projectName);
+                projectId);
 
         return entity;
     }
@@ -118,28 +118,24 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
             throws CommunicationException, PNCRequestException {
         if (StringUtils.isBlank(projects.getBcSetName()))
             throw new IllegalStateException("BCSet name is blank.");
-        if (StringUtils.isBlank(projects.getName()))
-            throw new IllegalStateException("Product name is blank.");
         if (StringUtils.isBlank(projects.getProductVersion()))
             throw new IllegalStateException("Product version is blank.");
 
         if (!validate(projects.getToplevelBc()))
             return Optional.empty();
 
-        return Optional.of(finalizer.createBCs(projects.getName(), projects.getProductVersion(),
+        return Optional.of(finalizer.createBCs(projects.getId(), projects.getProductVersion(),
                 projects.getToplevelBc(), projects.getBcSetName()));
     }
 
     @Override
     public Optional<Integer> createBC(ProjectGeneratorEntity projects)
             throws CommunicationException, PNCRequestException {
-        if (StringUtils.isBlank(projects.getName()))
-            throw new IllegalStateException("Project name is blank.");
 
         if (!validate(projects.getToplevelBc()))
             return Optional.empty();
 
-        return Optional.of(finalizer.createBCs(projects.getName(), projects.getToplevelBc()));
+        return Optional.of(finalizer.createBCs(projects.getId(), projects.getToplevelBc()));
     }
 
     private boolean validate(ProjectHiearchy hiearchy) throws IllegalStateException {

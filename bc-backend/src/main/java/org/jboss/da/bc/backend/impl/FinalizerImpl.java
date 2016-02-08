@@ -47,12 +47,12 @@ public class FinalizerImpl implements Finalizer {
     private BcChecker bcFinder;
 
     @Override
-    public Integer createBCs(String name, String productVersion, ProjectHiearchy toplevelBc,
+    public Integer createBCs(int productId, String productVersion, ProjectHiearchy toplevelBc,
             String bcSetName) throws CommunicationException, PNCRequestException {
         Set<Integer> ids = new HashSet<>();
         try {
             create(toplevelBc, ids);
-            int productVersionId = bcSetGenerator.createProduct(name, productVersion);
+            int productVersionId = bcSetGenerator.createProductVersion(productId, productVersion);
             bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList<>(ids));
             return productVersionId;
         } catch (CommunicationException | PNCRequestException | RuntimeException ex) {
@@ -68,8 +68,8 @@ public class FinalizerImpl implements Finalizer {
     }
 
     @Override
-    public Integer createBCs(String name, ProjectHiearchy toplevelBc)
-            throws CommunicationException, PNCRequestException {
+    public Integer createBCs(int id, ProjectHiearchy toplevelBc) throws CommunicationException,
+            PNCRequestException {
         Set<Integer> ids = new HashSet<>();
         create(toplevelBc, ids);
         return create(toplevelBc, ids).iterator().next(); // get single integer

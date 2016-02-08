@@ -1,5 +1,5 @@
 {
-    "name":"Dependency analysis",
+    "id":1,
     "pomPath":"application/pom.xml",
     "productVersion":"0.3",
     "topLevelBc":{

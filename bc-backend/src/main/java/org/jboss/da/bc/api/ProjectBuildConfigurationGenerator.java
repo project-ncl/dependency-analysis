@@ -14,8 +14,8 @@ import org.jboss.da.reports.api.SCMLocator;
  */
 public interface ProjectBuildConfigurationGenerator {
 
-    ProjectGeneratorEntity startBCGeneration(SCMLocator scm, String projectName)
-            throws ScmException, PomAnalysisException, CommunicationException;
+    ProjectGeneratorEntity startBCGeneration(SCMLocator scm, int projectId) throws ScmException,
+            PomAnalysisException, CommunicationException;
 
     ProjectGeneratorEntity iterateBCGeneration(ProjectGeneratorEntity projects)
             throws CommunicationException;

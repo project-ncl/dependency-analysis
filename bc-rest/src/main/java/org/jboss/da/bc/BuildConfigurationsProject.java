@@ -47,7 +47,7 @@ public class BuildConfigurationsProject extends
     @Override
     protected ProjectInfoEntity start(SCMLocator scm, EntryEntity entry) throws ScmException,
             PomAnalysisException, CommunicationException {
-        ProjectGeneratorEntity entity = bcg.startBCGeneration(scm, entry.getName());
+        ProjectGeneratorEntity entity = bcg.startBCGeneration(scm, entry.getId());
         return toInfoEntity(entity);
     }
 

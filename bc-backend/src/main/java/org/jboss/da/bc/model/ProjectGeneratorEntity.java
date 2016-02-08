@@ -11,8 +11,8 @@ import org.jboss.da.reports.api.SCMLocator;
 @ToString
 public class ProjectGeneratorEntity extends GeneratorEntity {
 
-    public ProjectGeneratorEntity(SCMLocator scm, String name, GAV gav) {
-        super(scm, name, gav);
+    public ProjectGeneratorEntity(SCMLocator scm, int id, GAV gav) {
+        super(scm, id, gav);
     }
 
     public static EntityConstructor<ProjectGeneratorEntity> getConstructor(){

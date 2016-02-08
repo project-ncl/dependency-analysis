@@ -1,5 +1,5 @@
 {
-    "name": "Dependency analysis",
+    "id":1,
     "scmUrl": "https://github.com/project-ncl/dependency-analysis.git",
     "pomPath": "pom.xml",
     "productVersion": "0.3",
