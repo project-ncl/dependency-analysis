@@ -5,16 +5,24 @@ import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
+import org.jboss.da.communication.scm.api.SCMConnector;
+import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
+import static org.jboss.da.listings.api.service.ArtifactService.SupportStatus.SUPERSEDED;
+import static org.jboss.da.listings.api.service.ArtifactService.SupportStatus.SUPPORTED;
+import static org.jboss.da.listings.api.service.ArtifactService.SupportStatus.UNKNOWN;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.Product;
+import org.jboss.da.reports.api.ProductArtifact;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
@@ -33,7 +41,11 @@ import java.util.Set;
 
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * The implementation of reports, which provides information about
@@ -65,6 +77,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Inject
     private ProductVersionService productVersionService;
 
+    @Inject
+    private SCMConnector scmConnector;
+
     @Override
     public Optional<ArtifactReport> getReportFromSCM(SCMLocator scml) throws ScmException,
             PomAnalysisException, CommunicationException {
@@ -95,6 +110,116 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public Optional<ArtifactReport> getReport(GAV gav, List<Product> products) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Set<AlignmentReportModule> getAligmentReport(SCMLocator scml,
+            boolean useUnknownProducts, Set<Long> productIds) throws ScmException,
+            PomAnalysisException {
+        Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
+                scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
+
+        Set<AlignmentReportModule> ret = new HashSet<>();
+        for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
+            AlignmentReportModule module = new AlignmentReportModule(e.getKey());
+            Map<GAV, Set<ProductArtifact>> internallyBuilt = module.getInternallyBuilt();
+            Map<GAV, Set<ProductArtifact>> differentVersion = module.getDifferentVersion();
+            Set<GAV> notBuilt = module.getNotBuilt();
+            Set<GAV> blacklisted = module.getBlacklisted();
+
+            for (GAV gav : e.getValue()) {
+                boolean bl = blackArtifactService.getArtifact(gav).isPresent();
+
+                if (bl) {
+                    blacklisted.add(gav);
+                }
+
+                Set<ProductArtifact> built;
+                if (!bl) {
+                    built = getBuiltInProducts(gav, productIds, useUnknownProducts);
+                } else {
+                    built = Collections.emptySet();
+                }
+                internallyBuilt.put(gav, built);
+
+                Set<ProductArtifact> different;
+                if (!bl && built.isEmpty()) {
+                    different = getDifferentInProducts(gav, productIds, useUnknownProducts);
+                } else {
+                    different = Collections.emptySet();
+                }
+                differentVersion.put(gav, different);
+
+                if (!bl && built.isEmpty() && different.isEmpty()) {
+                    notBuilt.add(gav);
+                }
+            }
+            ret.add(module);
+        }
+        return ret;
+    }
+
+    private Set<ProductArtifact> getBuiltInProducts(GAV gav, Set<Long> productIds,
+            boolean useUnknownProducts) {
+        Stream<ProductVersionArtifactRelationship> internallyStream = productVersionService
+                .getProductVersionsWithArtifactByGAV(gav.getGroupId(), gav.getArtifactId(),
+                        gav.getVersion()).stream();
+
+        Set<ProductArtifact> built = filterAndMapProducts(productIds, internallyStream);
+
+        if (useUnknownProducts) {
+            try {
+                Optional<String> bmv = versionFinderImpl.getBestMatchVersionFor(gav);
+
+                if (bmv.isPresent()) {
+                    GAV bmgav = new GAV(gav.getGA(), bmv.get());
+                    ProductArtifact pa = new ProductArtifact("Unknown", "Unknown", UNKNOWN, bmgav);
+                    built.add(pa);
+                }
+            } catch (CommunicationException ex) {
+                log.warn("Failed to get best match versions for " + gav);
+            }
+        }
+        return built;
+    }
+
+    private Set<ProductArtifact> getDifferentInProducts(GAV gav, Set<Long> productIds,
+            boolean useUnknownProducts) {
+        Stream<ProductVersionArtifactRelationship> differentStream = productVersionService
+                .getProductVersionsWithArtifactsByGA(gav.getGroupId(), gav.getArtifactId())
+                .stream();
+
+        Set<ProductArtifact> different = filterAndMapProducts(productIds, differentStream);
+
+        if (useUnknownProducts) {
+            try {
+                List<String> bmvs = versionFinderImpl.getBuiltVersionsFor(gav);
+
+                for (String bmv : bmvs) {
+                    GAV bmgav = new GAV(gav.getGA(), bmv);
+                    ProductArtifact pa = new ProductArtifact("Unknown", "Unknown", UNKNOWN, bmgav);
+                    different.add(pa);
+                }
+            } catch (CommunicationException ex) {
+                log.warn("Failed to get best match versions for " + gav);
+            }
+        }
+
+        return different;
+    }
+
+    private Set<ProductArtifact> filterAndMapProducts(Set<Long> productIds, Stream<ProductVersionArtifactRelationship> internallyStream) {
+        if(productIds.isEmpty()){ // All SUPPORTED or SUPERSEDED
+            internallyStream = internallyStream.filter(p ->
+                    p.getProductVersion().getSupport() == SUPPORTED ||
+                    p.getProductVersion().getSupport() == SUPERSEDED);
+        }else{ // Specified
+            internallyStream = internallyStream.filter(p -> productIds.contains(p.getProductVersion().getId()));
+        }
+
+        return internallyStream
+                .map(x -> toProductArtifact(x))
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
     @Override
@@ -208,12 +333,15 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 gav.getArtifactId(), gav.getVersion());
     }
 
-    @Override
-    public Set<AlignmentReportModule> getAligmentReport(SCMLocator scml,
-            boolean useUnknownProducts, Set<Long> productIds) throws ScmException,
-            PomAnalysisException {
-        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose Tools |
-                                                                       // Templates.
+    private ProductArtifact toProductArtifact(ProductVersionArtifactRelationship pa) {
+        ProductArtifact ret = new ProductArtifact();
+        GAV gav = new GAV(pa.getArtifact().getGa().getGroupId(), pa.getArtifact().getGa()
+                .getArtifactId(), pa.getArtifact().getVersion());
+        ret.setArtifact(gav);
+        ret.setProductName(pa.getProductVersion().getProduct().getName());
+        ret.setProductVersion(pa.getProductVersion().getProductVersion());
+        ret.setSupportStatus(pa.getProductVersion().getSupport());
+        return ret;
     }
 
 }
