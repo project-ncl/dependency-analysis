@@ -12,6 +12,7 @@ import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
+import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.Product;
 import org.jboss.da.reports.api.ReportsGenerator;
@@ -205,6 +206,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private List<ProductVersion> getWhitelistedProducts(GAV gav) {
         return productVersionService.getProductVersionsOfArtifact(gav.getGroupId(),
                 gav.getArtifactId(), gav.getVersion());
+    }
+
+    @Override
+    public Set<AlignmentReportModule> getAligmentReport(SCMLocator scml,
+            boolean useUnknownProducts, Set<Long> productIds) throws ScmException,
+            PomAnalysisException {
+        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose Tools |
+                                                                       // Templates.
     }
 
 }
