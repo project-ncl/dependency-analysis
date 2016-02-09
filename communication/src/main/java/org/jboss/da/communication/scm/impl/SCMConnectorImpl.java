@@ -3,10 +3,13 @@ package org.jboss.da.communication.scm.impl;
 import java.io.File;
 import java.util.List;
 import java.util.Optional;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
@@ -14,6 +17,9 @@ import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -85,5 +91,15 @@ public class SCMConnectorImpl implements SCMConnector {
 
         return pomAnalyzer.getPOMFileForGAV(tempDir, gav)
                 .flatMap(file -> pomAnalyzer.readPom(file));
+    }
+
+    @Override
+    public Map<GA, Set<GAV>> getDependenciesOfModules(String scmUrl, String revision,
+            String pomPath, List<String> repositories) throws ScmException, PomAnalysisException {
+        // git clone
+        // TODO: hardcoded to git right now
+        File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
+
+        return pomAnalyzer.getDependenciesOfModules(tempDir, pomPath, repositories);
     }
 }

@@ -2,11 +2,16 @@ package org.jboss.da.communication.scm.api;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -26,6 +31,20 @@ public interface SCMConnector {
      * @throws ScmException When checking out the repository failed
      */
     GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String pomPath,
+            List<String> repositories) throws ScmException, PomAnalysisException;
+
+    /**
+     * Finds first level dependencies for each (transitive) module of given pom.
+     *
+     * @param scmUrl
+     * @param revision
+     * @param pomPath path to the pom for the analysis.
+     * @param repositories optional repositories to take into account when analyzing poms.
+     * @return Mapping from module GA to set of dependencies GAVs.
+     * @throws PomAnalysisException When there is problem with the pom analysis
+     * @throws ScmException When checking out the repository failed
+     */
+    Map<GA, Set<GAV>> getDependenciesOfModules(String scmUrl, String revision, String pomPath,
             List<String> repositories) throws ScmException, PomAnalysisException;
 
     /**

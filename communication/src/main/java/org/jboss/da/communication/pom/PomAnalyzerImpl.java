@@ -23,6 +23,7 @@ import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.pom.model.MavenRepository;
 import org.jboss.da.communication.pom.qualifier.DACartographerCore;
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.communication.model.GA;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -203,6 +204,34 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
         MavenModelProcessor processor = new MavenModelProcessor();
         return processor.readRelationships(pomView, src, disConf);
+    }
+
+    @Override
+    public Map<GA, Set<GAV>> getDependenciesOfModules(File scmDir, String pomPath,
+            List<String> repositories) throws PomAnalysisException {
+        try (GalleyWrapper wrapper = new GalleyWrapper(carto.getGalley(), scmDir)) {
+            wrapper.addCentralLocation();
+            wrapper.addLocations(repositories);
+            wrapper.addLocationsFromPoms(pomReader);
+
+            GalleyWrapper.Artifact rootPom = wrapper.getPom(pomPath);
+
+            Set<GalleyWrapper.Artifact> allModules = wrapper.getAllModules(rootPom);
+
+            Map<GA, Set<GAV>> ret = new HashMap<>();
+            for (GalleyWrapper.Artifact a : allModules) {
+                try {
+                    Set<GAV> dependencies = wrapper.getDependencies(a);
+                    ret.put(a.getGAV().getGA(), dependencies);
+                } catch (PomAnalysisException ex) {
+                    log.warn("Failed to get dependencies for module " + a, ex);
+                }
+            }
+            return ret;
+        } catch (IOException | PomAnalysisException ex) {
+            throw new PomAnalysisException("Failted to get dependencies of modules for "
+                    + new File(scmDir, pomPath), ex);
+        }
     }
 
     private List<Location> getRepoLocations(File cacheDir, File repoDir, List<String> repositories) {
