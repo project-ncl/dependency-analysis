@@ -48,7 +48,8 @@ public class VersionParser {
 
     public Matcher getVersionMatcher(String version) {
         String nonRedhatVersion = removeRedhatSuffix(version);
-        return Pattern.compile(nonRedhatVersion + PATTERN_SUFFIX_BUILT_VERSION).matcher("");
+        return Pattern.compile(Pattern.quote(nonRedhatVersion) + PATTERN_SUFFIX_BUILT_VERSION)
+                .matcher("");
     }
 
     public static boolean isRedhatVersion(String version) {
