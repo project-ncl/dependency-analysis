@@ -17,6 +17,8 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
     private static String PATH_REPORTS_GAV = "/reports/gav";
 
+    private static String PATH_REPORTS_ALIGN = "/reports/align";
+
     private static String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 
     private static String PATH_SCM = "/reports/scm";
@@ -55,6 +57,13 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
     @Test
     public void testScmReportBasic() throws Exception {
         ClientResponse<String> response = assertResponseForRequest(PATH_SCM, "dependency-analysis");
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    public void testAlignReportBasic() throws Exception {
+        ClientResponse<String> response = assertResponseForRequest(PATH_REPORTS_ALIGN,
+                "dependency-analysis");
         assertEquals(200, response.getStatus());
     }
 

@@ -6,11 +6,14 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.api.service.ArtifactService;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
+import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
+import org.jboss.da.reports.api.ProductArtifact;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.api.VersionLookupResult;
@@ -19,10 +22,16 @@ import org.jboss.da.rest.listings.model.RestGavProducts;
 import org.jboss.da.rest.listings.model.RestProductInput;
 import org.jboss.da.rest.model.ErrorMessage;
 import org.jboss.da.rest.reports.model.AdvancedReport;
+import org.jboss.da.rest.reports.model.AlignReport;
+import org.jboss.da.rest.reports.model.AlignReportRequest;
 import org.jboss.da.rest.reports.model.GAVAvailableVersions;
 import org.jboss.da.rest.reports.model.GAVBestMatchVersion;
 import org.jboss.da.rest.reports.model.LookupReport;
 import org.jboss.da.rest.reports.model.Report;
+import org.jboss.da.rest.reports.model.RestGA2GAVs;
+import org.jboss.da.rest.reports.model.RestGA2RestGAV2VersionProducts;
+import org.jboss.da.rest.reports.model.RestGAV2VersionProducts;
+import org.jboss.da.rest.reports.model.RestVersionProduct;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -40,7 +49,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -184,6 +195,30 @@ public class Reports {
             return Response.status(Status.OK).entity(reportsList).build();
     }
 
+    @POST
+    @Path("/align")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get alignment report for project specified in a repository URL.",
+            response = AlignReport.class)
+    public Response alignReport(AlignReportRequest request) {
+
+        String pomPath = request.getPomPath();
+        if (pomPath == null || pomPath.isEmpty()) {
+            pomPath = "pom.xml";
+        }
+        SCMLocator locator = new SCMLocator(request.getScmUrl(), request.getRevision(), pomPath,
+                request.getAdditionalRepos());
+        try {
+            Set<AlignmentReportModule> aligmentReport = reportsGenerator.getAligmentReport(locator,
+                    request.isSearchUnknownProducts(), request.getProducts());
+            return Response.status(Status.OK).entity(toAlignReport(aligmentReport)).build();
+        } catch (ScmException | PomAnalysisException e) {
+            log.error("Exception thrown in scm endpoint", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
+        }
+    }
+
     private static Report toReport(ArtifactReport report) {
         List<Report> dependencies = report.getDependencies()
                 .stream()
@@ -259,6 +294,89 @@ public class Reports {
     private boolean isBlacklisted(GAV gav) {
         return blackArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
                 gav.getVersion());
+    }
+
+    private AlignReport toAlignReport(Set<AlignmentReportModule> aligmentReport) {
+        AlignReport ret = new AlignReport();
+
+        Set<RestGA2RestGAV2VersionProducts> internallyBuilt = ret.getInternallyBuilt();
+        Set<RestGA2RestGAV2VersionProducts> builtInDifferentVersion = ret
+                .getBuiltInDifferentVersion();
+        Set<RestGA2GAVs> notBuilt = ret.getNotBuilt();
+        Set<RestGA2GAVs> blacklisted = ret.getBlacklisted();
+
+        for (AlignmentReportModule module : aligmentReport) {
+            Set<RestGAV2VersionProducts> ib = toRestGAV2VersionProducts(module.getInternallyBuilt());
+            Set<RestGAV2VersionProducts> dv = toRestGAV2VersionProducts(module
+                    .getDifferentVersion());
+            Set<GAV> nb = module.getNotBuilt();
+            Set<GAV> bl = module.getBlacklisted();
+
+            if (!ib.isEmpty()) {
+                RestGA2RestGAV2VersionProducts ibm = new RestGA2RestGAV2VersionProducts();
+                ibm.setGroupId(module.getModule().getGroupId());
+                ibm.setArtifactId(module.getModule().getArtifactId());
+                ibm.setGavProducts(ib);
+                internallyBuilt.add(ibm);
+            }
+
+            if (!dv.isEmpty()) {
+                RestGA2RestGAV2VersionProducts dvm = new RestGA2RestGAV2VersionProducts();
+                dvm.setGroupId(module.getModule().getGroupId());
+                dvm.setArtifactId(module.getModule().getArtifactId());
+                dvm.setGavProducts(dv);
+                builtInDifferentVersion.add(dvm);
+            }
+
+            if (!nb.isEmpty()) {
+                RestGA2GAVs nbm = new RestGA2GAVs();
+                nbm.setGroupId(module.getModule().getGroupId());
+                nbm.setArtifactId(module.getModule().getArtifactId());
+                nbm.setGavs(nb);
+                notBuilt.add(nbm);
+            }
+
+            if (!bl.isEmpty()) {
+                RestGA2GAVs blm = new RestGA2GAVs();
+                blm.setGroupId(module.getModule().getGroupId());
+                blm.setArtifactId(module.getModule().getArtifactId());
+                blm.setGavs(bl);
+                blacklisted.add(blm);
+            }
+        }
+        return ret;
+    }
+
+    private Set<RestGAV2VersionProducts> toRestGAV2VersionProducts(Map<GAV, Set<ProductArtifact>> ib) {
+        return ib.entrySet().stream()
+                .filter(e -> !e.getValue().isEmpty())
+                .map(e -> toRestGAV2VersionProducts(e.getKey(), e.getValue()))
+                .collect(Collectors.toSet());
+    }
+
+    private RestGAV2VersionProducts toRestGAV2VersionProducts(GAV gav,
+            Set<ProductArtifact> productArtifacts) {
+        RestGAV2VersionProducts ret = new RestGAV2VersionProducts();
+        ret.setGroupId(gav.getGroupId());
+        ret.setArtifactId(gav.getArtifactId());
+        ret.setVersion(gav.getVersion());
+        ret.setGavProducts(toRestVersionProducts(productArtifacts));
+        return ret;
+    }
+
+    private Set<RestVersionProduct> toRestVersionProducts(Set<ProductArtifact> productArtifacts) {
+        return productArtifacts.stream()
+                .map(x -> toRestVersionProduct(x))
+                .collect(Collectors.toSet());
+    }
+
+    private RestVersionProduct toRestVersionProduct(ProductArtifact productArtifact) {
+        RestVersionProduct ret = new RestVersionProduct();
+        ret.setVersion(productArtifact.getArtifact().getVersion());
+        RestProductInput rpi = new RestProductInput(productArtifact.getProductName(),
+                productArtifact.getProductVersion(), productArtifact.getSupportStatus());
+        ret.setProduct(rpi);
+        return ret;
     }
 
 }

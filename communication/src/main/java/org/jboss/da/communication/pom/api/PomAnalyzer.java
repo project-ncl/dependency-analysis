@@ -7,9 +7,13 @@ import java.util.Optional;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -48,5 +52,8 @@ public interface PomAnalyzer {
     GAVDependencyTree readRelationships(File pomRepoDir, GAV gav) throws PomAnalysisException;
 
     public Optional<File> getPOMFileForGAV(File tempDir, GAV gav);
+
+    public Map<GA, Set<GAV>> getDependenciesOfModules(File scmDir, String pomPath,
+            List<String> repositories) throws PomAnalysisException;
 
 }

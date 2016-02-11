@@ -8,6 +8,7 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  *
@@ -53,5 +54,15 @@ public interface ReportsGenerator {
      */
     public ArtifactReport getReport(GAV gav) throws CommunicationException,
             FindGAVDependencyException;
+
+    /**
+     * Creates an aligment report.
+     * @param scml
+     * @param productIds Optional list of product ids to filter the result.
+     * @return
+     */
+    public Set<AlignmentReportModule> getAligmentReport(SCMLocator scml,
+            boolean useUnknownProducts, Set<Long> productIds) throws ScmException,
+            PomAnalysisException;
 
 }
