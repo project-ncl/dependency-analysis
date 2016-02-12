@@ -105,7 +105,8 @@ public class Reports {
                     .orElseGet(() -> Response.status(Status.NOT_FOUND)
                             .entity(new ErrorMessage("No relationship found")).build());
 
-        } catch (ScmException|PomAnalysisException|IllegalArgumentException|CommunicationException e) {
+        } catch (ScmException | PomAnalysisException | IllegalArgumentException
+                | CommunicationException e) {
             log.error("Exception thrown in scm endpoint", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
         }
@@ -121,14 +122,16 @@ public class Reports {
 
         try {
 
-            Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator.getAdvancedReportFromSCM(scm);
+            Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator
+                    .getAdvancedReportFromSCM(scm);
 
             return advancedArtifactReport
                     .map(x -> Response.ok().entity(toAdvancedReport(x)).build())
                     .orElseGet(() -> Response.status(Status.NOT_FOUND)
                             .entity(new ErrorMessage("No relationship found")).build());
 
-        } catch (ScmException|PomAnalysisException|IllegalArgumentException|CommunicationException e) {
+        } catch (ScmException | PomAnalysisException | IllegalArgumentException
+                | CommunicationException e) {
             log.error("Exception thrown in scm endpoint", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
         }
@@ -150,7 +153,7 @@ public class Reports {
             return Response.ok().entity(toReport(artifactReport)).build();
         } catch (CommunicationException ex) {
             log.error("Communication with remote repository failed", ex);
-            return Response.status(502).entity(ex).build();
+            return Response.status(502).entity(new ErrorMessage(ex.getMessage())).build();
         } catch (FindGAVDependencyException ex) {
             log.error("Could not find gav in AProx", ex);
             return Response.status(Status.NOT_FOUND)
@@ -228,7 +231,8 @@ public class Reports {
         return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
                 report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(),
                 dependencies,
-                report.isBlacklisted(), toWhitelisted(report.getWhitelisted()), report.getNotBuiltDependencies());
+                report.isBlacklisted(), toWhitelisted(report.getWhitelisted()),
+                report.getNotBuiltDependencies());
     }
 
     private static AdvancedReport toAdvancedReport(AdvancedArtifactReport advancedArtifactReport) {
@@ -241,26 +245,29 @@ public class Reports {
                 advancedArtifactReport.getCommunityGavs());
     }
 
-    private static Set<GAVBestMatchVersion> toGAVBestMatchVersions(Map<GAV, String> bestMatchVersions){
+    private static Set<GAVBestMatchVersion> toGAVBestMatchVersions(
+            Map<GAV, String> bestMatchVersions) {
         return bestMatchVersions.entrySet().stream()
                 .map(e -> new GAVBestMatchVersion(e.getKey(), e.getValue()))
                 .collect(Collectors.toSet());
 
     }
 
-    private static Set<GAVAvailableVersions> toGAVAvailableVersions(Map<GAV, Set<String>> buildVersions){
+    private static Set<GAVAvailableVersions> toGAVAvailableVersions(
+            Map<GAV, Set<String>> buildVersions) {
         return buildVersions.entrySet().stream()
                 .map(e -> new GAVAvailableVersions(e.getKey(), e.getValue()))
                 .collect(Collectors.toSet());
     }
 
-    private static Set<RestGavProducts> toRestGAVProducts(Map<GAV, Set<ProductVersion>> whitelistedArtifacts){
+    private static Set<RestGavProducts> toRestGAVProducts(
+            Map<GAV, Set<ProductVersion>> whitelistedArtifacts) {
         return whitelistedArtifacts.entrySet().stream()
                 .map(e -> new RestGavProducts(e.getKey(), toRestProductInputs(e.getValue())))
                 .collect(Collectors.toSet());
     }
 
-    private static Set<RestProductInput> toRestProductInputs(Set<ProductVersion> product){
+    private static Set<RestProductInput> toRestProductInputs(Set<ProductVersion> product) {
         return product.stream()
                 .map(p -> toRestProductInput(p))
                 .collect(Collectors.toSet());
@@ -281,8 +288,10 @@ public class Reports {
     }
 
     private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
-        return whitelisted.stream()
-                .map(pv -> new RestProductInput(pv.getProduct().getName(), pv.getProductVersion(), pv.getSupport()))
+        return whitelisted
+                .stream()
+                .map(pv -> new RestProductInput(pv.getProduct().getName(), pv.getProductVersion(),
+                        pv.getSupport()))
                 .collect(Collectors.toList());
     }
 
