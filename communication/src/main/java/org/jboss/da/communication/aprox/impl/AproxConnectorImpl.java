@@ -125,6 +125,15 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public Optional<MavenProject> getPom(GAV gav) throws CommunicationException {
+        Optional<InputStream> is = getPomStream(gav);
+        if (is.isPresent()) {
+            return pomAnalyzer.readPom(getPomStream(gav).get());
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public Optional<InputStream> getPomStream(GAV gav) throws CommunicationException {
         StringBuilder query = new StringBuilder();
         try {
             DAConfig cfg = this.config.getConfig();
@@ -136,7 +145,7 @@ public class AproxConnectorImpl implements AproxConnector {
             query.append(gav.getArtifactId()).append('-').append(gav.getVersion()).append(".pom");
 
             URLConnection connection = new URL(query.toString()).openConnection();
-            return pomAnalyzer.readPom(connection.getInputStream());
+            return Optional.of(connection.getInputStream());
         } catch (FileNotFoundException ex) {
             return Optional.empty();
         } catch (IOException | ConfigurationParseException e) {

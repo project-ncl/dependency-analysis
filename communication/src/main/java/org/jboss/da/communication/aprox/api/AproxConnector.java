@@ -7,6 +7,7 @@ import org.jboss.da.communication.aprox.model.Repository;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,8 @@ public interface AproxConnector {
     List<String> getVersionsOfGA(GA ga) throws CommunicationException;
 
     Optional<MavenProject> getPom(GAV gav) throws CommunicationException;
+
+    Optional<InputStream> getPomStream(GAV gav) throws CommunicationException;
 
     RepositoryManipulationStatus addRepositoryToGroup(Repository repository)
             throws CommunicationException;

@@ -4,6 +4,8 @@ import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductService;
 import org.jboss.da.listings.api.service.ProductVersionService;
+import org.jboss.da.listings.api.service.WLFiller;
+import org.jboss.da.listings.api.service.WLFiller.WLStatus;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
 import org.jboss.da.rest.listings.model.ContainsResponse;
@@ -13,6 +15,7 @@ import org.jboss.da.rest.listings.model.RestProductArtifact;
 import org.jboss.da.rest.listings.model.RestProductGAV;
 import org.jboss.da.rest.listings.model.RestProductInput;
 import org.jboss.da.rest.listings.model.SuccessResponse;
+import org.jboss.da.rest.listings.model.WLFill;
 import org.jboss.da.rest.model.ErrorMessage;
 
 import javax.inject.Inject;
@@ -27,6 +30,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -58,6 +62,9 @@ public class Artifacts {
     private RestConvert convert;
 
     @Inject
+    private WLFiller filler;
+
+    @Inject
     private WhiteArtifactService whiteService;
 
     @Inject
@@ -79,6 +86,62 @@ public class Artifacts {
             response = RestProductGAV.class)
     public Collection<RestProductGAV> getAllWhiteArtifacts() {
         return convert.toRestProductGAVList(productVersionService.getAll());
+    }
+
+    @POST
+    @Path("/whitelist/fill/scm")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Fill artifacts from given git pom", response = SuccessResponse.class)
+    public Response fillFromGitBom(
+            @ApiParam(
+                    value = "JSON object with keys 'scmUrl', 'revision', 'pomPath', list of 'repositories' and 'productId'") WLFill wlFill) {
+        SuccessResponse response = new SuccessResponse();
+        switch (filler.fillWhitelistFromPom(wlFill.getScmUrl(), wlFill.getRevision(),
+                wlFill.getPomPath(), wlFill.getRepositories(), wlFill.getProductId())) {
+            case PRODUCT_NOT_FOUND:
+                response.setSuccess(false);
+                response.setMessage("Product with this id not found");
+                return Response.status(Status.NOT_FOUND).entity(response).build();
+            case FILLED:
+                response.setSuccess(true);
+                return Response.ok().entity(response).build();
+            case ANALYSER_ERROR:
+                response.setSuccess(false);
+                response.setMessage("Error while analysing pom file");
+                return Response.status(Status.BAD_REQUEST).entity(response).build();
+        }
+        return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity(new ErrorMessage("There was some internal error")).build();
+    }
+
+    @POST
+    @Path("/whitelist/fill/gav")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Fill artifacts from given maven pom gav",
+            response = SuccessResponse.class)
+    public Response fillFromGAVBom(
+            @ApiParam(
+                    value = "JSON object with keys 'groupId', 'artifactId', 'version' and 'productId'") RestProductArtifact a) {
+        SuccessResponse response = new SuccessResponse();
+        switch (filler.fillWhitelistFromGAV(a.getGroupId(), a.getArtifactId(), a.getVersion(),
+                a.getProductId())) {
+            case PRODUCT_NOT_FOUND:
+                response.setSuccess(false);
+                response.setMessage("Product with this id not found");
+                return Response.status(Status.NOT_FOUND).entity(response).build();
+            case FILLED:
+                response.setSuccess(true);
+                return Response.ok().entity(response).build();
+            case ANALYSER_ERROR:
+                response.setSuccess(false);
+                response.setMessage("Error while analysing pom file");
+                return Response.status(Status.BAD_REQUEST).entity(response).build();
+        }
+        return Response.status(Status.INTERNAL_SERVER_ERROR)
+                .entity(new ErrorMessage("There was some internal error")).build();
+
     }
 
     @POST
@@ -322,8 +385,9 @@ public class Artifacts {
             response = ContainsResponse.class)
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Artifact is not in the blacklist",
-            response = ContainsResponse.class),
-            @ApiResponse(code = 400, message = "All parameters are required", response = ErrorMessage.class)})
+                    response = ContainsResponse.class),
+            @ApiResponse(code = 400, message = "All parameters are required",
+                    response = ErrorMessage.class) })
     public Response isBlackArtifactPresent(@QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
         if (groupId == null || artifactId == null || version == null)

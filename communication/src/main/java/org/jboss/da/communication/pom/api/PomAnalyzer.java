@@ -5,7 +5,10 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
+import org.commonjava.maven.galley.maven.GalleyMavenException;
+import org.commonjava.maven.galley.maven.model.view.MavenPomView;
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GA;
 import org.jboss.da.communication.model.GAV;
@@ -56,4 +59,9 @@ public interface PomAnalyzer {
     public Map<GA, Set<GAV>> getDependenciesOfModules(File scmDir, String pomPath,
             List<String> repositories) throws PomAnalysisException;
 
+    public List<MavenPomView> getGitPomView(String scmUrl, String revision, String pomPath,
+            List<String> repositories) throws PomAnalysisException;
+
+    public MavenPomView getMavenPomView(InputStream is) throws ConfigurationParseException,
+            GalleyMavenException;
 }
