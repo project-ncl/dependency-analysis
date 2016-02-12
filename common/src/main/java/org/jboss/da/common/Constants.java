@@ -2,7 +2,7 @@ package org.jboss.da.common;
 
 public final class Constants {
 
-    public static final String DA_VERSION = "0.6.0-SNAPSHOT";
+    public static final String DA_VERSION = "0.6.1-SNAPSHOT";
 
     public static final String REST_API_VERSION_BC = "0.3";
 
