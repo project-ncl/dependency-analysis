@@ -30,7 +30,7 @@ public class SCMImpl implements SCM {
     @Inject
     ScmFacade scm;
 
-    private Map<SCMSpecifier, DirectoryReference> cache = new HashMap<>();
+    private final Map<SCMSpecifier, DirectoryReference> cache = new HashMap<>();
 
     @Override
     public File cloneRepository(SCMType scmType, String scmUrl, String revision)

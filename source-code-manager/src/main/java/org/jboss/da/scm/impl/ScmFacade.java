@@ -34,7 +34,7 @@ public class ScmFacade {
     @Inject
     private Logger logger;
 
-    private ScmManager scmManager;
+    private final ScmManager scmManager;
 
     public ScmFacade() {
         scmManager = new BasicScmManager();

@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  */
 public class LocalRepo {
 
-    private static Logger log = LoggerFactory.getLogger(LocalRepo.class);
+    private static final Logger log = LoggerFactory.getLogger(LocalRepo.class);
 
     private Path path;
 
