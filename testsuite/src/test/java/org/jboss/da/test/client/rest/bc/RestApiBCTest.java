@@ -64,7 +64,6 @@ public class RestApiBCTest extends AbstractRestBCTest {
     @Override
     protected void assertEqualsJson(String expected, String actual) {
         try {
-            System.out.println("actual: " + actual);
             JSONAssert.assertEquals(expected, actual, JSONCompareMode.LENIENT);
         } catch (JSONException ex) {
             fail("The test wasn't able to compare JSON strings" + ex);
