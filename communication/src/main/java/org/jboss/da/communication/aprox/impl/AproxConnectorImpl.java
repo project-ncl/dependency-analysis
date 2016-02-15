@@ -133,6 +133,7 @@ public class AproxConnectorImpl implements AproxConnector {
         }
     }
 
+    @Override
     public Optional<InputStream> getPomStream(GAV gav) throws CommunicationException {
         StringBuilder query = new StringBuilder();
         try {
