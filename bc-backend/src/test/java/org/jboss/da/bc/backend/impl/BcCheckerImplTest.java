@@ -3,7 +3,6 @@ package org.jboss.da.bc.backend.impl;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-import org.jboss.da.bc.backend.api.BcChecker;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.junit.Test;

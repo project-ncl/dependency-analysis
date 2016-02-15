@@ -1,11 +1,12 @@
 package org.jboss.da.bc.model;
 
 import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
 import org.codehaus.jackson.annotate.JsonUnwrapped;
 
 /**

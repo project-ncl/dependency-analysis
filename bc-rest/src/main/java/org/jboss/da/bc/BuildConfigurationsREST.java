@@ -27,8 +27,6 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
 import org.slf4j.Logger;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 

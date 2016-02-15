@@ -5,7 +5,6 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
-import org.jboss.da.communication.pnc.model.Product;
 import org.jboss.da.communication.pnc.model.ProductVersion;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -1,7 +1,5 @@
 package org.jboss.da.rest.reports.model;
 
-import org.jboss.da.rest.listings.model.RestGavProducts;
-
 import java.util.Set;
 
 import lombok.Getter;

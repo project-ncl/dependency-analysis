@@ -2,9 +2,7 @@ package org.jboss.da.rest.reports.model;
 
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.rest.listings.model.RestGavProducts;
-import org.jboss.da.rest.listings.model.RestProductInput;
 
-import java.util.Map;
 import java.util.Set;
 
 import lombok.Getter;

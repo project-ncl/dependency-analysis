@@ -11,7 +11,6 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import org.jboss.da.communication.model.GAV;
-import org.jboss.da.rest.listings.model.RestProduct;
 import org.jboss.da.rest.listings.model.RestProductInput;
 
 /**

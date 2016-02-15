@@ -10,7 +10,6 @@ import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.scm.api.SCMConnector;
-import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import static org.jboss.da.listings.api.service.ArtifactService.SupportStatus.SUPERSEDED;
@@ -43,7 +42,6 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
