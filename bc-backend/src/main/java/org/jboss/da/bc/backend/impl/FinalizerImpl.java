@@ -59,7 +59,7 @@ public class FinalizerImpl implements Finalizer {
             for (Integer id : ids) {
                 try {
                     pnc.deleteBuildConfiguration(id);
-                } catch (Exception e) { // including Runtime Exception
+                } catch (CommunicationException | PNCRequestException | RuntimeException e) {
                     log.error("Rollback: Failed to delete configuration " + id, e);
                 }
             }
