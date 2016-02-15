@@ -366,7 +366,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                 projectVersionRefs.put(pomFile.getParentFile().getAbsoluteFile(), peek.getKey());
 
                 File f = new File(tempDir, path);
-                f.getParentFile().mkdirs();
+                Files.createDirectories(f.getParentFile().toPath());
                 FileUtils.copyFile(pomFile, f);
             } catch (TransferException | RuntimeException ex) {
                 log.warn("Could not parse " + pomFile.getAbsolutePath(), ex);
