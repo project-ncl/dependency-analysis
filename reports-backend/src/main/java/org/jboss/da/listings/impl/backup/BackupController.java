@@ -65,8 +65,12 @@ public class BackupController {
     private boolean disabled = false;
 
     @PostConstruct
-    public void init() throws ConfigurationParseException {
-        backupScmUrl = configuration.getConfig().getBackupScmUrl();
+    public void init() {
+        try {
+            backupScmUrl = configuration.getConfig().getBackupScmUrl();
+        } catch (ConfigurationParseException ex) {
+            log.warn("Couldn't read configuration, BackupController is disabled");
+        }
         if (backupScmUrl.isEmpty())
             disabled = true;
     }
