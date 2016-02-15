@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class RepositoryClonerImplTest {
 
-    private RepositoryClonerImpl clonner = new RepositoryClonerImpl();
+    private final RepositoryClonerImpl clonner = new RepositoryClonerImpl();
 
     @Test(expected = UnsupportedOperationException.class)
     public void testCloneNonGitRepository() throws Exception {

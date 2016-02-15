@@ -33,7 +33,7 @@ public class VersionFinderTest {
     private AproxConnector aproxConnector;
 
     @Spy
-    private VersionParser osgiParser = new VersionParser();
+    private final VersionParser osgiParser = new VersionParser();
 
     @InjectMocks
     @Spy

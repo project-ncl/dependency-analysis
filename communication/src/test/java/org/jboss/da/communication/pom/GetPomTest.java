@@ -27,7 +27,7 @@ public class GetPomTest {
     private PomReader pomReader;
 
     @InjectMocks
-    private PomAnalyzer pomAnalyzer = new PomAnalyzerImpl();
+    private final PomAnalyzer pomAnalyzer = new PomAnalyzerImpl();
 
     private final static String GROUP_ID = "org.jboss.da";
 

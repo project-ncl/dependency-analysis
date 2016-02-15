@@ -62,7 +62,7 @@ public class ReportsGeneratorImplTest {
 
     @InjectMocks
     @Spy
-    private DependencyTreeGenerator dependencyTreeGenerator = new DependencyTreeGeneratorImpl();
+    private final DependencyTreeGenerator dependencyTreeGenerator = new DependencyTreeGeneratorImpl();
 
     @InjectMocks
     private ReportsGeneratorImpl generator;

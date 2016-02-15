@@ -30,7 +30,7 @@ public class PNCConnectorImplTest {
     private static final String PNC_BASE_URL = "http://10.10.10.10:8080";
 
     @Spy
-    private Configuration configuration = new Configuration();
+    private final Configuration configuration = new Configuration();
 
     @Mock
     private PNCAuthentication pncAuthenticate;
