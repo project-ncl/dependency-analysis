@@ -118,7 +118,8 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
         if (status != null) {
             predicates.add(cb.equal(productVersion.get("support"), status));
         }
-        cq.select(productVersion).where(cb.and(cb.and(predicates.toArray(new Predicate[] {}))));
+        cq.select(productVersion).where(
+                cb.and(cb.and(predicates.toArray(new Predicate[predicates.size()]))));
         TypedQuery<ProductVersion> q = em.createQuery(cq);
         return q.getResultList();
     }
