@@ -26,7 +26,7 @@ public class RestConvert {
     }
 
     public List<RestProductGAV> toRestProductGAV(ProductVersion pv) {
-        List<RestProductGAV> rpgList = new ArrayList<RestProductGAV>();
+        List<RestProductGAV> rpgList = new ArrayList<>();
         for (Artifact a : pv.getWhiteArtifacts()) {
             RestProductGAV rpg = new RestProductGAV();
             rpg.setName(pv.getProduct().getName());
@@ -43,7 +43,7 @@ public class RestConvert {
     }
 
     public List<RestProductGAV> toRestProductGAVList(List<ProductVersion> productVersions) {
-        List<RestProductGAV> rpgl = new ArrayList<RestProductGAV>();
+        List<RestProductGAV> rpgl = new ArrayList<>();
         for (ProductVersion p : productVersions) {
             rpgl.addAll(toRestProductGAV(p));
         }
@@ -51,7 +51,7 @@ public class RestConvert {
     }
 
     public List<RestProduct> toRestProductList(List<ProductVersion> productVersions) {
-        List<RestProduct> lrp = new ArrayList<RestProduct>();
+        List<RestProduct> lrp = new ArrayList<>();
         for (ProductVersion p : productVersions) {
             lrp.add(toRestProduct(p));
         }
@@ -69,7 +69,7 @@ public class RestConvert {
 
     public List<RestProductGAV> fromRelationshipToRestProductGAVList(
             List<ProductVersionArtifactRelationship> rl) {
-        List<RestProductGAV> rpgList = new ArrayList<RestProductGAV>();
+        List<RestProductGAV> rpgList = new ArrayList<>();
         for (ProductVersionArtifactRelationship r : rl) {
             RestProductGAV rpg = new RestProductGAV();
             rpg.setName(r.getProductVersion().getProduct().getName());

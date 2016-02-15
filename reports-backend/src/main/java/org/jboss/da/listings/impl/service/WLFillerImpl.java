@@ -82,7 +82,7 @@ public class WLFillerImpl implements WLFiller {
             List<String> repositories) throws GalleyMavenException, PomAnalysisException {
 
         if (repositories == null) {
-            repositories = new ArrayList<String>();
+            repositories = new ArrayList<>();
         }
         List<MavenPomView> poms = analyzer.getGitPomView(scmUrl, revision, pomPath, repositories);
 
