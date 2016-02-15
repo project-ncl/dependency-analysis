@@ -9,6 +9,7 @@ import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.pnc.authentication.PNCAuthentication;
 import org.jboss.da.communication.pnc.impl.PNCConnectorImpl;
 import org.jboss.resteasy.client.ClientRequest;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -37,8 +38,8 @@ public class PNCConnectorImplTest {
     @InjectMocks
     private PNCConnectorImpl pncConnectorImpl;
 
-    public PNCConnectorImplTest() throws ConfigurationParseException {
-        MockitoAnnotations.initMocks(this);
+    @Before
+    public void init() throws ConfigurationParseException {
         daConfig.setPncServer(PNC_BASE_URL);
 
         when(configuration.getConfig()).thenReturn(daConfig);
