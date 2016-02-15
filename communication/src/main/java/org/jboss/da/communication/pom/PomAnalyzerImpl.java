@@ -405,6 +405,8 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             case DEPENDENCY:
                 origin.addDependency(target);
                 break;
+            default:
+                break;
         }
     }
 
