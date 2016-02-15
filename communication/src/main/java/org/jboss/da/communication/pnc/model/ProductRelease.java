@@ -14,8 +14,6 @@ public class ProductRelease {
     @Setter
     private String version;
 
-    @Getter
-    @Setter
     private Date releaseDate;
 
     @Getter
@@ -33,5 +31,13 @@ public class ProductRelease {
     @Getter
     @Setter
     private String supportLevel;
+
+    public Date getReleaseDate() {
+        return releaseDate == null ? null : new Date(releaseDate.getTime());
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate == null ? null : new Date(releaseDate.getTime());
+    }
 
 }
