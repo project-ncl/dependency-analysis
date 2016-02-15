@@ -678,7 +678,7 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
         }
         ClientRequest request = createClientRequest(path,
                 FileUtils.readFileToString(jsonRequestFile, ENCODING));
-        ClientResponse<String> response = null;
+        ClientResponse<String> response;
         switch (operation) {
             case ADD:
                 response = request.post(String.class);
@@ -687,6 +687,9 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
             case DELETE:
                 response = request.delete(String.class);
                 break;
+
+            default:
+                throw new UnsupportedOperationException("Unknown operation " + operation);
         }
 
         if (checkAdd)
