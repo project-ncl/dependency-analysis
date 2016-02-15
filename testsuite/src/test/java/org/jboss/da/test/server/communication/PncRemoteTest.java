@@ -82,14 +82,9 @@ public class PncRemoteTest {
 
     private boolean testBcWithNameExists(String bcName) throws Exception {
         List<BuildConfiguration> allBcs = pncConnector.getBuildConfigurations();
-        return allBcs.parallelStream().map((bc) -> {
-            if (bc.getName().equals(bcName))
-                return true;
-                else
-                    return false;
-            }).anyMatch(x -> {
-            return x;
-        });
+        return allBcs.parallelStream()
+                .map((bc) -> bc.getName().equals(bcName))
+                .anyMatch(x -> x);
 
     }
 
