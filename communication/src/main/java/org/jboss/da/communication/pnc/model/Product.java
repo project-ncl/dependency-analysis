@@ -1,5 +1,7 @@
 package org.jboss.da.communication.pnc.model;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
     @Getter
