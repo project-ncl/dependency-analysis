@@ -1,9 +1,13 @@
 package org.jboss.da.communication.pnc.model;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductMilestone {
 
     @Getter

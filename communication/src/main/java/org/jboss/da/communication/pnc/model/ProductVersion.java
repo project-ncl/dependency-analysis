@@ -1,7 +1,10 @@
 package org.jboss.da.communication.pnc.model;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -10,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 @RequiredArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductVersion {
 
     @Getter
