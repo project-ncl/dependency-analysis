@@ -4,8 +4,14 @@ import sys
 import fileinput
 
 
-def formatProduct(product):
-    return product["name"] + ":" + product["version"] + " " + product["supportStatus"]
+def formatProduct(product, supportStatus=True):
+    if supportStatus:
+        return product["name"] + ":" + product["version"] + " " + product["supportStatus"]
+    else:
+        return product["name"] + ":" + product["version"]
+
+def formatVersionProduct(vp):
+    return vp['version'] + " (" + formatProduct(vp['product'], False) + ")" 
 
 def getBestSupportStatus(products):
     status = "UNKNOWN"
@@ -91,6 +97,34 @@ def printReportAdvSum(data):
 
     print "Community artifacts:\t" + getGAVList(data["communityGavs"])
 
+def printReportAlign(data):
+    print "Internaly built:"
+    for module in data['internallyBuilt']:
+        print "  " + module['groupId'] + ":" + module['artifactId']
+        for dependency in module['gavProducts']:
+            print "    " + getGAV(dependency) + " - " + ", ".join(map(formatVersionProduct,dependency['gavProducts']))
+    print
+
+    print "Built in different version:"
+    for module in data['builtInDifferentVersion']:
+        print "  " + module['groupId'] + ":" + module['artifactId']
+        for dependency in module['gavProducts']:
+            print "    " + getGAV(dependency) + " - " + ", ".join(map(formatVersionProduct,dependency['gavProducts']))
+    print
+
+    print "Not built:"
+    for module in data['notBuilt']:
+        print "  " + module['groupId'] + ":" + module['artifactId']
+        for dependency in module['gavs']:
+            print "    " + getGAV(dependency)
+    print
+
+    print "Blacklisted:"
+    for module in data['blacklisted']:
+        print "  " + module['groupId'] + ":" + module['artifactId']
+        for dependency in module['gavs']:
+            print "    " + getGAV(dependency)
+
 def printLookup(artifact):
     gav = getGAV(artifact)
     bestMatch = str(artifact["bestMatchVersion"])
@@ -132,6 +166,11 @@ def reportAdvSum():
     data = readInput()
     checkError(data)
     printReportAdvSum(data)
+
+def reportAlign():
+    data = readInput()
+    checkError(data)
+    printReportAlign(data)
     
 def lookup():
     data = readInput()

@@ -57,6 +57,9 @@ def helper_print_white_artifacts_products(response, show_artifacts=True):
             product = item['name']
             product_version = item['version']
             product_support = item['supportStatus']
+            product_id = ""
+            if(item['id']):
+                product_id = " ("+str(item['id'])+")"
 
             if show_artifacts:
                 gid = item['gav']['groupId']
@@ -65,7 +68,7 @@ def helper_print_white_artifacts_products(response, show_artifacts=True):
                 print("{}:{}:{}\t{}:{} {}".format(gid, aid, ver, product,
                                                     product_version, product_support))
             else:
-                print("{}:{} {}".format(product, product_version, product_support))
+                print("{}:{} {}{}".format(product, product_version, product_support, product_id))
 
 
 class DependencyAnalysis:

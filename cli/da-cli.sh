@@ -83,6 +83,28 @@ printUsage() {
     echo "        <groupId>:<artifactId>:<version> ::"
     echo "          <groupId>:<artifactId>:<version> <Best Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
+    echo "    $0 align-report [--json] [--unknown] [--products PRODUCTS]... [--repository REPOSITORY]... SCM TAG [POM-PATH]"
+    echo "        Check toplevel dependencies of all modules from git-scm link and print sumarized information."
+    echo "          --json                    Output unparsed response from Dependency Analyzer."
+    echo "          --unknown                 Consider artifacts from unknown products."
+    echo "          --products PRODUCTS       Consider artifact only from specified products. PRODUCTS should be comma separated"
+    echo "                                    list of product ids (you can obtain list of products using $0 list whitelist-products)."
+    echo "          --repository REPOSITORY   Aditional maven repositories required by the analysed project. You can specify this"
+    echo "                                    option multiple times."
+    echo "        Output:"
+    echo "        Internaly built:"
+    echo "          MODULE"
+    echo "              DEPENDENCY - BUILT_VERSION (PRODUCT)"
+    echo "        Built in different version:"
+    echo "          MODULE"
+    echo "              DEPENDENCY - BUILT_VERSION (PRODUCT)"
+    echo "        Not built:"
+    echo "          MODULE"
+    echo "              DEPENDENCY"
+    echo "        Blacklisted:"
+    echo "          MODULE"
+    echo "              DEPENDENCY"
+    echo ""
     echo "DEPRECATED"
     echo "    $0 pom-bw";
     echo "        This option was deprecated, use scm-report-advanced instead."
@@ -111,6 +133,7 @@ case $action in
     scm-report-advanced) scm_report_adv $2 $3 $4 $5;;
     lookup) lookup $2;;
     report) report $2 $3;;
+    align-report) shift; scm_report_align "$@" ;;
     *) printUsage ;;
 esac
 
