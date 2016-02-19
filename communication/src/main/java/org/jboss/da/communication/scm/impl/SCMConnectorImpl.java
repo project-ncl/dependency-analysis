@@ -54,8 +54,8 @@ public class SCMConnectorImpl implements SCMConnector {
         // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
-        GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, new File(
-                tempDir, pomPath), repositories);
+        GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, pomPath,
+                repositories);
 
         return gavDependencyTree;
     }

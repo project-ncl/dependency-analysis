@@ -1,13 +1,17 @@
 package org.jboss.da.test.server.communication;
 
 import org.apache.maven.scm.ScmException;
+import org.commonjava.cartographer.CartoDataException;
 import org.commonjava.cartographer.CartographerCore;
+import org.commonjava.maven.galley.maven.GalleyMavenException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.GalleyWrapper;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.PomReader;
+import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.qualifier.DACartographerCore;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
@@ -24,6 +28,7 @@ import javax.inject.Inject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -52,6 +57,9 @@ public class GalleyWrapperTest {
     @Inject
     private PomReader pomReader;
 
+    @Inject
+    private PomAnalyzer pomAnalyzer;
+
     private File clonedRepository;
 
     @Deployment
@@ -64,6 +72,27 @@ public class GalleyWrapperTest {
     public void cloneRepo() throws ScmException {
         clonedRepository = scm.cloneRepository(SCMType.GIT,
                 "https://github.com/project-ncl/dependency-analysis.git", VERSION);
+    }
+
+    private void printDeptree(GAVDependencyTree tree, String prefix) {
+        System.out.println(prefix + tree.getGav());
+        String np = prefix + "   ";
+        for (GAVDependencyTree d : tree.getDependencies()) {
+            printDeptree(d, np);
+        }
+    }
+
+    @Test
+    public void testReadRelationships() throws IOException, PomAnalysisException,
+            GalleyMavenException, CartoDataException {
+        long start = System.nanoTime();
+        GAVDependencyTree readRelationships = pomAnalyzer.readRelationships(clonedRepository,
+                "application/pom.xml", Collections.emptyList());
+        float time = (System.nanoTime() - start) / 1000000.0f;
+
+        System.out.println("Dependency tree:");
+        printDeptree(readRelationships, "");
+        System.out.println("Took: " + time);
     }
 
     @Test

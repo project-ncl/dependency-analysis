@@ -39,7 +39,7 @@ public interface PomAnalyzer {
      * @return The GAVDependencyTree of the root project
      * @throws PomAnalysisException
      */
-    GAVDependencyTree readRelationships(File pomRepoDir, File pomPath, List<String> repositories)
+    GAVDependencyTree readRelationships(File pomRepoDir, String pomPath, List<String> repositories)
             throws PomAnalysisException;
 
     /**
@@ -59,8 +59,8 @@ public interface PomAnalyzer {
     public Map<GA, Set<GAV>> getDependenciesOfModules(File scmDir, String pomPath,
             List<String> repositories) throws PomAnalysisException;
 
-    public List<MavenPomView> getGitPomView(String scmUrl, String revision, String pomPath,
-            List<String> repositories) throws PomAnalysisException;
+    public MavenPomView getGitPomView(File repoDir, String pomPath, List<String> repositories)
+            throws PomAnalysisException;
 
     public MavenPomView getMavenPomView(InputStream is) throws ConfigurationParseException,
             GalleyMavenException;

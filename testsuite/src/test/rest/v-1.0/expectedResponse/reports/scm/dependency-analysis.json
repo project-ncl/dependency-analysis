@@ -1,58 +1,228 @@
 {
-  "groupId": "org.jboss.da",
-  "artifactId": "common",
-  "version": "0.1.0",
-  "availableVersions": [],
-  "bestMatchVersion": null,
-  "dependencyVersionsSatisfied": false,
-  "dependencies": [
-    {
-      "groupId": "com.fasterxml.jackson.core",
-      "artifactId": "jackson-databind",
-      "version": "2.4.4",
-      "availableVersions": [],
-      "bestMatchVersion": null,
-      "dependencyVersionsSatisfied": true,
-      "dependencies": [],
-      "blacklisted": false,
-      "whitelisted": [],
-      "notBuiltDependencies": 0
-    },
-    {
-      "groupId": "junit",
-      "artifactId": "junit",
-      "version": "4.11",
-      "availableVersions": [
-        "4.10-redhat-2",
-        "4.11-redhat-1"
-      ],
-      "bestMatchVersion": "4.11-redhat-1",
-      "dependencyVersionsSatisfied": true,
-      "dependencies": [],
-      "blacklisted": false,
-      "whitelisted": [],
-      "notBuiltDependencies": 0
-    },
-    {
-      "groupId": "javax.enterprise",
-      "artifactId": "cdi-api",
-      "version": "1.2",
-      "availableVersions": [
-        "1.0-SP4-redhat-4",
-        "1.0-SP4.redhat-3",
-        "1.0.0.SP4-redhat-5",
-        "1.0-SP4-redhat-1",
-        "1.0-SP4-redhat-2"
-      ],
-      "bestMatchVersion": null,
-      "dependencyVersionsSatisfied": true,
-      "dependencies": [],
-      "blacklisted": false,
-      "whitelisted": [],
-      "notBuiltDependencies": 0
-    }
-  ],
-  "blacklisted": false,
-  "whitelisted": [],
-  "notBuiltDependencies": 2
+    "groupId": "org.jboss.da",
+    "artifactId": "common",
+    "version": "0.1.0",
+    "availableVersions": [],
+    "bestMatchVersion": null,
+    "dependencyVersionsSatisfied": false,
+    "dependencies": [
+        {
+            "groupId": "com.fasterxml.jackson.core",
+            "artifactId": "jackson-databind",
+            "version": "2.4.4",
+            "availableVersions": [],
+            "bestMatchVersion": null,
+            "dependencyVersionsSatisfied": false,
+            "dependencies": [
+                {
+                    "groupId": "com.fasterxml.jackson.core",
+                    "artifactId": "jackson-annotations",
+                    "version": "2.4.0",
+                    "availableVersions": [
+                    ],
+                    "bestMatchVersion": null,
+                    "dependencyVersionsSatisfied": true,
+                    "dependencies": [
+                    ],
+                    "blacklisted": false,
+                    "whitelisted": [
+                    ],
+                    "notBuiltDependencies": 0
+                },
+                {
+                    "groupId": "org.hibernate",
+                    "artifactId": "hibernate-cglib-repack",
+                    "version": "2.1_3",
+                    "availableVersions": [
+                    ],
+                    "bestMatchVersion": null,
+                    "dependencyVersionsSatisfied": true,
+                    "dependencies": [
+                    ],
+                    "blacklisted": false,
+                    "whitelisted": [
+                    ],
+                    "notBuiltDependencies": 0
+                },
+                {
+                    "groupId": "com.fasterxml.jackson.core",
+                    "artifactId": "jackson-core",
+                    "version": "2.4.4",
+                    "availableVersions": [
+                    ],
+                    "bestMatchVersion": null,
+                    "dependencyVersionsSatisfied": true,
+                    "dependencies": [
+                    ],
+                    "blacklisted": false,
+                    "whitelisted": [
+                    ],
+                    "notBuiltDependencies": 0
+                },
+                {
+                    "groupId": "org.codehaus.groovy",
+                    "artifactId": "groovy",
+                    "version": "1.7.9",
+                    "availableVersions": [
+                    ],
+                    "bestMatchVersion": null,
+                    "dependencyVersionsSatisfied": true,
+                    "dependencies": [
+                    ],
+                    "blacklisted": false,
+                    "whitelisted": [
+                    ],
+                    "notBuiltDependencies": 0
+                },
+                {
+                    "groupId": "junit",
+                    "artifactId": "junit",
+                    "version": "4.8.2",
+                    "availableVersions": [
+                        "4.10-redhat-2",
+                        "4.11-redhat-1"
+                    ],
+                    "bestMatchVersion": null,
+                    "dependencyVersionsSatisfied": true,
+                    "dependencies": [
+                    ],
+                    "blacklisted": false,
+                    "whitelisted": [
+                    ],
+                    "notBuiltDependencies": 0
+                },
+                {
+                    "groupId": "cglib",
+                    "artifactId": "cglib",
+                    "version": "2.2.2",
+                    "availableVersions": [
+                    ],
+                    "bestMatchVersion": null,
+                    "dependencyVersionsSatisfied": true,
+                    "dependencies": [
+                    ],
+                    "blacklisted": false,
+                    "whitelisted": [
+                    ],
+                    "notBuiltDependencies": 0
+                }
+            ],
+            "blacklisted": false,
+            "whitelisted": [],
+            "notBuiltDependencies": 6
+        },
+        {
+            "groupId": "junit",
+            "artifactId": "junit",
+            "version": "4.11",
+            "availableVersions": [
+                "4.10-redhat-2",
+                "4.11-redhat-1"
+            ],
+            "bestMatchVersion": "4.11-redhat-1",
+            "dependencyVersionsSatisfied": true,
+            "dependencies": [],
+            "blacklisted": false,
+            "whitelisted": [],
+            "notBuiltDependencies": 0
+        },
+        {
+            "groupId": "javax.enterprise",
+            "artifactId": "cdi-api",
+            "version": "1.2",
+            "availableVersions": [
+                "1.0-SP4-redhat-4",
+                "1.0-SP4.redhat-3",
+                "1.0.0.SP4-redhat-5",
+                "1.0-SP4-redhat-1",
+                "1.0-SP4-redhat-2"
+            ],
+            "bestMatchVersion": null,
+            "dependencyVersionsSatisfied": false,
+            "dependencies": [
+                {
+                    "groupId":"javax.el",
+                    "artifactId":"javax.el-api",
+                    "version":"3.0.0",
+                    "availableVersions":[
+
+                    ],
+                    "bestMatchVersion":null,
+                    "dependencyVersionsSatisfied":true,
+                    "dependencies":[
+
+                    ],
+                    "blacklisted":false,
+                    "whitelisted":[
+
+                    ],
+                    "notBuiltDependencies":0
+                },
+                {
+                    "groupId":"org.testng",
+                    "artifactId":"testng",
+                    "version":"5.10",
+                    "availableVersions":[
+                        "6.1.1-redhat-2"
+                    ],
+                    "bestMatchVersion":null,
+                    "dependencyVersionsSatisfied":true,
+                    "dependencies":[
+
+                    ],
+                    "blacklisted":false,
+                    "whitelisted":[
+
+                    ],
+                    "notBuiltDependencies":0
+                },
+                {
+                    "groupId":"javax.interceptor",
+                    "artifactId":"javax.interceptor-api",
+                    "version":"1.2",
+                    "availableVersions":[
+
+                    ],
+                    "bestMatchVersion":null,
+                    "dependencyVersionsSatisfied":true,
+                    "dependencies":[
+
+                    ],
+                    "blacklisted":false,
+                    "whitelisted":[
+
+                    ],
+                    "notBuiltDependencies":0
+                },
+                {
+                    "groupId":"javax.inject",
+                    "artifactId":"javax.inject",
+                    "version":"1",
+                    "availableVersions":[
+                        "1-redhat-3",
+                        "1.0.0.redhat-5",
+                        "1-redhat-2",
+                        "1-redhat-1",
+                        "1.redhat-4"
+                    ],
+                    "bestMatchVersion":"1.redhat-4",
+                    "dependencyVersionsSatisfied":true,
+                    "dependencies":[
+
+                    ],
+                    "blacklisted":false,
+                    "whitelisted":[
+
+                    ],
+                    "notBuiltDependencies":0
+                }
+            ],
+            "blacklisted": false,
+            "whitelisted": [],
+            "notBuiltDependencies": 3
+        }
+    ],
+    "blacklisted": false,
+    "whitelisted": [],
+    "notBuiltDependencies": 11
 }
