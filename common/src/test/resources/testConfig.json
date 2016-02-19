@@ -1,8 +1,32 @@
 {
-  "keycloakServer": "keycloak-server",
-  "keycloakClientid": "keycloak-client-id",
-  "keycloakUsername": "keycloak-username",
-  "keycloakPassword": "keycloak-password",
-  "keycloakRealm": "keycloak-realm",
-  "pncServer": "pnc-server"
+  "@class": "ModuleConfigJson",
+  "name": "pnc-config",
+  "configs": [
+    {
+      "@module-group": "global",
+      "configs": []
+    },
+    {
+      "@module-group": "pnc",
+      "configs": []
+    },
+    {
+      "@module-group": "da",
+      "configs": [
+        {
+          "@module-config": "da-config",
+          "keycloakServer": "keycloak-server",
+          "keycloakClientid": "keycloak-client-id",
+          "keycloakUsername": "keycloak-username",
+          "keycloakPassword": "keycloak-password",
+          "keycloakRealm": "keycloak-realm",
+          "pncServer": "pnc-server",
+          "aproxServer": "aprox-server",
+          "aproxGroup": "aprox-group",
+          "backupScmUrl": "backup-scm-url",
+          "repourUrl": "repour-url"
+        }
+      ]
+    }
+  ]
 }

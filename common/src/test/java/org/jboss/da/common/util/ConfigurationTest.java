@@ -45,7 +45,10 @@ public class ConfigurationTest {
         assertEquals("", config.getKeycloakUsername());
         assertEquals("", config.getKeycloakPassword());
         assertEquals("", config.getPncServer());
-
+        assertEquals("", config.getAproxServer());
+        assertEquals("", config.getAproxGroup());
+        assertEquals("", config.getBackupScmUrl());
+        assertEquals("", config.getRepourUrl());
     }
 
     @Test
@@ -60,6 +63,9 @@ public class ConfigurationTest {
         assertEquals("keycloak-username", config.getKeycloakUsername());
         assertEquals("keycloak-password", config.getKeycloakPassword());
         assertEquals("pnc-server", config.getPncServer());
-
+        assertEquals("aprox-server", config.getAproxServer());
+        assertEquals("aprox-group", config.getAproxGroup());
+        assertEquals("backup-scm-url", config.getBackupScmUrl());
+        assertEquals("repour-url", config.getRepourUrl());
     }
 }
