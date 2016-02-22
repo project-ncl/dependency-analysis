@@ -35,12 +35,8 @@ public class BuildConfigurationCreate {
     @Setter
     private String scmRevision;
 
-    @Getter
-    @Setter
     private Date creationTime;
 
-    @Getter
-    @Setter
     private Date lastModificationTime;
 
     @Getter
@@ -78,4 +74,22 @@ public class BuildConfigurationCreate {
         proj.setId(id);
         this.project = proj;
     }
+
+    public Date getCreationTime() {
+        return creationTime == null ? null : new Date(creationTime.getTime());
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime == null ? null : new Date(creationTime.getTime());
+    }
+
+    public Date getLastModificationTime() {
+        return lastModificationTime == null ? null : new Date(lastModificationTime.getTime());
+    }
+
+    public void setLastModificationTime(Date lastModificationTime) {
+        this.lastModificationTime = lastModificationTime == null ? null : new Date(
+                lastModificationTime.getTime());
+    }
+
 }

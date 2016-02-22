@@ -1,7 +1,6 @@
 package org.jboss.da.listings.impl.service;
 
 import org.jboss.da.common.version.VersionParser;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.service.ArtifactService;

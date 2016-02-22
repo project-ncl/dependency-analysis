@@ -105,7 +105,7 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
         CriteriaQuery<ProductVersion> cq = cb.createQuery(type);
         Root<ProductVersion> productVersion = cq.from(type);
         Join<ProductVersion, Product> product = productVersion.join("product");
-        List<Predicate> predicates = new ArrayList<Predicate>();
+        List<Predicate> predicates = new ArrayList<>();
         if (id != null) {
             predicates.add(cb.equal(productVersion.get("id"), id));
         }
@@ -118,7 +118,8 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
         if (status != null) {
             predicates.add(cb.equal(productVersion.get("support"), status));
         }
-        cq.select(productVersion).where(cb.and(cb.and(predicates.toArray(new Predicate[] {}))));
+        cq.select(productVersion).where(
+                cb.and(cb.and(predicates.toArray(new Predicate[predicates.size()]))));
         TypedQuery<ProductVersion> q = em.createQuery(cq);
         return q.getResultList();
     }

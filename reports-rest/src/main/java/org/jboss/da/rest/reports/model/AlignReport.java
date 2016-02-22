@@ -16,18 +16,18 @@ public class AlignReport {
 
     @Getter
     @NonNull
-    private Set<RestGA2RestGAV2VersionProducts> internallyBuilt = new HashSet<>();
+    private final Set<RestGA2RestGAV2VersionProducts> internallyBuilt = new HashSet<>();
 
     @Getter
     @NonNull
-    private Set<RestGA2RestGAV2VersionProducts> builtInDifferentVersion = new HashSet<>();
+    private final Set<RestGA2RestGAV2VersionProducts> builtInDifferentVersion = new HashSet<>();
 
     @Getter
     @NonNull
-    private Set<RestGA2GAVs> notBuilt = new HashSet<>();
+    private final Set<RestGA2GAVs> notBuilt = new HashSet<>();
 
     @Getter
     @NonNull
-    private Set<RestGA2GAVs> blacklisted = new HashSet<>();
+    private final Set<RestGA2GAVs> blacklisted = new HashSet<>();
 
 }

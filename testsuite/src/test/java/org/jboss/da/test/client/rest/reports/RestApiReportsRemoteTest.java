@@ -6,22 +6,21 @@ import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.AbstractRestReportsTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
 
 public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
-    private static String ENCODING = "utf-8";
+    private static final String ENCODING = "utf-8";
 
-    private static String PATH_REPORTS_GAV = "/reports/gav";
+    private static final String PATH_REPORTS_GAV = "/reports/gav";
 
-    private static String PATH_REPORTS_ALIGN = "/reports/align";
+    private static final String PATH_REPORTS_ALIGN = "/reports/align";
 
-    private static String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
+    private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 
-    private static String PATH_SCM = "/reports/scm";
+    private static final String PATH_SCM = "/reports/scm";
 
     @Test
     public void testGavReportBasic() throws Exception {

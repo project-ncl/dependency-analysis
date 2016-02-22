@@ -213,7 +213,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
             Map<File, ProjectVersionRef> projectVersionRefs = getProjectVersionRefs(tempDir,
                     Collections.singletonList(pom));
-            List<MavenPomView> poms = new ArrayList<MavenPomView>();
+            List<MavenPomView> poms = new ArrayList<>();
             MavenPomReader mavenPomReader = carto.getGalley().getPomReader();
             for (Map.Entry<File, ProjectVersionRef> entry : projectVersionRefs.entrySet()) {
                 poms.add(mavenPomReader.read(entry.getValue(),
@@ -243,7 +243,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         query.append("/api/group/public/");
         Location repoLocation = new SimpleLocation(query.toString());
 
-        List<Location> repos = new ArrayList<Location>();
+        List<Location> repos = new ArrayList<>();
         repos.add(repoLocation);
 
         MavenPomReader mavenPomReader = carto.getGalley().getPomReader();
@@ -366,7 +366,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
                 projectVersionRefs.put(pomFile.getParentFile().getAbsoluteFile(), peek.getKey());
 
                 File f = new File(tempDir, path);
-                f.getParentFile().mkdirs();
+                Files.createDirectories(f.getParentFile().toPath());
                 FileUtils.copyFile(pomFile, f);
             } catch (TransferException | RuntimeException ex) {
                 log.warn("Could not parse " + pomFile.getAbsolutePath(), ex);
@@ -404,6 +404,8 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         switch (relationship.getType()) {
             case DEPENDENCY:
                 origin.addDependency(target);
+                break;
+            default:
                 break;
         }
     }

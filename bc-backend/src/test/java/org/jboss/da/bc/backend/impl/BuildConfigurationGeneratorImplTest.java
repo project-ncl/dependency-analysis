@@ -47,7 +47,7 @@ public class BuildConfigurationGeneratorImplTest {
                 finalizer.createBCs(genEntity.getId(), genEntity.getProductVersion(),
                         genEntity.getToplevelBc(), genEntity.getBcSetName())).thenReturn(1);
 
-        assertEquals(new Integer(1), bcGenerator.createBC(genEntity).get());
+        assertEquals(Integer.valueOf(1), bcGenerator.createBC(genEntity).get());
     }
 
     private ProductGeneratorEntity prepareGeneratorEntity(String bcName) {

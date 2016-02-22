@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  */
 public class LocalRepo {
 
-    private static Logger log = LoggerFactory.getLogger(LocalRepo.class);
+    private static final Logger log = LoggerFactory.getLogger(LocalRepo.class);
 
     private Path path;
 
@@ -67,7 +67,7 @@ public class LocalRepo {
                 .collect(Collectors.toSet());
     }
 
-    public Set<Path> getAllPoms() throws IOException {
+    public synchronized Set<Path> getAllPoms() throws IOException {
         return Files.walk(path)
                 .filter(p -> !Files.isDirectory(p)) // is file
                 .filter(p -> p.toString().endsWith(".pom")) // name ends with .pom

@@ -1,8 +1,6 @@
 package org.jboss.da.bc.model;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Optional;
 
 import lombok.Getter;
@@ -11,8 +9,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import org.jboss.da.communication.model.GAV;
-
-import javax.validation.constraints.Pattern;
 
 /**
  *

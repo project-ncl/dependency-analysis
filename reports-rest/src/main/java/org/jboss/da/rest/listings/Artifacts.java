@@ -5,7 +5,6 @@ import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WLFiller;
-import org.jboss.da.listings.api.service.WLFiller.WLStatus;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
 import org.jboss.da.rest.listings.model.ContainsResponse;
@@ -40,7 +39,6 @@ import java.util.Optional;
 
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.model.WhiteArtifact;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,12 +1,12 @@
 package org.jboss.da.test.client.rest.reports;
 
 import java.io.File;
+
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.AbstractRestReportsTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import static org.junit.Assert.assertEquals;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**

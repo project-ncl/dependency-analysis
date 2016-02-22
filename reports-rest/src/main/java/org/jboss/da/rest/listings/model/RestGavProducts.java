@@ -2,10 +2,6 @@ package org.jboss.da.rest.listings.model;
 
 import org.jboss.da.communication.model.GAV;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.Set;
 
 import lombok.AllArgsConstructor;

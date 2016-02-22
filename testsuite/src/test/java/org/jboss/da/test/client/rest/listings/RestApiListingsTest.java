@@ -30,17 +30,17 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
         ADD, DELETE
     }
 
-    private static String ENCODING = "utf-8";
+    private static final String ENCODING = "utf-8";
 
-    private static String PATH_FILES_LISTINGS_GAV = "/listings";
+    private static final String PATH_FILES_LISTINGS_GAV = "/listings";
 
-    private static String PATH_WHITE_LIST = "/listings/whitelist";
+    private static final String PATH_WHITE_LIST = "/listings/whitelist";
 
-    private static String PATH_BLACK_LIST = "/listings/blacklist";
+    private static final String PATH_BLACK_LIST = "/listings/blacklist";
 
-    private static String PATH_WHITE_LISTINGS_GAV = "/listings/whitelist/gav";
+    private static final String PATH_WHITE_LISTINGS_GAV = "/listings/whitelist/gav";
 
-    private static String PATH_BLACK_LISTINGS_GAV = "/listings/blacklist/gav";
+    private static final String PATH_BLACK_LISTINGS_GAV = "/listings/blacklist/gav";
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -678,7 +678,7 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
         }
         ClientRequest request = createClientRequest(path,
                 FileUtils.readFileToString(jsonRequestFile, ENCODING));
-        ClientResponse<String> response = null;
+        ClientResponse<String> response;
         switch (operation) {
             case ADD:
                 response = request.post(String.class);
@@ -687,6 +687,9 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
             case DELETE:
                 response = request.delete(String.class);
                 break;
+
+            default:
+                throw new UnsupportedOperationException("Unknown operation " + operation);
         }
 
         if (checkAdd)

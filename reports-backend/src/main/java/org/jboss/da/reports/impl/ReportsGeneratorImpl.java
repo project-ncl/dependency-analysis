@@ -10,7 +10,6 @@ import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.scm.api.SCMConnector;
-import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import static org.jboss.da.listings.api.service.ArtifactService.SupportStatus.SUPERSEDED;
@@ -43,7 +42,6 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -60,7 +58,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private Logger log;
 
     @Inject
-    private VersionFinder versionFinderImpl;
+    private VersionFinder versionFinder;
 
     @Inject
     private BlackArtifactService blackArtifactService;
@@ -88,7 +86,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml);
 
-        VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(dt.getGav());
+        VersionLookupResult result = versionFinder.lookupBuiltVersions(dt.getGav());
         ArtifactReport report = toArtifactReport(dt.getGav(), result);
 
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
@@ -169,7 +167,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         if (useUnknownProducts) {
             try {
-                Optional<String> bmv = versionFinderImpl.getBestMatchVersionFor(gav);
+                Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav);
 
                 if (bmv.isPresent()) {
                     GAV bmgav = new GAV(gav.getGA(), bmv.get());
@@ -193,7 +191,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         if (useUnknownProducts) {
             try {
-                List<String> bmvs = versionFinderImpl.getBuiltVersionsFor(gav);
+                List<String> bmvs = versionFinder.getBuiltVersionsFor(gav);
 
                 for (String bmv : bmvs) {
                     GAV bmgav = new GAV(gav.getGA(), bmv);
@@ -231,7 +229,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gav);
 
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
-        VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(gav);
+        VersionLookupResult result = versionFinder.lookupBuiltVersions(gav);
         ArtifactReport report = toArtifactReport(gav, result);
 
         nodesVisited.add(dt);
@@ -253,7 +251,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             Set<GAVDependencyTree> nodesVisited) throws CommunicationException {
         for (GAVDependencyTree dt : dependencyTree) {
 
-            VersionLookupResult result = versionFinderImpl.lookupBuiltVersions(dt.getGav());
+            VersionLookupResult result = versionFinder.lookupBuiltVersions(dt.getGav());
 
             ArtifactReport dar = toArtifactReport(dt.getGav(), result);
 

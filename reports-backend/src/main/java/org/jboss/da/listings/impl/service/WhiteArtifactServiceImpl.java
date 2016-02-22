@@ -85,6 +85,7 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
         return ArtifactStatus.ADDED;
     }
 
+    @Override
     public boolean removeArtifractFromProductVersion(String groupId, String artifactId,
             String version, Long productVersionId) {
         ProductVersion pv = productVersionDAO.read(productVersionId);

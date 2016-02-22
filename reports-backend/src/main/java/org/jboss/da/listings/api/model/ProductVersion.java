@@ -42,7 +42,7 @@ public class ProductVersion extends GenericEntity {
         this.product = p;
         this.productVersion = productVersion;
         this.support = support;
-        whiteArtifacts = new HashSet<WhiteArtifact>();
+        whiteArtifacts = new HashSet<>();
     }
 
     public void addArtifact(WhiteArtifact artifact) {
