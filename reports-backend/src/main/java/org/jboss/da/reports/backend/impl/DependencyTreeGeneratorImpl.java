@@ -68,8 +68,8 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     @Override
     public GAVToplevelDependencies getToplevelDependencies(String url, String revision, GAV gav)
             throws ScmException, PomAnalysisException {
-        GAVDependencyTree tree = getDependencyTree(url, revision, gav);
-        return treeToToplevel(tree);
+        Set<GAV> deps = scmConnector.getToplevelDependencyOfRevision(url, revision, gav);
+        return new GAVToplevelDependencies(gav, deps);
     }
 
     private GAVToplevelDependencies treeToToplevel(GAVDependencyTree tree){
