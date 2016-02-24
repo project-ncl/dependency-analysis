@@ -298,4 +298,56 @@ scm_report_adv() {
     rm $tmpfile
 }
 
+scm_report_align() {
+    local type="pretty"
+    local unknown="false"
+    local products=""
+    local repo=""
+
+    while [ $# -gt 0 ]; do
+        case $1 in
+            --json) type="json" ;;
+            --unknown) unknown="true" ;;
+            --products)
+                [ -n "$products" ] && products="$products,"
+                products="$products$2"
+                shift
+                ;;
+            --repository)
+                [ -n "$repo" ] && repo="$repo,"
+                repo="$repo\"$2\""
+                shift
+                ;;
+             *) break ;;
+        esac
+        shift
+    done
+
+    if [ $# -lt 2 ]; then
+        echo "You must specify SCM and TAG"
+        exit
+    fi
+
+    local scm="$1"
+    local tag="$2"
+    local pomPath="$3"
+
+    local query="{"
+    query="$query \"scmUrl\": \"$scm\""
+    query="$query, \"revision\": \"$tag\""
+    query="$query, \"pomPath\": \"$pomPath\""
+    query="$query, \"searchUnknownProducts\": $unknown"
+    query="$query, \"products\": [$products]"
+    query="$query, \"additionalRepos\": [$repo]"
+    query="$query }"
+
+    tmpfile=`gettmpfile`
+    post "reports/align" "$query" >> $tmpfile
+    case $type in
+        pretty) cat $tmpfile | prettyPrint reportAlign | column -t -s $'\t' ;;
+        json) cat $tmpfile ;;
+    esac
+    rm $tmpfile
+}
+
 
