@@ -174,7 +174,8 @@ public class AproxConnectorImpl implements AproxConnector {
                         "Add remote repo", RemoteRepository.class);
             }
 
-            Group group = aprox.stores().load(StoreType.group, "DA", Group.class);
+            Group group = aprox.stores().load(StoreType.group, config.getConfig().getAproxGroup(),
+                    Group.class);
 
             group.addConstituent(repo);
 
@@ -194,7 +195,8 @@ public class AproxConnectorImpl implements AproxConnector {
             RemoteRepository repo = aprox.stores().load(StoreType.remote, repository.getName(),
                     RemoteRepository.class);
 
-            Group group = aprox.stores().load(StoreType.group, "DA", Group.class);
+            Group group = aprox.stores().load(StoreType.group, config.getConfig().getAproxGroup(),
+                    Group.class);
 
             if (repo == null) {
                 return RepositoryManipulationStatus.NAME_NOT_EXIST;
@@ -217,7 +219,8 @@ public class AproxConnectorImpl implements AproxConnector {
         try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api",
                 new AproxStoresClientModule()).connect()) {
             List<Repository> repoList = new ArrayList<>();
-            Group daGroup = aprox.stores().load(StoreType.group, "DA", Group.class);
+            Group daGroup = aprox.stores().load(StoreType.group,
+                    config.getConfig().getAproxGroup(), Group.class);
             for (StoreKey key : daGroup.getConstituents()) {
                 if (key.getType() == StoreType.remote) {
                     RemoteRepository repo = aprox.stores().load(StoreType.remote, key.getName(),
