@@ -47,6 +47,17 @@ public class SCMConnectorImpl implements SCMConnector {
     }
 
     @Override
+    public Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, GAV gav)
+            throws ScmException, PomAnalysisException {
+        // git clone
+        // TODO: hardcoded to git right now
+        // TODO: enable the svn test if svn support is added
+        File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
+
+        return pomAnalyzer.getToplevelDepency(tempDir, gav);
+    }
+
+    @Override
     public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision,
             String pomPath, List<String> repositories) throws ScmException, PomAnalysisException {
         // git clone
@@ -54,8 +65,8 @@ public class SCMConnectorImpl implements SCMConnector {
         // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
-        GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, new File(
-                tempDir, pomPath), repositories);
+        GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, pomPath,
+                repositories);
 
         return gavDependencyTree;
     }

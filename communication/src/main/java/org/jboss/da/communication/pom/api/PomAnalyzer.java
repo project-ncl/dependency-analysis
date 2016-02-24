@@ -39,7 +39,7 @@ public interface PomAnalyzer {
      * @return The GAVDependencyTree of the root project
      * @throws PomAnalysisException
      */
-    GAVDependencyTree readRelationships(File pomRepoDir, File pomPath, List<String> repositories)
+    GAVDependencyTree readRelationships(File pomRepoDir, String pomPath, List<String> repositories)
             throws PomAnalysisException;
 
     /**
@@ -54,13 +54,25 @@ public interface PomAnalyzer {
      */
     GAVDependencyTree readRelationships(File pomRepoDir, GAV gav) throws PomAnalysisException;
 
+    /**
+     * Given the directory of a project, and the gav of the project which
+     * we'll consider as the root project, return the GAVDependencyTree of the
+     * root project.
+     *
+     * @param pomRepoDir Directory of the project to analyze
+     * @param gav GAV of the root project to analyze
+     * @return The GAVDependencyTree of the root project
+     * @throws PomAnalysisException
+     */
+    Set<GAV> getToplevelDepency(File pomRepoDir, GAV gav) throws PomAnalysisException;
+
     public Optional<File> getPOMFileForGAV(File tempDir, GAV gav);
 
     public Map<GA, Set<GAV>> getDependenciesOfModules(File scmDir, String pomPath,
             List<String> repositories) throws PomAnalysisException;
 
-    public List<MavenPomView> getGitPomView(String scmUrl, String revision, String pomPath,
-            List<String> repositories) throws PomAnalysisException;
+    public MavenPomView getGitPomView(File repoDir, String pomPath, List<String> repositories)
+            throws PomAnalysisException;
 
     public MavenPomView getMavenPomView(InputStream is) throws ConfigurationParseException,
             GalleyMavenException;

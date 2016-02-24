@@ -1,5 +1,6 @@
 package org.jboss.da.listings.impl.service;
 
+import org.apache.maven.scm.ScmException;
 import org.commonjava.maven.galley.maven.GalleyMavenException;
 import org.commonjava.maven.galley.maven.model.view.DependencyView;
 import org.commonjava.maven.galley.maven.model.view.MavenPomView;
@@ -13,14 +14,16 @@ import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.WLFiller;
+import org.jboss.da.scm.api.SCM;
+import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +45,9 @@ public class WLFillerImpl implements WLFiller {
     @Inject
     private AproxConnector aprox;
 
+    @Inject
+    private SCM scmManager;
+
     @Override
     public WLStatus fillWhitelistFromPom(String scmUrl, String revision, String pomPath,
             List<String> repositories, long productId) {
@@ -49,8 +55,8 @@ public class WLFillerImpl implements WLFiller {
             return WLStatus.PRODUCT_NOT_FOUND;
         }
         try {
-            fillWLFromList(getPomListFromGit(scmUrl, revision, pomPath, repositories), productId);
-        } catch (GalleyMavenException | PomAnalysisException e) {
+            fillWLFromPom(getPomListFromGit(scmUrl, revision, pomPath, repositories), productId);
+        } catch (ScmException | GalleyMavenException | PomAnalysisException e) {
             log.error(e.getMessage());
             return WLStatus.ANALYSER_ERROR;
         }
@@ -67,7 +73,7 @@ public class WLFillerImpl implements WLFiller {
             Optional<InputStream> is = aprox.getPomStream(new GAV(groupId, artifactId, version));
             if (is.isPresent()) {
                 MavenPomView view = analyzer.getMavenPomView(is.get());
-                fillWLFromList(Collections.singletonList(view), productId);
+                fillWLFromPom(view, productId);
             } else {
                 return WLStatus.ANALYSER_ERROR;
             }
@@ -78,27 +84,28 @@ public class WLFillerImpl implements WLFiller {
         return WLStatus.FILLED;
     }
 
-    private List<MavenPomView> getPomListFromGit(String scmUrl, String revision, String pomPath,
-            List<String> repositories) throws GalleyMavenException, PomAnalysisException {
+    private MavenPomView getPomListFromGit(String scmUrl, String revision, String pomPath,
+            List<String> repositories) throws GalleyMavenException, PomAnalysisException,
+            ScmException {
 
         if (repositories == null) {
             repositories = new ArrayList<>();
         }
-        List<MavenPomView> poms = analyzer.getGitPomView(scmUrl, revision, pomPath, repositories);
 
-        return poms;
+        File clonedDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
+
+        MavenPomView pom = analyzer.getGitPomView(clonedDir, pomPath, repositories);
+
+        return pom;
     }
 
-    private void fillWLFromList(List<MavenPomView> poms, long productId)
-            throws GalleyMavenException {
-        for (MavenPomView v : poms) {
-            List<DependencyView> dependencies = v.getAllManagedDependencies();
-            for (DependencyView d : dependencies) {
-                GA ga = new GA(d.getGroupId(), d.getArtifactId());
-                Artifact a = new Artifact(ga, d.getVersion());
-                whiteService.addArtifact(a.getGa().getGroupId(), a.getGa().getArtifactId(),
-                        a.getVersion(), productId);
-            }
+    private void fillWLFromPom(MavenPomView v, long productId) throws GalleyMavenException {
+        List<DependencyView> dependencies = v.getAllManagedDependencies();
+        for (DependencyView d : dependencies) {
+            GA ga = new GA(d.getGroupId(), d.getArtifactId());
+            Artifact a = new Artifact(ga, d.getVersion());
+            whiteService.addArtifact(a.getGa().getGroupId(), a.getGa().getArtifactId(),
+                    a.getVersion(), productId);
         }
     }
 

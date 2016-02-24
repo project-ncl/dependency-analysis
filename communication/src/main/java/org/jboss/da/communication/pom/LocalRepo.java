@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
@@ -34,7 +35,11 @@ public class LocalRepo {
     }
 
     public synchronized Location getLocation() {
-        return new SimpleLocation(path.toUri().toString());
+        return new SimpleLocation(getUri().toString());
+    }
+
+    public synchronized URI getUri() {
+        return path.toUri();
     }
 
     private void initLocalRepo(GalleyMaven galley, Path scmDir) throws IOException {
@@ -60,7 +65,7 @@ public class LocalRepo {
         }
     }
 
-    private Set<Path> getAllPoms(Path scmDir) throws IOException {
+    public static Set<Path> getAllPoms(Path scmDir) throws IOException {
         return Files.walk(scmDir)
                 .filter(p -> !Files.isDirectory(p)) // is file
                 .filter(p -> p.endsWith("pom.xml")) // named pom.xml
