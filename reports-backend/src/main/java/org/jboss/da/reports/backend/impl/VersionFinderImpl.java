@@ -6,10 +6,12 @@ import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
+import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -25,6 +27,9 @@ import java.util.stream.Collectors;
 public class VersionFinderImpl implements VersionFinder {
 
     @Inject
+    Logger log;
+
+    @Inject
     private AproxConnector aproxConnector;
 
     @Inject
@@ -38,6 +43,10 @@ public class VersionFinderImpl implements VersionFinder {
 
     @Override
     public VersionLookupResult lookupBuiltVersions(GAV gav) throws CommunicationException {
+        if (!gav.getGA().isValid()) {
+            log.warn("Received nonvalid GAV: " + gav);
+            return new VersionLookupResult(Optional.empty(), Collections.emptyList());
+        }
         List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
         return new VersionLookupResult(getBestMatchVersionFor(gav, allVersions),
                 getBuiltVersionsFor0(allVersions));
