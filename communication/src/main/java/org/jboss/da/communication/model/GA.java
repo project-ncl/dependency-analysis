@@ -3,12 +3,19 @@ package org.jboss.da.communication.model;
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import java.util.regex.Pattern;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 
 @EqualsAndHashCode
 public class GA {
+
+    private static final Pattern GROUP_ID_PATTERN = Pattern
+            .compile("([a-zA-Z_][a-zA-Z\\d_]*\\.)*[a-zA-Z_][a-zA-Z\\d_]*");
+
+    private static final Pattern ARTIFACT_ID_PATTERN = Pattern.compile("[a-zA-Z0-9_.-]+");
 
     @Getter
     @NonNull
@@ -27,6 +34,11 @@ public class GA {
     @Override
     public String toString() {
         return groupId + ":" + artifactId;
+    }
+
+    public boolean isValid() {
+        return GROUP_ID_PATTERN.matcher(groupId).matches()
+                && ARTIFACT_ID_PATTERN.matcher(artifactId).matches();
     }
 
 }
