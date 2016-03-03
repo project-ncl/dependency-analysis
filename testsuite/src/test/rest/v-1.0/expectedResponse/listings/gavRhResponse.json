@@ -1,7 +1,13 @@
 [
-  {
-    "groupId": "org.jboss.da",
-    "artifactId": "dependency-analyzer",
-    "version": "0.3.0.redhat-1"
-  }
+	{
+		"name": "test",
+		"version": "1.0.0",
+		"supportStatus": "SUPPORTED",
+		"gav": 
+		{
+			"groupId": "org.jboss.da",
+			"artifactId": "dependency-analyzer",
+			"version": "0.3.0.redhat-1"
+		}
+	}
 ]

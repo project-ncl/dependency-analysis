@@ -1,5 +1,7 @@
 package org.jboss.da.test.client.rest.listings;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -10,23 +12,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@XmlRootElement(name = "gav")
+@XmlRootElement(name = "product")
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class RestArtifact {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class RestProduct {
 
     @Getter
     @Setter
-    protected String groupId;
+    protected long id;
 
     @Getter
     @Setter
-    protected String artifactId;
+    protected String name;
 
     @Getter
     @Setter
     protected String version;
+
+    @Getter
+    @Setter
+    protected String status;
 
 }

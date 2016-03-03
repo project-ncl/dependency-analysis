@@ -1,7 +1,8 @@
 package org.jboss.da.test.client.rest.listings;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.AbstractRestReportsTest;
@@ -9,25 +10,27 @@ import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.util.GenericType;
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.core.MediaType;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RestApiListingsTest extends AbstractRestReportsTest {
 
-    private enum ListType {
-        BLACK, WHITE
+    private RequestGenerator generator = new RequestGenerator();
+
+    private enum ListEntityType {
+        BLACK, WHITE, PRODUCT;
     }
 
     private enum OperationType {
-        ADD, DELETE
+        POST, DELETE, PUT;
     }
 
     private static final String ENCODING = "utf-8";
@@ -40,17 +43,27 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
 
     private static final String PATH_WHITE_LISTINGS_GAV = "/listings/whitelist/gav";
 
+    private static final String PATH_WHITE_ARTIFACTS = "/listings/whitelist/artifacts/gav";
+
     private static final String PATH_BLACK_LISTINGS_GAV = "/listings/blacklist/gav";
+
+    private static final String PATH_PRODUCT = "/listings/whitelist/product";
+
+    private static final String PATH_PRODUCTS = "/listings/whitelist/products";
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
     @After
     public void dropTables() throws Exception {
-        List<RestArtifact> whitelistedArtifacts = getAllArtifactsFromList(PATH_WHITE_LIST);
-        whitelistedArtifacts.forEach(gav -> removeGavFromList(PATH_WHITE_LISTINGS_GAV, gav));
+        List<RestWhiteArtifact> whitelistedArtifacts = getAllWhiteArtifactsFromList(PATH_WHITE_LIST);
+        List<RestArtifact> artifacts = whiteToRestArtifactList(whitelistedArtifacts);
+        artifacts.forEach(gav -> removeGavFromList(PATH_WHITE_LISTINGS_GAV, gav));
 
         List<RestArtifact> blacklistedArtifacts = getAllArtifactsFromList(PATH_BLACK_LIST);
         blacklistedArtifacts.forEach(gav -> removeGavFromList(PATH_BLACK_LISTINGS_GAV, gav));
+
+        List<RestProduct> products = getAllProductsFromList(PATH_PRODUCTS);
+        products.forEach(product -> removeProductFromList(PATH_PRODUCT, product));
     }
 
     private void removeGavFromList(String listUrl, RestArtifact gav) {
@@ -62,8 +75,32 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
         }
     }
 
+    private void removeProductFromList(String url, RestProduct product) {
+        try {
+            ClientRequest request = createClientRequest(url, toRestProductRequest(product));
+            request.delete(String.class);
+        } catch (Exception e) {
+            fail("Failed to remove product from the list using URL " + url);
+        }
+
+    }
+
+    private String toRestProductRequest(RestProduct p) {
+        return "{" + "\"name\":" + "\"" + p.getName() + "\"," + "\"version\":" + "\""
+                + p.getVersion() + "\"" + "}";
+    }
+
     private List<RestArtifact> getAllArtifactsFromList(String listUrl) throws Exception {
         return processGetRequest(new GenericType<List<RestArtifact>>() {}, restApiURL + listUrl);
+    }
+
+    private List<RestWhiteArtifact> getAllWhiteArtifactsFromList(String listUrl) throws Exception {
+        return processGetRequest(new GenericType<List<RestWhiteArtifact>>() {}, restApiURL
+                + listUrl);
+    }
+
+    private List<RestProduct> getAllProductsFromList(String listUrl) throws Exception {
+        return processGetRequest(new GenericType<List<RestProduct>>() {}, restApiURL + listUrl);
     }
 
     private <T> T processGetRequest(GenericType<T> type, String url) throws Exception {
@@ -79,255 +116,179 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
-    @Ignore
-    //
-    public void testAddWhiteArtifact() throws Exception {
-        String type = "gavRh";
+    public void testAddProduct() throws Exception {
+        String type = "productAdd";
 
-        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
-                type, true);
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
 
         checkExpectedResponse(response, "success");
     }
 
     @Test
-    @Ignore
-    //
-    public void testAddNonRHWhiteArtifact() throws Exception {
-        String type = "gav";
+    public void testChangeProduct() throws Exception {
+        String type = "productAdd";
 
-        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
-                type, false);
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
 
-        assertEquals(400, response.getStatus());
-    }
+        checkExpectedResponse(response, "success");
 
-    /**
-     * Added artifacts: 1.0.redhat-1, 1.0.0.redhat-1
-     * Respons after second insertion: 409 Conflict
-     *
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    public void testAddNonOSGiWhiteArtifactAndOsgiWhiteArtifact() throws Exception {
-        String type1 = "gavRhNonOSGi";
-        String type2 = "gavRh4";
+        type = "productChangeStatus";
 
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type1, true);
-        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
-                type2, false);
-
-        assertEquals(409, response.getStatus());
-    }
-
-    /**
-     * Added artifacts: 1.0.0.redhat-1, 1.0.redhat-1
-     * Respons after second insertion: 409 Conflict
-     *
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    public void testAddOSGiWhiteArtifactAndNonOsgiWhiteArtifact() throws Exception {
-        String type1 = "gavRh4";
-        String type2 = "gavRhNonOSGi";
-
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type1, true);
-        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
-                type2, false);
-
-        assertEquals(409, response.getStatus());
+        response = manipulateEntity(ListEntityType.PRODUCT, OperationType.PUT, type, true);
     }
 
     @Test
-    @Ignore
-    //
+    public void testDeleteProduct() throws Exception {
+        String type = "productAdd";
+
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
+
+        checkExpectedResponse(response, "success");
+
+        response = manipulateEntity(ListEntityType.PRODUCT, OperationType.DELETE, type, true);
+
+        checkExpectedResponse(response, "success");
+    }
+
+    @Test
     public void testAddBlackArtifact() throws Exception {
         String type = "gav";
 
-        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
-                type, true);
+        ClientResponse<String> response = manipulateEntity(ListEntityType.BLACK,
+                OperationType.POST, type, true);
 
         checkExpectedResponse(response, "success");
     }
 
     @Test
-    @Ignore
-    //
-    public void testAddBlackRHArtifact() throws Exception {
-        String type = "gavRh";
+    public void testDeleteBlackArtifact() throws Exception {
+        String type = "gav";
+        // add artifact
+        manipulateEntity(ListEntityType.BLACK, OperationType.POST, type, true);
 
-        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
-                type, true);
-
-        checkExpectedResponse(response, "success");
-    }
-
-    @Test
-    @Ignore
-    //
-    public void testAddBlackNonOSGiArtifact() throws Exception {
-        String type = "gavNonOSGi";
-
-        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
-                type, true);
+        // delete artifact
+        ClientResponse<String> response = manipulateEntity(ListEntityType.BLACK,
+                OperationType.DELETE, type, true);
 
         checkExpectedResponse(response, "success");
     }
 
     @Test
-    @Ignore
-    //
+    public void testDeleteNonExistingBlackArtifact() throws Exception {
+        String type = "gav";
+
+        ClientResponse<String> response = manipulateEntity(ListEntityType.BLACK,
+                OperationType.DELETE, type, true);
+
+        checkExpectedResponse(response, "successFalse");
+    }
+
+    @Test
+    public void testAlreadyAddedBlackArtifact() throws Exception {
+        // add first black artifact
+        String type = "gav";
+        manipulateEntity(ListEntityType.BLACK, OperationType.POST, type, true);
+
+        // add second black artifact
+        ClientResponse<String> response = manipulateEntity(ListEntityType.BLACK,
+                OperationType.POST, type, true);
+
+        checkExpectedResponse(response, "successFalse");
+    }
+
+    @Test
+    public void testAddWhiteArtifact() throws Exception {
+        String type = "productAdd";
+
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
+
+        checkExpectedResponse(response, "success");
+
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+                getIdOfProduct("test", "1.0.0"));
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
+
+        checkExpectedResponse(response, "success");
+    }
+
+    @Test
+    public void testDeleteWhiteArtifact() throws Exception {
+        String type = "productAdd";
+
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
+
+        checkExpectedResponse(response, "success");
+
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+                getIdOfProduct("test", "1.0.0"));
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
+
+        checkExpectedResponse(response, "success");
+        // delete artifact
+        type = "gav";
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.DELETE, type, true);
+
+        checkExpectedResponse(response, "success");
+    }
+
+    @Test
+    public void testDeleteNonExistingWhiteArtifact() throws Exception {
+        String type = "gav";
+
+        ClientResponse<String> response = manipulateEntity(ListEntityType.WHITE,
+                OperationType.DELETE, type, true);
+
+        checkExpectedResponse(response, "successFalse");
+
+    }
+
+    @Test
     public void testAddBlacklistedArtifactToWhitelist() throws Exception {
         // Add artifact to blacklist
         String type = "gav";
-        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
-
+        ClientResponse<String> response = manipulateEntity(ListEntityType.BLACK,
+                OperationType.POST, type, true);
+        checkExpectedResponse(response, "success");
         // Try to add artifact to whitelist
-        type = "gavRh";
 
-        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
-                type, false);
+        type = "productAdd";
+
+        response = manipulateEntity(ListEntityType.PRODUCT, OperationType.POST, type, true);
+
+        checkExpectedResponse(response, "success");
+
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+                getIdOfProduct("test", "1.0.0"));
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, false);
 
         assertEquals(409, response.getStatus());
     }
 
     @Test
-    @Ignore
-    //
     public void testAddWhitelistedArtifactToBlacklist() throws Exception {
-        // Add artifact to whitelist
-        String type = "gavRh";
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
+        String type = "productAdd";
 
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
+
+        // Add artifact to whitelist
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+                getIdOfProduct("test", "1.0.0"));
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
         // Add artifact to blacklist
         type = "gav";
 
-        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
-                type, true);
-
-        checkExpectedResponse(response, "successMessage");
-
-        assertEquals(0, getAllArtifactsFromList(PATH_WHITE_LIST).size());
-    }
-
-    /**
-     * Artifact added to whitelist: 1.0.redhat-1
-     * Artifact added to blacklis: 1.0.redhat-1
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    //
-    public void testAddNonOSGiWhitelistedArtifactToBlacklist() throws Exception {
-        checkBlacklistingArtifactTest("gavRhNonOSGi", null, "gavRhNonOSGi");
-    }
-
-    /**
-     * Artifact added to whitelist: 1.0.redhat-1
-     * Artifact added to blacklis: 1.0
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    //
-    public void testAddNonOSGiWhitelistedArtifactToBlacklistv2() throws Exception {
-        checkBlacklistingArtifactTest("gavRhNonOSGi", null, "gavRhNonOSGiv2");
-    }
-
-    /**
-     * Artifact added to whitelist: 1.0.redhat-1
-     * Artifact added to blacklis: 1.0.0
-     * @throws Exception
-     */
-    @Ignore
-    @Test
-    public void testAddNonOSGiWhitelistedArtifactToBlacklistv3() throws Exception {
-        checkBlacklistingArtifactTest("gavRhNonOSGi", null, "gavRhNonOSGiv3");
-    }
-
-    /**
-     * Artifact added to whitelist: 1.0.redhat-1
-     * Artifact added to blacklis: 1.0.0.redhat-1
-     * @throws Exception
-     */
-    @Ignore
-    @Test
-    public void testAddNonOSGiWhitelistedArtifactToBlacklistv4() throws Exception {
-        checkBlacklistingArtifactTest("gavRhNonOSGi", null, "gavRh4");
-    }
-
-    /**
-     * Artifact added to whitelist: 1.0.redhat-1
-     * Artifact added to blacklis: 1.0.0.redhat-2
-     * @throws Exception
-     */
-    @Ignore
-    @Test
-    public void testAddNonOSGiWhitelistedArtifactToBlacklistv5() throws Exception {
-        checkBlacklistingArtifactTest("gavRhNonOSGi", null, "gavRh3");
-    }
-
-    /**
-     * Artifacts added to whitelist: 1.0.redhat-1, 1.0.0.redhat-2
-     * Artifact added to blacklis: 1.0.redhat-1
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    //
-    public void testAddNonOSGiAndOSGiWhitelistedArtifactsToBlacklist() throws Exception {
-        checkBlacklistingArtifactTest("gavRhNonOSGi", "gavRh3", "gavRhNonOSGi");
-    }
-
-    /**
-     * Artifacts added to whitelist: 1.0.redhat-1, 1.0.0.redhat-2
-     * Artifact added to blacklis: 1.0
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    //
-    public void testAddNonOSGiAndOSGiWhitelistedArtifactsToBlacklistv2() throws Exception {
-        checkBlacklistingArtifactTest("gavRhNonOSGi", "gavRh3", "gavRhNonOSGiv2");
-    }
-
-    /**
-     * Artifacts added to whitelist: 1.0.redhat-1, 1.0.0.redhat-2
-     * Artifact added to blacklis: 1.0.0
-     * @throws Exception
-     */
-    @Ignore
-    @Test
-    public void testAddNonOSGiAndOSGiWhitelistedArtifactsToBlacklistv3() throws Exception {
-        checkBlacklistingArtifactTest("gavRhNonOSGi", "gavRh3", "gavRhNonOSGiv3");
-    }
-
-    /**
-     * Artifacts added to whitelist: 1.0.redhat-1, 1.0.0.redhat-2
-     * Artifact added to blacklis: 1.0.0.redhat-1
-     * @throws Exception
-     */
-    @Ignore
-    @Test
-    public void testAddNonOSGiAndOSGiWhitelistedArtifactsToBlacklistv4() throws Exception {
-        checkBlacklistingArtifactTest("gavRhNonOSGi", "gavRh3", "gavRh4");
-    }
-
-    @Test
-    @Ignore
-    //
-    public void testAddWhitelistedNonOSGiArtifactToBlacklist() throws Exception {
-        // Add artifact to whitelist
-        String type = "gavRh";
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
-
-        // Add artifact to blacklist
-        type = "gavNonOSGi";
-
-        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
-                type, true);
+        response = manipulateEntity(ListEntityType.BLACK, OperationType.POST, type, true);
 
         checkExpectedResponse(response, "successMessage");
 
@@ -335,245 +296,101 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
-    @Ignore
-    //
     public void testAddMultipleTimeWhitelistedArtifactToBlacklist() throws Exception {
-        // Add artifacts to whitelist
-        String type = "gavRh";
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
+        String type = "productAdd";
 
-        type = "gavRh2";
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
+
+        type = "productAdd2";
+
+        response = manipulateEntity(ListEntityType.PRODUCT, OperationType.POST, type, true);
+        // Add artifacts to whitelist
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+                getIdOfProduct("test", "1.0.0"));
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
+
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+                getIdOfProduct("test", "2.0.0"));
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
         // Add artifact to blacklist
         type = "gav";
-        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
-                type, true);
+        response = manipulateEntity(ListEntityType.BLACK, OperationType.POST, type, true);
 
         checkExpectedResponse(response, "successMessage");
     }
 
     @Test
-    @Ignore
-    //
     public void testAlreadyAddedWhiteArtifact() throws Exception {
-        // add first white artifact
-        String type = "gavRh";
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
+        String type = "productAdd";
+
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
+
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+                getIdOfProduct("test", "1.0.0"));
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
 
         // add second white artifact
-        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.ADD,
-                type, true);
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
 
         checkExpectedResponse(response, "successFalse");
     }
 
     @Test
-    @Ignore
-    //
-    public void testAlreadyAddedBlackArtifact() throws Exception {
-        // add first black artifact
+    public void testGetAllWhiteArtifacts() throws Exception {
+        // Add artifacts to whitelist
+        String type = "productAdd";
+
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
+
+        type = "productAdd2";
+
+        response = manipulateEntity(ListEntityType.PRODUCT, OperationType.POST, type, true);
+        // Add artifacts to whitelist
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+                getIdOfProduct("test", "1.0.0"));
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
+
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+                getIdOfProduct("test", "2.0.0"));
+
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
+        // Get list
+
+        response = new ClientRequest(restApiURL + PATH_WHITE_LIST).get(String.class);
+        assertEquals(200, response.getStatus());
+
+        checkExpectedResponse(response, "gavWhiteList");
+    }
+
+    @Test
+    public void testGetAllBlackArtifacts() throws Exception {
+        // Add artifacts to blacklist
         String type = "gav";
-        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
+        manipulateEntity(ListEntityType.BLACK, OperationType.POST, type, true);
 
-        // add second black artifact
-        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.ADD,
-                type, true);
+        type = "gav2";
+        manipulateEntity(ListEntityType.BLACK, OperationType.POST, type, true);
 
-        checkExpectedResponse(response, "successFalse");
-    }
+        // Get list
 
-    @Test
-    @Ignore
-    //
-    public void testDeleteWhiteArtifact() throws Exception {
-        String type = "gavRh";
-        // add artifact
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
-
-        // delete artifact
-        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.DELETE,
-                type, true);
-
-        checkExpectedResponse(response, "success");
-    }
-
-    @Test
-    @Ignore
-    //
-    public void testDeleteBlackArtifact() throws Exception {
-        String type = "gav";
-        // add artifact
-        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
-
-        // delete artifact
-        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.DELETE,
-                type, true);
-
-        checkExpectedResponse(response, "success");
-    }
-
-    @Test
-    @Ignore
-    //
-    public void testDeleteNonExistingWhiteArtifact() throws Exception {
-        String type = "gavRh";
-
-        ClientResponse<String> response = manipulateArtifact(ListType.WHITE, OperationType.DELETE,
-                type, true);
-
-        checkExpectedResponse(response, "successFalse");
-
-    }
-
-    @Test
-    @Ignore
-    //
-    public void testDeleteNonExistingBlackArtifact() throws Exception {
-        String type = "gav";
-
-        ClientResponse<String> response = manipulateArtifact(ListType.BLACK, OperationType.DELETE,
-                type, true);
-
-        checkExpectedResponse(response, "successFalse");
-
-    }
-
-    @Test
-    @Ignore
-    //
-    public void testCheckRHWhiteArtifact() throws Exception {
-        String type = "gavRh";
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
-
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
+        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST)
                 .get(String.class);
         assertEquals(200, response.getStatus());
 
-        checkExpectedResponse(response, "gavRhResponse");
-    }
-
-    /**
-     * Non RedHat but OSGi compliant white artifact test
-     * 
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    //
-    public void testCheckNonRHWhiteArtifact() throws Exception {
-        String type = "gavRh";
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
-
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
-                .get(String.class);
-        assertEquals(200, response.getStatus());
-
-        checkExpectedResponse(response, "gavRhResponse");
-    }
-
-    /**
-     * Added artifact: 0.3.0.redhat-1
-     * Looking for artifact version: 0.3
-     * Should find artifact: 0.3.0.redhat-1
-     * 
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    //
-    public void testCheckNonRHNonOSGiWhiteArtifact() throws Exception {
-        checkArtifactTest("gavRh", null, "0.3", "gavRhResponseCheck");
-    }
-
-    /**
-     * Added artifact: 1.0.redhat-1
-     * Looking for artifact version: 1.0.redhat-1
-     * Should find artifact: 1.0.redhat-1
-     * 
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    //
-    public void testCheckRHNonOSGiArtifact() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", null, "1.0.redhat-1", "gavRhNonOSGiResponse");
-    }
-
-    /**
-     * Added artifact: 1.0.redhat-1
-     * Looking for artifact version: 1.0
-     * Should find artifact: 1.0.redhat-1
-     * 
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    //
-    public void testCheckRHNonOSGiArtifactv2() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", null, "1.0", "gavRhNonOSGiResponse");
-    }
-
-    /**
-     * Added artifact: 1.0.redhat-1
-     * Looking for artifact version: 1.0.0
-     * Should find artifact: 1.0.redhat-1
-     * 
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    public void testCheckRHNonOSGiArtifactv3() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", null, "1.0.0", "gavRhNonOSGiResponse");
-    }
-
-    /**
-     * Added artifact: 1.0.redhat-1
-     * Looking for artifact version: 1.0.0.redhat-1
-     * Should find artifact: 1.0.redhat-1
-     * 
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    public void testCheckRHNonOSGiArtifactv4() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", null, "1.0.0.redhat-1", "gavRhNonOSGiResponse");
-    }
-
-    /**
-     * Added artifacts: 1.0.redhat-1, 1.0.0.redhat-2
-     * Looking for artifact version: 1.0
-     * Should find artifact: 1.0.redhat-1, 1.0.0.redhat-2
-     * 
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    //
-    public void testCheckRHNonOSGiandOSGiArtifactsv1() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", "gavRh3", "1.0", "gavNonOSGiList2");
-    }
-
-    /**
-     * Added artifacts: 1.0.redhat-1, 1.0.0.redhat-2
-     * Looking for artifact version: 1.0.0
-     * Should find artifact: 1.0.redhat-1, 1.0.0.redhat-2
-     * 
-     * @throws Exception
-     */
-    @Test
-    @Ignore
-    public void testCheckRHNonOSGiandOSGiArtifactsv2() throws Exception {
-        checkArtifactTest("gavRhNonOSGi", "gavRh3", "1.0.0", "gavNonOSGiList2");
+        checkExpectedResponse(response, "gavBlackList");
     }
 
     @Test
-    @Ignore
-    //
     public void testCheckRHBlackArtifact() throws Exception {
         String type = "gav";
-        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
+        manipulateEntity(ListEntityType.BLACK, OperationType.POST, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
@@ -589,11 +406,9 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
-    @Ignore
-    //
     public void testCheckNonRHBlackArtifact() throws Exception {
         String type = "gav";
-        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
+        manipulateEntity(ListEntityType.BLACK, OperationType.POST, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
@@ -609,11 +424,9 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
      * @throws Exception
      */
     @Test
-    @Ignore
-    //
     public void testCheckNonRHNonOSGiBlackArtifact() throws Exception {
         String type = "gav";
-        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
+        manipulateEntity(ListEntityType.BLACK, OperationType.POST, type, true);
 
         ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3")
@@ -624,86 +437,99 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
     }
 
     @Test
-    @Ignore
-    //
-    public void testGetAllWhiteArtifacts() throws Exception {
-        // Add artifacts to whitelist
-        String type = "gavRh";
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
+    public void testCheckRHWhiteArtifact() throws Exception {
+        String type = "productAdd";
 
-        type = "gavRh2";
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, type, true);
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
 
-        // Get list
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer",
+                "0.3.0.redhat-1", getIdOfProduct("test", "1.0.0"));
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST)
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
+
+        response = new ClientRequest(restApiURL + PATH_WHITE_LIST
+                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
                 .get(String.class);
         assertEquals(200, response.getStatus());
 
-        checkExpectedResponse(response, "gavWhiteList");
+        checkExpectedResponse(response, "gavRhResponse");
     }
 
+    /**
+     * Non RedHat but OSGi compliant white artifact test
+     * 
+     * @throws Exception
+     */
     @Test
-    @Ignore
-    //
-    public void testGetAllBlackArtifacts() throws Exception {
-        // Add artifacts to blacklist
-        String type = "gav";
-        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
+    public void testCheckNonRHWhiteArtifact() throws Exception {
+        String type = "productAdd";
 
-        type = "gav2";
-        manipulateArtifact(ListType.BLACK, OperationType.ADD, type, true);
+        ClientResponse<String> response = manipulateEntity(ListEntityType.PRODUCT,
+                OperationType.POST, type, true);
 
-        // Get list
+        type = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer",
+                "0.3.0.redhat-1", getIdOfProduct("test", "1.0.0"));
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST)
+        response = manipulateEntity(ListEntityType.WHITE, OperationType.POST, type, true);
+
+        response = new ClientRequest(restApiURL + PATH_WHITE_LIST
+                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
                 .get(String.class);
         assertEquals(200, response.getStatus());
 
-        checkExpectedResponse(response, "gavBlackList");
+        checkExpectedResponse(response, "gavRhResponse");
     }
 
-    private ClientResponse<String> manipulateArtifact(ListType list, OperationType operation,
-            String file, Boolean checkAdd) throws Exception {
+    private ClientResponse<String> manipulateEntity(ListEntityType entity, OperationType operation,
+            String file, Boolean checkSuccess) throws Exception {
         String type = file;
-        File jsonRequestFile = getJsonRequestFile(PATH_FILES_LISTINGS_GAV, type);
+        String requestString = null;
+        if (entity.equals(ListEntityType.WHITE) && operation.equals(OperationType.POST)) {
+            requestString = file;
+        } else {
+            File jsonRequestFile = getJsonRequestFile(PATH_FILES_LISTINGS_GAV, type);
+            requestString = FileUtils.readFileToString(jsonRequestFile, ENCODING);
+        }
         String path = null;
-        switch (list) {
+        switch (entity) {
             case WHITE:
                 path = PATH_WHITE_LISTINGS_GAV;
                 break;
             case BLACK:
                 path = PATH_BLACK_LISTINGS_GAV;
                 break;
+            case PRODUCT:
+                path = PATH_PRODUCT;
+                break;
         }
-        ClientRequest request = createClientRequest(path,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-        ClientResponse<String> response;
+
+        ClientRequest request = createClientRequest(path, requestString);
+        ClientResponse<String> response = null;
         switch (operation) {
-            case ADD:
+            case POST:
                 response = request.post(String.class);
                 break;
 
             case DELETE:
                 response = request.delete(String.class);
                 break;
-
-            default:
-                throw new UnsupportedOperationException("Unknown operation " + operation);
+            case PUT:
+                response = request.put(String.class);
+                break;
         }
-
-        if (checkAdd)
+        if (checkSuccess)
             assertEquals(200, response.getStatus());
         return response;
     }
 
     private void checkBlacklistingArtifactTest(String artifact1, String artifact2, String addToBL)
             throws Exception {
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, artifact1, true);
+        manipulateEntity(ListEntityType.WHITE, OperationType.POST, artifact1, true);
         if (artifact2 != null) {
-            manipulateArtifact(ListType.WHITE, OperationType.ADD, artifact2, true);
+            manipulateEntity(ListEntityType.WHITE, OperationType.POST, artifact2, true);
         }
-        manipulateArtifact(ListType.BLACK, OperationType.ADD, addToBL, true);
+        manipulateEntity(ListEntityType.BLACK, OperationType.POST, addToBL, true);
 
         assertEquals(0, getAllArtifactsFromList(PATH_WHITE_LIST).size());
         assertEquals(1, getAllArtifactsFromList(PATH_BLACK_LIST).size());
@@ -712,17 +538,20 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
 
     private void checkArtifactTest(String artifact1, String artifact2, String testVersion,
             String expectedResult) throws Exception {
-        manipulateArtifact(ListType.WHITE, OperationType.ADD, artifact1, true);
+        manipulateEntity(ListEntityType.WHITE, OperationType.POST, artifact1, true);
 
         if (artifact2 != null) {
-            manipulateArtifact(ListType.WHITE, OperationType.ADD, artifact2, true);
+            manipulateEntity(ListEntityType.WHITE, OperationType.POST, artifact2, true);
         }
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LISTINGS_GAV
+        System.out.println(restApiURL + PATH_WHITE_ARTIFACTS
+                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=" + testVersion);
+
+        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_ARTIFACTS
                 + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=" + testVersion)
                 .get(String.class);
+        System.out.println("RESULT:" + response.getEntity());
         assertEquals(200, response.getStatus());
-
         checkExpectedResponse(response, expectedResult);
     }
 
@@ -732,4 +561,21 @@ public class RestApiListingsTest extends AbstractRestReportsTest {
         assertEqualsJson(readFileToString(expectedResponseFile), response.getEntity(String.class));
     }
 
+    private List<RestArtifact> whiteToRestArtifactList(List<RestWhiteArtifact> whites) {
+        List<RestArtifact> artifacts = new ArrayList<RestArtifact>();
+        for (RestWhiteArtifact w : whites) {
+            RestArtifact a = new RestArtifact();
+            a.setArtifactId(w.getGav().artifactId);
+            a.setGroupId(w.getGav().getGroupId());
+            a.setVersion(w.getGav().getVersion());
+            artifacts.add(a);
+        }
+        return artifacts;
+    }
+
+    private long getIdOfProduct(String name, String version) throws Exception {
+        ClientResponse<RestProduct[]> r = new ClientRequest(restApiURL + PATH_PRODUCT + "?name="
+                + name + "&version=" + version).get(RestProduct[].class);
+        return r.getEntity()[0].getId();
+    }
 }
