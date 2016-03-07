@@ -1,16 +1,16 @@
 package org.jboss.da.communication.aprox.impl;
 
-import org.commonjava.aprox.client.core.Aprox;
-import org.commonjava.aprox.client.core.AproxClientException;
-import org.commonjava.aprox.client.core.module.AproxStoresClientModule;
-import org.commonjava.aprox.depgraph.client.DepgraphAproxClientModule;
-import org.commonjava.aprox.model.core.Group;
-import org.commonjava.aprox.model.core.RemoteRepository;
-import org.commonjava.aprox.model.core.StoreKey;
-import org.commonjava.aprox.model.core.StoreType;
+import org.commonjava.indy.model.core.Group;
+import org.commonjava.indy.model.core.RemoteRepository;
+import org.commonjava.indy.model.core.StoreKey;
+import org.commonjava.indy.model.core.StoreType;
 import org.commonjava.cartographer.graph.discover.patch.DepgraphPatcherConstants;
 import org.commonjava.cartographer.request.ProjectGraphRequest;
 import org.commonjava.cartographer.result.GraphExport;
+import org.commonjava.indy.client.core.Indy;
+import org.commonjava.indy.client.core.IndyClientException;
+import org.commonjava.indy.client.core.module.IndyStoresClientModule;
+import org.commonjava.indy.depgraph.client.DepgraphIndyClientModule;
 import org.commonjava.maven.atlas.graph.rel.ProjectRelationship;
 import org.commonjava.maven.atlas.graph.rel.RelationshipType;
 import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
@@ -69,8 +69,8 @@ public class AproxConnectorImpl implements AproxConnector {
                     + "in public repo of Aprox");
         }
 
-        DepgraphAproxClientModule mod = new DepgraphAproxClientModule();
-        try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api", mod).connect()) {
+        DepgraphIndyClientModule mod = new DepgraphIndyClientModule();
+        try (Indy indy = new Indy(config.getConfig().getAproxServer() + "/api", mod).connect()) {
 
             SimpleProjectVersionRef rootRef = new SimpleProjectVersionRef(gav.getGroupId(),
                     gav.getArtifactId(), gav.getVersion());
@@ -95,7 +95,7 @@ public class AproxConnectorImpl implements AproxConnector {
                 return new GAVDependencyTree(gav);
             else
                 return generateGAVDependencyTree(export, gav);
-        } catch (AproxClientException | ConfigurationParseException e) {
+        } catch (IndyClientException | ConfigurationParseException e) {
             throw new CommunicationException(e);
         }
     }
@@ -158,11 +158,11 @@ public class AproxConnectorImpl implements AproxConnector {
     @Override
     public RepositoryManipulationStatus addRepositoryToGroup(Repository repository)
             throws CommunicationException {
-        try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api",
-                new AproxStoresClientModule()).connect()) {
+        try (Indy indy = new Indy(config.getConfig().getAproxServer() + "/api",
+                new IndyStoresClientModule()).connect()) {
             RemoteRepository repo;
             try {
-                repo = aprox.stores().load(StoreType.remote, repository.getName(),
+                repo = indy.stores().load(StoreType.remote, repository.getName(),
                         RemoteRepository.class);
             } catch (IllegalArgumentException e) {
                 return RepositoryManipulationStatus.WRONG_NAME_OR_URL;
@@ -170,19 +170,19 @@ public class AproxConnectorImpl implements AproxConnector {
             if (repo != null && !repo.getUrl().equals(repository.getUrl())) {
                 return RepositoryManipulationStatus.NAME_EXIST_DIFFERENT_URL;
             } else if (repo == null) {
-                repo = aprox.stores().create(
+                repo = indy.stores().create(
                         new RemoteRepository(repository.getName(), repository.getUrl()),
                         "Add remote repo", RemoteRepository.class);
             }
 
-            Group group = aprox.stores().load(StoreType.group, config.getConfig().getAproxGroup(),
+            Group group = indy.stores().load(StoreType.group, config.getConfig().getAproxGroup(),
                     Group.class);
 
             group.addConstituent(repo);
 
-            if (aprox.stores().update(group, "Add repository to group"))
+            if (indy.stores().update(group, "Add repository to group"))
                 return RepositoryManipulationStatus.DONE;
-        } catch (AproxClientException | ConfigurationParseException e) {
+        } catch (IndyClientException | ConfigurationParseException e) {
             throw new CommunicationException(e);
         }
         return null;
@@ -191,8 +191,8 @@ public class AproxConnectorImpl implements AproxConnector {
     @Override
     public RepositoryManipulationStatus removeRepositoryFromGroup(Repository repository)
             throws CommunicationException {
-        try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api",
-                new AproxStoresClientModule()).connect()) {
+        try (Indy aprox = new Indy(config.getConfig().getAproxServer() + "/api",
+                new IndyStoresClientModule()).connect()) {
             RemoteRepository repo = aprox.stores().load(StoreType.remote, repository.getName(),
                     RemoteRepository.class);
 
@@ -210,15 +210,15 @@ public class AproxConnectorImpl implements AproxConnector {
 
             aprox.stores().update(group, "Remove repository from group");
             return RepositoryManipulationStatus.DONE;
-        } catch (AproxClientException | ConfigurationParseException e) {
+        } catch (IndyClientException | ConfigurationParseException e) {
             throw new CommunicationException(e);
         }
     }
 
     @Override
     public List<Repository> getAllRepositoriesFromGroup() throws CommunicationException {
-        try (Aprox aprox = new Aprox(config.getConfig().getAproxServer() + "/api",
-                new AproxStoresClientModule()).connect()) {
+        try (Indy aprox = new Indy(config.getConfig().getAproxServer() + "/api",
+                new IndyStoresClientModule()).connect()) {
             List<Repository> repoList = new ArrayList<>();
             Group daGroup = aprox.stores().load(StoreType.group,
                     config.getConfig().getAproxGroup(), Group.class);
@@ -230,7 +230,7 @@ public class AproxConnectorImpl implements AproxConnector {
                 }
             }
             return repoList;
-        } catch (AproxClientException | ConfigurationParseException e) {
+        } catch (IndyClientException | ConfigurationParseException e) {
             throw new CommunicationException(e);
         }
     }
