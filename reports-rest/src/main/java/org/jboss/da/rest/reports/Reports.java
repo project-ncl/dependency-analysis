@@ -173,7 +173,7 @@ public class Reports {
         // Use a concurrent list since we're using parallel stream to add stuff to the list
         CopyOnWriteArrayList<LookupReport> reportsList = new CopyOnWriteArrayList<>();
 
-        boolean communicationSucceeded = gavRequest.parallelStream().map((gav) -> {
+        boolean communicationSucceeded = gavRequest.parallelStream().distinct().map((gav) -> {
             try {
                 VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
                 LookupReport lookupReport = toLookupReport(gav, lookupResult);
