@@ -3,7 +3,7 @@ package org.jboss.da.common.json;
 import lombok.Getter;
 import lombok.Setter;
 
-public class DAConfig {
+public class DAConfig extends AbstractModuleConfig {
 
     @Getter
     @Setter
