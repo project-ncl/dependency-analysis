@@ -7,5 +7,5 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
  * config. We leave it as empty since we don't care about it for now.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GlobalGroupWrapper extends AbstractModuleGroup {
+public class DefaultModuleGroup extends AbstractModuleGroup {
 }
