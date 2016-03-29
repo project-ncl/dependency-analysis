@@ -52,6 +52,6 @@ public class ProductVersion {
     @Getter
     @Setter
     @NonNull
-    private List<Integer> productReleases = new ArrayList<>();
+    private List<ProductRelease> productReleases = new ArrayList<>();
 
 }
