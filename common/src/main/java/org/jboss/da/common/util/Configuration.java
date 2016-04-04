@@ -7,9 +7,7 @@ import org.codehaus.jackson.map.jsontype.NamedType;
 import org.jboss.da.common.json.AbstractModuleGroup;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.DAGroupWrapper;
-import org.jboss.da.common.json.GlobalGroupWrapper;
 import org.jboss.da.common.json.ModuleConfigJson;
-import org.jboss.da.common.json.PNCGroupWrapper;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -25,11 +23,6 @@ public class Configuration {
         try (InputStream configStream = getConfigStream()) {
             ObjectMapper mapper = new ObjectMapper();
 
-            // Note: I need to add the dummy classes GlobalGroupWrapper and
-            // PNCGroupWrapper since the version of Jackson we are using
-            // doesn't support FAIL_ON_INVALID_SUBTYPE (it's in v2.2)
-            mapper.registerSubtypes(new NamedType(GlobalGroupWrapper.class, "global"));
-            mapper.registerSubtypes(new NamedType(PNCGroupWrapper.class, "pnc"));
             mapper.registerSubtypes(new NamedType(DAGroupWrapper.class, "da"));
             mapper.registerSubtypes(new NamedType(DAConfig.class, "da-config"));
             ModuleConfigJson configs = mapper.readValue(configStream, ModuleConfigJson.class);
