@@ -387,6 +387,14 @@
                                 "version":"Unknown",
                                 "supportStatus":"UNKNOWN"
                             }
+                        },
+                        {
+                            "version":"1.0.0.SP4-redhat-6",
+                            "product":{
+                                "name":"Unknown",
+                                "version":"Unknown",
+                                "supportStatus":"UNKNOWN"
+                            }
                         }
                     ]
                 },
@@ -699,6 +707,14 @@
                         },
                         {
                             "version":"1.0-SP4-redhat-2",
+                            "product":{
+                                "name":"Unknown",
+                                "version":"Unknown",
+                                "supportStatus":"UNKNOWN"
+                            }
+                        },
+                        {
+                            "version":"1.0.0.SP4-redhat-6",
                             "product":{
                                 "name":"Unknown",
                                 "version":"Unknown",
