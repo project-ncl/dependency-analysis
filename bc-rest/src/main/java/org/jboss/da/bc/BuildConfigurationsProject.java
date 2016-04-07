@@ -2,10 +2,10 @@ package org.jboss.da.bc;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.api.ProjectBuildConfigurationGenerator;
-import org.jboss.da.bc.model.EntryEntity;
-import org.jboss.da.bc.model.ProjectFinishResponse;
-import org.jboss.da.bc.model.ProjectGeneratorEntity;
-import org.jboss.da.bc.model.ProjectInfoEntity;
+import org.jboss.da.bc.model.backend.ProjectGeneratorEntity;
+import org.jboss.da.bc.model.rest.EntryEntity;
+import org.jboss.da.bc.model.rest.ProjectFinishResponse;
+import org.jboss.da.bc.model.rest.ProjectInfoEntity;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;

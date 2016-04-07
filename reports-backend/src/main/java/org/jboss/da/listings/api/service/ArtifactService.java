@@ -16,10 +16,6 @@ public interface ArtifactService<T extends Artifact> {
         GAV, SUPPORT, PRODUCT;
     };
 
-    public enum SupportStatus {
-        SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN
-    };
-
     public enum ArtifactStatus {
         ADDED, NOT_MODIFIED, IS_BLACKLISTED, WAS_WHITELISTED
     };

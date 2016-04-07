@@ -3,8 +3,8 @@ package org.jboss.da.listings.impl.service;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
 import org.jboss.da.listings.api.service.ProductVersionService;
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -41,12 +41,12 @@ public class ProductVersionServiceImpl implements ProductVersionService {
 
     @Override
     public List<ProductVersion> getProductVersions(Long id, String name, String version,
-            SupportStatus status) {
+            ProductSupportStatus status) {
         return productVersionDAO.findProductVersions(id, name, version, status);
     }
 
     @Override
-    public List<ProductVersion> getProductVersionsWithArtifactsByStatus(SupportStatus status) {
+    public List<ProductVersion> getProductVersionsWithArtifactsByStatus(ProductSupportStatus status) {
         return productVersionDAO.findProductVersionsWithArtifactsByStatus(status);
     }
 
@@ -58,7 +58,7 @@ public class ProductVersionServiceImpl implements ProductVersionService {
 
     @Override
     public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(
-            String groupId, String artifactId, SupportStatus status) {
+            String groupId, String artifactId, ProductSupportStatus status) {
         return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId,
                 Optional.of(status));
     }

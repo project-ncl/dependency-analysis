@@ -3,9 +3,9 @@ package org.jboss.da.rest.listings;
 import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
-import org.jboss.da.rest.listings.model.RestArtifact;
-import org.jboss.da.rest.listings.model.RestProduct;
-import org.jboss.da.rest.listings.model.RestProductGAV;
+import org.jboss.da.listings.model.rest.RestArtifact;
+import org.jboss.da.listings.model.rest.RestProduct;
+import org.jboss.da.listings.model.rest.RestProductGAV;
 
 import javax.enterprise.context.ApplicationScoped;
 

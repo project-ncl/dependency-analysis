@@ -22,6 +22,11 @@
             <artifactId>communication</artifactId>
             <type>ejb</type>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.da</groupId>
+            <artifactId>bc-model</artifactId>
+            <type>ejb</type>
+        </dependency>
         
         <dependency>
             <groupId>org.jboss.da</groupId>

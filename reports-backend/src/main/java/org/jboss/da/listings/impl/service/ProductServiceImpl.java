@@ -4,8 +4,8 @@ import org.jboss.da.listings.api.dao.ProductDAO;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.Product;
 import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
 import org.jboss.da.listings.api.service.ProductService;
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductVersionDAO productVersionDAO;
 
     @Override
-    public boolean addProduct(String name, String version, SupportStatus status) {
+    public boolean addProduct(String name, String version, ProductSupportStatus status) {
         if (productVersionDAO.findProductVersion(name, version).isPresent()) {
             return false;
         }
@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean changeProductStatus(String name, String version, SupportStatus newStatus) {
+    public boolean changeProductStatus(String name, String version, ProductSupportStatus newStatus) {
         return productVersionDAO.changeProductVersionStatus(name, version, newStatus);
     }
 }

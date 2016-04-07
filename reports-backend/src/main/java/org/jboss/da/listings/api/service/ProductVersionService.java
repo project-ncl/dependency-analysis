@@ -2,7 +2,7 @@ package org.jboss.da.listings.api.service;
 
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +54,7 @@ public interface ProductVersionService {
      * @return List of productVersions with specified parameters
      */
     List<ProductVersion> getProductVersions(Long id, String name, String version,
-            SupportStatus status);
+            ProductSupportStatus status);
 
     /**
      * Finds Artifacts of ProductVersions with specific support status
@@ -62,7 +62,7 @@ public interface ProductVersionService {
      * @param status
      * @return List of productVersions with their artifacts
      */
-    List<ProductVersion> getProductVersionsWithArtifactsByStatus(SupportStatus status);
+    List<ProductVersion> getProductVersionsWithArtifactsByStatus(ProductSupportStatus status);
 
     /**
      * Find ProductVersions that contains Artifact with specific groupId, artifactId and version
@@ -84,7 +84,7 @@ public interface ProductVersionService {
      * @return
      */
     List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(
-            String groupId, String artifactId, SupportStatus status);
+            String groupId, String artifactId, ProductSupportStatus status);
 
     /**
      *  Find ProductVersions with any status that contains Artifact with specific groupId, artifactId

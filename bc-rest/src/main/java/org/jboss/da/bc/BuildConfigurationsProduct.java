@@ -2,10 +2,10 @@ package org.jboss.da.bc;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.api.ProductBuildConfigurationGenerator;
-import org.jboss.da.bc.model.EntryEntity;
-import org.jboss.da.bc.model.ProductFinishResponse;
-import org.jboss.da.bc.model.ProductGeneratorEntity;
-import org.jboss.da.bc.model.ProductInfoEntity;
+import org.jboss.da.bc.model.backend.ProductGeneratorEntity;
+import org.jboss.da.bc.model.rest.EntryEntity;
+import org.jboss.da.bc.model.rest.ProductFinishResponse;
+import org.jboss.da.bc.model.rest.ProductInfoEntity;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;

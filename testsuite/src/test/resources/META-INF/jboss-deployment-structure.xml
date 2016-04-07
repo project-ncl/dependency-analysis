@@ -12,7 +12,18 @@
             <module name="deployment.testsuite.ear.reports-backend.jar" export="true"/>
         </dependencies>
     </sub-deployment>
+    <sub-deployment name="reports-model.jar">
+        <dependencies>
+            <module name="deployment.testsuite.ear.communication.jar" export="true"/>
+        </dependencies>
+    </sub-deployment>
     <sub-deployment name="reports-backend.jar">
+        <dependencies>
+            <module name="deployment.testsuite.ear.communication.jar" export="true"/>
+            <module name="deployment.testsuite.ear.reports-model.jar" export="true"/>
+        </dependencies>
+    </sub-deployment>
+    <sub-deployment name="bc-model.jar">
         <dependencies>
             <module name="deployment.testsuite.ear.communication.jar" export="true"/>
         </dependencies>
@@ -21,6 +32,7 @@
         <dependencies>
             <module name="deployment.testsuite.ear.communication.jar" export="true"/>
             <module name="deployment.testsuite.ear.reports-backend.jar" export="true"/>
+            <module name="deployment.testsuite.ear.bc-model.jar" export="true"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="communication.jar">

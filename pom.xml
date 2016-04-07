@@ -20,10 +20,12 @@
         <module>common</module>
         <module>communication</module>
         <module>source-code-manager</module>
-        <module>bc-backend</module>
-        <module>bc-rest</module>
+        <module>reports-model</module>
         <module>reports-backend</module>
         <module>reports-rest</module>
+        <module>bc-model</module>
+        <module>bc-backend</module>
+        <module>bc-rest</module>
         <module>application</module>
     </modules>
 
@@ -94,6 +96,18 @@
             <dependency>
                 <groupId>org.jboss.da</groupId>
                 <artifactId>source-code-manager</artifactId>
+                <version>${version.da}</version>
+                <type>ejb</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.da</groupId>
+                <artifactId>reports-model</artifactId>
+                <version>${version.da}</version>
+                <type>ejb</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.da</groupId>
+                <artifactId>bc-model</artifactId>
                 <version>${version.da}</version>
                 <type>ejb</type>
             </dependency>
