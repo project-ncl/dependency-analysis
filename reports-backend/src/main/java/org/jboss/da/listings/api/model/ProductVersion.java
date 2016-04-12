@@ -1,6 +1,6 @@
 package org.jboss.da.listings.api.model;
 
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,14 +31,14 @@ public class ProductVersion extends GenericEntity {
 
     @Setter
     @Getter
-    private SupportStatus support;
+    private ProductSupportStatus support;
 
     @Getter
     @Setter
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<WhiteArtifact> whiteArtifacts;
 
-    public ProductVersion(Product p, String productVersion, SupportStatus support) {
+    public ProductVersion(Product p, String productVersion, ProductSupportStatus support) {
         this.product = p;
         this.productVersion = productVersion;
         this.support = support;

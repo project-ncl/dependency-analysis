@@ -1,7 +1,7 @@
 package org.jboss.da.listings.api.service;
 
 import org.jboss.da.listings.api.model.Product;
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -18,7 +18,7 @@ public interface ProductService {
      * @param status
      * @return true if operation was successful
      */
-    boolean addProduct(String name, String version, SupportStatus status);
+    boolean addProduct(String name, String version, ProductSupportStatus status);
 
     /**
      * Remove Product from whitelist products
@@ -39,7 +39,7 @@ public interface ProductService {
      * @return True if change was successful otherwise false
      * @throws NoSuchElementException
      */
-    boolean changeProductStatus(String name, String version, SupportStatus newStatus);
+    boolean changeProductStatus(String name, String version, ProductSupportStatus newStatus);
 
     /**
      * Get all Products

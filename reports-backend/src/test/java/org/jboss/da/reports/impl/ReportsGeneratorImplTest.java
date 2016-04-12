@@ -7,10 +7,10 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.model.Product;
 import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
@@ -95,7 +95,7 @@ public class ReportsGeneratorImplTest {
             Arrays.asList(daUtilDT, daCommonDT)));
 
     private final ProductVersion productEAP = new ProductVersion(new Product("EAP"), "7.0",
-            SupportStatus.UNKNOWN);
+            ProductSupportStatus.UNKNOWN);
 
     private void prepare(List<ProductVersion> whitelisted, boolean blacklisted,
             List<String> versions, String best, GAVDependencyTree dependencyTree)

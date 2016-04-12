@@ -1,21 +1,20 @@
 package org.jboss.da.rest.listings;
 
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WLFiller;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
-import org.jboss.da.rest.listings.model.ContainsResponse;
-import org.jboss.da.rest.listings.model.RestArtifact;
-import org.jboss.da.rest.listings.model.RestProduct;
-import org.jboss.da.rest.listings.model.RestProductArtifact;
-import org.jboss.da.rest.listings.model.RestProductGAV;
-import org.jboss.da.rest.listings.model.RestProductInput;
-import org.jboss.da.rest.listings.model.SuccessResponse;
-import org.jboss.da.rest.listings.model.WLFill;
-import org.jboss.da.rest.model.ErrorMessage;
+import org.jboss.da.listings.model.rest.ContainsResponse;
+import org.jboss.da.listings.model.rest.RestArtifact;
+import org.jboss.da.listings.model.rest.RestProduct;
+import org.jboss.da.listings.model.rest.RestProductArtifact;
+import org.jboss.da.listings.model.rest.RestProductGAV;
+import org.jboss.da.listings.model.rest.RestProductInput;
+import org.jboss.da.listings.model.rest.SuccessResponse;
+import org.jboss.da.listings.model.rest.WLFill;
+import org.jboss.da.model.rest.ErrorMessage;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -39,6 +38,7 @@ import java.util.Optional;
 
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -229,7 +229,7 @@ public class Artifacts {
                     .entity(new ErrorMessage("Name and version parameters are required")).build();
         }
         if (product.getSupportStatus() == null) {
-            product.setSupportStatus(SupportStatus.SUPPORTED);
+            product.setSupportStatus(ProductSupportStatus.SUPPORTED);
         }
         response.setSuccess(productService.addProduct(product.getName(), product.getVersion(),
                 product.getSupportStatus()));
@@ -298,7 +298,7 @@ public class Artifacts {
             response = RestProduct.class)
     public Collection<RestProduct> getProduct(@QueryParam("id") Long id,
             @QueryParam("name") String name, @QueryParam("version") String version,
-            @QueryParam("supportStatus") SupportStatus supportStatus) {
+            @QueryParam("supportStatus") ProductSupportStatus supportStatus) {
         return convert.toRestProductList(productVersionService.getProductVersions(id, name,
                 version, supportStatus));
     }
@@ -341,7 +341,7 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get all artifacts with specified status from the whitelist",
             responseContainer = "List", response = RestProductGAV.class)
-    public Response productsWithArtifactStatus(@QueryParam("status") SupportStatus status) {
+    public Response productsWithArtifactStatus(@QueryParam("status") ProductSupportStatus status) {
 
         return Response.ok(
                 convert.toRestProductGAVList(productVersionService
@@ -354,7 +354,8 @@ public class Artifacts {
     @ApiOperation(value = "Get all artifacts with specified GA and status from the whitelist",
             responseContainer = "List", response = RestProductGAV.class)
     public Response productsWithArtifactGAAndStatus(@QueryParam("groupid") String groupId,
-            @QueryParam("artifactid") String artifactId, @QueryParam("status") SupportStatus status) {
+            @QueryParam("artifactid") String artifactId,
+            @QueryParam("status") ProductSupportStatus status) {
 
         return Response.ok(
                 convert.fromRelationshipToRestProductGAVList(productVersionService

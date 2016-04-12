@@ -2,7 +2,7 @@ package org.jboss.da.listings.api.dao;
 
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -19,7 +19,7 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
      * @return True if change was successful otherwise false
      * @throws NoSuchElementException
      */
-    boolean changeProductVersionStatus(String name, String version, SupportStatus newStatus);
+    boolean changeProductVersionStatus(String name, String version, ProductSupportStatus newStatus);
 
     /**
      * Finds ProductVersion with specific product name and version
@@ -66,7 +66,7 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
      * @return List of productVersions with specified parameters
      */
     List<ProductVersion> findProductVersions(Long id, String name, String version,
-            SupportStatus status);
+            ProductSupportStatus status);
 
     /**
      * Finds Artifacts of ProductVersions with specific support status
@@ -74,7 +74,7 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
      * @param status
      * @return List of products with their artifacts
      */
-    List<ProductVersion> findProductVersionsWithArtifactsByStatus(SupportStatus status);
+    List<ProductVersion> findProductVersionsWithArtifactsByStatus(ProductSupportStatus status);
 
     /**
      * Find ProductVersions that contains Artifact with specific groupId, artifactId and version
@@ -96,5 +96,5 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
      * @return
      */
     List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactsByGAStatus(
-            String groupId, String artifactId, Optional<SupportStatus> status);
+            String groupId, String artifactId, Optional<ProductSupportStatus> status);
 }

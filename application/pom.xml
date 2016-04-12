@@ -23,6 +23,11 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.da</groupId>
+            <artifactId>bc-model</artifactId>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.da</groupId>
             <artifactId>bc-backend</artifactId>
             <type>ejb</type>
         </dependency>
@@ -30,6 +35,11 @@
             <groupId>org.jboss.da</groupId>
             <artifactId>bc-rest</artifactId>
             <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.da</groupId>
+            <artifactId>reports-model</artifactId>
+            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.jboss.da</groupId>
@@ -78,12 +88,20 @@
                         </ejbModule>
                         <ejbModule>
                             <groupId>org.jboss.da</groupId>
+                            <artifactId>bc-model</artifactId>
+                        </ejbModule>
+                        <ejbModule>
+                            <groupId>org.jboss.da</groupId>
                             <artifactId>bc-backend</artifactId>
                         </ejbModule>
                         <webModule>
                             <groupId>org.jboss.da</groupId>
                             <artifactId>bc-rest</artifactId>
                         </webModule>
+                        <ejbModule>
+                            <groupId>org.jboss.da</groupId>
+                            <artifactId>reports-model</artifactId>
+                        </ejbModule>
                         <ejbModule>
                             <groupId>org.jboss.da</groupId>
                             <artifactId>reports-backend</artifactId>

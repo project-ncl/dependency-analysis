@@ -2,7 +2,7 @@ package org.jboss.da.bc.api;
 
 import java.util.Optional;
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.bc.model.ProjectGeneratorEntity;
+import org.jboss.da.bc.model.backend.ProjectGeneratorEntity;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;

@@ -1,7 +1,7 @@
 package org.jboss.da.bc.backend.impl;
 
-import org.jboss.da.bc.model.ProjectDetail;
-import org.jboss.da.bc.model.ProjectHiearchy;
+import org.jboss.da.bc.model.backend.ProjectDetail;
+import org.jboss.da.bc.model.backend.ProjectHiearchy;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pnc.api.PNCConnector;

@@ -7,7 +7,7 @@ import org.jboss.da.listings.api.model.Product;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.WhiteArtifact;
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
@@ -33,7 +33,8 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
     }
 
     @Override
-    public boolean changeProductVersionStatus(String name, String version, SupportStatus newStatus) {
+    public boolean changeProductVersionStatus(String name, String version,
+            ProductSupportStatus newStatus) {
         Optional<ProductVersion> pv = findProductVersion(name, version);
         if (!pv.isPresent())
             return false;
@@ -100,7 +101,7 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
 
     @Override
     public List<ProductVersion> findProductVersions(Long id, String name, String version,
-            SupportStatus status) {
+            ProductSupportStatus status) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductVersion> cq = cb.createQuery(type);
         Root<ProductVersion> productVersion = cq.from(type);
@@ -125,7 +126,7 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
     }
 
     @Override
-    public List<ProductVersion> findProductVersionsWithArtifactsByStatus(SupportStatus status) {
+    public List<ProductVersion> findProductVersionsWithArtifactsByStatus(ProductSupportStatus status) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductVersion> cq = cb.createQuery(type);
         Root<ProductVersion> productVersion = cq.from(ProductVersion.class);
@@ -159,7 +160,7 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
 
     @Override
     public List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactsByGAStatus(
-            String groupId, String artifactId, Optional<SupportStatus> status) {
+            String groupId, String artifactId, Optional<ProductSupportStatus> status) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductVersionArtifactRelationship> cq = cb
                 .createQuery(ProductVersionArtifactRelationship.class);

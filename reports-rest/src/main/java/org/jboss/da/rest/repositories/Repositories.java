@@ -4,8 +4,8 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.api.AproxConnector.RepositoryManipulationStatus;
 import org.jboss.da.communication.aprox.model.Repository;
-import org.jboss.da.rest.listings.model.SuccessResponse;
-import org.jboss.da.rest.model.ErrorMessage;
+import org.jboss.da.listings.model.rest.SuccessResponse;
+import org.jboss.da.model.rest.ErrorMessage;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;

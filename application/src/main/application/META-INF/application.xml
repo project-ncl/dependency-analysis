@@ -17,6 +17,9 @@
         <ejb>communication.jar</ejb>
     </module>
     <module>
+        <ejb>reports-model.jar</ejb>
+    </module>
+    <module>
         <ejb>reports-backend.jar</ejb>
     </module>
     <module>
@@ -24,6 +27,9 @@
             <web-uri>reports-rest.war</web-uri>
             <context-root>da</context-root>
         </web>
+    </module>
+    <module>
+        <ejb>bc-model.jar</ejb>
     </module>
     <module>
         <ejb>bc-backend.jar</ejb>

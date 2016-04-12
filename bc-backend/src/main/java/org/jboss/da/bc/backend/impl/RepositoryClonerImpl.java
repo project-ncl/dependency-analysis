@@ -1,8 +1,8 @@
 package org.jboss.da.bc.backend.impl;
 
 import org.jboss.da.bc.backend.api.RepositoryCloner;
-import org.jboss.da.bc.model.RepourPullResponse;
-import org.jboss.da.bc.model.RepourRequest;
+import org.jboss.da.bc.model.backend.RepourPullResponse;
+import org.jboss.da.bc.model.backend.RepourRequest;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;

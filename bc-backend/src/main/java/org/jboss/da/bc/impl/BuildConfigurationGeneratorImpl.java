@@ -16,10 +16,10 @@ import org.jboss.da.bc.backend.api.Finalizer;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
 import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.BcError;
-import org.jboss.da.bc.model.ProductGeneratorEntity;
-import org.jboss.da.bc.model.ProjectDetail;
-import org.jboss.da.bc.model.ProjectGeneratorEntity;
-import org.jboss.da.bc.model.ProjectHiearchy;
+import org.jboss.da.bc.model.backend.ProductGeneratorEntity;
+import org.jboss.da.bc.model.backend.ProjectDetail;
+import org.jboss.da.bc.model.backend.ProjectGeneratorEntity;
+import org.jboss.da.bc.model.backend.ProjectHiearchy;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -29,8 +29,8 @@ import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.jboss.da.bc.model.GeneratorEntity;
-import org.jboss.da.bc.model.GeneratorEntity.EntityConstructor;
+import org.jboss.da.bc.model.backend.GeneratorEntity;
+import org.jboss.da.bc.model.backend.GeneratorEntity.EntityConstructor;
 import org.jboss.da.communication.model.GAV;
 
 /**

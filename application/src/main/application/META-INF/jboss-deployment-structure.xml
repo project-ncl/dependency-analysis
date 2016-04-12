@@ -12,7 +12,18 @@
             <module name="deployment.dependency-analysis.ear.reports-backend.jar"/>
         </dependencies>
     </sub-deployment>
+    <sub-deployment name="reports-model.jar">
+        <dependencies>
+            <module name="deployment.dependency-analysis.ear.communication.jar"/>
+        </dependencies>
+    </sub-deployment>
     <sub-deployment name="reports-backend.jar">
+        <dependencies>
+            <module name="deployment.dependency-analysis.ear.communication.jar"/>
+            <module name="deployment.dependency-analysis.ear.reports-model.jar"/>
+        </dependencies>
+    </sub-deployment>
+    <sub-deployment name="bc-model.jar">
         <dependencies>
             <module name="deployment.dependency-analysis.ear.communication.jar"/>
         </dependencies>
@@ -21,6 +32,7 @@
         <dependencies>
             <module name="deployment.dependency-analysis.ear.communication.jar"/>
             <module name="deployment.dependency-analysis.ear.reports-backend.jar"/>
+            <module name="deployment.dependency-analysis.ear.bc-model.jar"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="communication.jar">

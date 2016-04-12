@@ -1,7 +1,7 @@
 package org.jboss.da.reports.api;
 
 import org.jboss.da.communication.model.GAV;
-import org.jboss.da.listings.api.service.ArtifactService.SupportStatus;
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +30,7 @@ public class ProductArtifact {
     @Getter
     @Setter
     @NonNull
-    private SupportStatus supportStatus;
+    private ProductSupportStatus supportStatus;
 
     @Getter
     @Setter
