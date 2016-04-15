@@ -56,6 +56,7 @@ public class PncRemoteTest {
     @Test
     public void testCreateRemoveBC() throws Exception {
         String bcName = "BCTestName-" + UUID.randomUUID().toString();
+        String scmRepoUrl = "http://test-" + UUID.randomUUID().toString() + ".com";
         int environmentId = 1;
         int projectId = 1;
 
@@ -63,6 +64,8 @@ public class PncRemoteTest {
         bc.setName(bcName);
         bc.setEnvironmentId(environmentId);
         bc.setProjectId(projectId);
+        bc.setScmRepoURL(scmRepoUrl);
+        bc.setProductVersionId(1);
 
         // Create a BC
         BuildConfiguration obtainedBc = pncConnector.createBuildConfiguration(bc);
