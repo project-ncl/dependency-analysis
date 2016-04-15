@@ -65,7 +65,7 @@
         <version.arquillian>1.1.8.Final</version.arquillian>
         <version.shrinkwrap.resolver>2.1.1</version.shrinkwrap.resolver>
         <version.aether>0.9.0.M2</version.aether>
-        <version.galley>0.10.2</version.galley>
+        <version.galley>0.11.3</version.galley>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <jboss.bom.version>6.3.2.GA</jboss.bom.version>
@@ -179,9 +179,15 @@
 
             <!-- dependency for aprox -->
             <dependency>
-                <groupId>org.commonjava.aprox</groupId>
-                <artifactId>aprox-depgraph-client-java</artifactId>
-                <version>0.25.1</version>
+                <groupId>org.commonjava.indy</groupId>
+                <artifactId>indy-autoprox-client-java</artifactId>
+                <version>0.99.1.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.commonjava.indy</groupId>
+                <artifactId>indy-depgraph-client-java</artifactId>
+                <version>0.99.1.1</version>
             </dependency>
 
 
@@ -235,7 +241,7 @@
             <dependency>
                 <groupId>org.commonjava.maven.cartographer</groupId>
                 <artifactId>cartographer</artifactId>
-                <version>0.10.2</version>
+                <version>0.10.3</version>
             </dependency>
             <dependency>
                 <groupId>org.commonjava.maven.galley</groupId>
@@ -247,6 +253,29 @@
                 <artifactId>galley-cdi-embedder</artifactId>
                 <version>${version.galley}</version>
             </dependency>
+            
+            <!-- needed because of cartographer 0.10.3 snapshot dependency -->
+            <dependency>
+                <groupId>org.commonjava.maven.galley</groupId>
+                <artifactId>galley-api</artifactId>
+                <version>${version.galley}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.commonjava.maven.galley</groupId>
+                <artifactId>galley-core</artifactId>
+                <version>${version.galley}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.commonjava.maven.galley</groupId>
+                <artifactId>galley-transport-filearc</artifactId>
+                <version>${version.galley}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.commonjava.maven.galley</groupId>
+                <artifactId>galley-transport-httpclient</artifactId>
+                <version>${version.galley}</version>
+            </dependency>
+            <!-- end of needed because of cartographer 0.10.3 snapshot dependency -->
 
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
