@@ -61,7 +61,7 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    private List<Integer> productVersionIds;
+    private int productVersionId;
 
     public void setEnvironmentId(int id) {
         Environment env = new Environment();
