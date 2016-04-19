@@ -7,9 +7,10 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
+
 import org.jboss.da.bc.model.BcError;
 
-import org.jboss.da.communication.model.GAV;
+import org.jboss.da.model.rest.GAV;
 
 /**
  *

@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.model.rest.GAV;
 
 /**
  *

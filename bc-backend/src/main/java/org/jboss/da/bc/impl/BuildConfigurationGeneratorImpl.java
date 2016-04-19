@@ -29,9 +29,10 @@ import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.jboss.da.bc.model.backend.GeneratorEntity;
 import org.jboss.da.bc.model.backend.GeneratorEntity.EntityConstructor;
-import org.jboss.da.communication.model.GAV;
+import org.jboss.da.model.rest.GAV;
 
 /**
  *

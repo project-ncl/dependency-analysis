@@ -1,7 +1,8 @@
 package org.jboss.da.reports.api;
 
 import java.util.Optional;
-import org.jboss.da.communication.model.GAV;
+
+import org.jboss.da.model.rest.GAV;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;

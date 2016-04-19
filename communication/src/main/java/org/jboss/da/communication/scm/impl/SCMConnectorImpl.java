@@ -9,12 +9,12 @@ import javax.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
-import org.jboss.da.communication.model.GA;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.scm.api.SCMConnector;
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.model.rest.GAV;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
 

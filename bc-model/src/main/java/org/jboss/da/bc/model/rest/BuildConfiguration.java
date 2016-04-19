@@ -1,10 +1,10 @@
 package org.jboss.da.bc.model.rest;
 
 import org.jboss.da.bc.model.DependencyAnalysisStatus;
-import org.jboss.da.communication.model.GAV;
 
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
+
 import java.util.EnumSet;
 import java.util.List;
 
@@ -13,7 +13,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 import org.jboss.da.bc.model.BcError;
+import org.jboss.da.model.rest.GAV;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor

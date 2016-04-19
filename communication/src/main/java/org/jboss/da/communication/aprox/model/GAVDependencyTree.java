@@ -1,6 +1,6 @@
 package org.jboss.da.communication.aprox.model;
 
-import org.jboss.da.communication.model.GAV;
+import org.jboss.da.model.rest.GAV;
 
 import java.util.ArrayList;
 import java.util.Collections;

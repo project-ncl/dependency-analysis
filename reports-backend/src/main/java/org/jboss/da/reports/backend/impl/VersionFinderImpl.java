@@ -3,7 +3,7 @@ package org.jboss.da.reports.backend.impl;
 import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.model.GAV;
+import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.slf4j.Logger;

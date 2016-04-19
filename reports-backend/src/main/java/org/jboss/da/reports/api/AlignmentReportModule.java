@@ -1,7 +1,7 @@
 package org.jboss.da.reports.api;
 
-import org.jboss.da.communication.model.GAV;
-import org.jboss.da.communication.model.GA;
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.model.rest.GAV;
 
 import java.util.HashMap;
 import java.util.HashSet;

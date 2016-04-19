@@ -24,10 +24,10 @@ import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.Repository;
 import org.jboss.da.communication.aprox.model.VersionResponse;
-import org.jboss.da.communication.model.GA;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

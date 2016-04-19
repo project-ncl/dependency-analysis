@@ -7,7 +7,6 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.SCMLocator;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
@@ -17,6 +16,7 @@ import javax.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.scm.api.SCMConnector;
+import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 
 /**

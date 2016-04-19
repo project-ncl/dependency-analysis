@@ -1,8 +1,8 @@
 package org.jboss.da.reports.model.rest;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.model.rest.RestProductInput;
+import org.jboss.da.model.rest.GAV;
 
 import javax.xml.bind.annotation.XmlTransient;
 

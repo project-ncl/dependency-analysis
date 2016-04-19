@@ -5,7 +5,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.GADAO;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
@@ -20,6 +19,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.jboss.da.common.version.VersionParser;
+import org.jboss.da.model.rest.GAV;
 
 /**
  * 

@@ -1,6 +1,7 @@
 package org.jboss.da.communication.model;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.jboss.da.model.rest.GAV;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
