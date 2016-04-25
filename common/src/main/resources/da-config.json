@@ -25,6 +25,7 @@
           "aproxServer": "",
           "aproxGroup": "",
           "backupScmUrl": "",
+          "backupScmBranch": "",
           "repourUrl": ""
         }
       ]

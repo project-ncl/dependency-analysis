@@ -43,6 +43,10 @@ public class DAConfig extends AbstractModuleConfig {
 
     @Getter
     @Setter
+    private String backupScmBranch;
+
+    @Getter
+    @Setter
     private String repourUrl;
 
 }

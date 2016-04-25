@@ -44,8 +44,6 @@ public class BackupController {
 
     private static final String BACKUP_FILE_NAME = "blackWhiteListsBackup.json";
 
-    private static final String BACKUP_BRANCH = "master";
-
     @Inject
     private ScmFacade scmFacade;
 
@@ -60,12 +58,15 @@ public class BackupController {
 
     private String backupScmUrl;
 
+    private String backupBranch;
+
     private boolean disabled = false;
 
     @PostConstruct
     public void init() {
         try {
             backupScmUrl = configuration.getConfig().getBackupScmUrl();
+            backupBranch = configuration.getConfig().getBackupScmBranch();
         } catch (ConfigurationParseException ex) {
             log.warn("Couldn't read configuration, BackupController is disabled");
         }
@@ -84,7 +85,7 @@ public class BackupController {
         try {
             tempDirectory = Files.createTempDirectory("backup-").toFile();
             String backupString = storeArtifactsToString();
-            scmFacade.cloneRepository(SCMType.GIT, backupScmUrl, BACKUP_BRANCH, tempDirectory);
+            scmFacade.cloneRepository(SCMType.GIT, backupScmUrl, backupBranch, tempDirectory);
 
             List<File> filesToCommit = createFile(tempDirectory, backupString);
             scmFacade.commitAndPush(SCMType.GIT, backupScmUrl, tempDirectory, filesToCommit,
