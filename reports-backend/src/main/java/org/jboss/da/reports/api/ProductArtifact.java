@@ -1,7 +1,7 @@
 package org.jboss.da.reports.api;
 
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.model.ProductSupportStatus;
+import org.jboss.da.model.rest.GAV;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

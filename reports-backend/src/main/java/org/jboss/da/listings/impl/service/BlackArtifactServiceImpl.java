@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Inject;
 
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
 import org.jboss.da.listings.api.dao.GADAO;
@@ -16,6 +15,7 @@ import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.model.rest.GAV;
 
 /**
  * 

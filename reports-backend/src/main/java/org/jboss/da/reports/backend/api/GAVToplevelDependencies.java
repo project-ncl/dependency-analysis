@@ -6,7 +6,7 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.NonNull;
 
-import org.jboss.da.communication.model.GAV;
+import org.jboss.da.model.rest.GAV;
 
 /**
  *

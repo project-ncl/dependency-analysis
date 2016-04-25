@@ -10,11 +10,10 @@
     <packaging>ejb</packaging>
     <dependencies>
         <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>communication</artifactId>
-            <type>ejb</type>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

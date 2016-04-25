@@ -21,9 +21,9 @@ import org.jboss.da.bc.model.rest.EntryEntity;
 import org.jboss.da.bc.model.rest.FinishResponse;
 import org.jboss.da.bc.model.rest.InfoEntity;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.SCMLocator;
 import org.slf4j.Logger;
 
@@ -46,6 +46,7 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
     @Produces(MediaType.APPLICATION_JSON)
     @ApiResponses(value = { @ApiResponse(code = 500, message = "Response failed") })
     public Response startAnalyse(EntryEntity entry) {
+        log.info("Start process " + entry);
         SCMLocator scm = new SCMLocator(entry.getScmUrl(), entry.getScmRevision(),
                 entry.getPomPath(), entry.getRepositories());
         try {
@@ -66,6 +67,7 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
     @ApiResponses(value = { @ApiResponse(code = 500, message = "Response failed",
             response = AnalyseNextLevelExceptionContainer.class) })
     public Response analyseNextLevel(I bc) {
+        log.info("Analyze next level " + bc);
         try {
             I infoEntity = nextLevel(bc);
             return Response.ok().entity(infoEntity).build();
@@ -76,6 +78,7 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
     }
 
     public O finishAnalyse(I bc) {
+        log.info("Finish process " + bc);
         O response = getFinishResponse(bc);
         try {
             Optional<Integer> id = finish(bc);

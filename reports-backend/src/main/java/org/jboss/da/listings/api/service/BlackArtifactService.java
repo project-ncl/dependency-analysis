@@ -2,8 +2,8 @@ package org.jboss.da.listings.api.service;
 
 import java.util.Optional;
 
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.api.model.BlackArtifact;
+import org.jboss.da.model.rest.GAV;
 
 /**
  * 

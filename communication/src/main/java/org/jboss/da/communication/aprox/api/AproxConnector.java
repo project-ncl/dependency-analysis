@@ -4,14 +4,14 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.Repository;
-import org.jboss.da.communication.model.GA;
-import org.jboss.da.communication.model.GAV;
 
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
 import org.jboss.da.communication.pom.model.MavenProject;
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.model.rest.GAV;
 
 public interface AproxConnector {
 

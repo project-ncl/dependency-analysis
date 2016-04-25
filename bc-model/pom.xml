@@ -11,10 +11,14 @@
     <dependencies>
         <dependency>
             <groupId>org.jboss.da</groupId>
-            <artifactId>communication</artifactId>
+            <artifactId>reports-model</artifactId>
             <type>ejb</type>
         </dependency>
-
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

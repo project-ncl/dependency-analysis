@@ -1,8 +1,10 @@
 package org.jboss.da.bc.backend.api;
 
 import java.util.Optional;
+
 import lombok.Getter;
-import org.jboss.da.communication.model.GAV;
+
+import org.jboss.da.model.rest.GAV;
 
 /**
  *

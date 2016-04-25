@@ -10,8 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.listings.model.rest.RestProductInput;
+import org.jboss.da.model.rest.GAV;
 
 /**
  *

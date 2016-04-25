@@ -3,7 +3,8 @@ package org.jboss.da.bc.model.backend;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.jboss.da.communication.model.GAV;
+
+import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.SCMLocator;
 
 /**

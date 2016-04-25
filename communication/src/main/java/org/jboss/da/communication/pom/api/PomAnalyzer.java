@@ -10,10 +10,10 @@ import org.commonjava.maven.galley.maven.model.view.MavenPomView;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
-import org.jboss.da.communication.model.GA;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.model.rest.GAV;
 
 import java.util.Map;
 import java.util.Set;

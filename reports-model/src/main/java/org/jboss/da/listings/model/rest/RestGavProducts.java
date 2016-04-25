@@ -1,6 +1,6 @@
 package org.jboss.da.listings.model.rest;
 
-import org.jboss.da.communication.model.GAV;
+import org.jboss.da.model.rest.GAV;
 
 import java.util.Set;
 

@@ -5,8 +5,8 @@ import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
-import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.SCMLocator;
 
 /**
