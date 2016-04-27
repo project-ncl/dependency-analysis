@@ -1,6 +1,7 @@
 package org.jboss.da.bc.impl;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -13,17 +14,18 @@ import org.apache.maven.scm.ScmException;
 import org.jboss.da.bc.backend.api.BcChecker;
 import org.jboss.da.bc.backend.api.POMInfo;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
-import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.BcError;
+import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import org.jboss.da.bc.model.backend.ProjectDetail;
 import org.jboss.da.bc.model.backend.ProjectHiearchy;
-import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.model.GAV;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.scm.api.SCMConnector;
+import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 import org.jboss.da.reports.backend.api.VersionFinder;
@@ -154,8 +156,22 @@ public class ProjectHiearchyCreator {
         setSCMInfo(project, pomInfo); // scmUrl, useExistingBc
         findExistingBuildConfiguration(project); // bcExists, useExistingBc
         checkInternallyBuilt(project); // internallyBuilt
+        getBuiltVersions(project);
 
         return new ProjectHiearchy(project, false);
+    }
+
+    private void getBuiltVersions(ProjectDetail project) {
+        try {
+
+            VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(project.getGav());
+            Optional<List<String>> versionsBuilt = Optional.of(lookupResult.getAvailableVersions());
+
+            project.setAvailableVersions(versionsBuilt);
+        } catch (CommunicationException ex) {
+            log.warn("Could not obtain best versions built for " + project.getGav(), ex);
+            project.setAvailableVersions(Optional.empty());
+        }
     }
 
     public static String getName(GAV gav) {

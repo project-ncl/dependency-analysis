@@ -364,6 +364,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.3</version>
                     <configuration>
+                    	<debug>true</debug>
+                    	<debuglevel>lines,vars,source</debuglevel>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
                         <showWarnings>true</showWarnings>

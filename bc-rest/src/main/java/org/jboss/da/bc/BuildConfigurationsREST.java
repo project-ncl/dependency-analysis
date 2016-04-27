@@ -109,6 +109,7 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
         pd.setDescription(bc.getDescription());
         pd.setEnvironmentId(bc.getEnvironmentId());
         pd.setInternallyBuilt(Optional.ofNullable(bc.getInternallyBuilt()));
+        pd.setAvailableVersions(Optional.of(bc.getAvailableVersions()));
         pd.setName(bc.getName());
         pd.setProjectId(bc.getProjectId());
         pd.setScmRevision(bc.getScmRevision());
@@ -139,6 +140,7 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity, O extends Fi
         bc.setEnvironmentId(p.getEnvironmentId());
         bc.setGav(p.getGav());
         bc.setInternallyBuilt(p.getInternallyBuilt().orElse(null));
+        bc.setAvailableVersions(p.getAvailableVersions().orElse(null));
         bc.setName(p.getName());
         bc.setProjectId(p.getProjectId());
         bc.setScmRevision(p.getScmRevision());

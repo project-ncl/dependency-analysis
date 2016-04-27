@@ -1,15 +1,16 @@
 package org.jboss.da.bc.model.backend;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Optional;
+
+import org.jboss.da.bc.model.BcError;
+import org.jboss.da.communication.model.GAV;
 
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
-import org.jboss.da.bc.model.BcError;
-
-import org.jboss.da.communication.model.GAV;
 
 /**
  *
@@ -66,6 +67,10 @@ public class ProjectDetail {
     @Getter
     @Setter
     private Optional<String> internallyBuilt = Optional.empty(); // generated, unmodifiable
+
+    @Getter
+    @Setter
+    private Optional<List<String>> availableVersions = Optional.empty();
 
     @Getter
     @Setter
