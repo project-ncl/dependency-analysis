@@ -16,9 +16,13 @@ import org.commonjava.maven.galley.maven.parse.MavenPomReader;
 import org.commonjava.maven.galley.maven.parse.PomPeek;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
+import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
 
 import java.io.File;
 import java.io.IOException;
@@ -98,7 +102,7 @@ public class GalleyWrapper implements AutoCloseable {
      * @param artifact root artifact.
      * @return Set of all modules.
      */
-    public Set<Artifact> getModules(Artifact artifact){
+    public Set<Artifact> getModules(Artifact artifact) {
         return artifact.pp.getModules().stream()
                 .map(m -> artifact.path.resolve(m))
                 .map(Artifact::new)
@@ -131,7 +135,7 @@ public class GalleyWrapper implements AutoCloseable {
      * @param artifact
      * @return MavenPomView of the artifact
      * @throws org.jboss.da.communication.pom.PomAnalysisException
-     * @see #addCentralLocation()
+     * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
      * @see #addLocations(java.util.List)
      * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
      */
@@ -149,17 +153,17 @@ public class GalleyWrapper implements AutoCloseable {
      * @param artifact Dependencies of this artifact will be returned
      * @return First level dependencies.
      * @throws org.jboss.da.communication.pom.PomAnalysisException
-     * @see #addCentralLocation()
+     * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
      * @see #addLocations(java.util.List)
      * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
      */
-    public Set<GAV> getDependencies(Artifact artifact) throws PomAnalysisException{
+    public Set<GAV> getDependencies(Artifact artifact) throws PomAnalysisException {
         ProjectVersionRef ref = artifact.ref;
         List<DependencyView> allDirectDependencies;
-        try{
+        try {
             MavenPomView view = mvnPomReader.read(ref, locations);
             allDirectDependencies = view.getAllDirectDependencies();
-        }catch(GalleyMavenException ex){
+        } catch (GalleyMavenException ex) {
             throw new PomAnalysisException(ex);
         }
 
@@ -185,7 +189,7 @@ public class GalleyWrapper implements AutoCloseable {
      * @param pomReader instance of {@link PomReader} used for parsing pom files
      * @throws IOException 
      */
-    public void addLocationsFromPoms(PomReader pomReader) throws IOException{
+    public void addLocationsFromPoms(PomReader pomReader) throws IOException {
         Set<Path> allPoms = localRepo.getAllPoms();
         allPoms.stream()
                 .map(Path::toFile)
@@ -198,11 +202,17 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Add maven central repository among repositories Gally should use when
+     * Add maven central and group from indy repositories among repositories Gally should use when
      * resolving dependencies.
      */
-    public void addCentralLocation() {
+    public void addDefaultLocations(Configuration config) {
         locations.add(new SimpleLocation("central", "http://repo.maven.apache.org/maven2/"));
+        try {
+            locations.add(new SimpleLocation("indy", config.getConfig().getAproxServer()
+                    + "/api/group/" + config.getConfig().getAproxGroup() + "/"));
+        } catch (ConfigurationParseException e) {
+            log.error("Failed to add indy group to locations" + e);
+        }
     }
 
     @Override
@@ -218,7 +228,7 @@ public class GalleyWrapper implements AutoCloseable {
      * @return Set of dependency relationships describing the dependency graph.
      * @throws GalleyMavenException
      * @throws CartoDataException 
-     * @see #addCentralLocation()
+     * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
      * @see #addLocations(java.util.List)
      * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
      */
@@ -238,7 +248,7 @@ public class GalleyWrapper implements AutoCloseable {
      * @return Set of dependency relationships describing the dependency graph. 
      * @throws GalleyMavenException
      * @throws CartoDataException 
-     * @see #addCentralLocation()
+     * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
      * @see #addLocations(java.util.List)
      * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
      */
@@ -276,7 +286,9 @@ public class GalleyWrapper implements AutoCloseable {
         return deps;
     }
 
-    private Set<DependencyRelationship> getDeps(ProjectVersionRef ref, MavenModelProcessor processor, URI src, DiscoveryConfig disConf) throws GalleyMavenException, CartoDataException{
+    private Set<DependencyRelationship> getDeps(ProjectVersionRef ref,
+            MavenModelProcessor processor, URI src, DiscoveryConfig disConf)
+            throws GalleyMavenException, CartoDataException {
         MavenPomView pomView = mvnPomReader.read(ref, locations);
         DiscoveryResult relationships = processor.readRelationships(pomView, src, disConf);
         return relationships.getAcceptedRelationships().stream()
