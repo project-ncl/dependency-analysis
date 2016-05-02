@@ -1,7 +1,10 @@
 package org.jboss.da.bc.model.backend;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Optional;
+
+import org.jboss.da.bc.model.BcError;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -67,6 +70,10 @@ public class ProjectDetail {
     @Getter
     @Setter
     private Optional<String> internallyBuilt = Optional.empty(); // generated, unmodifiable
+
+    @Getter
+    @Setter
+    private List<String> availableVersions;
 
     @Getter
     @Setter
