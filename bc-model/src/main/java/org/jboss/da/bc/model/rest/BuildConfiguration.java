@@ -61,6 +61,10 @@ public class BuildConfiguration {
 
     @Getter
     @Setter
+    protected List<String> availableVersions;
+
+    @Getter
+    @Setter
     protected Integer bcId;
 
     @Getter
