@@ -6,6 +6,7 @@ import org.commonjava.cartographer.CartographerCore;
 import org.commonjava.maven.galley.maven.GalleyMavenException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.da.common.util.Configuration;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.GalleyWrapper;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -17,9 +18,11 @@ import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,6 +62,9 @@ public class GalleyWrapperTest {
 
     @Inject
     private PomAnalyzer pomAnalyzer;
+
+    @Inject
+    private Configuration config;
 
     private File clonedRepository;
 
@@ -144,7 +150,7 @@ public class GalleyWrapperTest {
     @Test
     public void testGetDependencies() throws IOException, PomAnalysisException {
         try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository)) {
-            gw.addCentralLocation();
+            gw.addDefaultLocations(config);
             gw.addLocationsFromPoms(pomReader);
 
             GalleyWrapper.Artifact common = gw.getPom("common/pom.xml");

@@ -84,7 +84,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     private GAVDependencyTree readRelationships(GalleyWrapper gw, GalleyWrapper.Artifact a)
             throws PomAnalysisException {
         try {
-            gw.addCentralLocation();
+            gw.addDefaultLocations(config);
             gw.addLocationsFromPoms(pomReader);
 
             Set<DependencyRelationship> relationships = gw.getAllDependencies(a);
@@ -102,7 +102,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), pomRepoDir)) {
             GalleyWrapper.Artifact artifact = gw.getGAV(gav);
 
-            gw.addCentralLocation();
+            gw.addDefaultLocations(config);
             gw.addLocationsFromPoms(pomReader);
 
             return gw.getDependencies(artifact);
@@ -129,7 +129,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             throws PomAnalysisException {
         try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), repoDir)) {
             GalleyWrapper.Artifact pom = gw.getPom(pomPath);
-            gw.addCentralLocation();
+            gw.addDefaultLocations(config);
             gw.addLocationsFromPoms(pomReader);
             gw.addLocations(repositories);
 
@@ -166,7 +166,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     public Map<GA, Set<GAV>> getDependenciesOfModules(File scmDir, String pomPath,
             List<String> repositories) throws PomAnalysisException {
         try (GalleyWrapper wrapper = new GalleyWrapper(carto.getGalley(), scmDir)) {
-            wrapper.addCentralLocation();
+            wrapper.addDefaultLocations(config);
             wrapper.addLocations(repositories);
             wrapper.addLocationsFromPoms(pomReader);
 
