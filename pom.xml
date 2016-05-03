@@ -95,12 +95,6 @@
             </dependency>
             <dependency>
                 <groupId>org.jboss.da</groupId>
-                <artifactId>source-code-manager</artifactId>
-                <version>${version.da}</version>
-                <type>ejb</type>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
                 <artifactId>reports-model</artifactId>
                 <version>${version.da}</version>
                 <type>ejb</type>
