@@ -1,8 +1,11 @@
 package org.jboss.da.common.json;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DAConfig extends AbstractModuleConfig {
 
     @Getter
