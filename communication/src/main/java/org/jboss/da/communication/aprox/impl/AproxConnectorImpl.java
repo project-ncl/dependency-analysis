@@ -139,7 +139,7 @@ public class AproxConnectorImpl implements AproxConnector {
         try {
             DAConfig cfg = this.config.getConfig();
             query.append(cfg.getAproxServer());
-            query.append("/api/group/public/");
+            query.append("/api/group/" + cfg.getAproxGroup() + "/");
             query.append(gav.getGroupId().replace(".", "/")).append("/");
             query.append(gav.getArtifactId()).append('/');
             query.append(gav.getVersion()).append('/');
