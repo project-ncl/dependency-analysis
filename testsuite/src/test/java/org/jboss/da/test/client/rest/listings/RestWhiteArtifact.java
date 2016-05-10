@@ -10,23 +10,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@XmlRootElement(name = "gav")
+@XmlRootElement(name = "artifact")
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class RestArtifact {
+public class RestWhiteArtifact {
 
     @Getter
     @Setter
-    protected String groupId;
-
-    @Getter
-    @Setter
-    protected String artifactId;
+    protected String name;
 
     @Getter
     @Setter
     protected String version;
 
+    @Getter
+    @Setter
+    protected String supportStatus;
+
+    @Getter
+    @Setter
+    protected RestArtifact gav;
 }
