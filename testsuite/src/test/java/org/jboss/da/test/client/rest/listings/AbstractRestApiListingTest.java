@@ -18,6 +18,9 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 /**
  *
  * @author jbrazdil
@@ -117,14 +120,13 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
         return FileUtils.readFileToString(jsonRequestFile, ENCODING);
     }
 
-    protected ClientResponse<String> manipulateEntity(ListEntityType entity,
+    protected ClientResponse<String> manipulateEntityFile(ListEntityType entity,
             OperationType operation, String file, Boolean checkSuccess) throws Exception {
-        String requestString;
-        if (entity.equals(ListEntityType.WHITE) && operation.equals(OperationType.POST)) {
-            requestString = file;
-        } else {
-            requestString = readJsonFile(file);
-        }
+        return manipulateEntityString(entity, operation, readJsonFile(file), checkSuccess);
+    }
+
+    protected ClientResponse<String> manipulateEntityString(ListEntityType entity,
+            OperationType operation, String requestString, Boolean checkSuccess) throws Exception {
         String path = null;
         switch (entity) {
             case WHITE:
