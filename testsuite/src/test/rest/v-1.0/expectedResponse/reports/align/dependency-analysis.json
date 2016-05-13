@@ -444,6 +444,21 @@
                             }
                         }
                     ]
+                },
+                {
+                    "groupId": "org.jboss.resteasy",
+                    "artifactId": "resteasy-client",
+                    "version": "3.0.11.Final",
+                    "gavProducts": [
+                        {
+                            "version": "3.0.16.Final-redhat-1",
+                            "product": {
+                                "name": "Unknown",
+                                "version": "Unknown",
+                                "supportStatus": "UNKNOWN"
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -669,6 +684,21 @@
             "artifactId":"common",
             "gavProducts":[
                 {
+                    "groupId": "com.fasterxml.jackson.core",
+                    "artifactId": "jackson-databind",
+                    "version": "2.4.4",
+                    "gavProducts": [
+                        {
+                            "version": "2.5.4.redhat-1",
+                            "product": {
+                                "name": "Unknown",
+                                "version": "Unknown",
+                                "supportStatus": "UNKNOWN"
+                            }
+                        }
+                    ]
+                },
+                {
                     "groupId":"javax.enterprise",
                     "artifactId":"cdi-api",
                     "version":"1.2",
@@ -872,17 +902,6 @@
         },
         {
             "groupId":"org.jboss.da",
-            "artifactId":"common",
-            "gavs":[
-                {
-                    "groupId":"com.fasterxml.jackson.core",
-                    "artifactId":"jackson-databind",
-                    "version":"2.4.4"
-                }
-            ]
-        },
-        {
-            "groupId":"org.jboss.da",
             "artifactId":"communication",
             "gavs":[
                 {
@@ -899,11 +918,6 @@
                     "groupId":"org.projectlombok",
                     "artifactId":"lombok",
                     "version":"1.16.4"
-                },
-                {
-                    "groupId":"org.jboss.resteasy",
-                    "artifactId":"resteasy-client",
-                    "version":"3.0.11.Final"
                 }
             ]
         },

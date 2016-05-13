@@ -10,7 +10,9 @@
             "groupId": "com.fasterxml.jackson.core",
             "artifactId": "jackson-databind",
             "version": "2.4.4",
-            "availableVersions": [],
+            "availableVersions": [
+                "2.5.4.redhat-1"
+            ],
             "bestMatchVersion": null,
             "dependencyVersionsSatisfied": false,
             "dependencies": [
@@ -19,6 +21,7 @@
                     "artifactId": "jackson-annotations",
                     "version": "2.4.0",
                     "availableVersions": [
+                        "2.5.4.redhat-1"
                     ],
                     "bestMatchVersion": null,
                     "dependencyVersionsSatisfied": true,
@@ -49,6 +52,7 @@
                     "artifactId": "jackson-core",
                     "version": "2.4.4",
                     "availableVersions": [
+                        "2.5.4.redhat-1"
                     ],
                     "bestMatchVersion": null,
                     "dependencyVersionsSatisfied": true,
