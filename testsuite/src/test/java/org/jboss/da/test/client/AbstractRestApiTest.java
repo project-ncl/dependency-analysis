@@ -26,7 +26,7 @@ import org.jboss.resteasy.client.ClientResponse;
 @RunAsClient
 public abstract class AbstractRestApiTest {
 
-    private static final String ENCODING = "utf-8";
+    protected static final String ENCODING = "utf-8";
 
     protected final String hostUrl;
 
