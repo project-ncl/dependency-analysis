@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
+import org.jboss.da.rest.products.Products;
 
 ;
 
@@ -49,5 +50,6 @@ public class ReportsRestActivator extends Application {
         resources.add(Artifacts.class);
         resources.add(Reports.class);
         resources.add(Repositories.class);
+        resources.add(Products.class);
     }
 }
