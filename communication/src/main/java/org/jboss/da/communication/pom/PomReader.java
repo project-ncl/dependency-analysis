@@ -32,7 +32,7 @@ public class PomReader {
             Source source = filterNamespace(new InputSource(new FileInputStream(pomFile)));
             return Optional.of(unmarshal(source));
         } catch (JAXBException | SAXException | FileNotFoundException e) {
-            log.error("Exception parsing the pom.xml: " + pomFile, e);
+            log.warn("Exception parsing the pom.xml: " + pomFile, e);
             return Optional.empty();
         }
     }
@@ -42,7 +42,7 @@ public class PomReader {
             Source source = filterNamespace(new InputSource(pom));
             return Optional.of(unmarshal(source));
         } catch (JAXBException | SAXException e) {
-            log.error("Exception parsing the pom.xml from stream.", e);
+            log.warn("Exception parsing the pom.xml from stream.", e);
             return Optional.empty();
         }
     }
