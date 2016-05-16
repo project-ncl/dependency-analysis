@@ -1,0 +1,41 @@
+{
+    "leftProduct": {
+        "name": "test",
+        "version": "1.0.0",
+        "supportStatus": "SUPPORTED"
+    },
+    "rightProduct":  {
+        "name": "test",
+        "version": "2.0.0",
+        "supportStatus": "SUPPORTED"
+    },
+    "added": [
+        {
+            "groupId": "com.example",
+            "artifactId": "added",
+            "version": "1.0.0"
+        }
+    ],
+    "removed": [
+        {
+            "groupId": "com.example",
+            "artifactId": "removed",
+            "version": "1.0.0"
+        }
+    ],
+    "changed": [
+        {
+            "groupId": "com.example",
+            "artifactId": "changed",
+            "leftVersion": "1.0.0",
+            "rightVersion": "1.2.0"
+        }
+    ],
+    "unchanged": [
+        {
+            "groupId": "com.example",
+            "artifactId": "unchanged",
+            "version": "1.0.0"
+        }
+    ]
+}
