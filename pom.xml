@@ -27,6 +27,7 @@
         <module>bc-backend</module>
         <module>bc-rest</module>
         <module>application</module>
+        <module>cli-wrap</module>
     </modules>
 
     <developers>
@@ -62,6 +63,7 @@
         <version.da>0.7.0-SNAPSHOT</version.da>
         <version.reports.rest>0.4</version.reports.rest>
         <version.bc.rest>0.3</version.bc.rest>
+        <version.cli>0.7.0</version.cli>
         <version.arquillian>1.1.8.Final</version.arquillian>
         <version.shrinkwrap.resolver>2.1.1</version.shrinkwrap.resolver>
         <version.aether>0.9.0.M2</version.aether>
