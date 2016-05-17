@@ -53,7 +53,7 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    private Environment environment;
+    private IdWrapper environment;
 
     @Getter
     @Setter
@@ -64,7 +64,7 @@ public class BuildConfigurationCreate {
     private int productVersionId;
 
     public void setEnvironmentId(int id) {
-        Environment env = new Environment();
+        IdWrapper env = new IdWrapper();
         env.setId(id);
         this.environment = env;
     }

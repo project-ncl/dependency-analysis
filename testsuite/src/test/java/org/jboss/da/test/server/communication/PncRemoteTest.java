@@ -72,7 +72,7 @@ public class PncRemoteTest {
         assertNotNull(obtainedBc);
         assertNotNull(obtainedBc.getId());
         assertEquals(bcName, obtainedBc.getName());
-        assertEquals(environmentId, obtainedBc.getEnvironment().getId());
+        assertEquals(Integer.valueOf(environmentId), obtainedBc.getEnvironment().getId());
         assertEquals(projectId, obtainedBc.getProject().getId());
         assertTrue(testBcWithNameExists(bcName));
 
