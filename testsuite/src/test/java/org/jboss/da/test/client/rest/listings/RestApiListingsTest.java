@@ -1,7 +1,5 @@
 package org.jboss.da.test.client.rest.listings;
 
-import static org.apache.commons.io.FileUtils.readFileToString;
-import static org.junit.Assert.assertEquals;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.junit.Test;

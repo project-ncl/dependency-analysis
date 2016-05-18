@@ -1,4 +1,4 @@
-package org.jboss.da.test.client;
+package org.jboss.da.test.client.rest;
 
 import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
 
