@@ -255,7 +255,7 @@
                 <artifactId>galley-cdi-embedder</artifactId>
                 <version>${version.galley}</version>
             </dependency>
-            
+
             <!-- needed because of cartographer 0.10.3 snapshot dependency -->
             <dependency>
                 <groupId>org.commonjava.maven.galley</groupId>

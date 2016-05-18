@@ -66,8 +66,8 @@
                     <descriptors>
                         <descriptor>src/assembly/zip_assembler.xml</descriptor>
                     </descriptors>
-                  <finalName>cli-tools-${version.cli}</finalName>
-                  <outputDirectory>${basedir}</outputDirectory>
+                    <finalName>cli-tools-${version.cli}</finalName>
+                    <outputDirectory>${basedir}</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
