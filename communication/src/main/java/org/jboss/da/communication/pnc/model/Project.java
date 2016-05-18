@@ -1,8 +1,8 @@
 package org.jboss.da.communication.pnc.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
 import lombok.Setter;

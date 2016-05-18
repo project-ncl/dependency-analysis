@@ -1,6 +1,6 @@
 package org.jboss.da.common.json;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * This class represents the configuration for global stuff in the unified

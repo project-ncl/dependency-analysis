@@ -1,12 +1,11 @@
 package org.jboss.da.listings.model.rest;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-@JsonSerialize(include = Inclusion.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SuccessResponse {
 
     @Getter
@@ -34,7 +33,7 @@ public class SuccessResponse {
 
     @Getter
     @Setter
-    @XmlElement(required = false, name = "success")
+    @XmlElement(required = false, name = "message")
     protected String message;
 
 }

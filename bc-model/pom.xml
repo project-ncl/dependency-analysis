@@ -15,8 +15,8 @@
             <type>ejb</type>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>

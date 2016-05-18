@@ -1,6 +1,5 @@
 package org.jboss.da.communication.model;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.jboss.da.model.rest.GAV;
 import org.junit.Test;
 
@@ -10,6 +9,8 @@ import java.io.OutputStream;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class GAVIntegrationTest {
 

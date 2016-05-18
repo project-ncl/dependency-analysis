@@ -1,10 +1,10 @@
 package org.jboss.da.test.client.rest.listings;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
