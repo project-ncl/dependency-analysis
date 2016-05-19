@@ -146,7 +146,7 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
         response = manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, false);
 
-        assertEquals(409, response.getStatus());
+        assertEquals(200, response.getStatus());
     }
 
     @Test

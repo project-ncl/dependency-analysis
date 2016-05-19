@@ -65,11 +65,11 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
         a.ifPresent(x -> whites.add(a.get()));
 
         ArtifactStatus status = ArtifactStatus.ADDED;
-        for (WhiteArtifact wa : whites) {
-            whiteService.removeArtifact(wa.getGa().getGroupId(), wa.getGa().getArtifactId(),
-                    wa.getVersion());
+        
+        if(!whites.isEmpty()){
             status = ArtifactStatus.WAS_WHITELISTED;
         }
+        
         blackArtifactDAO.create(artifact);
         return status;
     }
