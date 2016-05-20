@@ -1,15 +1,10 @@
 package org.jboss.da.bc;
 
-import org.apache.maven.scm.ScmException;
-import org.jboss.da.bc.api.ProductBuildConfigurationGenerator;
-import org.jboss.da.bc.model.backend.ProductGeneratorEntity;
+import org.jboss.da.bc.facade.BuildConfigurationsFacade;
+import org.jboss.da.bc.facade.BuildConfigurationsProductFacade;
 import org.jboss.da.bc.model.rest.EntryEntity;
 import org.jboss.da.bc.model.rest.ProductFinishResponse;
 import org.jboss.da.bc.model.rest.ProductInfoEntity;
-import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.pnc.api.PNCRequestException;
-import org.jboss.da.communication.pom.PomAnalysisException;
-import org.jboss.da.reports.api.SCMLocator;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -19,19 +14,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import java.util.Optional;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @Path("/build-configuration/generate/product")
 @Api(value = "product")
-public class BuildConfigurationsProduct extends
-        BuildConfigurationsREST<ProductInfoEntity, ProductFinishResponse> {
+public class BuildConfigurationsProduct extends BuildConfigurationsREST<ProductInfoEntity> {
 
     @Inject
-    ProductBuildConfigurationGenerator bcg;
+    BuildConfigurationsProductFacade bcpf;
 
     @Inject
     Logger log;
@@ -40,14 +32,6 @@ public class BuildConfigurationsProduct extends
     @ApiOperation(value = "Start initial analyse of product", response = ProductInfoEntity.class)
     public Response startAnalyse(EntryEntity entry) {
         return super.startAnalyse(entry);
-    }
-
-    @Override
-    protected ProductInfoEntity start(SCMLocator scm, EntryEntity entry) throws ScmException,
-            PomAnalysisException, CommunicationException {
-        ProductGeneratorEntity entity = bcg.startBCGeneration(scm, entry.getId(),
-                entry.getProductVersion());
-        return toInfoEntity(entity);
     }
 
     @Override
@@ -63,13 +47,6 @@ public class BuildConfigurationsProduct extends
     }
 
     @Override
-    protected ProductInfoEntity nextLevel(ProductInfoEntity entity) throws CommunicationException {
-        ProductGeneratorEntity ge = toGeneratorEntity(entity);
-        ge = bcg.iterateBCGeneration(ge);
-        return toInfoEntity(ge);
-    }
-
-    @Override
     @POST
     // When annotations @Post, @Path and @Produces were on parent, the endpoint was not found (I dont know why, jbrazdil)
     @Path("/finish-process")
@@ -77,31 +54,11 @@ public class BuildConfigurationsProduct extends
     @ApiOperation(value = "Finish analysis and create BCs", response = ProductFinishResponse.class)
     public ProductFinishResponse finishAnalyse(@ApiParam(
             value = "Complete detail information needed to create BCs") ProductInfoEntity bc) {
-        return super.finishAnalyse(bc);
+        return (ProductFinishResponse) super.finishAnalyse(bc);
     }
 
     @Override
-    protected Optional<Integer> finish(ProductInfoEntity entity) throws CommunicationException,
-            PNCRequestException {
-        ProductGeneratorEntity ge = toGeneratorEntity(entity);
-        return bcg.createBC(ge);
-    }
-
-    @Override
-    protected ProductFinishResponse getFinishResponse(ProductInfoEntity entity) {
-        ProductFinishResponse response = new ProductFinishResponse();
-        response.setEntity(entity);
-        return response;
-    }
-
-    private ProductInfoEntity toInfoEntity(ProductGeneratorEntity ge) {
-        ProductInfoEntity ie = new ProductInfoEntity();
-        fillInfoEntity(ie, ge);
-        ie.setProductVersion(ge.getProductVersion());
-        return ie;
-    }
-
-    private ProductGeneratorEntity toGeneratorEntity(ProductInfoEntity bc) {
-        return toGeneratorEntity(ProductGeneratorEntity.getConstructor(bc.getProductVersion()), bc);
+    protected BuildConfigurationsFacade<ProductInfoEntity> getFacade() {
+        return bcpf;
     }
 }

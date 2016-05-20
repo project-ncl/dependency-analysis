@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
-import org.jboss.da.test.client.AbstractRestBCTest;
+import org.jboss.da.test.client.rest.AbstractRestBCTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.json.JSONException;
