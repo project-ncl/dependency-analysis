@@ -65,4 +65,7 @@ public interface ReportsGenerator {
             boolean useUnknownProducts, Set<Long> productIds) throws ScmException,
             PomAnalysisException;
 
+    public Set<BuiltReportModule> getBuiltReport(SCMLocator scml) throws ScmException,
+            PomAnalysisException, CommunicationException;
+
 }
