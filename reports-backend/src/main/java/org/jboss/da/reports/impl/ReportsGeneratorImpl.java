@@ -10,9 +10,11 @@ import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
+
 import static org.jboss.da.listings.model.ProductSupportStatus.SUPERSEDED;
 import static org.jboss.da.listings.model.ProductSupportStatus.SUPPORTED;
 import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
+
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.model.rest.GA;
@@ -20,6 +22,7 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
+import org.jboss.da.reports.api.BuiltReportModule;
 import org.jboss.da.reports.api.Product;
 import org.jboss.da.reports.api.ProductArtifact;
 import org.jboss.da.reports.api.ReportsGenerator;
@@ -97,11 +100,13 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml) throws ScmException, PomAnalysisException, CommunicationException {
+    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml)
+            throws ScmException, PomAnalysisException, CommunicationException {
         Optional<ArtifactReport> artifactReport = getReportFromSCM(scml);
         // TODO: hardcoded to git
         // hopefully we'll get the cached cloned folder for this repo
-        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(), scml.getRevision());
+        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(),
+                scml.getRevision());
         return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder));
     }
 
@@ -157,6 +162,27 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return ret;
     }
 
+    @Override
+    public Set<BuiltReportModule> getBuiltReport(SCMLocator scml) throws ScmException,
+            PomAnalysisException, CommunicationException {
+        Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
+                scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
+        Set<BuiltReportModule> builtSet = new HashSet<>();
+        for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
+            for (GAV gav : e.getValue()) {
+                BuiltReportModule report = new BuiltReportModule(gav);
+                Optional<String> bestVersion = versionFinder.getBestMatchVersionFor(gav);
+                if (bestVersion.isPresent()) {
+                    report.setBuiltVersion(bestVersion.get());
+                }
+                report.setAvailableVersions(new HashSet<String>(versionFinder
+                        .getBuiltVersionsFor(gav)));
+                builtSet.add(report);
+            }
+        }
+        return builtSet;
+    }
+
     private Set<ProductArtifact> getBuiltInProducts(GAV gav, Set<Long> productIds,
             boolean useUnknownProducts) {
         Stream<ProductVersionArtifactRelationship> internallyStream = productVersionService
@@ -206,13 +232,15 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return different;
     }
 
-    private Set<ProductArtifact> filterAndMapProducts(Set<Long> productIds, Stream<ProductVersionArtifactRelationship> internallyStream) {
-        if(productIds.isEmpty()){ // All SUPPORTED or SUPERSEDED
+    private Set<ProductArtifact> filterAndMapProducts(Set<Long> productIds,
+            Stream<ProductVersionArtifactRelationship> internallyStream) {
+        if (productIds.isEmpty()) { // All SUPPORTED or SUPERSEDED
             internallyStream = internallyStream.filter(p ->
                     p.getProductVersion().getSupport() == SUPPORTED ||
-                    p.getProductVersion().getSupport() == SUPERSEDED);
-        }else{ // Specified
-            internallyStream = internallyStream.filter(p -> productIds.contains(p.getProductVersion().getId()));
+                            p.getProductVersion().getSupport() == SUPERSEDED);
+        } else { // Specified
+            internallyStream = internallyStream.filter(p -> productIds.contains(p
+                    .getProductVersion().getId()));
         }
 
         return internallyStream

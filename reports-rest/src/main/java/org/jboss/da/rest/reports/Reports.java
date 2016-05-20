@@ -12,6 +12,7 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
+import org.jboss.da.reports.api.BuiltReportModule;
 import org.jboss.da.reports.api.ProductArtifact;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
@@ -23,6 +24,8 @@ import org.jboss.da.model.rest.ErrorMessage;
 import org.jboss.da.reports.model.rest.AdvancedReport;
 import org.jboss.da.reports.model.rest.AlignReport;
 import org.jboss.da.reports.model.rest.AlignReportRequest;
+import org.jboss.da.reports.model.rest.BuiltReport;
+import org.jboss.da.reports.model.rest.BuiltReportRequest;
 import org.jboss.da.reports.model.rest.GAVAvailableVersions;
 import org.jboss.da.reports.model.rest.GAVBestMatchVersion;
 import org.jboss.da.reports.model.rest.LookupReport;
@@ -43,6 +46,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -217,6 +221,43 @@ public class Reports {
             log.error("Exception thrown in scm endpoint", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
         }
+    }
+
+    @POST
+    @Path("/built")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get builded artifacts for project specified in a repository URL.",
+            response = BuiltReport.class)
+    public Response builtReport(BuiltReportRequest request) {
+
+        String pomPath = request.getPomPath();
+        if (pomPath == null || pomPath.isEmpty()) {
+            pomPath = "pom.xml";
+        }
+        SCMLocator locator = new SCMLocator(request.getScmUrl(), request.getRevision(), pomPath,
+                request.getAdditionalRepos());
+        try {
+            Set<BuiltReportModule> builtReport = reportsGenerator.getBuiltReport(locator);
+            return Response.status(Status.OK).entity(toBuiltReport(builtReport)).build();
+        } catch (ScmException | PomAnalysisException | CommunicationException e) {
+            log.error("Exception thrown in scm endpoint", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
+        }
+    }
+
+    private Set<BuiltReport> toBuiltReport(Set<BuiltReportModule> builtReport) {
+        Set<BuiltReport> result = new HashSet<>();
+        for (BuiltReportModule b : builtReport) {
+            BuiltReport report = new BuiltReport();
+            report.setArtifactId(b.getArtifactId());
+            report.setGroupId(b.getGroupId());
+            report.setVersion(b.getVersion());
+            report.setBuiltVersion(b.getBuiltVersion());
+            report.setAvailableVersions(b.getAvailableVersions());
+            result.add(report);
+        }
+        return result;
     }
 
     private static Report toReport(ArtifactReport report) {
