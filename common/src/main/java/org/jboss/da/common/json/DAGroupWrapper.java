@@ -1,7 +1,9 @@
 package org.jboss.da.common.json;
 
-import org.codehaus.jackson.annotate.JsonProperty;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Setter;
 
 public class DAGroupWrapper extends AbstractModuleGroup {

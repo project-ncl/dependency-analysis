@@ -1,15 +1,10 @@
 package org.jboss.da.bc;
 
-import org.apache.maven.scm.ScmException;
-import org.jboss.da.bc.api.ProjectBuildConfigurationGenerator;
-import org.jboss.da.bc.model.backend.ProjectGeneratorEntity;
+import org.jboss.da.bc.facade.BuildConfigurationsFacade;
+import org.jboss.da.bc.facade.BuildConfigurationsProjectFacade;
 import org.jboss.da.bc.model.rest.EntryEntity;
 import org.jboss.da.bc.model.rest.ProjectFinishResponse;
 import org.jboss.da.bc.model.rest.ProjectInfoEntity;
-import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.pnc.api.PNCRequestException;
-import org.jboss.da.communication.pom.PomAnalysisException;
-import org.jboss.da.reports.api.SCMLocator;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -19,19 +14,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import java.util.Optional;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @Path("/build-configuration/generate/project")
 @Api(value = "project")
-public class BuildConfigurationsProject extends
-        BuildConfigurationsREST<ProjectInfoEntity, ProjectFinishResponse> {
+public class BuildConfigurationsProject extends BuildConfigurationsREST<ProjectInfoEntity> {
 
     @Inject
-    ProjectBuildConfigurationGenerator bcg;
+    BuildConfigurationsProjectFacade bcpf;
 
     @Inject
     Logger log;
@@ -40,13 +32,6 @@ public class BuildConfigurationsProject extends
     @ApiOperation(value = "Start initial analyse of project", response = ProjectInfoEntity.class)
     public Response startAnalyse(EntryEntity entry) {
         return super.startAnalyse(entry);
-    }
-
-    @Override
-    protected ProjectInfoEntity start(SCMLocator scm, EntryEntity entry) throws ScmException,
-            PomAnalysisException, CommunicationException {
-        ProjectGeneratorEntity entity = bcg.startBCGeneration(scm, entry.getId());
-        return toInfoEntity(entity);
     }
 
     @Override
@@ -62,13 +47,6 @@ public class BuildConfigurationsProject extends
     }
 
     @Override
-    protected ProjectInfoEntity nextLevel(ProjectInfoEntity entity) throws CommunicationException {
-        ProjectGeneratorEntity ge = toGeneratorEntity(entity);
-        ge = bcg.iterateBCGeneration(ge);
-        return toInfoEntity(ge);
-    }
-
-    @Override
     @POST
     // When annotations @Post, @Path and @Produces were on parent, the endpoint was not found (I dont know why, jbrazdil)
     @Path("/finish-process")
@@ -76,31 +54,12 @@ public class BuildConfigurationsProject extends
     @ApiOperation(value = "Finish analysis and create BCs", response = ProjectFinishResponse.class)
     public ProjectFinishResponse finishAnalyse(@ApiParam(
             value = "Complete detail information needed to create BCs") ProjectInfoEntity bc) {
-        return super.finishAnalyse(bc);
+        return (ProjectFinishResponse) super.finishAnalyse(bc);
     }
 
     @Override
-    protected Optional<Integer> finish(ProjectInfoEntity entity) throws CommunicationException,
-            PNCRequestException {
-        ProjectGeneratorEntity ge = toGeneratorEntity(entity);
-        return bcg.createBC(ge);
-    }
-
-    @Override
-    protected ProjectFinishResponse getFinishResponse(ProjectInfoEntity entity) {
-        ProjectFinishResponse response = new ProjectFinishResponse();
-        response.setEntity(entity);
-        return response;
-    }
-
-    private ProjectInfoEntity toInfoEntity(ProjectGeneratorEntity ge) {
-        ProjectInfoEntity ie = new ProjectInfoEntity();
-        fillInfoEntity(ie, ge);
-        return ie;
-    }
-
-    private ProjectGeneratorEntity toGeneratorEntity(ProjectInfoEntity bc) {
-        return toGeneratorEntity(ProjectGeneratorEntity.getConstructor(), bc);
+    protected BuildConfigurationsFacade<ProjectInfoEntity> getFacade() {
+        return bcpf;
     }
 
 }

@@ -8,7 +8,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import org.jboss.da.bc.model.DependencyAnalysisStatus;
-import org.codehaus.jackson.annotate.JsonUnwrapped;
+
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 /**
  *

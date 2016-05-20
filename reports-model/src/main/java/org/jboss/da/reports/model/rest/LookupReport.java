@@ -1,12 +1,13 @@
 package org.jboss.da.reports.model.rest;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GAV;
 
 import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,8 +22,8 @@ public class LookupReport {
      * 
      * Also, use @JsonIgnore so that the getters and setters generated for 'gav' are also ignored by Jackson.
      */
-    @Getter
-    @Setter
+    @Getter(onMethod = @__({ @JsonIgnore }))
+    @Setter(onMethod = @__({ @JsonIgnore }))
     @NonNull
     @JsonIgnore
     @XmlTransient
