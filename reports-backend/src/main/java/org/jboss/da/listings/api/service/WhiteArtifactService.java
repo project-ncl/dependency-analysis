@@ -2,6 +2,8 @@ package org.jboss.da.listings.api.service;
 
 import java.util.List;
 
+import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.model.rest.GAV;
 
@@ -50,7 +52,7 @@ public interface WhiteArtifactService extends ArtifactService<WhiteArtifact> {
     public List<WhiteArtifact> getArtifacts(String groupId, String artifactId, String version);
 
     /**
-     * Remove artifact from list.
+     * Remove artifact from list and from product versions.
      * Removes only exact match of artifact.
      * 
      * @param groupId
@@ -59,4 +61,5 @@ public interface WhiteArtifactService extends ArtifactService<WhiteArtifact> {
      * @return True if artifact was deleted.
      */
     public boolean removeArtifact(String groupId, String artifactId, String version);
+
 }

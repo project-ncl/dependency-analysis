@@ -1,20 +1,10 @@
 package org.jboss.da.rest.listings;
 
-import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.ProductService;
-import org.jboss.da.listings.api.service.ProductVersionService;
-import org.jboss.da.listings.api.service.WLFiller;
-import org.jboss.da.listings.api.service.WhiteArtifactService;
-import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
-import org.jboss.da.listings.model.rest.ContainsResponse;
-import org.jboss.da.listings.model.rest.RestArtifact;
-import org.jboss.da.listings.model.rest.RestProduct;
-import org.jboss.da.listings.model.rest.RestProductArtifact;
-import org.jboss.da.listings.model.rest.RestProductGAV;
-import org.jboss.da.listings.model.rest.RestProductInput;
-import org.jboss.da.listings.model.rest.SuccessResponse;
-import org.jboss.da.listings.model.rest.WLFill;
-import org.jboss.da.model.rest.ErrorMessage;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -30,15 +20,25 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Collections;
-import java.util.Optional;
-
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
+import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.ProductService;
+import org.jboss.da.listings.api.service.ProductVersionService;
+import org.jboss.da.listings.api.service.WLFiller;
+import org.jboss.da.listings.api.service.WhiteArtifactFilterService;
+import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.listings.model.ProductSupportStatus;
+import org.jboss.da.listings.model.rest.ContainsResponse;
+import org.jboss.da.listings.model.rest.RestArtifact;
+import org.jboss.da.listings.model.rest.RestProduct;
+import org.jboss.da.listings.model.rest.RestProductArtifact;
+import org.jboss.da.listings.model.rest.RestProductGAV;
+import org.jboss.da.listings.model.rest.RestProductInput;
+import org.jboss.da.listings.model.rest.SuccessResponse;
+import org.jboss.da.listings.model.rest.WLFill;
+import org.jboss.da.model.rest.ErrorMessage;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -74,6 +74,9 @@ public class Artifacts {
     @Inject
     private ProductVersionService productVersionService;
 
+    @Inject
+    private WhiteArtifactFilterService whiteArtifactFilterService;
+
     // //////////////////////////////////
     // Whitelist endpoints
 
@@ -83,7 +86,7 @@ public class Artifacts {
     @ApiOperation(value = "Get all artifacts in the whitelist", responseContainer = "List",
             response = RestProductGAV.class)
     public Collection<RestProductGAV> getAllWhiteArtifacts() {
-        return convert.toRestProductGAVList(productVersionService.getAll());
+        return convert.toRestProductGAVList(whiteArtifactFilterService.getAllWithWhiteArtifacts());
     }
 
     @POST
@@ -309,7 +312,8 @@ public class Artifacts {
             responseContainer = "List", response = RestProductGAV.class)
     public Response artifactsOfProduct(@QueryParam("name") String name,
             @QueryParam("version") String version) {
-        Optional<ProductVersion> pv = productVersionService.getProductVersion(name, version);
+        Optional<ProductVersion> pv = whiteArtifactFilterService
+                .getProductVersionWithWhiteArtifacts(name, version);
         if (pv.isPresent()) {
             return Response.ok(convert.toRestProductGAV(pv.get())).build();
         }
@@ -327,8 +331,8 @@ public class Artifacts {
             @QueryParam("artifactid") String artifactId, @QueryParam("version") String version) {
 
         return Response.ok(
-                convert.fromRelationshipToRestProductGAVList(productVersionService
-                        .getProductVersionsWithArtifactByGAV(groupId, artifactId, version)))
+                convert.fromRelationshipToRestProductGAVList(whiteArtifactFilterService
+                        .getProductVersionsWithWhiteArtifactsByGAV(groupId, artifactId, version)))
                 .build();
     }
 
@@ -340,8 +344,8 @@ public class Artifacts {
     public Response productsWithArtifactStatus(@QueryParam("status") ProductSupportStatus status) {
 
         return Response.ok(
-                convert.toRestProductGAVList(productVersionService
-                        .getProductVersionsWithArtifactsByStatus(status))).build();
+                convert.toRestProductGAVList(whiteArtifactFilterService
+                        .getProductVersionsWithWhiteArtifactsByStatus(status))).build();
     }
 
     @GET
@@ -353,9 +357,9 @@ public class Artifacts {
             @QueryParam("artifactid") String artifactId,
             @QueryParam("status") ProductSupportStatus status) {
 
-        return Response.ok(
-                convert.fromRelationshipToRestProductGAVList(productVersionService
-                        .getProductVersionsWithArtifactsByGAStatus(groupId, artifactId, status)))
+        return Response
+                .ok(convert.fromRelationshipToRestProductGAVList(whiteArtifactFilterService
+                        .getProductVersionsWithWhiteArtifactsByGAStatus(groupId, artifactId, status)))
                 .build();
     }
 

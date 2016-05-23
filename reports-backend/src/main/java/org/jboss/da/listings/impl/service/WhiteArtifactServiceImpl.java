@@ -4,21 +4,24 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
-
-import org.jboss.da.listings.api.dao.ArtifactDAO;
-import org.jboss.da.listings.api.dao.GADAO;
-import org.jboss.da.listings.api.dao.ProductVersionDAO;
-import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
-import org.jboss.da.listings.api.model.GA;
-import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.model.WhiteArtifact;
-import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.WhiteArtifactService;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.jboss.da.common.version.VersionParser;
+import org.jboss.da.listings.api.dao.ArtifactDAO;
+import org.jboss.da.listings.api.dao.GADAO;
+import org.jboss.da.listings.api.dao.ProductVersionDAO;
+import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
+import org.jboss.da.listings.api.model.BlackArtifact;
+import org.jboss.da.listings.api.model.GA;
+import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
+import org.jboss.da.listings.api.model.WhiteArtifact;
+import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.model.rest.GAV;
 
 /**
@@ -60,9 +63,6 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
         WhiteArtifact white = new WhiteArtifact(ga, version, versionParser.getOSGiVersion(version),
                 is3rdParty);
 
-        if (blackArtifactService.isArtifactPresent(groupId, artifactId, version)) {
-            return ArtifactStatus.IS_BLACKLISTED;
-        }
         Optional<WhiteArtifact> dbWhite = whiteArtifactDAO.findArtifact(groupId, artifactId,
                 version);
         ProductVersion p = productVersionDAO.read(productVersionId);
@@ -103,7 +103,13 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
 
     @Override
     public List<WhiteArtifact> getArtifacts(String groupId, String artifactId, String version) {
-        String osgi = versionParser.getOSGiVersion(version);
+        
+    	// Black listed artifacts can't be queried
+	    if (blackArtifactService.isArtifactPresent(groupId, artifactId, version)) {
+	    	return new ArrayList<>();
+	    }
+    	
+    	String osgi = versionParser.getOSGiVersion(version);
 
         List<WhiteArtifact> whites = new ArrayList<>();
         if (VersionParser.isRedhatVersion(version)) {
