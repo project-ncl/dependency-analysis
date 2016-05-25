@@ -26,14 +26,22 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class VersionFinderImpl implements VersionFinder {
 
-    @Inject
     Logger log;
 
-    @Inject
     private AproxConnector aproxConnector;
 
-    @Inject
     private VersionParser osgiParser;
+
+    @Deprecated //CDI constructor injection workaround
+    public VersionFinderImpl() {
+    }
+
+    @Inject
+    public VersionFinderImpl(Logger log, AproxConnector aproxConnector, VersionParser osgiParser) {
+        this.log = log;
+        this.aproxConnector = aproxConnector;
+        this.osgiParser = osgiParser;
+    }
 
     @Override
     public List<String> getBuiltVersionsFor(GAV gav) throws CommunicationException {
