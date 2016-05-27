@@ -6,7 +6,7 @@ listings="$basedir/listings.sh"
 . $listings
 
 printUsage() {
-    echo "DEPENDENCY ANALYZER CLI TOOL"
+    echo "DEPENDENCY ANALYZER CLI TOOL version @cli.version@"
     echo ""
     echo "    This CLI tool is used for communication with Dependency Analyzer, a service which provides information about built artifacts and analyse projects dependencies."
     echo "    This tool has two main usages: black & white lists of artifacts and dependency reports."
@@ -23,12 +23,9 @@ printUsage() {
     echo "    $0 list black"
     echo "        List all artifacts in blacklist."
     echo ""
-    echo "    $0 list white [GROUP_ID:ARTIFACT_ID:VERSION]"
-    echo ""
-    echo "        Each artifact in the white list is associated to a product."
+    echo "    $0 list white [PRODUCT_NAME:VERSION]"
     echo "        List all artifacts and its associated product in the white list."
-    echo "        You can optionally specify which GAV to show, and it will show"
-    echo "        in which product the GAV is associated with"
+    echo "        You can optionally limit which product version to show"
     echo ""
     echo "    $0 list whitelist-products [GROUP_ID:ARTIFACT_ID:VERSION]"
     echo "        List all products in the white list"
@@ -38,15 +35,40 @@ printUsage() {
     echo "        List all artifacts in the white list with a particular GA and status"
     echo "        STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
     echo ""
-    echo "    $0 list whitelist-gav GAV [STATUS]"
+    echo "    $0 list whitelist-gav GAV [STATUS...]"
     echo "        List all artifacts in the white list with a particular GAV,"
     echo "        and the product associated with the artifact."
-    echo "        You can optionally specify the status of the GAV"
+    echo "        You can optionally specify the status(es) of the GAV"
     echo "        STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
     echo ""
     echo "    $0 list whitelist-gavs STATUS"
     echo "        List all artifacts in the white list with a particular status"
     echo "        STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
+    echo ""
+    echo "    $0 add black GROUP_ID:ARTIFACT_ID:VERSION"
+    echo "        Add artifact GROUP_ID:ARTIFACT_ID:VERSION to blacklist"
+    echo ""
+    echo "    $0 add white GROUP_ID:ARTIFACT_ID:VERSION PRODUCT_NAME:VERSION"
+    echo "        Add artifact GROUP_ID:ARTIFACT_ID:VERSION to white list for a particular product"
+    echo ""
+    echo "    $0 add whitelist-product PRODUCT_NAME:VERSION STATUS"
+    echo "        Add whitelist-product and status"
+    echo "        STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
+    echo ""
+    echo "    $0 update whitelist-product PRODUCT_NAME:VERSION STATUS"
+    echo "        Update whitelist-product with a particular status"
+    echo "        STATUS can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN"
+    echo ""
+    echo "    $0 delete black GROUP_ID:ARTIFACT_ID:VERSION"
+    echo "        Delete artifact GROUP_ID:ARTIFACT_ID:VERSION from black list"
+    echo ""
+    echo "    $0 delete white GROUP_ID:ARTIFACT_ID:VERSION [PRODUCT_NAME:VERSION]"
+    echo "        Delete artifact GROUP_ID:ARTIFACT_ID:VERSION from white list"
+    echo "        Each artifact is associated to a product in the white list. You can delete all the artifacts with a particular GROUP_ID:ARTIFACT_ID:VERSION,"
+    echo "        or delete artifacts with a particular GROUP_ID:ARTIFACT_ID:VERSION and PRODUCT_NAME:VERSION from the white list"
+    echo ""
+    echo "    $0 delete whitelist-product PRODUCT_NAME:VERSION"
+    echo "        Delete product from white list"
     echo ""
     echo "    $0 pom-bw-junit-xml [--transitive] path [PRODUCT_NAME:VERSION]";
     echo "        Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status, and generate a JUnit XML file"
@@ -124,8 +146,11 @@ fi
 action=$1
 
 case $action in
+    add) add $2 $3 $4;;
+    delete) delete $2 $3 $4;;
     check) check $2 $3;;
     list) list $2 $3 $4;;
+    update) update $2 $3 $4;;
     pom-bw) echo "This option was deprecated, use scm-report-advanced instead." ;;
     pom-bw-junit-xml) pom_bw_junit_xml $2 $3 $4;;
     pom-report) echo "This option was deprecated, use scm-report instead." ;;
