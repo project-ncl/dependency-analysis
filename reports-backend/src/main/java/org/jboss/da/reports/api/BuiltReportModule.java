@@ -5,9 +5,11 @@ import org.jboss.da.model.rest.GAV;
 import java.util.HashSet;
 import java.util.Set;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+@EqualsAndHashCode
 public class BuiltReportModule {
 
     public BuiltReportModule(GAV gav) {
