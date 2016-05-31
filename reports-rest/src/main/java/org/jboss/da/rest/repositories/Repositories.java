@@ -57,8 +57,10 @@ public class Repositories {
             status = aprox.addRepositoryToGroup(repository);
         } catch (CommunicationException ex) {
             log.error("Communication with remote repository failed", ex);
-            return Response.status(502)
-                    .entity(new ErrorMessage("Communication with remote repository failed"))
+            return Response
+                    .status(502)
+                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
+                            "Communication with remote repository failed", ex.getMessage()))
                     .build();
         }
         switch (status) {
@@ -99,8 +101,10 @@ public class Repositories {
             status = aprox.removeRepositoryFromGroup(repository);
         } catch (CommunicationException ex) {
             log.error("Communication with remote repository failed", ex);
-            return Response.status(502)
-                    .entity(new ErrorMessage("Communication with remote repository failed"))
+            return Response
+                    .status(502)
+                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
+                            "Communication with remote repository failed", ex.getMessage()))
                     .build();
         }
         switch (status) {
@@ -132,8 +136,10 @@ public class Repositories {
             List<Repository> repositories = aprox.getAllRepositoriesFromGroup();
             return Response.status(Status.OK).entity(repositories).build();
         } catch (IllegalArgumentException e) {
-            return Response.status(Status.INTERNAL_SERVER_ERROR)
-                    .entity(new ErrorMessage("Incorect data in aprox server")).build();
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.INCORRECT_DATA,
+                            "Incorect data in aprox server", e.getMessage())).build();
         }
     }
 

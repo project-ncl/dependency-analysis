@@ -1,0 +1,5 @@
+{
+  "errorType": "SCM_ANALYSIS",
+  "errorMessage": "Error during SCM analysis occured",
+  "details": "Exception while executing SCM command."
+}

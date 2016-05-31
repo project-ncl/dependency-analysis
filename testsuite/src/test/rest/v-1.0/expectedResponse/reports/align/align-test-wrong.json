@@ -1,0 +1,5 @@
+{
+  "errorType": "SCM_ENDPOINT",
+  "errorMessage": "Exception thrown in scm endpoint",
+  "details": "Exception while executing SCM command."
+}

@@ -104,12 +104,23 @@ public class Reports {
             return artifactReport
                     .map(x -> Response.ok().entity(toReport(x)).build())
                     .orElseGet(() -> Response.status(Status.NOT_FOUND)
-                            .entity(new ErrorMessage("No relationship found")).build());
+                            .entity(new ErrorMessage(ErrorMessage.eType.NO_RELATIONSHIP_FOUND, "No relationship found")).build());
 
-        } catch (ScmException | PomAnalysisException | IllegalArgumentException
-                | CommunicationException e) {
+        } catch (ScmException e) {
             log.error("Exception thrown in scm endpoint", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.SCM_ENDPOINT, "Exception thrown in scm endpoint", e.getMessage())).build();
+        }
+        catch (PomAnalysisException e) {
+            log.error("Exception thrown during POM analysis", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS, "Exception thrown during POM analysis", e.getMessage())).build(); 
+        }
+        catch (IllegalArgumentException e) {
+            log.error("Illegal arguments excetion", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS, "Illegal arguments excetion", e.getMessage())).build();
+        }
+        catch (CommunicationException e) {
+            log.error("Exception during communication", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, "Exception during communication", e.getMessage())).build();        
         }
     }
 
@@ -129,13 +140,25 @@ public class Reports {
             return advancedArtifactReport
                     .map(x -> Response.ok().entity(toAdvancedReport(x)).build())
                     .orElseGet(() -> Response.status(Status.NOT_FOUND)
-                            .entity(new ErrorMessage("No relationship found")).build());
+                            .entity(new ErrorMessage(ErrorMessage.eType.NO_RELATIONSHIP_FOUND, "No relationship found")).build());
 
-        } catch (ScmException | PomAnalysisException | IllegalArgumentException
-                | CommunicationException e) {
+        } catch (ScmException e) {
             log.error("Exception thrown in scm endpoint", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.SCM_ENDPOINT, "Exception thrown in scm endpoint", e.getMessage())).build();
         }
+        catch (PomAnalysisException e) {
+            log.error("Exception thrown during POM analysis", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS, "Exception thrown during POM analysis", e.getMessage())).build();
+        }
+        catch (IllegalArgumentException e) {
+            log.error("Illegal arguments excetion", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS, "Illegal arguments excetion", e.getMessage())).build(); 
+        }
+        catch (CommunicationException e) {
+            log.error("Exception during communication", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, "Exception during communication", e.getMessage())).build();        
+        }
+        
     }
 
     @POST
@@ -154,11 +177,17 @@ public class Reports {
             return Response.ok().entity(toReport(artifactReport)).build();
         } catch (CommunicationException ex) {
             log.error("Communication with remote repository failed", ex);
-            return Response.status(502).entity(new ErrorMessage(ex.getMessage())).build();
+            return Response
+                    .status(502)
+                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
+                            "Communication with remote repository failed", ex.getMessage()))
+                    .build();
         } catch (FindGAVDependencyException ex) {
             log.error("Could not find gav in AProx", ex);
-            return Response.status(Status.NOT_FOUND)
-                    .entity(new ErrorMessage("Requested GA was not found")).build();
+            return Response
+                    .status(Status.NOT_FOUND)
+                    .entity(new ErrorMessage(ErrorMessage.eType.GA_NOT_FOUND,
+                            "Requested GA was not found", ex.getMessage())).build();
         }
     }
 
@@ -193,7 +222,7 @@ public class Reports {
 
         if (!communicationSucceeded)
             return Response.status(502)
-                    .entity(new ErrorMessage("Communication with remote repository failed"))
+                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, "Communication with remote repository failed"))
                     .build();
         else
             return Response.status(Status.OK).entity(reportsList).build();
@@ -217,9 +246,18 @@ public class Reports {
             Set<AlignmentReportModule> aligmentReport = reportsGenerator.getAligmentReport(locator,
                     request.isSearchUnknownProducts(), request.getProducts());
             return Response.status(Status.OK).entity(toAlignReport(aligmentReport)).build();
-        } catch (ScmException | PomAnalysisException e) {
+        } catch (ScmException e) {
             log.error("Exception thrown in scm endpoint", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.SCM_ENDPOINT,
+                            "Exception thrown in scm endpoint", e.getMessage())).build();
+        } catch (PomAnalysisException e) {
+            log.error("Exception thrown during POM analysis", e);
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS,
+                            "Exception thrown during POM analysis", e.getMessage())).build();
         }
     }
 
@@ -240,9 +278,22 @@ public class Reports {
         try {
             Set<BuiltReportModule> builtReport = reportsGenerator.getBuiltReport(locator);
             return Response.status(Status.OK).entity(toBuiltReport(builtReport)).build();
-        } catch (ScmException | PomAnalysisException | CommunicationException e) {
-            log.error("Exception thrown in scm endpoint", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
+        } catch (ScmException e) {
+            log.error("Exception thrown in SCM analysis", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.SCM_ENDPOINT, e.getMessage()))
+                    .build();
+        } catch (PomAnalysisException e) {
+            log.error("Exception thrown in POM analysis", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS, e.getMessage()))
+                    .build();
+        } catch (CommunicationException e) {
+            log.error("Communication with remote repository failed", e);
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, e.getMessage()))
+                    .build();
         }
     }
 

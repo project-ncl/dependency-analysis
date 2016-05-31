@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.jboss.da.model.rest.ErrorMessage;
 
 /**
  *
@@ -41,14 +42,24 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity> {
             return Response.ok().entity(infoEntity).build();
         } catch (ScmException ex) {
             log.error("Error during SCM analysis occured", ex);
-            return Response.serverError().entity("Error during SCM analysis occured").build();
+            return Response
+                    .serverError()
+                    .entity(new ErrorMessage(ErrorMessage.eType.SCM_ANALYSIS,
+                            "Error during SCM analysis occured", ex.getMessage())).build();
         } catch (PomAnalysisException ex) {
             log.error("Error during POM analysis occured", ex);
-            return Response.serverError().entity("Error during POM analysis occured.").build();
+            return Response
+                    .serverError()
+                    .entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS,
+                            "Error during POM analysis occured.", ex.getMessage())).build();
         } catch (CommunicationException ex) {
             log.error("Error during communication occured", ex);
-            return Response.serverError().entity("Error during communication occured").build();
+            return Response
+                    .serverError()
+                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
+                            "Error during communication occured", ex.getMessage())).build();
         }
+
     }
 
     @ApiResponses(value = { @ApiResponse(code = 500, message = "Response failed",

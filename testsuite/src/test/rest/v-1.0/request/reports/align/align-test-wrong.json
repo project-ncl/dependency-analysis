@@ -1,0 +1,8 @@
+{
+    "products":[],
+    "searchUnknownProducts":false,
+    "scmUrl":"https://github.com/project-ncl/dependency-analysis2.git",
+    "revision":"0.6.1",
+    "pomPath":"",
+    "additionalRepos":[]
+}

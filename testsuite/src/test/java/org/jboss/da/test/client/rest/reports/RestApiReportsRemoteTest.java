@@ -16,7 +16,7 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
     private static final String PATH_REPORTS_GAV = "/reports/gav";
 
-    private static final String PATH_REPORTS_ALIGN = "/reports/align";
+    static final String PATH_REPORTS_ALIGN = "/reports/align";
 
     private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 
@@ -84,5 +84,4 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
                 "withoutDependencies");
         assertEquals(200, responseWithout.getStatus());
     }
-
 }
