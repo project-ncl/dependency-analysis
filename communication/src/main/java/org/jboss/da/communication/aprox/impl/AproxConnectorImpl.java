@@ -111,7 +111,8 @@ public class AproxConnectorImpl implements AproxConnector {
             query.append(ga.getGroupId().replace(".", "/")).append("/");
             query.append(ga.getArtifactId()).append('/');
             query.append("maven-metadata.xml");
-
+            
+            log.info("Retrieving metadata for " + ga + " from " + query.toString());
             URLConnection connection = new URL(query.toString()).openConnection();
 
             return parseMetadataFile(connection).getVersioning().getVersions().getVersion();
