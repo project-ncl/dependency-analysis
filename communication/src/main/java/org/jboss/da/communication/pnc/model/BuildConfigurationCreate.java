@@ -61,7 +61,7 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    private int productVersionId;
+    private Integer productVersionId;
 
     public void setEnvironmentId(int id) {
         IdWrapper env = new IdWrapper();
