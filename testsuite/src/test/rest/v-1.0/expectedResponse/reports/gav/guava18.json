@@ -3,12 +3,13 @@
   "artifactId": "guava",
   "version": "18.0",
   "availableVersions": [
-    "13.0.1.redhat-2",
-    "11.0.2-redhat-1",
-    "11.0.2-redhat-2",
-    "13.0.1-redhat-1"
+      "13.0.1.redhat-2",
+      "11.0.2-redhat-1",
+      "11.0.2-redhat-2",
+      "13.0.1-redhat-1",
+      "18.0.0.redhat-1"
   ],
-  "bestMatchVersion": null,
+  "bestMatchVersion":"18.0.0.redhat-1",
   "dependencyVersionsSatisfied": true,
   "dependencies": [
     {
