@@ -41,46 +41,6 @@
                 "selected":false
             },
             {
-                "scmUrl":"https://github.com/codehaus/jackson.git",
-                "scmRevision":"1.9",
-                "cloneRepo":true,
-                "projectId":1,
-                "buildScript":"cd 1.9.9\nant build",
-                "description":"Build Configuration for org.codehaus.jackson:jackson-mapper-asl:1.9.9 - Data Mapper for Jackson.",
-                "internallyBuilt":"1.9.9.redhat-4",
-                "useExistingBc":false,
-                "errors" : [  ],
-                "gav":{
-                    "groupId":"org.codehaus.jackson",
-                    "artifactId":"jackson-mapper-asl",
-                    "version":"1.9.9"
-                },
-                "environmentId":null,
-                "analysisStatus": "ANALYSED",
-                "dependencies":[
-                    {
-                        "scmUrl":null,
-                        "scmRevision":null,
-                        "cloneRepo":true,
-                        "projectId":null,
-                        "buildScript":"",
-                        "description":"Build Configuration for org.codehaus.jackson:jackson-core-asl:1.9.9 - Jackson.",
-                        "internallyBuilt":"1.9.9.redhat-4",
-                        "errors" : [  ],
-                        "gav":{
-                            "groupId":"org.codehaus.jackson",
-                            "artifactId":"jackson-core-asl",
-                            "version":"1.9.9"
-                        },
-                        "environmentId":null,
-                        "analysisStatus": "NOT_ANALYSED",
-                        "dependencies":[],
-                        "selected":false
-                    }
-                ],
-                "selected":true
-            },
-            {
                 "scmUrl":"http://github.com/KentBeck/junit/tree/master",
                 "scmRevision":null,
                 "cloneRepo":true,

@@ -119,11 +119,11 @@
             "groupId": "junit",
             "artifactId": "junit",
             "version": "4.11",
-            "availableVersions": [
+            "availableVersions":[  
                 "4.10-redhat-2",
                 "4.11-redhat-1"
             ],
-            "bestMatchVersion": "4.11-redhat-1",
+            "bestMatchVersion":"4.11-redhat-1",
             "dependencyVersionsSatisfied": true,
             "dependencies": [],
             "blacklisted": false,
@@ -139,10 +139,11 @@
                 "1.0-SP4.redhat-3",
                 "1.0.0.SP4-redhat-5",
                 "1.0.0.SP4-redhat-6",
+                "1.2.0.redhat-2",
                 "1.0-SP4-redhat-1",
                 "1.0-SP4-redhat-2"
             ],
-            "bestMatchVersion": null,
+            "bestMatchVersion":"1.2.0.redhat-2",
             "dependencyVersionsSatisfied": false,
             "dependencies": [
                 {
@@ -205,6 +206,7 @@
                     "version":"1",
                     "availableVersions":[
                         "1-redhat-3",
+                        "1.0.0.redhat-6",
                         "1.0.0.redhat-5",
                         "1-redhat-2",
                         "1-redhat-1",
@@ -229,5 +231,5 @@
     ],
     "blacklisted": false,
     "whitelisted": [],
-    "notBuiltDependencies": 11
+    "notBuiltDependencies":10
 }
