@@ -1,5 +1,6 @@
 package org.jboss.da.communication.pom.impl;
 
+import java.util.Comparator;
 import org.commonjava.maven.atlas.graph.rel.DependencyRelationship;
 import org.commonjava.maven.atlas.ident.ref.ArtifactRef;
 import org.commonjava.maven.atlas.ident.ref.ProjectRef;
@@ -16,6 +17,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -36,7 +38,7 @@ public class DependencyTreeBuilder {
 
         for(DependencyRelationship rel : rels){
             GAV gav = GalleyWrapper.generateGAV(rel.getDeclaring());
-            Set<DependencyRelationship> deps = byGav.computeIfAbsent(gav, (k) -> new HashSet<>());
+            Set<DependencyRelationship> deps = byGav.computeIfAbsent(gav, (k) -> new TreeSet<>(new DependencyRelationshipComparator()));
             deps.add(rel);
         }
         
@@ -62,14 +64,12 @@ public class DependencyTreeBuilder {
 
         if (rels == null)
             return;
-
         for (DependencyRelationship d : rels) {
             ArtifactRef target = d.getTarget();
             GAV targetGav = GalleyWrapper.generateGAV(target);
 
             if (root.exclude(target))
                 continue; // Avoid excluded
-
             PathNode pn = new PathNode(root, targetGav);
             pn.addExcludes(d.getExcludes());
 
@@ -108,7 +108,7 @@ public class DependencyTreeBuilder {
 
         private final GAV gav;
 
-        private final Set<PathNode> childs = new HashSet<>();
+        private final Set<PathNode> childs = new TreeSet<>(new PathNodeComparator());
 
         public PathNode(GAV gav) {
             this.gav = gav;
@@ -158,5 +158,32 @@ public class DependencyTreeBuilder {
             }
             return true;
         }
+    }
+
+    private static class DependencyRelationshipComparator implements
+            Comparator<DependencyRelationship> {
+
+        @Override
+        public int compare(DependencyRelationship o1, DependencyRelationship o2) {
+            ArtifactRef target1 = o1.getTarget();
+            GAV targetGav1 = GalleyWrapper.generateGAV(target1);
+
+            ArtifactRef target2 = o2.getTarget();
+            GAV targetGav2 = GalleyWrapper.generateGAV(target2);
+
+            int ret = targetGav1.compareTo(targetGav2);
+            return ret;
+
+        }
+
+    }
+
+    private static class PathNodeComparator implements Comparator<PathNode> {
+
+        @Override
+        public int compare(PathNode o1, PathNode o2) {
+            return o1.gav.compareTo(o2.gav);
+        }
+
     }
 }
