@@ -9,3 +9,5 @@
 .idea
 da-config.json
 testsuite/random
+testsuite/**/arquillian.properties
+
