@@ -115,6 +115,15 @@
                     <outputDirectory>${outDirectory}</outputDirectory>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <configuration>
+                    <targetDir>target</targetDir>
+                    <filename>dependency-analysis.ear</filename>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
