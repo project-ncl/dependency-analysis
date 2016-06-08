@@ -13,7 +13,7 @@ import lombok.NonNull;
 
 @AllArgsConstructor
 @EqualsAndHashCode
-public class GAV {
+public class GAV implements Comparable<GAV> {
 
     @NonNull
     private final GA ga;
@@ -49,5 +49,15 @@ public class GAV {
     @Override
     public String toString() {
         return getGroupId() + ":" + getArtifactId() + ":" + getVersion();
+    }
+
+    @Override
+    public int compareTo(GAV o) {
+        int gaCmp = this.ga.compareTo(o.ga);
+        if (gaCmp == 0) {
+            return (this.version.compareTo(o.version));
+        } else
+            return gaCmp;
+
     }
 }

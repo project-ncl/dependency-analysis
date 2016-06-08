@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -23,7 +24,7 @@ import lombok.Setter;
  * @author Honza Brázdil <janinko.g@gmail.com>
  */
 @RequiredArgsConstructor
-public class ArtifactReport {
+public class ArtifactReport implements Comparable<ArtifactReport> {
 
     @Getter
     @NonNull
@@ -38,7 +39,7 @@ public class ArtifactReport {
     private Optional<String> bestMatchVersion = Optional.empty();
 
     @NonNull
-    private final Set<ArtifactReport> dependencies = new HashSet<>();
+    private final Set<ArtifactReport> dependencies = new TreeSet<>();
 
     /**
      * Indicator if the artifact was blacklisted
@@ -109,5 +110,10 @@ public class ArtifactReport {
             }
             return number;
         }).sum();
+    }
+
+    @Override
+    public int compareTo(ArtifactReport o) {
+        return this.gav.compareTo(o.gav);
     }
 }

@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class GAVDependencyTree {
+public class GAVDependencyTree implements Comparable<GAVDependencyTree> {
 
     @Getter
     @Setter
@@ -30,7 +31,7 @@ public class GAVDependencyTree {
     private GAV gav;
 
     @Getter
-    private Set<GAVDependencyTree> dependencies = new HashSet<>();
+    private Set<GAVDependencyTree> dependencies = new TreeSet<>();
 
     public void addDependency(GAVDependencyTree dep) {
         dependencies.add(dep);
@@ -82,5 +83,10 @@ public class GAVDependencyTree {
                 }
             }
         }
+    }
+
+    @Override
+    public int compareTo(GAVDependencyTree o) {
+        return this.gav.compareTo(o.gav);
     }
 }
