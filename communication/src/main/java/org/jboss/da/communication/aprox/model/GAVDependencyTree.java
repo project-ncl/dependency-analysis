@@ -2,13 +2,13 @@ package org.jboss.da.communication.aprox.model;
 
 import org.jboss.da.model.rest.GAV;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -64,13 +64,24 @@ public class GAVDependencyTree implements Comparable<GAVDependencyTree> {
 
     private static void pruneLeaves(GAVDependencyTree tree,
             Map<GAV, Set<GAVDependencyTree>> candidates) {
-        // Sort the dependencies by GAV so the prunnig will be deterministic
-        List<GAVDependencyTree> deps = new ArrayList<>(tree.getDependencies());
-        Collections.sort(deps, (a,b) -> a.gav.toString().compareTo(b.gav.toString()));
-
-        for (GAVDependencyTree d : deps) {
-            pruneLeaves(d, candidates);
+        Queue<GAVDependencyTree> bfsQueue = new LinkedList<>();
+        Deque<GAVDependencyTree> reverseLevelOrder = new LinkedList<>();
+        bfsQueue.add(tree);
+        while (!bfsQueue.isEmpty()) {
+            GAVDependencyTree t = bfsQueue.poll();
+            reverseLevelOrder.push(t);
+            for (GAVDependencyTree d : t.dependencies) {
+                bfsQueue.add(d);
+            }
         }
+        while (!reverseLevelOrder.isEmpty()) {
+            GAVDependencyTree t = reverseLevelOrder.pop();
+            pruneLeaf(t, candidates);
+        }
+    }
+
+    private static void pruneLeaf(GAVDependencyTree tree,
+            Map<GAV, Set<GAVDependencyTree>> candidates) {
         Iterator<GAVDependencyTree> it = tree.getDependencies().iterator();
         while (it.hasNext()) {
             GAVDependencyTree d = it.next();
