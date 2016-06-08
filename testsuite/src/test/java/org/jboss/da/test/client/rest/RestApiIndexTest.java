@@ -6,6 +6,7 @@ import org.jboss.resteasy.client.ClientResponse;
 import org.junit.Test;
 
 import static org.apache.http.entity.ContentType.TEXT_HTML;
+import static org.jboss.da.common.Constants.COMMIT_HASH;
 import static org.jboss.da.common.Constants.DA_VERSION;
 import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
 import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
@@ -30,6 +31,10 @@ public class RestApiIndexTest extends AbstractRestReportsTest {
                 + "\n"
                 + "<ul><li><strong>DA Version:</strong> "
                 + DA_VERSION
+                + "</li>"
+                + "\n"
+                + "<ul><li><strong>Commit Hash:</strong> "
+                + COMMIT_HASH
                 + "</li>"
                 + "\n"
                 + "<li><strong>BC REST API Version:</strong> "
