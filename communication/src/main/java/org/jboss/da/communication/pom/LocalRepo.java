@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
@@ -61,6 +62,10 @@ public class LocalRepo {
                 Files.copy(pomFile, p);
             } catch (TransferException | RuntimeException ex) {
                 log.warn("Could not parse " + pomFile.toAbsolutePath(), ex);
+            } catch (FileAlreadyExistsException ex) {
+                log.error("File already exists. This is because there are multiple file with same "
+                        + "GAV. This ususaly happens when there are pom files in tests and is "
+                        + "harmless in this case.", ex);
             }
         }
     }
