@@ -161,6 +161,11 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
                 noerror = false;
             }
 
+            if (project.getScmUrl() == null || project.getScmUrl().isEmpty()) {
+                project.addError(BcError.NO_SCM_URL);
+                noerror = false;
+            }
+
             Matcher m = bcNamePattern.matcher(project.getName());
             if (!m.matches()) {
                 project.addError(BcError.NO_NAME);

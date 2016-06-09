@@ -15,7 +15,8 @@ public enum BcError {
     NO_PROJECT_SELECTED("Project ID is null",
             "There is no project selected or another error occured and project Id is null"),
     POM_EXCEPTION("POM error occured", "Error while parsing POM file occured"), SCM_EXCEPTION(
-            "SCM error occured", "Error while cloning scm repository");
+            "SCM error occured", "Error while cloning scm repository"), NO_SCM_URL(
+            "SCM URL is not specified", "The project does not have specified SCM URL");
 
     private final String error;
 
