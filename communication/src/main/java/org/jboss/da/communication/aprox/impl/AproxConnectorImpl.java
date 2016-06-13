@@ -1,9 +1,5 @@
 package org.jboss.da.communication.aprox.impl;
 
-import org.commonjava.indy.model.core.Group;
-import org.commonjava.indy.model.core.RemoteRepository;
-import org.commonjava.indy.model.core.StoreKey;
-import org.commonjava.indy.model.core.StoreType;
 import org.commonjava.cartographer.graph.discover.patch.DepgraphPatcherConstants;
 import org.commonjava.cartographer.request.ProjectGraphRequest;
 import org.commonjava.cartographer.result.GraphExport;
@@ -11,14 +7,18 @@ import org.commonjava.indy.client.core.Indy;
 import org.commonjava.indy.client.core.IndyClientException;
 import org.commonjava.indy.client.core.module.IndyStoresClientModule;
 import org.commonjava.indy.depgraph.client.DepgraphIndyClientModule;
+import org.commonjava.indy.model.core.Group;
+import org.commonjava.indy.model.core.RemoteRepository;
+import org.commonjava.indy.model.core.StoreKey;
+import org.commonjava.indy.model.core.StoreType;
 import org.commonjava.maven.atlas.graph.rel.ProjectRelationship;
 import org.commonjava.maven.atlas.graph.rel.RelationshipType;
 import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
 import org.commonjava.maven.atlas.ident.ref.SimpleProjectVersionRef;
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
@@ -32,10 +32,7 @@ import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -277,9 +274,7 @@ public class AproxConnectorImpl implements AproxConnector {
     private VersionResponse parseMetadataFile(URLConnection connection) throws IOException,
             CommunicationException {
         try (InputStream in = connection.getInputStream()) {
-            JAXBContext jaxbContext = JAXBContext.newInstance(VersionResponse.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            return (VersionResponse) jaxbUnmarshaller.unmarshal(in);
+            return MetadataFileParser.parseMetadataFile(in);
         } catch (JAXBException e) {
             throw new CommunicationException("Failed to parse metadataFile", e);
         }
