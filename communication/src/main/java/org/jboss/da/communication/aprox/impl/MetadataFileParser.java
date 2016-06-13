@@ -14,8 +14,8 @@ import java.io.InputStream;
  */
 public class MetadataFileParser {
 
-    public static VersionResponse parseMetadataFile(InputStream in)
-            throws IOException, CommunicationException, JAXBException {
+    public static VersionResponse parseMetadataFile(InputStream in) throws IOException,
+            CommunicationException, JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(VersionResponse.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         return (VersionResponse) jaxbUnmarshaller.unmarshal(in);

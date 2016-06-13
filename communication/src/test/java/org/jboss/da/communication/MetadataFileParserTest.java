@@ -28,33 +28,34 @@ public class MetadataFileParserTest {
 
     @Test
     public void availableVersionsTest() throws JAXBException, IOException, CommunicationException {
-        //given
+        // given
         List<String> availableVersions = versionResponse.getVersioning().getVersions().getVersion();
 
-        //expect
+        // expect
         Assert.assertTrue("Missing version.", availableVersions.contains("1.1.0.Beta1"));
         Assert.assertTrue("Missing version.", availableVersions.contains("1.4.1.Final-redhat-1"));
         Assert.assertTrue("Missing version.", availableVersions.contains("1.4.1.Final-redhat-2"));
         Assert.assertTrue("Missing version.", availableVersions.contains("1.4.2.Final"));
         Assert.assertTrue("Missing version.", availableVersions.contains("1.5.1.Final-redhat-4"));
-        Assert.assertFalse("Version should not be present.", availableVersions.contains("1.5.1.Final-redhat-10"));
+        Assert.assertFalse("Version should not be present.",
+                availableVersions.contains("1.5.1.Final-redhat-10"));
     }
 
     @Test
     public void latestTest() throws JAXBException, IOException, CommunicationException {
-        //given
+        // given
         String latestVersion = versionResponse.getVersioning().getLatestVersion();
 
-        //expect
+        // expect
         Assert.assertEquals("1.4.2.Final", latestVersion);
     }
 
     @Test
     public void releaseTest() throws JAXBException, IOException, CommunicationException {
-        //given
+        // given
         String latestReleaseVersion = versionResponse.getVersioning().getLatestRelease();
 
-        //expect
+        // expect
         Assert.assertEquals("1.4.1.Final-redhat-2", latestReleaseVersion);
     }
 
