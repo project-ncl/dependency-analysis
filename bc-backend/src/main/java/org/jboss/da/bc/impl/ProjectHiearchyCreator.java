@@ -125,10 +125,12 @@ public class ProjectHiearchyCreator {
                 hiearchy.setDependencies(toProjectHiearchies(dependencies));
                 hiearchy.setAnalysisStatus(DependencyAnalysisStatus.ANALYSED);
             } catch (ScmException ex_scm) {
+                log.error("Failed while getting SCM repo", ex_scm);
                 hiearchy.getProject().addError(BcError.SCM_EXCEPTION);
                 hiearchy.getProject().addError(BcError.NO_DEPENDENCY);
                 hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
             } catch (PomAnalysisException ex_pom) {
+                log.error("Failed to analyse pom", ex_pom);
                 hiearchy.getProject().addError(BcError.POM_EXCEPTION);
                 hiearchy.getProject().addError(BcError.NO_DEPENDENCY);
                 hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
