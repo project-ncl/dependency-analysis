@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss.da</groupId>
@@ -266,9 +266,9 @@
             <!-- end of needed because of cartographer 0.10.3 snapshot dependency -->
 
             <dependency>
-                    <groupId>com.thetransactioncompany</groupId>
-                    <artifactId>jsonrpc2-base</artifactId>
-                    <version>1.38</version>
+                <groupId>com.thetransactioncompany</groupId>
+                <artifactId>jsonrpc2-base</artifactId>
+                <version>1.38</version>
             </dependency>
 
             <dependency>
@@ -340,9 +340,9 @@
     </repositories>
 
     <build>
+
         <pluginManagement>
             <plugins>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -384,7 +384,7 @@
                     </configuration>
                 </plugin>
                 <!--This plugin's configuration is used to store Eclipse 
-                    m2e settings only. It has no influence on the Maven build itself. -->
+                m2e settings only. It has no influence on the Maven build itself. -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
