@@ -140,15 +140,22 @@ report() {
     rm $tmpfile
 }
 
+
+parseGAV() {
+    sed -r "s/([[:alpha:]_][[:alnum:]\._-]*)(:[[:alpha:]_][[:alnum:]_-]*)(:[[:alpha:]][[:alpha:]-]*(:[[:alpha:]][[:alpha:]-]*)?)?(:[[:alnum:]\._-]+)(:compile|:provided|:runtime|:test|:system)?/\1\2\5  /g" <<< $1
+}
+
 lookup() {
     local query="["
     if [ $# -ge 1 ]; then # G:A:V specified on command line
-        matchGAV $1
+        parsedGAV=`parseGAV $1`
+        matchGAV $parsedGAV
         query="$query `formatGAVjson`"
     else                  # G:A:Vs specified in standart input
         local first=true
         while read line; do
-            matchGAV $line
+            parsedLine=`parseGAV $line`
+            matchGAV $parsedLine
             $first || query="$query,"
             first=false
             query="$query `formatGAVjson`"

@@ -55,9 +55,10 @@ printUsage() {
     echo "DEPENDENCY REPORTS"
     echo "    Dependency reports can be used to get detail information about artifact or project dependencies."
     echo ""
-    echo "    $0 lookup [GROUP_ID:ARTIFACT_ID:VERSION]";
+    echo "    $0 lookup [GROUP_ID:ARTIFACT_ID[:PACKAGING[:CLASSIFIER]]:VERSION[:SCOPE]]";
     echo "        When GROUP_ID:ARTIFACT_ID:VERSION is specified finds corresponding redhat versions for it."
     echo "        When it is not specified, reads G:A:Vs from standard input and finds corresponding redhat versions for all of them."
+    echo "        Packaging, classifier and scope is ignored in both cases."
     echo "        Output: <groupId>:<artifactId>:<version> <Best Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
     echo "    $0 report [--raw|--json] GROUP_ID:ARTIFACT_ID:VERSION";
