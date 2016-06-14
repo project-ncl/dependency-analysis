@@ -6,6 +6,7 @@
 */target
 /target/
 *.iml
+*.pyc
 .idea
 da-config.json
 testsuite/random
