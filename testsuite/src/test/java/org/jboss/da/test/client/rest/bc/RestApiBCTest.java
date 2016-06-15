@@ -18,7 +18,7 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 
 public class RestApiBCTest extends AbstractRestBCTest {
 
-    private static final String PATH_BC_START = "/build-configuration/generate/product/start-process";
+    static final String PATH_BC_START = "/build-configuration/generate/product/start-process";
 
     private static final String PATH_BC_ITERATE = "/build-configuration/generate/product/analyse-next-level";
 
@@ -69,5 +69,4 @@ public class RestApiBCTest extends AbstractRestBCTest {
             fail("The test wasn't able to compare JSON strings" + ex);
         }
     }
-
 }
