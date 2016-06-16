@@ -9,7 +9,7 @@ import lombok.Setter;
 
 /**
  * Entity whith all builtVersions and bestMatchVersion
- * 
+ *
  * @author Jakub Bartecek <jbartece@redhat.com>
  *
  */
@@ -17,10 +17,8 @@ import lombok.Setter;
 public class VersionLookupResult {
 
     @Getter
-    @Setter
     private Optional<String> bestMatchVersion;
 
     @Getter
-    @Setter
     private List<String> availableVersions;
 }
