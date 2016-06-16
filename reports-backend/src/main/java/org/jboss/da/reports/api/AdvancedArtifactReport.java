@@ -4,9 +4,9 @@ import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.model.rest.GAV;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +18,7 @@ public class AdvancedArtifactReport {
     private ArtifactReport artifactReport;
 
     @Getter
-    private final Set<GAV> blacklistedArtifacts = new HashSet<>();
+    private final Set<GAV> blacklistedArtifacts = new TreeSet<>();
 
     @Getter
     private final Map<GAV, Set<ProductVersion>> whitelistedArtifacts = new HashMap<>();
@@ -30,7 +30,7 @@ public class AdvancedArtifactReport {
     private final Map<GAV, Set<String>> communityGavsWithBuiltVersions = new HashMap<>();
 
     @Getter
-    private final Set<GAV> communityGavs = new HashSet<>();
+    private final Set<GAV> communityGavs = new TreeSet<>();
 
     public void addBlacklistedArtifact(GAV gav) {
         blacklistedArtifacts.add(gav);
