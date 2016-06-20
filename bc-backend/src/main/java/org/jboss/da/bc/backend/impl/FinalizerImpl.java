@@ -1,7 +1,9 @@
 package org.jboss.da.bc.backend.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -21,8 +23,6 @@ import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
-
-import java.util.Collections;
 
 /**
  *
@@ -93,7 +93,11 @@ public class FinalizerImpl implements Finalizer {
             BuildConfiguration bc;
             ProjectDetail project = hiearchy.getProject();
             if (project.isUseExistingBc()) {
-                Optional<BuildConfiguration> optionalBc = bcFinder.lookupBcByScm(project.getScmUrl(), project.getScmRevision());
+                List<BuildConfiguration> existingBcs = bcFinder.lookupBcByScm(project.getScmUrl(), project.getScmRevision());
+                Optional<BuildConfiguration> optionalBc = existingBcs.stream()
+                        .filter(x -> project.getBcId().equals(x.getId()))
+                        .findFirst();
+                
                 bc = optionalBc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
             } else {
                 BuildConfigurationCreate bcc = toBC(project, nextLevelDependencyIds);

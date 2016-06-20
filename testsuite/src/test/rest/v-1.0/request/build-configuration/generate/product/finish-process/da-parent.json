@@ -12,8 +12,6 @@
         "name":"parent-0.3.0 - PLACEHOLDER",
         "description":"Build Configuration for org.jboss.da:parent:0.3.0 - dependency-analyzer.",
         "internallyBuilt":null,
-        "bcExists":false,
-        "useExistingBc":false,
         "gav":{
             "groupId":"org.jboss.da",
             "artifactId":"parent",

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -24,14 +25,21 @@ public class BcCheckerImpl implements BcChecker {
     private PNCConnector pncConnector;
 
     @Override
-    public Optional<BuildConfiguration> lookupBcByScm(String scmUrl, String scmRevision)
+    public List<BuildConfiguration> lookupBcByScm(String scmUrl, String scmRevision)
             throws CommunicationException, PNCRequestException {
         List<BuildConfiguration> foundBcs = pncConnector
                 .getBuildConfigurations(scmUrl, scmRevision);
-        if (foundBcs.isEmpty())
-            return Optional.empty();
-        else
-            return Optional.of(foundBcs.get(0));
+        return foundBcs;
     }
 
+    @Override
+    public List<Integer> lookupBcIdsByScm(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException {
+        List<BuildConfiguration> bcs = lookupBcByScm(scmUrl, scmRevision);
+        List<Integer> bcIds = bcs.stream()
+                .map(x -> x.getId())
+                .collect(Collectors.toList());
+        
+        return bcIds;
+    }
 }

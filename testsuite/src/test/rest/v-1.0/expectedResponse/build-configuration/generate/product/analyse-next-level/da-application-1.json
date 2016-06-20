@@ -13,8 +13,6 @@
         "internallyBuilt":null,
         "availableVersions":null,
         "bcId":null,
-        "bcExists":false,
-        "useExistingBc":false,
         "gav":{
             "groupId":"org.jboss.da",
             "artifactId":"application",
@@ -34,8 +32,6 @@
                 "internallyBuilt":null,
                 "availableVersions":null,
                 "bcId":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"reports-backend",
@@ -62,8 +58,6 @@
                 "internallyBuilt":null,
                 "availableVersions":null,
                 "bcId":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"communication",
@@ -98,8 +92,6 @@
                             "3.0.16.Final-redhat-1"
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"org.jboss.resteasy",
                             "artifactId":"resteasy-jaxrs",
@@ -128,8 +120,6 @@
                             "4.11-redhat-1"
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"junit",
                             "artifactId":"junit",
@@ -157,8 +147,6 @@
 
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"javax.ws.rs",
                             "artifactId":"javax.ws.rs-api",
@@ -191,8 +179,6 @@
                             "1.9.13.redhat-2"
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"org.codehaus.jackson",
                             "artifactId":"jackson-mapper-asl",
@@ -220,8 +206,6 @@
 
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"org.projectlombok",
                             "artifactId":"lombok",
@@ -255,8 +239,6 @@
                             "1.2.0.redhat-2"
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"javax.enterprise",
                             "artifactId":"cdi-api",
@@ -284,8 +266,6 @@
 
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"org.commonjava.aprox",
                             "artifactId":"aprox-depgraph-client-java",
@@ -318,8 +298,6 @@
                             "1.7.7.redhat-3"
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"org.slf4j",
                             "artifactId":"slf4j-api",
@@ -354,8 +332,6 @@
                             "3.0.2.Final-redhat-15"
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"org.jboss.spec",
                             "artifactId":"jboss-javaee-6.0",
@@ -383,8 +359,6 @@
 
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"commons-logging",
                             "artifactId":"commons-logging",
@@ -412,8 +386,6 @@
 
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"org.jboss.da",
                             "artifactId":"common",
@@ -441,8 +413,6 @@
 
                         ],
                         "bcId":null,
-                        "bcExists":false,
-                        "useExistingBc":false,
                         "gav":{
                             "groupId":"org.mockito",
                             "artifactId":"mockito-all",
@@ -475,8 +445,6 @@
                 "internallyBuilt":null,
                 "availableVersions":null,
                 "bcId":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"reports-rest",
@@ -503,8 +471,6 @@
                 "internallyBuilt":null,
                 "availableVersions":null,
                 "bcId":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"bc-backend",
@@ -531,8 +497,6 @@
                 "internallyBuilt":null,
                 "availableVersions":null,
                 "bcId":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"bc-rest",

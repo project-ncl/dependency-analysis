@@ -1,7 +1,11 @@
 package org.jboss.da.bc.backend.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
@@ -11,9 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BcCheckerImplTest {
@@ -38,26 +39,36 @@ public class BcCheckerImplTest {
     @Test
     public void testLookupBcOneResult() throws Exception {
         when(pncConnector.getBuildConfigurations(SCM_URL, SCM_REVISION)).thenReturn(getBcList(BC1));
-        Optional<BuildConfiguration> result = bcChecker.lookupBcByScm(SCM_URL, SCM_REVISION);
 
-        assertEquals(BC1, result.get());
+        List<BuildConfiguration> results = bcChecker.lookupBcByScm(SCM_URL, SCM_REVISION);
+        List<Integer> resultIds = bcChecker.lookupBcIdsByScm(SCM_URL, SCM_REVISION);
+
+        assertEquals(BC1, results.get(0));
+        assertEquals((Integer) BC1.getId(), resultIds.get(0));
     }
 
     @Test
     public void testLookupBcMoreResults() throws Exception {
         when(pncConnector.getBuildConfigurations(SCM_URL, SCM_REVISION)).thenReturn(
                 getBcList(BC2, BC1));
-        Optional<BuildConfiguration> result = bcChecker.lookupBcByScm(SCM_URL, SCM_REVISION);
+        List<BuildConfiguration> results = bcChecker.lookupBcByScm(SCM_URL, SCM_REVISION);
+        List<Integer> resultIds = bcChecker.lookupBcIdsByScm(SCM_URL, SCM_REVISION);
 
-        assertEquals(BC2, result.get());
+        assertTrue(results.contains(BC2));
+        assertTrue(results.contains(BC1));
+
+        assertTrue(resultIds.contains(BC1.getId()));
+        assertTrue(resultIds.contains(BC2.getId()));
     }
 
     @Test
     public void testLookupBcNoResult() throws Exception {
         when(pncConnector.getBuildConfigurations(SCM_URL, SCM_REVISION)).thenReturn(getBcList());
-        Optional<BuildConfiguration> result = bcChecker.lookupBcByScm(SCM_URL, SCM_REVISION);
+        List<BuildConfiguration> results = bcChecker.lookupBcByScm(SCM_URL, SCM_REVISION);
+        List<Integer> resultIds = bcChecker.lookupBcIdsByScm(SCM_URL, SCM_REVISION);
 
-        assertEquals(false, result.isPresent());
+        assertTrue(results.isEmpty());
+        assertTrue(resultIds.isEmpty());
     }
 
     private static BuildConfiguration createBc(int id, String name, String buildScript,

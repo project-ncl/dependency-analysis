@@ -240,11 +240,10 @@ public class ProjectHiearchyCreator {
             return;
 
         try {
-            Optional<BuildConfiguration> found = bcFinder.lookupBcByScm(project.getScmUrl(),
+            List<Integer> existingBcIds = bcFinder.lookupBcIdsByScm(project.getScmUrl(),
                     project.getScmRevision());
-            project.setBcExists(found.isPresent());
-            project.setUseExistingBc(found.isPresent());
-            project.setBcId(found.isPresent() ? found.get().getId() : null);
+            project.setExistingBCs(existingBcIds);
+            project.setBcId(null);
 
         } catch (CommunicationException | PNCRequestException ex) {
             log.warn("Failed to lookup existing BC for " + project.getGav(), ex);
