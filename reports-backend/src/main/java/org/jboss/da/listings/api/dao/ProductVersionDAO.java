@@ -54,7 +54,7 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
      * @return List of productVersions
      */
     List<ProductVersion> findProductVersionsWithArtifact(String groupId, String artifactId,
-            String version);
+            String version, boolean preciseVersion);
 
     /**
      * Finds ProductVersions with specific product id, product name, version or support status. All parameters are optional.

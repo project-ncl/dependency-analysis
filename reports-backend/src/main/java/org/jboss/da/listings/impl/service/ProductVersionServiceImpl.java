@@ -36,7 +36,8 @@ public class ProductVersionServiceImpl implements ProductVersionService {
     @Override
     public List<ProductVersion> getProductVersionsOfArtifact(String groupId, String artifactId,
             String version) {
-        return productVersionDAO.findProductVersionsWithArtifact(groupId, artifactId, version);
+        return productVersionDAO
+                .findProductVersionsWithArtifact(groupId, artifactId, version, true);
     }
 
     @Override

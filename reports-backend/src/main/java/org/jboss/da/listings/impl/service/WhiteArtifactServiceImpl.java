@@ -145,7 +145,7 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
                 version);
         if (artifact.isPresent()) {
             List<ProductVersion> productVersions = productVersionDAO
-                    .findProductVersionsWithArtifact(groupId, artifactId, version);
+                    .findProductVersionsWithArtifact(groupId, artifactId, version, false);
             for (ProductVersion pv : productVersions) {
                 pv.removeArtifact(artifact.get());
                 productVersionDAO.update(pv);
