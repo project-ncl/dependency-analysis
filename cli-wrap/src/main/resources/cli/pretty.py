@@ -148,7 +148,7 @@ def checkError(data):
 def report():
     data = readInput()
     checkError(data)
-    print "tree of GAVs\tBest Match Version\tBlack/White list\t# of not built dependencies\t# of available versions"
+    print "tree of GAVs\tExact Match Version\tBlack/White list\t# of not built dependencies\t# of available versions"
     printReport(data,0)
 
 def reportRaw():
@@ -159,7 +159,7 @@ def reportRaw():
 def reportAdv():
     data = readInput()
     checkError(data)
-    print "tree of GAVs\tBest Match Version\tBlack/White list\t# of not built dependencies\t# of available versions"
+    print "tree of GAVs\tExact Match Version\tBlack/White list\t# of not built dependencies\t# of available versions"
     printReport(data["report"], 0)
     
 def reportAdvSum():
