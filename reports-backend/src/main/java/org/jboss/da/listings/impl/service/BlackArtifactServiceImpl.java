@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Inject;
+import org.jboss.da.common.version.VersionParser;
 
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
@@ -38,6 +39,9 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Inject
     private GADAO gaDAO;
 
+    @Inject
+    private VersionParser osgiParser;
+
     @Override
     protected ArtifactDAO<BlackArtifact> getDAO() {
         return blackArtifactDAO;
@@ -46,20 +50,20 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Override
     public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(
             String groupId, String artifactId, String version) {
-
-        String nonrhVersion = versionParser.removeRedhatSuffix(version);
+        
+        String osgiVersion = osgiParser.getNonRedhatOSGiVersion(version);
 
         GA ga = gaDAO.findOrCreate(groupId, artifactId);
 
-        BlackArtifact artifact = new BlackArtifact(ga, version);
+        BlackArtifact artifact = new BlackArtifact(ga, osgiVersion);
 
-        if (blackArtifactDAO.findArtifact(groupId, artifactId, version).isPresent()) {
+        if (blackArtifactDAO.findArtifact(groupId, artifactId, osgiVersion).isPresent()) {
             return ArtifactStatus.NOT_MODIFIED;
         }
 
         Set<WhiteArtifact> whites = new HashSet<>();
         Optional<WhiteArtifact> rhA = whiteArtifactDAO.findArtifact(groupId, artifactId,
-                nonrhVersion);
+                osgiVersion);
         rhA.ifPresent(x -> whites.add(rhA.get()));
         Optional<WhiteArtifact> a = whiteArtifactDAO.findArtifact(groupId, artifactId, version);
         a.ifPresent(x -> whites.add(a.get()));
@@ -77,7 +81,6 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Override
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version) {
         String osgiVersion = versionParser.getNonRedhatOSGiVersion(version);
-
         return blackArtifactDAO.findArtifact(groupId, artifactId, osgiVersion);
     }
 

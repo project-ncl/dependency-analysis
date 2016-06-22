@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import org.jboss.da.listings.api.service.BlackArtifactService;
 
 /**
  * 
@@ -34,6 +35,9 @@ public class VersionFinderTest {
 
     @Spy
     private final VersionParser osgiParser = new VersionParser();
+
+    @Mock
+    private BlackArtifactService blackArtifactService;
 
     @InjectMocks
     @Spy
