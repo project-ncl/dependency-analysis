@@ -83,17 +83,19 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
 
     @Override
     public List<ProductVersion> findProductVersionsWithArtifact(String groupId, String artifactId,
-            String version) {
+            String version, boolean preciseVersion) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductVersion> cq = cb.createQuery(type);
         Root<ProductVersion> productVersion = cq.from(type);
         Root<WhiteArtifact> artifact = cq.from(WhiteArtifact.class);
         Join<Artifact, GA> ga = artifact.join("ga");
+        if (!preciseVersion)
+            version += '%';
         cq.select(productVersion).where(
                 cb.and(cb.equal(ga.get("groupId"), groupId),
                         cb.equal(ga.get("artifactId"), artifactId),
-                        cb.or(cb.equal(artifact.get("version"), version),
-                                cb.equal(artifact.get("osgiVersion"), version))));
+                        cb.or(cb.like(artifact.get("version"), version),
+                                cb.like(artifact.get("osgiVersion"), version))));
         TypedQuery<ProductVersion> q = em.createQuery(cq);
         List<ProductVersion> list = q.getResultList();
         return list;

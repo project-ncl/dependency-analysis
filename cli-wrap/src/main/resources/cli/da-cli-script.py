@@ -58,7 +58,7 @@ def helper_print_white_artifacts_products(response, show_artifacts=True):
             product_version = item['version']
             product_support = item['supportStatus']
             product_id = ""
-            if(item['id']):
+            if('id' in item):
                 product_id = " ("+str(item['id'])+")"
 
             if show_artifacts:
@@ -69,7 +69,6 @@ def helper_print_white_artifacts_products(response, show_artifacts=True):
                                                     product_version, product_support))
             else:
                 print("{}:{} {}{}".format(product, product_version, product_support, product_id))
-
 
 class DependencyAnalysis:
 
