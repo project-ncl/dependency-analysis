@@ -19,6 +19,7 @@ import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.model.rest.VersionComparator;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
@@ -45,6 +46,7 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -171,12 +173,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
             for (GAV gav : e.getValue()) {
                 BuiltReportModule report = new BuiltReportModule(gav);
-                Optional<String> bestVersion = versionFinder.getBestMatchVersionFor(gav);
-                if (bestVersion.isPresent()) {
-                    report.setBuiltVersion(bestVersion.get());
-                }
-                report.setAvailableVersions(new HashSet<String>(versionFinder
-                        .getBuiltVersionsFor(gav)));
+                VersionLookupResult versionLookup = versionFinder.lookupBuiltVersions(gav);
+                versionLookup.getBestMatchVersion().ifPresent(bmv -> report.setBuiltVersion(bmv));
+                report.setAvailableVersions(versionLookup.getAvailableVersions());
                 builtSet.add(report);
             }
         }
@@ -268,7 +267,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private ArtifactReport toArtifactReport(GAV gav, VersionLookupResult result) {
         ArtifactReport report = new ArtifactReport(gav);
-        report.addAvailableVersions(result.getAvailableVersions());
+        report.setAvailableVersions(result.getAvailableVersions());
         report.setBestMatchVersion(result.getBestMatchVersion());
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
         report.setWhitelisted(getWhitelistedProducts(gav));
@@ -330,10 +329,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                     advancedReport.addCommunityGavWithBestMatchVersion(gav, dep
                             .getBestMatchVersion().get());
                 } else {
-                    Set<String> versions = getWhitelistedVersions(dep.getGroupId(),
-                            dep.getArtifactId());
-                    if (!dep.getAvailableVersions().isEmpty() || !versions.isEmpty()) {
-                        versions.addAll(dep.getAvailableVersions());
+                    Set<String> versions = new TreeSet<>(new VersionComparator(gav.getVersion()));
+                    versions.addAll(getWhitelistedVersions(dep.getGroupId(), dep.getArtifactId()));
+                    versions.addAll(dep.getAvailableVersions());
+                    if (!versions.isEmpty()) {
                         advancedReport.addCommunityGavWithBuiltVersion(dep.getGav(), versions);
                     } else {
                         advancedReport.addCommunityGav(gav);

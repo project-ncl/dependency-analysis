@@ -4,6 +4,7 @@ import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.model.rest.VersionComparator;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.slf4j.Logger;
@@ -43,7 +44,7 @@ public class VersionFinderImpl implements VersionFinder {
     @Override
     public List<String> getBuiltVersionsFor(GAV gav) throws CommunicationException {
         List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
-        return getBuiltVersionsFor0(allVersions);
+        return getBuiltVersionsFor0(gav, allVersions);
     }
 
     @Override
@@ -64,7 +65,7 @@ public class VersionFinderImpl implements VersionFinder {
         }
 
         return new VersionLookupResult(getBestMatchVersionFor(gav, allVersions),
-                getBuiltVersionsFor0(allVersions));
+                getBuiltVersionsFor0(gav, allVersions));
     }
 
     @Override
@@ -78,9 +79,10 @@ public class VersionFinderImpl implements VersionFinder {
         return findBiggestMatchingVersion(gav, availableVersions);
     }
 
-    private List<String> getBuiltVersionsFor0(List<String> allVersions) {
+    private List<String> getBuiltVersionsFor0(GAV gav, List<String> allVersions) {
         List<String> redhatVersions = allVersions.stream()
                 .filter(VersionParser::isRedhatVersion)
+                .sorted(new VersionComparator(gav.getVersion()))
                 .collect(Collectors.toList());
 
         return redhatVersions;

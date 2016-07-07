@@ -5,9 +5,8 @@ import org.jboss.da.model.rest.GAV;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -32,7 +31,8 @@ public class ArtifactReport implements Comparable<ArtifactReport> {
     private GAV gav;
 
     @NonNull
-    private final Set<String> availableVersions = new HashSet<>();
+    @Setter
+    private List<String> availableVersions = new ArrayList<>();
 
     @Getter
     @NonNull
@@ -56,26 +56,15 @@ public class ArtifactReport implements Comparable<ArtifactReport> {
     private List<ProductVersion> whitelisted;
 
     public void setBestMatchVersion(Optional<String> version) {
-        if (version.isPresent()) {
-            availableVersions.add(version.get());
-        }
         bestMatchVersion = version;
-    }
-
-    public void addAvailableVersion(String version) {
-        availableVersions.add(version);
-    }
-
-    public void addAvailableVersions(Collection<String> version) {
-        availableVersions.addAll(version);
     }
 
     public void addDependency(ArtifactReport dependency) {
         dependencies.add(dependency);
     }
 
-    public Set<String> getAvailableVersions() {
-        return Collections.unmodifiableSet(availableVersions);
+    public List<String> getAvailableVersions() {
+        return Collections.unmodifiableList(availableVersions);
     }
 
     public Set<ArtifactReport> getDependencies() {

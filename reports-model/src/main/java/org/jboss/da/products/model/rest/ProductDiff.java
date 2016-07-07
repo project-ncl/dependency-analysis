@@ -3,8 +3,8 @@ package org.jboss.da.products.model.rest;
 import org.jboss.da.listings.model.rest.RestProduct;
 import org.jboss.da.model.rest.GAV;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,20 +35,20 @@ public class ProductDiff {
     @Getter
     @Setter
     @NonNull
-    private Set<GAV> added = new HashSet<>();
+    private Set<GAV> added = new TreeSet<>();
 
     @Getter
     @Setter
     @NonNull
-    private Set<GAV> removed = new HashSet<>();
+    private Set<GAV> removed = new TreeSet<>();
 
     @Getter
     @Setter
     @NonNull
-    private Set<GADiff> changed = new HashSet<>();
+    private Set<GADiff> changed = new TreeSet<>();
 
     @Getter
     @Setter
     @NonNull
-    private Set<GAV> unchanged = new HashSet<>();
+    private Set<GAV> unchanged = new TreeSet<>();
 }

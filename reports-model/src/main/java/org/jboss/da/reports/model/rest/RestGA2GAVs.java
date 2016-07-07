@@ -2,8 +2,8 @@ package org.jboss.da.reports.model.rest;
 
 import org.jboss.da.model.rest.GAV;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,5 +32,5 @@ public class RestGA2GAVs {
     @Getter
     @Setter
     @NonNull
-    private Set<GAV> gavs = new HashSet<>();
+    private Set<GAV> gavs = new TreeSet<>();
 }

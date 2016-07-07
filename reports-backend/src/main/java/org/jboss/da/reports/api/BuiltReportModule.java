@@ -2,8 +2,8 @@ package org.jboss.da.reports.api;
 
 import org.jboss.da.model.rest.GAV;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,6 +33,6 @@ public class BuiltReportModule {
 
     @Getter
     @Setter
-    private Set<String> availableVersions = new HashSet<>();
+    private List<String> availableVersions = new ArrayList<>();
 
 }

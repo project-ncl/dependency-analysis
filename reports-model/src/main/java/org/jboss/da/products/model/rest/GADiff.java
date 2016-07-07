@@ -1,6 +1,7 @@
 package org.jboss.da.products.model.rest;
 
 import org.jboss.da.model.rest.GA;
+import org.jboss.da.model.rest.VersionComparator;
 
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -15,7 +16,7 @@ import lombok.NonNull;
  *
  * @author jbrazdil
  */
-public class GADiff {
+public class GADiff implements Comparable<GADiff> {
 
     @NonNull
     private final GA ga;
@@ -59,6 +60,19 @@ public class GADiff {
 
     public String getArtifactId() {
         return ga.getArtifactId();
+    }
+
+    @Override
+    public int compareTo(GADiff o) {
+        int gaCmp = this.ga.compareTo(o.ga);
+        if (gaCmp != 0) {
+            return gaCmp;
+        }
+        gaCmp = VersionComparator.compareVersions(this.leftVersion, o.leftVersion);
+        if (gaCmp != 0) {
+            return gaCmp;
+        }
+        return VersionComparator.compareVersions(this.rightVersion, o.rightVersion);
     }
 
 }

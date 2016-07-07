@@ -1,7 +1,7 @@
 package org.jboss.da.reports.model.rest;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +33,6 @@ public class BuiltReport {
     @Getter
     @Setter
     @NonNull
-    private Set<String> availableVersions = new HashSet<>();
+    private List<String> availableVersions = new ArrayList<>();
 
 }
