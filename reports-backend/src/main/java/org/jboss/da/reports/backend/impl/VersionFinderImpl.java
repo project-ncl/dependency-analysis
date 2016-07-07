@@ -12,10 +12,12 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.stream.Collectors;
+import org.jboss.da.listings.api.service.BlackArtifactService;
 
 /**
  * Performs single lookups for the built artifacts
@@ -35,6 +37,9 @@ public class VersionFinderImpl implements VersionFinder {
     @Inject
     private VersionParser osgiParser;
 
+    @Inject
+    private BlackArtifactService blackArtifactService;
+
     @Override
     public List<String> getBuiltVersionsFor(GAV gav) throws CommunicationException {
         List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
@@ -47,7 +52,17 @@ public class VersionFinderImpl implements VersionFinder {
             log.warn("Received nonvalid GAV: " + gav);
             return new VersionLookupResult(Optional.empty(), Collections.emptyList());
         }
+
         List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
+
+        for (Iterator<String> iterator = allVersions.iterator(); iterator.hasNext();) {
+            String version = iterator.next();
+            if (blackArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
+                    version)) {
+                iterator.remove();
+            }
+        }
+
         return new VersionLookupResult(getBestMatchVersionFor(gav, allVersions),
                 getBuiltVersionsFor0(allVersions));
     }
