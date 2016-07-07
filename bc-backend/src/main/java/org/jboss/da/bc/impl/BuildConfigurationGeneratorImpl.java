@@ -147,7 +147,7 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
 
             if (project.isUseExistingBc() && !project.isBcExists()) {
                 project.addError(BcError.NO_EXISTING_BC);
-                project.setUseExistingBc(false);
+                project.setBcId(null);
                 noerror = false;
             }
 

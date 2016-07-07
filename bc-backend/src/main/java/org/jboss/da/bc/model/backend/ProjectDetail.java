@@ -61,11 +61,7 @@ public class ProjectDetail {
 
     @Getter
     @Setter
-    private boolean bcExists = false; // generated, unmodifiable
-
-    @Getter
-    @Setter
-    private boolean useExistingBc = false; // required, default true when bcExists
+    private List<Integer> existingBCs;
 
     @Getter
     @Setter
@@ -90,6 +86,14 @@ public class ProjectDetail {
 
     public ProjectDetail(GAV gav) {
         this.gav = gav;
+    }
+
+    public boolean isUseExistingBc() {
+        return bcId != null;
+    }
+
+    public boolean isBcExists() {
+        return existingBCs == null ? false : !existingBCs.isEmpty();
     }
 
 }

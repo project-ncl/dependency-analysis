@@ -78,7 +78,7 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
 
     protected ProjectHiearchy toProjectHiearchy(BuildConfiguration bc) {
         ProjectDetail pd = new ProjectDetail(bc.getGav());
-        pd.setBcExists(bc.isBcExists());
+        pd.setExistingBCs(bc.getExistingBCs());
         pd.setBuildScript(bc.getBuildScript());
         pd.setCloneRepo(bc.isCloneRepo());
         pd.setDescription(bc.getDescription());
@@ -91,7 +91,6 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         pd.setScmUrl(bc.getScmUrl());
         if(bc.getErrors() != null)
             pd.setErrors(bc.getErrors());
-        pd.setUseExistingBc(bc.isUseExistingBc());
         pd.setBcId(bc.getBcId());
 
         ProjectHiearchy ph = new ProjectHiearchy(pd, bc.isSelected());
@@ -108,7 +107,7 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         ProjectDetail p = ph.getProject();
         BuildConfiguration bc = new BuildConfiguration();
 
-        bc.setBcExists(p.isBcExists());
+        bc.setExistingBCs(p.getExistingBCs());
         bc.setBuildScript(p.getBuildScript());
         bc.setCloneRepo(p.isCloneRepo());
         bc.setDescription(p.getDescription());
@@ -120,9 +119,8 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         bc.setProjectId(p.getProjectId());
         bc.setScmRevision(p.getScmRevision());
         bc.setScmUrl(p.getScmUrl());
-        bc.setBcId(p.getBcId());
         bc.setSelected(ph.isSelected());
-        bc.setUseExistingBc(p.isUseExistingBc());
+        bc.setBcId(p.getBcId());
         bc.setAnalysisStatus(ph.getAnalysisStatus());
         bc.setErrors(p.getErrors());
 

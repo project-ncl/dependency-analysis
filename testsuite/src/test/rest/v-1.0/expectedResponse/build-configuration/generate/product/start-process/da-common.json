@@ -10,7 +10,6 @@
         "buildScript":"",
         "description":"Build Configuration for org.jboss.da:common:0.3.0.",
         "internallyBuilt":null,
-        "useExistingBc":false,
         "errors" : [  ],
         "gav":{
             "groupId":"org.jboss.da",

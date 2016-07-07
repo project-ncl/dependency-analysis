@@ -12,8 +12,6 @@
         "name":"application-0.3.0",
         "description":"Build Configuration for org.jboss.da:application:0.3.0.",
         "internallyBuilt":null,
-        "bcExists":false,
-        "useExistingBc":false,
         "gav":{
             "groupId":"org.jboss.da",
             "artifactId":"application",
@@ -31,8 +29,6 @@
                 "name":"communication-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"communication",
@@ -52,8 +48,6 @@
                 "name":"bc-backend-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"bc-backend",
@@ -73,8 +67,6 @@
                 "name":"bc-rest-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"bc-rest",
@@ -94,8 +86,6 @@
                 "name":"reports-backend-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"reports-backend",
@@ -115,8 +105,6 @@
                 "name":"reports-rest-0.3.0",
                 "description":null,
                 "internallyBuilt":null,
-                "bcExists":false,
-                "useExistingBc":false,
                 "gav":{
                     "groupId":"org.jboss.da",
                     "artifactId":"reports-rest",

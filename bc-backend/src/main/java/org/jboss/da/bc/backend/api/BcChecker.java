@@ -1,10 +1,10 @@
 package org.jboss.da.bc.backend.api;
 
+import java.util.List;
+
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-
-import java.util.Optional;
 
 /**
  * Provides information about BuildConfigurations in PNC
@@ -23,7 +23,10 @@ public interface BcChecker {
      * @throws CommunicationException Thrown if communication with PNC failed
      * @throws PNCRequestException Thrown if PNC returns an error
      */
-    Optional<BuildConfiguration> lookupBcByScm(String scmUrl, String scmRevision)
+    List<BuildConfiguration> lookupBcByScm(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException;
+
+    List<Integer> lookupBcIdsByScm(String scmUrl, String scmRevision)
             throws CommunicationException, PNCRequestException;
 
 }
