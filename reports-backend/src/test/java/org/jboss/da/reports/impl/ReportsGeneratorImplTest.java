@@ -1,9 +1,16 @@
 package org.jboss.da.reports.impl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.when;
+
+import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.listings.api.model.Product;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -16,27 +23,20 @@ import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.reports.backend.impl.DependencyTreeGeneratorImpl;
-import org.junit.runner.RunWith;
+import org.jboss.da.reports.model.rest.GAVRequest;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.Spy;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.when;
-
-import java.util.Collections;
 
 /**
  *
@@ -155,7 +155,7 @@ public class ReportsGeneratorImplTest {
     public void testNonExistingGAV() throws CommunicationException, FindGAVDependencyException {
         when(aproxClient.getDependencyTreeOfGAV(daGAV)).thenThrow(FindGAVDependencyException.class);
 
-        generator.getReport(daGAV);
+        generator.getReport(gavToRequest(daGAV));
     }
 
     @Test
@@ -163,7 +163,7 @@ public class ReportsGeneratorImplTest {
             FindGAVDependencyException {
         prepare(Collections.emptyList(), false, daCoreVersionsNoBest, null, daCoreNoDT);
 
-        ArtifactReport report = generator.getReport(daCoreGAV);
+        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
@@ -180,7 +180,7 @@ public class ReportsGeneratorImplTest {
         List<ProductVersion> whitelisted = Arrays.asList(productEAP);
         prepare(whitelisted, false, daCoreVersionsNoBest, null, daCoreNoDT);
 
-        ArtifactReport report = generator.getReport(daCoreGAV);
+        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
@@ -196,7 +196,7 @@ public class ReportsGeneratorImplTest {
             FindGAVDependencyException {
         prepare(Collections.emptyList(), true, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
 
-        ArtifactReport report = generator.getReport(daCoreGAV);
+        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
@@ -211,7 +211,7 @@ public class ReportsGeneratorImplTest {
             throws CommunicationException, FindGAVDependencyException {
         prepare(Collections.emptyList(), false, daCoreVersionsBest, null, daCoreNoDT);
 
-        ArtifactReport report = generator.getReport(daCoreGAV);
+        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
 
         assertFalse(report.getBestMatchVersion().isPresent());
         assertFalse(report.getAvailableVersions().stream().anyMatch(version -> version == null));
@@ -221,7 +221,7 @@ public class ReportsGeneratorImplTest {
     public void testGetMultipleReport() throws CommunicationException, FindGAVDependencyException {
         prepareMulti();
 
-        ArtifactReport report = generator.getReport(daCoreGAV);
+        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
 
         assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
         assertEquals(daCoreGAV, report.getGav());
@@ -262,5 +262,11 @@ public class ReportsGeneratorImplTest {
                 }
             }
         }
+    }
+
+    private GAVRequest gavToRequest(GAV g) {
+        return new GAVRequest(g.getGroupId(), g.getArtifactId(), g.getVersion(), new HashSet<>(),
+                new HashSet<>());
+
     }
 }

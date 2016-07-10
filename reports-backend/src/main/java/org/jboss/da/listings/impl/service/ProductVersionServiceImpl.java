@@ -70,4 +70,9 @@ public class ProductVersionServiceImpl implements ProductVersionService {
         return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId,
                 Optional.empty());
     }
+
+    @Override
+    public List<ProductVersion> getAllForProduct(String productName) {
+        return productVersionDAO.findProductVersionsWithProduct(productName);
+    }
 }

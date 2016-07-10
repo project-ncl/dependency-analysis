@@ -1,5 +1,11 @@
-[{
-  "groupId": "com.google.guava",
-  "artifactId": "guava",
-  "version": "13.0.1"
-}]
+{
+  "productIds": [],
+  "productVersionIds": [],
+  "gavs": [
+    {
+      "groupId": "com.google.guava",
+      "artifactId": "guava",
+      "version": "13.0.1"
+    }
+  ]
+}

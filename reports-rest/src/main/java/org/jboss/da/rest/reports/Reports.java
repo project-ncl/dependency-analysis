@@ -5,8 +5,6 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.model.rest.RestGavProducts;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.ErrorMessage;
@@ -15,8 +13,6 @@ import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.SCMLocator;
-import org.jboss.da.reports.api.VersionLookupResult;
-import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.reports.model.rest.AdvancedReport;
 import org.jboss.da.reports.model.rest.AlignReport;
 import org.jboss.da.reports.model.rest.AlignReportRequest;
@@ -24,6 +20,8 @@ import org.jboss.da.reports.model.rest.BuiltReport;
 import org.jboss.da.reports.model.rest.BuiltReportRequest;
 import org.jboss.da.reports.model.rest.GAVAvailableVersions;
 import org.jboss.da.reports.model.rest.GAVBestMatchVersion;
+import org.jboss.da.reports.model.rest.GAVRequest;
+import org.jboss.da.reports.model.rest.LookupGAVsRequest;
 import org.jboss.da.reports.model.rest.LookupReport;
 import org.jboss.da.reports.model.rest.Report;
 import org.jboss.da.rest.facade.ReportsFacade;
@@ -43,7 +41,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
@@ -67,16 +64,7 @@ public class Reports {
     private Logger log;
 
     @Inject
-    private VersionFinder versionFinder;
-
-    @Inject
     private ReportsGenerator reportsGenerator;
-
-    @Inject
-    private ProductVersionService productVersionService;
-
-    @Inject
-    private BlackArtifactService blackArtifactService;
 
     @Inject
     private ReportsFacade reportsFacade;
@@ -162,8 +150,8 @@ public class Reports {
             @ApiResponse(code = 404, message = "Requested GAV was not found in repository",
                     response = ErrorMessage.class),
             @ApiResponse(code = 502, message = "Communication with remote repository failed") })
-    public Response gavGenerator(@ApiParam(
-            value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAV gavRequest) {
+    public Response gavGenerator(
+            @ApiParam(value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAVRequest gavRequest) {
         try {
             ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
             return Response.ok().entity(toReport(artifactReport)).build();
@@ -189,33 +177,19 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Lookup built versions for the list of provided GAVs",
             responseContainer = "List", response = LookupReport.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 502, message = "Communication with remote repository failed") })
+    @ApiResponses(value = { @ApiResponse(code = 502,
+            message = "Communication with remote repository failed") })
     public Response lookupGav(
             @ApiParam(
-                    value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") List<GAV> gavRequest) {
+                    value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest) {
 
-        // Use a concurrent list since we're using parallel stream to add stuff to the list
-        CopyOnWriteArrayList<LookupReport> reportsList = new CopyOnWriteArrayList<>();
+        List<LookupReport> reportsList = reportsGenerator.getLookupReportsForGavs(gavRequest);
 
-        boolean communicationSucceeded = gavRequest.parallelStream().distinct().map((gav) -> {
-            try {
-                VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
-                LookupReport lookupReport = toLookupReport(gav, lookupResult);
-                reportsList.add(lookupReport);
-                return true;
-            } catch (CommunicationException ex) {
-                log.error("Communication with remote repository failed", ex);
-                return false;
-            }
-        }).allMatch(x -> {
-            return x;
-        });
-
-        if (!communicationSucceeded)
-            return Response.status(502)
-                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, "Communication with remote repository failed"))
-                    .build();
+        if (reportsList == null)
+            return Response
+                    .status(502)
+                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
+                            "Communication with remote repository failed")).build();
         else
             return Response.status(Status.OK).entity(reportsList).build();
     }
@@ -333,12 +307,6 @@ public class Reports {
         return ret;
     }
 
-    private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {
-        return new LookupReport(gav, lookupResult.getBestMatchVersion().orElse(null),
-                lookupResult.getAvailableVersions(), isBlacklisted(gav),
-                toWhitelisted(getWhitelisted(gav)));
-    }
-
     private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
         return whitelisted
                 .stream()
@@ -346,15 +314,4 @@ public class Reports {
                         pv.getSupport()))
                 .collect(Collectors.toList());
     }
-
-    private List<ProductVersion> getWhitelisted(GAV gav) {
-        return productVersionService.getProductVersionsOfArtifact(gav.getGroupId(),
-                gav.getArtifactId(), gav.getVersion());
-    }
-
-    private boolean isBlacklisted(GAV gav) {
-        return blackArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
-                gav.getVersion());
-    }
-
 }

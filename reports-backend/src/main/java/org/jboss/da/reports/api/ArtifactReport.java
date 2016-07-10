@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -24,6 +25,10 @@ import lombok.Setter;
  */
 @RequiredArgsConstructor
 public class ArtifactReport implements Comparable<ArtifactReport> {
+
+    @Getter
+    @NonNull
+    private final Set<Long> ProductVersions = new HashSet<>();
 
     @Getter
     @NonNull

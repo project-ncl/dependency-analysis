@@ -48,6 +48,11 @@ public class VersionFinderImpl implements VersionFinder {
     }
 
     @Override
+    public List<String> getBuiltVersionsFor(GAV gav, List<String> availableVersions) {
+        return getBuiltVersionsFor0(gav, availableVersions);
+    }
+
+    @Override
     public VersionLookupResult lookupBuiltVersions(GAV gav) throws CommunicationException {
         if (!gav.getGA().isValid()) {
             log.warn("Received nonvalid GAV: " + gav);
