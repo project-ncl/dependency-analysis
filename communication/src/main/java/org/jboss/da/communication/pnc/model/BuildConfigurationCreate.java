@@ -41,10 +41,6 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    private String buildStatus;
-
-    @Getter
-    @Setter
     private String repositories;
 
     @Getter
