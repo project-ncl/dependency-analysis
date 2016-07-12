@@ -340,6 +340,14 @@
                                 "version":"Unknown",
                                 "supportStatus":"UNKNOWN"
                             }
+                        },
+                        {
+                            "version":"7.5.8.Final-redhat-2",
+                            "product":{
+                                "name":"Unknown",
+                                "version":"Unknown",
+                                "supportStatus":"UNKNOWN"
+                            }
                         }
                     ]
                 }
