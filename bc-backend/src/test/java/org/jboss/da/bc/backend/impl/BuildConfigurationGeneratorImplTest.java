@@ -6,7 +6,7 @@ import org.jboss.da.bc.model.BcError;
 import org.jboss.da.bc.model.backend.ProductGeneratorEntity;
 import org.jboss.da.bc.model.backend.ProjectDetail;
 import org.jboss.da.bc.model.backend.ProjectHiearchy;
-import org.jboss.da.reports.api.SCMLocator;
+import org.jboss.da.reports.model.api.SCMLocator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -1,4 +1,4 @@
-package org.jboss.da.reports.api;
+package org.jboss.da.reports.model.api;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 /**
  *

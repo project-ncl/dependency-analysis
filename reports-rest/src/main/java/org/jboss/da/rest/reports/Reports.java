@@ -12,7 +12,7 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.ReportsGenerator;
-import org.jboss.da.reports.api.SCMLocator;
+import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.rest.AdvancedReport;
 import org.jboss.da.reports.model.rest.AlignReport;
 import org.jboss.da.reports.model.rest.AlignReportRequest;

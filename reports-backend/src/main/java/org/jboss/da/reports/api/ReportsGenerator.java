@@ -5,6 +5,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.rest.GAVRequest;
 import org.jboss.da.reports.model.rest.LookupGAVsRequest;
 import org.jboss.da.reports.model.rest.LookupReport;

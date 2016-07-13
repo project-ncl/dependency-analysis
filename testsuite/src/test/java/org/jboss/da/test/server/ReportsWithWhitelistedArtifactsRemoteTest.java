@@ -18,7 +18,7 @@ import org.jboss.da.listings.model.rest.RestProductArtifact;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.ReportsGenerator;
-import org.jboss.da.reports.api.SCMLocator;
+import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.rest.GAVRequest;
 import org.jboss.da.reports.model.rest.LookupGAVsRequest;
 import org.jboss.da.reports.model.rest.LookupReport;
