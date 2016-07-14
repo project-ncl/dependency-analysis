@@ -102,11 +102,14 @@ public class FinalizerImpl implements Finalizer {
             } else {
                 BuildConfigurationCreate bcc = toBC(project, nextLevelDependencyIds);
                 if (project.isCloneRepo()) {
-                    try {
-                        String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
-                        bcc.setScmRepoURL(newScmUrl);
-                    } catch (CommunicationException ex) {
-                        log.error("Failed to clone repo.", ex);
+                    log.warn("Repository clonning is disabled. (Tried to clone " + project.getScmUrl() + " " +project.getScmRevision());
+                    if(false){
+                        try {
+                            String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
+                            bcc.setScmRepoURL(newScmUrl);
+                        } catch (CommunicationException ex) {
+                            log.error("Failed to clone repo.", ex);
+                        }
                     }
                 }
                 bc = pnc.createBuildConfiguration(bcc);
