@@ -7,8 +7,14 @@ import org.commonjava.cartographer.spi.graph.discover.DiscoverySourceManager;
 import org.commonjava.maven.atlas.graph.RelationshipGraphFactory;
 import org.commonjava.maven.atlas.graph.spi.neo4j.FileNeo4jConnectionFactory;
 import org.commonjava.maven.galley.cache.FileCacheProviderConfig;
+import org.commonjava.maven.galley.cache.partyline.PartyLineCacheProvider;
+import org.commonjava.maven.galley.event.NoOpFileEventManager;
+import org.commonjava.maven.galley.io.HashedLocationPathGenerator;
+import org.commonjava.maven.galley.io.NoOpTransferDecorator;
 import org.jboss.da.communication.pom.qualifier.DACartographerCore;
+
 import javax.enterprise.inject.Produces;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -24,8 +30,12 @@ public class CartographerProducer {
         // tempFile is not really used, but just needed to be passed to the constructor
         File tempFile = new File("random");
 
+        PartyLineCacheProvider cache = new PartyLineCacheProvider(tempFile,
+                new HashedLocationPathGenerator(), new NoOpFileEventManager(),
+                new NoOpTransferDecorator());
+
         return new CartographerCoreBuilder(tempFile, new FileNeo4jConnectionFactory(null, true))
-                .withDefaultTransports().build();
+                .withDefaultTransports().withCache(cache).build();
     }
 
     @Produces
