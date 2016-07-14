@@ -42,6 +42,10 @@ public class DAConfig extends AbstractModuleConfig {
 
     @Getter
     @Setter
+    private String aproxGroupPublic;
+
+    @Getter
+    @Setter
     private String backupScmUrl;
 
     @Getter

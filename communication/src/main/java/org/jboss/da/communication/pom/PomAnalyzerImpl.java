@@ -150,7 +150,9 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         StringBuilder query = new StringBuilder();
         DAConfig cfg = this.config.getConfig();
         query.append(cfg.getAproxServer());
-        query.append("/api/group/public/");
+        query.append("/api/group/");
+        query.append(config.getConfig().getAproxGroupPublic());
+        query.append('/');
         Location repoLocation = new SimpleLocation(query.toString());
 
         List<Location> repos = new ArrayList<>();
