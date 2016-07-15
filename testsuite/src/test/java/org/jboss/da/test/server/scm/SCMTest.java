@@ -1,32 +1,33 @@
 package org.jboss.da.test.server.scm;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.apache.commons.io.FileUtils;
-import org.jboss.da.scm.impl.ScmFacade;
+import org.apache.maven.scm.ScmException;
 import org.jboss.da.scm.api.SCMType;
+import org.jboss.da.scm.impl.ScmFacade;
 import org.junit.Ignore;
 import org.junit.Test;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 public class SCMTest {
 
-    @Test
-    public void shouldCloneGitRepository() throws Exception {
+    private void testDaGitClone(String scmUrl) throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_git_clone");
         ScmFacade scm = new ScmFacade();
 
         try {
             // the git commit is actually the one for tag 0.2.0
-            scm.shallowCloneRepository(SCMType.GIT,
-                    "https://github.com/project-ncl/dependency-analysis.git", "05ea9e1",
-                    tempDir.toFile());
+            scm.shallowCloneRepository(SCMType.GIT, scmUrl, "05ea9e1", tempDir.toFile());
 
             Path pomPath = Paths.get(tempDir.toString(), "pom.xml");
             assertTrue(pomPath.toFile().exists());
@@ -47,6 +48,33 @@ public class SCMTest {
         } finally {
             FileUtils.deleteDirectory(tempDir.toFile());
         }
+    }
+
+    @Test
+    public void shouldCloneGitRepository_Git() throws Exception {
+        testDaGitClone("git://github.com/project-ncl/dependency-analysis.git");
+    }
+
+    @Test
+    public void shouldFailClone_Ssh() throws Exception {
+        // See JIRA NCL-1921 - ssh clone requires private key installation
+
+        try {
+            testDaGitClone("git@github.com:project-ncl/dependency-analysis.git");
+        } catch (ScmException e) {
+            // Verify the stack trace is indeed the expected private key failure and not something else
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            String trace = sw.toString(); // stack trace as a string
+
+            assertTrue(trace.contains("JGit checkout failure!"));
+        }
+    }
+
+    @Test
+    public void shouldCloneGitRepository_Https() throws Exception {
+        testDaGitClone("https://github.com/project-ncl/dependency-analysis.git");
     }
 
     @Test
