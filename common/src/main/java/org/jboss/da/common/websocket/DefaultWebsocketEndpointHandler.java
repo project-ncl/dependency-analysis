@@ -1,15 +1,12 @@
-package org.jboss.da.bc.ws;
+package org.jboss.da.common.websocket;
 
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
-import javax.websocket.OnMessage;
 import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
 
 import java.io.IOException;
-import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,16 +20,17 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
-@ServerEndpoint("/ws")
-public class WebsocketEndpoint {
+public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler {
 
     @Inject
     private Logger log;
 
-    @Inject
     private Methods methods;
 
-    @OnMessage
+    public void setMethods(Methods methods) {
+        this.methods = methods;
+    }
+
     public void onMessage(Session session, String msg) {
         Basic basic = session.getBasicRemote();
         try {
@@ -81,7 +79,7 @@ public class WebsocketEndpoint {
                 return;
             }
 
-            Map<String, Object> objResp = mapper.convertValue(resp, Map.class);
+            Object objResp = mapper.convertValue(resp, method.getJsonOutputClass());
             JSONRPC2Response response = new JSONRPC2Response(objResp, request.getID());
             if (!session.isOpen()) {
                 log.warn("Session closed before response sent.");
