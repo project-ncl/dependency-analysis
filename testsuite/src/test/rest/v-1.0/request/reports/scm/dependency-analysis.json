@@ -1,5 +1,10 @@
 {
-  "scmUrl": "https://github.com/project-ncl/dependency-analysis.git",
-  "revision": "05a878",
-  "pomPath": "common"
+  "productNames": [],
+  "productVersionIds": [],
+  "scml":
+    {
+      "scmUrl": "https://github.com/project-ncl/dependency-analysis.git",
+      "revision": "05a878",
+      "pomPath": "common"
+    }
 }

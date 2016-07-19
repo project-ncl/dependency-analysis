@@ -22,6 +22,7 @@ import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.rest.GAVRequest;
 import org.jboss.da.reports.model.rest.LookupGAVsRequest;
 import org.jboss.da.reports.model.rest.LookupReport;
+import org.jboss.da.reports.model.rest.SCMReportRequest;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
@@ -62,25 +63,31 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     @Inject
     private ProductService productService;
 
-    ProductVersion prodVer1_1;
+    private ProductVersion prodVer1_1;
 
-    RestProductArtifact whiteArtifact1_1_1;
+    private RestProductArtifact whiteArtifact1_1_1;
 
-    RestProductArtifact whiteArtifact1_1_2;
+    private RestProductArtifact whiteArtifact1_1_2;
 
-    ProductVersion prodVer1_2;
+    private ProductVersion prodVer1_2;
 
-    RestProductArtifact whiteArtifact1_2_1;
+    private RestProductArtifact whiteArtifact1_2_1;
 
-    RestProductArtifact whiteArtifact1_2_2;
+    private RestProductArtifact whiteArtifact1_2_2;
 
-    ProductVersion prodVer2_1;
+    private ProductVersion prodVer2_1;
 
-    RestProductArtifact whiteArtifact2_1_a;
+    private RestProductArtifact whiteArtifact2_1_a;
 
-    RestProductArtifact whiteArtifact2_1_b;
+    private RestProductArtifact whiteArtifact2_1_b;
 
-    RestProductArtifact whiteArtifact2_1_c;
+    private RestProductArtifact whiteArtifact2_1_c;
+
+    private GAV hibernateGav;
+
+    private GAV daGav;
+
+    private GAV jacksonGav;
 
     @Before
     public void setUp() {
@@ -151,6 +158,10 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
         whiteService.addArtifact(whiteArtifact2_1_c.getGroupId(),
                 whiteArtifact2_1_c.getArtifactId(), whiteArtifact2_1_c.getVersion(),
                 prodVer2_1.getId());
+
+        hibernateGav = artifactToGAV(whiteArtifact1_1_2);
+        daGav = artifactToGAV(whiteArtifact1_1_1);
+        jacksonGav = artifactToGAV(whiteArtifact2_1_b);
     }
 
     @After
@@ -186,14 +197,22 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     // - whitelist addition to top level
     // - whitelist addition to top-1 level
 
+    private SCMReportRequest getDefaultSCMRequest() {
+        SCMLocator locator = new SCMLocator(
+                "https://github.com/project-ncl/dependency-analysis.git", "05a878", "common", null);
+
+        SCMReportRequest request = new SCMReportRequest();
+        request.setScml(locator);
+
+        return request;
+    }
+
     @Test
     public void testScmAllWhiteArtifactsPresent() throws ScmException, PomAnalysisException, CommunicationException{
 
-        SCMLocator locator = new SCMLocator(
-                "https://github.com/project-ncl/dependency-analysis.git",
-                "05a878", "common", null);
+        SCMReportRequest request = getDefaultSCMRequest();
 
-        Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(locator);
+        Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(request);
         
         // Ensure we got an artifact report back 
         assertTrue(ar.isPresent());
@@ -224,13 +243,12 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     }    @Test
     public void testScmWhiteArtifactsPresentForDependenciesWithSingleProduct() throws ScmException, PomAnalysisException, CommunicationException{
 
-        SCMLocator locator = new SCMLocator(
-                "https://github.com/project-ncl/dependency-analysis.git",
-                "05a878", "common", null);
-        
+        SCMReportRequest request = getDefaultSCMRequest();
+
         // Only use artifacts from the single product Product2 : version "1.0.0"
-        locator.getProductIds().add(prodVer2_1.getProduct().getId());
-        Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(locator);
+        request.getProductNames().add(prodVer2_1.getProduct().getName());     
+                
+        Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(request);
         
         assertTrue(ar.isPresent());
         ArtifactReport artifactReport = ar.get();
@@ -259,12 +277,11 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     public void testScmWhiteArtifactsPresentForSingleProduct() throws ScmException,
             PomAnalysisException, CommunicationException {
 
-        SCMLocator locator = new SCMLocator(
-                "https://github.com/project-ncl/dependency-analysis.git", "05a878", "common", null);
-
+        SCMReportRequest request = getDefaultSCMRequest();
         // Only use artifacts from the single product Product1 : versions "1.0.0" and "2.0.0" should be included
-        locator.getProductIds().add(prodVer1_1.getProduct().getId());
-        Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(locator);
+        request.getProductNames().add(prodVer1_1.getProduct().getName());
+
+        Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(request);
 
         assertTrue(ar.isPresent());
         ArtifactReport artifactReport = ar.get();
@@ -280,12 +297,11 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     public void testScmWhiteArtifactsPresentForSingleProductVersion() throws ScmException,
             PomAnalysisException, CommunicationException {
 
-        SCMLocator locator = new SCMLocator(
-                "https://github.com/project-ncl/dependency-analysis.git", "05a878", "common", null);
-
+        SCMReportRequest request = getDefaultSCMRequest();
         // Only use artifacts from the single product version : "Product1", "1.0.0"
-        locator.getProductVersionIds().add(prodVer1_1.getId());
-        Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(locator);
+        request.getProductVersionIds().add(prodVer1_1.getId());
+
+        Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(request);
 
         assertTrue(ar.isPresent());
         ArtifactReport artifactReport = ar.get();
@@ -297,15 +313,21 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_b.getVersion()));
     }
 
+    private GAVRequest getDefaultGAVRequest() {
+        Set<String> productNames = new HashSet<>();
+        Set<Long> productVersionIds = new HashSet<>();
+        GAVRequest gavRequest = new GAVRequest("org.hibernate", "hibernate-core", "4.2.21.Final",
+                productNames, productVersionIds);
+        return gavRequest;
+    }
+
     @Test
     public void testGavAllWhiteArtifactsPresent() throws CommunicationException,
             FindGAVDependencyException {
 
         // Query all white artifacts from all products
-        Set<Long> productIds = new HashSet<>();
-        Set<Long> productVersionIds = new HashSet<>();
-        GAVRequest gavRequest = new GAVRequest("org.hibernate", "hibernate-core", "4.2.21.Final",
-                productIds, productVersionIds);
+        GAVRequest gavRequest = getDefaultGAVRequest();
+
         ArtifactReport artifactReport = reportGenerator.getReport(gavRequest);
 
         // Ensure we got an artifact report back 
@@ -321,12 +343,10 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     public void testGavWhiteArtifactsPresentForSingleProduct() throws CommunicationException,
             FindGAVDependencyException {
 
+        GAVRequest gavRequest = getDefaultGAVRequest();
+
         // Query all white artifacts from Product 1
-        Set<Long> productIds = new HashSet<>();
-        productIds.add(prodVer1_1.getProduct().getId());
-        Set<Long> productVersionIds = new HashSet<>();
-        GAVRequest gavRequest = new GAVRequest("org.hibernate", "hibernate-core", "4.2.21.Final",
-                productIds, productVersionIds);
+        gavRequest.getProductNames().add(prodVer1_1.getProduct().getName());
         ArtifactReport artifactReport = reportGenerator.getReport(gavRequest);
 
         // Ensure we got an artifact report back 
@@ -342,12 +362,11 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     public void testGavWhiteArtifactsPresentForSingleProductVersion()
             throws CommunicationException, FindGAVDependencyException {
 
+        GAVRequest gavRequest = getDefaultGAVRequest();
+
         // Query all white artifacts from Product 1 version 2
-        Set<Long> productIds = new HashSet<>();
-        Set<Long> productVersionIds = new HashSet<>();
-        productVersionIds.add(prodVer1_2.getId());
-        GAVRequest gavRequest = new GAVRequest("org.hibernate", "hibernate-core", "4.2.21.Final",
-                productIds, productVersionIds);
+        gavRequest.getProductVersionIds().add(prodVer1_2.getId());
+
         ArtifactReport artifactReport = reportGenerator.getReport(gavRequest);
 
         // Ensure we got an artifact report back 
@@ -363,23 +382,27 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
         return new GAV(art.getGroupId(), art.getArtifactId(), art.getVersion());
     }
 
-    @Test
-    public void testGavsLookupAllWhiteArtifactsPresent() throws CommunicationException,
-            FindGAVDependencyException {
-
-        // Query all white artifacts from all products
-        Set<Long> productIds = new HashSet<>();
+    private LookupGAVsRequest getDefaultLookupRequest() {
+        Set<String> productNames = new HashSet<>();
         Set<Long> productVersionIds = new HashSet<>();
-
-        GAV hibernateGav = artifactToGAV(whiteArtifact1_1_2);
-        GAV daGav = artifactToGAV(whiteArtifact1_1_1);
-        GAV jacksonGav = artifactToGAV(whiteArtifact2_1_b);
 
         List<GAV> gavs = new ArrayList<GAV>();
         gavs.add(hibernateGav);
         gavs.add(daGav);
         gavs.add(jacksonGav);
-        LookupGAVsRequest req = new LookupGAVsRequest(productIds, productVersionIds, gavs);
+
+        LookupGAVsRequest req = new LookupGAVsRequest(productNames, productVersionIds, gavs);
+
+        return req;
+    }
+
+    @Test
+    public void testGavsLookupAllWhiteArtifactsPresent() throws CommunicationException,
+            FindGAVDependencyException {
+
+        LookupGAVsRequest req = getDefaultLookupRequest();
+
+        // Query all white artifacts from all products
 
         List<LookupReport> lookupReports = reportGenerator.getLookupReportsForGavs(req);
 
@@ -408,20 +431,10 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     public void testGavsLookupAllWhiteArtifactsPresentForSingleProduct()
             throws CommunicationException, FindGAVDependencyException {
 
+        LookupGAVsRequest req = getDefaultLookupRequest();
+
         // Query all white artifacts from Product 1
-        Set<Long> productIds = new HashSet<>();
-        productIds.add(prodVer1_1.getProduct().getId());
-        Set<Long> productVersionIds = new HashSet<>();
-
-        GAV hibernateGav = artifactToGAV(whiteArtifact1_1_2);
-        GAV daGav = artifactToGAV(whiteArtifact1_1_1);
-        GAV jacksonGav = artifactToGAV(whiteArtifact2_1_b);
-
-        List<GAV> gavs = new ArrayList<GAV>();
-        gavs.add(hibernateGav);
-        gavs.add(daGav);
-        gavs.add(jacksonGav);
-        LookupGAVsRequest req = new LookupGAVsRequest(productIds, productVersionIds, gavs);
+        req.getProductNames().add(prodVer1_1.getProduct().getName());
 
         List<LookupReport> lookupReports = reportGenerator.getLookupReportsForGavs(req);
 
@@ -450,20 +463,10 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     public void testGavsLookupAllWhiteArtifactsPresentForSingleProductVersion()
             throws CommunicationException, FindGAVDependencyException {
 
+        LookupGAVsRequest req = getDefaultLookupRequest();
+
         // Query all white artifacts from Product 1 version 2
-        Set<Long> productIds = new HashSet<>();
-        Set<Long> productVersionIds = new HashSet<>();
-        productVersionIds.add(prodVer1_2.getId());
-
-        GAV hibernateGav = artifactToGAV(whiteArtifact1_1_2);
-        GAV daGav = artifactToGAV(whiteArtifact1_1_1);
-        GAV jacksonGav = artifactToGAV(whiteArtifact2_1_b);
-
-        List<GAV> gavs = new ArrayList<GAV>();
-        gavs.add(hibernateGav);
-        gavs.add(daGav);
-        gavs.add(jacksonGav);
-        LookupGAVsRequest req = new LookupGAVsRequest(productIds, productVersionIds, gavs);
+        req.getProductVersionIds().add(prodVer1_2.getId());
 
         List<LookupReport> lookupReports = reportGenerator.getLookupReportsForGavs(req);
 

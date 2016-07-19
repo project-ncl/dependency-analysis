@@ -1,5 +1,10 @@
 {
-  "scmUrl": "https://github.com/project-ncl/pnc/",
-  "revision": "3de7ed5527b0aaf02f37fedb0b0777d359dad1a6",
-  "pomPath": "./ear-package/pom.xml"
+  "productNames": [],
+  "productVersionIds": [],
+  "scml":
+    {
+      "scmUrl": "https://github.com/project-ncl/pnc/",
+      "revision": "3de7ed5527b0aaf02f37fedb0b0777d359dad1a6",
+      "pomPath": "./ear-package/pom.xml"
+    }
 }

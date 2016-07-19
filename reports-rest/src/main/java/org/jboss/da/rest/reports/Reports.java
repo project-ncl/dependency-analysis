@@ -12,7 +12,6 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.ReportsGenerator;
-import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.rest.AdvancedReport;
 import org.jboss.da.reports.model.rest.AlignReport;
 import org.jboss.da.reports.model.rest.AlignReportRequest;
@@ -24,6 +23,7 @@ import org.jboss.da.reports.model.rest.GAVRequest;
 import org.jboss.da.reports.model.rest.LookupGAVsRequest;
 import org.jboss.da.reports.model.rest.LookupReport;
 import org.jboss.da.reports.model.rest.Report;
+import org.jboss.da.reports.model.rest.SCMReportRequest;
 import org.jboss.da.rest.facade.ReportsFacade;
 import org.slf4j.Logger;
 
@@ -75,11 +75,11 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
             response = Report.class)
-    public Response scmGenerator(@ApiParam(value = "scm information") SCMLocator scm) {
+    public Response scmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
 
         try {
 
-            Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(scm);
+            Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(request);
 
             return artifactReport
                     .map(x -> Response.ok().entity(toReport(x)).build())
@@ -110,12 +110,12 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
             response = AdvancedReport.class)
-    public Response advancedScmGenerator(@ApiParam(value = "scm information") SCMLocator scm) {
+    public Response advancedScmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
 
         try {
 
             Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator
-                    .getAdvancedReportFromSCM(scm);
+                    .getAdvancedReportFromSCM(request);
 
             return advancedArtifactReport
                     .map(x -> Response.ok().entity(toAdvancedReport(x)).build())

@@ -21,14 +21,6 @@ public class SCMLocator {
 
     @Getter
     @NonNull
-    private Set<Long> productIds = new HashSet<>();
-
-    @Getter
-    @NonNull
-    private Set<Long> productVersionIds = new HashSet<>();
-
-    @Getter
-    @NonNull
     private String scmUrl;
 
     @Getter

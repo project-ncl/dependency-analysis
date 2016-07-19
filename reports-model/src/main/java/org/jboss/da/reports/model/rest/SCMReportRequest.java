@@ -1,29 +1,31 @@
 package org.jboss.da.reports.model.rest;
 
-import org.jboss.da.model.rest.GAV;
+import org.jboss.da.reports.model.api.SCMLocator;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class LookupGAVsRequest {
+public class SCMReportRequest {
 
     @Getter
     @NonNull
-    private Set<String> productNames;
+    private Set<String> productNames = new HashSet<>();
 
     @Getter
     @NonNull
-    private Set<Long> productVersionIds;
+    private Set<Long> productVersionIds = new HashSet<>();
 
     @Getter
+    @Setter
     @NonNull
-    private List<GAV> gavs;
+    private SCMLocator scml;
 
 }

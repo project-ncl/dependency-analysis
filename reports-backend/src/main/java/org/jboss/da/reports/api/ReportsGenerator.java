@@ -9,6 +9,7 @@ import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.rest.GAVRequest;
 import org.jboss.da.reports.model.rest.LookupGAVsRequest;
 import org.jboss.da.reports.model.rest.LookupReport;
+import org.jboss.da.reports.model.rest.SCMReportRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public interface ReportsGenerator {
      * @param scml
      * @return Created report
      */
-    public Optional<ArtifactReport> getReportFromSCM(SCMLocator scml) throws ScmException,
+    public Optional<ArtifactReport> getReportFromSCM(SCMReportRequest scml) throws ScmException,
             PomAnalysisException, CommunicationException;
 
     /**
@@ -42,7 +43,7 @@ public interface ReportsGenerator {
      * @param scml
      * @return Created report
      */
-    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml)
+    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMReportRequest scml)
             throws ScmException, PomAnalysisException, CommunicationException;
 
     public Optional<ArtifactReport> getReport(GAV gav, List<Product> products);

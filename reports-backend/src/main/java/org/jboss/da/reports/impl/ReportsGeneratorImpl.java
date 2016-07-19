@@ -36,6 +36,7 @@ import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.rest.GAVRequest;
 import org.jboss.da.reports.model.rest.LookupGAVsRequest;
 import org.jboss.da.reports.model.rest.LookupReport;
+import org.jboss.da.reports.model.rest.SCMReportRequest;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
@@ -51,11 +52,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-
-import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
-
-import java.util.Collections;
-import java.util.Map;
 import java.util.TreeSet;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
@@ -98,16 +94,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private SCMConnector scmConnector;
 
     @Override
-    public Optional<ArtifactReport> getReportFromSCM(SCMLocator scml) throws ScmException,
+    public Optional<ArtifactReport> getReportFromSCM(SCMReportRequest scml) throws ScmException,
             PomAnalysisException, CommunicationException {
         if (scml == null)
             throw new IllegalArgumentException("SCM information can't be null");
 
-        Set<ProductVersion> relevantProductVersions = getProductVersions(scml.getProductIds(),
+        Set<ProductVersion> relevantProductVersions = getProductVersions(scml.getProductNames(),
                 scml.getProductVersionIds());
         Set<Long> relevantProductVersionIds = getProductVersionIds(relevantProductVersions);
 
-        return createScmReport(scml, relevantProductVersions, relevantProductVersionIds);
+        return createScmReport(scml.getScml(), relevantProductVersions, relevantProductVersionIds);
     }
 
     private Optional<ArtifactReport> createGavReport(GAVRequest gav,
@@ -229,16 +225,13 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 .collect(Collectors.toSet());
     }
 
-    private Set<ProductVersion> getProductVersions(Set<Long> productIds, Set<Long> productVersionIds){
+    private Set<ProductVersion> getProductVersions(Set<String> productNames, Set<Long> productVersionIds){
         Set<ProductVersion> productVersions = new HashSet<>();
         
-        if(productIds != null){
-            for(Long prodId : productIds){
-                org.jboss.da.listings.api.model.Product product = productDao.read(prodId);
-                if(product != null) {
-                    List<ProductVersion> prodVers = productVersionService.getAllForProduct(product.getName()); 
-                    productVersions.addAll(prodVers);
-                };
+        if(productNames != null){
+            for(String productName : productNames){
+                List<ProductVersion> prodVers = productVersionService.getAllForProduct(productName); 
+                productVersions.addAll(prodVers);
             }
         }
         
@@ -249,7 +242,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             }
         }
         
-        if((productIds == null || productIds.isEmpty())  
+        if((productNames == null || productNames.isEmpty())  
            && 
            (productVersionIds == null || productVersionIds.isEmpty())){
             productVersions.addAll(productVersionService.getAll());
@@ -274,13 +267,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMLocator scml)
+    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException {
         
-        Set<ProductVersion> relevantProductVersions = getProductVersions(scml.getProductIds(), scml.getProductVersionIds());
+        SCMLocator scml = request.getScml();
+        Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductNames(), request.getProductVersionIds());
         Set<Long> relevantProductVersionIds = getProductVersionIds(relevantProductVersions);
 
-        Optional<ArtifactReport> artifactReport = createScmReport(scml, relevantProductVersions, relevantProductVersionIds);
+        Optional<ArtifactReport> artifactReport = createScmReport(request.getScml(), relevantProductVersions, relevantProductVersionIds);
         // TODO: hardcoded to git
         // hopefully we'll get the cached cloned folder for this repo
         File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(),
@@ -430,7 +424,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             throw new IllegalArgumentException("GAV can't be null");
 
         Set<ProductVersion> relevantProductVersions = getProductVersions(
-                gavRequest.getProductIds(), gavRequest.getProductVersionIds());
+                gavRequest.getProductNames(), gavRequest.getProductVersionIds());
         Set<Long> relevantProductVersionIds = getProductVersionIds(relevantProductVersions);
 
         Optional<ArtifactReport> artReport = createGavReport(gavRequest, relevantProductVersions,
@@ -576,7 +570,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         });
 
         if(communicationSucceeded){
-            Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductIds(), request.getProductVersionIds());
+            Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductNames(), request.getProductVersionIds());
             Map<WhiteArtifact, Set<ProductVersion>> whiteArtifactsAndOrigin = getWhiteArtifacts(relevantProductVersions);
             
             reportsList.stream().forEach(x -> 

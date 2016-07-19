@@ -46,6 +46,13 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
     List<ProductVersion> findAll();
 
     /**
+     * Finds all ProductVersions with the specified IDs.
+     * 
+     * @return List of productVersions
+     */
+    List<ProductVersion> findAllWithIds(List<Long> productVersionIds);
+
+    /**
      * Find ProductsVersions that contains Artifact with specific groupId, artifactId and version
      * 
      * @param groupId

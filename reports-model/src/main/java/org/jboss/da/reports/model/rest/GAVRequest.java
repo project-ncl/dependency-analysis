@@ -25,12 +25,12 @@ public class GAVRequest {
     @JsonCreator
     public GAVRequest(@JsonProperty("groupId") String groupId,
             @JsonProperty("artifactId") String artifactId, @JsonProperty("version") String version,
-            @JsonProperty("productIds") Set<Long> productIds,
+            @JsonProperty("productNames") Set<String> productNames,
             @JsonProperty("productVersionIds") Set<Long> productVersionIds) {
         this.groupId = groupId;
         this.artifactId = artifactId;
         this.version = version;
-        this.productIds = productIds;
+        this.productNames = productNames;
         this.productVersionIds = productVersionIds;
     }
 
@@ -48,7 +48,7 @@ public class GAVRequest {
 
     @Getter
     @NonNull
-    private final Set<Long> productIds;
+    private final Set<String> productNames;
 
     @Getter
     @NonNull
