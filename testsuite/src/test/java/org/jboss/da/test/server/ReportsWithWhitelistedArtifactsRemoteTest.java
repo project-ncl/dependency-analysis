@@ -1,7 +1,6 @@
 package org.jboss.da.test.server;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -407,6 +406,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
         List<LookupReport> lookupReports = reportGenerator.getLookupReportsForGavs(req);
 
         assertTrue(lookupReports != null);
+        assertEquals(3, lookupReports.size());
 
         // Expecting to see all whitelist versions included
         for (LookupReport lr : lookupReports) {
@@ -439,6 +439,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
         List<LookupReport> lookupReports = reportGenerator.getLookupReportsForGavs(req);
 
         assertTrue(lookupReports != null);
+        assertEquals(3, lookupReports.size());
 
         // Expecting to see whitelist versions included for Product 1
         for (LookupReport lr : lookupReports) {
@@ -471,6 +472,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
         List<LookupReport> lookupReports = reportGenerator.getLookupReportsForGavs(req);
 
         assertTrue(lookupReports != null);
+        assertEquals(3, lookupReports.size());
 
         // Expecting to see whitelist versions included for Product 1 version 2
         for (LookupReport lr : lookupReports) {
@@ -486,6 +488,92 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
                 assertFalse(lr.getAvailableVersions().contains(whiteArtifact2_1_b.getVersion()));
                 assertTrue(lr.getBestMatchVersion() == null);
             }
+        }
+    }
+
+    @Test
+    public void testGavsLookupAllWhiteArtifactsErroneousInput() throws CommunicationException,
+            FindGAVDependencyException {
+
+        LookupGAVsRequest productsNamesReq = getDefaultLookupRequest();
+
+        // Test with product that doesn't exist
+        // Inputs : productNames [Product3]
+        productsNamesReq.getProductNames().add("Product3");
+        try {
+            reportGenerator.getLookupReportsForGavs(productsNamesReq);
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("Product3"));
+        }
+
+        // Test combination of existing / in-existing products
+        // Inputs : productNames [Product1, Product3]
+        productsNamesReq.getProductNames().add("Product1");
+        try {
+            reportGenerator.getLookupReportsForGavs(productsNamesReq);
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("Product3"));
+        }
+
+        LookupGAVsRequest productVersionsReq = getDefaultLookupRequest();
+
+        // Test with product version ID that doesn't exist
+        // Inputs : productVersionIds [5555]
+        productVersionsReq.getProductVersionIds().add(5555L);
+        try {
+            reportGenerator.getLookupReportsForGavs(productVersionsReq);
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("5555"));
+        }
+
+        // Test combination of existing / in-existing product version IDs
+        // Inputs : productVersionIds [5555, prodVer1_2.getId()]
+        productVersionsReq.getProductVersionIds().add(prodVer1_2.getId());
+        try {
+            reportGenerator.getLookupReportsForGavs(productVersionsReq);
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("5555"));
+        }
+
+        // Test valid product name request with invalid product version id
+        LookupGAVsRequest validNameRequest = getDefaultLookupRequest();
+        validNameRequest.getProductNames().add("Product1");
+        validNameRequest.getProductVersionIds().add(5555L);
+        try {
+            reportGenerator.getLookupReportsForGavs(validNameRequest);
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("5555"));
+        }
+
+        // Test valid product version id request with invalid product name
+        LookupGAVsRequest validProdVerRequest = getDefaultLookupRequest();
+        validProdVerRequest.getProductNames().add("NoSuchProduct");
+        validProdVerRequest.getProductVersionIds().add(prodVer1_2.getId());
+        try {
+            reportGenerator.getLookupReportsForGavs(validProdVerRequest);
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("NoSuchProduct"));
+        }
+
+        // Test combination of valid/invalid inputs for both name/ids
+        LookupGAVsRequest combinedValidAndInvalidRequest = getDefaultLookupRequest();
+        combinedValidAndInvalidRequest.getProductNames().add("NoSuchProduct");
+        combinedValidAndInvalidRequest.getProductNames().add("Product1");
+        combinedValidAndInvalidRequest.getProductVersionIds().add(5555L);
+        combinedValidAndInvalidRequest.getProductVersionIds().add(prodVer1_2.getId());
+        try {
+            reportGenerator.getLookupReportsForGavs(combinedValidAndInvalidRequest);
+            fail();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            assertTrue(e.getMessage().contains("NoSuchProduct"));
+            assertTrue(e.getMessage().contains("5555"));
         }
     }
 

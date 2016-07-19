@@ -95,8 +95,8 @@ public class Reports {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS, "Exception thrown during POM analysis", e.getMessage())).build(); 
         }
         catch (IllegalArgumentException e) {
-            log.error("Illegal arguments excetion", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS, "Illegal arguments excetion", e.getMessage())).build();
+            log.error("Illegal arguments exception", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS, "Illegal arguments exception", e.getMessage())).build();
         }
         catch (CommunicationException e) {
             log.error("Exception during communication", e);
@@ -131,8 +131,8 @@ public class Reports {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS, "Exception thrown during POM analysis", e.getMessage())).build();
         }
         catch (IllegalArgumentException e) {
-            log.error("Illegal arguments excetion", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS, "Illegal arguments excetion", e.getMessage())).build(); 
+            log.error("Illegal arguments exception", e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS, "Illegal arguments exception", e.getMessage())).build(); 
         }
         catch (CommunicationException e) {
             log.error("Exception during communication", e);
@@ -168,6 +168,11 @@ public class Reports {
                     .status(Status.NOT_FOUND)
                     .entity(new ErrorMessage(ErrorMessage.eType.GA_NOT_FOUND,
                             "Requested GA was not found", ex.getMessage())).build();
+        } catch (IllegalArgumentException e) {
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS,
+                            "Illegal arguments exception", e.getMessage())).build();
         }
     }
 
@@ -183,15 +188,21 @@ public class Reports {
             @ApiParam(
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest) {
 
-        List<LookupReport> reportsList = reportsGenerator.getLookupReportsForGavs(gavRequest);
-
-        if (reportsList == null)
+        List<LookupReport> reportsList;
+        try {
+            reportsList = reportsGenerator.getLookupReportsForGavs(gavRequest);
+            return Response.status(Status.OK).entity(reportsList).build();
+        } catch (CommunicationException e) {
             return Response
                     .status(502)
                     .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
                             "Communication with remote repository failed")).build();
-        else
-            return Response.status(Status.OK).entity(reportsList).build();
+        } catch (IllegalArgumentException e) {
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS,
+                            "Illegal arguments exception", e.getMessage())).build();
+        }
     }
 
     @POST

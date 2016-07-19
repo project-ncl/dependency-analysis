@@ -35,7 +35,7 @@ public interface ProductVersionService {
 
     /**
      * Get all ProductVersions for a product name
-    *
+     *
      * @return List of productVersions
      */
     List<ProductVersion> getAllForProduct(String productName);

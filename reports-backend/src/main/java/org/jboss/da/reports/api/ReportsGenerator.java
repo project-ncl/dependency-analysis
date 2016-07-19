@@ -76,6 +76,7 @@ public interface ReportsGenerator {
     public Set<BuiltReportModule> getBuiltReport(SCMLocator scml) throws ScmException,
             PomAnalysisException, CommunicationException;
 
-    public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request);
+    public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
+            throws CommunicationException;
 
 }

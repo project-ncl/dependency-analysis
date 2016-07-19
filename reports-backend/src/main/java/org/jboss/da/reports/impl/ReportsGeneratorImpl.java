@@ -13,6 +13,7 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.listings.api.dao.ProductDAO;
+import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import org.jboss.da.listings.api.model.WhiteArtifact;
@@ -44,16 +45,19 @@ import org.slf4j.Logger;
 import javax.inject.Inject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -85,10 +89,13 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private PomAnalyzer pomAnalyzer;
 
     @Inject
-    private ProductVersionService productVersionService;
+    private ProductVersionDAO productVersionDao;
 
     @Inject
     private ProductDAO productDao;
+
+    @Inject
+    private ProductVersionService productVersionService;
 
     @Inject
     private SCMConnector scmConnector;
@@ -101,9 +108,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         Set<ProductVersion> relevantProductVersions = getProductVersions(scml.getProductNames(),
                 scml.getProductVersionIds());
-        Set<Long> relevantProductVersionIds = getProductVersionIds(relevantProductVersions);
 
-        return createScmReport(scml.getScml(), relevantProductVersions, relevantProductVersionIds);
+        return createScmReport(scml.getScml(), relevantProductVersions);
     }
 
     private Optional<ArtifactReport> createGavReport(GAVRequest gav,
@@ -112,21 +118,20 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gav.asGavObject());
 
-        return createReport(dt, productVersions, productVersionIds);
+        return createReport(dt, productVersions);
     }
 
     private Optional<ArtifactReport> createScmReport(SCMLocator scml,
-            Set<ProductVersion> productVersions, Set<Long> productVersionIds) throws ScmException,
-            PomAnalysisException, CommunicationException {
+            Set<ProductVersion> productVersions) throws ScmException, PomAnalysisException,
+            CommunicationException {
 
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml);
 
-        return createReport(dt, productVersions, productVersionIds);
+        return createReport(dt, productVersions);
     }
 
     private Optional<ArtifactReport> createReport(GAVDependencyTree dt,
-            Set<ProductVersion> productVersions, Set<Long> productVersionIds)
-            throws CommunicationException {
+            Set<ProductVersion> productVersions) throws CommunicationException {
 
         VersionLookupResult result = versionFinder.lookupBuiltVersions(dt.getGav());
         ArtifactReport report = toArtifactReport(dt.getGav(), result);
@@ -141,12 +146,11 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private void addArtifactsFromWhiteList(ArtifactReport report,
             Set<ProductVersion> productVersions) {
-        Map<WhiteArtifact, Set<ProductVersion>> whiteArtifactsAndOrigin = getWhiteArtifacts(productVersions);
+        Set<WhiteArtifact> whiteArtifactsAndOrigin = getWhiteArtifacts(productVersions);
         updateArtifact(report, whiteArtifactsAndOrigin);
     }
 
-    private void updateArtifact(ArtifactReport ar,
-            Map<WhiteArtifact, Set<ProductVersion>> allArtifacts) {
+    private void updateArtifact(ArtifactReport ar, Set<WhiteArtifact> allArtifacts) {
 
         Set<ArtifactReport> dependencies = ar.getDependencies();
 
@@ -195,9 +199,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return currentBestVersion;
     }
 
-    private List<String> getAvailableWhitelistVersions(Map<WhiteArtifact, Set<ProductVersion>> allArtifacts,
+    private List<String> getAvailableWhitelistVersions(Set<WhiteArtifact> allArtifacts,
             GAV currentGav) {
-        Set<WhiteArtifact> whiteArtifactsForCurrentGav = allArtifacts.keySet().stream()
+        Set<WhiteArtifact> whiteArtifactsForCurrentGav = allArtifacts.stream()
                 .filter(x -> {
                     return x.getGa().getArtifactId()
                             .equals(
@@ -225,20 +229,37 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 .collect(Collectors.toSet());
     }
 
-    private Set<ProductVersion> getProductVersions(Set<String> productNames, Set<Long> productVersionIds){
+    private Set<ProductVersion> getProductVersions(Set<String> productNames, Set<Long> productVersionIds) {
         Set<ProductVersion> productVersions = new HashSet<>();
+        StringBuilder errorMsg = new StringBuilder();
         
-        if(productNames != null){
-            for(String productName : productNames){
-                List<ProductVersion> prodVers = productVersionService.getAllForProduct(productName); 
-                productVersions.addAll(prodVers);
+        if(productNames != null && !productNames.isEmpty()){
+            List<org.jboss.da.listings.api.model.Product> productsByName = productDao.findAllWithNames(new ArrayList<>(productNames));
+            if(productsByName!= null && (productNames.size() == productsByName.size())){
+                for(String productName : productNames){
+                    List<ProductVersion> prodVers = productVersionService.getAllForProduct(productName); 
+                    productVersions.addAll(prodVers);
+                }
+            } else {
+                // Error
+                Set<String> inexistingProductNames = new HashSet<>(productNames);
+                productsByName.stream().forEach(x -> inexistingProductNames.remove(x.getName()));
+                errorMsg.append("Product names do not exist: ");
+                appendErrors(errorMsg, inexistingProductNames); 
             }
+
         }
         
-        if(productVersionIds != null){
-            for(Long prodVerId : productVersionIds){
-                Optional<ProductVersion> prodVersion = productVersionService.getProductVersion(prodVerId);   
-                prodVersion.ifPresent(x -> productVersions.add(x));
+        if(productVersionIds != null && !productVersionIds.isEmpty()){
+            List<ProductVersion> prodVersionsById = productVersionDao.findAllWithIds(new ArrayList<>(productVersionIds));
+            if(prodVersionsById != null && (productVersionIds.size() == prodVersionsById.size())){
+                productVersions.addAll(prodVersionsById);
+            } else {
+                // Error
+                Set<Long> inexistingProductVersionIds = new HashSet<>(productVersionIds);
+                prodVersionsById.stream().forEach(x -> inexistingProductVersionIds.remove(x.getId()));
+                errorMsg.append("Product Versions do not exist: ");
+                appendErrors(errorMsg, inexistingProductVersionIds); 
             }
         }
         
@@ -248,20 +269,31 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             productVersions.addAll(productVersionService.getAll());
         }
         
+        if(errorMsg.length() > 0){
+            throw new IllegalArgumentException(errorMsg.toString());
+        }
+        
         return productVersions;
     }
 
-    private Map<WhiteArtifact, Set<ProductVersion>> getWhiteArtifacts(Set<ProductVersion> prodVers) {
-        Map<WhiteArtifact, Set<ProductVersion>> mapProdVersToArtifact = new HashMap<>();
-        for (ProductVersion currentProdVer : prodVers) {
-            for (WhiteArtifact wa : currentProdVer.getWhiteArtifacts()) {
-                Set<ProductVersion> prodVersContainingArtifact = mapProdVersToArtifact.get(wa);
-                if (prodVersContainingArtifact == null)
-                    prodVersContainingArtifact = new HashSet<>();
-
-                prodVersContainingArtifact.add(currentProdVer);
-                mapProdVersToArtifact.put(wa, prodVersContainingArtifact);
+    private <T> void appendErrors(StringBuilder errorMsg, Collection<T> invalidItems) {
+        Iterator<T> i = invalidItems.iterator();
+        errorMsg.append("[");
+        while (i.hasNext()) {
+            T item = i.next();
+            errorMsg.append(item.toString());
+            if (i.hasNext()) {
+                errorMsg.append(", ");
             }
+        }
+        errorMsg.append("]");
+        errorMsg.append(";");
+    }
+
+    private Set<WhiteArtifact> getWhiteArtifacts(Set<ProductVersion> prodVers) {
+        Set<WhiteArtifact> mapProdVersToArtifact = new HashSet<>();
+        for (ProductVersion currentProdVer : prodVers) {
+            mapProdVersToArtifact.addAll(currentProdVer.getWhiteArtifacts());
         }
         return mapProdVersToArtifact;
     }
@@ -274,7 +306,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductNames(), request.getProductVersionIds());
         Set<Long> relevantProductVersionIds = getProductVersionIds(relevantProductVersions);
 
-        Optional<ArtifactReport> artifactReport = createScmReport(request.getScml(), relevantProductVersions, relevantProductVersionIds);
+        Optional<ArtifactReport> artifactReport = createScmReport(request.getScml(), relevantProductVersions);
         // TODO: hardcoded to git
         // hopefully we'll get the cached cloned folder for this repo
         File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(),
@@ -550,16 +582,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request) {
+    public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request) throws CommunicationException {
         
-        // Use a concurrent list since we're using parallel stream to add stuff to the list
-        CopyOnWriteArrayList<LookupReport> reportsList = new CopyOnWriteArrayList<>();
+        // Use a concurrent set since we're using parallel stream to add stuff
+        Set<LookupReport> reports = ConcurrentHashMap.newKeySet();
 
         boolean communicationSucceeded = request.getGavs().parallelStream().distinct().map((gav) -> {
             try {
                 VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
                 LookupReport lookupReport = toLookupReport(gav, lookupResult);
-                reportsList.add(lookupReport);
+                reports.add(lookupReport);
                 return true;
             } catch (CommunicationException ex) {
                 log.error("Communication with remote repository failed", ex);
@@ -571,12 +603,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         if(communicationSucceeded){
             Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductNames(), request.getProductVersionIds());
-            Map<WhiteArtifact, Set<ProductVersion>> whiteArtifactsAndOrigin = getWhiteArtifacts(relevantProductVersions);
+            Set<WhiteArtifact> whiteArtifacts = getWhiteArtifacts(relevantProductVersions);
             
-            reportsList.stream().forEach(x -> 
+            reports.stream().forEach(x -> 
                 {
                     GAV currentGav = x.getGav();
-                    List<String> availableVersionsFromWhitelist = getAvailableWhitelistVersions(whiteArtifactsAndOrigin, currentGav);
+                    List<String> availableVersionsFromWhitelist = getAvailableWhitelistVersions(whiteArtifacts, currentGav);
                     String bestVerStr = x.getBestMatchVersion();
                     Optional<String> bestVersion = getBestMatchVersionFromWhitelist(
                             bestVerStr == null ? Optional.empty() : Optional.of(bestVerStr), 
@@ -592,10 +624,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 }
              );
             
-            return reportsList;
+            return new ArrayList<>(reports);
+        } else {
+            throw new CommunicationException("Communication with remote repository failed");
         }
-
-        return null;
     }
 
     private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {
