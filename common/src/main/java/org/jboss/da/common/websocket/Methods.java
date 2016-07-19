@@ -1,4 +1,4 @@
-package org.jboss.da.bc.ws;
+package org.jboss.da.common.websocket;
 
 /**
  *
@@ -8,6 +8,6 @@ public interface Methods {
 
     boolean contains(String method);
 
-    Method get(String method);
+    Method<?, ?, ?> get(String method);
 
 }
