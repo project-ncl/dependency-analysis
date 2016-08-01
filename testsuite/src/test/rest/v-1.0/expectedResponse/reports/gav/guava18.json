@@ -7,7 +7,8 @@
       "11.0.2-redhat-1",
       "11.0.2-redhat-2",
       "13.0.1-redhat-1",
-      "18.0.0.redhat-1"
+      "18.0.0.redhat-1",
+      "19.0.0.redhat-1"
   ],
   "bestMatchVersion":"18.0.0.redhat-1",
   "dependencyVersionsSatisfied": true,
