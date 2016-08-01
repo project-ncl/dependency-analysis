@@ -8,7 +8,8 @@
         "1.9.13.redhat-2",
         "1.9.2-redhat-2",
         "1.9.9-redhat-2",
-        "1.9.9.redhat-4"
+        "1.9.9.redhat-4",
+        "1.9.13.redhat-3"
     ],
     "bestMatchVersion":"1.9.9.redhat-4",
     "dependencyVersionsSatisfied":true,

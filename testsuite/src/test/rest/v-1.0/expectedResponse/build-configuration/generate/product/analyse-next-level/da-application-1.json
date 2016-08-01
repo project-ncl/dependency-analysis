@@ -170,14 +170,6 @@
                         "buildScript":"",
                         "description":"Build Configuration for org.codehaus.jackson:jackson-mapper-asl:1.9.9 - Data Mapper for Jackson.",
                         "internallyBuilt":"1.9.9.redhat-4",
-                        "availableVersions":[
-                            "1.9.2-redhat-1",
-                            "1.9.2-redhat-2",
-                            "1.9.9-redhat-2",
-                            "1.9.9.redhat-3",
-                            "1.9.9.redhat-4",
-                            "1.9.13.redhat-2"
-                        ],
                         "bcId":null,
                         "gav":{
                             "groupId":"org.codehaus.jackson",

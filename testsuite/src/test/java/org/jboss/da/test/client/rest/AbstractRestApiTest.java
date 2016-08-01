@@ -45,8 +45,9 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
                 FileUtils.readFileToString(jsonRequestFile, ENCODING));
         ClientResponse<String> response = request.post(String.class);
         File expectedResponseFile = getJsonResponseFile(endpoint, requestFile);
-        assertEqualsJson(FileUtils.readFileToString(expectedResponseFile).trim(), response
-                .getEntity(String.class).trim());
+        final String actual = response.getEntity(String.class).trim();
+        System.out.println("Actual: " + actual);
+        assertEqualsJson(FileUtils.readFileToString(expectedResponseFile).trim(), actual);
         return response;
     }
 }
