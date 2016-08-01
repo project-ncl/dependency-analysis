@@ -56,7 +56,7 @@ public class PNCAuthentication {
                 String password = conf.getKeycloakPassword();
 
                 accessToken = getAccessToken(keycloakServer + "/auth/realms/" + realm
-                        + "/tokens/grants/access", clientId, username, password);
+                        + "/protocol/openid-connect/token", clientId, username, password);
             } catch (IOException | ConfigurationParseException e) {
                 throw new RuntimeException("Failed to authenticate", e);
             }
