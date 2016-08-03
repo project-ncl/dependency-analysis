@@ -79,6 +79,10 @@ formatGAVjson() {
     echo '{"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"'$1'}'
 }
 
+formatGAVjsonRequest() {
+    echo  '"groupId":"'${groupId}'", "artifactId":"'${artifactId}'", "version":"'${version}'"'$1''
+}
+
 list() {
 
     case $1 in
@@ -128,22 +132,57 @@ check() {
 }
 
 report() {
+
     type="pretty"
-    if [ "X$1" = "X--raw" ]; then
-        type="raw"
+    local productNames=""
+    local productVersionIds=""
+    local gav="";
+    while [ $# -gt 0 ]; do
+        case $1 in
+            --raw) type="raw"  ;;
+            --json) type="json"  ;;
+            --products)
+                [ -n "$productNames" ] && productNames="$productNames,"
+                productNames="$productNames$2"
+                shift
+                ;;
+            --productIDs)
+                [ -n "$productVersionIds" ] && productVersionIds="$productVersionIds,"
+                productVersionIds="$productVersionIds$2"
+                shift
+                ;;
+             *) gav="$1"
+                ;;
+        esac
         shift
-    elif [ "X$1" = "X--json" ]; then
-        type="json"
-        shift
+    done
+    matchGAV $gav
+    productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
+    productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
+    local query="{"
+    query="$query `formatGAVjsonRequest` "
+    msize=$(expr length $productNames)
+    if [ $msize -eq 2 ]; then
+        query="$query, \"productNames\": []"
+    else
+        query="$query, \"productNames\": [$productNames]"
     fi
-    matchGAV $1
+
+    msize=$(expr length $productVersionIds)
+    if [ $msize -eq 2 ]; then
+        query="$query, \"productVersionIds\": []"
+    else
+        query="$query, \"productVersionIds\": [$productVersionIds]"
+    fi
+    query="$query }"
     tmpfile=`gettmpfile`
-    post "reports/gav" "`formatGAVjson`" >> $tmpfile
+    post "reports/gav" "$query" >> $tmpfile
+    
     case $type in
         pretty) cat $tmpfile | prettyPrint report | column -t -s $'\t' ;;
         raw) cat $tmpfile | prettyPrint reportRaw ;;
         json) cat $tmpfile ;;
-    esac
+    esac 
     rm $tmpfile
 }
 
@@ -153,24 +192,64 @@ parseGAV() {
 }
 
 lookup() {
-    local query="["
-    if [ $# -ge 1 ]; then # G:A:V specified on command line
-        parsedGAV=`parseGAV $1`
-        matchGAV $parsedGAV
-        query="$query `formatGAVjson`"
-    else                  # G:A:Vs specified in standart input
-        local first=true
+    local gavs
+    local productNames=""
+    local productVersionIds=""
+    local input=true
+    
+    while [ $# -gt 0 ]; do
+        case $1 in
+            --products)
+                [ -n "$productNames" ] && productNames="$productNames,"
+                productNames="$productNames$2"                    
+                shift
+                ;;
+            --productIDs)
+                [ -n "$productVersionIds" ] && productVersionIds="$productVersionIds,"
+                productVersionIds="$productVersionIds$2"                    
+                shift
+                ;;
+             *) parsedGAV=`parseGAV $1`
+                matchGAV $parsedGAV
+                gavs="$gavs `formatGAVjson`" 
+                input=false
+                ;; 
+        esac
+        shift
+    done
+
+    if "$input"; then
         while read line; do
             parsedLine=`parseGAV $line`
             matchGAV $parsedLine
-            $first || query="$query,"
+            $first || gavs="$gavs,"
             first=false
-            query="$query `formatGAVjson`"
+            gavs="$gavs `formatGAVjson`"
         done
     fi
-    query="$query ]"
+    productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
+    productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
+ 
+    local query="{"
+
+    msize=$(expr length $productNames)
+    if [ $msize -eq 2 ]; then
+        query="$query \"productNames\": []"
+    else
+        query="$query \"productNames\": [$productNames]"
+    fi
+    msize=$(expr length $productVersionIds)
+    if [ $msize -eq 2 ]; then
+        query="$query, \"productVersionIds\": []"
+    else
+        query="$query, \"productVersionIds\": [$productVersionIds]"
+    fi
+    query="$query, \"gavs\": [$gavs]"
+    query="$query }"
+
     tmpfile=`gettmpfile`
-    post "reports/lookup/gavs" "$query" > $tmpfile
+    post "reports/lookup/gavs" "$query" >> $tmpfile
+
     cat $tmpfile | prettyPrint lookup
     rm $tmpfile
 }
@@ -257,24 +336,41 @@ pom_bw_junit_xml() {
 
 scm_report() {
     local type="pretty"
-    if [ "X$1" = "X--raw" ]; then
-        type="raw"
-        shift
-    elif [ "X$1" = "X--json" ]; then
-        type="json"
-        shift
-    fi
-
+    local productNames=""
+    local productVersionIds=""
     local scm="$1"
     local tag="$2"
     local pom_path="$3"
+    shift 3
 
-    if [ -z "${scm}" ] || [ -z "${tag}" ] || [ -z "${pom_path}" ]; then
+    while [ $# -gt 0 ]; do
+        case $1 in
+            --raw) type="raw" ;;
+            --json) type="json" ;;
+            --products)
+                [ -n "$productNames" ] && productNames="$productNames,"
+                productNames="$productNames$2"
+                shift
+                ;;
+            --productIDs)
+                [ -n "$productVersionIds" ] && productVersionIds="$productVersionIds,"
+                productVersionIds="$productVersionIds$2"
+                shift
+                ;;
+             *)  ;;
+        esac
+        shift
+    done
+
+    if [ -z "$scm" ] || [ -z "$tag" ] || [ -z "$pom_path" ]; then
         echo "Error: You have to specify the scm, scm tag and the pom path to analyze"
         exit 1
     fi
-    local scmJSON="{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}"
+    
+    productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
+    productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
 
+    local scmJSON="{\"scml\":{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}, \"productNames\": [$productNames], \"productVersionIds\": [$productVersionIds]}"
     local report="$(post "reports/scm" "${scmJSON}")"
     case $type in
       pretty) echo "$report" | prettyPrint report | column -t -s $'\t' ;;
@@ -285,21 +381,42 @@ scm_report() {
 
 scm_report_adv() {
     local type="pretty"
-    if [ "X$1" = "X--json" ]; then
-        type="json"
-        shift
-    fi
-
+    local productNames=""
+    local productVersionIds=""
     local scm="$1"
     local tag="$2"
     local pom_path="$3"
+    shift 3
+
+    while [ $# -gt 0 ]; do
+            case $1 in
+            
+            --json) type="json" ;;
+            --products)
+                [ -n "$productNames" ] && productNames="$productNames,"
+                productNames="$2"
+                echo productNames
+                
+                shift
+                ;;
+            --productIDs)
+                [ -n "$productVersionIds" ] && productVersionIds="$productVersionIds,"
+                productVersionIds="$2"
+                shift
+                ;;
+             *)  ;;
+        esac
+        shift
+    done
 
     if [ -z "$scm" ] || [ -z "$tag" ] || [ -z "$pom_path" ]; then
         echo "Error: You have to specify the scm, scm tag and the pom path to analyze"
         exit 1
     fi
-    local scmJSON="{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}"
-
+    
+    productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
+    productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
+    local scmJSON="{\"scml\":{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}, \"productNames\": [$productNames], \"productVersionIds\": [$productVersionIds]}"
     tmpfile=`gettmpfile`
     post "reports/scm-advanced" "$scmJSON" >> $tmpfile
     case $type in
@@ -336,7 +453,6 @@ scm_report_align() {
         esac
         shift
     done
-
     if [ $# -lt 2 ]; then
         echo "You must specify SCM and TAG"
         exit
