@@ -3,10 +3,10 @@ DA_MAIN_SERVER="ncl-da-demo.stage.engineering.redhat.com/da/rest/v-0.4"
 # DA_TEST_SERVER is defined in the da-cli-test.sh script
 target="${DA_TEST_SERVER:-${DA_MAIN_SERVER}}"
 
-respond=$(curl --write-out %{http_code} --silent --output /dev/null $DA_MAIN_SERVER)
+respond=$(curl --write-out %{http_code} --silent --output /dev/null $target)
 if [ $respond -ne "200" ]
 then
-    echo "Server $DA_MAIN_SERVER not found" 
+    echo "Server $target not found" 
     exit 0
 fi
 
