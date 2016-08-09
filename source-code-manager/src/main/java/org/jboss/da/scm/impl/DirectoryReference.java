@@ -68,7 +68,7 @@ class DirectoryReference {
             return true;
         }
         if (removeAt.equals(Instant.MAX)) {
-            removeAt = Instant.now().plus(SCMImpl.TIME_TO_KEEP);
+            removeAt = Instant.now().plus(SCMCache.TIME_TO_KEEP);
             return true;
         }
         if (Instant.now().isAfter(removeAt)) {
