@@ -13,9 +13,9 @@ public interface SCM {
 
     /**
      * Time to keep the repository in cache.
-     * Value is 60 minutes.
+     * Value is 4 hours.
      */
-    public static final TemporalAmount TIME_TO_KEEP = Duration.ofMinutes(60);
+    public static final TemporalAmount TIME_TO_KEEP = Duration.ofHours(4);
 
     /**
      * Clone repository and return directory where the repository is located.
