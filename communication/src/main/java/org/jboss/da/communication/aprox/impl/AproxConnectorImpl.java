@@ -75,7 +75,7 @@ public class AproxConnectorImpl implements AproxConnector {
             ProjectGraphRequest req = mod
                     .newProjectGraphRequest()
                     .withWorkspaceId("export-" + rootRef.toString())
-                    .withSource("group:public")
+                    .withSource("group:" + config.getConfig().getAproxGroupPublic())
                     .withPatcherIds(DepgraphPatcherConstants.ALL_PATCHERS)
                     .withResolve(true)
                     .withGraph(
@@ -137,7 +137,8 @@ public class AproxConnectorImpl implements AproxConnector {
         try {
             DAConfig cfg = this.config.getConfig();
             query.append(cfg.getAproxServer());
-            query.append("/api/group/public/");
+            query.append("/api/group/");
+            query.append(cfg.getAproxGroupPublic()).append('/');
             query.append(gav.getGroupId().replace(".", "/")).append("/");
             query.append(gav.getArtifactId()).append('/');
             query.append(gav.getVersion()).append('/');
@@ -249,7 +250,8 @@ public class AproxConnectorImpl implements AproxConnector {
         try {
             DAConfig config = this.config.getConfig();
             query.append(config.getAproxServer());
-            query.append("/api/group/public/");
+            query.append("/api/group/");
+            query.append(config.getAproxGroupPublic()).append('/');
             query.append(gav.getGroupId().replace(".", "/")).append("/");
             query.append(gav.getArtifactId()).append('/');
             query.append(gav.getVersion()).append('/');

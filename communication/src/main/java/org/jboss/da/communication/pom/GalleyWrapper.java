@@ -206,10 +206,9 @@ public class GalleyWrapper implements AutoCloseable {
      * resolving dependencies.
      */
     public void addDefaultLocations(Configuration config) {
-        locations.add(new SimpleLocation("central", "http://repo.maven.apache.org/maven2/"));
         try {
             locations.add(new SimpleLocation("indy", config.getConfig().getAproxServer()
-                    + "/api/group/" + config.getConfig().getAproxGroup() + "/"));
+                    + "/api/group/" + config.getConfig().getAproxGroupPublic() + "/"));
         } catch (ConfigurationParseException e) {
             log.error("Failed to add indy group to locations" + e);
         }

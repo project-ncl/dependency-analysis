@@ -24,6 +24,7 @@
           "pncServer": "",
           "aproxServer": "",
           "aproxGroup": "",
+          "aproxGroupPublic": "",
           "backupScmUrl": "",
           "backupScmBranch": "",
           "repourUrl": ""
