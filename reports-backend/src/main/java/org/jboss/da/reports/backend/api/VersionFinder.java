@@ -24,6 +24,15 @@ public interface VersionFinder {
     List<String> getBuiltVersionsFor(GAV gav) throws CommunicationException;
 
     /**
+     * Finds all Red Hat built artifacts (with suffix -redhat) with the same GA in the list provided.
+     * 
+     * @param gav GroupId and ArtifactId, which specifies the artifact
+     * @param the list of available versions to search through
+     * @return Found built Red Hat artifacts with the same GA
+     */
+    List<String> getBuiltVersionsFor(GAV gav, List<String> availableVersions);
+
+    /**
      * Finds all Red Hat built artifacts (with suffix -redhat) with the same GA and also 
      * the best match built artifact to the requested GA
      * 

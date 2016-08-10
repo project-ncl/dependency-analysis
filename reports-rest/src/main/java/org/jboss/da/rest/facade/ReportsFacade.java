@@ -9,7 +9,7 @@ import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.BuiltReportModule;
 import org.jboss.da.reports.api.ProductArtifact;
 import org.jboss.da.reports.api.ReportsGenerator;
-import org.jboss.da.reports.api.SCMLocator;
+import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.rest.AlignReport;
 import org.jboss.da.reports.model.rest.AlignReportRequest;
 import org.jboss.da.reports.model.rest.BuiltReport;

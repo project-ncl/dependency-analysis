@@ -82,6 +82,16 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
     }
 
     @Override
+    public List<ProductVersion> findAllWithIds(List<Long> productVersionIds) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<ProductVersion> cq = cb.createQuery(type);
+        Root<ProductVersion> product = cq.from(type);
+        cq.select(product).where(product.get("id").in(productVersionIds));
+        TypedQuery<ProductVersion> q = em.createQuery(cq);
+        return q.getResultList();
+    }
+
+    @Override
     public List<ProductVersion> findProductVersionsWithArtifact(String groupId, String artifactId,
             String version, boolean preciseVersion) {
         CriteriaBuilder cb = em.getCriteriaBuilder();

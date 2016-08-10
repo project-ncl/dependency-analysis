@@ -34,6 +34,13 @@ public interface ProductVersionService {
     List<ProductVersion> getAll();
 
     /**
+     * Get all ProductVersions for a product name
+     *
+     * @return List of productVersions
+     */
+    List<ProductVersion> getAllForProduct(String productName);
+
+    /**
      * Get ProductVersions that contains Artifact with specific groupId, artifactId and version
      * 
      * @param groupId

@@ -3,6 +3,7 @@ package org.jboss.da.listings.api.model;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -17,6 +18,7 @@ import lombok.ToString;
  */
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(callSuper = true)
 @ToString
 @MappedSuperclass
 public class Artifact extends GenericEntity {

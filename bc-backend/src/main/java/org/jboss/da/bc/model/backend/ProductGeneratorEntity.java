@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.reports.api.SCMLocator;
+import org.jboss.da.reports.model.api.SCMLocator;
 
 /**
  *

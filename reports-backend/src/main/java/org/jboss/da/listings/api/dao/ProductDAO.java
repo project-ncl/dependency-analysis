@@ -15,10 +15,18 @@ public interface ProductDAO extends GenericDAO<Product> {
     List<Product> findAll();
 
     /**
+     * Finds all products matching the supplied product names.
+     *
+     * @return List of products as if findProduct() was called once for each name in the list.
+     */
+    List<Product> findAllWithNames(List<String> productNames);
+
+    /**
      * Finds Product with specific name
      * 
      * @param name
      * @return Optional of product or empty
      */
     Optional<Product> findProduct(String name);
+
 }

@@ -30,6 +30,16 @@ public class ProductDAOImpl extends GenericDAOImpl<Product> implements ProductDA
     }
 
     @Override
+    public List<Product> findAllWithNames(List<String> productNames) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Product> cq = cb.createQuery(type);
+        Root<Product> product = cq.from(type);
+        cq.select(product).where(product.get("name").in(productNames));
+        TypedQuery<Product> q = em.createQuery(cq);
+        return q.getResultList();
+    }
+
+    @Override
     public Optional<Product> findProduct(String name) {
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
