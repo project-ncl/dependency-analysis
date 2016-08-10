@@ -142,6 +142,9 @@
                         <arquillianPortConfig>-Djboss.socket.binding.port-offset=100
                             -Djboss.management.native.port=9054</arquillianPortConfig>
                     </systemProperties>
+                    <excludes>
+                        <exclude>${testsuite.test.excludes}</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>
