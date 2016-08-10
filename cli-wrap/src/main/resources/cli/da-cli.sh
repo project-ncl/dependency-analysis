@@ -54,26 +54,34 @@ printUsage() {
     echo "DEPENDENCY REPORTS"
     echo "    Dependency reports can be used to get detail information about artifact or project dependencies."
     echo ""
-    echo "    $0 lookup [GROUP_ID:ARTIFACT_ID[:PACKAGING[:CLASSIFIER]]:VERSION[:SCOPE]]";
+    echo "    $0 lookup [GROUP_ID:ARTIFACT_ID[:PACKAGING[:CLASSIFIER]]:VERSION[:SCOPE]] [--products PRODUCTS] [--productIDs IDS]";
     echo "        When GROUP_ID:ARTIFACT_ID:VERSION is specified finds corresponding redhat versions for it."
     echo "        When it is not specified, reads G:A:Vs from standard input and finds corresponding redhat versions for all of them."
     echo "        Packaging, classifier and scope is ignored in both cases."
+    echo "        Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS])."
+    echo "        IDs of available products can be obtained by $0 list whitelist-products"
     echo "        Output: <groupId>:<artifactId>:<version> <Exact Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
-    echo "    $0 report [--raw|--json] GROUP_ID:ARTIFACT_ID:VERSION";
+    echo "    $0 report [--raw|--json] [--products PRODUCTS] [--productIDs IDS] GROUP_ID:ARTIFACT_ID:VERSION";
+    echo "        Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS])."
+    echo "        IDs of available products can be obtained by $0 list whitelist-products"
     echo "        Generate dependency report for GROUP_ID:ARTIFACT_ID:VERSION."
     echo "        Output: <Tree of groupId:artifactId:version> <Exact Matched Red Hat Version> <In black/white list?> <Number of not built dependencies> <Number of available versions>"
     echo "        --raw output: <groupId>:<artifactId>:<version> <Exact Matched Red Hat Version> <In black/white list?> <Number of not built dependencies> <Available Versions>"
     echo "        --json output: json aquiered from server"
     echo ""
-    echo "    $0 scm-report [--raw|--json] scm tag pom-path";
+    echo "    $0 scm-report [--raw|--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]";
     echo "        Check all dependencies from git-scm link"
+    echo "        Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS])."
+    echo "        IDs of available products can be obtained by $0 list whitelist-products"
     echo "        Output: "
     echo "        <groupId>:<artifactId>:<version> ::"
     echo "          <groupId>:<artifactId>:<version> <Exact Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
-    echo "    $0 scm-report-advanced [--json] scm tag pom-path";
+    echo "    $0 scm-report-advanced [--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]";
     echo "        Check all dependencies from git-scm link and print sumrarized information"
+    echo "        Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS])."
+    echo "        IDs of available products can be obtained by $0 list whitelist-products"
     echo "        Output: "
     echo "        Blacklisted artifacts: <groupId>:<artifactId>:<version>..."
     echo "        Whitelisted artifacts: <groupId>:<artifactId>:<version>..."
@@ -83,12 +91,12 @@ printUsage() {
     echo "        <groupId>:<artifactId>:<version> ::"
     echo "          <groupId>:<artifactId>:<version> <Exact Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
-    echo "    $0 align-report [--json] [--unknown] [--products PRODUCTS]... [--repository REPOSITORY]... SCM TAG [POM-PATH]"
+    echo "    $0 align-report [--json] [--unknown] [--productIDs IDS]... [--repository REPOSITORY]... SCM TAG [POM-PATH]"
     echo "        Check toplevel dependencies of all modules from git-scm link and print sumarized information."
     echo "          --json                    Output unparsed response from Dependency Analyzer."
     echo "          --unknown                 Consider artifacts from unknown products."
-    echo "          --products PRODUCTS       Consider artifact only from specified products. PRODUCTS should be comma separated"
-    echo "                                    list of product ids (you can obtain list of products using $0 list whitelist-products)."
+    echo "          --productIDs IDS          Consider artifact only from specified product IDs. IDS should be comma separated."
+    echo "                                    list of product IDs (you can obtain list of products using $0 list whitelist-products)."
     echo "          --repository REPOSITORY   Aditional maven repositories required by the analysed project. You can specify this"
     echo "                                    option multiple times."
     echo "        Output:"
@@ -129,10 +137,10 @@ case $action in
     pom-bw) echo "This option was deprecated, use scm-report-advanced instead." ;;
     pom-bw-junit-xml) pom_bw_junit_xml $2 $3 $4;;
     pom-report) echo "This option was deprecated, use scm-report instead." ;;
-    scm-report) scm_report $2 $3 $4 $5;;
-    scm-report-advanced) scm_report_adv $2 $3 $4 $5;;
-    lookup) lookup $2;;
-    report) report $2 $3;;
+    scm-report) shift; scm_report "$@";;
+    scm-report-advanced) shift; scm_report_adv "$@";;
+    lookup) shift; lookup "$@";;
+    report) shift; report "$@";;
     align-report) shift; scm_report_align "$@" ;;
     *) printUsage ;;
 esac
