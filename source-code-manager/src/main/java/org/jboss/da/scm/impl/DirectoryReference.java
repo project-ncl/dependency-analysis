@@ -6,6 +6,7 @@ import java.lang.ref.WeakReference;
 import java.time.Instant;
 import java.util.Optional;
 import org.apache.commons.io.FileUtils;
+import org.jboss.da.scm.api.SCM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +69,7 @@ class DirectoryReference {
             return true;
         }
         if (removeAt.equals(Instant.MAX)) {
-            removeAt = Instant.now().plus(SCMImpl.TIME_TO_KEEP);
+            removeAt = Instant.now().plus(SCM.TIME_TO_KEEP);
             return true;
         }
         if (Instant.now().isAfter(removeAt)) {

@@ -137,7 +137,6 @@ public class ScmFacade {
      * @return
      */
     private boolean shallowClone(SCMType scmType, String scmUrl, String revision, File cloneTo) {
-
         // we only support git for shallow cloning
         if (!scmType.equals(SCMType.GIT)) {
             return false;
