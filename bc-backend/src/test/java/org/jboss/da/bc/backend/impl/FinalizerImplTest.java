@@ -43,7 +43,6 @@ public class FinalizerImplTest {
         ROOT_1.setSelected(true);
 
         ProjectDetail p = ROOT_1.getProject();
-        p.setCloneRepo(false);
 
     }
 
@@ -98,7 +97,6 @@ public class FinalizerImplTest {
         projectCounter++;
         ProjectDetail ret = new ProjectDetail(new GAV("org.test", "test-" + projectCounter, "0."
                 + projectCounter + ".0"));
-        ret.setCloneRepo(false);
         ret.setEnvironmentId(projectCounter);
         ret.setProjectId(projectCounter);
         ret.setName("Project " + projectCounter);

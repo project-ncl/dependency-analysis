@@ -13,7 +13,6 @@ import javax.inject.Inject;
 import org.jboss.da.bc.backend.api.BCSetGenerator;
 import org.jboss.da.bc.backend.api.BcChecker;
 import org.jboss.da.bc.backend.api.Finalizer;
-import org.jboss.da.bc.backend.api.RepositoryCloner;
 import org.jboss.da.bc.model.backend.ProjectDetail;
 import org.jboss.da.bc.model.backend.ProjectHiearchy;
 import org.jboss.da.common.CommunicationException;
@@ -42,9 +41,6 @@ public class FinalizerImpl implements Finalizer {
 
     @Inject
     private BCSetGenerator bcSetGenerator;
-
-    @Inject
-    private RepositoryCloner repoCloner;
 
     @Inject
     private BcChecker bcFinder;
@@ -103,10 +99,9 @@ public class FinalizerImpl implements Finalizer {
                 
                 bc = optionalBc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
             } else {
+
                 BuildConfigurationBPMCreate bcc = toBC(project, nextLevelDependencyIds);
-                if (project.isCloneRepo()) {
-                    log.warn("Repository clonning is disabled. (Tried to clone " + project.getScmUrl() + " " +project.getScmRevision());
-                }
+
                 bc = pnc.createBuildConfiguration(bcc);
             }
 

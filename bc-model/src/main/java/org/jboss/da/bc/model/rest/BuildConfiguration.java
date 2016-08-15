@@ -5,7 +5,6 @@ import org.jboss.da.bc.model.DependencyAnalysisStatus;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -35,10 +34,6 @@ public class BuildConfiguration {
     @Getter
     @Setter
     protected String scmRevision;
-
-    @Getter
-    @Setter
-    protected boolean cloneRepo;
 
     @Getter
     @Setter

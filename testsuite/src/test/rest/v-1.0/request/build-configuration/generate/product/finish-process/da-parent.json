@@ -6,7 +6,6 @@
     "topLevelBc":{
         "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
         "scmRevision":"0.3.0",
-        "cloneRepo":false,
         "projectId":1,
         "buildScript":"mvn clean install -DskipTests",
         "name":"parent-0.3.0 - PLACEHOLDER",

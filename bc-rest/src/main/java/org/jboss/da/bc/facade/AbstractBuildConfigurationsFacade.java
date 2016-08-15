@@ -80,7 +80,6 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         ProjectDetail pd = new ProjectDetail(bc.getGav());
         pd.setExistingBCs(bc.getExistingBCs());
         pd.setBuildScript(bc.getBuildScript());
-        pd.setCloneRepo(bc.isCloneRepo());
         pd.setDescription(bc.getDescription());
         pd.setEnvironmentId(bc.getEnvironmentId());
         pd.setInternallyBuilt(Optional.ofNullable(bc.getInternallyBuilt()));
@@ -109,7 +108,6 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
 
         bc.setExistingBCs(p.getExistingBCs());
         bc.setBuildScript(p.getBuildScript());
-        bc.setCloneRepo(p.isCloneRepo());
         bc.setDescription(p.getDescription());
         bc.setEnvironmentId(p.getEnvironmentId());
         bc.setGav(p.getGav());

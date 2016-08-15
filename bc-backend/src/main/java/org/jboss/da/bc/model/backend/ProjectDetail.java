@@ -73,10 +73,6 @@ public class ProjectDetail {
 
     @Getter
     @Setter
-    private boolean cloneRepo = true; // required, default true
-
-    @Getter
-    @Setter
     @NonNull
     private EnumSet<BcError> errors = EnumSet.noneOf(BcError.class);
 
