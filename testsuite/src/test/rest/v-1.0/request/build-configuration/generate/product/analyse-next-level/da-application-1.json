@@ -6,7 +6,6 @@
     "topLevelBc":{
         "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
         "scmRevision":"0.3.0",
-        "cloneRepo":true,
         "projectId":null,
         "buildScript":"",
         "name":"application-0.3.0",
@@ -23,7 +22,6 @@
             {
                 "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
                 "scmRevision":"0.3.0",
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"communication-0.3.0",
@@ -42,7 +40,6 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"bc-backend-0.3.0",
@@ -61,7 +58,6 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"bc-rest-0.3.0",
@@ -80,7 +76,6 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"reports-backend-0.3.0",
@@ -99,7 +94,6 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"reports-rest-0.3.0",

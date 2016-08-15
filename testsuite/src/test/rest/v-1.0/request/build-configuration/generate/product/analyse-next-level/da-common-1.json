@@ -6,7 +6,6 @@
     "topLevelBc":{
         "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
         "scmRevision":"0.3.0",
-        "cloneRepo":true,
         "projectId":null,
         "buildScript":"mvn clean install",
         "name":"common-0.3.0",
@@ -23,7 +22,6 @@
             {
                 "scmUrl":"http://github.com/KentBeck/junit/tree/master",
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"junit-4.11",
@@ -42,7 +40,6 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"pom-manipulation-core-1.6",
@@ -61,7 +58,6 @@
             {  
                 "scmUrl":null,
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"slf4j-api-1.7.7",
@@ -80,7 +76,6 @@
             {
                 "scmUrl":"http://github.com/rzwitserloot/lombok",
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"lombok-1.16.4",
@@ -99,7 +94,6 @@
             {
                 "scmUrl":"scm:git:git@github.com:cdi-spec/cdi.git",
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "name":"cdi-api-1.2",

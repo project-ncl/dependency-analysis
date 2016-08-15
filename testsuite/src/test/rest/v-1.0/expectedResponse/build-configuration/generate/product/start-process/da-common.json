@@ -5,7 +5,6 @@
     "topLevelBc":{
         "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
         "scmRevision":"0.3.0",
-        "cloneRepo":true,
         "projectId":null,
         "buildScript":"",
         "description":"Build Configuration for org.jboss.da:common:0.3.0.",
@@ -22,7 +21,6 @@
             {
                 "scmUrl":"http://github.com/KentBeck/junit/tree/master",
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "description":"Build Configuration for junit:junit:4.11 - JUnit.",
@@ -44,7 +42,6 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "description":"Build Configuration for org.codehaus.jackson:jackson-mapper-asl:1.9.9 - Data Mapper for Jackson.",
@@ -63,7 +60,6 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "description":"Build Configuration for org.commonjava.maven.ext:pom-manipulation-core:1.6 - POM Manipulation Extension for Maven Core Library.",
@@ -82,7 +78,6 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "description":"Build Configuration for org.slf4j:slf4j-api:1.7.7 - SLF4J API Module.",
@@ -109,7 +104,6 @@
             {
                 "scmUrl":"http://github.com/rzwitserloot/lombok",
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "description":"Build Configuration for org.projectlombok:lombok:1.16.4 - Project Lombok.",
@@ -128,7 +122,6 @@
             {
                 "scmUrl":"scm:git:git@github.com:cdi-spec/cdi.git",
                 "scmRevision":null,
-                "cloneRepo":true,
                 "projectId":null,
                 "buildScript":"",
                 "description":"Build Configuration for javax.enterprise:cdi-api:1.2 - CDI APIs.",

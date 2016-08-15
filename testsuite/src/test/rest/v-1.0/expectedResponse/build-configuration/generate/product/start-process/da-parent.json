@@ -5,7 +5,6 @@
     "topLevelBc":{
         "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
         "scmRevision":"0.3.0",
-        "cloneRepo":true,
         "projectId":null,
         "buildScript":"",
         "description":"Build Configuration for org.jboss.da:parent:0.3.0 - dependency-analyzer.",
