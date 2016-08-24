@@ -249,6 +249,9 @@ public class Artifacts {
         }
         response.setSuccess(productService.addProduct(product.getName(), product.getVersion(),
                 product.getSupportStatus()));
+        Long id = productVersionService.getProductVersion(product.getName(), product.getVersion())
+                .get().getId();
+        response.setId(id);
         return Response.ok(response).build();
     }
 

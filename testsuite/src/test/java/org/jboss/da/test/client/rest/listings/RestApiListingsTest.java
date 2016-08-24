@@ -8,7 +8,11 @@ import java.io.File;
 import java.io.IOException;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
+import org.json.JSONException;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 public class RestApiListingsTest extends AbstractRestApiListingTest {
 
@@ -331,6 +335,16 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavRhResponse");
+    }
+
+    @Override
+    protected void assertEqualsJson(String expected, String actual) {
+        try {
+
+            JSONAssert.assertEquals(expected, actual, JSONCompareMode.LENIENT);
+        } catch (JSONException ex) {
+            fail("The test wasn't able to compare JSON strings" + ex);
+        }
     }
 
     private void checkExpectedResponse(ClientResponse<String> response, String expectedFile)
