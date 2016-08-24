@@ -33,6 +33,10 @@ public class SuccessResponse {
 
     @Getter
     @Setter
+    protected Long id;
+
+    @Getter
+    @Setter
     @XmlElement(required = false, name = "message")
     protected String message;
 
