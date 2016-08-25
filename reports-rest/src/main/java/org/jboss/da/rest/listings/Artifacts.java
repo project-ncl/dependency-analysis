@@ -139,6 +139,10 @@ public class Artifacts {
                 response.setSuccess(false);
                 response.setMessage("Error while analysing pom file");
                 return Response.status(Status.BAD_REQUEST).entity(response).build();
+            case POM_NOT_FOUND:
+                response.setSuccess(false);
+                response.setMessage("Could not found pom file in repository");
+                return Response.status(Status.NOT_FOUND).entity(response).build();
         }
         return Response.status(Status.INTERNAL_SERVER_ERROR)
                 .entity(new ErrorMessage("There was some internal error")).build();

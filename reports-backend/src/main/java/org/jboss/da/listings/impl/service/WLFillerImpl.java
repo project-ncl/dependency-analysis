@@ -70,12 +70,14 @@ public class WLFillerImpl implements WLFiller {
             return WLStatus.PRODUCT_NOT_FOUND;
         }
         try {
-            Optional<InputStream> is = aprox.getPomStream(new GAV(groupId, artifactId, version));
+            final GAV gav = new GAV(groupId, artifactId, version);
+            Optional<InputStream> is = aprox.getPomStream(gav);
             if (is.isPresent()) {
                 MavenPomView view = analyzer.getMavenPomView(is.get());
                 fillWLFromPom(view, productId);
             } else {
-                return WLStatus.ANALYSER_ERROR;
+                log.error("POM with given GAV not found in indy " + gav);
+                return WLStatus.POM_NOT_FOUND;
             }
         } catch (CommunicationException | ConfigurationParseException | GalleyMavenException e) {
             log.error(e.getMessage());
