@@ -28,11 +28,9 @@ public class BuildConfigurationCreate {
     private String buildScript;
 
     @Getter
-    @Setter
     private String scmRepoURL;
 
     @Getter
-    @Setter
     private String scmRevision;
 
     private Date creationTime;
@@ -58,6 +56,12 @@ public class BuildConfigurationCreate {
     @Getter
     @Setter
     private Integer productVersionId;
+
+    @Getter
+    private String scmExternalRepoURL;
+
+    @Getter
+    private String scmExternalRevision;
 
     public void setEnvironmentId(int id) {
         IdWrapper env = new IdWrapper();
@@ -86,6 +90,20 @@ public class BuildConfigurationCreate {
     public void setLastModificationTime(Date lastModificationTime) {
         this.lastModificationTime = lastModificationTime == null ? null : new Date(
                 lastModificationTime.getTime());
+    }
+
+    public void setSCMLocation(String repoURL, String revision) {
+        if (repoURL == null) {
+            repoURL = "";
+        }
+        if (!repoURL.contains("code.engineering.redhat.com")
+                && !repoURL.contains("git.app.eng.bos.redhat.com")) {
+            this.scmExternalRepoURL = repoURL;
+            this.scmExternalRevision = revision;
+        } else {
+            this.scmRepoURL = repoURL;
+            this.scmRevision = revision;
+        }
     }
 
 }

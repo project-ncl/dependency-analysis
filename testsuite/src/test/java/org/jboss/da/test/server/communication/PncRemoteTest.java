@@ -53,36 +53,6 @@ public class PncRemoteTest {
         assertEquals(0, obtainedBcs.size());
     }
 
-    @Test
-    public void testCreateRemoveBC() throws Exception {
-        String bcName = "BCTestName-" + UUID.randomUUID().toString();
-        String scmRepoUrl = "http://test-" + UUID.randomUUID().toString() + ".com";
-        int environmentId = 1;
-        int projectId = 1;
-
-        BuildConfigurationCreate bc = new BuildConfigurationCreate();
-        bc.setName(bcName);
-        bc.setEnvironmentId(environmentId);
-        bc.setProjectId(projectId);
-        bc.setScmRepoURL(scmRepoUrl);
-        bc.setProductVersionId(1);
-
-        // Create a BC
-        BuildConfiguration obtainedBc = pncConnector.createBuildConfiguration(bc);
-        assertNotNull(obtainedBc);
-        assertNotNull(obtainedBc.getId());
-        assertEquals(bcName, obtainedBc.getName());
-        assertEquals(Integer.valueOf(environmentId), obtainedBc.getEnvironment().getId());
-        assertEquals(projectId, obtainedBc.getProject().getId());
-        assertTrue(testBcWithNameExists(bcName));
-
-        // Delete created BC
-        boolean obtainedEcode = pncConnector.deleteBuildConfiguration(obtainedBc);
-        assertTrue(obtainedEcode);
-        assertFalse(testBcWithNameExists(bcName));
-
-    }
-
     private boolean testBcWithNameExists(String bcName) throws Exception {
         List<BuildConfiguration> allBcs = pncConnector.getBuildConfigurations();
         return allBcs.parallelStream()

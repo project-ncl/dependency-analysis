@@ -77,8 +77,7 @@ public class BcCheckerImplTest {
         bc.setId(id);
         bc.setName(name);
         bc.setBuildScript(buildScript);
-        bc.setScmRepoURL(scmRepoUrl);
-        bc.setScmRevision(scmRevision);
+        bc.setSCMLocation(scmRepoUrl, scmRevision);
         return bc;
     }
 
