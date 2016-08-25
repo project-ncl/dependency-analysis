@@ -5,7 +5,7 @@ import java.util.List;
 public interface WLFiller {
 
     public enum WLStatus {
-        PRODUCT_NOT_FOUND, FILLED, ANALYSER_ERROR;
+        PRODUCT_NOT_FOUND, FILLED, ANALYSER_ERROR, POM_NOT_FOUND;
     }
 
     WLStatus fillWhitelistFromPom(String scmUrl, String revision, String pomPath,
