@@ -1,5 +1,5 @@
 #!/bin/bash
-DA_MAIN_SERVER="ncl-da-demo.stage.engineering.redhat.com/da/rest/v-0.4"
+DA_MAIN_SERVER="pnc-da-cli.cloud.pnc.devel.engineering.redhat.com/da/rest/v-0.4"
 # DA_TEST_SERVER is defined in the da-cli-test.sh script
 target="${DA_TEST_SERVER:-${DA_MAIN_SERVER}}"
 
