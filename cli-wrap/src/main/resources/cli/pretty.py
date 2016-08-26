@@ -137,7 +137,12 @@ def readInput():
     data=""
     for line in fileinput.input():
         data += line
-    return json.loads(data)
+    try:    
+        return json.loads(data)
+    except ValueError:
+        print "Response is not parsable JSON object:"
+        print data
+        sys.exit(1)   
 
 def checkError(data):
     if "message" in data:
