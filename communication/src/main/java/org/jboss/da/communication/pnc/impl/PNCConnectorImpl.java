@@ -107,7 +107,7 @@ public class PNCConnectorImpl implements PNCConnector {
             throws CommunicationException, PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
         ClientResponse<PNCResponseWrapper<BuildConfiguration>> response = post(
-                "build-configurations", bc,
+                "bpm/tasks/start-build-configuration-creation", bc,
                 new GenericType<PNCResponseWrapper<BuildConfiguration>>() {}, accessToken);
         return checkAndReturn(response, accessToken).getContent();
     }

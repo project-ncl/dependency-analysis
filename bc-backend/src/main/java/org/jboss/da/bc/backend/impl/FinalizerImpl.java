@@ -103,14 +103,6 @@ public class FinalizerImpl implements Finalizer {
                 BuildConfigurationCreate bcc = toBC(project, nextLevelDependencyIds);
                 if (project.isCloneRepo()) {
                     log.warn("Repository clonning is disabled. (Tried to clone " + project.getScmUrl() + " " +project.getScmRevision());
-                    if(false){
-                        try {
-                            String newScmUrl = repoCloner.cloneRepository(project.getScmUrl(), project.getScmRevision(), SCMType.GIT, "Repository of " + project.getGav());
-                            bcc.setScmRepoURL(newScmUrl);
-                        } catch (CommunicationException ex) {
-                            log.error("Failed to clone repo.", ex);
-                        }
-                    }
                 }
                 bc = pnc.createBuildConfiguration(bcc);
             }
@@ -130,8 +122,7 @@ public class FinalizerImpl implements Finalizer {
         bc.setEnvironmentId(project.getEnvironmentId());
         bc.setName(project.getName());
         bc.setProjectId(project.getProjectId());
-        bc.setScmRepoURL(project.getScmUrl());
-        bc.setScmRevision(project.getScmRevision());
+        bc.setSCMLocation(project.getScmUrl(), project.getScmRevision());
         return bc;
     }
 }
