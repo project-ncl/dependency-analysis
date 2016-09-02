@@ -1,8 +1,6 @@
 package org.jboss.da.communication.aprox.api;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.aprox.FindGAVDependencyException;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.Repository;
 
 import java.io.InputStream;
@@ -15,20 +13,9 @@ import org.jboss.da.model.rest.GAV;
 
 public interface AproxConnector {
 
-    public enum RepositoryManipulationStatus {
+    enum RepositoryManipulationStatus {
         DONE, NAME_NOT_EXIST, NAME_EXIST_DIFFERENT_URL, WRONG_NAME_OR_URL;
-    };
-
-    /**
-     * Finds dependency trees of specific GAV
-     * 
-     * @param gav
-     * @return Dependency tree of GAV
-     * @throws CommunicationException When there is problem with communication.
-     * @throws FindGAVDependencyException if the GAV cannot be analyzed
-     */
-    GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException,
-            FindGAVDependencyException;
+    }
 
     /**
      * Finds available versions of specific groupId artifactId.

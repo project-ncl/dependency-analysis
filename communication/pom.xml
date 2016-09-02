@@ -58,15 +58,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+
+
         <dependency>
-            <groupId>org.commonjava.indy</groupId>
-            <artifactId>indy-depgraph-client-java</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.wordnik</groupId>
-                    <artifactId>swagger-jaxrs_2.10</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.commonjava.cartographer</groupId>
+            <artifactId>cartographer-rest-client-java</artifactId>
         </dependency>
 
         <dependency>
@@ -82,17 +79,10 @@
         </dependency>
 
         <!-- Used for pom.xml analysis -->
-        <dependency>
-            <groupId>org.commonjava.maven.cartographer</groupId>
-            <artifactId>cartographer</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.commonjava.maven.galley</groupId>
-            <artifactId>galley-maven</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.commonjava.maven.galley</groupId>
-            <artifactId>galley-cdi-embedder</artifactId>
+            <artifactId>galley-cache-partyline</artifactId>
         </dependency>
 
         <!-- Test dependencies -->

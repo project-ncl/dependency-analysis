@@ -1,27 +1,17 @@
 package org.jboss.da.communication.aprox.impl;
 
-import org.commonjava.cartographer.graph.discover.patch.DepgraphPatcherConstants;
-import org.commonjava.cartographer.request.ProjectGraphRequest;
-import org.commonjava.cartographer.result.GraphExport;
 import org.commonjava.indy.client.core.Indy;
 import org.commonjava.indy.client.core.IndyClientException;
 import org.commonjava.indy.client.core.module.IndyStoresClientModule;
-import org.commonjava.indy.depgraph.client.DepgraphIndyClientModule;
 import org.commonjava.indy.model.core.Group;
 import org.commonjava.indy.model.core.RemoteRepository;
 import org.commonjava.indy.model.core.StoreKey;
 import org.commonjava.indy.model.core.StoreType;
-import org.commonjava.maven.atlas.graph.rel.ProjectRelationship;
-import org.commonjava.maven.atlas.graph.rel.RelationshipType;
-import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
-import org.commonjava.maven.atlas.ident.ref.SimpleProjectVersionRef;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.aprox.model.Repository;
 import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
@@ -40,9 +30,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @ApplicationScoped
@@ -56,46 +44,6 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Inject
     private PomAnalyzer pomAnalyzer;
-
-    @Override
-    public GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException,
-            FindGAVDependencyException {
-
-        if (!doesGAVExistInPublicRepo(gav)) {
-            throw new FindGAVDependencyException("Could not find: " + gav
-                    + "in public repo of Aprox");
-        }
-
-        DepgraphIndyClientModule mod = new DepgraphIndyClientModule();
-        try (Indy indy = new Indy(config.getConfig().getAproxServer() + "/api", mod).connect()) {
-
-            SimpleProjectVersionRef rootRef = new SimpleProjectVersionRef(gav.getGroupId(),
-                    gav.getArtifactId(), gav.getVersion());
-
-            ProjectGraphRequest req = mod
-                    .newProjectGraphRequest()
-                    .withWorkspaceId("export-" + rootRef.toString())
-                    .withSource("group:" + config.getConfig().getAproxGroupPublic())
-                    .withPatcherIds(DepgraphPatcherConstants.ALL_PATCHERS)
-                    .withResolve(true)
-                    .withGraph(
-                            mod.newGraphDescription().withRoots(rootRef).withPreset("requires")
-                                    .build()).build();
-
-            GraphExport export = mod.graph(req);
-            if (export == null) {
-                log.warn("Analysis of the Dependency Tree of GAV: " + gav + " failed!");
-                return new GAVDependencyTree(gav);
-            }
-
-            if (export.getRelationships() == null)
-                return new GAVDependencyTree(gav);
-            else
-                return generateGAVDependencyTree(export, gav);
-        } catch (IndyClientException | ConfigurationParseException e) {
-            throw new CommunicationException(e);
-        }
-    }
 
     @Override
     public List<String> getVersionsOfGA(GA ga) throws CommunicationException {
@@ -280,44 +228,5 @@ public class AproxConnectorImpl implements AproxConnector {
         } catch (JAXBException e) {
             throw new CommunicationException("Failed to parse metadataFile", e);
         }
-    }
-
-    private GAVDependencyTree generateGAVDependencyTree(GraphExport export, GAV rootGAV) {
-
-        // keep a map of gav -> GAVDependencyTree object
-        Map<GAV, GAVDependencyTree> gavMapper = new HashMap<>();
-
-        // create the root GAVDependencyTree and return it
-        GAVDependencyTree root = new GAVDependencyTree(rootGAV);
-        gavMapper.put(rootGAV, root);
-
-        for (ProjectRelationship<?, ?> rel : export.getRelationships()) {
-            if (rel.getType().equals(RelationshipType.DEPENDENCY)) {
-
-                ProjectVersionRef declaring = rel.getDeclaring();
-                ProjectVersionRef dependencyArtifact = rel.getTargetArtifact();
-
-                GAV declaringGAV = generateGAV(declaring);
-                GAV dependencyGAV = generateGAV(dependencyArtifact);
-
-                GAVDependencyTree declaringDT = addGAVDependencyTreeToGAVMapper(gavMapper,
-                        declaringGAV);
-                GAVDependencyTree dependencyDT = addGAVDependencyTreeToGAVMapper(gavMapper,
-                        dependencyGAV);
-
-                // set the dependency relationship between GAVDependencyTree here
-                declaringDT.addDependency(dependencyDT);
-            }
-        }
-        return root;
-    }
-
-    private GAVDependencyTree addGAVDependencyTreeToGAVMapper(
-            Map<GAV, GAVDependencyTree> gavMapper, GAV gav) {
-        return gavMapper.computeIfAbsent(gav, k -> new GAVDependencyTree(k));
-    }
-
-    private GAV generateGAV(ProjectVersionRef ref) {
-        return new GAV(ref.getGroupId(), ref.getArtifactId(), ref.getVersionString());
     }
 }

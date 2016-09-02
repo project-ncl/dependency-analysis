@@ -11,6 +11,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.cartographer.api.CartographerConnector;
 import org.jboss.da.listings.api.model.Product;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -47,6 +48,9 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private AproxConnector aproxClient;
+
+    @Mock
+    private CartographerConnector cartographerClient;
 
     @Mock
     private VersionFinder versionFinderImpl;
@@ -111,12 +115,12 @@ public class ReportsGeneratorImplTest {
         when(
                 productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),
                         daCoreGAV.getArtifactId(), daCoreGAV.getVersion())).thenReturn(whitelisted);
-        when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
+        when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
     }
 
     private void prepareMulti() throws CommunicationException, FindGAVDependencyException {
         prepare(Collections.emptyList(), false, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
-        when(aproxClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
+        when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
         when(versionFinderImpl.getBuiltVersionsFor(daUtilGAV)).thenReturn(daCoreVersionsBest);
         when(versionFinderImpl.lookupBuiltVersions(daUtilGAV)).thenReturn(
@@ -153,7 +157,8 @@ public class ReportsGeneratorImplTest {
 
     @Test(expected = FindGAVDependencyException.class)
     public void testNonExistingGAV() throws CommunicationException, FindGAVDependencyException {
-        when(aproxClient.getDependencyTreeOfGAV(daGAV)).thenThrow(FindGAVDependencyException.class);
+        when(cartographerClient.getDependencyTreeOfGAV(daGAV)).thenThrow(
+                FindGAVDependencyException.class);
 
         generator.getReport(gavToRequest(daGAV));
     }

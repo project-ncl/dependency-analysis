@@ -7,6 +7,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.cartographer.api.CartographerConnector;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 
@@ -31,6 +32,9 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     private AproxConnector aproxConnector;
 
     @Inject
+    private CartographerConnector cartographerConnector;
+
+    @Inject
     SCMConnector scmConnector;
 
     @Override
@@ -43,7 +47,7 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     @Override
     public GAVDependencyTree getDependencyTree(GAV gav) throws CommunicationException,
             FindGAVDependencyException {
-        return aproxConnector.getDependencyTreeOfGAV(gav);
+        return cartographerConnector.getDependencyTreeOfGAV(gav);
     }
 
     @Override
