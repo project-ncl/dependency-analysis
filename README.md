@@ -36,7 +36,23 @@
 
   - Workspace errors in .js, .xml, other files can be ignored as long as Maven build completes
     successfully from command line
-
+    
+### Setup application
+  - Setup Postgre database
+  - Datasource configuration and connection information in the standalone.xml
+      datasource has to be named "PostgresDA"
+  - JDBC for PostgreSQL is needed. You have to add it to standalone.xml
+  - Add to the folder ```<EAP_HOME>/modules/system/layers/base/org/postgresql/main/``` a file named 
+    module.xml and a file with the driver 
+    (download from [here](https://jdbc.postgresql.org/download/postgresql-9.3-1103.jdbc4.jar))
+  - The Dependency Analysis project uses a JSON configuration file for its configuration 
+    and is found in ```common/src/main/resources/da-config.json``` or it can be set using property da-config-file
+  - You can set values to cofigure Dependency Analyser
+    * keycloak% - keycloak settings
+    * pncServer - link to pnc server
+    * aproxServer - link to Indy server
+    * aproxGroup - Indy group
+    
 ### Run/debug integration tests in 'testsuite' through IDE (JBDS/Eclipse)
 
   - Install Arquillian support:
