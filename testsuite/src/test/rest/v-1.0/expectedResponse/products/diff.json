@@ -28,7 +28,8 @@
             "groupId": "com.example",
             "artifactId": "changed",
             "leftVersion": "1.0.0",
-            "rightVersion": "1.2.0"
+            "rightVersion": "1.2.0",
+            "differenceType": "MINOR"
         }
     ],
     "unchanged": [
