@@ -25,6 +25,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.jboss.da.model.rest.VersionComparator;
+import org.jboss.da.reports.model.rest.RestGA2RestGAV2VersionProductsWithDiff;
+import org.jboss.da.reports.model.rest.RestGAV2VersionProductsWithDiff;
+import org.jboss.da.reports.model.rest.RestVersionProductWithDifference;
 
 public class ReportsFacade {
 
@@ -77,14 +81,14 @@ public class ReportsFacade {
         AlignReport ret = new AlignReport();
 
         Set<RestGA2RestGAV2VersionProducts> internallyBuilt = ret.getInternallyBuilt();
-        Set<RestGA2RestGAV2VersionProducts> builtInDifferentVersion = ret
+        Set<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = ret
                 .getBuiltInDifferentVersion();
         Set<RestGA2GAVs> notBuilt = ret.getNotBuilt();
         Set<RestGA2GAVs> blacklisted = ret.getBlacklisted();
 
         for (AlignmentReportModule module : aligmentReport) {
             Set<RestGAV2VersionProducts> ib = toRestGAV2VersionProducts(module.getInternallyBuilt());
-            Set<RestGAV2VersionProducts> dv = toRestGAV2VersionProducts(module
+            Set<RestGAV2VersionProductsWithDiff> dv = toRestGAV2VersionProductsWithDiff(module
                     .getDifferentVersion());
             Set<GAV> nb = module.getNotBuilt();
             Set<GAV> bl = module.getBlacklisted();
@@ -98,7 +102,7 @@ public class ReportsFacade {
             }
 
             if (!dv.isEmpty()) {
-                RestGA2RestGAV2VersionProducts dvm = new RestGA2RestGAV2VersionProducts();
+                RestGA2RestGAV2VersionProductsWithDiff dvm = new RestGA2RestGAV2VersionProductsWithDiff();
                 dvm.setGroupId(module.getModule().getGroupId());
                 dvm.setArtifactId(module.getModule().getArtifactId());
                 dvm.setGavProducts(dv);
@@ -131,6 +135,14 @@ public class ReportsFacade {
                 .collect(Collectors.toSet());
     }
 
+    private Set<RestGAV2VersionProductsWithDiff> toRestGAV2VersionProductsWithDiff(Map<GAV, Set<ProductArtifact>> ib) {
+        return ib.entrySet().stream()
+                .filter(e -> !e.getValue().isEmpty())
+                .map(e -> toRestGAV2VersionProductsWithDiff(e.getKey(), e.getValue()))
+                .collect(Collectors.toSet());
+
+    }
+
     private RestGAV2VersionProducts toRestGAV2VersionProducts(GAV gav,
             Set<ProductArtifact> productArtifacts) {
         RestGAV2VersionProducts ret = new RestGAV2VersionProducts();
@@ -141,9 +153,25 @@ public class ReportsFacade {
         return ret;
     }
 
+    private RestGAV2VersionProductsWithDiff toRestGAV2VersionProductsWithDiff(GAV gav,
+            Set<ProductArtifact> productArtifacts) {
+        RestGAV2VersionProductsWithDiff ret = new RestGAV2VersionProductsWithDiff();
+        ret.setGroupId(gav.getGroupId());
+        ret.setArtifactId(gav.getArtifactId());
+        ret.setVersion(gav.getVersion());
+        ret.setGavProducts(toRestVersionProductsWithDiff(productArtifacts));
+        return ret;
+    }
+
     private Set<RestVersionProduct> toRestVersionProducts(Set<ProductArtifact> productArtifacts) {
         return productArtifacts.stream()
                 .map(x -> toRestVersionProduct(x))
+                .collect(Collectors.toSet());
+    }
+
+    private Set<RestVersionProductWithDifference> toRestVersionProductsWithDiff(Set<ProductArtifact> productArtifacts) {
+        return productArtifacts.stream()
+                .map(x -> toRestVersionProductWithDifference(x))
                 .collect(Collectors.toSet());
     }
 
@@ -153,6 +181,17 @@ public class ReportsFacade {
         RestProductInput rpi = new RestProductInput(productArtifact.getProductName(),
                 productArtifact.getProductVersion(), productArtifact.getSupportStatus());
         ret.setProduct(rpi);
+        return ret;
+    }
+
+    private RestVersionProductWithDifference toRestVersionProductWithDifference(
+            ProductArtifact productArtifact) {
+        RestVersionProductWithDifference ret = new RestVersionProductWithDifference();
+        ret.setVersion(productArtifact.getArtifact().getVersion());
+        RestProductInput rpi = new RestProductInput(productArtifact.getProductName(),
+                productArtifact.getProductVersion(), productArtifact.getSupportStatus());
+        ret.setProduct(rpi);
+        ret.setDifferenceType(productArtifact.getDifferenceType());
         return ret;
     }
 }

@@ -29,20 +29,27 @@ public class GADiff implements Comparable<GADiff> {
     @NonNull
     private final String rightVersion;
 
+    @Getter
+    @NonNull
+    private final String differenceType;
+
     @JsonCreator
     public GADiff(@JsonProperty("groupId") String groupId,
             @JsonProperty("artifactId") String artifactId,
             @JsonProperty("leftVersion") String leftVersion,
-            @JsonProperty("rightVersion") String rightVersion) {
+            @JsonProperty("rightVersion") String rightVersion,
+            @JsonProperty("differenceType") String differenceType) {
         this.ga = new GA(groupId, artifactId);
         this.leftVersion = leftVersion;
         this.rightVersion = rightVersion;
+        this.differenceType = VersionComparator.difference(leftVersion, rightVersion).toString();
     }
 
     public GADiff(GA ga, String leftVersion, String rightVersion) {
         this.ga = ga;
         this.leftVersion = leftVersion;
         this.rightVersion = rightVersion;
+        this.differenceType = VersionComparator.difference(leftVersion, rightVersion).toString();
     }
 
     @JsonIgnore

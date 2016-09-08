@@ -37,4 +37,7 @@ public class ProductArtifact {
     @NonNull
     private GAV artifact;
 
+    @Getter
+    @Setter
+    private String differenceType;
 }

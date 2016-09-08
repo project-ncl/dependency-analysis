@@ -355,7 +355,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 } else {
                     different = Collections.emptySet();
                 }
+
                 differentVersion.put(gav, different);
+                setAllVersionDifferences(gav, different);
 
                 if (!bl && built.isEmpty() && different.isEmpty()) {
                     notBuilt.add(gav);
@@ -364,6 +366,19 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             ret.add(module);
         }
         return ret;
+    }
+
+    /**
+     * This method sets all different versions from GAV to product
+     * @param gav Compared GAV
+     * @param different Set of different artifacts
+     */
+    private void setAllVersionDifferences(GAV gav, Set<ProductArtifact> different) {
+        for (ProductArtifact productArtifact : different) {
+            String type = VersionComparator.difference(gav.getVersion(),
+                    productArtifact.getArtifact().getVersion()).toString();
+            productArtifact.setDifferenceType(type);
+        }
     }
 
     @Override

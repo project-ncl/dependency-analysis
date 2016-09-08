@@ -20,7 +20,7 @@ public class AlignReport {
 
     @Getter
     @NonNull
-    private final Set<RestGA2RestGAV2VersionProducts> builtInDifferentVersion = new HashSet<>();
+    private final Set<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = new HashSet<>();
 
     @Getter
     @NonNull
