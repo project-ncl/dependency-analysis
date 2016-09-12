@@ -20,6 +20,7 @@ import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import org.jboss.da.listings.api.model.WhiteArtifact;
+import static org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus.GA_EXISTS;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.model.rest.GAV;
@@ -66,6 +67,9 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
         Optional<WhiteArtifact> dbWhite = whiteArtifactDAO.findArtifact(groupId, artifactId,
                 version);
         ProductVersion p = productVersionDAO.read(productVersionId);
+        if (p.getWhiteArtifacts().stream().map(a -> a.getGa()).anyMatch(ga2 -> {return ga2.equals(ga);})) {
+            return GA_EXISTS;
+        }
         if (p == null) {
             throw new IllegalArgumentException("Wrong productId, product with this id not found");
         }
