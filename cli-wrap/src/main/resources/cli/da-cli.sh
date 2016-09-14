@@ -91,6 +91,10 @@ printUsage() {
     echo "        <groupId>:<artifactId>:<version> ::"
     echo "          <groupId>:<artifactId>:<version> <Exact Matched Red Hat Version> <In black/white list?> <Available Versions>"
     echo ""
+    echo "    $0 difference [--json] leftID rightID"
+    echo "        Returns difference between two products given by their IDs"
+    echo "          --json                    Output unparsed response from Dependency Analyzer."
+    echo ""
     echo "    $0 align-report [--json] [--unknown] [--productIDs IDS]... [--repository REPOSITORY]... SCM TAG [POM-PATH]"
     echo "        Check toplevel dependencies of all modules from git-scm link and print sumarized information."
     echo "          --json                    Output unparsed response from Dependency Analyzer."
@@ -142,6 +146,7 @@ case $action in
     lookup) shift; lookup "$@";;
     report) shift; report "$@";;
     align-report) shift; scm_report_align "$@" ;;
+    difference) shift; prod_difference "$@" ;;
     *) printUsage ;;
 esac
 
