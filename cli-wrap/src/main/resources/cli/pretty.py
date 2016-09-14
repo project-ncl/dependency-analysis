@@ -125,6 +125,124 @@ def printReportAlign(data):
         for dependency in module['gavs']:
             print "    " + getGAV(dependency)
 
+def fancyProductItem(data, element):
+    tablen = 4
+    tmp = "    " + element + " : " + str(data['leftProduct'][element])
+    tmp2 = "    " + element + " : " + str(data['rightProduct'][element])
+    tmplen = len(tmp)
+    tmp2len = len(tmp2)
+    
+   
+    sys.stdout.write(tmp) 
+    
+    for num in range (tmplen,40):
+        sys.stdout.write(" ")
+    sys.stdout.write(tmp2) 
+    print
+
+def checkLenLess80(data, element):  
+    tmp = "    " + element + " : " + str(data['leftProduct'][element])
+    tmp2 = "    " + element + " : " + str(data['leftProduct'][element])
+    tmplen = len(tmp)
+    tmp2len = len(tmp2)
+    return (tmplen + tmp2len) < 80
+
+def printDifference(data):
+    tablen = 4
+
+    newline = True
+
+    printInline = checkLenLess80(data,"id") and checkLenLess80(data,"name") and checkLenLess80(data,"version") and checkLenLess80(data,"supportStatus")
+
+    if (printInline):
+        sys.stdout.write("Left Product:")
+        for num in range (len("Left Product:"),40):
+            sys.stdout.write(" ")
+        print "Right Product:"
+        fancyProductItem(data,"id") 
+        fancyProductItem(data,"name")
+        fancyProductItem(data,"version")
+        fancyProductItem(data,"supportStatus")
+        print
+    else:
+        print("Left Product:")
+        print "    id : " + str(data['leftProduct']['id'])
+        print "    name : " + str(data['leftProduct']['name'])
+        print "    version : " + str(data['leftProduct']['version'])
+        print "    supportStatus : " + str(data['leftProduct']['supportStatus'])
+        print
+        print("Right Product:")
+        print "    id : " + str(data['rightProduct']['id'] )
+        print "    name : " + str(data['rightProduct']['name'])
+        print "    version : " + str(data['rightProduct']['version'])
+        print "    supportStatus : " + str(data['rightProduct']['supportStatus'])
+        print
+        
+    if len(data['added']) == 0:
+        newline = True
+        print "added : NONE"
+    else:
+        print "added :"
+        newline = False
+        for module in data['added']:
+            print "    groupId : " + module['groupId'] 
+            print "    artifactId : " + module['artifactId']
+            print "    version : " + module['version']
+            print
+
+    if (newline == True):
+        print
+
+    if len(data['removed']) == 0:
+        newline = True
+        print "removed : NONE"
+    else:
+        newline = False
+        print "removed :"
+        for module in data['removed']:
+            print "    groupId : " + module['groupId'] 
+            print "    artifactId : " + module['artifactId']
+            print "    version : " + module['version']
+            print
+    
+    if (newline == True):
+        print
+    
+    if len(data['changed']) == 0:
+        newline = True
+        print "changed : NONE"     
+    else:
+        newline = False
+        print "changed :"
+        for module in data['changed']:
+            print "    groupId : " + module['groupId'] 
+            print "    artifactId : " + module['artifactId']
+            tmp = "    " + module['leftVersion'] + "    ->    " + module['rightVersion']
+            inLine = len(tmp) < 80
+            if (inLine):
+                print(tmp)
+            else:
+                print "    leftVersion : " + module['leftVersion']
+                print "    rightVersion : " + module['rightVersion']
+            print
+        
+    if (newline == True):
+        print
+
+    if len(data['unchanged']) == 0:
+        newline = True
+        print "unchanged : NONE"
+    else:
+        newline = False
+        print "unchanged :"
+        for module in data['unchanged']:
+            print "    groupId : " + module['groupId'] 
+            print "    artifactId : " + module['artifactId']
+            print "    version : " + module['version']
+            print
+    if (newline == True):
+        print
+
 def printLookup(artifact):
     gav = getGAV(artifact)
     bestMatch = str(artifact["bestMatchVersion"])
@@ -182,6 +300,11 @@ def lookup():
     checkError(data)
     for artifact in data:
         printLookup(artifact)
+
+def difference():
+    data = readInput()
+    checkError(data)
+    printDifference(data)
 
 def listCheck():
     data = readInput()

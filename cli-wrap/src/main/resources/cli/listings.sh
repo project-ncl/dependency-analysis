@@ -489,4 +489,35 @@ scm_report_align() {
     rm $tmpfile
 }
 
+prod_difference() {
+    local type="pretty"
+
+    if [[ $1 == "--json" ]]; then
+        type="json"
+        shift 
+    fi
+    if [ "$#" -ne 2 ]; then
+        echo "Illegal number of parameters"
+        exit 1
+    fi
+    local left="$1"
+    local right="$2"
+    re='^[0-9]+$'
+    if ! [[ $left =~ $re ]] ; then
+        echo "error: Left ID is not a number" >&2; 
+        exit 1
+    fi
+    if ! [[ $right =~ $re ]] ; then
+        echo "error: Right ID is not a number" >&2; 
+        exit 1
+    fi
+    local tmpfile=`gettmpfile`
+    get "products/diff?leftProduct=${left}&rightProduct=${right}" >> $tmpfile
+    case $type in
+        pretty) cat $tmpfile | prettyPrint difference ;;
+        json) cat $tmpfile ;;
+    esac
+    rm $tmpfile
+}
+
 
