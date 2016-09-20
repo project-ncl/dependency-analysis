@@ -2,7 +2,7 @@ package org.jboss.da.communication.pnc.api;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
+import org.jboss.da.communication.pnc.model.BuildConfigurationBPMCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.Product;
 import org.jboss.da.communication.pnc.model.ProductVersion;
@@ -31,7 +31,18 @@ public interface PNCConnector {
     List<BuildConfiguration> getBuildConfigurations(String scmUrl, String scmRevision)
             throws CommunicationException, PNCRequestException;
 
-    BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
+    /**
+     * Gets BuildConfiguration from PNC with the specific name
+     *
+     * @param name name of the BC
+     * @return BC with specified name or empty optional if no such BC was found
+     * @throws CommunicationException Thrown if communication with PNC failed
+     * @throws PNCRequestException Thrown if PNC returns an error
+     */
+    Optional<BuildConfiguration> getBuildConfiguration(String name) throws CommunicationException,
+            PNCRequestException;
+
+    BuildConfiguration createBuildConfiguration(BuildConfigurationBPMCreate bc)
             throws CommunicationException, PNCRequestException;
 
     /**

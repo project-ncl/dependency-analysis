@@ -6,7 +6,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
+import org.jboss.da.communication.pnc.model.BuildConfigurationBPMCreate;
 import org.jboss.da.model.rest.GAV;
 import org.junit.Assert;
 import org.junit.Test;
@@ -53,7 +53,7 @@ public class FinalizerImplTest {
      */
     @Test
     public void testCreateAllSelected() throws CommunicationException, PNCRequestException {
-        when(pnc.createBuildConfiguration(Matchers.any(BuildConfigurationCreate.class))).then(
+        when(pnc.createBuildConfiguration(Matchers.any(BuildConfigurationBPMCreate.class))).then(
                 new BCCAnswer());
         ProjectHiearchy root = getHiearchy(true);
         root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(true), getHiearchy(true))));
@@ -67,7 +67,7 @@ public class FinalizerImplTest {
      * integers, when the hiearchy object is not selected AND it has selected dependencies
      */
     public void testCreateRootNotSelected() throws CommunicationException, PNCRequestException {
-        when(pnc.createBuildConfiguration(Matchers.any(BuildConfigurationCreate.class))).then(
+        when(pnc.createBuildConfiguration(Matchers.any(BuildConfigurationBPMCreate.class))).then(
                 new BCCAnswer());
         ProjectHiearchy root = getHiearchy(false);
         root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(true), getHiearchy(true))));
@@ -81,7 +81,7 @@ public class FinalizerImplTest {
      * integer, when the hiearchy object is not selected AND it has NO selected dependencies
      */
     public void testCreateNothingSelected() throws CommunicationException, PNCRequestException {
-        when(pnc.createBuildConfiguration(Matchers.any(BuildConfigurationCreate.class))).then(
+        when(pnc.createBuildConfiguration(Matchers.any(BuildConfigurationBPMCreate.class))).then(
                 new BCCAnswer());
         ProjectHiearchy root = getHiearchy(false);
         root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(true), getHiearchy(true))));
