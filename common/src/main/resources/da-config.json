@@ -25,6 +25,7 @@
           "aproxServer": "",
           "aproxGroup": "",
           "aproxGroupPublic": "",
+          "cartographerServerUrl": "",
           "backupScmUrl": "",
           "backupScmBranch": "",
           "repourUrl": ""

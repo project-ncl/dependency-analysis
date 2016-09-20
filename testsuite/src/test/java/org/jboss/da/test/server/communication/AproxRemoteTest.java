@@ -9,6 +9,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.cartographer.api.CartographerConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.test.ArquillianDeploymentFactory;
@@ -33,6 +34,9 @@ public class AproxRemoteTest {
     @Inject
     private AproxConnector aproxConnector;
 
+    @Inject
+    private CartographerConnector cartographerConnector;
+
     @Deployment
     public static EnterpriseArchive createDeployment() {
         return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
@@ -53,7 +57,7 @@ public class AproxRemoteTest {
     @Test
     public void testGetCorrectDependencies() throws CommunicationException, FindGAVDependencyException {
         GAV gav = new GAV("xom", "xom", "1.2.5");
-        GAVDependencyTree tree = aproxConnector.getDependencyTreeOfGAV(gav);
+        GAVDependencyTree tree = cartographerConnector.getDependencyTreeOfGAV(gav);
 
         Set<String> expectedDependencyGAV = new HashSet<>(
                 Arrays.asList(new String[] {"xalan:xalan:2.7.0", "xerces:xercesImpl:2.8.0", "xml-apis:xml-apis:1.3.03"}));
@@ -67,13 +71,13 @@ public class AproxRemoteTest {
     @Test(expected = FindGAVDependencyException.class)
     public void testNoGAVInRepository() throws CommunicationException, FindGAVDependencyException {
         GAV gav = new GAV("do", "not-exist", "1.0");
-        aproxConnector.getDependencyTreeOfGAV(gav);
+        cartographerConnector.getDependencyTreeOfGAV(gav);
     }
 
     @Test
     public void noDependenciesForGAV() throws CommunicationException, FindGAVDependencyException {
         GAV gav = new GAV("org.scala-lang", "scala-library", "2.11.7");
-        GAVDependencyTree reply = aproxConnector.getDependencyTreeOfGAV(gav);
+        GAVDependencyTree reply = cartographerConnector.getDependencyTreeOfGAV(gav);
         assertTrue(reply.getDependencies().isEmpty());
     }
 

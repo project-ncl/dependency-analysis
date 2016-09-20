@@ -4,6 +4,8 @@ import org.apache.maven.scm.ScmException;
 import org.commonjava.cartographer.CartoDataException;
 import org.commonjava.cartographer.CartographerCore;
 import org.commonjava.maven.galley.maven.GalleyMavenException;
+import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
+import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.util.Configuration;
@@ -66,6 +68,12 @@ public class GalleyWrapperTest {
     @Inject
     private Configuration config;
 
+    @Inject
+    private ModelProcessorConfig disConf;
+
+    @Inject
+    private MavenModelProcessor processor;
+
     private File clonedRepository;
 
     @Deployment
@@ -103,7 +111,8 @@ public class GalleyWrapperTest {
 
     @Test
     public void testGetPom() throws IOException, PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository)) {
+        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf,
+                processor)) {
             GalleyWrapper.Artifact parent = gw.getPom("pom.xml");
 
             assertEquals(PARENT_GAV, parent.getGAV());
@@ -116,7 +125,8 @@ public class GalleyWrapperTest {
 
     @Test
     public void testGetModules() throws IOException, PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository)) {
+        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf,
+                processor)) {
             GalleyWrapper.Artifact parent = gw.getPom("pom.xml");
 
             Set<GalleyWrapper.Artifact> modules = gw.getModules(parent);
@@ -149,7 +159,8 @@ public class GalleyWrapperTest {
 
     @Test
     public void testGetDependencies() throws IOException, PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository)) {
+        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf,
+                processor)) {
             gw.addDefaultLocations(config);
             gw.addLocationsFromPoms(pomReader);
 
