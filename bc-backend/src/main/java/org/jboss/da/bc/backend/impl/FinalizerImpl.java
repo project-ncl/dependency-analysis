@@ -20,8 +20,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
-import org.jboss.da.scm.api.SCMType;
+import org.jboss.da.communication.pnc.model.BuildConfigurationBPMCreate;
 import org.slf4j.Logger;
 
 /**
@@ -100,7 +99,7 @@ public class FinalizerImpl implements Finalizer {
                 
                 bc = optionalBc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
             } else {
-                BuildConfigurationCreate bcc = toBC(project, nextLevelDependencyIds);
+                BuildConfigurationBPMCreate bcc = toBC(project, nextLevelDependencyIds);
                 if (project.isCloneRepo()) {
                     log.warn("Repository clonning is disabled. (Tried to clone " + project.getScmUrl() + " " +project.getScmRevision());
                 }
@@ -114,8 +113,8 @@ public class FinalizerImpl implements Finalizer {
         }
     }
 
-    private BuildConfigurationCreate toBC(ProjectDetail project, Set<Integer> deps) {
-        BuildConfigurationCreate bc = new BuildConfigurationCreate();
+    private BuildConfigurationBPMCreate toBC(ProjectDetail project, Set<Integer> deps) {
+        BuildConfigurationBPMCreate bc = new BuildConfigurationBPMCreate();
         bc.setBuildScript(project.getBuildScript());
         bc.setDependencyIds(new ArrayList<>(deps));
         bc.setDescription(project.getDescription());

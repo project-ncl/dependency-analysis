@@ -6,7 +6,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
@@ -16,7 +15,6 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Remote tests, which tests communication with PNC

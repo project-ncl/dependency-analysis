@@ -8,7 +8,7 @@ import org.jboss.da.communication.pnc.api.PNCConnector;
 import org.jboss.da.communication.pnc.authentication.PNCAuthentication;
 import org.jboss.da.communication.pnc.authentication.PncAuthenticated;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
+import org.jboss.da.communication.pnc.model.BuildConfigurationBPMCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.PNCResponseWrapper;
 import org.jboss.da.communication.pnc.model.Product;
@@ -82,6 +82,16 @@ public class PNCConnectorImpl implements PNCConnector {
         }
     }
 
+    private ClientResponse post(String url, Object body, String accessToken)
+            throws CommunicationException {
+        try {
+            ClientRequest request = getClient(url, accessToken);
+            return request.body(MediaType.APPLICATION_JSON, body).post();
+        } catch (Exception ex) {
+            throw new CommunicationException("Error while contacting PNC", ex);
+        }
+    }
+
     private <T> ClientResponse<T> delete(String url, Class type, String accessToken)
             throws CommunicationException {
         try {
@@ -103,13 +113,60 @@ public class PNCConnectorImpl implements PNCConnector {
     }
 
     @Override
-    public BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
+    public Optional<BuildConfiguration> getBuildConfiguration(String name)
             throws CommunicationException, PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
-        ClientResponse<PNCResponseWrapper<BuildConfiguration>> response = post(
-                "bpm/tasks/start-build-configuration-creation", bc,
-                new GenericType<PNCResponseWrapper<BuildConfiguration>>() {}, accessToken);
-        return checkAndReturn(response, accessToken).getContent();
+        String requestUrl = String.format(
+                "build-configurations?q=name=='%s';&pageIndex=0&pageSize=2", name);
+
+        ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = get(requestUrl,
+                new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {}, accessToken);
+
+        if (response.getResponseStatus() == Status.NO_CONTENT)
+            return Optional.empty();
+
+        List<BuildConfiguration> bcs = checkAndReturn(response, accessToken).getContent();
+        if (bcs.isEmpty()) {
+            return Optional.empty();
+        }
+        if (bcs.size() > 1) {
+            throw new PNCRequestException("Expected single build configuration for name " + name
+                    + ". Got multiple.");
+        }
+        return bcs.stream().findAny();
+    }
+
+    @Override
+    public BuildConfiguration createBuildConfiguration(BuildConfigurationBPMCreate bc)
+            throws CommunicationException, PNCRequestException {
+        String accessToken = pncAuthenticate.getAccessToken();
+        ClientResponse response = post("bpm/tasks/start-build-configuration-creation", bc,
+                accessToken);
+        switch (response.getResponseStatus()) {
+            case OK:
+                break;
+            case UNAUTHORIZED:
+                throw new AuthenticationException(accessToken);
+            default:
+                throw new PNCRequestException(response.getResponseStatus() + " "
+                        + response.getEntity(String.class));
+        }
+
+        int tries = 13;
+        while (tries-- > 0) {
+            Optional<BuildConfiguration> buildConfiguration = getBuildConfiguration(bc.getName());
+            if (buildConfiguration.isPresent())
+                return buildConfiguration.get();
+
+            try {
+                Thread.sleep(1000 * 30);
+            } catch (InterruptedException ex) {
+                throw new CommunicationException("Waiting for buildconfiguration " + bc.getName()
+                        + " was interrupted.", ex);
+            }
+        }
+        throw new CommunicationException("Timeout while waiting for buildconfiguration "
+                + bc.getName() + ".");
     }
 
     @Override
@@ -237,7 +294,6 @@ public class PNCConnectorImpl implements PNCConnector {
                 throw new PNCRequestException(response.getResponseStatus() + " "
                         + response.getEntity(String.class));
         }
-
     }
 
     private boolean checkReturnCode(ClientResponse<String> response, String accessToken)
