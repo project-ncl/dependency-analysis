@@ -117,7 +117,7 @@ public class PNCConnectorImpl implements PNCConnector {
             throws CommunicationException, PNCRequestException {
         String accessToken = pncAuthenticate.getAccessToken();
         String requestUrl = String.format(
-                "build-configurations?q=name=='%s';&pageIndex=0&pageSize=2", name);
+                "build-configurations?q=name=='%s'&pageIndex=0&pageSize=2", name);
 
         ClientResponse<PNCResponseWrapper<List<BuildConfiguration>>> response = get(requestUrl,
                 new GenericType<PNCResponseWrapper<List<BuildConfiguration>>>() {}, accessToken);
