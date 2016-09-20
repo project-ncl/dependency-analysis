@@ -40,11 +40,11 @@ public class BuildConfigurationBPMCreate {
 
     @Getter
     @Setter
-    private Integer project;
+    private Integer projectId;
 
     @Getter
     @Setter
-    private Integer environment;
+    private Integer buildEnvironmentId;
 
     @Getter
     @Setter
@@ -55,11 +55,7 @@ public class BuildConfigurationBPMCreate {
     private Integer productVersionId;
 
     public void setEnvironmentId(int id) {
-        this.environment = id;
-    }
-
-    public void setProjectId(int id) {
-        this.project = id;
+        this.projectId = id;
     }
 
     public void setSCMLocation(String repoURL, String revision) {
