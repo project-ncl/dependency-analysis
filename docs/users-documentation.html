@@ -145,7 +145,7 @@
             <li>
             <p>
                 The easiest way to make the CLI tools running is to
-                <a href="https://github.com/project-ncl/dependency-analysis/blob/master/cli-wrap/cli-tools-0.8.0.zip">downloadthe ZIP archive</a>
+                <a href="https://github.com/project-ncl/dependency-analysis/raw/master/cli-wrap/cli-tools-0.8.0.zip">download the ZIP archive</a>
                 from GitHub, which contains all the required support scripts and both CLI tools. The
                 latest versions of the tools are always placed in the folder /cli. When you download the
                 ZIP file, you can unzip the file and start using it.
@@ -153,9 +153,13 @@
             </li>
             <li>
                 <p>
-                    Second option is to clone Dependency Analyser repository via git. Clone with this SSH - git@github.com:project-ncl/dependency-analysis.git.
-                    Now enter directory at this path - dependency-analysis/cli-wrap/src/main/resources/cli. There you can find both scripts da-cli 
-                    and da-cli-admin. Before using them you will have probably to give permissions to this files by chmod +x command.
+                    Second option is to clone Dependency Analyser repository via git:
+                        <ul>
+                            <li>Clone the repository: git clone https://github.com/project-ncl/dependency-analysis</li>
+                            <li>Enter the directory with the CLI: cd dependency-analysis/cli-wrap/src/main/resources/cli/</li>
+                            <li>Change permissions: chmod +x *.py *.sh</li>
+                            <li>Run the CLI. E.g.: ./da-cli.sh lookup org.hibernate:hibernate-core:4.2.21.Final</li>
+                        </ul>
                 </p>
             </li>
         </ul>
