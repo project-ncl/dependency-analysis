@@ -141,15 +141,26 @@
             options.</p>
 
         <h3>Installation</h3>
-        <p>
-            The easiest way to make the CLI tools running is to
-            <a
-                href="https://github.com/project-ncl/dependency-analysis/raw/master/cli-wrap/cli-tools-0.7.0.zip">download
-                the ZIP archive</a>
-            from GitHub, which contains all the required support scripts and both CLI tools. The
-            latest versions of the tools are always placed in the folder /cli. When you download the
-            ZIP file, you can unzip the file and start using it.
-        </p>
+        <ul>
+            <li>
+            <p>
+                The easiest way to make the CLI tools running is to
+                <a
+                    href="https://github.com/project-ncl/dependency-analysis/raw/master/cli-wrap/cli-tools-0.7.0.zip">download
+                    the ZIP archive</a>
+                from GitHub, which contains all the required support scripts and both CLI tools. The
+                latest versions of the tools are always placed in the folder /cli. When you download the
+                ZIP file, you can unzip the file and start using it.
+            </p>
+            </li>
+            <li>
+                <p>
+                    Second option is to clone Dependency Analyser repository via git. Clone with this SSH - git@github.com:project-ncl/dependency-analysis.git.
+                    Now enter directory at this path - dependency-analysis/cli-wrap/src/main/resources/cli. There you can find both scripts da-cli 
+                    and da-cli-admin. Before using them you will have probably to give permissions to this files by chmod +x command.
+                </p>
+            </li>
+        </ul>
         <p>Note: There is no configuration option to specify the URL of the server. Currently it
             is hardcoded in the scripts to simplify the distribution to the users, but of course it
             will be added later.</p>
