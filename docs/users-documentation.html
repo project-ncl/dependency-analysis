@@ -187,12 +187,13 @@
                         </ul>
                     <li>
                         <span class="strong">Usage:</span>
-                        ./da-cli.sh lookup [groupId:artifactId:version]
+                        ./da-cli.sh lookup [GROUP_ID:ARTIFACT_ID[:PACKAGING[:CLASSIFIER]]:VERSION[:SCOPE]] [--products PRODUCTS] [--productIDs IDS]
                         <br />
 
-                        When groupId:artifactId:version is specified finds corresponding redhat
-                        versions for it. When it is not specified, reads G:A:Vs from the standard
-                        input and finds the corresponding redhat versions for all of them.
+                        When GROUP_ID:ARTIFACT_ID:VERSION is specified finds corresponding redhat versions for it.
+                        When it is not specified, reads G:A:Vs from standard input and finds corresponding redhat versions for all of them.
+                        Packaging, classifier and scope is ignored in both cases.
+                        Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS]).
                     </li>
                 </ul>
             </li>
@@ -220,11 +221,11 @@
                             <li>blacklisted/greylisted/whitelisted</li>
                             <li>Number of not built transitive dependencies (XY dependencies
                                 not built) or "all dependencies built"</li>
-                            <li>Total number of built versions of the requested GA</li>
+                            <li>All available versions</li>
                         </ul>
                     <li>
                         <span class="strong">Usage:</span>
-                        ./da-cli.sh report [--raw|--json] [groupId:artifactId:version]
+                        ./da-cli.sh report [--raw|--json] [--products PRODUCTS] [--productIDs IDS] GROUP_ID:ARTIFACT_ID:VERSION
                     </li>
                 </ul>
             </li>
@@ -248,12 +249,13 @@
                         .
                     <li>
                         <span class="strong">Usage:</span>
-                        ./da-cli.sh scm-report [--raw|--json] scm tag pom-path
+                        ./da-cli.sh scm-report [--raw|--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]
                         <ul>
                             <li>scm - URL to the remote SCM repository</li>
                             <li>tag - Tag, branch or revision of the SCM</li>
                             <li>pom-path - Path to the POM in the repository, which will be the
                                 starting POM for the analysis</li>
+                            <li>Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS])</li>
                         </ul>
                     </li>
                 </ul>
@@ -290,17 +292,83 @@
                         (dependencies in projects' POMs) of the project's modules.
                     <li>
                         <span class="strong">Usage:</span>
-                        ./da-cli.sh scm-report-advanced [--json] scm tag pom-path
+                        ./da-cli.sh scm-report-advanced [--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]
                         <ul>
                             <li>scm - URL to the remote SCM repository</li>
                             <li>tag - Tag, branch or revision of the SCM</li>
                             <li>pom-path - Path to the POM in the repository, which will be the
                                 starting POM for the analysis</li>
+                            <li>Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS])</li>
                         </ul>
                     </li>
+                    
                 </ul>
             </li>
-
+            <li>
+            <span class="strong">Align report</span>
+            <ul>
+                <li>
+                    This option checks toplevel dependencies of all modules from git-scm link and prints sumarized information.
+                </li>
+                <li>
+                    <span class="strong">Output:</span>
+                    <ul>
+                        <li>Internaly built:
+                        MODULE
+                            DEPENDENCY - BUILT_VERSION (PRODUCT)
+                        </li>
+                      <li>Built in different version:
+                        MODULE
+                            DEPENDENCY - BUILT_VERSION (PRODUCT)
+                            </li>
+                      <li>Not built:
+                        MODULE
+                            DEPENDENCY
+                            </li>
+                      <li>Blacklisted:
+                        MODULE
+                            DEPENDENCY
+                            </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="strong">Usage</span>
+                    ./da-cli.sh align-report [--json] [--unknown] [--productIDs IDS]... [--repository REPOSITORY]... SCM TAG [POM-PATH]
+                    <ul>
+                        <li>--json Output unparsed response from Dependency Analyzer.</li>
+                        <li>--unknown Consider artifacts from unknown products.</li>
+                        <li>--productIDs IDS Consider artifact only from specified product IDs. IDS should be comma separated.</li>
+                        <li>--repository REPOSITORY Aditional maven repositories required by the analysed project. You can specify this
+                                    option multiple times.</li>
+                    </ul>
+                </li>
+            </ul>
+            </li>
+            <li>
+             <span class="strong">Difference of products</span>
+                <ul>
+                <li>
+                    Returns list of different versions of artifacts between two products given by their IDs        
+                </li>
+                    <li>
+                        <span class="strong">Output:</span>
+                        <ul>
+                            <li>
+                                List of different versions 
+                            </li>
+                        </ul>
+                     </li>
+                 
+             <li>
+                    <span class="strong">Usage</span>
+                    ./da-cli.sh difference [--json] leftID rightID
+                    <ul>
+                        <li>--json Output unparsed response from Dependency Analyzer.</li>
+                        <li>leftID ID of first product</li>
+                        <li>rightID ID of second product</li>
+                    </ul>
+                </li>
+               </ul>
         </ul>
 
 
