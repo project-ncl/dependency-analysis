@@ -61,7 +61,7 @@ public class CartographerConnectorImpl implements CartographerConnector {
 
         if (!aproxConnector.doesGAVExistInPublicRepo(gav)) {
             throw new FindGAVDependencyException("Could not find: " + gav
-                    + "in public repo of Aprox");
+                    + " in public repo of Aprox");
         }
 
         try {
