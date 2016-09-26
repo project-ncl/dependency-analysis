@@ -246,7 +246,7 @@ lookup() {
     fi
     query="$query, \"gavs\": [$gavs]"
     query="$query }"
-
+    
     tmpfile=`gettmpfile`
     post "reports/lookup/gavs" "$query" >> $tmpfile
 
@@ -367,8 +367,12 @@ scm_report() {
         exit 1
     fi
     
-    productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
-    productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
+    if [ -n "$productNames" ]; then
+        productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
+    fi
+    if [ -n "$productVersionIds" ]; then
+        productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
+    fi
 
     local scmJSON="{\"scml\":{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}, \"productNames\": [$productNames], \"productVersionIds\": [$productVersionIds]}"
     local report="$(post "reports/scm" "${scmJSON}")"
@@ -413,9 +417,14 @@ scm_report_adv() {
         echo "Error: You have to specify the scm, scm tag and the pom path to analyze"
         exit 1
     fi
-    
-    productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
-    productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
+
+    if [ -n "$productNames" ]; then
+        productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
+    fi
+    if [ -n "$productVersionIds" ]; then
+        productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
+    fi  
+ 
     local scmJSON="{\"scml\":{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}, \"productNames\": [$productNames], \"productVersionIds\": [$productVersionIds]}"
     tmpfile=`gettmpfile`
     post "reports/scm-advanced" "$scmJSON" >> $tmpfile
