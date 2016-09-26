@@ -61,7 +61,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.da>0.8.0-SNAPSHOT</version.da>
-        <version.cli>0.8.0</version.cli>
+        <version.cli>0.8.1</version.cli>
         <version.reports.rest>0.4</version.reports.rest>
         <version.bc.rest>0.3</version.bc.rest>
         <version.aether>0.9.0.M2</version.aether>
