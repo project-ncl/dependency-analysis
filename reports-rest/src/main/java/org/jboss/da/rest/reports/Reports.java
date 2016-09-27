@@ -48,6 +48,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * Main end point for the reports
@@ -78,7 +80,20 @@ public class Reports {
     public Response scmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
 
         try {
-
+            if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
+                Iterator<Long> iterator = request.getProductVersionIds().iterator();
+                if(iterator.next() == null) {
+                    iterator.remove();
+                }
+            }
+            
+            if (request.getProductNames().size() == 1) { 
+                Iterator<String> iterator = request.getProductNames().iterator();
+                if("".equals(iterator.next())) {
+                    iterator.remove();
+                }
+            }
+            
             Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(request);
 
             return artifactReport
@@ -113,6 +128,20 @@ public class Reports {
     public Response advancedScmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
 
         try {
+            
+            if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
+                Iterator<Long> iterator = request.getProductVersionIds().iterator();
+                if(iterator.next() == null) {
+                    iterator.remove();
+                }
+            }
+            
+            if (request.getProductNames().size() == 1) { 
+                Iterator<String> iterator = request.getProductNames().iterator();
+                if("".equals(iterator.next())) {
+                    iterator.remove();
+                }
+            }
 
             Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator
                     .getAdvancedReportFromSCM(request);
