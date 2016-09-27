@@ -158,22 +158,15 @@ report() {
     done
     matchGAV $gav
     productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
-    productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
     local query="{"
     query="$query `formatGAVjsonRequest` "
-    msize=$(expr length $productNames)
-    if [ $msize -eq 2 ]; then
+    if [ $productNames == "\"\"" ]; then
         query="$query, \"productNames\": []"
     else
         query="$query, \"productNames\": [$productNames]"
     fi
 
-    msize=$(expr length $productVersionIds)
-    if [ $msize -eq 2 ]; then
-        query="$query, \"productVersionIds\": []"
-    else
-        query="$query, \"productVersionIds\": [$productVersionIds]"
-    fi
+    query="$query, \"productVersionIds\": [$productVersionIds]"
     query="$query }"
     tmpfile=`gettmpfile`
     post "reports/gav" "$query" >> $tmpfile
@@ -228,28 +221,20 @@ lookup() {
         done
     fi
     productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
-    productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
- 
+  
     local query="{"
 
-    msize=$(expr length $productNames)
-    if [ $msize -eq 2 ]; then
+    if [ $productNames == "\"\"" ]; then
         query="$query \"productNames\": []"
     else
         query="$query \"productNames\": [$productNames]"
     fi
-    msize=$(expr length $productVersionIds)
-    if [ $msize -eq 2 ]; then
-        query="$query, \"productVersionIds\": []"
-    else
-        query="$query, \"productVersionIds\": [$productVersionIds]"
-    fi
+    query="$query, \"productVersionIds\": [$productVersionIds]"
     query="$query, \"gavs\": [$gavs]"
     query="$query }"
     
     tmpfile=`gettmpfile`
     post "reports/lookup/gavs" "$query" >> $tmpfile
-
     cat $tmpfile | prettyPrint lookup
     rm $tmpfile
 }
@@ -366,12 +351,11 @@ scm_report() {
         echo "Error: You have to specify the scm, scm tag and the pom path to analyze"
         exit 1
     fi
+
+    productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
     
-    if [ -n "$productNames" ]; then
-        productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
-    fi
-    if [ -n "$productVersionIds" ]; then
-        productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
+    if [ $productNames == "\"\"" ]; then
+        productNames=""
     fi
 
     local scmJSON="{\"scml\":{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}, \"productNames\": [$productNames], \"productVersionIds\": [$productVersionIds]}"
@@ -398,9 +382,7 @@ scm_report_adv() {
             --json) type="json" ;;
             --products)
                 [ -n "$productNames" ] && productNames="$productNames,"
-                productNames="$2"
-                echo productNames
-                
+                productNames="$2"        
                 shift
                 ;;
             --productIDs)
@@ -418,13 +400,11 @@ scm_report_adv() {
         exit 1
     fi
 
-    if [ -n "$productNames" ]; then
-        productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
+    productNames=\"$(sed 's/,/","/g' <<<$productNames)\"
+    if [ $productNames == "\"\"" ]; then
+        productNames=""
     fi
-    if [ -n "$productVersionIds" ]; then
-        productVersionIds=\"$(sed 's/,/","/g' <<<$productVersionIds)\"
-    fi  
- 
+
     local scmJSON="{\"scml\":{\"scmUrl\": \"${scm}\", \"revision\": \"${tag}\", \"pomPath\": \"${pom_path}\"}, \"productNames\": [$productNames], \"productVersionIds\": [$productVersionIds]}"
     tmpfile=`gettmpfile`
     post "reports/scm-advanced" "$scmJSON" >> $tmpfile
