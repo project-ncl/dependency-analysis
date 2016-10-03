@@ -6,7 +6,7 @@ import fileinput
 
 def formatProduct(product, supportStatus=True):
     if supportStatus:
-        return product["name"] + ":" + product["version"] + " " + product["supportStatus"]
+        return product["name"] + ":" + product["version"] + ":" + product["supportStatus"]
     else:
         return product["name"] + ":" + product["version"]
 
