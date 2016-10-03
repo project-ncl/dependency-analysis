@@ -142,15 +142,36 @@
             options.</p>
 
         <h3>Installation</h3>
-        <p>
-            The easiest way to make the CLI tools running is to
-            <a
-                href="https://github.com/project-ncl/dependency-analysis/blob/master/cli/da-cli-0.4.2.zip?raw=true">download
-                the ZIP archive</a>
-            from GitHub, which contains all the required support scripts and both CLI tools. The
-            latest versions of the tools are always placed in the folder /cli. When you download the
-            ZIP file, you can unzip the file and start using it.
-        </p>
+        <ul>
+            <li>
+            <p>
+                The easiest way to make the CLI tools running is to
+                <a href="https://github.com/project-ncl/dependency-analysis/raw/master/cli-wrap/da-cli-tools-0.8.1-pack.zip">download the ZIP archive</a>
+                from GitHub, which contains all the required support scripts and both CLI tools. The
+                latest versions of the tools are always placed in the folder /cli. When you download the
+                ZIP file, you can unzip the file and start using it.
+                How to do that?
+                <ol>
+                    <li>Unzip the CLI: unzip da-cli-tools-0.8.1-pack.zip</li>
+                    <li>Enter the folder with CLI: cd da-cli-tools-0.8.1</li>
+                    <li>Change permissions: chmod +x *.py *.sh</li>
+                    <li>Run the script. E.g.: ./da-cli.sh lookup org.hibernate:hibernate-core:4.2.21.Final</li>
+                </ol>
+            </p>
+            </li>
+            <li>
+                <p>
+                    Second option is to clone Dependency Analyser repository via git:
+                        <ol>
+                            <li>Clone the repository: git clone https://github.com/project-ncl/dependency-analysis</li>
+                            <li>Enter the directory with the CLI: cd dependency-analysis/cli-wrap/src/main/resources/cli/</li>
+                            <li>Change permissions: chmod +x *.py *.sh</li>
+                            <li>Run the CLI. E.g.: ./da-cli.sh lookup org.hibernate:hibernate-core:4.2.21.Final</li>
+                        </ol>
+                </p>
+            </li>
+        </ul>
+        
         <p>Note: There is no configuration option to specify the URL of the server. Currently it
             is hardcoded in the scripts to simplify the distribution to the users, but of course it
             will be added later.</p>
