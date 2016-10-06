@@ -1,5 +1,6 @@
 package org.jboss.da.communication.pom;
 
+import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
 import org.commonjava.maven.galley.TransferException;
 import org.commonjava.maven.galley.maven.GalleyMaven;
 import org.commonjava.maven.galley.maven.parse.PomPeek;
@@ -10,14 +11,20 @@ import org.jboss.da.common.util.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+import static java.nio.file.Files.lines;
 import java.nio.file.Path;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Class holding local maven-like repository of pom files.
@@ -28,6 +35,8 @@ public class LocalRepo {
     private static final Logger log = LoggerFactory.getLogger(LocalRepo.class);
 
     private Path path;
+
+    private static final String SUFFIX = "-20150205.044024-1.pom";
 
     public LocalRepo(GalleyMaven galley, File scmDir) throws IOException {
         path = Files.createTempDirectory("deps");
@@ -48,18 +57,23 @@ public class LocalRepo {
 
         for (Path pomFile : poms) {
             PomPeek peek = new PomPeek(pomFile.toFile());
-            if (peek.getKey() == null) {
+            final ProjectVersionRef key = peek.getKey();
+            if (key == null) {
                 log.warn("Could not parse " + pomFile.toAbsolutePath());
                 continue;
             }
 
             try {
-                String artifactPath = ArtifactPathUtils.formatArtifactPath(peek.getKey()
-                        .asPomArtifact(), galley.getTypeMapper());
+                String artifactPath = ArtifactPathUtils.formatArtifactPath(key.asPomArtifact(),
+                        galley.getTypeMapper());
 
                 Path p = path.resolve(artifactPath);
                 Files.createDirectories(p.getParent());
-                Files.copy(pomFile, p);
+                if (key.getVersionSpec().isSnapshot()) {
+                    initSnapshot(key, pomFile, p);
+                } else {
+                    Files.copy(pomFile, p);
+                }
             } catch (TransferException | RuntimeException ex) {
                 log.warn("Could not parse " + pomFile.toAbsolutePath(), ex);
             } catch (FileAlreadyExistsException ex) {
@@ -93,4 +107,28 @@ public class LocalRepo {
         FileUtils.deleteDirectory(f);
     }
 
+    /**
+     * This method will generate maven-metadata for 
+     * @param key
+     * @param pomFile
+     * @param p
+     * @throws IOException 
+     */
+    private void initSnapshot(ProjectVersionRef key, Path pomFile, Path p) throws IOException {
+        Path dir = p.getParent();
+        Path metadata = dir.resolve("maven-metadata.xml");
+        if(Files.exists(metadata)){
+            throw new UnsupportedOperationException("Merging of metadata is not supported yet. Conflicting metadata: " + metadata);
+        }
+        InputStream is = this.getClass().getResourceAsStream("/template/maven-metadata.xml");
+        
+        Stream<String> lines = new BufferedReader(new InputStreamReader(is)).lines()
+                .map(l -> l.replace("${groupId}", key.getGroupId()))
+                .map(l -> l.replace("${artifactId}", key.getGroupId()))
+                .map(l -> l.replace("${version}", key.getVersionString().replace("-SNAPSHOT", "")));
+                
+        Files.write(metadata, (Iterable<String>) lines::iterator);
+        Path newPomFile = dir.resolve(p.getFileName().toString().replace("-SNAPSHOT.pom", SUFFIX));
+        Files.copy(pomFile, newPomFile);
+    }
 }
