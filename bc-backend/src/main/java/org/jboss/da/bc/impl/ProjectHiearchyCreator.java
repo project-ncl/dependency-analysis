@@ -33,11 +33,15 @@ import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.slf4j.Logger;
 
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
 @Stateless
+@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class ProjectHiearchyCreator {
 
     @Inject
