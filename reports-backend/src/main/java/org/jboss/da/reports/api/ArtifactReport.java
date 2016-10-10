@@ -2,8 +2,6 @@ package org.jboss.da.reports.api;
 
 import org.jboss.da.model.rest.GAV;
 
-import javax.xml.bind.annotation.XmlTransient;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -31,7 +29,6 @@ public class ArtifactReport implements Comparable<ArtifactReport> {
 
     @Getter
     @NonNull
-    @XmlTransient
     private GAV gav;
 
     @NonNull

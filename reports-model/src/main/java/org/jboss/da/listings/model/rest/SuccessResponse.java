@@ -1,11 +1,8 @@
 package org.jboss.da.listings.model.rest;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,8 +15,7 @@ import lombok.ToString;
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  *
  */
-@XmlRootElement(name = "success")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value = "success")
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
@@ -28,7 +24,7 @@ public class SuccessResponse {
 
     @Getter
     @Setter
-    @XmlElement(required = true, name = "success")
+    @JsonProperty(required = true)
     protected boolean success;
 
     @Getter
@@ -37,7 +33,6 @@ public class SuccessResponse {
 
     @Getter
     @Setter
-    @XmlElement(required = false, name = "message")
     protected String message;
 
 }

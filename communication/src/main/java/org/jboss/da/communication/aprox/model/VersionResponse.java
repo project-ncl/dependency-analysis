@@ -5,6 +5,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * This entity is deserialized from XML file
+ * @author sknot
+ */
 @XmlRootElement(name = "metadata")
 @ToString
 public class VersionResponse {

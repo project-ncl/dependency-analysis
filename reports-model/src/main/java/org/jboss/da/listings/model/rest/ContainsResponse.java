@@ -1,10 +1,8 @@
 package org.jboss.da.listings.model.rest;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,8 +15,7 @@ import lombok.ToString;
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  *
  */
-@XmlRootElement(name = "contains")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value = "contains")
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
@@ -26,11 +23,11 @@ public class ContainsResponse {
 
     @Getter
     @Setter
-    @XmlElement(required = true, name = "contains")
+    @JsonProperty(required = true, value = "contains")
     protected boolean contains;
 
     @Getter
     @Setter
-    @XmlElement(required = true, name = "found")
+    @JsonProperty(required = true, value = "found")
     private List<RestArtifact> found;
 }

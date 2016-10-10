@@ -10,6 +10,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -18,8 +19,7 @@ import lombok.NonNull;
  *
  * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
  */
-@XmlRootElement(name = "report")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value = "report")
 public class GAVRequest {
 
     @JsonCreator

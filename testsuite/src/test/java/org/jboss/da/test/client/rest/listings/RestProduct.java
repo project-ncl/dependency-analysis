@@ -1,10 +1,7 @@
 package org.jboss.da.test.client.rest.listings;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,8 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@XmlRootElement(name = "product")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value = "product")
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
