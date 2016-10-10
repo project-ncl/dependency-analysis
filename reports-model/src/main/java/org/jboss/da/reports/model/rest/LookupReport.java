@@ -3,8 +3,6 @@ package org.jboss.da.reports.model.rest;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GAV;
 
-import javax.xml.bind.annotation.XmlTransient;
-
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,7 +24,6 @@ public class LookupReport {
     @Setter(onMethod = @__({ @JsonIgnore }))
     @NonNull
     @JsonIgnore
-    @XmlTransient
     private GAV gav;
 
     @Getter
