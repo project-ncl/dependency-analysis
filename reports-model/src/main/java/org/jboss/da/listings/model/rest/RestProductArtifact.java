@@ -1,8 +1,6 @@
 package org.jboss.da.listings.model.rest;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -10,8 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@XmlRootElement(name = "productArtifact")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value = "productArtifact")
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString

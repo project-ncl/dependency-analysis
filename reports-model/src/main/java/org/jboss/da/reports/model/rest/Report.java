@@ -1,8 +1,6 @@
 package org.jboss.da.reports.model.rest;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import java.util.List;
 
@@ -17,8 +15,7 @@ import org.jboss.da.model.rest.GAV;
  *
  * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
  */
-@XmlRootElement(name = "report")
-@XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value = "report")
 @AllArgsConstructor
 public class Report {
 

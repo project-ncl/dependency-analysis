@@ -1,7 +1,5 @@
 package org.jboss.da.model.rest;
 
-import javax.xml.bind.annotation.XmlTransient;
-
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -32,9 +30,9 @@ public class GAV implements Comparable<GAV> {
     }
 
     @JsonIgnore
-    @XmlTransient
     /*
-     * The @XmlTransient annotation is added so that Swagger doesn't try to represent the 'GA' object in its model schema
+     * @XmlTransient The @XmlTransient annotation is added so that Swagger doesn't try to represent the 'GA' object in its model
+     * schema
      */
     public GA getGA() {
         return ga;

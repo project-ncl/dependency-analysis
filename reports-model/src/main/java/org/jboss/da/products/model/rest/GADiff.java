@@ -53,7 +53,7 @@ public class GADiff implements Comparable<GADiff> {
     }
 
     @JsonIgnore
-    @XmlTransient
+    //@XmlTransient
     /*
      * The @XmlTransient annotation is added so that Swagger doesn't try to represent the 'GA' object in its model schema
      */
