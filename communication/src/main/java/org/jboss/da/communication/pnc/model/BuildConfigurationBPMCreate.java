@@ -55,7 +55,7 @@ public class BuildConfigurationBPMCreate {
     private Integer productVersionId;
 
     public void setEnvironmentId(int id) {
-        this.projectId = id;
+        this.buildEnvironmentId = id;
     }
 
     public void setSCMLocation(String repoURL, String revision) {
