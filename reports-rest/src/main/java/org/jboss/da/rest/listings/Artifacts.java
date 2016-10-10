@@ -264,7 +264,7 @@ public class Artifacts {
                 product.getSupportStatus()));
         Long id = productVersionService.getProductVersion(product.getName(), product.getVersion())
                 .get().getId();
-        response.setId(id);
+        //response.setId(id);
         return Response.ok(response).build();
     }
 

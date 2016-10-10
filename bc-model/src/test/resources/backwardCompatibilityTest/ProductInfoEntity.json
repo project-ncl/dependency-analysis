@@ -1,0 +1,24 @@
+{
+    "bcSetName": "bcSetName",
+    "id": 1,
+    "pomPath": "./pom.xml",
+    "productVersion": "4-redhat",
+    "topLevelBc": {
+        "analysisStatus": null,
+        "availableVersions": null,
+        "bcId": null,
+        "buildScript": null,
+        "dependencies": null,
+        "description": null,
+        "environmentId": null,
+        "errors": null,
+        "existingBCs": null,
+        "gav": null,
+        "internallyBuilt": null,
+        "name": null,
+        "projectId": null,
+        "scmRevision": null,
+        "scmUrl": null,
+        "selected": false
+    }
+}

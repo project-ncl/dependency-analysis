@@ -1,0 +1,25 @@
+{
+    "analysisStatus": "ANALYSED",
+    "availableVersions": [],
+    "bcId": 0,
+    "buildScript": "buildScript",
+    "dependencies": [],
+    "description": "description",
+    "environmentId": 1,
+    "errors": [
+        "No dependency found:Failed to found dependencies in Aprox and SCM repository",
+        "Enviroment ID is null:There is no enviroment selected or another error occured and enviroment Id is null"
+    ],
+    "existingBCs": [],
+    "gav": {
+        "artifactId": "a",
+        "groupId": "g",
+        "version": "v"
+    },
+    "internallyBuilt": "internallyBuilt",
+    "name": "name",
+    "projectId": 0,
+    "scmRevision": "scmRevision",
+    "scmUrl": "scmUrl",
+    "selected": true
+}

@@ -1,0 +1,7 @@
+{
+    "pomPath": "./pom.xml",
+    "productId": 0,
+    "repositories": [],
+    "revision": "master",
+    "scmUrl": "git@github.com:project-ncl/dependency-analysis.git"
+}

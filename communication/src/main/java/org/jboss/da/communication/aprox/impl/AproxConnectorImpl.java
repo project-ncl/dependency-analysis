@@ -149,7 +149,6 @@ public class AproxConnectorImpl implements AproxConnector {
     private VersionResponse parseMetadataFile(URLConnection connection) throws IOException,
             CommunicationException {
         try (InputStream in = connection.getInputStream()) {
-            //System.out.println("inputstream " + convertStreamToString(in));
             VersionResponse k = MetadataFileParser.parseMetadataFile(in);
             return k;
         } catch (JAXBException e) {
