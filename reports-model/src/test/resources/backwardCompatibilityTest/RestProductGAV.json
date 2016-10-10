@@ -1,0 +1,10 @@
+{
+    "gav": {
+        "artifactId": "id",
+        "groupId": "gid",
+        "version": "ver"
+    },
+    "name": "name",
+    "supportStatus": "SUPPORTED",
+    "version": "ver"
+}

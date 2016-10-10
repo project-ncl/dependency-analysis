@@ -1,0 +1,26 @@
+{
+    "bcSetName": "name",
+    "id": 1,
+    "pomPath": "./pom.xml",
+    "securityToken": "qwertzuiop",
+    "topLevelBc": {
+        "analysisStatus": null,
+        "availableVersions": null,
+        "bcId": null,
+        "buildScript": null,
+        "dependencies": null,
+        "description": null,
+        "environmentId": null,
+        "errors": null,
+        "existingBCs": null,
+        "gav": null,
+        "internallyBuilt": null,
+        "name": null,
+        "projectId": null,
+        "externalScmRevision": null,
+        "externalScmUrl": null,
+        "scmRevision": null,
+        "scmUrl": null,
+        "selected": false
+    }
+}

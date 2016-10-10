@@ -1,0 +1,13 @@
+{
+    "bcSetId": 1,
+    "entity": {
+        "bcSetName": null,
+        "id": 0,
+        "pomPath": null,
+        "topLevelBc": null,
+        "securityToken": null
+    },
+    "errorType": "Error",
+    "message": "error",
+    "success": true
+}
