@@ -1,0 +1,7 @@
+{
+    "artifactId": "a",
+    "differenceType": "MICRO",
+    "groupId": "g",
+    "leftVersion": "1.0.0",
+    "rightVersion": "1.0.1"
+}

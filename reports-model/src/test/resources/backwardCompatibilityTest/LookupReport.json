@@ -1,0 +1,9 @@
+{
+    "artifactId": "a",
+    "availableVersions": [],
+    "bestMatchVersion": "ver",
+    "blacklisted": true,
+    "groupId": "g",
+    "version": "v",
+    "whitelisted": []
+}
