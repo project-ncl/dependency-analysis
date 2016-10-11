@@ -96,13 +96,13 @@ public class BuildConfigurationCreate {
         if (repoURL == null) {
             repoURL = "";
         }
-        if (!repoURL.contains("code.engineering.redhat.com")
-                && !repoURL.contains("git.app.eng.bos.redhat.com")) {
-            this.scmExternalRepoURL = repoURL;
-            this.scmExternalRevision = revision;
-        } else {
+        if (repoURL.contains("code-stage.eng.nay.redhat.com")
+                || repoURL.contains("pnc-gerrit.pnc.dev.eng.bos.redhat.com")) {
             this.scmRepoURL = repoURL;
             this.scmRevision = revision;
+        } else {
+            this.scmExternalRepoURL = repoURL;
+            this.scmExternalRevision = revision;
         }
     }
 
