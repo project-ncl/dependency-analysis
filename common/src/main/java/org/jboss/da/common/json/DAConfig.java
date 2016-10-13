@@ -8,14 +8,10 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DAConfig extends AbstractModuleConfig {
 
-    @Getter
-    @Setter
-    private String keycloakServer;
-
+    @Getter @Setter private String keycloakServer;
     @Getter
     @Setter
     private String keycloakClientid;
-
     @Getter
     @Setter
     private String keycloakUsername;
