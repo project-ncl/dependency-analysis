@@ -1,6 +1,9 @@
 package org.jboss.da.communication.pnc.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -48,8 +51,12 @@ public class BuildConfigurationBPMCreate {
 
     @Getter
     @Setter
-    private List<Integer> dependencyIds;
+    private List<Integer> dependencyIds = new ArrayList<>();
 
+    @Getter
+    @Setter
+    private Set<Integer> buildConfigurationSetIds = new HashSet<>();
+    
     @Getter
     @Setter
     private Integer productVersionId;
