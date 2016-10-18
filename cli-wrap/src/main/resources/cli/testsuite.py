@@ -1,8 +1,10 @@
 from xml.dom import minidom
 import sys
 import requests
+import os
 
-DA_MAIN_SERVER="ncl-test-vm-01.host.prod.eng.bos.redhat.com:8180/da/rest/v-0.4"
+DA_MAIN_SERVER = os.getenv('DA_SERVER', "pnc-da-cli.cloud.pnc.devel.engineering.redhat.com/da/rest/v-0.4")
+#DA_MAIN_SERVER="pnc-da-cli.cloud.pnc.devel.engineering.redhat.com/da/rest/v-0.4"
 class Testsuite:
     """
     Class used to create and generate JUnit XML definitions
@@ -102,7 +104,7 @@ def pkgs_in_whitelist(product_version):
 def pkgs_in_blacklist():
     return get_list('black')
 
-def main(filename, xml_file, product_version):
+def main(packages, xml_file, product_version):
 
     # [ {'name': <>, 'version': <>, 'supportStatus': <>,
     # 'gav': {'groupId': <>, 'artifactId': <>, 'version': <>}]
@@ -111,15 +113,8 @@ def main(filename, xml_file, product_version):
     # [ {'groupId': <>, 'artifactId': <>, 'version': <>} ]
     packages_in_blacklist = pkgs_in_blacklist()
 
-    packages = set()
     testsuite = Testsuite()
-    with open(filename, 'r') as f:
-
-        for item in f:
-            packages.add(item.strip())
-
     for gav in packages:
-
         if is_whitelisted(packages_in_whitelist, gav):
             testsuite.add_passing_testcase('whitelist', gav)
         elif is_blacklisted(packages_in_blacklist, gav):
