@@ -59,6 +59,7 @@ def getDependencyVersionsSatisfied(artifact):
         return str(artifact["notBuiltDependencies"]) + " dependencies not built"
 
 def printReport(artifact, depth = None):
+    output = ""
     lists = getList(artifact, depth is None)
     versions = getAvailableVersions(artifact, depth is None)
     gav = getGAV(artifact)
@@ -72,60 +73,67 @@ def printReport(artifact, depth = None):
         if depth > 0:
             indent += "+-"
 
-    print indent + gav + "\t" + bestMatch + "\t" + lists + "\t" + depsSatisfied +  "\t" + versions
+    output += indent + gav + "\t" + bestMatch + "\t" + lists + "\t" + depsSatisfied +  "\t" + versions + "\n"
 
     for dep in artifact["dependencies"]:
         if depth is None:
-            printReport(dep)
+            output += printReport(dep)
         else:
-            printReport(dep, depth + 1)
+            output += printReport(dep, depth + 1)
+    return output
 
 def printReportAdvSum(data):
-    print "Blacklisted artifacts:\t" + getGAVList(data["blacklistedArtifacts"])
+    output = ""
+    output += "Blacklisted artifacts:\t" + getGAVList(data["blacklistedArtifacts"]) + "\n"
 
-    print "Whitelisted artifacts:"
+    output += "Whitelisted artifacts:" + "\n"
     for whitelist in data["whitelistedArtifacts"]:
-        print "  " + getGAV(whitelist) + "\t" + ", ".join(map(formatProduct, whitelist["products"]))
+        output += "  " + getGAV(whitelist) + "\t" + ", ".join(map(formatProduct, whitelist["products"])) + "\n"
 
-    print "Built community artifacts:"
+    output += "Built community artifacts:" + "\n"
     for bestMatch in data["communityGavsWithBestMatchVersions"]:
-        print "  " + getGAV(bestMatch) + "\t" + bestMatch["bestMatchVersion"]
+        output += "  " + getGAV(bestMatch) + "\t" + bestMatch["bestMatchVersion"] + "\n"
 
-    print "Community artifacts with other built version:"
+    output += "Community artifacts with other built version:" + "\n"
     for builtVersion in data["communityGavsWithBuiltVersions"]:
-        print "  " + getGAV(builtVersion) + "\t" +  ", ".join(builtVersion["availableVersions"])
+        output += "  " + getGAV(builtVersion) + "\t" +  ", ".join(builtVersion["availableVersions"]) + "\n"
 
-    print "Community artifacts:\t" + getGAVList(data["communityGavs"])
+    output += "Community artifacts:\t" + getGAVList(data["communityGavs"]) + "\n"
+    return output
 
 def printReportAlign(data):
-    print "Internaly built:"
+    output = ""
+    output += "Internaly built:" + "\n"
     for module in data['internallyBuilt']:
-        print "  " + module['groupId'] + ":" + module['artifactId']
+        output += "  " + module['groupId'] + ":" + module['artifactId'] + "\n"
         for dependency in module['gavProducts']:
-            print "    " + getGAV(dependency) + " - " + ", ".join(map(formatVersionProduct,dependency['gavProducts']))
-    print
+            output += "    " + getGAV(dependency) + " - " + ", ".join(map(formatVersionProduct,dependency['gavProducts'])) + "\n"
+    output += "\n"
 
-    print "Built in different version:"
+    output += "Built in different version:" + "\n"
     for module in data['builtInDifferentVersion']:
-        print "  " + module['groupId'] + ":" + module['artifactId']
+        output += "  " + module['groupId'] + ":" + module['artifactId'] + "\n"
         for dependency in module['gavProducts']:
-            print "    " + getGAV(dependency) + " - " + ", ".join(map(formatVersionProduct,dependency['gavProducts']))
-    print
+            output += "    " + getGAV(dependency) + " - " + ", ".join(map(formatVersionProduct,dependency['gavProducts'])) + "\n"
+    output += "\n"
 
-    print "Not built:"
+    output += "Not built:"
     for module in data['notBuilt']:
-        print "  " + module['groupId'] + ":" + module['artifactId']
+        output += "  " + module['groupId'] + ":" + module['artifactId'] + "\n"
         for dependency in module['gavs']:
-            print "    " + getGAV(dependency)
-    print
+            output += "    " + getGAV(dependency) + "\n"
+    output += "\n"
 
-    print "Blacklisted:"
+    output += "Blacklisted:" + "\n"
     for module in data['blacklisted']:
-        print "  " + module['groupId'] + ":" + module['artifactId']
+        output += "  " + module['groupId'] + ":" + module['artifactId'] + "\n"
         for dependency in module['gavs']:
-            print "    " + getGAV(dependency)
+            output += "    " + getGAV(dependency) + "\n"
+            
+    return output
 
 def fancyProductItem(data, element):
+    output = ""
     tablen = 4
     tmp = "    " + element + " : " + str(data['leftProduct'][element])
     tmp2 = "    " + element + " : " + str(data['rightProduct'][element])
@@ -133,12 +141,13 @@ def fancyProductItem(data, element):
     tmp2len = len(tmp2)
     
    
-    sys.stdout.write(tmp) 
+    output += tmp 
     
     for num in range (tmplen,40):
-        sys.stdout.write(" ")
-    sys.stdout.write(tmp2) 
-    print
+        output += " "
+    output += tmp2
+    output += "\n"
+    return output
 
 def checkLenLess80(data, element):  
     tmp = "    " + element + " : " + str(data['leftProduct'][element])
@@ -149,99 +158,102 @@ def checkLenLess80(data, element):
 
 def printDifference(data):
     tablen = 4
+    output = ""
 
     newline = True
+
 
     printInline = checkLenLess80(data,"id") and checkLenLess80(data,"name") and checkLenLess80(data,"version") and checkLenLess80(data,"supportStatus")
 
     if (printInline):
-        sys.stdout.write("Left Product:")
-        for num in range (len("Left Product:"),40):
-            sys.stdout.write(" ")
-        print "Right Product:"
-        fancyProductItem(data,"id") 
-        fancyProductItem(data,"name")
-        fancyProductItem(data,"version")
-        fancyProductItem(data,"supportStatus")
-        print
+        output +="Left Product:\t\t\t\t"
+        #for num in range (len("Left Product:"),40):
+            #sys.stdout.write(" ")
+        output += "Right Product:\n"
+        output += fancyProductItem(data,"id") 
+        output += fancyProductItem(data,"name")
+        output += fancyProductItem(data,"version")
+        output += fancyProductItem(data,"supportStatus")
+        output += "\n"
     else:
-        print("Left Product:")
-        print "    id : " + str(data['leftProduct']['id'])
-        print "    name : " + str(data['leftProduct']['name'])
-        print "    version : " + str(data['leftProduct']['version'])
-        print "    supportStatus : " + str(data['leftProduct']['supportStatus'])
-        print
-        print("Right Product:")
-        print "    id : " + str(data['rightProduct']['id'] )
-        print "    name : " + str(data['rightProduct']['name'])
-        print "    version : " + str(data['rightProduct']['version'])
-        print "    supportStatus : " + str(data['rightProduct']['supportStatus'])
-        print
+        output += "Left Product:\n"
+        output += "    id : " + str(data['leftProduct']['id']+ "\n")
+        output += "    name : " + str(data['leftProduct']['name']+ "\n")
+        output += "    version : " + str(data['leftProduct']['version']+ "\n")
+        output += "    supportStatus : " + str(data['leftProduct']['supportStatus']+ "\n")
+        output += "\n"
+        output +=("Right Product:")
+        output += "    id : " + str(data['rightProduct']['id'] + "\n")
+        output += "    name : " + str(data['rightProduct']['name']+ "\n")
+        output += "    version : " + str(data['rightProduct']['version']+ "\n")
+        output += "    supportStatus : " + str(data['rightProduct']['supportStatus'] + "\n")
+        output += "\n"
         
     if len(data['added']) == 0:
         newline = True
-        print "added : NONE"
+        output += "added : NONE \n"
     else:
-        print "added :"
+        output += "added :"
         newline = False
         for module in data['added']:
-            print "    groupId : " + module['groupId'] 
-            print "    artifactId : " + module['artifactId']
-            print "    version : " + module['version']
-            print
+            output += "    groupId : " + module['groupId'] + "\n"
+            output += "    artifactId : " + module['artifactId'] + "\n"
+            output += "    version : " + module['version'] + "\n"
+            output += "\n"
 
     if (newline == True):
-        print
+        output += "\n"
 
     if len(data['removed']) == 0:
         newline = True
-        print "removed : NONE"
+        output += "removed : NONE\n"
     else:
         newline = False
-        print "removed :"
+        output += "removed :\n"
         for module in data['removed']:
-            print "    groupId : " + module['groupId'] 
-            print "    artifactId : " + module['artifactId']
-            print "    version : " + module['version']
-            print
+            output += "    groupId : " + module['groupId'] + "\n"
+            output += "    artifactId : " + module['artifactId'] + "\n"
+            output += "    version : " + module['version'] + "\n"
+            output += "\n"
     
     if (newline == True):
-        print
+        output += "\n"
     
     if len(data['changed']) == 0:
         newline = True
-        print "changed : NONE"     
+        output += "changed : NONE\n"     
     else:
         newline = False
-        print "changed :"
+        output += "changed :\n"
         for module in data['changed']:
-            print "    groupId : " + module['groupId'] 
-            print "    artifactId : " + module['artifactId']
-            tmp = "    " + module['leftVersion'] + "    ->    " + module['rightVersion']
+            output += "    groupId : " + module['groupId'] + "\n"
+            output += "    artifactId : " + module['artifactId'] + "\n"
+            tmp = "    " + module['leftVersion'] + "    ->    " + module['rightVersion'] + "\n"
             inLine = len(tmp) < 80
             if (inLine):
-                print(tmp)
+                output +=(tmp)
             else:
-                print "    leftVersion : " + module['leftVersion']
-                print "    rightVersion : " + module['rightVersion']
-            print
+                output += "    leftVersion : " + module['leftVersion'] + "\n"
+                output += "    rightVersion : " + module['rightVersion'] + "\n"
+            output += "\n"
         
     if (newline == True):
-        print
+        output += "\n"
 
     if len(data['unchanged']) == 0:
         newline = True
-        print "unchanged : NONE"
+        output += "unchanged : NONE\n"
     else:
         newline = False
-        print "unchanged :"
+        output += "unchanged :"
         for module in data['unchanged']:
-            print "    groupId : " + module['groupId'] 
-            print "    artifactId : " + module['artifactId']
-            print "    version : " + module['version']
-            print
+            output += "    groupId : " + module['groupId'] + "\n"
+            output += "    artifactId : " + module['artifactId'] + "\n"
+            output += "    version : " + module['version'] + "\n"
+            output += "\n"
     if (newline == True):
-        print
+        output += "\n"
+    return output
 
 def printLookup(artifact):
     gav = getGAV(artifact)
@@ -249,12 +261,9 @@ def printLookup(artifact):
     lists = getList(artifact, True)
     versions = getAvailableVersions(artifact, True)
 
-    print gav + "\t" + bestMatch + "\t" + lists + "\t" + versions
+    return gav + "\t" + bestMatch + "\t" + lists + "\t" + versions + "\n"
 
-def readInput():
-    data=""
-    for line in fileinput.input():
-        data += line
+def readInput(data):
     try:    
         return json.loads(data)
     except ValueError:
@@ -268,50 +277,45 @@ def checkError(data):
         print(data["message"])
         sys.exit(1)
 
-def report():
-    data = readInput()
+def report(data):
     checkError(data)
     print "tree of GAVs\tExact Match Version\tBlack/White list\t# of not built dependencies\t# of available versions"
-    printReport(data,0)
+    return printReport(data,0) 
 
-def reportRaw():
-    data = readInput()
+def reportRaw(data):
     checkError(data)
-    printReport(data)
+    return printReport(data) 
 
-def reportAdv():
-    data = readInput()
+def reportAdv(data):
     checkError(data)
     print "tree of GAVs\tExact Match Version\tBlack/White list\t# of not built dependencies\t# of available versions"
-    printReport(data["report"], 0)
+    return printReport(data["report"], 0) 
     
-def reportAdvSum():
-    data = readInput()
+def reportAdvSum(data):
     checkError(data)
-    printReportAdvSum(data)
+    return printReportAdvSum(data)
 
-def reportAlign():
-    data = readInput()
+def reportAlign(data):
     checkError(data)
-    printReportAlign(data)
+    return printReportAlign(data)
     
-def lookup():
-    data = readInput()
+def lookup(data):
     checkError(data)
+    output = ""
     for artifact in data:
-        printLookup(artifact)
-
-def difference():
-    data = readInput()
+        output += printLookup(artifact)
+    return output
+    
+def difference(data):
     checkError(data)
-    printDifference(data)
+    return printDifference(data)
 
-def listCheck():
-    data = readInput()
+def listCheck(data):
     versions = []
-    for gav in data["found"]:
-        versions.append(gav["version"])
-    print ", ".join(versions)
+    for gav in data['found']:
+        versions.append(gav['version'])
+    return ", ".join(versions)
 
 def hello():
     print "hi"
+    
