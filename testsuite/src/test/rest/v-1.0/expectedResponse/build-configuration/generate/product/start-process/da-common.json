@@ -87,13 +87,14 @@
                 "buildScript":"",
                 "description":"Build Configuration for org.slf4j:slf4j-api:1.7.7 - SLF4J API Module.",
                 "internallyBuilt":"1.7.7.redhat-3",
-                "availableVersions":[  
-                    "1.6.1-redhat-1",
-                    "1.6.1-redhat-2",
-                    "1.7.2-redhat-1",
-                    "1.7.2.redhat-2",
+                "availableVersions":[
+                    "1.7.7.redhat-3",
+                    "1.7.7.redhat-2",
                     "1.7.2.redhat-3",
-                    "1.7.7.redhat-3"
+                    "1.7.2.redhat-2",
+                    "1.7.2-redhat-1",
+                    "1.6.1-redhat-2",
+                    "1.6.1-redhat-1"
                 ],
                 "errors" : [  ],
                 "gav":{

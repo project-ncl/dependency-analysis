@@ -36,7 +36,7 @@ public class PncRemoteTest {
     @Test
     public void testGetBuildConfigurationByScmUrlAndRevision() throws Exception {
         List<BuildConfiguration> obtainedBcs = pncConnector.getBuildConfigurations(
-                "https://github.com/project-ncl/pnc.git", "*/v0.2");
+                "https://github.com/project-ncl/pnc.git", "v0.8");
 
         assertEquals(1, obtainedBcs.size());
         BuildConfiguration bc = obtainedBcs.get(0);
