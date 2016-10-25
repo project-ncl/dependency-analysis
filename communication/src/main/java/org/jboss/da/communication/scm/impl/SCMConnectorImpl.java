@@ -72,6 +72,17 @@ public class SCMConnectorImpl implements SCMConnector {
     }
 
     @Override
+    public Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, String pomPath,
+            List<String> repositories) throws ScmException, PomAnalysisException {
+        // git clone
+        // TODO: hardcoded to git right now
+        // TODO: enable the svn test if svn support is added
+        File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
+
+        return pomAnalyzer.getToplevelDepency(tempDir, pomPath, repositories);
+    }
+
+    @Override
     public Optional<MavenProject> getPom(String scmUrl, String revision, String pomPath)
             throws ScmException {
         if (!pomPath.endsWith("pom.xml")) {
