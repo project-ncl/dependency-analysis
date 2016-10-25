@@ -1,15 +1,14 @@
 package org.jboss.da.reports.model.api;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 /**
  *
@@ -17,6 +16,7 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @NoArgsConstructor
+@ToString
 public class SCMLocator {
 
     @Getter

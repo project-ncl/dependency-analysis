@@ -61,6 +61,20 @@ public interface SCMConnector {
             throws ScmException, PomAnalysisException;
 
     /**
+     *  Finds toplevel dependency of specific revision on scm url
+     *
+     * @param scmUrl
+     * @param revision
+     * @param pomPath
+     * @param repositories
+     * @return Dependency tree of revision
+     * @throws PomAnalysisException When there is problem with the pom analysis
+     * @throws ScmException When checking out the repository failed
+     */
+    Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, String pomPath,
+            List<String> repositories) throws ScmException, PomAnalysisException;
+
+    /**
      * Finds toplevel dependency of specific revision on scm url
      *
      * @param scmUrl

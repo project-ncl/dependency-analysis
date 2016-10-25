@@ -15,10 +15,13 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
+import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 import org.jboss.da.reports.model.api.SCMLocator;
+
+import java.util.Optional;
 
 /**
  *
@@ -59,8 +62,11 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     @Override
     public GAVToplevelDependencies getToplevelDependencies(SCMLocator scml) throws ScmException,
             PomAnalysisException {
-        GAVDependencyTree tree = getDependencyTree(scml);
-        return treeToToplevel(tree);
+        Optional<MavenProject> pom = scmConnector.getPom(scml.getScmUrl(), scml.getRevision(), scml.getPomPath());
+        GAV gav = pom.orElseThrow(() -> new ScmException("Failed to find specified pom: " + scml)).getGAV();
+
+        Set<GAV> deps = scmConnector.getToplevelDependencyOfRevision(scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
+        return new GAVToplevelDependencies(gav, deps);
     }
 
     @Override

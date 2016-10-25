@@ -1,5 +1,7 @@
 package org.jboss.da.communication.pom.model;
 
+import org.jboss.da.model.rest.GAV;
+
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
@@ -59,5 +61,9 @@ public class MavenProject {
             return version;
         else
             return parent.getVersion();
+    }
+
+    public GAV getGAV() {
+        return new GAV(getGroupId(), getArtifactId(), getVersion());
     }
 }
