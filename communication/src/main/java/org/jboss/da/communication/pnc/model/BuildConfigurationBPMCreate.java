@@ -56,7 +56,7 @@ public class BuildConfigurationBPMCreate {
     @Getter
     @Setter
     private Set<Integer> buildConfigurationSetIds = new HashSet<>();
-    
+
     @Getter
     @Setter
     private Integer productVersionId;
