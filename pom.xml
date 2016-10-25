@@ -60,13 +60,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.da>0.8.0</version.da>
+        <version.da>0.8.1-SNAPSHOT</version.da>
         <version.cli>0.8.1</version.cli>
         <version.reports.rest>0.4</version.reports.rest>
         <version.bc.rest>0.3</version.bc.rest>
         <version.aether>0.9.0.M2</version.aether>
         <version.galley>0.13.2</version.galley>
-        <version.indy>1.0.0</version.indy>
+        <version.indy>1.0.2</version.indy>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <jboss.bom.version>7.0.0.GA</jboss.bom.version>
@@ -299,18 +299,6 @@
             <releases>
                 <enabled>true</enabled>
             </releases>
-        </repository>
-
-        <!-- needed for aprox -->
-        <repository>
-            <id>sonatype-snapshots</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </repository>
 
         <!-- TODO REMOVE this profile after cartographer 0.10.4 release -->
