@@ -4,7 +4,7 @@
 
     <groupId>org.jboss.da</groupId>
     <artifactId>parent</artifactId>
-    <version>0.8.1-SNAPSHOT</version>
+    <version>0.8.1</version>
     <packaging>pom</packaging>
 
     <name>dependency-analyzer</name>
@@ -13,7 +13,7 @@
     <scm>
         <connection>scm:git:https://github.com/project-ncl/dependency-analysis</connection>
         <url>https://github.com/project-ncl/dependency-analysis</url>
-        <tag>0.8.1-SNAPSHOT</tag>
+        <tag>0.8.1</tag>
     </scm>
 
     <modules>
@@ -60,7 +60,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.da>0.8.1-SNAPSHOT</version.da>
+        <version.da>0.8.1</version.da>
         <version.cli>0.8.1</version.cli>
         <version.reports.rest>0.4</version.reports.rest>
         <version.bc.rest>0.3</version.bc.rest>
