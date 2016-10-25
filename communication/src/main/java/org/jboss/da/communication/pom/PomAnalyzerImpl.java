@@ -120,6 +120,22 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     }
 
     @Override
+    public Set<GAV> getToplevelDepency(File pomRepoDir, String pomPath, List<String> repositories)
+            throws PomAnalysisException {
+        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), pomRepoDir, disConf, processor)) {
+            GalleyWrapper.Artifact artifact = gw.getPom(pomPath);
+
+            gw.addLocations(repositories);
+            gw.addDefaultLocations(config);
+            gw.addLocationsFromPoms(pomReader);
+
+            return gw.getDependencies(artifact);
+        } catch (IOException ex) {
+            throw new PomAnalysisException(ex);
+        }
+    }
+
+    @Override
     public Optional<File> getPOMFileForGAV(File pomRepoDir, GAV gav) {
         try{
             return LocalRepo.getAllPoms(pomRepoDir.toPath()).stream()
