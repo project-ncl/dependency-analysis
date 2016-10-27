@@ -26,6 +26,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import java.util.Optional;
+import org.jboss.da.validation.Validation;
 
 @Path("/repositories")
 @Api(value = "config")
@@ -36,6 +38,9 @@ public class Repositories {
 
     @Inject
     private AproxConnector aprox;
+
+    @Inject
+    private Validation validation;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -52,6 +57,11 @@ public class Repositories {
                     response = SuccessResponse.class) })
     public Response addRepository(@ApiParam(value = "repository data") Repository repository) {
         SuccessResponse response = new SuccessResponse();
+        Optional<Response> validationResponse = validation.validation(repository,
+                "Communication with remote repository failed");
+        if (validationResponse.isPresent()) {
+            return validationResponse.get();
+        }
         RepositoryManipulationStatus status;
         try {
             status = aprox.addRepositoryToGroup(repository);
@@ -96,6 +106,11 @@ public class Repositories {
                     response = SuccessResponse.class) })
     public Response removeRepository(Repository repository) {
         SuccessResponse response = new SuccessResponse();
+        Optional<Response> validationResponse = validation.validation(repository,
+                "Communication with remote repository failed");
+        if (validationResponse.isPresent()) {
+            return validationResponse.get();
+        }
         RepositoryManipulationStatus status;
         try {
             status = aprox.removeRepositoryFromGroup(repository);
@@ -142,5 +157,4 @@ public class Repositories {
                             "Incorect data in aprox server", e.getMessage())).build();
         }
     }
-
 }
