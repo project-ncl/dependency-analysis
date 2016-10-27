@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.URL;
 
 @EqualsAndHashCode
 @RequiredArgsConstructor
@@ -21,6 +22,7 @@ public class Repository {
 
     @Getter
     @NonNull
+    @URL(message = "Invalid URL address")
     private String url;
 
 }

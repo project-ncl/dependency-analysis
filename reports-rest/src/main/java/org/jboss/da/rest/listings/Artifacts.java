@@ -1,6 +1,5 @@
 package org.jboss.da.rest.listings;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -45,6 +44,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import java.util.ArrayList;
+import org.jboss.da.validation.Validation;
 
 /**
  *
@@ -77,6 +78,9 @@ public class Artifacts {
     @Inject
     private WhiteArtifactFilterService whiteArtifactFilterService;
 
+    @Inject
+    private Validation validation;
+
     // //////////////////////////////////
     // Whitelist endpoints
 
@@ -97,7 +101,13 @@ public class Artifacts {
     public Response fillFromGitBom(
             @ApiParam(
                     value = "JSON object with keys 'scmUrl', 'revision', 'pomPath', list of 'repositories' and 'productId'") WLFill wlFill) {
+
         SuccessResponse response = new SuccessResponse();
+        Optional<Response> validationResponse = validation.validation(wlFill,
+                "Filling product from GIT POM failed");
+        if (validationResponse.isPresent()) {
+            return validationResponse.get();
+        }
         switch (filler.fillWhitelistFromPom(wlFill.getScmUrl(), wlFill.getRevision(),
                 wlFill.getPomPath(), wlFill.getRepositories(), wlFill.getProductId())) {
             case PRODUCT_NOT_FOUND:
@@ -478,4 +488,5 @@ public class Artifacts {
                 artifact.getArtifactId(), artifact.getVersion()));
         return response;
     }
+
 }

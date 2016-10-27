@@ -48,8 +48,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import java.util.HashSet;
 import java.util.Iterator;
+import org.jboss.da.validation.Validation;
 
 /**
  * Main end point for the reports
@@ -71,6 +71,9 @@ public class Reports {
     @Inject
     private ReportsFacade reportsFacade;
 
+    @Inject
+    private Validation validation;
+
     @POST
     @Path("/scm")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -79,6 +82,10 @@ public class Reports {
             response = Report.class)
     public Response scmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
 
+        Optional<Response> validationResponse = validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
+        if (validationResponse.isPresent()) {
+            return validationResponse.get();
+        }
         try {
             if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
                 Iterator<Long> iterator = request.getProductVersionIds().iterator();
@@ -127,6 +134,10 @@ public class Reports {
             response = AdvancedReport.class)
     public Response advancedScmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
 
+        Optional<Response> validationResponse = validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
+        if (validationResponse.isPresent()) {
+            return validationResponse.get();
+        }
         try {
             
             if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
@@ -241,6 +252,11 @@ public class Reports {
     @ApiOperation(value = "Get alignment report for project specified in a repository URL.",
             response = AlignReport.class)
     public Response alignReport(AlignReportRequest request) {
+        Optional<Response> validationResponse = validation.validation(request,
+                "Getting allignment report for project specified in a repository URL failed");
+        if (validationResponse.isPresent()) {
+            return validationResponse.get();
+        }
         try {
             AlignReport aligmentReport = reportsFacade.alignReport(request);
             return Response.status(Status.OK).entity(aligmentReport).build();
@@ -266,6 +282,11 @@ public class Reports {
     @ApiOperation(value = "Get builded artifacts for project specified in a repository URL.",
             response = BuiltReport.class)
     public Response builtReport(BuiltReportRequest request) {
+        Optional<Response> validationResponse = validation.validation(request,
+                "Getting dependency report for a project specified in a repository URL failed");
+        if (validationResponse.isPresent()) {
+            return validationResponse.get();
+        }
         try {
             Set<BuiltReport> builtReport = reportsFacade.builtReport(request);
             return Response.status(Status.OK).entity(builtReport).build();

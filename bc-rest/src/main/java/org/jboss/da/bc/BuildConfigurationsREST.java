@@ -74,7 +74,8 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity> {
         }
     }
 
-    public FinishResponse<I> finishAnalyse(I bc) {
-        return getFacade().finishAnalyse(bc);
+    public Response finishAnalyse(I bc) {
+        FinishResponse<I> infoEntity = getFacade().finishAnalyse(bc);
+        return Response.ok().entity(infoEntity).build();
     }
 }

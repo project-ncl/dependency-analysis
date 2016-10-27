@@ -10,6 +10,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.jboss.da.model.rest.validators.ScmUrl;
 
 /**
  *
@@ -22,6 +23,7 @@ public class SCMLocator {
 
     @Getter
     @NonNull
+    @ScmUrl
     private String scmUrl;
 
     @Getter
