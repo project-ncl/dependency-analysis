@@ -171,6 +171,16 @@
                 <artifactId>slf4j-api</artifactId>
                 <version>1.7.7</version>
             </dependency>
+            <dependency>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>1.5.0</version>
+            </dependency>
+            <dependency>
+                  <groupId>org.hibernate</groupId>
+                  <artifactId>hibernate-validator</artifactId>
+                  <version>5.2.4.Final-redhat-1</version>
+            </dependency>
 
             <!-- dependency for aprox -->
             <dependency>

@@ -77,6 +77,11 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+              <groupId>org.hibernate</groupId>
+              <artifactId>hibernate-validator</artifactId>
+              <scope>provided</scope>
+        </dependency>
 
         <!-- Used for pom.xml analysis -->
 

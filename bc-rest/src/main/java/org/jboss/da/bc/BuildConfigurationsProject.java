@@ -17,6 +17,8 @@ import javax.ws.rs.core.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import java.util.Optional;
+import org.jboss.da.validation.Validation;
 
 @Path("/build-configuration/generate/project")
 @Api(value = "project")
@@ -28,10 +30,15 @@ public class BuildConfigurationsProject extends BuildConfigurationsREST<ProjectI
     @Inject
     Logger log;
 
+    @Inject
+    private Validation validation;
+
     @Override
     @ApiOperation(value = "Start initial analyse of project", response = ProjectInfoEntity.class)
     public Response startAnalyse(EntryEntity entry) {
-        return super.startAnalyse(entry);
+        Optional<Response> validationResponse = validation.validation(entry,
+                "Starting initial analyse of project failed");
+        return validationResponse.orElseGet(()->super.startAnalyse(entry));
     }
 
     @Override
@@ -43,7 +50,9 @@ public class BuildConfigurationsProject extends BuildConfigurationsREST<ProjectI
             response = ProjectInfoEntity.class)
     public Response analyseNextLevel(
             @ApiParam(value = "Detail information needed to create BCs") ProjectInfoEntity bc) {
-        return super.analyseNextLevel(bc);
+        Optional<Response> validationResponse = validation.validation(bc,
+                "Analyse next level of project dependencies failed");
+        return validationResponse.orElseGet(()->super.analyseNextLevel(bc));
     }
 
     @Override
@@ -52,14 +61,15 @@ public class BuildConfigurationsProject extends BuildConfigurationsREST<ProjectI
     @Path("/finish-process")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Finish analysis and create BCs", response = ProjectFinishResponse.class)
-    public ProjectFinishResponse finishAnalyse(@ApiParam(
+    public Response finishAnalyse(@ApiParam(
             value = "Complete detail information needed to create BCs") ProjectInfoEntity bc) {
-        return (ProjectFinishResponse) super.finishAnalyse(bc);
+        Optional<Response> validationResponse = validation.validation(bc,
+                "Finish analysis and create BCs failed");
+        return validationResponse.orElseGet(()->super.finishAnalyse(bc));
     }
 
     @Override
     protected BuildConfigurationsFacade<ProjectInfoEntity> getFacade() {
         return bcpf;
     }
-
 }
