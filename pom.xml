@@ -183,7 +183,7 @@
             <dependency>
                 <groupId>org.commonjava.cartographer</groupId>
                 <artifactId>cartographer-rest-client-java</artifactId>
-                <version>0.11.0-FIX</version>
+                <version>0.12.1</version>
             </dependency>
 
 
@@ -299,19 +299,6 @@
             <releases>
                 <enabled>true</enabled>
             </releases>
-        </repository>
-
-        <!-- TODO REMOVE this profile after cartographer 0.10.4 release -->
-        <repository>
-            <id>bintray-jsenko-snapshots</id>
-            <name>snapshots</name>
-            <url>http://dl.bintray.com/jsenko/snapshots</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
     </repositories>
 
