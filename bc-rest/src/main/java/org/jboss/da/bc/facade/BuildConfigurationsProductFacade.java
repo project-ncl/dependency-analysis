@@ -30,6 +30,8 @@ public class BuildConfigurationsProductFacade extends
     @Override
     protected ProductInfoEntity start(SCMLocator scm, EntryEntity entry) throws ScmException,
             PomAnalysisException, CommunicationException {
+        Optional<String> scmUrl = Optional.of(entry.getScmUrl());
+        scm.setInternal(scmUrl.isPresent());
         ProductGeneratorEntity entity = bcg.startBCGeneration(scm, entry.getId(),
                 entry.getProductVersion());
         return toInfoEntity(entity);

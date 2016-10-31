@@ -26,7 +26,19 @@ public interface BcChecker {
     List<BuildConfiguration> lookupBcByScm(String scmUrl, String scmRevision)
             throws CommunicationException, PNCRequestException;
 
+    List<BuildConfiguration> lookupBcByScmInternal(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException;
+
+    List<BuildConfiguration> lookupBcByScmExternal(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException;
+
     List<Integer> lookupBcIdsByScm(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException;
+
+    List<Integer> lookupBcIdsByScmInternal(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException;
+
+    List<Integer> lookupBcIdsByScmExternal(String scmUrl, String scmRevision)
             throws CommunicationException, PNCRequestException;
 
 }

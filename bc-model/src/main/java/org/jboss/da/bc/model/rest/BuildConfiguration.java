@@ -33,7 +33,15 @@ public class BuildConfiguration {
 
     @Getter
     @Setter
+    protected String externalScmUrl;
+
+    @Getter
+    @Setter
     protected String scmRevision;
+
+    @Getter
+    @Setter
+    protected String externalScmRevision;
 
     @Getter
     @Setter

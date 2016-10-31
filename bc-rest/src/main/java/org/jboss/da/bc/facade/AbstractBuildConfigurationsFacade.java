@@ -86,8 +86,10 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         pd.setAvailableVersions(bc.getAvailableVersions());
         pd.setName(bc.getName());
         pd.setProjectId(bc.getProjectId());
-        pd.setScmRevision(bc.getScmRevision());
+        pd.setExternalScmUrl(bc.getExternalScmUrl());
+        pd.setExternalScmRevision(bc.getExternalScmRevision());
         pd.setScmUrl(bc.getScmUrl());
+        pd.setScmRevision(bc.getScmRevision());
         if(bc.getErrors() != null)
             pd.setErrors(bc.getErrors());
         pd.setBcId(bc.getBcId());
@@ -117,6 +119,8 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         bc.setProjectId(p.getProjectId());
         bc.setScmRevision(p.getScmRevision());
         bc.setScmUrl(p.getScmUrl());
+        bc.setExternalScmRevision(p.getExternalScmRevision());
+        bc.setExternalScmUrl(p.getExternalScmUrl());
         bc.setSelected(ph.isSelected());
         bc.setBcId(p.getBcId());
         bc.setAnalysisStatus(ph.getAnalysisStatus());
@@ -140,12 +144,23 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
 
     protected <T extends GeneratorEntity> T toGeneratorEntity(EntityConstructor<T> constructor,
             InfoEntity ie) {
-        String url = ie.getTopLevelBc().getScmUrl();
-        String revision = ie.getTopLevelBc().getScmRevision();
+        boolean internal;
+        String url = "";
+        String revision = "";
+        if (ie.getTopLevelBc().getScmUrl() == null) {
+            url = ie.getTopLevelBc().getExternalScmUrl();
+            revision = ie.getTopLevelBc().getExternalScmRevision();
+            internal = false;
+        } else {
+            url = ie.getTopLevelBc().getScmUrl();
+            revision = ie.getTopLevelBc().getScmRevision();
+            internal = true;
+        }
         String path = ie.getPomPath();
         SCMLocator scml = new SCMLocator(url, revision, path);
         GAV gav = ie.getTopLevelBc().getGav();
 
+        scml.setInternal(internal);
         T ge = constructor.construct(scml, ie.getId(), gav);
 
         ge.setBcSetName(ie.getBcSetName());

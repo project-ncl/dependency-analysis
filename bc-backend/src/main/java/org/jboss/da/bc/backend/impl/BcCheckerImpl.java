@@ -33,7 +33,45 @@ public class BcCheckerImpl implements BcChecker {
     }
 
     @Override
+    public List<BuildConfiguration> lookupBcByScmInternal(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException {
+        List<BuildConfiguration> foundBcs = pncConnector
+                .getBuildConfigurations(scmUrl, scmRevision);
+        return foundBcs;
+    }
+
+    @Override
+    public List<BuildConfiguration> lookupBcByScmExternal(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException {
+        List<BuildConfiguration> foundBcs = pncConnector
+                .getBuildConfigurations(scmUrl, scmRevision);
+        return foundBcs;
+    }
+
+    @Override
     public List<Integer> lookupBcIdsByScm(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException {
+        List<BuildConfiguration> bcs = lookupBcByScm(scmUrl, scmRevision);
+        List<Integer> bcIds = bcs.stream()
+                .map(x -> x.getId())
+                .collect(Collectors.toList());
+        
+        return bcIds;
+    }
+
+    @Override
+    public List<Integer> lookupBcIdsByScmExternal(String scmUrl, String scmRevision)
+            throws CommunicationException, PNCRequestException {
+        List<BuildConfiguration> bcs = lookupBcByScm(scmUrl, scmRevision);
+        List<Integer> bcIds = bcs.stream()
+                .map(x -> x.getId())
+                .collect(Collectors.toList());
+        
+        return bcIds;
+    }
+
+    @Override
+    public List<Integer> lookupBcIdsByScmInternal(String scmUrl, String scmRevision)
             throws CommunicationException, PNCRequestException {
         List<BuildConfiguration> bcs = lookupBcByScm(scmUrl, scmRevision);
         List<Integer> bcIds = bcs.stream()

@@ -92,7 +92,13 @@ public class FinalizerImpl implements Finalizer {
             BuildConfiguration bc;
             ProjectDetail project = hiearchy.getProject();
             if (project.isUseExistingBc()) {
-                List<BuildConfiguration> existingBcs = bcFinder.lookupBcByScm(project.getScmUrl(), project.getScmRevision());
+                List<BuildConfiguration> existingBcs = new ArrayList<>();
+                List<BuildConfiguration> existingBcsInternal = bcFinder.lookupBcByScmInternal(project.getScmUrl(), project.getScmRevision());
+                List<BuildConfiguration> existingBcsExternal = bcFinder.lookupBcByScmExternal(project.getExternalScmUrl(), project.getExternalScmRevision());
+ 
+                existingBcs.addAll(existingBcsInternal);
+                existingBcs.addAll(existingBcsExternal);
+                
                 Optional<BuildConfiguration> optionalBc = existingBcs.stream()
                         .filter(x -> project.getBcId().equals(x.getId()))
                         .findFirst();
@@ -120,7 +126,11 @@ public class FinalizerImpl implements Finalizer {
         bc.setEnvironmentId(project.getEnvironmentId());
         bc.setName(project.getName());
         bc.setProjectId(project.getProjectId());
-        bc.setSCMLocation(project.getScmUrl(), project.getScmRevision());
+        bc.setScmInternalRepoURL(project.getScmUrl());
+        bc.setScmInternalRevision(project.getScmRevision());
+        bc.setScmExternalRepoURL(project.getExternalScmUrl());
+        bc.setScmExternalRevision(project.getExternalScmRevision());
+
         return bc;
     }
 }
