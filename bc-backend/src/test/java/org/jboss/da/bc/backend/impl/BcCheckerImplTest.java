@@ -31,17 +31,17 @@ public class BcCheckerImplTest {
     private static final String SCM_REVISION = "tag-test";
 
     private static final BuildConfiguration BC1 = createBc(1, "BC1", "mvn clean deploy", SCM_URL,
-            SCM_REVISION);
+            SCM_REVISION, "", "");
 
     private static final BuildConfiguration BC2 = createBc(2, "BC2", "mvn clean install", SCM_URL,
-            SCM_REVISION);
+            SCM_REVISION, "", "");
 
     @Test
     public void testLookupBcOneResult() throws Exception {
         when(pncConnector.getBuildConfigurations(SCM_URL, SCM_REVISION)).thenReturn(getBcList(BC1));
 
         List<BuildConfiguration> results = bcChecker.lookupBcByScm(SCM_URL, SCM_REVISION);
-        List<Integer> resultIds = bcChecker.lookupBcIdsByScm(SCM_URL, SCM_REVISION);
+        List<Integer> resultIds = bcChecker.lookupBcIdsByScmInternal(SCM_URL, SCM_REVISION);
 
         assertEquals(BC1, results.get(0));
         assertEquals((Integer) BC1.getId(), resultIds.get(0));
@@ -51,7 +51,7 @@ public class BcCheckerImplTest {
     public void testLookupBcMoreResults() throws Exception {
         when(pncConnector.getBuildConfigurations(SCM_URL, SCM_REVISION)).thenReturn(
                 getBcList(BC2, BC1));
-        List<BuildConfiguration> results = bcChecker.lookupBcByScm(SCM_URL, SCM_REVISION);
+        List<BuildConfiguration> results = bcChecker.lookupBcByScmInternal(SCM_URL, SCM_REVISION);
         List<Integer> resultIds = bcChecker.lookupBcIdsByScm(SCM_URL, SCM_REVISION);
 
         assertTrue(results.contains(BC2));
@@ -64,7 +64,7 @@ public class BcCheckerImplTest {
     @Test
     public void testLookupBcNoResult() throws Exception {
         when(pncConnector.getBuildConfigurations(SCM_URL, SCM_REVISION)).thenReturn(getBcList());
-        List<BuildConfiguration> results = bcChecker.lookupBcByScm(SCM_URL, SCM_REVISION);
+        List<BuildConfiguration> results = bcChecker.lookupBcByScmInternal(SCM_URL, SCM_REVISION);
         List<Integer> resultIds = bcChecker.lookupBcIdsByScm(SCM_URL, SCM_REVISION);
 
         assertTrue(results.isEmpty());
@@ -72,12 +72,16 @@ public class BcCheckerImplTest {
     }
 
     private static BuildConfiguration createBc(int id, String name, String buildScript,
-            String scmRepoUrl, String scmRevision) {
+            String scmInternalRepoUrl, String scmInternalRevision, String scmExternalRepoUrl,
+            String scmExternalRevision) {
         BuildConfiguration bc = new BuildConfiguration();
         bc.setId(id);
         bc.setName(name);
         bc.setBuildScript(buildScript);
-        bc.setSCMLocation(scmRepoUrl, scmRevision);
+        bc.setScmRepoURL(scmInternalRepoUrl);
+        bc.setScmRevision(scmInternalRevision);
+        bc.setScmExternalRepoURL(scmExternalRepoUrl);
+        bc.setScmExternalRevision(scmExternalRevision);
         return bc;
     }
 

@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -31,6 +32,10 @@ public class SCMLocator {
     @NonNull
     private String pomPath;
 
+    @Setter
+    @Getter
+    private boolean internal;
+
     @Getter
     @NonNull
     private List<String> repositories = Collections.emptyList();
@@ -45,5 +50,4 @@ public class SCMLocator {
             this.repositories = repositories;
         }
     }
-
 }
