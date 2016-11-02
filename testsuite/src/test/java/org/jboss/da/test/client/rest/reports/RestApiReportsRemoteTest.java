@@ -6,7 +6,11 @@ import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
+import org.json.JSONException;
+import static org.junit.Assert.fail;
 import org.junit.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import java.io.File;
 
@@ -84,4 +88,14 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
                 "withoutDependencies");
         assertEquals(200, responseWithout.getStatus());
     }
+
+    @Override
+    protected void assertEqualsJson(String expected, String actual) {
+        try {
+            JSONAssert.assertEquals(expected, actual, JSONCompareMode.LENIENT);
+        } catch (JSONException ex) {
+            fail("The test wasn't able to compare JSON strings" + ex);
+        }
+    }
+
 }
