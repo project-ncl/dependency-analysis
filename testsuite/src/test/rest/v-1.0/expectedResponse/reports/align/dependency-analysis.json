@@ -247,13 +247,21 @@
                     "groupId":"com.fasterxml.jackson.core",
                     "artifactId":"jackson-databind",
                     "version":"2.4.4",
-                    "gavProducts":[  
-                        {  
-                            "version":"2.5.4.redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
+                    "gavProducts": [
+                        {
+                            "version": "2.5.4.redhat-1",
+                            "product": {
+                                "name": "Unknown",
+                                "version": "Unknown",
+                                "supportStatus": "UNKNOWN"
+                            }
+                        },
+                        {
+                            "version": "2.6.3.redhat-2",
+                            "product": {
+                                "name": "Unknown",
+                                "version": "Unknown",
+                                "supportStatus": "UNKNOWN"
                             }
                         }
                     ]
@@ -267,89 +275,7 @@
                 {  
                     "groupId":"org.jboss.as",
                     "artifactId":"jboss-as-arquillian-container-managed",
-                    "version":"7.2.0.Final",
-                    "gavProducts":[  
-                        {  
-                            "version":"7.5.5.Final-redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"7.5.3.Final-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"7.2.2.Final-redhat-4",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"7.5.2.Final-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"7.5.7.Final-redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"7.2.3.Final-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"7.5.0.Final-redhat-21",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"7.2.2.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"7.5.6.Final-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {
-                            "version":"7.5.8.Final-redhat-2",
-                            "product":{
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
+                    "version":"7.2.0.Final"
                 }
             ]
         },
@@ -360,144 +286,12 @@
                 {  
                     "groupId":"org.jboss.resteasy",
                     "artifactId":"resteasy-client",
-                    "version":"3.0.11.Final",
-                    "gavProducts":[  
-                        {  
-                            "version":"3.0.16.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
+                    "version":"3.0.11.Final"
                 },
                 {  
                     "groupId":"org.jboss.resteasy",
                     "artifactId":"resteasy-jaxrs",
-                    "version":"3.0.11.Final",
-                    "gavProducts":[  
-                        {  
-                            "version":"2.3.7.1.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.7.Final-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.12.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.6.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.7.2.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.SP2-redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.SP3-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.13.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.Final-redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"3.0.16.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.SP4-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.4.Final-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.3.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.SP2-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.10.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
+                    "version":"3.0.11.Final"
                 }
             ]
         },
@@ -508,129 +302,7 @@
                 {  
                     "groupId":"org.jboss.resteasy",
                     "artifactId":"resteasy-jaxrs",
-                    "version":"3.0.11.Final",
-                    "gavProducts":[  
-                        {  
-                            "version":"2.3.7.1.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.10.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.3.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.Final-redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"3.0.16.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.6.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.SP4-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.12.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.SP2-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.7.Final-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.7.2.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.SP2-redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.13.Final-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.8.SP3-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {  
-                            "version":"2.3.4.Final-redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
+                    "version":"3.0.11.Final"
                 }
             ]
         }
