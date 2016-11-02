@@ -11,7 +11,8 @@
             "artifactId": "jackson-databind",
             "version": "2.4.4",
             "availableVersions": [
-                "2.5.4.redhat-1"
+                "2.5.4.redhat-1",
+                "2.6.3.redhat-2"
             ],
             "bestMatchVersion": null,
             "dependencyVersionsSatisfied": false,
