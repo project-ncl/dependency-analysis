@@ -9,7 +9,7 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  * @param <I> Type of the payload
  */
 public interface BuildConfigurationsFacade<I extends InfoEntity> {

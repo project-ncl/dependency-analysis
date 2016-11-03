@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * @author <a href="mailto:matejonnet@gmail.com">Matej Lazar</a>
+ * @author &lt;a href="mailto:matejonnet@gmail.com"&gt;Matej Lazar&lt;/a&gt;
  */
 public class MetadataFileParserTest {
 

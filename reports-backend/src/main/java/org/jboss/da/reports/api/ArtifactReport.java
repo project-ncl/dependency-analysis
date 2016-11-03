@@ -21,7 +21,7 @@ import lombok.Setter;
 /**
  * Class, which represents one report for the top-level GAV
  *
- * @author Honza Brázdil <janinko.g@gmail.com>
+ * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
  */
 @RequiredArgsConstructor
 public class ArtifactReport implements Comparable<ArtifactReport> {

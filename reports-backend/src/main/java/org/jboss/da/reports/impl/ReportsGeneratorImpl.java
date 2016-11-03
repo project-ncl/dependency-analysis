@@ -65,8 +65,8 @@ import java.util.stream.Stream;
  * The implementation of reports, which provides information about
  * built/not built artifacts/blacklisted artifacts
  *
- * @author Jakub Bartecek <jbartece@redhat.com>
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class ReportsGeneratorImpl implements ReportsGenerator {
 

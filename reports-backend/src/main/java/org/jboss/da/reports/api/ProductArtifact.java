@@ -11,7 +11,7 @@ import lombok.Setter;
 
 /**
  * Class reprpresenting artifact and product where this artifact is whitelisted.
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RequiredArgsConstructor
 @NoArgsConstructor

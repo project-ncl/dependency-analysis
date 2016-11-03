@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class ProductsServiceImpl implements ProductsService {
 

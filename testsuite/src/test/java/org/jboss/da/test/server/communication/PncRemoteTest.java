@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Remote tests, which tests communication with PNC
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @RunWith(Arquillian.class)

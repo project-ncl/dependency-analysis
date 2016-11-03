@@ -10,7 +10,7 @@ import javax.interceptor.InvocationContext;
 /**
  * Interceptor, which takes care of authenticating to PNC, when the access token is invalid.
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @Interceptor

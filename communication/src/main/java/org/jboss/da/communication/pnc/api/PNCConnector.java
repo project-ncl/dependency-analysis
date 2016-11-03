@@ -12,7 +12,7 @@ import java.util.Optional;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public interface PNCConnector {
 
@@ -113,7 +113,8 @@ public interface PNCConnector {
      *
      * @param name name of product
      * @return Optional.empty() if product not found, else the Product
-     * @throws Exception
+     * @throws CommunicationException Thrown if the communication with PNC failed
+     * @throws PNCRequestException Thrown if PNC returns an error
      */
     Optional<Product> findProduct(String name) throws CommunicationException, PNCRequestException;
 

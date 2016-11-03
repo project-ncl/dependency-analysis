@@ -15,7 +15,7 @@ import java.util.Set;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public interface SCMConnector {
 

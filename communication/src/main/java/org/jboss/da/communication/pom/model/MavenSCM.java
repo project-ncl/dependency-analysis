@@ -7,7 +7,7 @@ import lombok.Getter;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MavenSCM {

@@ -13,7 +13,7 @@ import lombok.Setter;
 /**
  * Entity, which represents whole whitelist and blacklist backup structure
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @AllArgsConstructor

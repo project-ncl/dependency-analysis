@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RunWith(Arquillian.class)
 public class DeploymentTest {

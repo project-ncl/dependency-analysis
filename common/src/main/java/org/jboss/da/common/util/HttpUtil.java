@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
  * 
  * Library class which helps with the HTTP communication
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 public class HttpUtil {

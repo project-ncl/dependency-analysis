@@ -16,7 +16,7 @@ import org.jboss.da.listings.api.model.GA;
 
 /**
  * 
- * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  *
  */
 public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> implements

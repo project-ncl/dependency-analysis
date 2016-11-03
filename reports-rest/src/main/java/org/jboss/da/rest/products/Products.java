@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Path("/products")
 @Api(value = "products")

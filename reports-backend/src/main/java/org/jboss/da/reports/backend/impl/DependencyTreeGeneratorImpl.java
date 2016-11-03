@@ -25,8 +25,8 @@ import java.util.Optional;
 
 /**
  *
- * @author Dustin Kut Moy Cheung <dcheung@redhat.com>
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Dustin Kut Moy Cheung &lt;dcheung@redhat.com&gt;
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ApplicationScoped
 public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {

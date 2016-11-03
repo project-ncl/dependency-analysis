@@ -7,7 +7,7 @@ import lombok.Getter;
 /**
  * Exception, which is used to report issues with authentication
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 public class AuthenticationException extends RuntimeException {

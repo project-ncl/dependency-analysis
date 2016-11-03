@@ -11,7 +11,7 @@ import org.jboss.da.reports.model.api.SCMLocator;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public interface DependencyTreeGenerator {
 

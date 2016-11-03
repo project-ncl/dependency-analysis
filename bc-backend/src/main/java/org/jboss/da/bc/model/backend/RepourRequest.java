@@ -9,7 +9,7 @@ import lombok.ToString;
 
 /**
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @AllArgsConstructor

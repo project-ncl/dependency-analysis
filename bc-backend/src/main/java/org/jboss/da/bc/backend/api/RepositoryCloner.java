@@ -5,7 +5,7 @@ import org.jboss.da.scm.api.SCMType;
 
 /**
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 public interface RepositoryCloner {

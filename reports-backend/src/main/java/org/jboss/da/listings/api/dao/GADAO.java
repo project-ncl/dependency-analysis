@@ -13,7 +13,7 @@ public interface GADAO extends GenericDAO<GA> {
      * @param artifactId
      * @return GA
      */
-    GA findOrCreate(String groupId, String ArtifactId);
+    GA findOrCreate(String groupId, String artifactId);
 
     /**
      * Finds GA with specific groupId and artifactId

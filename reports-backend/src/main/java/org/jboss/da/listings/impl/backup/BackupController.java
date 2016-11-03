@@ -33,7 +33,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Bean, which performs regular backup of the whitelist and blacklist to the remote SCM repository.
  * When the configuration contains empty URL to the SCM repository then the backup is disabled.
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @Stateless

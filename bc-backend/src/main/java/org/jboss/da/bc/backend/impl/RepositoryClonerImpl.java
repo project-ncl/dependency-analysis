@@ -16,7 +16,7 @@ import javax.inject.Inject;
 /**
  * Service to clone the repositories to the internal systems
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @ApplicationScoped

@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RequiredArgsConstructor
 public class ErrorMessage {

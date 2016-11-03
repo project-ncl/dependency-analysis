@@ -53,7 +53,7 @@ import io.swagger.annotations.ApiResponses;
  * Main end point for the reports
  * 
  * @author Dustin Kut Moy Cheung
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @Path("/reports")

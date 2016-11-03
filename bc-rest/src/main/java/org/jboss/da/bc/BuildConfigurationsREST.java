@@ -22,7 +22,7 @@ import org.jboss.da.model.rest.ErrorMessage;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  * @param <I> Type of payload
  */
 public abstract class BuildConfigurationsREST<I extends InfoEntity> {

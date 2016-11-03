@@ -9,7 +9,7 @@ import org.jboss.da.communication.pnc.model.BuildConfiguration;
 /**
  * Provides information about BuildConfigurations in PNC
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 public interface BcChecker {

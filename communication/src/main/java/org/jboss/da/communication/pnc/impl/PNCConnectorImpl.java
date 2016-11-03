@@ -30,8 +30,8 @@ import java.util.stream.Collectors;
 /**
  * Class, which integrates with PNC and process direct calls to PNC REST interface
  * 
- * @author Dustin Kut Moy Cheung <dcheung@redhat.com>
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Dustin Kut Moy Cheung &lt;dcheung@redhat.com&gt;
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @PncAuthenticated

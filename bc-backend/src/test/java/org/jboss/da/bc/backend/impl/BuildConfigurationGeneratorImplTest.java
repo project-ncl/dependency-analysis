@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 
 /**
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @RunWith(MockitoJUnitRunner.class)
