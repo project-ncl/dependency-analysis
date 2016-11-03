@@ -9,7 +9,7 @@ import org.jboss.da.reports.model.api.SCMLocator;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ToString
 public class ProductGeneratorEntity extends GeneratorEntity {

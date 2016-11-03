@@ -17,7 +17,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 
 @RunWith(MockitoJUnitRunner.class)

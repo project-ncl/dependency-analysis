@@ -4,7 +4,7 @@ import org.jboss.da.listings.api.model.WhiteArtifact;
 
 /**
  * 
- * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  *
  */
 public interface WhiteArtifactDAO extends ArtifactDAO<WhiteArtifact> {

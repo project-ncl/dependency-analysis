@@ -14,8 +14,8 @@ import java.util.List;
 
 /**
  * 
- * @author Jozef Mrazek <jmrazek@redhat.com>
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 public abstract class ArtifactServiceImpl<T extends Artifact> implements ArtifactService<T> {

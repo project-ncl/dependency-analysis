@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ToString
 public class ProjectHiearchy {

@@ -23,7 +23,7 @@ import org.jboss.da.listings.api.service.BlackArtifactService;
 /**
  * Performs single lookups for the built artifacts
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @ApplicationScoped

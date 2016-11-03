@@ -5,7 +5,7 @@ import io.swagger.annotations.Tag;
 
 /**
  *
- * @author Honza Brázdil <janinko.g@gmail.com>
+ * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
  */
 @SwaggerDefinition(tags = {
         @Tag(name = "listings", description = "Listings of black/white listed artifacts"),

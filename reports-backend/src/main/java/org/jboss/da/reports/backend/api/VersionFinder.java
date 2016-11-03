@@ -9,8 +9,8 @@ import java.util.Optional;
 
 /**
  *
- * @author Honza Brázdil <janinko.g@gmail.com>
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  */
 public interface VersionFinder {
 
@@ -27,7 +27,7 @@ public interface VersionFinder {
      * Finds all Red Hat built artifacts (with suffix -redhat) with the same GA in the list provided.
      * 
      * @param gav GroupId and ArtifactId, which specifies the artifact
-     * @param the list of available versions to search through
+     * @param availableVersions the list of available versions to search through
      * @return Found built Red Hat artifacts with the same GA
      */
     List<String> getBuiltVersionsFor(GAV gav, List<String> availableVersions);

@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * Library class, which helps with the common file operations
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 public class FileUtils {

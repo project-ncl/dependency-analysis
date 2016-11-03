@@ -15,7 +15,7 @@ import org.jboss.da.model.rest.GAV;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ToString
 public class ProjectDetail {

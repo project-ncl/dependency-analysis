@@ -2,7 +2,7 @@ package org.jboss.da.communication.pnc.api;
 
 /**
  * 
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 public class PNCRequestException extends Exception {

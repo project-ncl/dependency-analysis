@@ -19,7 +19,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Singleton
 public class SCMCache {

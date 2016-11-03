@@ -18,7 +18,7 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler {
 

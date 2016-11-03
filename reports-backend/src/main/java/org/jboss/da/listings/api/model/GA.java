@@ -13,7 +13,7 @@ import lombok.ToString;
 
 /**
  * 
- * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  *
  */
 @RequiredArgsConstructor

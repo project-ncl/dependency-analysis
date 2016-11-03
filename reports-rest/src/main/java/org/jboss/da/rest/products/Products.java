@@ -31,7 +31,7 @@ import java.util.TreeSet;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Path("/products")
 @Api(value = "products")

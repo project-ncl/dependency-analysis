@@ -10,7 +10,7 @@ import org.jboss.da.listings.api.model.GenericEntity;
 
 /**
  * 
- * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  *
  */
 public abstract class GenericDAOImpl<T extends GenericEntity> implements GenericDAO<T> {

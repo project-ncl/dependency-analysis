@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 
- * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  *
  */
 @NoArgsConstructor(access = AccessLevel.PUBLIC)

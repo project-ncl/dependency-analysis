@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /**
  *
- * @author Stanislav Knot <sknot@redhat.com>
+ * @author Stanislav Knot &lt;sknot@redhat.com&gt;
  */
 
 class GAExistsException extends Exception {

@@ -2,7 +2,7 @@ package org.jboss.da.common.websocket;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  * 
  * @param <T> parameter type
  * @param <S> return type after method execution

@@ -14,7 +14,7 @@ import org.jboss.da.rest.products.Products;
 
 /**
  *
- * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  *
  */
 @ApplicationPath("/rest/v-" + REST_API_VERSION_REPORTS)

@@ -52,8 +52,8 @@ import org.jboss.da.validation.ValidationException;
 
 /**
  *
- * @author Jozef Mrazek <jmrazek@redhat.com>
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
 @Path("/listings")

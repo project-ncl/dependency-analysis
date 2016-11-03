@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ApplicationScoped
 @BuildConfigurationWebsocketMethods

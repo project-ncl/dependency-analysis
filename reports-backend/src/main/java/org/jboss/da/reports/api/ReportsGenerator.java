@@ -17,8 +17,8 @@ import java.util.Set;
 
 /**
  *
- * @author Honza Brázdil <janinko.g@gmail.com>
- * @author Jakub Bartecek <jbartece@redhat.com>
+ * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
+ * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  */
 public interface ReportsGenerator {
 

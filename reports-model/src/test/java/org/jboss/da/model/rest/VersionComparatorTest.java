@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class VersionComparatorTest {

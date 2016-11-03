@@ -26,7 +26,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  * @param <I> Type of the payload
  */
 public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> implements

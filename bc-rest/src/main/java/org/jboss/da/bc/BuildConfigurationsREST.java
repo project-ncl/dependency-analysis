@@ -27,7 +27,7 @@ import java.util.logging.Level;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  * @param <I> Type of payload
  */
 public abstract class BuildConfigurationsREST<I extends InfoEntity> {

@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class RestApiProductsTest extends AbstractRestApiListingTest {
 
