@@ -26,7 +26,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
+
 import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
 
 @ApplicationScoped
@@ -114,7 +114,7 @@ public class WLFillerImpl implements WLFiller {
         List<DependencyView> dependencies = v.getAllManagedDependencies();
         for (DependencyView d : dependencies) {
             GA ga = new GA(d.getGroupId(), d.getArtifactId());
-            Artifact a = new Artifact(ga, d.getVersion());
+            Artifact a = new Artifact(ga, d.getVersion(), whiteService.currentUser());
             ArtifactStatus status = whiteService.addArtifact(a.getGa().getGroupId(), a.getGa()
                     .getArtifactId(), a.getVersion(), productId);
             switch (status) {

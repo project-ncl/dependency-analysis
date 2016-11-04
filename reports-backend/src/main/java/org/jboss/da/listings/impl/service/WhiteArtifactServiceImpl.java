@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -15,10 +13,8 @@ import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.GADAO;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
-import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import static org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus.GA_EXISTS;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -61,7 +57,7 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
 
         GA ga = gaDAO.findOrCreate(groupId, artifactId);
 
-        WhiteArtifact white = new WhiteArtifact(ga, version, versionParser.getOSGiVersion(version),
+        WhiteArtifact white = new WhiteArtifact(ga, version, currentUser(), versionParser.getOSGiVersion(version),
                 is3rdParty);
 
         Optional<WhiteArtifact> dbWhite = whiteArtifactDAO.findArtifact(groupId, artifactId,
