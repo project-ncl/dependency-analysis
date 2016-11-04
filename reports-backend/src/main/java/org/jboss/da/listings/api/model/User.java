@@ -1,7 +1,9 @@
 package org.jboss.da.listings.api.model;
 
-import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.UniqueConstraint;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
@@ -13,31 +15,25 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 
- * @author Jozef Mrazek <jmrazek@redhat.com>
  *
+ * @author Honza Brázdil <jbrazdil@redhat.com>
  */
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true)
 @ToString
-@MappedSuperclass
-public class Artifact extends GenericEntity {
+@Entity(name = "UserDetail")
+public class User extends GenericEntity {
 
     @Setter
     @Getter
     @NonNull
-    @ManyToOne
-    private GA ga;
+    private String username;
 
     @Setter
     @Getter
     @NonNull
-    private String version;
+    @Column(unique = true)
+    private String keycloakId;
 
-    @Setter
-    @Getter
-    @NonNull
-    @ManyToOne
-    private User insertedBy;
 }

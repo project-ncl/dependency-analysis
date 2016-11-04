@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Entity
 public class BlackArtifact extends Artifact {
 
-    public BlackArtifact(GA ga, String version) {
-        super(ga, version);
+    public BlackArtifact(GA ga, String version, User insertedBy) {
+        super(ga, version, insertedBy);
     }
 
 }

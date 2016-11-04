@@ -55,7 +55,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
 
         GA ga = gaDAO.findOrCreate(groupId, artifactId);
 
-        BlackArtifact artifact = new BlackArtifact(ga, osgiVersion);
+        BlackArtifact artifact = new BlackArtifact(ga, osgiVersion, currentUser());
 
         if (blackArtifactDAO.findArtifact(groupId, artifactId, osgiVersion).isPresent()) {
             return ArtifactStatus.NOT_MODIFIED;
