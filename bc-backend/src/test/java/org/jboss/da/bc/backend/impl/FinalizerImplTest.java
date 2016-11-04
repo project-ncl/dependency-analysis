@@ -3,12 +3,14 @@ package org.jboss.da.bc.backend.impl;
 import org.jboss.da.bc.model.backend.ProjectDetail;
 import org.jboss.da.bc.model.backend.ProjectHiearchy;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.pnc.api.PNCConnector;
+import org.jboss.da.communication.pnc.api.PNCAuthConnector;
+import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
+import org.jboss.da.communication.pnc.impl.PNCConnectorProviderImpl;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.communication.pnc.model.BuildConfigurationBPMCreate;
 import org.jboss.da.model.rest.GAV;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,6 +23,7 @@ import org.mockito.stubbing.Answer;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -31,7 +34,10 @@ import java.util.Set;
 public class FinalizerImplTest {
 
     @Mock
-    private PNCConnector pnc;
+    private PNCAuthConnector pnc;
+
+    @Mock
+    private PNCConnectorProvider pncProvider;
 
     @InjectMocks
     private FinalizerImpl finalizer;
@@ -46,32 +52,36 @@ public class FinalizerImplTest {
 
     }
 
+    @Before
+    public void before() throws PNCRequestException, CommunicationException {
+        when(pncProvider.getConnector()).thenReturn(pnc);
+        when(pncProvider.getAuthConnector(Matchers.anyString())).thenReturn(pnc);
+    }
+
     /**
-     * This test case test option a) of FinalizerImpl.create method: Returns set containing single
-     * integer, when the hiearchy object is selected
+     * This test case test option a) of FinalizerImpl.createDeps method: Returns set containing
+     * single integer, when the hiearchy object is selected
      */
     @Test
     public void testCreateAllSelected() throws CommunicationException, PNCRequestException {
-        when(pnc.createBuildConfiguration(Matchers.any(BuildConfigurationBPMCreate.class))).then(
-                new BCCAnswer());
+        when(pnc.getBuildConfiguration(Matchers.anyString())).then(new BCCAnswer());
         ProjectHiearchy root = getHiearchy(true);
         root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(true), getHiearchy(true))));
 
-        Set<Integer> ret = finalizer.create(root, new HashSet<>());
+        Set<Integer> ret = finalizer.createDeps(root, new HashSet<>());
         Assert.assertEquals(1, ret.size());
     }
 
     /**
-     * This test case test option b) of FinalizerImpl.create method: Returns set containing multiple
-     * integers, when the hiearchy object is not selected AND it has selected dependencies
+     * This test case test option b) of FinalizerImpl.createDeps method: Returns set containing
+     * multiple integers, when the hiearchy object is not selected AND it has selected dependencies
      */
     public void testCreateRootNotSelected() throws CommunicationException, PNCRequestException {
-        when(pnc.createBuildConfiguration(Matchers.any(BuildConfigurationBPMCreate.class))).then(
-                new BCCAnswer());
+        when(pnc.getBuildConfiguration(Matchers.anyString())).then(new BCCAnswer());
         ProjectHiearchy root = getHiearchy(false);
         root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(true), getHiearchy(true))));
 
-        Set<Integer> ret = finalizer.create(root, new HashSet<>());
+        Set<Integer> ret = finalizer.createDeps(root, new HashSet<>());
         Assert.assertEquals(2, ret.size());
     }
 
@@ -80,12 +90,11 @@ public class FinalizerImplTest {
      * integer, when the hiearchy object is not selected AND it has NO selected dependencies
      */
     public void testCreateNothingSelected() throws CommunicationException, PNCRequestException {
-        when(pnc.createBuildConfiguration(Matchers.any(BuildConfigurationBPMCreate.class))).then(
-                new BCCAnswer());
+        when(pnc.getBuildConfiguration(Matchers.anyString())).then(new BCCAnswer());
         ProjectHiearchy root = getHiearchy(false);
         root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(true), getHiearchy(true))));
 
-        Set<Integer> ret = finalizer.create(root, new HashSet<>());
+        Set<Integer> ret = finalizer.createDeps(root, new HashSet<>());
         Assert.assertTrue(ret.isEmpty());
     }
 
@@ -103,15 +112,15 @@ public class FinalizerImplTest {
         return ret;
     }
 
-    private static class BCCAnswer implements Answer<BuildConfiguration> {
+    private static class BCCAnswer implements Answer<Optional<BuildConfiguration>> {
 
         private int counter;
 
         @Override
-        public BuildConfiguration answer(InvocationOnMock invocation) throws Throwable {
+        public Optional<BuildConfiguration> answer(InvocationOnMock invocation) throws Throwable {
             BuildConfiguration ret = new BuildConfiguration();
             ret.setId(counter++);
-            return ret;
+            return Optional.of(ret);
         }
 
     }

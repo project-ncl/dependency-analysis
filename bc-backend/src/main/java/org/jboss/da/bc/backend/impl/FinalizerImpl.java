@@ -11,12 +11,11 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import org.jboss.da.bc.backend.api.BCSetGenerator;
-import org.jboss.da.bc.backend.api.BcChecker;
 import org.jboss.da.bc.backend.api.Finalizer;
 import org.jboss.da.bc.model.backend.ProjectDetail;
 import org.jboss.da.bc.model.backend.ProjectHiearchy;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.pnc.api.PNCConnector;
+import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationBPMCreate;
@@ -37,27 +36,29 @@ public class FinalizerImpl implements Finalizer {
     private Logger log;
 
     @Inject
-    private PNCConnector pnc;
+    private PNCConnectorProvider pnc;
 
     @Inject
     private BCSetGenerator bcSetGenerator;
 
-    @Inject
-    private BcChecker bcFinder;
+    private String token;
 
     @Override
     public Integer createBCs(int productId, String productVersion, ProjectHiearchy toplevelBc,
-            String bcSetName) throws CommunicationException, PNCRequestException {
+            String bcSetName, String authToken) throws CommunicationException, PNCRequestException {
+        this.token = authToken;
         Set<Integer> ids = new HashSet<>();
         try {
-            create(toplevelBc, ids);
-            int productVersionId = bcSetGenerator.createProductVersion(productId, productVersion);
-            bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList<>(ids));
+            create(toplevelBc);
+            createDeps(toplevelBc, ids);
+            int productVersionId = bcSetGenerator.createProductVersion(productId, productVersion,
+                    token);
+            bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList<>(ids), token);
             return productVersionId;
         } catch (CommunicationException | PNCRequestException | RuntimeException ex) {
             for (Integer id : ids) {
                 try {
-                    pnc.deleteBuildConfiguration(id);
+                    pnc.getAuthConnector(token).deleteBuildConfiguration(id);
                 } catch (CommunicationException | PNCRequestException | RuntimeException e) {
                     log.error("Rollback: Failed to delete configuration " + id, e);
                 }
@@ -67,11 +68,13 @@ public class FinalizerImpl implements Finalizer {
     }
 
     @Override
-    public Integer createBCs(int id, ProjectHiearchy toplevelBc) throws CommunicationException,
-            PNCRequestException {
+    public Integer createBCs(int id, ProjectHiearchy toplevelBc, String authToken)
+            throws CommunicationException, PNCRequestException {
+        this.token = authToken;
         Set<Integer> ids = new HashSet<>();
-        create(toplevelBc, ids);
-        return create(toplevelBc, ids).iterator().next(); // get single integer
+        create(toplevelBc);
+        Set<Integer> toplevelId = createDeps(toplevelBc, ids);
+        return toplevelId.iterator().next(); // get single integer
     }
 
     /**
@@ -81,11 +84,11 @@ public class FinalizerImpl implements Finalizer {
      *      b) multiple integers, when the hiearchy object is not selected AND it has selected dependencies
      *      c) NO integer, when the hiearchy object is not selected AND it has NO selected dependencies
      */
-    Set<Integer> create(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws CommunicationException, PNCRequestException {
+    Set<Integer> createDeps(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws CommunicationException, PNCRequestException {
         Set<Integer> nextLevelDependencyIds = new HashSet<>();
 
         for (ProjectHiearchy dep : hiearchy.getDependencies()) {
-            nextLevelDependencyIds.addAll(create(dep, allDependencyIds));
+            nextLevelDependencyIds.addAll(createDeps(dep, allDependencyIds));
         }
 
         if(hiearchy.isSelected()){
@@ -93,22 +96,25 @@ public class FinalizerImpl implements Finalizer {
             ProjectDetail project = hiearchy.getProject();
             if (project.isUseExistingBc()) {
                 List<BuildConfiguration> existingBcs = new ArrayList<>();
-                List<BuildConfiguration> existingBcsInternal = bcFinder.lookupBcByScmInternal(project.getScmUrl(), project.getScmRevision());
-                List<BuildConfiguration> existingBcsExternal = bcFinder.lookupBcByScmExternal(project.getExternalScmUrl(), project.getExternalScmRevision());
- 
+                List<BuildConfiguration> existingBcsInternal = pnc.getConnector()
+                        .getBuildConfigurations(project.getScmUrl(), project.getScmRevision());
+                List<BuildConfiguration> existingBcsExternal = pnc.getConnector()
+                        .getBuildConfigurations(project.getExternalScmUrl(), project.getExternalScmRevision());
+
                 existingBcs.addAll(existingBcsInternal);
                 existingBcs.addAll(existingBcsExternal);
-                
+
                 Optional<BuildConfiguration> optionalBc = existingBcs.stream()
                         .filter(x -> project.getBcId().equals(x.getId()))
                         .findFirst();
-                
+
                 bc = optionalBc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
             } else {
-
-                BuildConfigurationBPMCreate bcc = toBC(project, nextLevelDependencyIds);
-
-                bc = pnc.createBuildConfiguration(bcc);
+                bc = waitForBC(project.getName());
+            }
+            if (!nextLevelDependencyIds.isEmpty()) {
+                bc.getDependencyIds().addAll(nextLevelDependencyIds);
+                pnc.getAuthConnector(token).updateBuildConfiguration(bc);
             }
 
             allDependencyIds.add(bc.getId());
@@ -118,10 +124,45 @@ public class FinalizerImpl implements Finalizer {
         }
     }
 
-    private BuildConfigurationBPMCreate toBC(ProjectDetail project, Set<Integer> deps) {
+    private BuildConfiguration waitForBC(String name) throws CommunicationException,
+            PNCRequestException {
+        int tries = 13;
+        while (tries-- > 0) {
+            Optional<BuildConfiguration> buildConfiguration = pnc.getConnector()
+                    .getBuildConfiguration(name);
+            if (buildConfiguration.isPresent()) {
+                return buildConfiguration.get();
+            }
+
+            try {
+                Thread.sleep(1000 * 30);
+            } catch (InterruptedException ex) {
+                throw new CommunicationException("Waiting for buildconfiguration " + name
+                        + " was interrupted.", ex);
+            }
+        }
+        throw new CommunicationException("Timeout while waiting for buildconfiguration " + name
+                + ".");
+    }
+
+    private void create(ProjectHiearchy hiearchy) throws CommunicationException,
+            PNCRequestException {
+        for (ProjectHiearchy dep : hiearchy.getDependencies()) {
+            create(dep);
+        }
+
+        if (hiearchy.isSelected()) {
+            ProjectDetail project = hiearchy.getProject();
+            if (!project.isUseExistingBc()) {
+                BuildConfigurationBPMCreate bcc = toBC(project);
+                pnc.getAuthConnector(token).createBuildConfiguration(bcc);
+            }
+        }
+    }
+
+    private BuildConfigurationBPMCreate toBC(ProjectDetail project) {
         BuildConfigurationBPMCreate bc = new BuildConfigurationBPMCreate();
         bc.setBuildScript(project.getBuildScript());
-        bc.setDependencyIds(new ArrayList<>(deps));
         bc.setDescription(project.getDescription());
         bc.setEnvironmentId(project.getEnvironmentId());
         bc.setName(project.getName());

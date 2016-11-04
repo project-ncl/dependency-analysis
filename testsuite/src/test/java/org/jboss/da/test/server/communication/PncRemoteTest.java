@@ -4,7 +4,8 @@ import static org.junit.Assert.*;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.da.communication.pnc.api.PNCConnector;
+import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
+import org.jboss.da.communication.pnc.impl.PNCConnectorProviderImpl;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
@@ -26,7 +27,7 @@ import java.util.List;
 public class PncRemoteTest {
 
     @Inject
-    private PNCConnector pncConnector;
+    private PNCConnectorProvider pncConnector;
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
@@ -35,7 +36,7 @@ public class PncRemoteTest {
 
     @Test
     public void testGetBuildConfigurationByScmUrlAndRevision() throws Exception {
-        List<BuildConfiguration> obtainedBcs = pncConnector.getBuildConfigurations(
+        List<BuildConfiguration> obtainedBcs = pncConnector.getConnector().getBuildConfigurations(
                 "https://github.com/project-ncl/pnc.git", "*/v0.2");
 
         assertEquals(1, obtainedBcs.size());
@@ -45,18 +46,10 @@ public class PncRemoteTest {
 
     @Test
     public void testGetBuildConfigurationByNotExistingScmUrlAndRevision() throws Exception {
-        List<BuildConfiguration> obtainedBcs = pncConnector.getBuildConfigurations(
+        List<BuildConfiguration> obtainedBcs = pncConnector.getConnector().getBuildConfigurations(
                 "https://not.existing.url", "not.existing.tag");
 
         assertEquals(0, obtainedBcs.size());
-    }
-
-    private boolean testBcWithNameExists(String bcName) throws Exception {
-        List<BuildConfiguration> allBcs = pncConnector.getBuildConfigurations();
-        return allBcs.parallelStream()
-                .map((bc) -> bc.getName().equals(bcName))
-                .anyMatch(x -> x);
-
     }
 
     private void testBcValues(BuildConfiguration bc) {

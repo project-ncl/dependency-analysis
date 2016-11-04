@@ -11,7 +11,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.bc.backend.api.BcChecker;
 import org.jboss.da.bc.backend.api.POMInfo;
 import org.jboss.da.bc.backend.api.POMInfoGenerator;
 import org.jboss.da.bc.model.BcError;
@@ -21,7 +20,9 @@ import org.jboss.da.bc.model.backend.ProjectHiearchy;
 import org.jboss.da.common.CommunicationException;
 
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
+import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
+import org.jboss.da.communication.pnc.impl.PNCConnectorProviderImpl;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.scm.api.SCMConnector;
 
@@ -56,7 +57,7 @@ public class ProjectHiearchyCreator {
     private SCMConnector scm;
 
     @Inject
-    private BcChecker bcFinder;
+    private PNCConnectorProvider pnc;
 
     @Inject
     private VersionFinder versionFinder;
@@ -258,11 +259,13 @@ public class ProjectHiearchyCreator {
         try {
             List<Integer> existingBcIds;
             if (project.getScmUrl() == null) {
-                existingBcIds = bcFinder.lookupBcIdsByScmExternal(project.getExternalScmUrl(),
-                        project.getExternalScmRevision());
+                existingBcIds = pnc.getConnector().getBuildConfigurations(
+                        project.getExternalScmUrl(), project.getExternalScmRevision()).stream()
+                        .map(x -> x.getId()).collect(Collectors.toList());
             } else {
-                existingBcIds = bcFinder.lookupBcIdsByScmInternal(project.getScmUrl(),
-                        project.getScmRevision());
+                existingBcIds = pnc.getConnector().getBuildConfigurations(project.getScmUrl(),
+                        project.getScmRevision()).stream()
+                        .map(x -> x.getId()).collect(Collectors.toList());
             }
             project.setExistingBCs(existingBcIds);
             project.setBcId(null);

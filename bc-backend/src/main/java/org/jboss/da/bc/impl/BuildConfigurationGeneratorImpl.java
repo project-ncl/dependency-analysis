@@ -126,7 +126,7 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
             return Optional.empty();
 
         return Optional.of(finalizer.createBCs(projects.getId(), projects.getProductVersion(),
-                projects.getToplevelBc(), projects.getBcSetName()));
+                projects.getToplevelBc(), projects.getBcSetName(), projects.getAuthToken()));
     }
 
     @Override
@@ -136,7 +136,8 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
         if (!validate(projects.getToplevelBc()))
             return Optional.empty();
 
-        return Optional.of(finalizer.createBCs(projects.getId(), projects.getToplevelBc()));
+        return Optional.of(finalizer.createBCs(projects.getId(), projects.getToplevelBc(),
+                projects.getAuthToken()));
     }
 
     private boolean validate(ProjectHiearchy hiearchy) throws IllegalStateException {

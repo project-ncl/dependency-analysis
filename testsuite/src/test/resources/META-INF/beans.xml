@@ -4,7 +4,4 @@
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
         http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="all">
-    <interceptors>
-        <class>org.jboss.da.communication.pnc.authentication.PncAuthenticationInterceptor</class>
-    </interceptors>
 </beans>

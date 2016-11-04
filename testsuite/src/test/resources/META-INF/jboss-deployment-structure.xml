@@ -39,6 +39,7 @@
         <dependencies>
             <module name="deployment.testsuite.ear.common.jar" export="true"/>
             <module name="deployment.testsuite.ear.source-code-manager.jar" export="true"/>
+            <module name="org.keycloak.keycloak-core"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="testsuite.jar">

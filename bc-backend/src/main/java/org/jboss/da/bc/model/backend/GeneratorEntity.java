@@ -26,6 +26,10 @@ public abstract class GeneratorEntity {
 
     @Getter
     @Setter
+    protected String authToken;
+
+    @Getter
+    @Setter
     ProjectHiearchy toplevelBc;
 
     protected GeneratorEntity(SCMLocator scm, int id, GAV gav) {
