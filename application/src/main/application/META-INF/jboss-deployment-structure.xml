@@ -39,6 +39,7 @@
         <dependencies>
             <module name="deployment.dependency-analysis.ear.common.jar"/>
             <module name="deployment.dependency-analysis.ear.source-code-manager.jar"/>
+            <module name="org.keycloak.keycloak-core"/>
         </dependencies>
     </sub-deployment>
 </jboss-deployment-structure>
