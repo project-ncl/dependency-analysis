@@ -165,6 +165,7 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
 
         ge.setBcSetName(ie.getBcSetName());
         ge.setToplevelBc(toProjectHiearchy(ie.getTopLevelBc()));
+        ge.setAuthToken(ie.getSecurityToken());
         return ge;
     }
 

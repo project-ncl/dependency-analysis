@@ -16,11 +16,6 @@
       "configs": [
         {
           "@module-config": "da-config",
-          "keycloakServer": "",
-          "keycloakClientid": "",
-          "keycloakUsername": "",
-          "keycloakPassword": "",
-          "keycloakRealm": "",
           "pncServer": "",
           "aproxServer": "",
           "aproxGroup": "",

@@ -39,11 +39,6 @@ public class ConfigurationTest {
 
         DAConfig config = configuration.getConfig();
 
-        assertEquals("", config.getKeycloakServer());
-        assertEquals("", config.getKeycloakRealm());
-        assertEquals("", config.getKeycloakClientid());
-        assertEquals("", config.getKeycloakUsername());
-        assertEquals("", config.getKeycloakPassword());
         assertEquals("", config.getPncServer());
         assertEquals("", config.getAproxServer());
         assertEquals("", config.getAproxGroup());
@@ -57,11 +52,6 @@ public class ConfigurationTest {
 
         DAConfig config = configuration.getConfig();
 
-        assertEquals("keycloak-server", config.getKeycloakServer());
-        assertEquals("keycloak-realm", config.getKeycloakRealm());
-        assertEquals("keycloak-client-id", config.getKeycloakClientid());
-        assertEquals("keycloak-username", config.getKeycloakUsername());
-        assertEquals("keycloak-password", config.getKeycloakPassword());
         assertEquals("pnc-server", config.getPncServer());
         assertEquals("aprox-server", config.getAproxServer());
         assertEquals("aprox-group", config.getAproxGroup());

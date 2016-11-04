@@ -11,8 +11,8 @@ import org.jboss.da.communication.pnc.api.PNCRequestException;
 public interface Finalizer {
 
     public Integer createBCs(int id, String productVersion, ProjectHiearchy toplevelBc,
-            String bcSetName) throws CommunicationException, PNCRequestException;
+            String bcSetName, String authToken) throws CommunicationException, PNCRequestException;
 
-    public Integer createBCs(int id, ProjectHiearchy toplevelBc) throws CommunicationException,
-            PNCRequestException;;
+    public Integer createBCs(int id, ProjectHiearchy toplevelBc, String authToken)
+            throws CommunicationException, PNCRequestException;
 }

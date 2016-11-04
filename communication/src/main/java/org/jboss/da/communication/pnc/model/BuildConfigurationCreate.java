@@ -1,5 +1,6 @@
 package org.jboss.da.communication.pnc.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    private List<Integer> dependencyIds;
+    private List<Integer> dependencyIds = new ArrayList<>();
 
     @Getter
     @Setter

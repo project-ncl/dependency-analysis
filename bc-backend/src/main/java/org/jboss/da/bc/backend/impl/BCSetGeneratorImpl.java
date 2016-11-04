@@ -2,8 +2,9 @@ package org.jboss.da.bc.backend.impl;
 
 import org.jboss.da.bc.backend.api.BCSetGenerator;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.pnc.api.PNCConnector;
+import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
+import org.jboss.da.communication.pnc.impl.PNCConnectorProviderImpl;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.ProductVersion;
 
@@ -17,14 +18,14 @@ import java.util.Optional;
 public class BCSetGeneratorImpl implements BCSetGenerator {
 
     @Inject
-    private PNCConnector pnc;
+    private PNCConnectorProvider pnc;
 
     @Override
     public BuildConfigurationSet createBCSet(String name, Integer productVersionId,
-            List<Integer> bcIds) throws CommunicationException, PNCRequestException {
+            List<Integer> bcIds, String token) throws CommunicationException, PNCRequestException {
 
-        Optional<BuildConfigurationSet> existingBcSet = pnc.findBuildConfigurationSet(
-                productVersionId, bcIds);
+        Optional<BuildConfigurationSet> existingBcSet = pnc.getConnector()
+                .findBuildConfigurationSet(productVersionId, bcIds);
 
         if (existingBcSet.isPresent()) {
             // bcSet already exists, this should not happen. return an error
@@ -36,20 +37,22 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
         bcSet.setName(name);
         bcSet.setProductVersionId(productVersionId);
 
-        return pnc.createBuildConfigurationSet(bcSet);
+        return pnc.getAuthConnector(token).createBuildConfigurationSet(bcSet);
     }
 
     @Override
-    public Integer createProductVersion(int productId, String productVersion)
+    public Integer createProductVersion(int productId, String productVersion, String token)
             throws CommunicationException, PNCRequestException {
 
-        Optional<ProductVersion> potentialPV = pnc.findProductVersion(productId, productVersion);
+        Optional<ProductVersion> potentialPV = pnc.getConnector().findProductVersion(productId,
+                productVersion);
 
         if (potentialPV.isPresent()) {
             return potentialPV.get().getId();
         }
         // if product version doesn't exist yet, create a new one
-        ProductVersion pv = pnc.createProductVersion(new ProductVersion(productVersion, productId));
+        ProductVersion pv = pnc.getAuthConnector(token).createProductVersion(
+                new ProductVersion(productVersion, productId));
         return pv.getId();
 
     }
