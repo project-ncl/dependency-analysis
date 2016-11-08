@@ -26,6 +26,7 @@ import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -58,7 +59,14 @@ public class AproxConnectorImpl implements AproxConnector {
             query.append("maven-metadata.xml");
 
             log.info("Retrieving metadata for " + ga + " from " + query.toString());
-            URLConnection connection = new URL(query.toString()).openConnection();
+            HttpURLConnection connection = (HttpURLConnection) new URL(query.toString())
+                    .openConnection();
+
+            int retry = 0;
+            while (connection.getResponseCode() == 504 && retry < 5) {
+                connection = (HttpURLConnection) new URL(query.toString()).openConnection();
+                retry++;
+            }
 
             return parseMetadataFile(connection).getVersioning().getVersions().getVersion();
         } catch (FileNotFoundException ex) {

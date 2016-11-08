@@ -14,10 +14,13 @@ import javax.inject.Inject;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import org.jboss.da.model.rest.VersionComparator;
 
 /**
  *
@@ -34,7 +37,7 @@ public class DependencyTreeBuilder {
      */
     public GAVDependencyTree getDependencyTree(Set<DependencyRelationship> rels, GAV origin, boolean testDeps, boolean providedDeps){
         PathNode pathRoot = new PathNode(origin);
-        Map<GAV, Set<DependencyRelationship>> byGav = new HashMap<>();
+        Map<GAV, Set<DependencyRelationship>> byGav = new TreeMap<>();
 
         for(DependencyRelationship rel : rels){
             GAV gav = GalleyWrapper.generateGAV(rel.getDeclaring());
@@ -166,14 +169,28 @@ public class DependencyTreeBuilder {
         @Override
         public int compare(DependencyRelationship o1, DependencyRelationship o2) {
             ArtifactRef target1 = o1.getTarget();
-            GAV targetGav1 = GalleyWrapper.generateGAV(target1);
-
             ArtifactRef target2 = o2.getTarget();
-            GAV targetGav2 = GalleyWrapper.generateGAV(target2);
 
-            int ret = targetGav1.compareTo(targetGav2);
+            int ret = target1.getGroupId().compareTo(target2.getGroupId());
+            if (ret == 0) {
+                ret = target1.getArtifactId().compareTo(target2.getArtifactId());
+            }
+            if (ret == 0) {
+                ret = VersionComparator.compareVersions(target1.getVersionString(),
+                        target2.getVersionString());
+
+            }
+            if (ret == 0) {
+                String class1 = target1.getClassifier() == null ? "" : target1.getClassifier();
+                String class2 = target2.getClassifier() == null ? "" : target2.getClassifier();
+                ret = class1.compareTo(class2);
+
+            }
+            if (ret == 0) {
+                ret = target1.getType().compareTo(target2.getType());
+            }
+
             return ret;
-
         }
 
     }
