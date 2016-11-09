@@ -2,6 +2,7 @@ package org.jboss.da.test.client.rest;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.AbstractClientApiTest;
+import org.jboss.resteasy.client.jaxrs.BasicAuthentication;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.ClientRequestFilter;
@@ -30,7 +31,10 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
         this.restApiVersion = readRestApiVersion();
         this.restApiURL = readRestApiUrl();
 
-        builder = ClientBuilder.newBuilder();
+        String userId = "user";
+        String password = "pass.1234";
+        ClientRequestFilter crf = new BasicAuthentication(userId, password);
+        builder = ClientBuilder.newBuilder().register(crf);
     }
 
     private String readRestApiUrl() {

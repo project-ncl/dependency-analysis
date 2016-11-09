@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.da.communication.auth.impl.JAASAuthenticatorService;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.ProductVersion;
@@ -66,6 +67,7 @@ public class ArtifactBlackWhitelistTransitionsTest {
 
     @Before
     public void setUp() {
+        JAASAuthenticatorService.setUser(null);
 
         whiteArtifact1 = new RestProductArtifact();
         whiteArtifact1.setArtifactId("white1");
@@ -93,6 +95,8 @@ public class ArtifactBlackWhitelistTransitionsTest {
         productService.addProduct("Product2", "1.0.0", ProductSupportStatus.UNKNOWN);
         product2 = productVersionDao.findProductVersion("Product2", "1.0.0").get();
 
+        JAASAuthenticatorService.setUser("user");
+
         // Add whiteArtifact1 and whiteToBlackArtifact to Product1
         whiteService.addArtifact(whiteArtifact1.getGroupId(), whiteArtifact1.getArtifactId(),
                 whiteArtifact1.getVersion(), product1.getId());
@@ -109,6 +113,7 @@ public class ArtifactBlackWhitelistTransitionsTest {
 
         blackService.addArtifact(blackArtifact1.getGroupId(), blackArtifact1.getArtifactId(),
                 blackArtifact1.getVersion());
+
     }
 
     @After
@@ -128,6 +133,8 @@ public class ArtifactBlackWhitelistTransitionsTest {
         // Remove all products
         productService.removeProduct("Product1", "1.0.0");
         productService.removeProduct("Product2", "1.0.0");
+
+        JAASAuthenticatorService.setUser(null);
     }
 
     private void refreshProducts() {

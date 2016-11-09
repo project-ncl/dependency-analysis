@@ -4,6 +4,7 @@ import org.jboss.arquillian.container.test.api.Testable;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.Assignable;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.FileAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.importer.ArchiveImportException;
 import org.jboss.shrinkwrap.api.importer.ZipImporter;
@@ -13,6 +14,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
@@ -44,19 +48,29 @@ public class ArquillianDeploymentFactory {
         updateManifestResource(ear, "persistence.xml");
         updateManifestResource(ear, "application.xml");
         updateManifestResource(ear, "jboss-deployment-structure.xml");
-        WebArchive reportsRestWar = null;
-        WebArchive bcRestWar = null;
-        if (type == DepType.REPORTS) {
-            reportsRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class,
-                    "reports-rest.war"));
-            bcRestWar = ear.getAsType(WebArchive.class, "bc-rest.war");
+        JavaArchive communicationJar = ear.getAsType(JavaArchive.class, "communication.jar");
+        JavaArchive reportsBackendJar = ear.getAsType(JavaArchive.class, "reports-backend.jar");
+        WebArchive reportsRestWar;
+        WebArchive bcRestWar;
+        switch (type) {
+            case REPORTS: {
+                reportsRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class,
+                        "reports-rest.war"));
+                bcRestWar = ear.getAsType(WebArchive.class, "bc-rest.war");
+                break;
+            }
+            case BC: {
+                reportsRestWar = ear.getAsType(WebArchive.class, "reports-rest.war");
+                bcRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class, "bc-rest.war"));
+                break;
+            }
+            default:
+                throw new IllegalArgumentException("Unknown dependency type " + type);
         }
-        if (type == DepType.BC) {
-            reportsRestWar = ear.getAsType(WebArchive.class, "reports-rest.war");
-            bcRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class, "bc-rest.war"));
-        }
-        updateRestWarWithReplacements(reportsRestWar);
-        updateRestWarWithReplacements(bcRestWar);
+        updateArchiveWithReplacements(communicationJar, "communication");
+        updateArchiveWithReplacements(reportsBackendJar, "reports-backend");
+        updateArchiveWithReplacements(reportsRestWar, "reports-rest");
+        updateArchiveWithReplacements(bcRestWar, "bc-rest");
         ear.addAsModule(createTestsuiteJar());
     }
 
@@ -65,10 +79,18 @@ public class ArquillianDeploymentFactory {
         ear.addAsManifestResource(new File("src/test/resources/META-INF/" + resource));
     }
 
-    private void updateRestWarWithReplacements(WebArchive reportsRestWar) {
-        reportsRestWar.delete("WEB-INF/web.xml");
-        reportsRestWar.addAsWebInfResource(new File(
-                "src/test/replacements/reports-rest/webapp/WEB-INF/web.xml"));
+    private void updateArchiveWithReplacements(Archive archive, String name) {
+        try {
+            Path replacements = Paths.get("src/test/replacements", name).toAbsolutePath();
+            Files.find(replacements, Integer.MAX_VALUE, (p, a) -> a.isRegularFile())
+                    .forEach(p -> {
+                        String relpath = replacements.relativize(p).toString();
+                        archive.delete(relpath);
+                        archive.add(new FileAsset(p.toFile()), relpath);
+                    });
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     private JavaArchive createTestsuiteJar() {

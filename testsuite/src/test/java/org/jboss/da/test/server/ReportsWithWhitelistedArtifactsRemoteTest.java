@@ -7,6 +7,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
+import org.jboss.da.communication.auth.impl.JAASAuthenticatorService;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.ProductVersion;
@@ -90,6 +91,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
 
     @Before
     public void setUp() {
+        JAASAuthenticatorService.setUser("user");
 
         whiteArtifact1_1_1 = new RestProductArtifact();
         whiteArtifact1_1_1.setGroupId("org.jboss.da");
@@ -187,6 +189,8 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
         productService.removeProduct("Product1", "1.0.0");
         productService.removeProduct("Product1", "2.0.0");
         productService.removeProduct("Product2", "1.0.0");
+
+        JAASAuthenticatorService.setUser(null);
     }
 
     // This allows to test:
