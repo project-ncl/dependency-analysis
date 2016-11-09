@@ -30,15 +30,19 @@ public class BuildConfigurationBPMCreate {
     private String buildScript;
 
     @Getter
-    private String scmRepoURL;
+    @Setter
+    private String scmInternalRepoURL;
 
     @Getter
-    private String scmRevision;
+    @Setter
+    private String scmInternalRevision;
 
     @Getter
+    @Setter
     private String scmExternalRepoURL;
 
     @Getter
+    @Setter
     private String scmExternalRevision;
 
     @Getter
@@ -64,19 +68,4 @@ public class BuildConfigurationBPMCreate {
     public void setEnvironmentId(int id) {
         this.buildEnvironmentId = id;
     }
-
-    public void setSCMLocation(String repoURL, String revision) {
-        if (repoURL == null) {
-            repoURL = "";
-        }
-        if (repoURL.contains("code-stage.eng.nay.redhat.com")
-                || repoURL.contains("pnc-gerrit.pnc.dev.eng.bos.redhat.com")) {
-            this.scmRepoURL = repoURL;
-            this.scmRevision = revision;
-        } else {
-            this.scmExternalRepoURL = repoURL;
-            this.scmExternalRevision = revision;
-        }
-    }
-
 }

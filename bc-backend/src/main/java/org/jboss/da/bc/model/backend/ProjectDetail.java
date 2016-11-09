@@ -24,11 +24,19 @@ public class ProjectDetail {
 
     @Getter
     @Setter
-    private String scmUrl; // required
+    private String scmUrl;
 
     @Getter
     @Setter
-    private String scmRevision; // required, all
+    private String externalScmUrl;
+
+    @Getter
+    @Setter
+    private String scmRevision;
+
+    @Getter
+    @Setter
+    private String externalScmRevision;
 
     @Getter
     @Setter

@@ -17,6 +17,8 @@ import javax.ws.rs.core.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import java.util.Optional;
+import org.jboss.da.validation.Validation;
 
 @Path("/build-configuration/generate/product")
 @Api(value = "product")
@@ -28,10 +30,15 @@ public class BuildConfigurationsProduct extends BuildConfigurationsREST<ProductI
     @Inject
     Logger log;
 
+    @Inject
+    private Validation validation;
+
     @Override
     @ApiOperation(value = "Start initial analyse of product", response = ProductInfoEntity.class)
     public Response startAnalyse(EntryEntity entry) {
-        return super.startAnalyse(entry);
+        Optional<Response> validationResponse = validation.validation(entry,
+                "Starting initial analyse of product failed");
+        return validationResponse.orElseGet(()->super.startAnalyse(entry));
     }
 
     @Override
@@ -43,7 +50,9 @@ public class BuildConfigurationsProduct extends BuildConfigurationsREST<ProductI
             response = ProductInfoEntity.class)
     public Response analyseNextLevel(
             @ApiParam(value = "Detail information needed to create BCs") ProductInfoEntity bc) {
-        return super.analyseNextLevel(bc);
+        Optional<Response> validationResponse = validation.validation(bc,
+                "Analyse next level of product dependencies failed");
+        return validationResponse.orElseGet(()->super.analyseNextLevel(bc));
     }
 
     @Override
@@ -52,13 +61,16 @@ public class BuildConfigurationsProduct extends BuildConfigurationsREST<ProductI
     @Path("/finish-process")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Finish analysis and create BCs", response = ProductFinishResponse.class)
-    public ProductFinishResponse finishAnalyse(@ApiParam(
+    public Response finishAnalyse(@ApiParam(
             value = "Complete detail information needed to create BCs") ProductInfoEntity bc) {
-        return (ProductFinishResponse) super.finishAnalyse(bc);
+        Optional<Response> validationResponse = validation.validation(bc,
+                "Finish analysis and create BCs failed");
+        return validationResponse.orElseGet(()->super.finishAnalyse(bc));
     }
 
     @Override
     protected BuildConfigurationsFacade<ProductInfoEntity> getFacade() {
         return bcpf;
     }
+
 }

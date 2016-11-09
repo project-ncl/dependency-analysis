@@ -28,9 +28,11 @@ public class BuildConfigurationCreate {
     private String buildScript;
 
     @Getter
+    @Setter
     private String scmRepoURL;
 
     @Getter
+    @Setter
     private String scmRevision;
 
     private Date creationTime;
@@ -58,9 +60,11 @@ public class BuildConfigurationCreate {
     private Integer productVersionId;
 
     @Getter
+    @Setter
     private String scmExternalRepoURL;
 
     @Getter
+    @Setter
     private String scmExternalRevision;
 
     public void setEnvironmentId(int id) {
@@ -91,19 +95,4 @@ public class BuildConfigurationCreate {
         this.lastModificationTime = lastModificationTime == null ? null : new Date(
                 lastModificationTime.getTime());
     }
-
-    public void setSCMLocation(String repoURL, String revision) {
-        if (repoURL == null) {
-            repoURL = "";
-        }
-        if (repoURL.contains("code-stage.eng.nay.redhat.com")
-                || repoURL.contains("pnc-gerrit.pnc.dev.eng.bos.redhat.com")) {
-            this.scmRepoURL = repoURL;
-            this.scmRevision = revision;
-        } else {
-            this.scmExternalRepoURL = repoURL;
-            this.scmExternalRevision = revision;
-        }
-    }
-
 }

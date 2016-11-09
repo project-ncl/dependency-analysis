@@ -8,6 +8,7 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import org.jboss.da.model.rest.validators.ScmUrl;
 
 /**
  *
@@ -27,6 +28,7 @@ public class AlignReportRequest {
     @Getter
     @Setter
     @NonNull
+    @ScmUrl
     private String scmUrl;
 
     @Getter

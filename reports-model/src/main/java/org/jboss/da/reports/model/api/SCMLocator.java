@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
+import org.jboss.da.model.rest.validators.ScmUrl;
 
 /**
  *
@@ -21,6 +23,7 @@ public class SCMLocator {
 
     @Getter
     @NonNull
+    @ScmUrl
     private String scmUrl;
 
     @Getter
@@ -30,6 +33,10 @@ public class SCMLocator {
     @Getter
     @NonNull
     private String pomPath;
+
+    @Setter
+    @Getter
+    private boolean internal;
 
     @Getter
     @NonNull
@@ -45,5 +52,4 @@ public class SCMLocator {
             this.repositories = repositories;
         }
     }
-
 }

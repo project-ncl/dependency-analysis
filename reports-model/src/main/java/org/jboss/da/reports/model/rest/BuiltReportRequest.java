@@ -5,12 +5,14 @@ import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import org.jboss.da.model.rest.validators.ScmUrl;
 
 public class BuiltReportRequest {
 
     @Getter
     @Setter
     @NonNull
+    @ScmUrl
     private String scmUrl;
 
     @Getter

@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.jboss.da.model.rest.validators.ScmUrl;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
@@ -17,7 +18,13 @@ public class EntryEntity {
 
     @Getter
     @Setter
+    @ScmUrl
     protected String scmUrl;
+
+    @Getter
+    @Setter
+    @ScmUrl
+    protected String externalScmUrl;
 
     @Getter
     @Setter
@@ -26,6 +33,10 @@ public class EntryEntity {
     @Getter
     @Setter
     protected String scmRevision;
+
+    @Getter
+    @Setter
+    protected String externalScmRevision;
 
     @Getter
     @Setter

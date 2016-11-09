@@ -4,6 +4,7 @@ import org.jboss.da.reports.model.api.SCMLocator;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.Valid;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class SCMReportRequest {
     @Getter
     @Setter
     @NonNull
+    @Valid
     private SCMLocator scml;
 
 }

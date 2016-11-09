@@ -6,6 +6,7 @@ import org.jboss.da.bc.model.BcError;
 import org.jboss.da.bc.model.backend.ProductGeneratorEntity;
 import org.jboss.da.bc.model.backend.ProjectDetail;
 import org.jboss.da.bc.model.backend.ProjectHiearchy;
+import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.model.api.SCMLocator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,8 +61,8 @@ public class BuildConfigurationGeneratorImplTest {
         ProjectHiearchy projectHierarchy = new ProjectHiearchy(singleProject, false);
         projectHierarchy.setSelected(true);
 
-        ProductGeneratorEntity genEntity = new ProductGeneratorEntity(new SCMLocator("", "", ""),
-                0, null, null);
+        ProductGeneratorEntity genEntity = new ProductGeneratorEntity(new SCMLocator("scm", "rev",
+                "path"), 0, new GAV("G", "A", "V"), "version");
         genEntity.setBcSetName("BCSetName");
         genEntity.setProductVersion("1.1");
         genEntity.setId(0);

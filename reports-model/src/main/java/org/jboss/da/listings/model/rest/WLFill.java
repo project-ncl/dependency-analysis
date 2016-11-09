@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.jboss.da.model.rest.validators.ScmUrl;
 
 @XmlRootElement(name = "productArtifact")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -21,6 +22,7 @@ public class WLFill {
 
     @Getter
     @Setter
+    @ScmUrl
     private String scmUrl;
 
     @Getter
