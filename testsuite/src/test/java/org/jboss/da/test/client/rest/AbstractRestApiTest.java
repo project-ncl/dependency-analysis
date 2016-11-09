@@ -1,12 +1,15 @@
 package org.jboss.da.test.client.rest;
 
 import org.apache.commons.io.FileUtils;
-import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 import org.jboss.da.test.client.AbstractClientApiTest;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
 
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.ClientRequestFilter;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,9 +24,13 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
 
     protected final String restApiVersion;
 
+    private final ClientBuilder builder;
+
     public AbstractRestApiTest() {
         this.restApiVersion = readRestApiVersion();
         this.restApiURL = readRestApiUrl();
+
+        builder = ClientBuilder.newBuilder();
     }
 
     private String readRestApiUrl() {
@@ -31,21 +38,22 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
                 + getContextRoot() + "/rest" + (restApiVersion == null ? "" : "/" + restApiVersion));
     }
 
-    protected ClientRequest createClientRequest(String relativePath, String jsonRequest) {
-        ClientRequest request = new ClientRequest(restApiURL + relativePath);
-        request.header("Content-Type", APPLICATION_JSON);
-        request.body(MediaType.APPLICATION_JSON_TYPE, jsonRequest);
-        return request;
+    protected WebTarget createWebTarget(String relativePath) {
+        return builder.build().target(restApiURL + relativePath);
     }
 
-    protected ClientResponse<String> assertResponseForRequest(String endpoint, String requestFile)
+    protected Invocation.Builder createClientRequest(String relativePath) {
+        WebTarget target = builder.build().target(restApiURL + relativePath);
+        return target.request(MediaType.APPLICATION_JSON_TYPE);
+    }
+
+    protected Response assertResponseForRequest(String endpoint, String requestFile)
             throws IOException, Exception {
         File jsonRequestFile = getJsonRequestFile(endpoint, requestFile);
-        ClientRequest request = createClientRequest(endpoint,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-        ClientResponse<String> response = request.post(String.class);
+        final String entity = FileUtils.readFileToString(jsonRequestFile, ENCODING);
+        Response response = createClientRequest(endpoint).post(Entity.json(entity));
         File expectedResponseFile = getJsonResponseFile(endpoint, requestFile);
-        final String actual = response.getEntity(String.class).trim();
+        final String actual = response.readEntity(String.class).trim();
         System.out.println("Actual: " + actual);
         assertEqualsJson(FileUtils.readFileToString(expectedResponseFile).trim(), actual);
         return response;

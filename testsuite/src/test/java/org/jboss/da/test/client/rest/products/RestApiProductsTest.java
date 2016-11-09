@@ -2,8 +2,6 @@ package org.jboss.da.test.client.rest.products;
 
 import org.jboss.da.test.client.rest.listings.AbstractRestApiListingTest;
 import org.jboss.da.test.client.rest.listings.RequestGenerator;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
 import org.json.JSONException;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -15,6 +13,8 @@ import java.io.IOException;
 import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -56,18 +56,17 @@ public class RestApiProductsTest extends AbstractRestApiListingTest {
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
 
         // Get diff
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_PRODUCTS_DIFF
-                + "?leftProduct=" + p1 + "&rightProduct=" + p2).get(String.class);
+        Response response = createClientRequest(
+                PATH_PRODUCTS_DIFF + "?leftProduct=" + p1 + "&rightProduct=" + p2).get();
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "diff");
     }
 
-    private void checkExpectedResponse(ClientResponse<String> response, String expectedFile)
-            throws IOException {
+    private void checkExpectedResponse(Response response, String expectedFile) throws IOException {
         File expectedResponseFile = getJsonResponseFile(PATH_FILES_PRODUCTS, expectedFile);
         final String expected = readFileToString(expectedResponseFile);
-        final String actual = response.getEntity(String.class);
+        final String actual = response.readEntity(String.class);
         System.out.println("Expected: " + expected);
         System.out.println("Actual: " + actual);
         assertEqualsJson(expected, actual);

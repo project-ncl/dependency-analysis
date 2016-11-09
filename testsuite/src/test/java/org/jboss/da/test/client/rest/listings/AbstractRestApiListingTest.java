@@ -2,24 +2,20 @@ package org.jboss.da.test.client.rest.listings;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
-import org.jboss.resteasy.util.GenericType;
 import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import javax.ws.rs.core.MediaType;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -51,8 +47,6 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
 
     protected static final String PATH_PRODUCTS = "/listings/whitelist/products";
 
-    private static final ObjectMapper mapper = new ObjectMapper();
-
     @After
     public void dropTables() throws Exception {
         List<RestWhiteArtifact> whitelistedArtifacts = getAllWhiteArtifactsFromList(PATH_WHITE_LIST);
@@ -68,8 +62,7 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
 
     private void removeGavFromList(String listUrl, RestArtifact gav) {
         try {
-            ClientRequest request = createClientRequest(listUrl, mapper.writeValueAsString(gav));
-            request.delete(String.class);
+            createClientRequest(listUrl).method("DELETE", Entity.json(gav), String.class);
         } catch (Exception e) {
             fail("Failed to remove GAV from the list using URL " + listUrl);
         }
@@ -77,8 +70,8 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
 
     private void removeProductFromList(String url, RestProduct product) {
         try {
-            ClientRequest request = createClientRequest(url, toRestProductRequest(product));
-            request.delete(String.class);
+            createClientRequest(url).method("DELETE", Entity.json(toRestProductRequest(product)),
+                    String.class);
         } catch (Exception e) {
             fail("Failed to remove product from the list using URL " + url);
         }
@@ -91,28 +84,26 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
     }
 
     protected List<RestArtifact> getAllArtifactsFromList(String listUrl) throws Exception {
-        return processGetRequest(new GenericType<List<RestArtifact>>() {}, restApiURL + listUrl);
+        return processGetRequest(new GenericType<List<RestArtifact>>() {}, listUrl);
     }
 
     private List<RestWhiteArtifact> getAllWhiteArtifactsFromList(String listUrl) throws Exception {
-        return processGetRequest(new GenericType<List<RestWhiteArtifact>>() {}, restApiURL
-                + listUrl);
+        return processGetRequest(new GenericType<List<RestWhiteArtifact>>() {}, listUrl);
     }
 
     private List<RestProduct> getAllProductsFromList(String listUrl) throws Exception {
-        return processGetRequest(new GenericType<List<RestProduct>>() {}, restApiURL + listUrl);
+        return processGetRequest(new GenericType<List<RestProduct>>() {}, listUrl);
     }
 
     private <T> T processGetRequest(GenericType<T> type, String url) throws Exception {
-        ClientRequest request = new ClientRequest(url);
-        request.accept(MediaType.APPLICATION_JSON);
+        Response response = createClientRequest(url).get();
 
-        ClientResponse<T> response = request.get(type);
+        if (response.getStatus() != 200) {
+            System.out.println("Respose: " + response.readEntity(String.class));
+            fail("Failed to get entity via REST API. Status " + response.getStatusInfo());
+        }
 
-        if (response.getStatus() != 200)
-            fail("Failed to get entity via REST API");
-
-        return response.getEntity();
+        return response.readEntity(type);
     }
 
     protected String readJsonFile(String file) throws IOException {
@@ -120,13 +111,13 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
         return FileUtils.readFileToString(jsonRequestFile, ENCODING);
     }
 
-    protected ClientResponse<String> manipulateEntityFile(ListEntityType entity,
-            OperationType operation, String file, Boolean checkSuccess) throws Exception {
+    protected Response manipulateEntityFile(ListEntityType entity, OperationType operation,
+            String file, Boolean checkSuccess) throws Exception {
         return manipulateEntityString(entity, operation, readJsonFile(file), checkSuccess);
     }
 
-    protected ClientResponse<String> manipulateEntityString(ListEntityType entity,
-            OperationType operation, String requestString, Boolean checkSuccess) throws Exception {
+    protected Response manipulateEntityString(ListEntityType entity, OperationType operation,
+            String requestString, Boolean checkSuccess) throws Exception {
         String path = null;
         switch (entity) {
             case WHITE:
@@ -140,19 +131,21 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
                 break;
         }
 
-        ClientRequest request = createClientRequest(path, requestString);
-        ClientResponse<String> response = null;
+        Invocation.Builder request = createClientRequest(path);
+        Response response;
         switch (operation) {
             case POST:
-                response = request.post(String.class);
+                response = request.post(Entity.json(requestString));
                 break;
 
             case DELETE:
-                response = request.delete(String.class);
+                response = request.method("DELETE", Entity.json(requestString));
                 break;
             case PUT:
-                response = request.put(String.class);
+                response = request.put(Entity.json(requestString));
                 break;
+            default:
+                throw new UnsupportedOperationException("Unknonw operation " + operation);
         }
         if (checkSuccess)
             assertEquals(200, response.getStatus());
@@ -172,8 +165,7 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
     }
 
     protected long getIdOfProduct(String name, String version) throws Exception {
-        ClientResponse<RestProduct[]> r = new ClientRequest(restApiURL + PATH_PRODUCT + "?name="
-                + name + "&version=" + version).get(RestProduct[].class);
-        return r.getEntity()[0].getId();
+        return createClientRequest(PATH_PRODUCT + "?name=" + name + "&version=" + version).get(
+                RestProduct[].class)[0].getId();
     }
 }

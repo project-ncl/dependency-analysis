@@ -4,13 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
 import org.json.JSONException;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
 
 import java.io.File;
 
@@ -28,7 +29,7 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
     @Test
     public void testGavReportBasic() throws Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_REPORTS_GAV, "guava18");
+        Response response = assertResponseForRequest(PATH_REPORTS_GAV, "guava18");
         assertEquals(200, response.getStatus());
     }
 
@@ -37,55 +38,51 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
         String gavNonexisting = "gavNonexisting";
         File jsonRequestFile = getJsonRequestFile(PATH_REPORTS_GAV, gavNonexisting);
 
-        ClientRequest request = createClientRequest(PATH_REPORTS_GAV,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-
-        ClientResponse<String> response = request.post(String.class);
+        Response response = createClientRequest(PATH_REPORTS_GAV).post(
+                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
 
         assertEquals(404, response.getStatus());
     }
 
     @Test
     public void testGavLookupSingle() throws Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13");
+        Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13");
         assertEquals(200, response.getStatus());
     }
 
     @Test
     public void testGavLookupList() throws Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13List");
+        Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13List");
         assertEquals(200, response.getStatus());
     }
 
     @Test
     public void testScmReportBasic() throws Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_SCM, "dependency-analysis");
+        Response response = assertResponseForRequest(PATH_SCM, "dependency-analysis");
         assertEquals(200, response.getStatus());
     }
 
     @Test
     public void testAlignReportBasic() throws Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_REPORTS_ALIGN,
-                "dependency-analysis");
+        Response response = assertResponseForRequest(PATH_REPORTS_ALIGN, "dependency-analysis");
         assertEquals(200, response.getStatus());
     }
 
     @Test
     public void testScmOptionalRepository() throws Exception {
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, "keycloak-1.6.0.Final");
-        ClientRequest request = createClientRequest(PATH_SCM,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-        ClientResponse<String> response = request.post(String.class);
+
+        Response response = createClientRequest(PATH_SCM).post(
+                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
+
         assertEquals(200, response.getStatus());
     }
 
     @Test
     public void testReportWithoutDependencies() throws Exception {
-        ClientResponse<String> responseWith = assertResponseForRequest(PATH_REPORTS_GAV,
-                "withDependencies");
+        Response responseWith = assertResponseForRequest(PATH_REPORTS_GAV, "withDependencies");
         assertEquals(200, responseWith.getStatus());
-        ClientResponse<String> responseWithout = assertResponseForRequest(PATH_REPORTS_GAV,
-                "withoutDependencies");
+        Response responseWithout = assertResponseForRequest(PATH_REPORTS_GAV, "withoutDependencies");
         assertEquals(200, responseWithout.getStatus());
     }
 

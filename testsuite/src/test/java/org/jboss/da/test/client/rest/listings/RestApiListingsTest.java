@@ -1,7 +1,5 @@
 package org.jboss.da.test.client.rest.listings;
 
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
 import org.junit.Test;
 
 import java.io.File;
@@ -14,22 +12,24 @@ import static org.junit.Assert.fail;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
+import javax.ws.rs.core.Response;
+
 public class RestApiListingsTest extends AbstractRestApiListingTest {
 
     private RequestGenerator generator = new RequestGenerator();
 
     @Test
     public void testAddProduct() throws Exception {
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.PRODUCT,
-                OperationType.POST, "productAdd", true);
+        Response response = manipulateEntityFile(ListEntityType.PRODUCT, OperationType.POST,
+                "productAdd", true);
 
         checkExpectedResponse(response, "success");
     }
 
     @Test
     public void testChangeProduct() throws Exception {
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.PRODUCT,
-                OperationType.POST, "productAdd", true);
+        Response response = manipulateEntityFile(ListEntityType.PRODUCT, OperationType.POST,
+                "productAdd", true);
 
         checkExpectedResponse(response, "success");
 
@@ -38,8 +38,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
     @Test
     public void testDeleteProduct() throws Exception {
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.PRODUCT,
-                OperationType.POST, "productAdd", true);
+        Response response = manipulateEntityFile(ListEntityType.PRODUCT, OperationType.POST,
+                "productAdd", true);
 
         checkExpectedResponse(response, "success");
 
@@ -51,8 +51,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
     @Test
     public void testAddBlackArtifact() throws Exception {
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.BLACK,
-                OperationType.POST, "gav", true);
+        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav",
+                true);
 
         checkExpectedResponse(response, "success");
     }
@@ -63,16 +63,16 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
 
         // delete artifact
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.BLACK,
-                OperationType.DELETE, "gav", true);
+        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.DELETE, "gav",
+                true);
 
         checkExpectedResponse(response, "success");
     }
 
     @Test
     public void testDeleteNonExistingBlackArtifact() throws Exception {
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.BLACK,
-                OperationType.DELETE, "gav", true);
+        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.DELETE, "gav",
+                true);
 
         checkExpectedResponse(response, "successFalse");
     }
@@ -83,16 +83,16 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
 
         // add second black artifact
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.BLACK,
-                OperationType.POST, "gav", true);
+        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav",
+                true);
 
         checkExpectedResponse(response, "successFalse");
     }
 
     @Test
     public void testAddWhiteArtifact() throws Exception {
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.PRODUCT,
-                OperationType.POST, "productAdd", true);
+        Response response = manipulateEntityFile(ListEntityType.PRODUCT, OperationType.POST,
+                "productAdd", true);
 
         checkExpectedResponse(response, "success");
 
@@ -106,8 +106,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
     @Test
     public void testDeleteWhiteArtifact() throws Exception {
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.PRODUCT,
-                OperationType.POST, "productAdd", true);
+        Response response = manipulateEntityFile(ListEntityType.PRODUCT, OperationType.POST,
+                "productAdd", true);
 
         checkExpectedResponse(response, "success");
 
@@ -126,8 +126,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
     @Test
     public void testDeleteNonExistingWhiteArtifact() throws Exception {
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.WHITE,
-                OperationType.DELETE, "gav", true);
+        Response response = manipulateEntityFile(ListEntityType.WHITE, OperationType.DELETE, "gav",
+                true);
 
         checkExpectedResponse(response, "successFalse");
     }
@@ -135,8 +135,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     @Test
     public void testAddBlacklistedArtifactToWhitelist() throws Exception {
         // Add artifact to blacklist
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.BLACK,
-                OperationType.POST, "gav", true);
+        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav",
+                true);
         checkExpectedResponse(response, "success");
 
         // Try to add artifact to whitelist
@@ -164,8 +164,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
 
         // Add artifact to blacklist
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.BLACK,
-                OperationType.POST, "gav", true);
+        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav",
+                true);
 
         checkExpectedResponse(response, "successMessage");
 
@@ -189,8 +189,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
         // Add artifact to blacklist
-        ClientResponse<String> response = manipulateEntityFile(ListEntityType.BLACK,
-                OperationType.POST, "gav", true);
+        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav",
+                true);
 
         checkExpectedResponse(response, "successMessage");
     }
@@ -205,8 +205,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
 
         // add second white artifact
-        ClientResponse<String> response = manipulateEntityString(ListEntityType.WHITE,
-                OperationType.POST, artifact, true);
+        Response response = manipulateEntityString(ListEntityType.WHITE, OperationType.POST,
+                artifact, true);
 
         checkExpectedResponse(response, "successFalse");
     }
@@ -230,8 +230,7 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
 
         // Get list
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST)
-                .get(String.class);
+        Response response = createClientRequest(PATH_WHITE_LIST).get();
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavWhiteList");
@@ -245,8 +244,7 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav2", true);
 
         // Get list
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST)
-                .get(String.class);
+        Response response = createClientRequest(PATH_BLACK_LIST).get();
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavBlackList");
@@ -256,9 +254,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     public void testCheckRHBlackArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
-                .get(String.class);
+        Response response = createClientRequest(
+                PATH_BLACK_LIST
+                        + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
+                .get();
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavResponse");
@@ -273,9 +272,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     public void testCheckNonRHBlackArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
-                .get(String.class);
+        Response response = createClientRequest(
+                PATH_BLACK_LIST
+                        + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
+                .get();
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavResponse");
@@ -290,9 +290,9 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     public void testCheckNonRHNonOSGiBlackArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_BLACK_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3")
-                .get(String.class);
+        Response response = createClientRequest(
+                PATH_BLACK_LIST
+                        + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3").get();
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavResponse");
@@ -307,9 +307,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
-                .get(String.class);
+        Response response = createClientRequest(
+                PATH_WHITE_LIST
+                        + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
+                .get();
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavRhResponse");
@@ -329,9 +330,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
 
-        ClientResponse<String> response = new ClientRequest(restApiURL + PATH_WHITE_LIST
-                + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
-                .get(String.class);
+        Response response = createClientRequest(
+                PATH_WHITE_LIST
+                        + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
+                .get();
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "gavRhResponse");
@@ -347,10 +349,9 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         }
     }
 
-    private void checkExpectedResponse(ClientResponse<String> response, String expectedFile)
-            throws IOException {
+    private void checkExpectedResponse(Response response, String expectedFile) throws IOException {
         File expectedResponseFile = getJsonResponseFile(PATH_FILES_LISTINGS_GAV, expectedFile);
-        assertEqualsJson(readFileToString(expectedResponseFile), response.getEntity(String.class));
+        assertEqualsJson(readFileToString(expectedResponseFile), response.readEntity(String.class));
     }
 
 }
