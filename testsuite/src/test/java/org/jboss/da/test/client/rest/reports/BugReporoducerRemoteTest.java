@@ -4,10 +4,11 @@ import java.io.File;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -24,10 +25,8 @@ public class BugReporoducerRemoteTest extends AbstractRestReportsTest {
         String gavNonexisting = "keycloak-1.6.0.Final";
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, gavNonexisting);
 
-        ClientRequest request = createClientRequest(PATH_SCM,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-
-        ClientResponse<String> response = request.post(String.class);
+        Response response = createClientRequest(PATH_SCM).post(
+                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
 
         assertEquals(200, response.getStatus());
     }
@@ -37,10 +36,8 @@ public class BugReporoducerRemoteTest extends AbstractRestReportsTest {
         String gavNonexisting = "pnc-3de7ed5";
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, gavNonexisting);
 
-        ClientRequest request = createClientRequest(PATH_SCM,
-                FileUtils.readFileToString(jsonRequestFile, ENCODING));
-
-        ClientResponse<String> response = request.post(String.class);
+        Response response = createClientRequest(PATH_SCM).post(
+                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
 
         assertEquals(200, response.getStatus());
     }

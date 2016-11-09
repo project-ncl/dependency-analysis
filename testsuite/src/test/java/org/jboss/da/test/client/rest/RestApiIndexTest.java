@@ -1,29 +1,23 @@
 package org.jboss.da.test.client.rest;
 
-import org.apache.http.entity.ContentType;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
 import org.junit.Test;
 
-import static org.apache.http.entity.ContentType.TEXT_HTML;
 import static org.jboss.da.common.Constants.COMMIT_HASH;
 import static org.jboss.da.common.Constants.DA_VERSION;
 import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
 import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
 import static org.junit.Assert.assertEquals;
 
+import javax.ws.rs.core.Response;
+
 public class RestApiIndexTest extends AbstractRestReportsTest {
 
     @Test
     public void testIndexHtml() throws Exception {
         String path = "/";
-        ContentType contentType = TEXT_HTML;
-        ClientRequest request = new ClientRequest(restApiURL + path);
-        request.header("Content-Type", contentType);
+        Response response = createWebTarget(path).request().get();
 
-        ClientResponse<String> response = request.get(String.class);
-
-        assertEquals(getExpectedResponse(), response.getEntity(String.class));
+        assertEquals(getExpectedResponse(), response.readEntity(String.class));
     }
 
     private String getExpectedResponse() {

@@ -6,9 +6,10 @@
 package org.jboss.da.test.client.rest.bc;
 
 import org.jboss.da.test.client.rest.AbstractRestBCTest;
-import org.jboss.resteasy.client.ClientResponse;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -18,7 +19,7 @@ public class RestApiStartProcessRemoteTest extends AbstractRestBCTest {
 
     @Test
     public void testStartProcess() throws Exception {
-        ClientResponse<String> response = assertResponseForRequest(RestApiBCTest.PATH_BC_START,
+        Response response = assertResponseForRequest(RestApiBCTest.PATH_BC_START,
                 "start-process-wrong");
         assertEquals(500, response.getStatus());
     }

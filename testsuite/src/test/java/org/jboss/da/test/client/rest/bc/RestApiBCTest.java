@@ -6,8 +6,6 @@ import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestBCTest;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
 import org.json.JSONException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -15,6 +13,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
 
 public class RestApiBCTest extends AbstractRestBCTest {
 
@@ -26,26 +27,25 @@ public class RestApiBCTest extends AbstractRestBCTest {
 
     @Test
     public void testStartDAParent() throws IOException, Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_BC_START, "da-parent");
+        Response response = assertResponseForRequest(PATH_BC_START, "da-parent");
         assertEquals(200, response.getStatus());
     }
 
     @Test
     public void testIterateDAApplication() throws IOException, Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_BC_ITERATE,
-                "da-application-1");
+        Response response = assertResponseForRequest(PATH_BC_ITERATE, "da-application-1");
         assertEquals(200, response.getStatus());
     }
 
     @Test
     public void testStartDACommon() throws IOException, Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_BC_START, "da-common");
+        Response response = assertResponseForRequest(PATH_BC_START, "da-common");
         assertEquals(200, response.getStatus());
     }
 
     @Test
     public void testIterateDACommon() throws IOException, Exception {
-        ClientResponse<String> response = assertResponseForRequest(PATH_BC_ITERATE, "da-common-1");
+        Response response = assertResponseForRequest(PATH_BC_ITERATE, "da-common-1");
         assertEquals(200, response.getStatus());
     }
 
@@ -55,10 +55,10 @@ public class RestApiBCTest extends AbstractRestBCTest {
         File jsonRequestFile = getJsonRequestFile(PATH_BC_FINISH, "da-parent");
         String input = FileUtils.readFileToString(jsonRequestFile, "utf-8");
         String number = Integer.toString(new Random().nextInt());
-        ClientRequest request = createClientRequest(PATH_BC_FINISH,
-                input.replace("PLACEHOLDER", number));
-        ClientResponse<String> response = request.post(String.class);
-        System.out.println("Response: " + response.getEntity());
+        Response response = createClientRequest(PATH_BC_FINISH).post(
+                Entity.json(input.replace("PLACEHOLDER", number)));
+
+        System.out.println("Response: " + response.readEntity(String.class));
     }
 
     @Override
