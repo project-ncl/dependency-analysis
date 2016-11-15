@@ -61,8 +61,8 @@ public class BuildConfigurationGeneratorImplTest {
         ProjectHiearchy projectHierarchy = new ProjectHiearchy(singleProject, false);
         projectHierarchy.setSelected(true);
 
-        ProductGeneratorEntity genEntity = new ProductGeneratorEntity(new SCMLocator("scm", "rev",
-                "path"), 0, new GAV("G", "A", "V"), "version");
+        ProductGeneratorEntity genEntity = new ProductGeneratorEntity(SCMLocator.internal("scm",
+                "rev", "path"), 0, new GAV("G", "A", "V"), "version");
         genEntity.setBcSetName("BCSetName");
         genEntity.setProductVersion("1.1");
         genEntity.setId(0);

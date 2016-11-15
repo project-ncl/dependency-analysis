@@ -37,8 +37,14 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
     public I startAnalyse(EntryEntity entry) throws ScmException, PomAnalysisException,
             CommunicationException {
         log.info("Start process " + entry);
-        SCMLocator scm = new SCMLocator(entry.getScmUrl(), entry.getScmRevision(),
-                entry.getPomPath(), entry.getRepositories());
+        SCMLocator scm;
+        if (entry.getScmUrl() != null && entry.getScmRevision() != null) {
+            scm = SCMLocator.internal(entry.getScmUrl(), entry.getScmRevision(),
+                    entry.getPomPath(), entry.getRepositories());
+        } else {
+            scm = SCMLocator.external(entry.getExternalScmUrl(), entry.getExternalScmRevision(),
+                    entry.getPomPath(), entry.getRepositories());
+        }
         return start(scm, entry);
     }
 
@@ -144,23 +150,19 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
 
     protected <T extends GeneratorEntity> T toGeneratorEntity(EntityConstructor<T> constructor,
             InfoEntity ie) {
-        boolean internal;
-        String url = "";
-        String revision = "";
+
+        SCMLocator scml;
         if (ie.getTopLevelBc().getScmUrl() == null) {
-            url = ie.getTopLevelBc().getExternalScmUrl();
-            revision = ie.getTopLevelBc().getExternalScmRevision();
-            internal = false;
+            String url = ie.getTopLevelBc().getExternalScmUrl();
+            String revision = ie.getTopLevelBc().getExternalScmRevision();
+            scml = SCMLocator.external(url, revision, ie.getPomPath());
         } else {
-            url = ie.getTopLevelBc().getScmUrl();
-            revision = ie.getTopLevelBc().getScmRevision();
-            internal = true;
+            String url = ie.getTopLevelBc().getScmUrl();
+            String revision = ie.getTopLevelBc().getScmRevision();
+            scml = SCMLocator.internal(url, revision, ie.getPomPath());
         }
-        String path = ie.getPomPath();
-        SCMLocator scml = new SCMLocator(url, revision, path);
         GAV gav = ie.getTopLevelBc().getGav();
 
-        scml.setInternal(internal);
         T ge = constructor.construct(scml, ie.getId(), gav);
 
         ge.setBcSetName(ie.getBcSetName());

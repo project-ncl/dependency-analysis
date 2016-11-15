@@ -38,8 +38,8 @@ public class ReportsFacade {
     public Set<BuiltReport> builtReport(BuiltReportRequest request) throws ScmException,
             PomAnalysisException, CommunicationException {
         String pomPath = getPomPath(request.getPomPath());
-        SCMLocator locator = new SCMLocator(request.getScmUrl(), request.getRevision(), pomPath,
-                request.getAdditionalRepos());
+        SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(),
+                pomPath, request.getAdditionalRepos());
 
         Set<BuiltReportModule> builtReport = reportsGenerator.getBuiltReport(locator);
         return toBuiltReport(builtReport);
@@ -48,8 +48,8 @@ public class ReportsFacade {
     public AlignReport alignReport(AlignReportRequest request) throws ScmException,
             PomAnalysisException {
         String pomPath = getPomPath(request.getPomPath());
-        SCMLocator locator = new SCMLocator(request.getScmUrl(), request.getRevision(), pomPath,
-                request.getAdditionalRepos());
+        SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(),
+                pomPath, request.getAdditionalRepos());
 
         Set<AlignmentReportModule> aligmentReport = reportsGenerator.getAligmentReport(locator,
                 request.isSearchUnknownProducts(), request.getProducts());

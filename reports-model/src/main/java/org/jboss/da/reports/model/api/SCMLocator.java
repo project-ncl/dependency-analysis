@@ -5,19 +5,15 @@ import java.util.List;
 import java.util.Objects;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+
 import org.jboss.da.model.rest.validators.ScmUrl;
 
 /**
  *
  * @author Honza Brázdil <janinko.g@gmail.com>
  */
-@RequiredArgsConstructor
-@NoArgsConstructor
 @ToString
 public class SCMLocator {
 
@@ -34,22 +30,57 @@ public class SCMLocator {
     @NonNull
     private String pomPath;
 
-    @Setter
-    @Getter
-    private boolean internal;
+    private Boolean internal;
 
     @Getter
     @NonNull
-    private List<String> repositories = Collections.emptyList();
+    private List<String> repositories;
 
-    public SCMLocator(String scmUrl, String revision, String pomPath, List<String> repositories) {
-
+    private SCMLocator(String scmUrl, String revision, String pomPath, List<String> repositories) {
         this.scmUrl = Objects.requireNonNull(scmUrl);
         this.revision = Objects.requireNonNull(revision);
         this.pomPath = Objects.requireNonNull(pomPath);
+        this.repositories = Objects.requireNonNull(repositories);
+    }
 
-        if (repositories != null) {
-            this.repositories = repositories;
-        }
+    public static SCMLocator internal(String scmUrl, String revision, String pomPath) {
+        return internal(scmUrl, revision, pomPath, Collections.emptyList());
+    }
+
+    public static SCMLocator internal(String scmUrl, String revision, String pomPath,
+            List<String> repositories) {
+        SCMLocator ret = new SCMLocator(scmUrl, revision, pomPath, repositories);
+        ret.internal = true;
+        return ret;
+    }
+
+    public static SCMLocator external(String scmUrl, String revision, String pomPath) {
+        return external(scmUrl, revision, pomPath, Collections.emptyList());
+    }
+
+    public static SCMLocator external(String scmUrl, String revision, String pomPath,
+            List<String> repositories) {
+        SCMLocator ret = new SCMLocator(scmUrl, revision, pomPath, repositories);
+        ret.internal = false;
+        return ret;
+    }
+
+    public static SCMLocator generic(String scmUrl, String revision, String pomPath) {
+        return generic(scmUrl, revision, pomPath, Collections.emptyList());
+    }
+
+    public static SCMLocator generic(String scmUrl, String revision, String pomPath,
+            List<String> repositories) {
+        SCMLocator ret = new SCMLocator(scmUrl, revision, pomPath, repositories);
+        ret.internal = null;
+        return ret;
+    }
+
+    public boolean isInternal() {
+        return internal != null && internal;
+    }
+
+    public boolean isExternal() {
+        return internal != null && !internal;
     }
 }
