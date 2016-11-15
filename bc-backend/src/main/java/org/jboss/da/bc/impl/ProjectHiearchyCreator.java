@@ -222,8 +222,10 @@ public class ProjectHiearchyCreator {
      * Sets scmUrl and scmRevision
      */
     private void setSCMInfo(ProjectDetail project, Optional<POMInfo> pomInfo) {
+        String repoUrl = scmUrl == null ? externalScmUrl : scmUrl;
+        String repoRevision = revision == null ? externalRevison : revision;
         try {
-            boolean gavInRepository = scm.isGAVInRepository(scmUrl, revision, project.getGav());
+            boolean gavInRepository = scm.isGAVInRepository(repoUrl, repoRevision, project.getGav());
             if (gavInRepository) {
                 //we should copy the coordinates (internal and external) from the toplevel
                 project.setScmUrl(scmUrl);
