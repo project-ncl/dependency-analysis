@@ -133,7 +133,7 @@ public class ProjectHiearchyCreator {
             try {
                 // try to get dependencies from internal and external scm url instead
                 // intermal scm url and revision are prioritized
-                if (project.getScmUrl() == null) {
+                if (project.getScmUrl() == null || project.getScmUrl().isEmpty()) {
                     dependencies = depGenerator.getToplevelDependencies(
                             project.getExternalScmUrl(), project.getExternalScmRevision(), gav);
                 } else {
@@ -254,13 +254,13 @@ public class ProjectHiearchyCreator {
      * @param project Project with SCM information set.
      */
     private void findExistingBuildConfiguration(ProjectDetail project) {
-        if ((project.getScmUrl() == null || project.getScmRevision() == null)
-                && (project.getExternalScmUrl() == null || project.getExternalScmRevision() == null))
+        if ((project.getScmUrl() == null || project.getScmRevision() == null || project.getScmUrl().isEmpty())
+                && (project.getExternalScmUrl() == null || project.getExternalScmRevision() == null || project.getExternalScmUrl().isEmpty()))
             return;
 
         try {
             List<Integer> existingBcIds;
-            if (project.getScmUrl() == null) {
+            if (project.getScmUrl() == null || project.getScmUrl().isEmpty()) {
                 existingBcIds = pnc.getConnector().getBuildConfigurations(
                         project.getExternalScmUrl(), project.getExternalScmRevision()).stream()
                         .map(x -> x.getId()).collect(Collectors.toList());
