@@ -38,11 +38,12 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
             CommunicationException {
         log.info("Start process " + entry);
         SCMLocator scm;
-        if (entry.getScmUrl() != null && entry.getScmRevision() != null) {
-            scm = SCMLocator.internal(entry.getScmUrl(), entry.getScmRevision(),
+        if (entry.getScmUrl() == null || entry.getScmRevision() == null
+                || entry.getScmUrl().isEmpty() || entry.getScmRevision().isEmpty()) {
+            scm = SCMLocator.external(entry.getExternalScmUrl(), entry.getExternalScmRevision(),
                     entry.getPomPath(), entry.getRepositories());
         } else {
-            scm = SCMLocator.external(entry.getExternalScmUrl(), entry.getExternalScmRevision(),
+            scm = SCMLocator.internal(entry.getScmUrl(), entry.getScmRevision(),
                     entry.getPomPath(), entry.getRepositories());
         }
         return start(scm, entry);
@@ -92,10 +93,12 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         pd.setAvailableVersions(bc.getAvailableVersions());
         pd.setName(bc.getName());
         pd.setProjectId(bc.getProjectId());
-        pd.setExternalScmUrl(bc.getExternalScmUrl());
-        pd.setExternalScmRevision(bc.getExternalScmRevision());
-        pd.setScmUrl(bc.getScmUrl());
-        pd.setScmRevision(bc.getScmRevision());
+        if(bc.getScmUrl() != null && !bc.getScmUrl().isEmpty()){
+            pd.setInternalSCM(bc.getScmUrl(), bc.getScmRevision());
+        }
+        if(bc.getExternalScmUrl() != null && !bc.getExternalScmUrl().isEmpty()){
+            pd.setExternalSCM(bc.getExternalScmUrl(), bc.getExternalScmRevision());
+        }
         if(bc.getErrors() != null)
             pd.setErrors(bc.getErrors());
         pd.setBcId(bc.getBcId());
@@ -123,10 +126,14 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         bc.setAvailableVersions(p.getAvailableVersions());
         bc.setName(p.getName());
         bc.setProjectId(p.getProjectId());
-        bc.setScmRevision(p.getScmRevision());
-        bc.setScmUrl(p.getScmUrl());
-        bc.setExternalScmRevision(p.getExternalScmRevision());
-        bc.setExternalScmUrl(p.getExternalScmUrl());
+        p.getInternalSCM().ifPresent(scm -> {
+            bc.setScmUrl(scm.getUrl());
+            bc.setScmRevision(scm.getRevision());
+        });
+        p.getExternalSCM().ifPresent(scm -> {
+            bc.setExternalScmUrl(scm.getUrl());
+            bc.setExternalScmRevision(scm.getRevision());
+        });
         bc.setSelected(ph.isSelected());
         bc.setBcId(p.getBcId());
         bc.setAnalysisStatus(ph.getAnalysisStatus());
@@ -150,23 +157,19 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
 
     protected <T extends GeneratorEntity> T toGeneratorEntity(EntityConstructor<T> constructor,
             InfoEntity ie) {
-
         SCMLocator scml;
-        if (ie.getTopLevelBc().getScmUrl() == null) {
-            String url = ie.getTopLevelBc().getExternalScmUrl();
-            String revision = ie.getTopLevelBc().getExternalScmRevision();
-            scml = SCMLocator.external(url, revision, ie.getPomPath());
+        final BuildConfiguration bc = ie.getTopLevelBc();
+        if (bc.getScmUrl() == null || bc.getScmUrl().isEmpty()) {
+            scml = SCMLocator.external(bc.getExternalScmUrl(), bc.getExternalScmRevision(),
+                    ie.getPomPath());
         } else {
-            String url = ie.getTopLevelBc().getScmUrl();
-            String revision = ie.getTopLevelBc().getScmRevision();
-            scml = SCMLocator.internal(url, revision, ie.getPomPath());
+            scml = SCMLocator.internal(bc.getScmUrl(), bc.getScmRevision(), ie.getPomPath());
         }
-        GAV gav = ie.getTopLevelBc().getGav();
 
-        T ge = constructor.construct(scml, ie.getId(), gav);
+        T ge = constructor.construct(scml, ie.getId(), bc.getGav());
 
         ge.setBcSetName(ie.getBcSetName());
-        ge.setToplevelBc(toProjectHiearchy(ie.getTopLevelBc()));
+        ge.setToplevelBc(toProjectHiearchy(bc));
         ge.setAuthToken(ie.getSecurityToken());
         return ge;
     }

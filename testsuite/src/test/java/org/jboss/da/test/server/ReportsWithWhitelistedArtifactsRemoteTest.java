@@ -201,8 +201,8 @@ public class ReportsWithWhitelistedArtifactsRemoteTest {
     // - whitelist addition to top-1 level
 
     private SCMReportRequest getDefaultSCMRequest() {
-        SCMLocator locator = new SCMLocator(
-                "https://github.com/project-ncl/dependency-analysis.git", "05a878", "common", null);
+        SCMLocator locator = SCMLocator.generic(
+                "https://github.com/project-ncl/dependency-analysis.git", "05a878", "common");
 
         SCMReportRequest request = new SCMReportRequest();
         request.setScml(locator);

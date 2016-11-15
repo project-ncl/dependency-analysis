@@ -34,15 +34,16 @@ public class SCMLocator {
 
     @Getter
     @NonNull
-    private List<String> repositories;
+    private List<String> repositories = Collections.emptyList();
+
+    private SCMLocator() {
+    }
 
     private SCMLocator(String scmUrl, String revision, String pomPath, List<String> repositories) {
         this.scmUrl = Objects.requireNonNull(scmUrl);
         this.revision = Objects.requireNonNull(revision);
         this.pomPath = Objects.requireNonNull(pomPath);
-        if (repositories == null) {
-            this.repositories = Collections.emptyList();
-        } else {
+        if (repositories != null) {
             this.repositories = repositories;
         }
     }

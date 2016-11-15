@@ -96,13 +96,20 @@ public class FinalizerImpl implements Finalizer {
             ProjectDetail project = hiearchy.getProject();
             if (project.isUseExistingBc()) {
                 List<BuildConfiguration> existingBcs = new ArrayList<>();
-                List<BuildConfiguration> existingBcsInternal = pnc.getConnector()
-                        .getBuildConfigurations(project.getScmUrl(), project.getScmRevision());
-                List<BuildConfiguration> existingBcsExternal = pnc.getConnector()
-                        .getBuildConfigurations(project.getExternalScmUrl(), project.getExternalScmRevision());
 
-                existingBcs.addAll(existingBcsInternal);
-                existingBcs.addAll(existingBcsExternal);
+                Optional<ProjectDetail.SCM> internalSCM = project.getInternalSCM();
+                if(internalSCM.isPresent()){
+                    existingBcs.addAll(pnc.getConnector().getBuildConfigurations(
+                            internalSCM.get().getUrl(),
+                            internalSCM.get().getRevision()));
+                }
+
+                Optional<ProjectDetail.SCM> externalSCM = project.getExternalSCM();
+                if(externalSCM.isPresent()){
+                    existingBcs.addAll(pnc.getConnector().getBuildConfigurations(
+                            externalSCM.get().getUrl(),
+                            externalSCM.get().getRevision()));
+                }
 
                 Optional<BuildConfiguration> optionalBc = existingBcs.stream()
                         .filter(x -> project.getBcId().equals(x.getId()))
@@ -167,10 +174,15 @@ public class FinalizerImpl implements Finalizer {
         bc.setEnvironmentId(project.getEnvironmentId());
         bc.setName(project.getName());
         bc.setProjectId(project.getProjectId());
-        bc.setScmInternalRepoURL(project.getScmUrl());
-        bc.setScmInternalRevision(project.getScmRevision());
-        bc.setScmExternalRepoURL(project.getExternalScmUrl());
-        bc.setScmExternalRevision(project.getExternalScmRevision());
+
+        project.getInternalSCM().ifPresent(scm -> {
+            bc.setScmInternalRepoURL(scm.getUrl());
+            bc.setScmInternalRevision(scm.getRevision());
+        });
+        project.getExternalSCM().ifPresent(scm -> {
+            bc.setScmExternalRepoURL(scm.getUrl());
+            bc.setScmExternalRevision(scm.getRevision());
+        });
 
         return bc;
     }
