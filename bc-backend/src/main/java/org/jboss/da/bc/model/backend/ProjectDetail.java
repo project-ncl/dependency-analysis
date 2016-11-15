@@ -4,8 +4,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 
-import org.jboss.da.bc.model.BcError;
-
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -24,19 +22,11 @@ public class ProjectDetail {
 
     @Getter
     @Setter
-    private String scmUrl;
+    private Optional<SCM> internalSCM = Optional.empty();
 
     @Getter
     @Setter
-    private String externalScmUrl;
-
-    @Getter
-    @Setter
-    private String scmRevision;
-
-    @Getter
-    @Setter
-    private String externalScmRevision;
+    private Optional<SCM> externalSCM = Optional.empty();
 
     @Getter
     @Setter
@@ -98,6 +88,37 @@ public class ProjectDetail {
 
     public boolean isBcExists() {
         return existingBCs == null ? false : !existingBCs.isEmpty();
+    }
+
+    public void setInternalSCM(String url, String revision) {
+        this.internalSCM = Optional.of(new SCM(url, revision));
+    }
+
+    public void setExternalSCM(String url, String revision) {
+        this.externalSCM = Optional.of(new SCM(url, revision));
+    }
+
+    public static class SCM {
+
+        @Getter
+        @NonNull
+        private final String url;
+
+        @Getter
+        @NonNull
+        private final String revision;
+
+        public SCM(String url, String revision) {
+            if (url == null || url.isEmpty()) {
+                throw new IllegalArgumentException("SCM url can't be null nor empty.");
+            }
+            if (revision == null || revision.isEmpty()) {
+                throw new IllegalArgumentException("SCM revision can't be null nor empty.");
+            }
+            this.url = url;
+            this.revision = revision;
+        }
+
     }
 
 }

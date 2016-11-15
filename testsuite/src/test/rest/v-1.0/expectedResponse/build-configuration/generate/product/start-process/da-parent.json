@@ -3,8 +3,10 @@
     "pomPath":"pom.xml",
     "productVersion": "0.3",
     "topLevelBc":{
-        "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
-        "scmRevision":"0.3.0",
+        "scmUrl":null,
+        "scmRevision":null,
+        "externalScmUrl":"https://github.com/project-ncl/dependency-analysis.git",
+        "externalScmRevision":"0.3.0",
         "projectId":null,
         "buildScript":"",
         "description":"Build Configuration for org.jboss.da:parent:0.3.0 - dependency-analyzer.",

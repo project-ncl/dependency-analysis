@@ -3,8 +3,10 @@
     "pomPath":"common/pom.xml",
     "productVersion": "0.3",
     "topLevelBc":{
-        "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
-        "scmRevision":"0.3.0",
+        "scmUrl":null,
+        "scmRevision":null,
+        "externalScmUrl":"https://github.com/project-ncl/dependency-analysis.git",
+        "externalScmRevision":"0.3.0",
         "projectId":null,
         "buildScript":"",
         "description":"Build Configuration for org.jboss.da:common:0.3.0.",
@@ -19,7 +21,9 @@
         "analysisStatus": "ANALYSED",
         "dependencies":[
             {
-                "externalScmUrl":"http://github.com/KentBeck/junit/tree/master",
+                "scmUrl":null,
+                "scmRevision":null,
+                "externalScmUrl":null,
                 "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
@@ -42,6 +46,8 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
+                "externalScmUrl":null,
+                "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
                 "description":"Build Configuration for org.codehaus.jackson:jackson-mapper-asl:1.9.9 - Data Mapper for Jackson.",
@@ -60,6 +66,8 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
+                "externalScmUrl":null,
+                "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
                 "description":"Build Configuration for org.commonjava.maven.ext:pom-manipulation-core:1.6 - POM Manipulation Extension for Maven Core Library.",
@@ -78,6 +86,8 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
+                "externalScmUrl":null,
+                "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
                 "description":"Build Configuration for org.slf4j:slf4j-api:1.7.7 - SLF4J API Module.",
@@ -103,7 +113,9 @@
                 "selected":false
             },
             {
-                "externalScmUrl":"http://github.com/rzwitserloot/lombok",
+                "scmUrl":null,
+                "scmRevision":null,
+                "externalScmUrl":null,
                 "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
@@ -121,7 +133,9 @@
                 "selected":false
             },
             {
-                "externalScmUrl":"scm:git:git@github.com:cdi-spec/cdi.git",
+                "scmUrl":null,
+                "scmRevision":null,
+                "externalScmUrl":null,
                 "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",

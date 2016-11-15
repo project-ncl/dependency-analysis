@@ -4,8 +4,10 @@
     "pomPath":"common/pom.xml",
     "productVersion": "0.3",
     "topLevelBc":{
-        "scmUrl":"https://github.com/project-ncl/dependency-analysis.git",
-        "scmRevision":"0.3.0",
+        "scmUrl":null,
+        "scmRevision":null,
+        "externalScmUrl":"https://github.com/project-ncl/dependency-analysis.git",
+        "externalScmRevision":"0.3.0",
         "projectId":null,
         "buildScript":"mvn clean install",
         "name":"common-0.3.0",
@@ -20,8 +22,10 @@
         "analysisStatus": "ANALYSED",
         "dependencies":[
             {
-                "scmUrl":"http://github.com/KentBeck/junit/tree/master",
+                "scmUrl":null,
                 "scmRevision":null,
+                "externalScmUrl":null,
+                "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
                 "name":"junit-4.11",
@@ -40,6 +44,8 @@
             {
                 "scmUrl":null,
                 "scmRevision":null,
+                "externalScmUrl":null,
+                "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
                 "name":"pom-manipulation-core-1.6",
@@ -55,9 +61,11 @@
                 "dependencies":[],
                 "selected":false
             },
-            {  
+            {
                 "scmUrl":null,
                 "scmRevision":null,
+                "externalScmUrl":null,
+                "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
                 "name":"slf4j-api-1.7.7",
@@ -74,8 +82,10 @@
                 "selected":false
             },
             {
-                "scmUrl":"http://github.com/rzwitserloot/lombok",
+                "scmUrl":null,
                 "scmRevision":null,
+                "externalScmUrl":null,
+                "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
                 "name":"lombok-1.16.4",
@@ -92,8 +102,12 @@
                 "selected":false
             },
             {
-                "scmUrl":"scm:git:git@github.com:cdi-spec/cdi.git",
+                "scmUrl":null,
                 "scmRevision":null,
+                "scmUrl":null,
+                "scmRevision":null,
+                "externalScmUrl":null,
+                "externalScmRevision":null,
                 "projectId":null,
                 "buildScript":"",
                 "name":"cdi-api-1.2",

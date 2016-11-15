@@ -1,1 +1,9 @@
-{"id":2,"productVersion":"1.0","scmUrl":"https://github.com/project-ncl/nonexistent.git","scmRevision":"master","pomPath":"./pom.xml"}
+{
+    "id": 2,
+    "productVersion": "1.0",
+    "scmUrl": null,
+    "scmRevision": null,
+    "externalScmUrl": "https://github.com/project-ncl/nonexistent.git",
+    "externalScmRevision": "master",
+    "pomPath": "./pom.xml"
+}
