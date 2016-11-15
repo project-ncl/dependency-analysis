@@ -40,11 +40,15 @@ public class SCMLocator {
         this.scmUrl = Objects.requireNonNull(scmUrl);
         this.revision = Objects.requireNonNull(revision);
         this.pomPath = Objects.requireNonNull(pomPath);
-        this.repositories = Objects.requireNonNull(repositories);
+        if (repositories == null) {
+            this.repositories = Collections.emptyList();
+        } else {
+            this.repositories = repositories;
+        }
     }
 
     public static SCMLocator internal(String scmUrl, String revision, String pomPath) {
-        return internal(scmUrl, revision, pomPath, Collections.emptyList());
+        return internal(scmUrl, revision, pomPath, null);
     }
 
     public static SCMLocator internal(String scmUrl, String revision, String pomPath,
@@ -55,7 +59,7 @@ public class SCMLocator {
     }
 
     public static SCMLocator external(String scmUrl, String revision, String pomPath) {
-        return external(scmUrl, revision, pomPath, Collections.emptyList());
+        return external(scmUrl, revision, pomPath, null);
     }
 
     public static SCMLocator external(String scmUrl, String revision, String pomPath,
