@@ -40,7 +40,7 @@ public class SCMImpl implements SCM {
         if (fref.shouldIComplete()) {
             try {
                 File tempDir = Files.createTempDirectory("cloned_repo").toFile();
-                log.debug("Cached repository for {} not found. Cloning to {}", spec, tempDir);
+                log.info("Cached repository for {} not found. Cloning to {}.", spec, tempDir);
                 try {
                     scm.shallowCloneRepository(scmType, scmUrl, revision, tempDir);
                     DirectoryReference ref = new DirectoryReference(tempDir);
@@ -63,7 +63,9 @@ public class SCMImpl implements SCM {
 
         } else {
             try {
-                return fref.get(30, TimeUnit.MINUTES).get().orElseThrow(()->new IllegalStateException("Now completed reference has empty file."));
+                File dir = fref.get(30, TimeUnit.MINUTES).get().orElseThrow(()->new IllegalStateException("Now completed reference has empty file."));
+                log.info("Cached repository for {} found in {}.", spec, dir);
+                return dir;
             } catch (InterruptedException | ExecutionException | TimeoutException ex) {
                 throw new ScmException("Could not obtain cloned repository.", ex);
             }
