@@ -31,11 +31,11 @@ public class BuildConfigurationBPMCreate {
 
     @Getter
     @Setter
-    private String scmInternalRepoURL;
+    private String scmRepoURL;
 
     @Getter
     @Setter
-    private String scmInternalRevision;
+    private String scmRevision;
 
     @Getter
     @Setter

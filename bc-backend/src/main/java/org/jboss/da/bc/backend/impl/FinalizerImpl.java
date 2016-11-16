@@ -176,8 +176,8 @@ public class FinalizerImpl implements Finalizer {
         bc.setProjectId(project.getProjectId());
 
         project.getInternalSCM().ifPresent(scm -> {
-            bc.setScmInternalRepoURL(scm.getUrl());
-            bc.setScmInternalRevision(scm.getRevision());
+            bc.setScmRepoURL(scm.getUrl());
+            bc.setScmRevision(scm.getRevision());
         });
         project.getExternalSCM().ifPresent(scm -> {
             bc.setScmExternalRepoURL(scm.getUrl());
