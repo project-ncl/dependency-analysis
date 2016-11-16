@@ -46,7 +46,9 @@ public class SCMCache {
         if (futureCache.containsKey(spec)) {
             return new FutureReference(futureCache.get(spec));
         }
-        return new FutureReference();
+        FutureReference future = new FutureReference();
+        futureCache.put(spec, future);
+        return future;
     }
 
     private void checkFutureCache() {
