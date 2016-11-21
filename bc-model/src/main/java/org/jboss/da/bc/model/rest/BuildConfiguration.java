@@ -13,7 +13,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 import org.jboss.da.bc.model.BcError;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.validators.ScmUrl;

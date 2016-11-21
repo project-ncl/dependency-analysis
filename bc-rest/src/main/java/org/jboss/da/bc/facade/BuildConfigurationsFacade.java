@@ -6,6 +6,7 @@ import org.jboss.da.bc.model.rest.FinishResponse;
 import org.jboss.da.bc.model.rest.InfoEntity;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.validation.ValidationException;
 
 /**
  *
@@ -15,7 +16,7 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 public interface BuildConfigurationsFacade<I extends InfoEntity> {
 
     I startAnalyse(EntryEntity entry) throws ScmException, PomAnalysisException,
-            CommunicationException;
+            CommunicationException, ValidationException;
 
     I analyseNextLevel(I bc) throws CommunicationException;
 

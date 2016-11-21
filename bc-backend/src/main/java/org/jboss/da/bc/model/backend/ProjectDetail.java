@@ -3,7 +3,6 @@ package org.jboss.da.bc.model.backend;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
-
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;

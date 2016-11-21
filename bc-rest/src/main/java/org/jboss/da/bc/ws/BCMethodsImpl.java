@@ -31,7 +31,7 @@ public class BCMethodsImpl implements Methods {
     private final HashMap<String, Method<?, ?, ?>> methods = new HashMap<>();
 
     @Inject
-    public BCMethodsImpl(BuildConfigurationsProductFacade productFacade){
+    public BCMethodsImpl(BuildConfigurationsProductFacade productFacade) {
         START_PROCESS = new DefaultMethod<>("buildConfiguration.product.start",
                 EntryEntity.class,
                 Map.class,
