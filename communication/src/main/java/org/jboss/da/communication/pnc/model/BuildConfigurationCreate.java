@@ -2,7 +2,9 @@ package org.jboss.da.communication.pnc.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -42,10 +44,6 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    private String repositories;
-
-    @Getter
-    @Setter
     private Project project;
 
     @Getter
@@ -66,7 +64,15 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
+    private boolean archived;
+
+    @Getter
+    @Setter
     private String scmExternalRevision;
+
+    @Getter
+    @Setter
+    private Map<String, String> genericParameters = new HashMap<>();
 
     public void setEnvironmentId(int id) {
         IdWrapper env = new IdWrapper();
