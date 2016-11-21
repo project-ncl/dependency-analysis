@@ -1,7 +1,9 @@
 package org.jboss.da.communication.pnc.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -36,6 +38,10 @@ public class ProductVersion {
 
     @Getter
     @Setter
+    private String productName;
+
+    @Getter
+    @Setter
     @NonNull
     private List<BuildConfigurationSet> buildConfigurationSets = new ArrayList<>();
 
@@ -53,5 +59,10 @@ public class ProductVersion {
     @Setter
     @NonNull
     private List<ProductRelease> productReleases = new ArrayList<>();
+
+    @Getter
+    @Setter
+    @NonNull
+    private Map<String, String> attributes = new HashMap<>();
 
 }
