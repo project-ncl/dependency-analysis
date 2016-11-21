@@ -28,7 +28,7 @@ import java.util.List;
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
-@Path("/build-configurations")
+@Path("/product-versions")
 @Consumes("application/json")
 public interface ProductVersionEndpoint {
 
