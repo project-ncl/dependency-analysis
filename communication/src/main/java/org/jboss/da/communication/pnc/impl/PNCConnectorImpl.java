@@ -145,7 +145,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
     @Override
     public Optional<ProductVersion> findProductVersion(int productId, String version)
             throws CommunicationException, PNCRequestException {
-        String query = String.format("productId==%s;version=='%s'", productId, version);
+        String query = String.format("product.id==%s;version=='%s'", productId, version);
 
         ProductVersionEndpoint endpoint = getEndpoint(ProductVersionEndpoint.class);
         Response response = endpoint.getAll(0, 2, "", query);
