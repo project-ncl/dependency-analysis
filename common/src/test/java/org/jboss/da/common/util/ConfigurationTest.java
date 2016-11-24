@@ -42,8 +42,9 @@ public class ConfigurationTest {
         assertEquals("", config.getPncServer());
         assertEquals("", config.getAproxServer());
         assertEquals("", config.getAproxGroup());
+        assertEquals("", config.getAproxGroupPublic());
         assertEquals("", config.getBackupScmUrl());
-        assertEquals("", config.getRepourUrl());
+        assertEquals("", config.getCartographerServerUrl());
     }
 
     @Test
@@ -55,7 +56,8 @@ public class ConfigurationTest {
         assertEquals("pnc-server", config.getPncServer());
         assertEquals("aprox-server", config.getAproxServer());
         assertEquals("aprox-group", config.getAproxGroup());
+        assertEquals("aprox-group-public", config.getAproxGroupPublic());
         assertEquals("backup-scm-url", config.getBackupScmUrl());
-        assertEquals("repour-url", config.getRepourUrl());
+        assertEquals("cartographer-server-url", config.getCartographerServerUrl());
     }
 }

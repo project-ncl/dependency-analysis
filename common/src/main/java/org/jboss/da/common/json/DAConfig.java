@@ -34,9 +34,5 @@ public class DAConfig extends AbstractModuleConfig {
 
     @Getter
     @Setter
-    private String repourUrl;
-
-    @Getter
-    @Setter
     private String cartographerServerUrl;
 }

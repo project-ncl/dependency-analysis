@@ -18,8 +18,9 @@
           "pncServer": "pnc-server",
           "aproxServer": "aprox-server",
           "aproxGroup": "aprox-group",
+          "aproxGroupPublic": "aprox-group-public",
           "backupScmUrl": "backup-scm-url",
-          "repourUrl": "repour-url"
+          "cartographerServerUrl": "cartographer-server-url"
         }
       ]
     }
