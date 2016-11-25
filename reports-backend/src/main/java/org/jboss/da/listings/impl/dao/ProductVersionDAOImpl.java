@@ -182,11 +182,12 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
         Expression<Collection<WhiteArtifact>> artifacts = productVersion.get("whiteArtifacts");
         cq.multiselect(productVersion, artifact);
 
-        Predicate restriction = cb.and(
+        final Predicate gaRestriction = cb.and(
                 cb.isMember(artifact, artifacts),
                 cb.equal(ga.get("artifactId"), artifactId),
                 cb.equal(ga.get("groupId"), groupId));
-        status.ifPresent(x -> {cb.and(restriction, cb.equal(productVersion.get("support"), x));});
+        Predicate restriction = status.map(x -> cb.and(gaRestriction,
+                cb.equal(productVersion.get("support"), x))).orElse(gaRestriction);
 
         cq.where(restriction);
         TypedQuery<ProductVersionArtifactRelationship> q = em.createQuery(cq);
