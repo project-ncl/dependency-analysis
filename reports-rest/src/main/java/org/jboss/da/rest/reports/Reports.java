@@ -48,8 +48,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
 import java.util.Iterator;
+
 import org.jboss.da.validation.Validation;
+import org.jboss.da.validation.ValidationException;
 
 /**
  * Main end point for the reports
@@ -81,12 +84,8 @@ public class Reports {
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
             response = Report.class)
     public Response scmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
-
-        Optional<Response> validationResponse = validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
-        if (validationResponse.isPresent()) {
-            return validationResponse.get();
-        }
         try {
+            validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
             if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
                 Iterator<Long> iterator = request.getProductVersionIds().iterator();
                 if(iterator.next() == null) {
@@ -123,6 +122,8 @@ public class Reports {
         catch (CommunicationException e) {
             log.error("Exception during communication", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, "Exception during communication", e.getMessage())).build();        
+        } catch (ValidationException e) {
+            return e.getResponse();
         }
     }
 
@@ -133,13 +134,8 @@ public class Reports {
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
             response = AdvancedReport.class)
     public Response advancedScmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
-
-        Optional<Response> validationResponse = validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
-        if (validationResponse.isPresent()) {
-            return validationResponse.get();
-        }
         try {
-            
+            validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
             if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
                 Iterator<Long> iterator = request.getProductVersionIds().iterator();
                 if(iterator.next() == null) {
@@ -177,6 +173,8 @@ public class Reports {
         catch (CommunicationException e) {
             log.error("Exception during communication", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, "Exception during communication", e.getMessage())).build();        
+        } catch (ValidationException e) {
+            return e.getResponse();
         }
         
     }
@@ -252,12 +250,9 @@ public class Reports {
     @ApiOperation(value = "Get alignment report for project specified in a repository URL.",
             response = AlignReport.class)
     public Response alignReport(AlignReportRequest request) {
-        Optional<Response> validationResponse = validation.validation(request,
-                "Getting allignment report for project specified in a repository URL failed");
-        if (validationResponse.isPresent()) {
-            return validationResponse.get();
-        }
         try {
+            validation.validation(request,
+                    "Getting allignment report for project specified in a repository URL failed");
             AlignReport aligmentReport = reportsFacade.alignReport(request);
             return Response.status(Status.OK).entity(aligmentReport).build();
         } catch (ScmException e) {
@@ -272,6 +267,8 @@ public class Reports {
                     .status(Status.INTERNAL_SERVER_ERROR)
                     .entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS,
                             "Exception thrown during POM analysis", e.getMessage())).build();
+        } catch (ValidationException e) {
+            return e.getResponse();
         }
     }
 
@@ -282,12 +279,9 @@ public class Reports {
     @ApiOperation(value = "Get builded artifacts for project specified in a repository URL.",
             response = BuiltReport.class)
     public Response builtReport(BuiltReportRequest request) {
-        Optional<Response> validationResponse = validation.validation(request,
-                "Getting dependency report for a project specified in a repository URL failed");
-        if (validationResponse.isPresent()) {
-            return validationResponse.get();
-        }
         try {
+            validation.validation(request,
+                    "Getting dependency report for a project specified in a repository URL failed");
             Set<BuiltReport> builtReport = reportsFacade.builtReport(request);
             return Response.status(Status.OK).entity(builtReport).build();
         } catch (ScmException e) {
@@ -306,6 +300,8 @@ public class Reports {
                     .status(Status.INTERNAL_SERVER_ERROR)
                     .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, e.getMessage()))
                     .build();
+        } catch (ValidationException e) {
+            return e.getResponse();
         }
     }
 
