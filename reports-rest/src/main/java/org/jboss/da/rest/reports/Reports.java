@@ -4,21 +4,12 @@ import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
-import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.model.rest.RestGavProducts;
-import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.ErrorMessage;
-import org.jboss.da.model.rest.GAV;
-import org.jboss.da.reports.api.AdvancedArtifactReport;
-import org.jboss.da.reports.api.ArtifactReport;
-import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.model.rest.AdvancedReport;
 import org.jboss.da.reports.model.rest.AlignReport;
 import org.jboss.da.reports.model.rest.AlignReportRequest;
 import org.jboss.da.reports.model.rest.BuiltReport;
 import org.jboss.da.reports.model.rest.BuiltReportRequest;
-import org.jboss.da.reports.model.rest.GAVAvailableVersions;
-import org.jboss.da.reports.model.rest.GAVBestMatchVersion;
 import org.jboss.da.reports.model.rest.GAVRequest;
 import org.jboss.da.reports.model.rest.LookupGAVsRequest;
 import org.jboss.da.reports.model.rest.LookupReport;
@@ -36,23 +27,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-import java.util.Iterator;
-
-import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
+
+import java.util.NoSuchElementException;
 
 /**
  * Main end point for the reports
@@ -69,13 +52,7 @@ public class Reports {
     private Logger log;
 
     @Inject
-    private ReportsGenerator reportsGenerator;
-
-    @Inject
-    private ReportsFacade reportsFacade;
-
-    @Inject
-    private Validation validation;
+    private ReportsFacade facade;
 
     @POST
     @Path("/scm")
@@ -85,43 +62,36 @@ public class Reports {
             response = Report.class)
     public Response scmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
         try {
-            validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
-            if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
-                Iterator<Long> iterator = request.getProductVersionIds().iterator();
-                if(iterator.next() == null) {
-                    iterator.remove();
-                }
-            }
-            
-            if (request.getProductNames().size() == 1) { 
-                Iterator<String> iterator = request.getProductNames().iterator();
-                if("".equals(iterator.next())) {
-                    iterator.remove();
-                }
-            }
-            
-            Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(request);
-
-            return artifactReport
-                    .map(x -> Response.ok().entity(toReport(x)).build())
-                    .orElseGet(() -> Response.status(Status.NOT_FOUND)
-                            .entity(new ErrorMessage(ErrorMessage.eType.NO_RELATIONSHIP_FOUND, "No relationship found")).build());
-
+            return Response.ok().entity(facade.scmReport(request)).build();
+        } catch (NoSuchElementException e) {
+            return Response
+                    .status(Status.NOT_FOUND)
+                    .entity(new ErrorMessage(ErrorMessage.eType.NO_RELATIONSHIP_FOUND,
+                            "No relationship found")).build();
         } catch (ScmException e) {
             log.error("Exception thrown in scm endpoint", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.SCM_ENDPOINT, "Exception thrown in scm endpoint", e.getMessage())).build();
-        }
-        catch (PomAnalysisException e) {
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.SCM_ENDPOINT,
+                            "Exception thrown in scm endpoint", e.getMessage())).build();
+        } catch (PomAnalysisException e) {
             log.error("Exception thrown during POM analysis", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS, "Exception thrown during POM analysis", e.getMessage())).build(); 
-        }
-        catch (IllegalArgumentException e) {
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS,
+                            "Exception thrown during POM analysis", e.getMessage())).build();
+        } catch (IllegalArgumentException e) {
             log.error("Illegal arguments exception", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS, "Illegal arguments exception", e.getMessage())).build();
-        }
-        catch (CommunicationException e) {
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS,
+                            "Illegal arguments exception", e.getMessage())).build();
+        } catch (CommunicationException e) {
             log.error("Exception during communication", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, "Exception during communication", e.getMessage())).build();        
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
+                            "Exception during communication", e.getMessage())).build();
         } catch (ValidationException e) {
             return e.getResponse();
         }
@@ -133,50 +103,43 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
             response = AdvancedReport.class)
-    public Response advancedScmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
+    public Response advancedScmGenerator(
+            @ApiParam(value = "scm information") SCMReportRequest request) {
         try {
-            validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
-            if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
-                Iterator<Long> iterator = request.getProductVersionIds().iterator();
-                if(iterator.next() == null) {
-                    iterator.remove();
-                }
-            }
-            
-            if (request.getProductNames().size() == 1) { 
-                Iterator<String> iterator = request.getProductNames().iterator();
-                if("".equals(iterator.next())) {
-                    iterator.remove();
-                }
-            }
-
-            Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator
-                    .getAdvancedReportFromSCM(request);
-
-            return advancedArtifactReport
-                    .map(x -> Response.ok().entity(toAdvancedReport(x)).build())
-                    .orElseGet(() -> Response.status(Status.NOT_FOUND)
-                            .entity(new ErrorMessage(ErrorMessage.eType.NO_RELATIONSHIP_FOUND, "No relationship found")).build());
-
+            return Response.ok().entity(facade.advancedScmReport(request)).build();
+        } catch (NoSuchElementException e) {
+            return Response
+                    .status(Status.NOT_FOUND)
+                    .entity(new ErrorMessage(ErrorMessage.eType.NO_RELATIONSHIP_FOUND,
+                            "No relationship found")).build();
         } catch (ScmException e) {
             log.error("Exception thrown in scm endpoint", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.SCM_ENDPOINT, "Exception thrown in scm endpoint", e.getMessage())).build();
-        }
-        catch (PomAnalysisException e) {
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.SCM_ENDPOINT,
+                            "Exception thrown in scm endpoint", e.getMessage())).build();
+        } catch (PomAnalysisException e) {
             log.error("Exception thrown during POM analysis", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS, "Exception thrown during POM analysis", e.getMessage())).build();
-        }
-        catch (IllegalArgumentException e) {
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS,
+                            "Exception thrown during POM analysis", e.getMessage())).build();
+        } catch (IllegalArgumentException e) {
             log.error("Illegal arguments exception", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS, "Illegal arguments exception", e.getMessage())).build(); 
-        }
-        catch (CommunicationException e) {
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS,
+                            "Illegal arguments exception", e.getMessage())).build();
+        } catch (CommunicationException e) {
             log.error("Exception during communication", e);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL, "Exception during communication", e.getMessage())).build();        
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
+                            "Exception during communication", e.getMessage())).build();
         } catch (ValidationException e) {
             return e.getResponse();
         }
-        
+
     }
 
     @POST
@@ -191,8 +154,7 @@ public class Reports {
     public Response gavGenerator(
             @ApiParam(value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAVRequest gavRequest) {
         try {
-            ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
-            return Response.ok().entity(toReport(artifactReport)).build();
+            return Response.ok().entity(facade.gavReport(gavRequest)).build();
         } catch (CommunicationException ex) {
             log.error("Communication with remote repository failed", ex);
             return Response
@@ -225,11 +187,8 @@ public class Reports {
     public Response lookupGav(
             @ApiParam(
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest) {
-
-        List<LookupReport> reportsList;
         try {
-            reportsList = reportsGenerator.getLookupReportsForGavs(gavRequest);
-            return Response.status(Status.OK).entity(reportsList).build();
+            return Response.status(Status.OK).entity(facade.gavsReport(gavRequest)).build();
         } catch (CommunicationException e) {
             return Response
                     .status(502)
@@ -251,10 +210,7 @@ public class Reports {
             response = AlignReport.class)
     public Response alignReport(AlignReportRequest request) {
         try {
-            validation.validation(request,
-                    "Getting allignment report for project specified in a repository URL failed");
-            AlignReport aligmentReport = reportsFacade.alignReport(request);
-            return Response.status(Status.OK).entity(aligmentReport).build();
+            return Response.status(Status.OK).entity(facade.alignReport(request)).build();
         } catch (ScmException e) {
             log.error("Exception thrown in scm endpoint", e);
             return Response
@@ -280,10 +236,7 @@ public class Reports {
             response = BuiltReport.class)
     public Response builtReport(BuiltReportRequest request) {
         try {
-            validation.validation(request,
-                    "Getting dependency report for a project specified in a repository URL failed");
-            Set<BuiltReport> builtReport = reportsFacade.builtReport(request);
-            return Response.status(Status.OK).entity(builtReport).build();
+            return Response.status(Status.OK).entity(facade.builtReport(request)).build();
         } catch (ScmException e) {
             log.error("Exception thrown in SCM analysis", e);
             return Response.status(Status.INTERNAL_SERVER_ERROR)
@@ -303,72 +256,5 @@ public class Reports {
         } catch (ValidationException e) {
             return e.getResponse();
         }
-    }
-
-    private static Report toReport(ArtifactReport report) {
-        List<Report> dependencies = report.getDependencies()
-                .stream()
-                .map(Reports::toReport)
-                .collect(Collectors.toList());
-
-        return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
-                report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(),
-                dependencies,
-                report.isBlacklisted(), toWhitelisted(report.getWhitelisted()),
-                report.getNotBuiltDependencies());
-    }
-
-    private static AdvancedReport toAdvancedReport(AdvancedArtifactReport advancedArtifactReport) {
-        Report report = toReport(advancedArtifactReport.getArtifactReport());
-        return new AdvancedReport(report, advancedArtifactReport.getBlacklistedArtifacts(),
-                toRestGAVProducts(advancedArtifactReport.getWhitelistedArtifacts()),
-                toGAVBestMatchVersions(advancedArtifactReport
-                        .getCommunityGavsWithBestMatchVersions()),
-                toGAVAvailableVersions(advancedArtifactReport.getCommunityGavsWithBuiltVersions()),
-                advancedArtifactReport.getCommunityGavs());
-    }
-
-    private static Set<GAVBestMatchVersion> toGAVBestMatchVersions(
-            Map<GAV, String> bestMatchVersions) {
-        return bestMatchVersions.entrySet().stream()
-                .map(e -> new GAVBestMatchVersion(e.getKey(), e.getValue()))
-                .collect(Collectors.toSet());
-
-    }
-
-    private static Set<GAVAvailableVersions> toGAVAvailableVersions(
-            Map<GAV, Set<String>> buildVersions) {
-        return buildVersions.entrySet().stream()
-                .map(e -> new GAVAvailableVersions(e.getKey(), e.getValue()))
-                .collect(Collectors.toSet());
-    }
-
-    private static Set<RestGavProducts> toRestGAVProducts(
-            Map<GAV, Set<ProductVersion>> whitelistedArtifacts) {
-        return whitelistedArtifacts.entrySet().stream()
-                .map(e -> new RestGavProducts(e.getKey(), toRestProductInputs(e.getValue())))
-                .collect(Collectors.toSet());
-    }
-
-    private static Set<RestProductInput> toRestProductInputs(Set<ProductVersion> product) {
-        return product.stream()
-                .map(p -> toRestProductInput(p))
-                .collect(Collectors.toSet());
-    }
-
-    private static RestProductInput toRestProductInput(ProductVersion product) {
-        RestProductInput ret = new RestProductInput();
-        ret.setName(product.getProduct().getName());
-        ret.setVersion(product.getProductVersion());
-        ret.setSupportStatus(product.getSupport());
-        return ret;
-    }
-
-    private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
-        return whitelisted
-                .stream()
-                .map(pv -> new RestProductInput(pv.getProduct().getName(), pv.getProductVersion(),
-                        pv.getSupport()))
-                .collect(Collectors.toList());
     }
 }
