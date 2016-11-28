@@ -26,8 +26,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import java.util.Optional;
+
 import org.jboss.da.validation.Validation;
+import org.jboss.da.validation.ValidationException;
 
 @Path("/repositories")
 @Api(value = "config")
@@ -56,14 +57,9 @@ public class Repositories {
             @ApiResponse(code = 400, message = "Name or url contain not allowed characters",
                     response = SuccessResponse.class) })
     public Response addRepository(@ApiParam(value = "repository data") Repository repository) {
-        SuccessResponse response = new SuccessResponse();
-        Optional<Response> validationResponse = validation.validation(repository,
-                "Communication with remote repository failed");
-        if (validationResponse.isPresent()) {
-            return validationResponse.get();
-        }
         RepositoryManipulationStatus status;
         try {
+            validation.validation(repository, "Communication with remote repository failed");
             status = aprox.addRepositoryToGroup(repository);
         } catch (CommunicationException ex) {
             log.error("Communication with remote repository failed", ex);
@@ -72,7 +68,11 @@ public class Repositories {
                     .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
                             "Communication with remote repository failed", ex.getMessage()))
                     .build();
+        } catch (ValidationException e) {
+            return e.getResponse();
         }
+
+        SuccessResponse response = new SuccessResponse();
         switch (status) {
             case DONE:
                 response.setSuccess(true);
@@ -105,14 +105,9 @@ public class Repositories {
             @ApiResponse(code = 404, message = "Repository with this name was not found",
                     response = SuccessResponse.class) })
     public Response removeRepository(Repository repository) {
-        SuccessResponse response = new SuccessResponse();
-        Optional<Response> validationResponse = validation.validation(repository,
-                "Communication with remote repository failed");
-        if (validationResponse.isPresent()) {
-            return validationResponse.get();
-        }
         RepositoryManipulationStatus status;
         try {
+            validation.validation(repository, "Communication with remote repository failed");
             status = aprox.removeRepositoryFromGroup(repository);
         } catch (CommunicationException ex) {
             log.error("Communication with remote repository failed", ex);
@@ -121,7 +116,11 @@ public class Repositories {
                     .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
                             "Communication with remote repository failed", ex.getMessage()))
                     .build();
+        } catch (ValidationException e) {
+            return e.getResponse();
         }
+
+        SuccessResponse response = new SuccessResponse();
         switch (status) {
             case DONE:
                 response.setSuccess(true);

@@ -44,8 +44,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
 import java.util.ArrayList;
+
 import org.jboss.da.validation.Validation;
+import org.jboss.da.validation.ValidationException;
 
 /**
  *
@@ -103,10 +106,10 @@ public class Artifacts {
                     value = "JSON object with keys 'scmUrl', 'revision', 'pomPath', list of 'repositories' and 'productId'") WLFill wlFill) {
 
         SuccessResponse response = new SuccessResponse();
-        Optional<Response> validationResponse = validation.validation(wlFill,
-                "Filling product from GIT POM failed");
-        if (validationResponse.isPresent()) {
-            return validationResponse.get();
+        try {
+            validation.validation(wlFill, "Filling product from GIT POM failed");
+        } catch (ValidationException e) {
+            return e.getResponse();
         }
         switch (filler.fillWhitelistFromPom(wlFill.getScmUrl(), wlFill.getRevision(),
                 wlFill.getPomPath(), wlFill.getRepositories(), wlFill.getProductId())) {
