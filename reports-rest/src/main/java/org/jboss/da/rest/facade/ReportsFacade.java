@@ -2,7 +2,10 @@ package org.jboss.da.rest.facade;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.model.rest.RestGavProducts;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.api.AlignmentReportModule;
@@ -25,18 +28,41 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.jboss.da.model.rest.VersionComparator;
+
+import org.jboss.da.reports.api.AdvancedArtifactReport;
+import org.jboss.da.reports.api.ArtifactReport;
+import org.jboss.da.reports.model.rest.AdvancedReport;
+import org.jboss.da.reports.model.rest.GAVAvailableVersions;
+import org.jboss.da.reports.model.rest.GAVBestMatchVersion;
+import org.jboss.da.reports.model.rest.GAVRequest;
+import org.jboss.da.reports.model.rest.LookupGAVsRequest;
+import org.jboss.da.reports.model.rest.LookupReport;
+import org.jboss.da.reports.model.rest.Report;
 import org.jboss.da.reports.model.rest.RestGA2RestGAV2VersionProductsWithDiff;
 import org.jboss.da.reports.model.rest.RestGAV2VersionProductsWithDiff;
 import org.jboss.da.reports.model.rest.RestVersionProductWithDifference;
+import org.jboss.da.reports.model.rest.SCMReportRequest;
+import org.jboss.da.validation.Validation;
+import org.jboss.da.validation.ValidationException;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class ReportsFacade {
 
     @Inject
     private ReportsGenerator reportsGenerator;
 
+    @Inject
+    private Validation validation;
+
     public Set<BuiltReport> builtReport(BuiltReportRequest request) throws ScmException,
-            PomAnalysisException, CommunicationException {
+            PomAnalysisException, CommunicationException, ValidationException {
+        validation.validation(request,
+                "Getting dependency report for a project specified in a repository URL failed");
         String pomPath = getPomPath(request.getPomPath());
         SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(),
                 pomPath, request.getAdditionalRepos());
@@ -46,7 +72,9 @@ public class ReportsFacade {
     }
 
     public AlignReport alignReport(AlignReportRequest request) throws ScmException,
-            PomAnalysisException {
+            PomAnalysisException, ValidationException {
+        validation.validation(request,
+                "Getting allignment report for project specified in a repository URL failed");
         String pomPath = getPomPath(request.getPomPath());
         SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(),
                 pomPath, request.getAdditionalRepos());
@@ -54,6 +82,64 @@ public class ReportsFacade {
         Set<AlignmentReportModule> aligmentReport = reportsGenerator.getAligmentReport(locator,
                 request.isSearchUnknownProducts(), request.getProducts());
         return toAlignReport(aligmentReport);
+    }
+
+    public Report scmReport(SCMReportRequest request) throws ScmException, PomAnalysisException, CommunicationException, NoSuchElementException, ValidationException {
+        validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
+        if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
+            Iterator<Long> iterator = request.getProductVersionIds().iterator();
+            if (iterator.next() == null) {
+                iterator.remove();
+            }
+        }
+
+        if (request.getProductNames().size() == 1) {
+            Iterator<String> iterator = request.getProductNames().iterator();
+            if ("".equals(iterator.next())) {
+                iterator.remove();
+            }
+        }
+
+        Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(request);
+
+        return artifactReport
+                .map(x -> toReport(x))
+                .orElseThrow(() -> new NoSuchElementException());
+    }
+
+    public AdvancedReport advancedScmReport(SCMReportRequest request) throws ValidationException, ScmException, PomAnalysisException, CommunicationException {
+        validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
+        if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
+            Iterator<Long> iterator = request.getProductVersionIds().iterator();
+            if (iterator.next() == null) {
+                iterator.remove();
+            }
+        }
+
+        if (request.getProductNames().size() == 1) {
+            Iterator<String> iterator = request.getProductNames().iterator();
+            if ("".equals(iterator.next())) {
+                iterator.remove();
+            }
+        }
+
+        Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator
+                .getAdvancedReportFromSCM(request);
+
+        return advancedArtifactReport
+                .map(x -> toAdvancedReport(x))
+                .orElseThrow(() -> new NoSuchElementException());
+    }
+
+    public Report gavReport(GAVRequest gavRequest) throws CommunicationException,
+            FindGAVDependencyException {
+        ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
+        return toReport(artifactReport);
+    }
+
+    public List<LookupReport> gavsReport(LookupGAVsRequest gavRequest)
+            throws CommunicationException {
+        return reportsGenerator.getLookupReportsForGavs(gavRequest);
     }
 
     private String getPomPath(String requestPomPath) {
@@ -193,5 +279,72 @@ public class ReportsFacade {
         ret.setProduct(rpi);
         ret.setDifferenceType(productArtifact.getDifferenceType());
         return ret;
+    }
+
+    private static Report toReport(ArtifactReport report) {
+        List<Report> dependencies = report.getDependencies()
+                .stream()
+                .map(ReportsFacade::toReport)
+                .collect(Collectors.toList());
+
+        return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
+                report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(),
+                dependencies,
+                report.isBlacklisted(), toWhitelisted(report.getWhitelisted()),
+                report.getNotBuiltDependencies());
+    }
+
+    private static AdvancedReport toAdvancedReport(AdvancedArtifactReport advancedArtifactReport) {
+        Report report = toReport(advancedArtifactReport.getArtifactReport());
+        return new AdvancedReport(report, advancedArtifactReport.getBlacklistedArtifacts(),
+                toRestGAVProducts(advancedArtifactReport.getWhitelistedArtifacts()),
+                toGAVBestMatchVersions(advancedArtifactReport
+                        .getCommunityGavsWithBestMatchVersions()),
+                toGAVAvailableVersions(advancedArtifactReport.getCommunityGavsWithBuiltVersions()),
+                advancedArtifactReport.getCommunityGavs());
+    }
+
+    private static Set<GAVBestMatchVersion> toGAVBestMatchVersions(
+            Map<GAV, String> bestMatchVersions) {
+        return bestMatchVersions.entrySet().stream()
+                .map(e -> new GAVBestMatchVersion(e.getKey(), e.getValue()))
+                .collect(Collectors.toSet());
+
+    }
+
+    private static Set<GAVAvailableVersions> toGAVAvailableVersions(
+            Map<GAV, Set<String>> buildVersions) {
+        return buildVersions.entrySet().stream()
+                .map(e -> new GAVAvailableVersions(e.getKey(), e.getValue()))
+                .collect(Collectors.toSet());
+    }
+
+    private static Set<RestGavProducts> toRestGAVProducts(
+            Map<GAV, Set<ProductVersion>> whitelistedArtifacts) {
+        return whitelistedArtifacts.entrySet().stream()
+                .map(e -> new RestGavProducts(e.getKey(), toRestProductInputs(e.getValue())))
+                .collect(Collectors.toSet());
+    }
+
+    private static Set<RestProductInput> toRestProductInputs(Set<ProductVersion> product) {
+        return product.stream()
+                .map(p -> toRestProductInput(p))
+                .collect(Collectors.toSet());
+    }
+
+    private static RestProductInput toRestProductInput(ProductVersion product) {
+        RestProductInput ret = new RestProductInput();
+        ret.setName(product.getProduct().getName());
+        ret.setVersion(product.getProductVersion());
+        ret.setSupportStatus(product.getSupport());
+        return ret;
+    }
+
+    private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
+        return whitelisted
+                .stream()
+                .map(pv -> new RestProductInput(pv.getProduct().getName(), pv.getProductVersion(),
+                        pv.getSupport()))
+                .collect(Collectors.toList());
     }
 }
