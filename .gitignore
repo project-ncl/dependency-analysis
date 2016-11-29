@@ -12,4 +12,3 @@ da-config.json
 testsuite/random
 testsuite/**/arquillian.properties
 /common/src/main/java/org/jboss/da/common/Constants.java
-

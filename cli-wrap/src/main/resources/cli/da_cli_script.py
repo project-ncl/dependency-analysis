@@ -1,25 +1,67 @@
 #!/usr/bin/env python
 import argparse
 import requests
+requests.packages.urllib3.disable_warnings()
 import sys
 import json
 import os
+import getpass
 
 
-da_server = os.getenv('DA_SERVER', "pnc-da-cli.cloud.pnc.devel.engineering.redhat.com/da/rest/v-0.4")
+with open('config.json') as config_file:    
+    config = json.load(config_file)
+da_server = os.getenv('DA_SERVER', config["daServer"])
+
+if (da_server == ""):
+    print("Please configure DA server by command $ export DA_SERVER=your.adress/rest/v-1")
+    print("or by filling address in configuration file (config.json).")
+    exit()
 GAV = "GROUP_ID:ARTIFACT_ID:VERSION"
 GA  = "GROUP_ID:ARTIFACT_ID"
 PRODUCT_VERSION = "PRODUCT_NAME:VERSION"
 STATUS_VALUES   = ['SUPPORTED', 'UNSUPPORTED', 'SUPERSEDED', 'UNKNOWN']
 
-def requests_post(link, json_request):
-    return requests_wrapper(requests.post, link, json_request)
+def get_token(login, pswd):
+    server = config["keycloakServer"]
+    if server == "":
+        print("Please configure KeyCloak server by filling address in configuration file (config.json).")
+        exit()
+    client_id = "pncdirect"
+    grant_type="password"
+    params = {'grant_type': grant_type,'client_id': client_id,'username': login,'password': pswd}
+    r = requests.post(server, params, verify=False)
+    if r.status_code == 200:
+        reply = json.loads(r.content.decode('utf-8'))
+        return( str(reply.get('access_token')))
+    else:
+        return ""
+
+def auth():
+    session = requests.Session() 
+    login = raw_input("Enter login name ["+getpass.getuser()+"]:")
+    if login == "":
+        login = getpass.getuser()
+    print("Enter password for " + login)
+    pswd = getpass.getpass()
+    MY_TOKEN = get_token(login, pswd)
+    session.headers.update({'Authorization': " Bearer " + MY_TOKEN})
+    return session
+    
+
+def requests_post(link, json_request, login = False):
+    if login:
+        session = auth()
+    else:
+        session = requests.Session()
+    return requests_wrapper(session.post, link, json_request)
 
 def requests_put(link, json_request):
-    return requests_wrapper(requests.put, link, json_request)
+    session = auth()
+    return requests_wrapper(session.put, link, json_request)
 
 def requests_delete(link, json_request):
-    return requests_wrapper(requests.delete, link, json_request)
+    session = auth()
+    return requests_wrapper(session.delete, link, json_request)
 
 def requests_get(link):
     return requests_wrapper(requests.get, link)
@@ -42,11 +84,17 @@ def requests_wrapper(requests_method, link, json_request=None):
         print(">>> ERROR: Request to: {} failed <<<".format(link))
         print(">>> Status: {} <<<".format(reply.status_code))
         
+        if reply.status_code == 403:
+            print("Not authorized!")
+            exit()
         if json_request:
             print(">>> JSON Data: {} <<<".format(json.dumps(json_request)))
         print("")
-        if reply.status_code != 500:
+        if reply.status_code != 500 and reply.status_code != 503:
             print(((reply.json()))["details"])
+    except requests.exceptions.SSLError:
+        print("Not authorized!")
+        
         
         sys.exit(1)
 
@@ -200,7 +248,7 @@ def add_black_artifact(gav):
     json_request['groupId'] = gid
     json_request['artifactId'] = aid
     json_request['version'] = ver
-    r = requests_post(da_server + endpoint, json_request=json_request)
+    r = requests_post(da_server + endpoint, json_request=json_request, login = True)
     verify_response(r.json(), "Addition failed")
 
 def add_white_artifact(gav, product_version):
@@ -212,7 +260,7 @@ def add_white_artifact(gav, product_version):
     json_request['artifactId'] = aid
     json_request['version'] = ver
     json_request['productId'] = productId
-    r = requests_post(da_server + endpoint, json_request=json_request)
+    r = requests_post(da_server + endpoint, json_request=json_request, login = True)
     verify_response(r.json(), "Addition failed")
 
 def find_product_version_id(product_version):
@@ -235,7 +283,7 @@ def add_whitelist_product(product_version, status):
     json_request['version']  = version
     json_request['supportStatus'] = status
 
-    r = requests_post(da_server + endpoint, json_request=json_request)
+    r = requests_post(da_server + endpoint, json_request=json_request, login = True)
     verify_response(r.json(), "Addition failed")
 
 def update_whitelist_product(product_version, status):

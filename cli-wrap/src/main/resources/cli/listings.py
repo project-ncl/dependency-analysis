@@ -91,20 +91,6 @@ def matchStatus(status):
         print("Status can be: SUPPORTED, SUPERSEDED, UNSUPPORTED, UNKNOWN")
         return False
     return True
-    
-def post(server,query):
-    output = ""
-    response = requests.post("http://"+server, json=json.loads(query))
-    print(response)
-      
-    if response.status_code != 200:
-        print("Error")
-        exit()
-    output = response.json()
-    return output
-    #except :
-        #print("Could not connect to server " + pm.da_server)
-        #exit()   
         
 def updateFun(product, status):
     if matchProd(product) and matchStatus(status):
