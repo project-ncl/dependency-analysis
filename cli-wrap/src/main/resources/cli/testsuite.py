@@ -2,9 +2,15 @@ from xml.dom import minidom
 import sys
 import requests
 import os
+import json
 
-DA_MAIN_SERVER = os.getenv('DA_SERVER', "pnc-da-cli.cloud.pnc.devel.engineering.redhat.com/da/rest/v-0.4")
-#DA_MAIN_SERVER="pnc-da-cli.cloud.pnc.devel.engineering.redhat.com/da/rest/v-0.4"
+with open('config.json') as config_file:    
+    config = json.load(config_file)
+DA_MAIN_SERVER = os.getenv('DA_SERVER', config["daServer"])
+if (DA_MAIN_SERVER == ""):
+    print("Please configure DA server by command $ export DA_SERVER=your.adress/rest/v-1")
+    print("or by filling address in configuration file (config.json).")
+    exit()
 class Testsuite:
     """
     Class used to create and generate JUnit XML definitions
