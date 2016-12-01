@@ -190,7 +190,6 @@ echo ./da-cli.py add white WHITEG:A:V test:42ddd:d
 ./da-cli.py add white WHITEG:A:V test:42ddd:d
 echo""
 echo -ne '############              (50%)\r'
-echo -ne '\n'
 sleep $timeout
 echo ./da-cli.py add whitelist-product test: SUPPORTED
 ./da-cli.py add whitelist-product test: SUPPORTED
@@ -349,4 +348,3 @@ echo ./da-cli.py align-report  --json git@github.com:project-ncl/dependency-anal
 ./da-cli.py align-report  --json git@github.com:project-ncl/dependency-analysis.git
 echo""
 echo -ne '#######################   (100%)\r'
-echo -ne '\n'

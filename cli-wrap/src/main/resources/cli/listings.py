@@ -9,6 +9,8 @@ import json
 import da_cli_script
 import pretty
 import testsuite
+import asyncio
+import websockets
 
 def addBlack(gav):
     da_cli_script.add_artifacts(gav, "black")
@@ -35,7 +37,7 @@ def check(color_par,gav):
         groupId, artifactId, version = gav.split(":",3)
     else:
         exit()
-    response = da_cli_script.requests_get(da_cli_script.da_server + "/listings/whitelist/gav?groupid="+groupId+"&artifactid="+artifactId+"&version="+version)
+    response = da_cli_script.requests_get(da_cli_script.da_server + "/listings/blacklist/gav?groupid="+groupId+"&artifactid="+artifactId+"&version="+version)
     output = response.json()
     output = (json.dumps(output))
 
@@ -153,11 +155,11 @@ def pom_bw_junit_xml(argv, parser):
             else:
                 exit()
     testsuite.main(packages, "junit.xml", product)
-    
-    
+
+
 def formatGAVjsonRequest(groupId, artifactId, version):
     return "\"groupId\":\""+ groupId + "\", \"artifactId\":\""+ artifactId +"\", \"version\":\""+ version  +"\""
-    
+
 def report():
     style = "pretty"
     parser = argparse.ArgumentParser()
@@ -186,11 +188,11 @@ def report():
     else:
         products = "[]"
         
-    query = "{"
+    query = "{\"jsonrpc\": \"2.0\",  \"method\":\"reports.gav\", \"id\": \"request_0\" ,  \"params\":"   
+    query += "{"
     query += formatGAVjsonRequest(groupId, artifactId, version)
         
     query += ",\"productNames\":" + products 
-    
 
     if (args.productIDs != None):
         productIDs = "[" + args.productIDs + "]"
@@ -199,9 +201,9 @@ def report():
     query += ",\"productVersionIds\":" + productIDs 
  
     query += "}"
+    query += "}"
     
-    output = ""
-    output = da_cli_script.requests_post(da_cli_script.da_server+ "/reports/gav", json.loads(query)).json()
+    output = asyncio.get_event_loop().run_until_complete(get_response(query))
 
     if style == "pretty":
         if "errorType" in output:
@@ -224,8 +226,6 @@ def parseGAV(gav):
     else:
         print("the GAV is not in format GROUP_ID:ARTIFACT_ID:VERSION: " + gav)
         return None
-
-
 
 def lookup():
     parser = argparse.ArgumentParser()
@@ -261,7 +261,8 @@ def lookup():
     else:
         products = "[]"
         
-    query = "{"
+    query = "{\"jsonrpc\": \"2.0\",  \"method\":\"reports.lookup.gav\", \"id\": \"request_0\" ,  \"params\":"   
+    query += "{"
     query += "\"productNames\":" + products 
     
     if (args.productIDs != None):
@@ -280,18 +281,16 @@ def lookup():
         query = query[:-1]
  
     query += "]}"
+    query += "}"
     
-    output = ""
-    output = da_cli_script.requests_post(da_cli_script.da_server+ "/reports/lookup/gavs", json.loads(query)).json()
+    output = asyncio.get_event_loop().run_until_complete(get_response(query))
     
     if "errorType" in output:
             print(output['errorMessage'])
             exit()
     pretty_out = pretty.lookup(output)
     print(pretty_out)
-    
-    
-    
+
 def scm_report():
     style = "pretty"
     parser = argparse.ArgumentParser()
@@ -330,7 +329,9 @@ def scm_report():
     else:
         repositories = "[]"
         
-    query = "{"
+    
+    query = "{\"jsonrpc\": \"2.0\",  \"method\":\"reports.scm\", \"id\": \"request_0\" ,  \"params\":"   
+    query += "{"
     query += "\"productNames\":" + products 
 
     if (args.productIDs != None):
@@ -341,10 +342,10 @@ def scm_report():
     
     query += ", \"scml\" : {" + "\"scmUrl\" :\"" +args.scm + "\",\"revision\":\"" + args.tag + "\",\"pomPath\": \"" + args.pom_path + "\",\"repositories\": " + repositories + "}" 
     query += "}"
+    query += "}"
     
-    output = ""
-    output = da_cli_script.requests_post(da_cli_script.da_server+ "/reports/scm", json.loads(query)).json()
-    
+    output = asyncio.get_event_loop().run_until_complete(get_response(query))
+
     if style == "pretty":
         if "errorType" in output:
             print(output['errorMessage'])
@@ -355,8 +356,7 @@ def scm_report():
         print(pretty.reportRaw(output))
     else:
         print(json.dumps(output))
-
-
+    
 def scm_report_adv():
     style = "pretty"
     parser = argparse.ArgumentParser()
@@ -395,7 +395,8 @@ def scm_report_adv():
     else:
         repositories = "[]"
         
-    query = "{"   
+    query = "{\"jsonrpc\": \"2.0\",  \"method\":\"reports.scmAdvanced\", \"id\": \"request_0\" ,  \"params\":"    
+    query += "{"   
     query += "\"productNames\":" + products
 
     if (args.productIDs != None):
@@ -406,9 +407,9 @@ def scm_report_adv():
     
     query += ", \"scml\" : {" + "\"scmUrl\" :\"" +args.scm + "\",\"revision\":\"" + args.tag + "\",\"pomPath\": \"" + args.pom_path + "\",\"repositories\": " + repositories + "}" 
     query += "}"
+    query += "}"
     
-    output = ""
-    output = da_cli_script.requests_post(da_cli_script.da_server+ "/reports/scm-advanced", json.loads(query)).json()
+    output = asyncio.get_event_loop().run_until_complete(get_response(query))
     
     if style == "pretty":
         if "errorType" in output:
@@ -422,6 +423,7 @@ def scm_report_adv():
         print(json.dumps(output))
         
 def align_report():
+    
     style = "pretty"
     parser = argparse.ArgumentParser()
     parser.add_argument("align-report")
@@ -461,13 +463,11 @@ def align_report():
         repositories = "\""+repositories+"\""
         repositories = "[" + repositories + "]"
     else:
-        repositories = "[]"
-        
-    query = "{"
-        
-    #query += "\"productNames\":" + products 
+        repositories = "[]"        
     
-
+    query = "{\"jsonrpc\": \"2.0\",  \"method\": \"reports.align\", \"id\": \"request_0\" ,  \"params\":"        
+    query += "{"
+    #query += "\"productNames\":" + products 
     if (args.productIDs != None):
         productIDs = "[" + args.productIDs + "]"
     else:
@@ -476,16 +476,15 @@ def align_report():
     
     query += ", " + "\"scmUrl\" :\"" +args.scm + "\",\"revision\":\"" + args.tag + "\",\"pomPath\": \"" + pom_path + "\",\"additionalRepos\": " + repositories + ",\"searchUnknownProducts\": \"" +searchUnknownProducts  +"\""
     query += "}"
+    query += "}"
     
-    output = ""
-    output = da_cli_script.requests_post(da_cli_script.da_server+ "/reports/align", json.loads(query)).json()
-   
+
+    output = asyncio.get_event_loop().run_until_complete(get_response(query))
     if style == "pretty":
         if "errorType" in output:
             print(output['errorMessage'])
             exit()
         pretty_out = pretty.reportAlign(output)
-        #print(pretty_out)
         subprocess.call("echo \"" + pretty_out + "\" | column -t -s '\t' ", shell=True)
     else:
         print(json.dumps(output))
@@ -519,3 +518,18 @@ def prod_difference():
         exit()
     else:
         print(json.dumps(output))
+              
+async def get_response(query):
+    try:
+        async with websockets.connect("ws://"+da_cli_script.da_server_ws) as websocket:
+            await websocket.send(query)
+            output = await websocket.recv()
+        try:
+            output = json.loads(output)["result"]
+            return output
+        except KeyError:
+            print(json.loads(output)["error"]["message"] + " - " + json.loads(output)["error"]["data"])
+            exit()
+    except websockets.exceptions.InvalidHandshake:
+        print("Server " + "ws://"+da_cli_script.da_server_ws + " not found!")
+        exit()
