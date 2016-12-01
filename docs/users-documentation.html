@@ -120,20 +120,8 @@
         <h3>CLI tools</h3>
         <p>The CLI tools are more handy for the manual usage. Most of the data is obtained from
             the server application, so it is not possible to use the CLI tools without connection to
-            the server. The tools are a simple Bash/Python scripts, which requires to have installed
-            interprets for Bash and Python 2.7.</p>
-        <p>There are 2 CLI tools:</p>
-
-        <ol>
-            <li>
-                <span class="strong">The users tool</span>
-                - provides all operations except modification of the Blacklist/Whitelist.
-            </li>
-            <li>
-                <span class="strong">The admin tool</span>
-                - provides all operations. In future this tool will require authentication.
-            </li>
-        </ol>
+            the server. The tools are a simple Python scripts, which requires to have installed
+            interprets for Python 3.5 and above.</p>
 
 
         <h2>CLI tools manual</h2>
@@ -145,16 +133,16 @@
             <li>
             <p>
                 The easiest way to make the CLI tools running is to
-                <a href="https://github.com/project-ncl/dependency-analysis/raw/master/cli-wrap/da-cli-tools-0.8.1-pack.zip">download the ZIP archive</a>
-                from GitHub, which contains all the required support scripts and both CLI tools. The
-                latest versions of the tools are always placed in the folder /cli. When you download the
+                <a href="https://github.com/project-ncl/dependency-analysis/raw/version-1.0.x/cli-wrap/da-cli-tools-1.0.0-pack.zip">download the ZIP archive</a>
+                from GitHub, which contains all the required support scripts and CLI tool. The
+                latest versions of the scripts are always placed in the folder /cli. When you download the
                 ZIP file, you can unzip the file and start using it.
                 How to do that?
                 <ol>
-                    <li>Unzip the CLI: unzip da-cli-tools-0.8.1-pack.zip</li>
-                    <li>Enter the folder with CLI: cd da-cli-tools-0.8.1</li>
-                    <li>Change permissions: chmod +x *.py *.sh</li>
-                    <li>Run the script. E.g.: ./da-cli.sh lookup org.hibernate:hibernate-core:4.2.21.Final</li>
+                    <li>Unzip the CLI: unzip da-cli-tools-1.0.0-pack.zip</li>
+                    <li>Enter the folder with CLI: cd da-cli-tools-1.0.0</li>
+                    <li>Change permissions: chmod +x *.py</li>
+                    
                 </ol>
             </p>
             </li>
@@ -164,16 +152,38 @@
                         <ol>
                             <li>Clone the repository: git clone https://github.com/project-ncl/dependency-analysis</li>
                             <li>Enter the directory with the CLI: cd dependency-analysis/cli-wrap/src/main/resources/cli/</li>
-                            <li>Change permissions: chmod +x *.py *.sh</li>
-                            <li>Run the CLI. E.g.: ./da-cli.sh lookup org.hibernate:hibernate-core:4.2.21.Final</li>
+                            <li>Change permissions: chmod +x *.py</li>
+                            
                         </ol>
                 </p>
             </li>
+            
+            <li>
+                After unpacking/clonning CLI tool, you need to configure servers.
+            <p>
+                You have to specify DA server and KeyCloak authentication server. It can be done by inserting URL addresses of these servers to file config.json 
+                DA server should be filled into "daServer" field. This server has to support WebSocket and HTTP protocol. Keycloak server should be in field "keycloakServer".
+                There are also "keycloakClientId" and "keycloakRealm" fields, which should be filled by your KeyCloak configuration for proper working scripts. 
+                DA server can be also set as environmental variable ($ export DA_SERVER=...).
+                <i>Note that DA server must be inserted protocol-less because services are using different protocols.</i>
+                In case one of these server is not specified, script exits with fail message.
+            </p>
+            </li>
+            
+            <li>
+                Before first run
+            <p>
+                Ensure that you have installed python3 (more specific 3.5), requests, websockets and asyncio modules. Websockets should contain asyncio module, so these two modules are installed just by websocked install command.
+            </p>
+            If you do not have them installed, it can be easily done by these commands:
+                <ul>
+                    <li>On Fedora 24+ you can install it using dnf install python3 python3-requests python3-websockets</li>
+                    <li>On other systems you can use prepared scrpip install-python3.5.sh</li>
+                    
+                </ul>
+            Try to run the CLI. E.g.: ./da-cli.py lookup org.hibernate:hibernate-core:4.2.21.Final        
+            </li>
         </ul>
-        <p>Note: There is no configuration option to specify the URL of the server. Currently it
-            is hardcoded in the scripts to simplify the distribution to the users, but of course it
-            will be added later.</p>
-
 
         <h3>Options description</h3>
         <p>There is a couple of options, which can define the behavior of the CLI tool. The more
@@ -206,7 +216,7 @@
                         </ul>
                     <li>
                         <span class="strong">Usage:</span>
-                        ./da-cli.sh lookup [GROUP_ID:ARTIFACT_ID[:PACKAGING[:CLASSIFIER]]:VERSION[:SCOPE]] [--products PRODUCTS] [--productIDs IDS]
+                        ./da-cli.py lookup [GROUP_ID:ARTIFACT_ID[:PACKAGING[:CLASSIFIER]]:VERSION[:SCOPE]] [--products PRODUCTS] [--productIDs IDS]
                         <br />
 
                         When GROUP_ID:ARTIFACT_ID:VERSION is specified finds corresponding redhat versions for it.
@@ -244,7 +254,7 @@
                         </ul>
                     <li>
                         <span class="strong">Usage:</span>
-                        ./da-cli.sh report [--raw|--json] [--products PRODUCTS] [--productIDs IDS] GROUP_ID:ARTIFACT_ID:VERSION
+                        ./da-cli.py report [--raw|--json] [--products PRODUCTS] [--productIDs IDS] GROUP_ID:ARTIFACT_ID:VERSION
                     </li>
                 </ul>
             </li>
@@ -268,7 +278,7 @@
                         .
                     <li>
                         <span class="strong">Usage:</span>
-                        ./da-cli.sh scm-report [--raw|--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]
+                        ./da-cli.py scm-report [--raw|--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]
                         <ul>
                             <li>scm - URL to the remote SCM repository</li>
                             <li>tag - Tag, branch or revision of the SCM</li>
@@ -311,7 +321,7 @@
                         (dependencies in projects' POMs) of the project's modules.
                     <li>
                         <span class="strong">Usage:</span>
-                        ./da-cli.sh scm-report-advanced [--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]
+                        ./da-cli.py scm-report-advanced [--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]
                         <ul>
                             <li>scm - URL to the remote SCM repository</li>
                             <li>tag - Tag, branch or revision of the SCM</li>
@@ -352,7 +362,7 @@
                 </li>
                 <li>
                     <span class="strong">Usage</span>
-                    ./da-cli.sh align-report [--json] [--unknown] [--productIDs IDS]... [--repository REPOSITORY]... SCM TAG [POM-PATH]
+                    ./da-cli.py align-report [--json] [--unknown] [--productIDs IDS]... [--repository REPOSITORY]... SCM TAG [POM-PATH]
                     <ul>
                         <li>--json Output unparsed response from Dependency Analyzer.</li>
                         <li>--unknown Consider artifacts from unknown products.</li>
@@ -380,7 +390,7 @@
                  
              <li>
                     <span class="strong">Usage</span>
-                    ./da-cli.sh difference [--json] leftID rightID
+                    ./da-cli.py difference [--json] leftID rightID
                     <ul>
                         <li>--json Output unparsed response from Dependency Analyzer.</li>
                         <li>leftID ID of first product</li>
@@ -388,37 +398,56 @@
                     </ul>
                 </li>
                </ul>
+        
+        
+        
+        
+        
+        <li>
+        <span class="strong">Administration tools</span>
+                <ul>
+                <li>
+                    These tools add, remove or change data. These are administrative tools, so you need to be authenticated to use them.
+                    You can authenticate with your credentials when you run admin tool. You are asked to enter your login. System user name is used as default. After you are asked to enter password. In case credentials are wrong, CLI tool exits with failure message with no data changed.
+                
+               </ul>
+        </li>
         </ul>
+        
+        
+        
+        
+        
 
 
         <h3>Examples</h3>
         <dl>
             <dt>List all artifacts in the whitelist</dt>
-            <dd>./da-cli.sh list white</dd>
+            <dd>./da-cli.py list white</dd>
 
             <dt>Add a product to whitelist</dt>
-            <dd>./da-cli-admin.sh add whitelist-product eap:7.0.0 SUPPORTED</dd>
+            <dd>./da-cli-admin.py add whitelist-product eap:7.0.0 SUPPORTED</dd>
 
             <dt>Add an artifact to whitelist</dt>
-            <dd>./da-cli-admin.sh add white org.jboss.hibernate:hibernate-core:3.4.2.redhat-1 eap:7.0.0</dd>
+            <dd>./da-cli-admin.py add white org.jboss.hibernate:hibernate-core:3.4.2.redhat-1 eap:7.0.0</dd>
 
             <dt>Remove an artifact from blacklist</dt>
-            <dd>./da-cli-admin.sh delete black org.jboss.hibernate:hibernate-core:3.4.2</dd>
+            <dd>./da-cli-admin.py delete black org.jboss.hibernate:hibernate-core:3.4.2</dd>
 
             <dt>Check all dependencies from pom and print their black/white list status</dt>
-            <dd>./da-cli.sh pom-bw &lt;PATH_TO_DIRECTORY&gt;</dd>
+            <dd>./da-cli.py pom-bw &lt;PATH_TO_DIRECTORY&gt;</dd>
 
             <dt>Check all dependencies from pom and print their report status</dt>
-            <dd>./da-cli.sh pom-report &lt;PATH_TO_DIRECTORY&gt;</dd>
+            <dd>./da-cli.py pom-report &lt;PATH_TO_DIRECTORY&gt;</dd>
 
             <dt>Lookup built versions of an artifact</dt>
-            <dd>./da-cli.sh lookup org.hibernate:hibernate-core:4.2.18.Final</dd>
+            <dd>./da-cli.py lookup org.hibernate:hibernate-core:4.2.18.Final</dd>
 
             <dt>Create dependency report of an artifact</dt>
-            <dd>./da-cli.sh report org.hibernate:hibernate-core:4.2.18.Final</dd>
+            <dd>./da-cli.py report org.hibernate:hibernate-core:4.2.18.Final</dd>
 
             <dt>Create SCM report for a project module</dt>
-            <dd>./da-cli.sh scm-report https://github.com/jboss-fuse/fuse
+            <dd>./da-cli.py scm-report https://github.com/jboss-fuse/fuse
                 fuseenterprise-6.2.1.redhat-084 ./esb/pom.xml</dd>
         </dl>
 
