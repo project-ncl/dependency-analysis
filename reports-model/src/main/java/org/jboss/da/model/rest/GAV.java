@@ -2,6 +2,8 @@ package org.jboss.da.model.rest;
 
 import javax.xml.bind.annotation.XmlTransient;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,7 +28,7 @@ public class GAV implements Comparable<GAV> {
     public GAV(@JsonProperty("groupId") String groupId,
             @JsonProperty("artifactId") String artifactId, @JsonProperty("version") String version) {
         this.ga = new GA(groupId, artifactId);
-        this.version = version;
+        this.version = Objects.requireNonNull(version);
     }
 
     @JsonIgnore

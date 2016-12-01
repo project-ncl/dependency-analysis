@@ -1,5 +1,6 @@
 package org.jboss.da.model.rest;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -27,8 +28,8 @@ public class GA implements Comparable<GA> {
 
     @JsonCreator
     public GA(@JsonProperty("groupId") String groupId, @JsonProperty("artifactId") String artifactId) {
-        this.groupId = groupId;
-        this.artifactId = artifactId;
+        this.groupId = Objects.requireNonNull(groupId);
+        this.artifactId = Objects.requireNonNull(artifactId);
     }
 
     @Override
