@@ -45,11 +45,6 @@ public class WebsocketApiBCTest extends AbstractWebsocketBCTest {
     }
 
     @Test
-    public void testStartDACommon() throws IOException, Exception {
-        assertResponseForRequest(PATH_BC_START, "da-common", METHOD_BC_START);
-    }
-
-    @Test
     public void testIterateDACommon() throws IOException, Exception {
         assertResponseForRequest(PATH_BC_ITERATE, "da-common-1", METHOD_BC_ITERATE);
     }

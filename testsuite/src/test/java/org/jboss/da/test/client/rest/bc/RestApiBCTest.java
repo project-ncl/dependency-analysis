@@ -38,12 +38,6 @@ public class RestApiBCTest extends AbstractRestBCTest {
     }
 
     @Test
-    public void testStartDACommon() throws IOException, Exception {
-        Response response = assertResponseForRequest(PATH_BC_START, "da-common");
-        assertEquals(200, response.getStatus());
-    }
-
-    @Test
     public void testIterateDACommon() throws IOException, Exception {
         Response response = assertResponseForRequest(PATH_BC_ITERATE, "da-common-1");
         assertEquals(200, response.getStatus());
