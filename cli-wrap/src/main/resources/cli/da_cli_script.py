@@ -10,12 +10,18 @@ import getpass
 
 with open('config.json') as config_file:    
     config = json.load(config_file)
-da_server = os.getenv('DA_SERVER', config["daServer"])
 
-if (da_server == ""):
-    print("Please configure DA server by command $ export DA_SERVER=your.adress/rest/v-1")
+da_server_raw = os.getenv('DA_SERVER', config["daServer"])
+
+if (da_server_raw == ""):
+    print("Please configure DA server by command $ export DA_SERVER=your.adress")
     print("or by filling address in configuration file (config.json).")
     exit()
+    
+da_server = da_server_raw + "/da/rest/v-1"
+da_server_ws = da_server_raw + "/da/ws"
+
+
 GAV = "GROUP_ID:ARTIFACT_ID:VERSION"
 GA  = "GROUP_ID:ARTIFACT_ID"
 PRODUCT_VERSION = "PRODUCT_NAME:VERSION"
@@ -263,7 +269,10 @@ def add_white_artifact(gav, product_version):
     json_request['version'] = ver
     json_request['productId'] = productId
     r = requests_post(da_server + endpoint, json_request=json_request, login = True)
-    verify_response(r.json(), "Addition failed")
+    if (r != None):
+        verify_response(r.json(), "Addition failed")
+    else:
+        print("Failed!")
 
 def find_product_version_id(product_version):
     product, version = product_version.split(':')

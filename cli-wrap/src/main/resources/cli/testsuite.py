@@ -11,6 +11,9 @@ if (DA_MAIN_SERVER == ""):
     print("Please configure DA server by command $ export DA_SERVER=your.adress/rest/v-1")
     print("or by filling address in configuration file (config.json).")
     exit()
+
+DA_MAIN_SERVER += "/da/rest/v-1"
+
 class Testsuite:
     """
     Class used to create and generate JUnit XML definitions
