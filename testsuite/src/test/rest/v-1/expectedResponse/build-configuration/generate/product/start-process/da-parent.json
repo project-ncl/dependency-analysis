@@ -308,8 +308,7 @@
         "projectId": null,
         "buildScript": "",
         "description": "Build Configuration for commons-logging:commons-logging:1.1.1 - Commons Logging.",
-        "internallyBuilt": null,
-        "availableVersions": [],
+        "internallyBuilt": "1.1.1.redhat-3",
         "bcId": null,
         "gav": {
           "groupId": "commons-logging",
@@ -418,8 +417,7 @@
         "projectId": null,
         "buildScript": "",
         "description": "Build Configuration for commons-io:commons-io:2.4 - Commons IO.",
-        "internallyBuilt": null,
-        "availableVersions": [],
+        "internallyBuilt": "2.4.0.redhat-1",
         "bcId": null,
         "gav": {
           "groupId": "commons-io",
