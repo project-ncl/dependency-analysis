@@ -339,6 +339,15 @@ class CLITool(object):
         else:
             print("Bad arguments! For help use: ./da-cli.py --help")
             
+    def list_white(self):
+        if len(sys.argv) == 3:
+            self.da.print_white_artifacts()
+        elif len(sys.argv) == 4:
+             if self.pm.matchProd(sys.argv[3]):
+                self.da.print_white_artifacts(sys.argv[3])
+        else:
+            print("Bad arguments! For help use: ./da-cli.py --help")
+            
     def list_whitelist_products(self):
         if len(sys.argv) == 3:
             self.da.print_whitelist_products()
@@ -364,7 +373,7 @@ class CLITool(object):
             
     def list_whitelist_gav(self):
         if len(sys.argv) == 4:
-            if matchGAV(sys.argv[3]):
+            if self.pm.matchGAV(sys.argv[3]):
                 self.da.print_whitelist_gav(sys.argv[3])
         elif len(sys.argv) == 5:
             if self.pm.matchGAV(sys.argv[3]):
@@ -389,6 +398,5 @@ class CLITool(object):
             print("Missing STATUS")
         else:
             print("Bad arguments! For help use: ./da-cli.py --help")
-
             
 CLITool()
