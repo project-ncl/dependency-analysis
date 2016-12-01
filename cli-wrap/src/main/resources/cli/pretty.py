@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import json
 import sys
 import fileinput
@@ -267,8 +267,8 @@ def readInput(data):
     try:    
         return json.loads(data)
     except ValueError:
-        print "Response is not parsable JSON object:"
-        print data
+        print("Response is not parsable JSON object:")
+        print(data)
         sys.exit(1)   
 
 def checkError(data):
@@ -279,7 +279,7 @@ def checkError(data):
 
 def report(data):
     checkError(data)
-    print "tree of GAVs\tExact Match Version\tBlack/White list\t# of not built dependencies\t# of available versions"
+    print("tree of GAVs\tExact Match Version\tBlack/White list\t# of not built dependencies\t# of available versions")
     return printReport(data,0) 
 
 def reportRaw(data):
@@ -288,7 +288,7 @@ def reportRaw(data):
 
 def reportAdv(data):
     checkError(data)
-    print "tree of GAVs\tExact Match Version\tBlack/White list\t# of not built dependencies\t# of available versions"
+    print("tree of GAVs\tExact Match Version\tBlack/White list\t# of not built dependencies\t# of available versions")
     return printReport(data["report"], 0) 
     
 def reportAdvSum(data):
@@ -317,5 +317,5 @@ def listCheck(data):
     return ", ".join(versions)
 
 def hello():
-    print "hi"
+    print("hi")
     

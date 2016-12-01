@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import inspect
 import re
 import subprocess
@@ -40,10 +40,10 @@ def check(color_par,gav):
     output = (json.dumps(output))
 
     if '"contains": true' in output:
-        print("Artifact "+gav +" is " +color_par+"listed - actual verisions in list: ")
-        print(pretty.listCheck(output.json()))
+        print("Artifact "+gav +" is blacklisted - actual verisions in list: ")
+        print(pretty.listCheck(json.loads(output)))
     elif '"contains": false' in output:
-        print("Artifact "+gav +" is NOT " +color_par+"listed")
+        print("Artifact "+gav +" is NOT blacklisted")
     else:
         print("Error checking " +gav)
 
@@ -205,7 +205,7 @@ def report():
 
     if style == "pretty":
         if "errorType" in output:
-            print output['errorMessage']
+            print(output['errorMessage'])
             exit()
         pretty_out = pretty.report(output)
         print(pretty_out)
@@ -285,7 +285,7 @@ def lookup():
     output = da_cli_script.requests_post(da_cli_script.da_server+ "/reports/lookup/gavs", json.loads(query)).json()
     
     if "errorType" in output:
-            print output['errorMessage']
+            print(output['errorMessage'])
             exit()
     pretty_out = pretty.lookup(output)
     print(pretty_out)
@@ -347,7 +347,7 @@ def scm_report():
     
     if style == "pretty":
         if "errorType" in output:
-            print output['errorMessage']
+            print(output['errorMessage'])
             exit()
         pretty_out = pretty.report(output)
         print(pretty_out)
@@ -412,7 +412,7 @@ def scm_report_adv():
     
     if style == "pretty":
         if "errorType" in output:
-            print output['errorMessage']
+            print(output['errorMessage'])
             exit()
         pretty_out = pretty.reportAdvSum(output)
         subprocess.call("echo \"" + pretty_out + "\" | column -t -s '\t' ", shell=True)
@@ -482,7 +482,7 @@ def align_report():
    
     if style == "pretty":
         if "errorType" in output:
-            print output['errorMessage']
+            print(output['errorMessage'])
             exit()
         pretty_out = pretty.reportAlign(output)
         #print(pretty_out)
@@ -512,7 +512,7 @@ def prod_difference():
     
     if style == "pretty":
         if "errorType" in output:
-            print output['errorMessage']
+            print(output['errorMessage'])
             exit()
         pretty_out = pretty.difference(output)
         print(pretty_out)

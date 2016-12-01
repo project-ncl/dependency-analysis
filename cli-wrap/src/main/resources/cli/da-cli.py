@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import sys
 from listings import *
 import argparse
@@ -166,7 +166,7 @@ class CLITool(object):
         parser.add_argument('command', help='Subcommand to run')
         args = parser.parse_args(sys.argv[1:2])
         if not hasattr(self, args.command.replace("-","_")):
-            print 'Unrecognized command'
+            print('Unrecognized command')
             parser.print_help()
             exit(1)
         # use dispatch pattern to invoke method with same name
