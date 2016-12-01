@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import argparse
 import requests
 requests.packages.urllib3.disable_warnings()
@@ -38,7 +38,9 @@ def get_token(login, pswd):
 
 def auth():
     session = requests.Session() 
-    login = raw_input("Enter login name ["+getpass.getuser()+"]:")
+
+    login = input("Enter login name ["+getpass.getuser()+"]:")
+
     if login == "":
         login = getpass.getuser()
     print("Enter password for " + login)
