@@ -13,7 +13,7 @@ import lombok.NonNull;
 public class GA implements Comparable<GA> {
 
     private static final Pattern GROUP_ID_PATTERN = Pattern
-            .compile("([a-zA-Z_][a-zA-Z\\d_]*\\.)*[a-zA-Z_][a-zA-Z\\d_]*");
+            .compile("([a-zA-Z_][a-zA-Z\\d_-]*\\.)*[a-zA-Z_][a-zA-Z\\d_-]*");
 
     private static final Pattern ARTIFACT_ID_PATTERN = Pattern.compile("[a-zA-Z0-9_.-]+");
 

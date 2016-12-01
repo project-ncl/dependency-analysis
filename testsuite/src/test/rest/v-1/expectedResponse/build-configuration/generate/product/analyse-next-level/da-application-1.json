@@ -343,10 +343,7 @@
                         "projectId":null,
                         "buildScript":"",
                         "description":"Build Configuration for commons-logging:commons-logging:1.1.1 - Commons Logging.",
-                        "internallyBuilt":null,
-                        "availableVersions":[
-
-                        ],
+                        "internallyBuilt":"1.1.1.redhat-3",
                         "bcId":null,
                         "gav":{
                             "groupId":"commons-logging",
