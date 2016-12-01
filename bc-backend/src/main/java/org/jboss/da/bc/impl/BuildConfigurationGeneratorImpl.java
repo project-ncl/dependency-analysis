@@ -59,7 +59,7 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
 
     private <T extends GeneratorEntity> T prepareEntity(EntityConstructor<T> constructor,
             SCMLocator scm, int id) throws ScmException, PomAnalysisException {
-        GAVToplevelDependencies deps = depGenerator.getToplevelDependencies(scm);
+        GAVToplevelDependencies deps = depGenerator.getToplevelDependenciesFromModules(scm);
 
         Optional<POMInfo> pomInfo = pom.getPomInfo(scm.getScmUrl(), scm.getRevision(),
                 scm.getPomPath());

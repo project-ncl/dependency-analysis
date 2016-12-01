@@ -27,6 +27,9 @@ public interface DependencyTreeGenerator {
     public GAVToplevelDependencies getToplevelDependencies(SCMLocator scml) throws ScmException,
             PomAnalysisException;
 
+    public GAVToplevelDependencies getToplevelDependenciesFromModules(SCMLocator scml)
+            throws ScmException, PomAnalysisException;
+
     public GAVToplevelDependencies getToplevelDependencies(GAV gav) throws CommunicationException,
             FindGAVDependencyException;
 
