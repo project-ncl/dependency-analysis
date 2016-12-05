@@ -528,7 +528,9 @@ async def get_response(query):
             output = json.loads(output)["result"]
             return output
         except KeyError:
-            print(json.loads(output)["error"]["message"] + " - " + json.loads(output)["error"]["data"])
+            print(json.loads(output)["error"]["message"])
+            if "data" in json.loads(output)["error"]:
+                print(json.loads(output)["error"]["data"])
             exit()
     except websockets.exceptions.InvalidHandshake:
         print("Server " + "ws://"+da_cli_script.da_server_ws + " not found!")
