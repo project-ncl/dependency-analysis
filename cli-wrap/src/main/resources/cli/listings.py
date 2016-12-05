@@ -410,13 +410,13 @@ def scm_report_adv():
     query += "}"
     
     output = asyncio.get_event_loop().run_until_complete(get_response(query))
-    
     if style == "pretty":
         if "errorType" in output:
             print(output['errorMessage'])
             exit()
         pretty_out = pretty.reportAdvSum(output)
-        subprocess.call("echo \"" + pretty_out + "\" | column -t -s '\t' ", shell=True)
+        pretty_out += pretty.reportAdv(output)
+        print(pretty_out)
     elif style == "raw":
         print(pretty.reportAdv(output))
     else:
