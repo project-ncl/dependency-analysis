@@ -77,28 +77,30 @@ def printReport(artifact, depth = None):
 
     for dep in artifact["dependencies"]:
         if depth is None:
-            output += printReport(dep)
+            output += printReport(dep) 
         else:
             output += printReport(dep, depth + 1)
     return output
 
 def printReportAdvSum(data):
     output = ""
-    output += "Blacklisted artifacts:\t" + getGAVList(data["blacklistedArtifacts"]) + "\n"
-
+    output += "Blacklisted artifacts:\t" + getGAVList(data["blacklistedArtifacts"]) + "\n\n"
     output += "Whitelisted artifacts:" + "\n"
     for whitelist in data["whitelistedArtifacts"]:
         output += "  " + getGAV(whitelist) + "\t" + ", ".join(map(formatProduct, whitelist["products"])) + "\n"
+    output += "\n"
 
     output += "Built community artifacts:" + "\n"
     for bestMatch in data["communityGavsWithBestMatchVersions"]:
         output += "  " + getGAV(bestMatch) + "\t" + bestMatch["bestMatchVersion"] + "\n"
+    output += "\n"
 
     output += "Community artifacts with other built version:" + "\n"
     for builtVersion in data["communityGavsWithBuiltVersions"]:
         output += "  " + getGAV(builtVersion) + "\t" +  ", ".join(builtVersion["availableVersions"]) + "\n"
+    output += "\n"
 
-    output += "Community artifacts:\t" + getGAVList(data["communityGavs"]) + "\n"
+    output += "Community artifacts:\n" + getGAVList(data["communityGavs"]) + "\n\n"
     return output
 
 def printReportAlign(data):
