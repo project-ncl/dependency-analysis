@@ -32,7 +32,9 @@ def get_token(login, pswd):
     if server == "":
         print("Please configure KeyCloak server by filling address in configuration file (config.json).")
         exit()
-    client_id = "pncdirect"
+    realm = config["keycloakRealm"]
+    server += "/realms/" + realm + "/protocol/openid-connect/token"
+    client_id = config["keycloakClientId"]
     grant_type="password"
     params = {'grant_type': grant_type,'client_id': client_id,'username': login,'password': pswd}
     r = requests.post(server, params, verify=False)
