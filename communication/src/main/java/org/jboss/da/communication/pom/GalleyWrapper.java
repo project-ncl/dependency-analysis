@@ -319,8 +319,9 @@ public class GalleyWrapper implements AutoCloseable {
 
     private static GAV generateGAV(MavenGAVView dep) {
         try {
-            if(dep.getGroupId() == null || dep.getArtifactId() == null || dep.getVersion() == null){
-                log.warn("Failet to get gav of dependency because of null field. Dependency: " +dep);
+            if (dep.getGroupId() == null || dep.getArtifactId() == null || dep.getVersion() == null) {
+                log.warn("Failed to get gav of dependency because of null field. Dependency: "
+                        + dep);
                 return null;
             }
             return new GAV(dep.getGroupId(), dep.getArtifactId(), dep.getVersion());
