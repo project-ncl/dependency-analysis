@@ -158,16 +158,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         GAV currentGav = ar.getGav();
 
-        List<String> availableVersionsFromWhitelist = getAvailableWhitelistVersions(allArtifacts,
-                currentGav);
+        Set<String> versions = new TreeSet<>(new VersionComparator(currentGav.getVersion()));
+        List<String> whitelistVersions = getAvailableWhitelistVersions(allArtifacts, currentGav);
         Optional<String> bestVersion = getBestMatchVersionFromWhitelist(ar.getBestMatchVersion(),
-                currentGav, availableVersionsFromWhitelist);
+                currentGav, whitelistVersions);
 
-        if (ar.getAvailableVersions() != null)
-            availableVersionsFromWhitelist.addAll(ar.getAvailableVersions());
+        versions.addAll(whitelistVersions);
+        versions.addAll(ar.getAvailableVersions());
 
         // Update available versions
-        ar.setAvailableVersions(availableVersionsFromWhitelist);
+        ar.setAvailableVersions(new ArrayList<>(versions));
 
         // Update best match version
         ar.setBestMatchVersion(bestVersion);
