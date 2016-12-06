@@ -111,6 +111,7 @@ public class ReportsGeneratorImplTest {
                 Optional.ofNullable(best));
         when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV, versions)).thenReturn(
                 Optional.ofNullable(best));
+        when(versionFinderImpl.getBuiltVersionsFor(daCoreGAV, versions)).thenReturn(versions);
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
         when(
                 productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),
@@ -127,9 +128,11 @@ public class ReportsGeneratorImplTest {
                 new VersionLookupResult(Optional.ofNullable(bestMatchVersion), daCoreVersionsBest));
         when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV)).thenReturn(
                 Optional.ofNullable(bestMatchVersion));
-
         when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV, daCoreVersionsBest)).thenReturn(
                 Optional.ofNullable(bestMatchVersion));
+        when(versionFinderImpl.getBuiltVersionsFor(daUtilGAV, daCoreVersionsBest)).thenReturn(
+                daCoreVersionsBest);
+
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
         when(
                 productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),
@@ -143,6 +146,8 @@ public class ReportsGeneratorImplTest {
 
         when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV, daCoreVersionsNoBest))
                 .thenReturn(Optional.empty());
+        when(versionFinderImpl.getBuiltVersionsFor(daCommonGAV, daCoreVersionsNoBest)).thenReturn(
+                daCoreVersionsNoBest);
         when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
         when(
                 productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),

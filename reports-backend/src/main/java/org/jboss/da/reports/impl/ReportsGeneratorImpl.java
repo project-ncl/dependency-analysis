@@ -46,10 +46,8 @@ import javax.inject.Inject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -139,7 +137,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
         nodesVisited.add(dt);
         addDependencyReports(report, dt.getDependencies(), nodesVisited);
-        addArtifactsFromWhiteList(report, productVersions);
+        if (!productVersions.isEmpty()) {
+            addArtifactsFromWhiteList(report, productVersions);
+        }
 
         return Optional.of(report);
     }
@@ -151,52 +151,23 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private void updateArtifact(ArtifactReport ar, Set<WhiteArtifact> allArtifacts) {
-
-        Set<ArtifactReport> dependencies = ar.getDependencies();
-
         // Process the current artifact
+        GAV gav = ar.getGav();
 
-        GAV currentGav = ar.getGav();
-
-        Set<String> versions = new TreeSet<>(new VersionComparator(currentGav.getVersion()));
-        List<String> whitelistVersions = getAvailableWhitelistVersions(allArtifacts, currentGav);
-        Optional<String> bestVersion = getBestMatchVersionFromWhitelist(ar.getBestMatchVersion(),
-                currentGav, whitelistVersions);
-
-        versions.addAll(whitelistVersions);
+        List<String> versions = new ArrayList<>();
+        versions.addAll(getAvailableWhitelistVersions(allArtifacts, gav));
         versions.addAll(ar.getAvailableVersions());
 
-        // Update available versions
-        ar.setAvailableVersions(new ArrayList<>(versions));
-
-        // Update best match version
-        ar.setBestMatchVersion(bestVersion);
+        ar.setAvailableVersions(versionFinder.getBuiltVersionsFor(gav, versions));
+        ar.setBestMatchVersion(versionFinder.getBestMatchVersionFor(gav, versions));
 
         // Recurse or end
-        if (dependencies == null || dependencies.isEmpty()) {
-            return;
-        } else {
+        Set<ArtifactReport> dependencies = ar.getDependencies();
+        if (dependencies != null) {
             for (ArtifactReport depArtifact : dependencies) {
                 updateArtifact(depArtifact, allArtifacts);
             }
         }
-    }
-
-    private Optional<String> getBestMatchVersionFromWhitelist(Optional<String> currentBestVersion,
-            GAV currentGav, List<String> availableVersionsFromWhitelist) {
-        // Establish best match version
-        Optional<String> bestWhiteVersion = versionFinder.getBestMatchVersionFor(currentGav,
-                availableVersionsFromWhitelist);
-        if (bestWhiteVersion != null && bestWhiteVersion.isPresent()) {
-            if (currentBestVersion.isPresent()) {
-                currentBestVersion = versionFinder.getBestMatchVersionFor(currentGav,
-                        Arrays.asList(bestWhiteVersion.get(), currentBestVersion.get()));
-
-            } else {
-                currentBestVersion = bestWhiteVersion;
-            }
-        }
-        return currentBestVersion;
     }
 
     private List<String> getAvailableWhitelistVersions(Set<WhiteArtifact> allArtifacts,
@@ -618,27 +589,23 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         if(communicationSucceeded){
             Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductNames(), request.getProductVersionIds());
-            Set<WhiteArtifact> whiteArtifacts = getWhiteArtifacts(relevantProductVersions);
             
-            reports.stream().forEach(x -> 
-                {
-                    GAV currentGav = x.getGav();
-                    List<String> availableVersionsFromWhitelist = getAvailableWhitelistVersions(whiteArtifacts, currentGav);
-                    String bestVerStr = x.getBestMatchVersion();
-                    Optional<String> bestVersion = getBestMatchVersionFromWhitelist(
-                            bestVerStr == null ? Optional.empty() : Optional.of(bestVerStr), 
-                            currentGav, availableVersionsFromWhitelist
-                    );
-                    
-                    // Combine existing with whitelist versions
-                    if(x.getAvailableVersions() != null){
-                        availableVersionsFromWhitelist.addAll(x.getAvailableVersions());
+            if(!relevantProductVersions.isEmpty()){
+                Set<WhiteArtifact> whiteArtifacts = getWhiteArtifacts(relevantProductVersions);
+                reports.stream().forEach(x ->
+                    {
+                        GAV gav = x.getGav();
+
+                        List<String> versions = new ArrayList<>();
+                        versions.addAll(getAvailableWhitelistVersions(whiteArtifacts, gav));
+                        versions.addAll(x.getAvailableVersions());
+
+                        x.setAvailableVersions(versionFinder.getBuiltVersionsFor(gav, versions));
+                        x.setBestMatchVersion(versionFinder.getBestMatchVersionFor(gav, versions)
+                                .orElse(null));
                     }
-                    x.setAvailableVersions(availableVersionsFromWhitelist);
-                    x.setBestMatchVersion(bestVersion.orElse(null));
-                }
-             );
-            
+                 );
+            }
             return new ArrayList<>(reports);
         } else {
             throw new CommunicationException("Communication with remote repository failed");
