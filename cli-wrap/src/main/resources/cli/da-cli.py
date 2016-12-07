@@ -156,7 +156,7 @@ class CLITool(object):
         message += ("\n")     
         return message   
           
-    pm = __import__('listings')
+    listings = __import__('listings')
     da = __import__('da_cli_script')
 
 
@@ -193,7 +193,7 @@ class CLITool(object):
         
     def check(self):
         if (len(sys.argv) == 4):
-            self.pm.check(sys.argv[2], sys.argv[3])
+            self.listings.check(sys.argv[2], sys.argv[3])
             exit()
         elif (len(sys.argv) == 3):
             print("Missing GROUP_ID:ARTIFACT_ID:VERSION")
@@ -213,7 +213,7 @@ class CLITool(object):
         
     def update(self):
         if (len(sys.argv) == 5):
-            self.pm.updateFun(sys.argv[3], sys.argv[4])
+            self.listings.updateFun(sys.argv[3], sys.argv[4])
             exit()
         elif (len(sys.argv) == 4):
             print("Missing STATUS")
@@ -233,55 +233,55 @@ class CLITool(object):
     def pom_bw_junit_xml(self):
         parser = argparse.ArgumentParser(usage=self.printUsage())
         try:
-            self.pm.pom_bw_junit_xml(sys.argv,parser)
+            self.listings.pom_bw_junit_xml(sys.argv,parser)
         except IndexError:
             print("Too few arguments! Use ./da-cli.py --help for help")
             
     def report(self):
         try:
-            self.pm.report()
+            self.listings.report()
         except IndexError:
             print("Too few arguments! Use ./da-cli.py --help for help")
         exit()
         
     def lookup(self):
         try:
-            self.pm.lookup()
+            self.listings.lookup()
         except IndexError:
             print("Too few arguments! Use ./da-cli.py --help for help")
         exit()
             
     def scm_report(self):
         try:
-            self.pm.scm_report()
+            self.listings.scm_report()
         except IndexError:
             print("Too few arguments! Use ./da-cli.py --help for help")
         exit()        
             
     def scm_report_advanced(self):
         try:
-            self.pm.scm_report_adv()
+            self.listings.scm_report_adv()
         except IndexError:
             print("Too few arguments! Use ./da-cli.py --help for help")
         exit()
         
     def align_report(self):
         try:
-            self.pm.align_report()
+            self.listings.align_report()
         except IndexError:
             print("Too few arguments! Use ./da-cli.py --help for help")
         exit()
         
     def difference(self):
         try:
-            self.pm.prod_difference()
+            self.listings.prod_difference()
         except IndexError:
             print("Too few arguments! Use ./da-cli.py --help for help")
         exit()
 
     def add_white(self):
         if (len(sys.argv) == 5):
-            self.pm.addWhite(sys.argv[3], sys.argv[4])
+            self.listings.addWhite(sys.argv[3], sys.argv[4])
         elif (len(sys.argv) == 4):
             print("Missing PRODUCT_NAME:VERSION")
         elif (len(sys.argv) == 3):
@@ -291,7 +291,7 @@ class CLITool(object):
     
     def add_black(self):
         if len(sys.argv) == 4:
-            self.pm.addBlack(sys.argv[3])
+            self.listings.addBlack(sys.argv[3])
         elif len(sys.argv) == 3:
             print("Missing GROUP_ID:ARTIFACT_ID:VERSION")
         else:
@@ -299,7 +299,7 @@ class CLITool(object):
 
     def add_whitelist_product(self):
         if len(sys.argv) == 5:
-            self.pm.addWhitelistProd(sys.argv[3], sys.argv[4])
+            self.listings.addWhitelistProd(sys.argv[3], sys.argv[4])
         elif len(sys.argv) == 4:
             print("Missing PRODUCT_NAME:VERSION")
         elif len(sys.argv) == 3:
@@ -309,9 +309,9 @@ class CLITool(object):
             
     def delete_white(self):
         if (len(sys.argv) == 5):
-            self.pm.deleteArtifactProduct("white", sys.argv[3], sys.argv[4])
+            self.listings.deleteArtifactProduct("white", sys.argv[3], sys.argv[4])
         elif (len(sys.argv) == 4):
-            self.pm.deleteArtifactProduct("white", sys.argv[3], None)
+            self.listings.deleteArtifactProduct("white", sys.argv[3], None)
         elif (len(sys.argv) == 3):
             print("Missing GROUP_ID:ARTIFACT_ID:VERSION")
         else:
@@ -319,7 +319,7 @@ class CLITool(object):
     
     def delete_black(self):
         if len(sys.argv) == 4:
-            self.pm.deleteArtifactProduct("black", sys.argv[3],None)
+            self.listings.deleteArtifactProduct("black", sys.argv[3],None)
         elif (len(sys.argv) == 3):
             print("Missing GROUP_ID:ARTIFACT_ID:VERSION")
         else:
@@ -327,7 +327,7 @@ class CLITool(object):
 
     def delete_whitelist_product(self):
         if len(sys.argv) == 4:
-            self.pm.deleteArtifactProduct("whitelist-product", None, sys.argv[3])
+            self.listings.deleteArtifactProduct("whitelist-product", None, sys.argv[3])
         elif (len(sys.argv) == 3):
             print("Missing PRODUCT_NAME:VERSION")
         else:
@@ -343,7 +343,7 @@ class CLITool(object):
         if len(sys.argv) == 3:
             self.da.print_white_artifacts()
         elif len(sys.argv) == 4:
-             if self.pm.matchProd(sys.argv[3]):
+             if self.listings.matchProd(sys.argv[3]):
                 self.da.print_white_artifacts(sys.argv[3])
         else:
             print("Bad arguments! For help use: ./da-cli.py --help")
@@ -352,14 +352,14 @@ class CLITool(object):
         if len(sys.argv) == 3:
             self.da.print_whitelist_products()
         elif len(sys.argv) == 4:
-            if self.pm.matchGAV(sys.argv[3]):
+            if self.listings.matchGAV(sys.argv[3]):
                 self.da.print_whitelist_products(sys.argv[3])
         else:
             print("Bad arguments! For help use: ./da-cli.py --help")
             
     def list_whitelist_ga(self):
         if len(sys.argv) == 5:
-            if(self.pm.matchGA(sys.argv[3]) and self.pm.matchStatus(sys.argv[4])):
+            if(self.listings.matchGA(sys.argv[3]) and self.listings.matchStatus(sys.argv[4])):
                 self.da.print_whitelist_ga(sys.argv[3], sys.argv[4])
             else:
                 exit()
@@ -373,11 +373,11 @@ class CLITool(object):
             
     def list_whitelist_gav(self):
         if len(sys.argv) == 4:
-            if self.pm.matchGAV(sys.argv[3]):
+            if self.listings.matchGAV(sys.argv[3]):
                 self.da.print_whitelist_gav(sys.argv[3])
         elif len(sys.argv) == 5:
-            if self.pm.matchGAV(sys.argv[3]):
-                if self.pm.matchStatuses(sys.argv[4]):
+            if self.listings.matchGAV(sys.argv[3]):
+                if self.listings.matchStatuses(sys.argv[4]):
                     self.da.print_whitelist_gav(sys.argv[3], sys.argv[4])
                 else:
                     exit()
@@ -390,7 +390,7 @@ class CLITool(object):
             
     def list_whitelist_gavs(self):
         if len(sys.argv) == 4:
-            if self.pm.matchStatus(sys.argv[3]):
+            if self.listings.matchStatus(sys.argv[3]):
                 self.da.print_whitelist_gavs(sys.argv[3])
             else: 
                 exit()
