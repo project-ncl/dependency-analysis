@@ -488,8 +488,9 @@ def align_report():
         subprocess.call("echo \"" + pretty_out + "\" | column -t -s '\t' ", shell=True)
     else:
         print(json.dumps(output))
-        
+
 def prod_difference():
+    import operator
     style = "pretty"
     parser = argparse.ArgumentParser()
     parser.add_argument("difference")
@@ -499,6 +500,10 @@ def prod_difference():
     args = parser.parse_args()
     leftID = 0
     rightID = 0
+    
+    if args.json:
+        style = "json"
+        
     try:
         leftID = int(args.leftID)
         rightID = int(args.rightID)
@@ -513,9 +518,10 @@ def prod_difference():
         if "errorType" in output:
             print(output['errorMessage'])
             exit()
-        pretty_out = pretty.difference(output)
-        print(pretty_out)
-        exit()
+        else:
+            pretty_out = pretty.difference(output)
+            print(pretty_out)
+            exit()
     else:
         print(json.dumps(output))
               
