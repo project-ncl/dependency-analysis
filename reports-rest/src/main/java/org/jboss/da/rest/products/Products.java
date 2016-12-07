@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import java.util.TreeSet;
 
 /**
  *
@@ -67,14 +68,14 @@ public class Products {
         ret.setLeftProduct(convert.toRestProduct(left.get()));
         ret.setRightProduct(convert.toRestProduct(right.get()));
         ret.setAdded(diff.stream().filter(ArtifactDiff::isAdded)
-                .map(d -> new GAV(d.getGa(), d.getRightVersion())).collect(Collectors.toSet()));
+                .map(d -> new GAV(d.getGa(), d.getRightVersion())).collect(Collectors.toCollection(TreeSet::new)));
         ret.setRemoved(diff.stream().filter(ArtifactDiff::isRemoved)
-                .map(d -> new GAV(d.getGa(), d.getLeftVersion())).collect(Collectors.toSet()));
+                .map(d -> new GAV(d.getGa(), d.getLeftVersion())).collect(Collectors.toCollection(TreeSet::new)));
         ret.setChanged(diff.stream().filter(ArtifactDiff::isChanged)
                 .map(d -> new GADiff(d.getGa(), d.getLeftVersion(), d.getRightVersion()))
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toCollection(TreeSet::new)));
         ret.setUnchanged(diff.stream().filter(ArtifactDiff::isUnchanged)
-                .map(d -> new GAV(d.getGa(), d.getLeftVersion())).collect(Collectors.toSet()));
+                .map(d -> new GAV(d.getGa(), d.getLeftVersion())).collect(Collectors.toCollection(TreeSet::new)));
         return Response.ok().entity(ret).build();
     }
 }
