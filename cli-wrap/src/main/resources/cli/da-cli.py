@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 import sys
-from listings import *
 import argparse
+import inspect
+import os
+
+cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
+if cmd_folder not in sys.path:
+     sys.path.insert(0, cmd_folder)
+
 
 class CLITool(object):
 
