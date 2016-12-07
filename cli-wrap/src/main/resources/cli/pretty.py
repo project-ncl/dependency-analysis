@@ -247,7 +247,7 @@ def printDifference(data):
         output += "unchanged : NONE\n"
     else:
         newline = False
-        output += "unchanged :"
+        output += "unchanged :\n"
         for module in data['unchanged']:
             output += "    groupId : " + module['groupId'] + "\n"
             output += "    artifactId : " + module['artifactId'] + "\n"
