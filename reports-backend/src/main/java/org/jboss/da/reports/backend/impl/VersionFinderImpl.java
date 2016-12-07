@@ -88,6 +88,7 @@ public class VersionFinderImpl implements VersionFinder {
         List<String> redhatVersions = allVersions.stream()
                 .filter(VersionParser::isRedhatVersion)
                 .sorted(new VersionComparator(gav.getVersion()))
+                .distinct()
                 .collect(Collectors.toList());
 
         return redhatVersions;
