@@ -307,9 +307,9 @@ class CLITool(object):
         if len(sys.argv) == 5:
             self.listings.addWhitelistProd(sys.argv[3], sys.argv[4])
         elif len(sys.argv) == 4:
-            print("Missing PRODUCT_NAME:VERSION")
-        elif len(sys.argv) == 3:
             print("Missing STATUS")
+        elif len(sys.argv) == 3:
+            print("Missing PRODUCT_NAME:VERSION")
         else:
             print("Bad arguments! For help use: ./da-cli.py --help")
             
