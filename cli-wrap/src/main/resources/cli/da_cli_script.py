@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-import argparse
 import requests
 requests.packages.urllib3.disable_warnings()
 import sys
 import json
 import os
 import getpass
+import inspect
 
+cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
 
-with open('config.json') as config_file:    
+with open(cmd_folder+'/config.json') as config_file:    
     config = json.load(config_file)
 
 da_server_raw = os.getenv('DA_SERVER', config["daServer"])

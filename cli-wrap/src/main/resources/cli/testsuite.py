@@ -3,8 +3,11 @@ import sys
 import requests
 import os
 import json
+import inspect
 
-with open('config.json') as config_file:    
+cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
+
+with open(cmd_folder+'/config.json') as config_file:    
     config = json.load(config_file)
 DA_MAIN_SERVER = os.getenv('DA_SERVER', config["daServer"])
 if (DA_MAIN_SERVER == ""):
