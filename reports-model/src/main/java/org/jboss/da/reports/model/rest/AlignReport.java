@@ -2,6 +2,7 @@ package org.jboss.da.reports.model.rest;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +17,11 @@ public class AlignReport {
 
     @Getter
     @NonNull
-    private final Set<RestGA2RestGAV2VersionProducts> internallyBuilt = new HashSet<>();
+    private final Set<RestGA2RestGAV2VersionProducts> internallyBuilt = new TreeSet<>();
 
     @Getter
     @NonNull
-    private final Set<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = new HashSet<>();
+    private final Set<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = new TreeSet<>();
 
     @Getter
     @NonNull

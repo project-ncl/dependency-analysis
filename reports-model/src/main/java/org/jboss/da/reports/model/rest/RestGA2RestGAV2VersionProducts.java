@@ -1,5 +1,6 @@
 package org.jboss.da.reports.model.rest;
 
+import java.util.Comparator;
 import java.util.Set;
 
 import lombok.Getter;
@@ -14,7 +15,7 @@ import lombok.Setter;
  */
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RestGA2RestGAV2VersionProducts {
+public class RestGA2RestGAV2VersionProducts implements Comparable<RestGA2RestGAV2VersionProducts> {
 
     @Getter
     @Setter
@@ -31,4 +32,12 @@ public class RestGA2RestGAV2VersionProducts {
     @NonNull
     private Set<RestGAV2VersionProducts> gavProducts;
 
+    @Override
+    public int compareTo(RestGA2RestGAV2VersionProducts o) {
+        if (this.groupId.equals(o.groupId))
+            return (this.artifactId.compareTo(o.artifactId));
+        else {
+            return this.groupId.compareTo(o.groupId);
+        }
+    }
 }
