@@ -154,7 +154,7 @@ public class ProjectHiearchyCreator {
     }
 
     private Set<ProjectHiearchy> toProjectHiearchies(Collection<GAV> gavs) {
-        return gavs.stream().map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet());
+        return gavs.parallelStream().map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet());
     }
 
     /**
