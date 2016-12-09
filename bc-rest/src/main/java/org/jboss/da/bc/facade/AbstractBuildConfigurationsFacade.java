@@ -22,6 +22,8 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.model.api.SCMLocator;
 import org.slf4j.Logger;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Honza Brázdil <jbrazdil@redhat.com>
@@ -142,6 +144,7 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         List<BuildConfiguration> dependencies = ph.getDependencies()
                 .stream()
                 .map(x -> toBuildConfiguration(x))
+                .sorted(Comparator.comparing(BuildConfiguration::getGav))
                 .collect(Collectors.toList());
         bc.setDependencies(dependencies);
 
