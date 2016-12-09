@@ -11,7 +11,7 @@ def formatProduct(product, supportStatus=True):
         return product["name"] + ":" + product["version"]
 
 def formatVersionProduct(vp):
-    return vp['version'] + " (" + formatProduct(vp['product'], False) + ")" 
+    return "        "+vp['version'] + " (" + formatProduct(vp['product'], False) + ")" 
 
 def getBestSupportStatus(products):
     status = "UNKNOWN"
@@ -109,17 +109,17 @@ def printReportAlign(data):
     for module in data['internallyBuilt']:
         output += "  " + module['groupId'] + ":" + module['artifactId'] + "\n"
         for dependency in module['gavProducts']:
-            output += "    " + getGAV(dependency) + " - " + ", ".join(map(formatVersionProduct,dependency['gavProducts'])) + "\n"
+            output += "    " + getGAV(dependency) + "\n" + "\n".join(map(formatVersionProduct,dependency['gavProducts'])) + "\n"
     output += "\n"
 
     output += "Built in different version:" + "\n"
     for module in data['builtInDifferentVersion']:
         output += "  " + module['groupId'] + ":" + module['artifactId'] + "\n"
         for dependency in module['gavProducts']:
-            output += "    " + getGAV(dependency) + " - " + ", ".join(map(formatVersionProduct,dependency['gavProducts'])) + "\n"
+            output += "    " + getGAV(dependency) + "\n" + "\n".join(map(formatVersionProduct,dependency['gavProducts'])) + "\n"
     output += "\n"
 
-    output += "Not built:"
+    output += "Not built:\n"
     for module in data['notBuilt']:
         output += "  " + module['groupId'] + ":" + module['artifactId'] + "\n"
         for dependency in module['gavs']:
