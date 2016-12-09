@@ -48,6 +48,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -297,7 +298,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
                 scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
 
-        Set<AlignmentReportModule> ret = new HashSet<>();
+        Set<AlignmentReportModule> ret = new TreeSet<>(Comparator.comparing(x -> x.getModule()));
         for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
             AlignmentReportModule module = new AlignmentReportModule(e.getKey());
             Map<GAV, Set<ProductArtifact>> internallyBuilt = module.getInternallyBuilt();
@@ -432,7 +433,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         return internallyStream
                 .map(x -> toProductArtifact(x))
-                .collect(Collectors.toCollection(HashSet::new));
+                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(ProductArtifact::getArtifact))));
     }
 
     @Override

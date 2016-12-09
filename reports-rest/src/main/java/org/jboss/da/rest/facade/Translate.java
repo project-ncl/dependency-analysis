@@ -14,7 +14,6 @@ import org.jboss.da.reports.model.rest.RestGA2RestGAV2VersionProducts;
 import org.jboss.da.reports.model.rest.RestGAV2VersionProducts;
 import org.jboss.da.reports.model.rest.RestVersionProduct;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -54,17 +53,17 @@ class Translate {
                 .collect(Collectors.toSet());
     }
 
-    private static Set<RestVersionProductWithDifference> toRestVersionProductsWithDiff(Set<ProductArtifact> productArtifacts) {
+    private static List<RestVersionProductWithDifference> toRestVersionProductsWithDiff(Set<ProductArtifact> productArtifacts) {
         return productArtifacts.stream()
                 .map(Translate::toRestVersionProductWithDifference)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
-    private static Set<RestGAV2VersionProducts> toRestGAV2VersionProducts(Map<GAV, Set<ProductArtifact>> ib) {
+    private static List<RestGAV2VersionProducts> toRestGAV2VersionProducts(Map<GAV, Set<ProductArtifact>> ib) {
         return ib.entrySet().stream()
                 .filter(e -> !e.getValue().isEmpty())
                 .map(e -> toRestGAV2VersionProducts(e.getKey(), e.getValue()))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     private static RestGAV2VersionProducts toRestGAV2VersionProducts(GAV gav,
@@ -129,14 +128,15 @@ class Translate {
 
     static AlignReport toAlignReport(Set<AlignmentReportModule> aligmentReport) {
         AlignReport ret = new AlignReport();
-        Set<RestGA2RestGAV2VersionProducts> internallyBuilt = ret.getInternallyBuilt();
-        Set<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = ret
+        List<RestGA2RestGAV2VersionProducts> internallyBuilt = ret.getInternallyBuilt();
+        List<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = ret
                 .getBuiltInDifferentVersion();
-        Set<RestGA2GAVs> notBuilt = ret.getNotBuilt();
-        Set<RestGA2GAVs> blacklisted = ret.getBlacklisted();
+        List<RestGA2GAVs> notBuilt = ret.getNotBuilt();
+        List<RestGA2GAVs> blacklisted = ret.getBlacklisted();
         for (AlignmentReportModule module : aligmentReport) {
-            Set<RestGAV2VersionProducts> ib = toRestGAV2VersionProducts(module.getInternallyBuilt());
-            Set<RestGAV2VersionProductsWithDiff> dv = toRestGAV2VersionProductsWithDiff(module
+            List<RestGAV2VersionProducts> ib = toRestGAV2VersionProducts(module
+                    .getInternallyBuilt());
+            List<RestGAV2VersionProductsWithDiff> dv = toRestGAV2VersionProductsWithDiff(module
                     .getDifferentVersion());
             Set<GAV> nb = module.getNotBuilt();
             Set<GAV> bl = module.getBlacklisted();
@@ -172,11 +172,11 @@ class Translate {
         return ret;
     }
 
-    private static Set<RestGAV2VersionProductsWithDiff> toRestGAV2VersionProductsWithDiff(Map<GAV, Set<ProductArtifact>> ib) {
+    private static List<RestGAV2VersionProductsWithDiff> toRestGAV2VersionProductsWithDiff(Map<GAV, Set<ProductArtifact>> ib) {
         return ib.entrySet().stream()
                 .filter(e -> !e.getValue().isEmpty())
                 .map(e -> toRestGAV2VersionProductsWithDiff(e.getKey(), e.getValue()))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     private static RestGAV2VersionProductsWithDiff toRestGAV2VersionProductsWithDiff(GAV gav,
@@ -205,10 +205,10 @@ class Translate {
         return report;
     }
 
-    private static Set<RestVersionProduct> toRestVersionProducts(Set<ProductArtifact> productArtifacts) {
+    private static List<RestVersionProduct> toRestVersionProducts(Set<ProductArtifact> productArtifacts) {
         return productArtifacts.stream()
                 .map(Translate::toRestVersionProduct)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     private static Set<RestProductInput> toRestProductInputs(Set<ProductVersion> product) {
