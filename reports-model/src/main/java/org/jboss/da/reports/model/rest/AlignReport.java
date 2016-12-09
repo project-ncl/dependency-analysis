@@ -1,7 +1,7 @@
 package org.jboss.da.reports.model.rest;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,18 +16,18 @@ public class AlignReport {
 
     @Getter
     @NonNull
-    private final Set<RestGA2RestGAV2VersionProducts> internallyBuilt = new HashSet<>();
+    private final List<RestGA2RestGAV2VersionProducts> internallyBuilt = new ArrayList<>();
 
     @Getter
     @NonNull
-    private final Set<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = new HashSet<>();
+    private final List<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = new ArrayList<>();
 
     @Getter
     @NonNull
-    private final Set<RestGA2GAVs> notBuilt = new HashSet<>();
+    private final List<RestGA2GAVs> notBuilt = new ArrayList<>();
 
     @Getter
     @NonNull
-    private final Set<RestGA2GAVs> blacklisted = new HashSet<>();
+    private final List<RestGA2GAVs> blacklisted = new ArrayList<>();
 
 }
