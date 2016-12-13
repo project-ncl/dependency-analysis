@@ -1,7 +1,6 @@
 package org.jboss.da.communication.aprox.api;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.aprox.model.Repository;
 
 import java.io.InputStream;
 import java.util.List;
@@ -12,10 +11,6 @@ import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 
 public interface AproxConnector {
-
-    enum RepositoryManipulationStatus {
-        DONE, NAME_NOT_EXIST, NAME_EXIST_DIFFERENT_URL, WRONG_NAME_OR_URL;
-    }
 
     /**
      * Finds available versions of specific groupId artifactId.
@@ -30,14 +25,6 @@ public interface AproxConnector {
     Optional<MavenProject> getPom(GAV gav) throws CommunicationException;
 
     Optional<InputStream> getPomStream(GAV gav) throws CommunicationException;
-
-    RepositoryManipulationStatus addRepositoryToGroup(Repository repository)
-            throws CommunicationException;
-
-    RepositoryManipulationStatus removeRepositoryFromGroup(Repository repository)
-            throws CommunicationException;
-
-    List<Repository> getAllRepositoriesFromGroup() throws CommunicationException;
 
     /**
      * Finds out if a particular gav is present in the public repository listed
