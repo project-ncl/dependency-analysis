@@ -1,18 +1,10 @@
 package org.jboss.da.communication.aprox.impl;
 
-import org.commonjava.indy.client.core.Indy;
-import org.commonjava.indy.client.core.IndyClientException;
-import org.commonjava.indy.client.core.module.IndyStoresClientModule;
-import org.commonjava.indy.model.core.Group;
-import org.commonjava.indy.model.core.RemoteRepository;
-import org.commonjava.indy.model.core.StoreKey;
-import org.commonjava.indy.model.core.StoreType;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.Repository;
 import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
@@ -29,7 +21,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -107,86 +98,6 @@ public class AproxConnectorImpl implements AproxConnector {
         } catch (IOException | ConfigurationParseException e) {
             throw new CommunicationException("Failed to obtain pom for " + gav.toString()
                     + " from approx server with url " + query.toString(), e);
-        }
-    }
-
-    @Override
-    public RepositoryManipulationStatus addRepositoryToGroup(Repository repository)
-            throws CommunicationException {
-        try (Indy indy = new Indy(config.getConfig().getAproxServer() + "/api",
-                new IndyStoresClientModule()).connect()) {
-            RemoteRepository repo;
-            try {
-                repo = indy.stores().load(StoreType.remote, repository.getName(),
-                        RemoteRepository.class);
-            } catch (IllegalArgumentException e) {
-                return RepositoryManipulationStatus.WRONG_NAME_OR_URL;
-            }
-            if (repo != null && !repo.getUrl().equals(repository.getUrl())) {
-                return RepositoryManipulationStatus.NAME_EXIST_DIFFERENT_URL;
-            } else if (repo == null) {
-                repo = indy.stores().create(
-                        new RemoteRepository(repository.getName(), repository.getUrl()),
-                        "Add remote repo", RemoteRepository.class);
-            }
-
-            Group group = indy.stores().load(StoreType.group, config.getConfig().getAproxGroup(),
-                    Group.class);
-
-            group.addConstituent(repo);
-
-            if (indy.stores().update(group, "Add repository to group"))
-                return RepositoryManipulationStatus.DONE;
-        } catch (IndyClientException | ConfigurationParseException e) {
-            throw new CommunicationException(e);
-        }
-        return null;
-    }
-
-    @Override
-    public RepositoryManipulationStatus removeRepositoryFromGroup(Repository repository)
-            throws CommunicationException {
-        try (Indy aprox = new Indy(config.getConfig().getAproxServer() + "/api",
-                new IndyStoresClientModule()).connect()) {
-            RemoteRepository repo = aprox.stores().load(StoreType.remote, repository.getName(),
-                    RemoteRepository.class);
-
-            Group group = aprox.stores().load(StoreType.group, config.getConfig().getAproxGroup(),
-                    Group.class);
-
-            if (repo == null) {
-                return RepositoryManipulationStatus.NAME_NOT_EXIST;
-            }
-            if (repo.getUrl().equals(repository.getUrl())) {
-                group.removeConstituent(repo);
-            } else {
-                return RepositoryManipulationStatus.NAME_EXIST_DIFFERENT_URL;
-            }
-
-            aprox.stores().update(group, "Remove repository from group");
-            return RepositoryManipulationStatus.DONE;
-        } catch (IndyClientException | ConfigurationParseException e) {
-            throw new CommunicationException(e);
-        }
-    }
-
-    @Override
-    public List<Repository> getAllRepositoriesFromGroup() throws CommunicationException {
-        try (Indy aprox = new Indy(config.getConfig().getAproxServer() + "/api",
-                new IndyStoresClientModule()).connect()) {
-            List<Repository> repoList = new ArrayList<>();
-            Group daGroup = aprox.stores().load(StoreType.group,
-                    config.getConfig().getAproxGroup(), Group.class);
-            for (StoreKey key : daGroup.getConstituents()) {
-                if (key.getType() == StoreType.remote) {
-                    RemoteRepository repo = aprox.stores().load(StoreType.remote, key.getName(),
-                            RemoteRepository.class);
-                    repoList.add(new Repository(key.getName(), repo.getUrl()));
-                }
-            }
-            return repoList;
-        } catch (IndyClientException | ConfigurationParseException e) {
-            throw new CommunicationException(e);
         }
     }
 
