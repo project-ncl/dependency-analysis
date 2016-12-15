@@ -12,6 +12,6 @@ public class PNCRequestException extends Exception {
     }
 
     public PNCRequestException(String msg, Throwable ex) {
-        super(msg, ex);
+        super(msg + ": " + ex.getMessage(), ex);
     }
 }

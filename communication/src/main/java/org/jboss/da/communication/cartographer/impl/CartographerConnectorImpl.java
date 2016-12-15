@@ -90,8 +90,8 @@ public class CartographerConnectorImpl implements CartographerConnector {
                 return generateGAVDependencyTree(export, gav);
 
         } catch (ClientHttpException | ConfigurationParseException | CartoClientException e) {
-            throw new CommunicationException(
-                    "Error while trying to communicate with Cartographer.", e);
+            throw new CommunicationException("Error while trying to communicate with Cartographer",
+                    e);
         }
     }
 

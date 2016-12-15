@@ -168,7 +168,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
     }
 
     private <T> Optional<T> checkAndReturn(Response response, Class<T> type)
-            throws AuthenticationException, PNCRequestException, CommunicationException {
+            throws PNCRequestException, CommunicationException {
         try {
             switch (response.getStatus()) {
                 case SC_OK:
@@ -188,8 +188,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
         }
     }
 
-    private void checkCode(Response response) throws AuthenticationException, PNCRequestException,
-            CommunicationException {
+    private void checkCode(Response response) throws PNCRequestException, CommunicationException {
         try {
             switch (response.getStatus()) {
                 case SC_OK:

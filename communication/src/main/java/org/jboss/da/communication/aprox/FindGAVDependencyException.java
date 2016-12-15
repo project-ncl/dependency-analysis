@@ -11,7 +11,7 @@ public class FindGAVDependencyException extends Exception {
     }
 
     public FindGAVDependencyException(String message, Throwable cause) {
-        super(message, cause);
+        super(message + ": " + cause.getMessage(), cause);
     }
 
     public FindGAVDependencyException(Throwable cause) {

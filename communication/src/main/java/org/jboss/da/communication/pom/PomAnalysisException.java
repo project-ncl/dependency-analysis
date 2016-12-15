@@ -7,7 +7,7 @@ public class PomAnalysisException extends Exception {
     }
 
     public PomAnalysisException(String message, Throwable cause) {
-        super(message, cause);
+        super(message + ": " + cause.getMessage(), cause);
     }
 
     public PomAnalysisException(Throwable cause) {

@@ -145,7 +145,7 @@ public class FinalizerImpl implements Finalizer {
                 Thread.sleep(1000 * 30);
             } catch (InterruptedException ex) {
                 throw new CommunicationException("Waiting for buildconfiguration " + name
-                        + " was interrupted.", ex);
+                        + " was interrupted", ex);
             }
         }
         throw new CommunicationException("Timeout while waiting for buildconfiguration " + name
