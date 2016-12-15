@@ -52,20 +52,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- dependency for aprox -->
-        <dependency>
-            <groupId>org.commonjava.indy</groupId>
-            <artifactId>indy-autoprox-client-java</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.wordnik</groupId>
-                    <artifactId>swagger-jaxrs_2.10</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-
-
         <dependency>
             <groupId>org.commonjava.cartographer</groupId>
             <artifactId>cartographer-rest-client-java</artifactId>
