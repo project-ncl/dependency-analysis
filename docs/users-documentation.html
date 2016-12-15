@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 
-<title>Dependency Analyser - User's documentation</title>
+<title>Dependency Analyzer - User's documentation</title>
 <meta name="author" content="Dependency analysis team">
-<meta name="description" content="User's documentation of Dependency Analyser" />
+<meta name="description" content="User's documentation of Dependency Analyzer" />
 <link rel="stylesheet" href="users-documentation.css" />
 
 </head>
@@ -13,7 +13,7 @@
 
 <body>
     <div id="main">
-        <h1>Dependency Analyser - User's documentation</h1>
+        <h1>Dependency Analyzer - User's documentation</h1>
 
         <h2>Introduction</h2>
         <p>This project is a service, which provides information about built artifacts and
@@ -21,7 +21,7 @@
             the users about alternatives instead of the artifacts used in their projects, produces
             dependency reports of artifacts and resolves dependency tree.</p>
 
-        <p>The Dependency Analyser also maintains a database of whitelisted and blacklisted
+        <p>The Dependency Analyzer also maintains a database of whitelisted and blacklisted
             artifacts, which should help the user to decide, which artifacts to use in their
             projects.</p>
         <p>
@@ -33,8 +33,8 @@
 
         <h3>Blacklist / Whitelist</h3>
         <p>The service maintains the database of the whitelisted and blacklisted artifacts. This
-            data in the database can be change by any user right now, but in future it will be
-            restricted only to authorized users.</p>
+            data in the database can be change ony by authenticated users. In future authorization
+            may be added.</p>
         <p>The meaning of the this lists is:</p>
         <ul>
             <li>
@@ -43,7 +43,7 @@
                 artifact is associated to a particular product. These
                 artifacts are used in the latest versions of the most important products and
                 therefore they are supported. The inserted artifacts are restricted to RedHat build
-                versions of artifacts (e.g. 4.2.18.Final).
+                versions of artifacts (e.g. 4.2.18.Final-redhat-2).
             </li>
             <li>
                 <span class="strong">Blacklist</span>
@@ -59,8 +59,8 @@
             manually.</p>
 
         <h3>Lookup of built artifacts</h3>
-        <p>The Dependency Analyser can lookup the Red Hat built artifacts and tell the user if
-            the artifact was built or not and provide him alternative versions of the artifact. The
+        <p>The Dependency Analyzer can lookup the Red Hat built artifacts and tell the user if
+            an artifact was built or not and provide him alternative versions of the artifact. The
             user gets the information about:</p>
         <ul>
             <li>The latest built version of the artifact</li>
@@ -71,68 +71,60 @@
 
         <h3>Dependency reports</h3>
         The system is able to provide information about the dependencies of a project. It can
-        analyse a specific GAV or a repository specified by the URL (+ revision). This feature
+        analyse a specific GAV or a repository specified by the SCM URL (+ revision). This feature
         extends the lookup and it resolves whole dependency tree and provides information for every
         artifact in the tree and also some helper data like how many dependencies are not built.
 
         <h3>Data source</h3>
         <p>
+            Dependency Analyzer is using Indy, an artifact proxy for maven, to get information about
+            built artifacts.
+        </p>
+        <p>
             Currently data about built artifacts are gathered from the public product repository
             (<a href="http://maven.repository.redhat.com/ga">maven.repository.redhat.com</a>).
-            The dependency analyser has an option to easily add any Maven repository as a source
-            of supported built artifacts.
         </p>
-        <p>The integration with Brew/MEAD repositories is mostly done and soon the DA
-        will proxy also artifacts from the candidate tags. There is also a possibility to add any Mead repository as a
-            source repository for the Dependency Analyser (e.g. repositories of the latest products
-            builds).</p>
-        <p>In the future the Dependency Analyser will provide also built artifacts from the Project
-            Newcastle build system, once it is in production.</p>
+        <p>The integration with Brew/MEAD repositories is done and Indy will proxy also artifacts
+            from the candidate tags.</p>
+        <p>Dependency Analyzer also provides built artifacts from the Project
+            Newcastle build system.</p>
 
 
         <h2>Interfaces</h2>
         <p>
-            The Dependency Analyser is a server side application and there are two ways how to use
-            it. The
-            <span class="strong">REST API</span>,
+            The Dependency Analyzer is a server side application and there are three ways how to use
+            it. The <span class="strong">REST API</span>,
             which provides the main logic of the system and provides an easy way to use it in
-            other applications, and the
-            <span class="strong">CLI tools</span>,
-            which are more handy for the manual usage. The CLI tools are mainly a thin client,
-            which performs gets all data from the service using the REST API.
+            other applications.
+            The <span class="strong">CLI tool</span>,
+            which is more handy for the manual usage. The CLI tool is mainly a thin client,
+            which gets all data from the service using the REST API.
+            And the <span class="strong">PNC UI</span>, which contains some of the functionality.
         </p>
-        <p>It's planned to have a third interface, which will be the UI of the Project Newcastle
-            build system.</p>
 
         <h3>REST API</h3>
         <p>
             The REST API is based on the Swagger documentation, which provides an easy way to have
             an up to date documentation and also a simple way to try the REST API from the browser.
-            The path to the Swagger documentation is
-            <span class="strong">/da/doc </span>
-            . From this endpoint there is also link to the latest API version.
+            The path to the Swagger documentation is <span class="strong">/da/doc</span>.
+            From this endpoint there is also link to the latest API version.
         </p>
-        <p>This interface is also versioned in the URL (e.g. v-0.3). The same version
-            guarantees, that there are no backward incompatible changes. Currently only the latest
-            version of REST API is maintained, but in production there can be more running API
-            versions.</p>
 
-        <h3>CLI tools</h3>
-        <p>The CLI tools are more handy for the manual usage. Most of the data is obtained from
-            the server application, so it is not possible to use the CLI tools without connection to
-            the server. The tools are a simple Python scripts, which requires to have installed
+        <h3>CLI tool</h3>
+        <p>The CLI tool is more handy for the manual or script usage. Most of the data is obtained from
+            the server application, so it is not possible to use the CLI tool without connection to
+            the server. The tool is a collection of simple Python scripts, which requires to have installed
             interprets for Python 3.5 and above.</p>
 
 
-        <h2>CLI tools manual</h2>
-        <p>In this section will be described how to use the CLI tools and what are their
-            options.</p>
+        <h2>CLI tool manual</h2>
+        <p>In this section will be described how to use the CLI tool and what are its options.</p>
 
         <h3>Installation</h3>
         <ul>
             <li>
             <p>
-                The easiest way to make the CLI tools running is to
+                The easiest way to make the CLI tool running is to
                 <a href="https://github.com/project-ncl/dependency-analysis/raw/version-1.0.x/cli-wrap/da-cli-tools-1.0.0-pack.zip">download the ZIP archive</a>
                 from GitHub, which contains all the required support scripts and CLI tool. The
                 latest versions of the scripts are always placed in the folder /cli. When you download the
@@ -142,46 +134,44 @@
                     <li>Unzip the CLI: unzip da-cli-tools-1.0.0-pack.zip</li>
                     <li>Enter the folder with CLI: cd da-cli-tools-1.0.0</li>
                     <li>Change permissions: chmod +x *.py</li>
-                    
                 </ol>
             </p>
             </li>
             <li>
                 <p>
-                    Second option is to clone Dependency Analyser repository via git:
+                    Second option is to clone Dependency Analyzer repository via git:
                         <ol>
                             <li>Clone the repository: git clone https://github.com/project-ncl/dependency-analysis</li>
                             <li>Enter the directory with the CLI: cd dependency-analysis/cli-wrap/src/main/resources/cli/</li>
                             <li>Change permissions: chmod +x *.py</li>
-                            
                         </ol>
                 </p>
             </li>
-            
             <li>
                 After unpacking/clonning CLI tool, you need to configure servers.
             <p>
-                You have to specify DA server and KeyCloak authentication server. It can be done by inserting URL addresses of these servers to file config.json 
+                You have to specify DA server and KeyCloak authentication server. It can be done by inserting URL addresses
+                of these servers to file <span class="strong">config.json</span>.
                 DA server should be filled into "daServer" field. This server has to support WebSocket and HTTP protocol. Keycloak server should be in field "keycloakServer".
-                There are also "keycloakClientId" and "keycloakRealm" fields, which should be filled by your KeyCloak configuration for proper working scripts. 
+                There are also "keycloakClientId" and "keycloakRealm" fields, which should be filled by your KeyCloak configuration for proper working scripts.
                 DA server can be also set as environmental variable ($ export DA_SERVER=...).
+            </p>
+            <p>
                 <i>Note that DA server must be inserted protocol-less because services are using different protocols.</i>
-                In case one of these server is not specified, script exits with fail message.
             </p>
             </li>
-            
             <li>
                 Before first run
             <p>
-                Ensure that you have installed python3 (more specific 3.5), requests, websockets and asyncio modules. Websockets should contain asyncio module, so these two modules are installed just by websocked install command.
+                Ensure that you have installed python3 in version 3.5+, requests, websockets and asyncio modules.
+                Websockets should contain asyncio module, so these two modules are installed just by websocked install command.
             </p>
             If you do not have them installed, it can be easily done by these commands:
                 <ul>
-                    <li>On Fedora 24+ you can install it using dnf install python3 python3-requests python3-websockets</li>
-                    <li>On other systems you can use prepared scrpip install-python3.5.sh</li>
-                    
+                    <li>On Fedora 24+ you can install it using: dnf install python3 python3-requests python3-websockets</li>
+                    <li>On other systems you can use prepared script install-python3.5.sh</li>
                 </ul>
-            Try to run the CLI. E.g.: ./da-cli.py lookup org.hibernate:hibernate-core:4.2.21.Final        
+            Try to run the CLI. E.g.: ./da-cli.py lookup org.hibernate:hibernate-core:4.2.21.Final
             </li>
         </ul>
 
@@ -214,6 +204,7 @@
                             <li>blacklisted/greylisted/whitelisted</li>
                             <li>All built versions of the requested GA</li>
                         </ul>
+                    </li>
                     <li>
                         <span class="strong">Usage:</span>
                         ./da-cli.py lookup [GROUP_ID:ARTIFACT_ID[:PACKAGING[:CLASSIFIER]]:VERSION[:SCOPE]] [--products PRODUCTS] [--productIDs IDS]
@@ -252,6 +243,7 @@
                                 not built) or "all dependencies built"</li>
                             <li>All available versions</li>
                         </ul>
+                    </li>
                     <li>
                         <span class="strong">Usage:</span>
                         ./da-cli.py report [--raw|--json] [--products PRODUCTS] [--productIDs IDS] GROUP_ID:ARTIFACT_ID:VERSION
@@ -273,9 +265,8 @@
                     </li>
                     <li>
                         <span class="strong">Output:</span>
-                        The same as in the option
-                        <a href="#optionReport">report</a>
-                        .
+                        The same as in the option <a href="#optionReport">report</a>.
+                    </li>
                     <li>
                         <span class="strong">Usage:</span>
                         ./da-cli.py scm-report [--raw|--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]
@@ -302,7 +293,6 @@
                         <br />
                         The new information are: which project GAVs are whitelisted / blacklisted,
                         which GAVs are already built / not built / built in the different versions.
-
                     </li>
                     <li>
                         <span class="strong">Output:</span>
@@ -319,6 +309,7 @@
                         </ul>
                         All the summarizing informations are only for the top-level dependencies
                         (dependencies in projects' POMs) of the project's modules.
+                    </li>
                     <li>
                         <span class="strong">Usage:</span>
                         ./da-cli.py scm-report-advanced [--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS]
@@ -330,94 +321,84 @@
                             <li>Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS])</li>
                         </ul>
                     </li>
-                    
                 </ul>
             </li>
             <li>
-            <span class="strong">Align report</span>
-            <ul>
-                <li>
-                    This option checks toplevel dependencies of all modules from git-scm link and prints sumarized information.
-                </li>
-                <li>
-                    <span class="strong">Output:</span>
-                    <ul>
-                        <li>Internaly built:
-                        MODULE
-                            DEPENDENCY - BUILT_VERSION (PRODUCT)
-                        </li>
-                      <li>Built in different version:
-                        MODULE
-                            DEPENDENCY - BUILT_VERSION (PRODUCT)
-                            </li>
-                      <li>Not built:
-                        MODULE
-                            DEPENDENCY
-                            </li>
-                      <li>Blacklisted:
-                        MODULE
-                            DEPENDENCY
-                            </li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="strong">Usage</span>
-                    ./da-cli.py align-report [--json] [--unknown] [--productIDs IDS]... [--repository REPOSITORY]... SCM TAG [POM-PATH]
-                    <ul>
-                        <li>--json Output unparsed response from Dependency Analyzer.</li>
-                        <li>--unknown Consider artifacts from unknown products.</li>
-                        <li>--productIDs IDS Consider artifact only from specified product IDs. IDS should be comma separated.</li>
-                        <li>--repository REPOSITORY Aditional maven repositories required by the analysed project. You can specify this
-                                    option multiple times.</li>
-                    </ul>
-                </li>
-            </ul>
+                <span class="strong">Align report</span>
+                <ul>
+                    <li>
+                        This option checks toplevel dependencies of all modules from git-scm link and prints sumarized information.
+                    </li>
+                    <li>
+                        <span class="strong">Output:</span>
+                        <pre>
+    Internaly built:
+    MODULE
+        DEPENDENCY
+            BUILT_VERSION (PRODUCT)
+
+    Built in different version:
+    MODULE
+        DEPENDENCY
+            BUILT_VERSION (PRODUCT)
+
+    Not built:
+    MODULE
+        DEPENDENCY
+
+    Blacklisted:
+    MODULE
+        DEPENDENCY
+                        </pre>
+                    </li>
+                    <li>
+                        <span class="strong">Usage</span>
+                        ./da-cli.py align-report [--json] [--unknown] [--productIDs IDS]... [--repository REPOSITORY]... SCM TAG [POM-PATH]
+                        <ul>
+                            <li>--json Output unparsed response from Dependency Analyzer.</li>
+                            <li>--unknown Consider artifacts from unknown products.</li>
+                            <li>--productIDs IDS Consider artifact only from specified product IDs. IDS should be comma separated.</li>
+                            <li>--repository REPOSITORY Aditional maven repositories required by the analysed project. You can specify this
+                                option multiple times.</li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
             <li>
-             <span class="strong">Difference of products</span>
+                <span class="strong">Difference of products</span>
                 <ul>
-                <li>
-                    Returns list of different versions of artifacts between two products given by their IDs        
-                </li>
+                    <li>
+                        Returns list of different versions of artifacts between two products given by their ID
+                    </li>
                     <li>
                         <span class="strong">Output:</span>
                         <ul>
                             <li>
-                                List of different versions 
+                                List of different versions
                             </li>
                         </ul>
-                     </li>
-                 
-             <li>
-                    <span class="strong">Usage</span>
-                    ./da-cli.py difference [--json] leftID rightID
+                    </li>
+                    <li>
+                        <span class="strong">Usage</span>
+                        ./da-cli.py difference [--json] leftID rightID
+                        <ul>
+                            <li>--json Output unparsed response from Dependency Analyzer.</li>
+                            <li>leftID ID of first product</li>
+                            <li>rightID ID of second product</li>
+                        </ul>
+                    </li>
+                </ul>
+                <li>
+                    <span class="strong">Administration tools</span>
                     <ul>
-                        <li>--json Output unparsed response from Dependency Analyzer.</li>
-                        <li>leftID ID of first product</li>
-                        <li>rightID ID of second product</li>
+                        <li>
+                            These tools add, remove or change data. These are administrative tools, so you need to be authenticated to use them.
+                            You can authenticate with your credentials when you run admin tool. You are asked to enter your login. System user name is used as default. After you are asked to enter password. In case credentials are wrong, CLI tool exits with failure message with no data changed.
+                        </li>
                     </ul>
                 </li>
-               </ul>
-        
-        
-        
-        
-        
-        <li>
-        <span class="strong">Administration tools</span>
-                <ul>
-                <li>
-                    These tools add, remove or change data. These are administrative tools, so you need to be authenticated to use them.
-                    You can authenticate with your credentials when you run admin tool. You are asked to enter your login. System user name is used as default. After you are asked to enter password. In case credentials are wrong, CLI tool exits with failure message with no data changed.
-                
-               </ul>
-        </li>
+            </li>
         </ul>
-        
-        
-        
-        
-        
 
 
         <h3>Examples</h3>
