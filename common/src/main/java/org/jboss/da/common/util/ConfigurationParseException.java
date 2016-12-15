@@ -12,4 +12,8 @@ public class ConfigurationParseException extends Exception {
     public ConfigurationParseException(String msg) {
         super(msg);
     }
+
+    public ConfigurationParseException(String message, Throwable cause) {
+        super(message + ": " + cause.getMessage(), cause);
+    }
 }

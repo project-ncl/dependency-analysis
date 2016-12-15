@@ -38,7 +38,7 @@ public class Configuration {
             throw new ConfigurationParseException("Config for Dependency Analysis not found");
 
         } catch (RuntimeException | IOException e) {
-            throw new ConfigurationParseException(e);
+            throw new ConfigurationParseException("Failed to read configuration", e);
         }
     }
 
