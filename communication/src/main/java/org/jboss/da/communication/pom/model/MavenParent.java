@@ -10,14 +10,14 @@ import lombok.Getter;
 public class MavenParent {
 
     @Getter
-    @XmlElement(name = "groupId", required = true)
+    @XmlElement(name = "groupId", required = true, namespace = MavenProject.NAMESPACE)
     private String groupId;
 
     @Getter
-    @XmlElement(name = "artifactId", required = true)
+    @XmlElement(name = "artifactId", required = true, namespace = MavenProject.NAMESPACE)
     private String artifactId;
 
     @Getter
-    @XmlElement(name = "version", required = true)
+    @XmlElement(name = "version", required = true, namespace = MavenProject.NAMESPACE)
     private String version;
 }

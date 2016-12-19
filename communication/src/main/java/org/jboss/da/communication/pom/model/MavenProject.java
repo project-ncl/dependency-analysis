@@ -18,28 +18,28 @@ public class MavenProject {
     public final static String NAMESPACE = "http://maven.apache.org/POM/4.0.0";
 
     @Getter
-    @XmlElement(name = "parent")
+    @XmlElement(name = "parent", namespace = MavenProject.NAMESPACE)
     private MavenParent parent;
 
-    @XmlElement(name = "groupId")
+    @XmlElement(name = "groupId", namespace = MavenProject.NAMESPACE)
     private String groupId;
 
     @Getter
-    @XmlElement(name = "artifactId", required = true)
+    @XmlElement(name = "artifactId", required = true, namespace = MavenProject.NAMESPACE)
     private String artifactId;
 
-    @XmlElement(name = "version")
+    @XmlElement(name = "version", namespace = MavenProject.NAMESPACE)
     private String version;
 
     @Getter
-    @XmlElement(name = "name")
+    @XmlElement(name = "name", namespace = MavenProject.NAMESPACE)
     private String name;
 
     @Getter
-    @XmlElement(name = "scm")
+    @XmlElement(name = "scm", namespace = MavenProject.NAMESPACE)
     private MavenSCM scm;
 
-    @XmlElement(name = "repositories")
+    @XmlElement(name = "repositories", namespace = MavenProject.NAMESPACE)
     private MavenRepositories mavenRepositories;
 
     public List<MavenRepository> getMavenRepositories() {
