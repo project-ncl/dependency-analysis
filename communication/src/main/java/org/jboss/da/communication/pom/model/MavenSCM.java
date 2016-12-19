@@ -3,6 +3,7 @@ package org.jboss.da.communication.pom.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+
 import lombok.Getter;
 
 /**
@@ -13,10 +14,10 @@ import lombok.Getter;
 public class MavenSCM {
 
     @Getter
-    @XmlElement(name = "url")
+    @XmlElement(name = "url", namespace = MavenProject.NAMESPACE)
     private String url;
 
     @Getter
-    @XmlElement(name = "tag")
+    @XmlElement(name = "tag", namespace = MavenProject.NAMESPACE)
     private String tag;
 }

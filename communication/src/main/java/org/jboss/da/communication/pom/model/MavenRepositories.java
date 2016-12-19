@@ -1,7 +1,9 @@
 package org.jboss.da.communication.pom.model;
 
 import javax.xml.bind.annotation.XmlElement;
+
 import java.util.List;
+
 import lombok.Getter;
 
 /**
@@ -9,7 +11,7 @@ import lombok.Getter;
  */
 public class MavenRepositories {
 
-    @XmlElement(name = "repository")
+    @XmlElement(name = "repository", namespace = MavenProject.NAMESPACE)
     @Getter
     private List<MavenRepository> repositories;
 }
