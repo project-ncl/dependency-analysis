@@ -12,7 +12,7 @@ import lombok.ToString;
 
 /**
  *
- * @author Stanislav Knot <sknot@redhat.com>
+ * @author Stanislav Knot &lt;sknot@redhat.com&gt;
  */
 @JsonRootName("validationField")
 @EqualsAndHashCode

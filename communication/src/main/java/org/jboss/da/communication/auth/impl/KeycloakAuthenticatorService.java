@@ -12,7 +12,7 @@ import java.util.Optional;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RequestScoped
 public class KeycloakAuthenticatorService implements AuthenticatorService {

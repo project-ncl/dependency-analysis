@@ -6,7 +6,7 @@ import org.jboss.da.listings.api.model.User;
 
 /**
  * 
- * @author Jozef Mrazek <jmrazek@redhat.com>
+ * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  * 
  */
 public interface UserDAO extends GenericDAO<User> {

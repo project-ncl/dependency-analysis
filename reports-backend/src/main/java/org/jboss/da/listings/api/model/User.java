@@ -16,7 +16,7 @@ import lombok.ToString;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

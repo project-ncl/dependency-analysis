@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Path("/build-configuration-sets")
 @Consumes(MediaType.APPLICATION_JSON)

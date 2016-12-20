@@ -16,7 +16,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ApplicationScoped
 public class PNCConnectorProviderImpl implements PNCConnectorProvider {

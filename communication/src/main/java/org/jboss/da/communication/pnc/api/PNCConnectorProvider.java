@@ -4,7 +4,7 @@ import org.jboss.da.common.CommunicationException;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public interface PNCConnectorProvider {
 
