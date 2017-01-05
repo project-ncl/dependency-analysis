@@ -83,15 +83,13 @@ def requests_wrapper(requests_method, link, json_request=None):
             reply = requests_method("http://"+link, json=json_request)
         else:
             reply = requests_method("http://"+link)
-
         # this call throws an exception if the status is 4xx or 5xx
         # we have an exception for 404, since 404 can indicate other
         # normal stuff to the caller of the method
         if reply.status_code != 404:
             reply.raise_for_status()
-
         return reply
-    except requests.exceptions.HTTPError:
+    except requests.exceptions.HTTPError:          
         print(">>> ERROR: Request to: {} failed <<<".format(link))
         print(">>> Status: {} <<<".format(reply.status_code))
         
@@ -102,18 +100,24 @@ def requests_wrapper(requests_method, link, json_request=None):
             print(">>> JSON Data: {} <<<".format(json.dumps(json_request)))
         print("")
         if reply.status_code != 500 and reply.status_code != 503:
-            print(((reply.json()))["details"])
+            try:
+                print(reply.json()["details"])
+            except (json.decoder.JSONDecodeError):
+                pass
+                
     except requests.exceptions.SSLError:
         print("Not authorized!")
-        
-        
+                
         sys.exit(1)
-
-def verify_response(response, failure_msg):
+       
+def verify_response(response, failure_msg, fill=False):
     if 'success' in response and not response['success']:
         print(failure_msg)
     if 'message' in response:
         print(response['message'])
+    if fill:
+        pass#print("There were problems receiving response from the server (504 Gateway timeout), however your request might be performed successfully. Please wait a few minutes and check if the requested changes are done. If not and this problem persists please report the issue.")
+
 
 def helper_print_white_artifacts_products(response, show_artifacts=True):
     if type(response) == dict and response['errorMessage']:
@@ -282,6 +286,8 @@ def find_product_version_id(product_version):
     endpoint = "/listings/whitelist/product?name={}&version={}".format(product, version)
     r = requests_get(da_server + endpoint)
 
+    if r == None:
+        return None
     response = r.json()
     if len(response) == 0:
         return None
@@ -356,6 +362,23 @@ def delete_whitelist_product(product_version):
     json_request['version'] = version
     r = requests_delete(da_server + endpoint, json_request=json_request)
     verify_response(r.json(), "Deletion of whitelist product failed")
+
+def fill_by_gav(gav, product_version):   
+    id = find_product_version_id(product_version)
+    if (id == None):
+        print("Product " + product_version + " not found!")
+        exit()
     
+    endpoint = '/listings/whitelist/fill/gav'
+    groupID, artifactID, version = gav.split(':')
+    json_request = {}
+    json_request['groupId'] = groupID
+    json_request['artifactId']  = artifactID
+    json_request['version'] = version
+    json_request['productId'] = id
+    r = requests_post(da_server + endpoint, json_request=json_request, login = True)
+    if (r != None):
+        #print(str(r.status_code))
+        verify_response(r.json(), "Filling failed", True)    
 def test():
     print("test" + da_server)

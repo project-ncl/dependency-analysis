@@ -523,7 +523,7 @@ def prod_difference():
             print(pretty_out)
             exit()
     else:
-        print(json.dumps(output))
+        print(json.dumps(output))    
               
 async def get_response(query):
     try:
