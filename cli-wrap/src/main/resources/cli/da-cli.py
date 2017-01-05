@@ -83,6 +83,9 @@ class CLITool(object):
         message += ("        Check all dependencies from pom in working directory (using dependency:list) and print their Black/White list status, and generate a JUnit XML file\n")
         message += ("        If PRODUCT_NAME:VERSION is specified, the dependencies which are in the white list of the product will be considered as PASS; anything else will be considered as FAIL\n")
         message += ("\n")
+        message += ("    python " + sys.argv[0] + " fill-gav GROUP_ID:ARTIFACT_ID:VERSION PRODUCT_NAME:VERSION\n")
+        message += ("        Fills all artifacts from bom given by GROUP_ID:ARTIFACT_ID:VERSION to product specified as PRODUCT_NAME:VERSION\n")
+        message += ("\n")
         message += ("DEPENDENCY REPORTS\n")
         message += ("    Dependency reports can be used to get detail information about artifact or project dependencies.\n")
         message += ("\n")
@@ -402,6 +405,18 @@ class CLITool(object):
                 exit()
         elif len(sys.argv) == 3:
             print("Missing STATUS")
+        else:
+            print("Bad arguments! For help use: ./da-cli.py --help")
+            
+    def fill_gav(self):
+        if len(sys.argv) == 4:
+            if self.listings.matchGAV(sys.argv[2]):
+                if self.listings.matchProd(sys.argv[3]):
+                    self.da.fill_by_gav(sys.argv[2], sys.argv[3])
+        elif len(sys.argv) == 3:
+            print("Missing PRODUCT_NAME:VERSION")
+        elif len(sys.argv) == 2:
+            print("Missing GAV")
         else:
             print("Bad arguments! For help use: ./da-cli.py --help")
             
