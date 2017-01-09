@@ -62,23 +62,30 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
 
         Optional<WhiteArtifact> dbWhite = whiteArtifactDAO.findArtifact(groupId, artifactId,
                 version);
+        
         ProductVersion p = productVersionDAO.read(productVersionId);
-        if (p.getWhiteArtifacts().stream().map(a -> a.getGa()).anyMatch(ga2 -> {return ga2.equals(ga);})) {
-            return GA_EXISTS;
-        }
+        
         if (p == null) {
             throw new IllegalArgumentException("Wrong productId, product with this id not found");
         }
+
         if (dbWhite.isPresent()) {
             if (p.getWhiteArtifacts().contains(dbWhite.get())) {
                 return ArtifactStatus.NOT_MODIFIED;
-            } else {
-                p.addArtifact(dbWhite.get());
-                productVersionDAO.update(p);
-                return ArtifactStatus.ADDED;
+            } else  { //artifact with identic G:A:V not found
+                //check if there some art. with same G:A
+                if (p.getWhiteArtifacts().stream().map(a -> a.getGa()).anyMatch(ga2 -> {return ga2.equals(ga);})) {
+                    return GA_EXISTS;
+                }
+                else //G:A:V nor G:A found in p
+                {   
+                    p.addArtifact(dbWhite.get());
+                    productVersionDAO.update(p);
+                    return ArtifactStatus.ADDED;
+                }
             }
-
         }
+
         whiteArtifactDAO.create(white);
         p.addArtifact(white);
         productVersionDAO.update(p);
