@@ -40,6 +40,6 @@ public class DAConfig extends AbstractModuleConfig {
     @Getter
     @Setter
     @JsonProperty(required = false)
-    private Integer defaultHttpRequestTimeout = 600000;
+    private Integer aproxRequestTimeout = 600000;
 
 }
