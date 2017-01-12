@@ -1,6 +1,7 @@
 package org.jboss.da.common.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -35,4 +36,10 @@ public class DAConfig extends AbstractModuleConfig {
     @Getter
     @Setter
     private String cartographerServerUrl;
+
+    @Getter
+    @Setter
+    @JsonProperty(required = false)
+    private Integer defaultHttpRequestTimeout = 600000;
+
 }

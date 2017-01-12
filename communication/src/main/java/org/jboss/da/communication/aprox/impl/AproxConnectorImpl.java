@@ -52,6 +52,7 @@ public class AproxConnectorImpl implements AproxConnector {
             log.info("Retrieving metadata for " + ga + " from " + query.toString());
             HttpURLConnection connection = (HttpURLConnection) new URL(query.toString())
                     .openConnection();
+            connection.setConnectTimeout(config.getDefaultHttpRequestTimeout());
 
             int retry = 0;
             while (connection.getResponseCode() == 504 && retry < 5) {
