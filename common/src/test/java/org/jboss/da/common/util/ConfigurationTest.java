@@ -50,7 +50,7 @@ public class ConfigurationTest {
 
         checkRequiredFields(config, "pnc-server", "aprox-server", "aprox-group",
                 "aprox-group-public", "backup-scm-url", "cartographer-server-url");
-        assertEquals(100000, config.getDefaultHttpRequestTimeout().intValue());
+        assertEquals(100000, config.getAproxRequestTimeout().intValue());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ConfigurationTest {
 
         checkRequiredFields(config, "pnc-server", "aprox-server", "aprox-group",
                 "aprox-group-public", "backup-scm-url", "cartographer-server-url");
-        assertEquals(600000, config.getDefaultHttpRequestTimeout().intValue());
+        assertEquals(600000, config.getAproxRequestTimeout().intValue());
     }
 
     private void checkRequiredFields(DAConfig config, String pncServer, String aproxServer,
