@@ -39,12 +39,7 @@ public class ConfigurationTest {
 
         DAConfig config = configuration.getConfig();
 
-        assertEquals("", config.getPncServer());
-        assertEquals("", config.getAproxServer());
-        assertEquals("", config.getAproxGroup());
-        assertEquals("", config.getAproxGroupPublic());
-        assertEquals("", config.getBackupScmUrl());
-        assertEquals("", config.getCartographerServerUrl());
+        checkRequiredFields(config, "", "", "", "", "", "");
     }
 
     @Test
@@ -53,11 +48,30 @@ public class ConfigurationTest {
 
         DAConfig config = configuration.getConfig();
 
-        assertEquals("pnc-server", config.getPncServer());
-        assertEquals("aprox-server", config.getAproxServer());
-        assertEquals("aprox-group", config.getAproxGroup());
-        assertEquals("aprox-group-public", config.getAproxGroupPublic());
-        assertEquals("backup-scm-url", config.getBackupScmUrl());
-        assertEquals("cartographer-server-url", config.getCartographerServerUrl());
+        checkRequiredFields(config, "pnc-server", "aprox-server", "aprox-group",
+                "aprox-group-public", "backup-scm-url", "cartographer-server-url");
+        assertEquals(100000, config.getDefaultHttpRequestTimeout().intValue());
+    }
+
+    @Test
+    public void configurationWithoutPropsWithDefaultValues() throws ConfigurationParseException {
+        System.setProperty(CONFIG_SYSPROP, "configWithoutDefaults.json");
+
+        DAConfig config = configuration.getConfig();
+
+        checkRequiredFields(config, "pnc-server", "aprox-server", "aprox-group",
+                "aprox-group-public", "backup-scm-url", "cartographer-server-url");
+        assertEquals(600000, config.getDefaultHttpRequestTimeout().intValue());
+    }
+
+    private void checkRequiredFields(DAConfig config, String pncServer, String aproxServer,
+            String aproxGroup, String aproxGroupPublic, String backupScmUrl,
+            String cartographerServerUrl) {
+        assertEquals(pncServer, config.getPncServer());
+        assertEquals(aproxServer, config.getAproxServer());
+        assertEquals(aproxGroup, config.getAproxGroup());
+        assertEquals(aproxGroupPublic, config.getAproxGroupPublic());
+        assertEquals(backupScmUrl, config.getBackupScmUrl());
+        assertEquals(cartographerServerUrl, config.getCartographerServerUrl());
     }
 }
