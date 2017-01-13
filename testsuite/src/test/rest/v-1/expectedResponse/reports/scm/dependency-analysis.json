@@ -70,8 +70,6 @@
                     "groupId": "org.codehaus.groovy",
                     "artifactId": "groovy",
                     "version": "1.7.9",
-                    "availableVersions": [
-                    ],
                     "bestMatchVersion": null,
                     "dependencyVersionsSatisfied": true,
                     "dependencies": [
@@ -153,9 +151,6 @@
                     "groupId":"javax.el",
                     "artifactId":"javax.el-api",
                     "version":"3.0.0",
-                    "availableVersions":[
-
-                    ],
                     "bestMatchVersion":null,
                     "dependencyVersionsSatisfied":true,
                     "dependencies":[
