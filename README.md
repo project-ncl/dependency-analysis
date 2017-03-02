@@ -2,7 +2,7 @@
 
 ## Dependency analyzer CLI
   - You can found the CLI in **cli-wrap/** folder
-  - Documantation for CLI can be found here: http://project-ncl.github.io/dependency-analysis/users-documentation.html
+  - Documentation for CLI can be found here: http://project-ncl.github.io/dependency-analysis/users-documentation.html
 
 ## Build a project
   - mvn clean package
@@ -42,7 +42,7 @@
     successfully from command line
     
 ### Setup application
-  - Setup Postgre database
+  - Setup PostgreSQL database
   - Datasource configuration and connection information in the standalone.xml
       datasource has to be named "PostgresDA"
   - JDBC for PostgreSQL is needed. You have to add it to standalone.xml
