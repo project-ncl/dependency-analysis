@@ -6,6 +6,7 @@ import json
 import os
 import getpass
 import inspect
+import time
 
 cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
 
@@ -48,16 +49,46 @@ def get_token(login, pswd):
 def auth():
     session = requests.Session() 
 
-    login = input("Enter login name ["+getpass.getuser()+"]:")
+    MY_TOKEN = find_local_token()
+    if MY_TOKEN:
+        print("Using stored auth token.")
+    else:
+        login = input("Enter login name ["+getpass.getuser()+"]:")
+        if login == "":
+            login = getpass.getuser()
+        print("Enter password for " + login)
+        pswd = getpass.getpass()
+        MY_TOKEN = get_token(login, pswd)
+        store_local_token(MY_TOKEN)
 
-    if login == "":
-        login = getpass.getuser()
-    print("Enter password for " + login)
-    pswd = getpass.getpass()
-    MY_TOKEN = get_token(login, pswd)
     session.headers.update({'Authorization': " Bearer " + MY_TOKEN})
     return session
     
+def find_local_token():
+    path = os.path.expanduser("~") + "/.config/dependency-analyzer/auth-token"
+
+    if not os.path.isfile(path):
+        return None
+
+    mt = os.path.getmtime(path)
+    ct = time.time()
+
+    if ct - mt > 60*115: # token created more then 115 minutes ago
+        return None
+
+    f = open(path, 'r')
+    token = f.read()
+    f.close()
+    return token
+
+def store_local_token(token):
+    path = os.path.expanduser("~") + "/.config/dependency-analyzer/"
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    f = open(path+"auth-token", 'w')
+    f.write(token)
+    f.close()
 
 def requests_post(link, json_request, login = False):
     if login:
