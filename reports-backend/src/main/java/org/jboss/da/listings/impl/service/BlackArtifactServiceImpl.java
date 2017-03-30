@@ -39,9 +39,6 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Inject
     private GADAO gaDAO;
 
-    @Inject
-    private VersionParser osgiParser;
-
     @Override
     protected ArtifactDAO<BlackArtifact> getDAO() {
         return blackArtifactDAO;
@@ -50,8 +47,8 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Override
     public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(
             String groupId, String artifactId, String version) {
-        
-        String osgiVersion = osgiParser.getNonRedhatOSGiVersion(version);
+
+        String osgiVersion = versionParser.getOSGiVersion(version);
 
         GA ga = gaDAO.findOrCreate(groupId, artifactId);
 
@@ -81,7 +78,12 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Override
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version) {
         String osgiVersion = versionParser.getNonRedhatOSGiVersion(version);
-        return blackArtifactDAO.findArtifact(groupId, artifactId, osgiVersion);
+        Optional<BlackArtifact> maybeArtifact = blackArtifactDAO.findArtifact(groupId, artifactId,
+                osgiVersion);
+        if (VersionParser.isRedhatVersion(version) && !maybeArtifact.isPresent()) {
+            maybeArtifact = blackArtifactDAO.findArtifact(groupId, artifactId, version);
+        }
+        return maybeArtifact;
     }
 
     @Override
