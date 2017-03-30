@@ -1,18 +1,17 @@
 package org.jboss.da.test.client.rest.listings;
 
-import org.junit.Test;
-
-import java.io.File;
-import java.io.IOException;
-
-import static org.apache.commons.io.FileUtils.readFileToString;
 import org.json.JSONException;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import javax.ws.rs.core.Response;
+import java.io.File;
+import java.io.IOException;
+
+import static org.apache.commons.io.FileUtils.readFileToString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class RestApiListingsTest extends AbstractRestApiListingTest {
 
@@ -67,6 +66,73 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
                 true);
 
         checkExpectedResponse(response, "success");
+    }
+
+    @Test
+    public void shouldBlackListSpecificRedhatBuild() throws Exception {
+        String g = "org.jboss.da";
+        String a = "dependency-analyzer";
+        String v = "0.3.0";
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavRh", true);
+
+        Response response = getBlacklistedGAV(g, a, v);
+        assertEquals(404, response.getStatus());
+        response = getBlacklistedGAV(g, a, v + ".redhat-2");
+        assertEquals(404, response.getStatus());
+        response = getBlacklistedGAV(g, a, v + ".redhat-1");
+        assertEquals(200, response.getStatus());
+        checkExpectedResponse(response, "gavRhNonOSGiResponse");
+
+    }
+
+    @Test
+    public void shouldBlacklistWholeVersions() throws Exception { //
+        String g = "org.jboss.da";
+        String a = "dependency-analyzer";
+        String v = "0.3.0";
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+
+        Response response = getBlacklistedGAV(g, a, v + "-redhat-1");
+        assertEquals(200, response.getStatus());
+        checkExpectedResponse(response, "gavNonRhResponse");
+        response = getBlacklistedGAV(g, a, v);
+        assertEquals(200, response.getStatus());
+        checkExpectedResponse(response, "gavNonRhResponse");
+        response = getBlacklistedGAV(g, a, v + "-redhat-2");
+        assertEquals(200, response.getStatus());
+        checkExpectedResponse(response, "gavNonRhResponse");
+    }
+
+    @Test
+    public void shouldUnBlacklistWithoutAndWithRHSuffix() throws Exception {
+        String g = "org.jboss.da";
+        String a = "dependency-analyzer";
+        String v = "0.3.0";
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavRh", true);
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        Response response = getBlacklistedGAV(g, a, v);
+        checkExpectedResponse(response, "gavNonRhResponse");
+        response = getBlacklistedGAV(g, a, v + "-redhat-1");
+        checkExpectedResponse(response, "gavNonRhResponse");
+        response = getBlacklistedGAV(g, a, v + "-redhat-2");
+        checkExpectedResponse(response, "gavNonRhResponse");
+
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.DELETE, "gav", true);
+        response = getBlacklistedGAV(g, a, v);
+        assertEquals(404, response.getStatus());
+        response = getBlacklistedGAV(g, a, v + ".redhat-2");
+        assertEquals(404, response.getStatus());
+        response = getBlacklistedGAV(g, a, v + ".redhat-1");
+        assertEquals(200, response.getStatus());
+        checkExpectedResponse(response, "gavRhNonOSGiResponse");
+
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.DELETE, "gavRh", true);
+        response = getBlacklistedGAV(g, a, v);
+        assertEquals(404, response.getStatus());
+        response = getBlacklistedGAV(g, a, v + ".redhat-2");
+        assertEquals(404, response.getStatus());
+        response = getBlacklistedGAV(g, a, v + ".redhat-1");
+        assertEquals(404, response.getStatus());
     }
 
     @Test
@@ -254,13 +320,24 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     public void testCheckRHBlackArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
 
-        Response response = createClientRequest(
-                PATH_BLACK_LIST
-                        + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0.redhat-1")
-                .get();
-        assertEquals(200, response.getStatus());
+        Response response = getBlacklisted("org.jboss.da", "dependency-analyzer", "0.3.0.redhat-1");
 
         checkExpectedResponse(response, "gavResponse");
+    }
+
+    private Response getBlacklistedGAV(String groupId, String artifactId, String version) {
+        Response response = createClientRequest(
+                PATH_BLACK_LISTINGS_GAV + "?groupid=" + groupId + "&artifactid=" + artifactId
+                        + "&version=" + version).get();
+        return response;
+    }
+
+    private Response getBlacklisted(String groupId, String artifactId, String version) {
+        Response response = createClientRequest(
+                PATH_BLACK_LIST + "?groupid=" + groupId + "&artifactid=" + artifactId + "&version="
+                        + version).get();
+        assertEquals(200, response.getStatus());
+        return response;
     }
 
     /**
@@ -272,11 +349,7 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     public void testCheckNonRHBlackArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
 
-        Response response = createClientRequest(
-                PATH_BLACK_LIST
-                        + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3.0")
-                .get();
-        assertEquals(200, response.getStatus());
+        Response response = getBlacklisted("org.jboss.da", "dependency-analyzer", "0.3.0");
 
         checkExpectedResponse(response, "gavResponse");
     }
@@ -290,10 +363,7 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     public void testCheckNonRHNonOSGiBlackArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
 
-        Response response = createClientRequest(
-                PATH_BLACK_LIST
-                        + "?groupid=org.jboss.da&artifactid=dependency-analyzer&version=0.3").get();
-        assertEquals(200, response.getStatus());
+        Response response = getBlacklisted("org.jboss.da", "dependency-analyzer", "0.3");
 
         checkExpectedResponse(response, "gavResponse");
     }
