@@ -9,7 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class VersionParser {
 
-    private static final String PATTERN_SUFFIX_BUILT_VERSION = "[.-]redhat-([1-9]\\d*)";
+    private static final String PATTERN_SUFFIX_BUILT_VERSION = "[.-]redhat-(\\d+)";
 
     private static final Pattern redhatSuffixPattern = Pattern.compile(PATTERN_SUFFIX_BUILT_VERSION
             + "$");
