@@ -14,7 +14,7 @@ public class VersionComparator implements Comparator<String> {
 
     // major.minor.micro.qualifier-redhat-X
     // numbers limited to max 9 digits, beacuse of integer limitatations
-    private static final Pattern VERSION_PATTERN = Pattern
+    public static final Pattern VERSION_PATTERN = Pattern
             .compile("^(?<major>[0-9]{1,9})?(\\.(?<minor>[0-9]{1,9})(\\.(?<micro>[0-9]{1,9}))?)?([.-]?(?<qualifier>.+?))??([.-]redhat-(?<rhversion>[0-9]{1,9}))?$");
 
     public enum VersionDifference {

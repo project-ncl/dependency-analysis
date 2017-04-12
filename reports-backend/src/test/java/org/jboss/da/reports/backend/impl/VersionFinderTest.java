@@ -199,4 +199,61 @@ public class VersionFinderTest {
         assertEquals(NON_OSGI_VERSION_2_RHT, bmv);
     }
 
+    @Test
+    public void NCL2931ReproducerTest() {
+        String[] avaliableVersions = { "1.4.0.redhat-4", "1.4.redhat-3", "1.4-redhat-2",
+                "1.4-redhat-1", "1.6.0.redhat-5", "1.6.0.redhat-4", "1.6.0.redhat-3",
+                "1.6.redhat-2", "1.6.redhat-1", "1.9.0.redhat-1", "1.10.0.redhat-5",
+                "1.10.0.redhat-4", "1.10.0.redhat-3", "1.10.0.redhat-2", "1.10.0.redhat-1" };
+        checkBMV("1.4.0.redhat-4", "1.4", avaliableVersions);
+    }
+
+    @Test
+    public void ambiguousNonOSGIVersionsTest() {
+        String[] avaliableVersionsWithOSGI = { "1.0.0.redhat-1", "1.0.redhat-1", "1.redhat-1" };
+        checkBMV("1.0.0.redhat-1", "1.0.0", avaliableVersionsWithOSGI);
+        checkBMV("1.0.0.redhat-1", "1.0", avaliableVersionsWithOSGI);
+        checkBMV("1.0.0.redhat-1", "1", avaliableVersionsWithOSGI);
+
+        String[] avaliableVersionsWithOSGIRev = { "1.redhat-1", "1.0.redhat-1", "1.0.0.redhat-1" };
+        checkBMV("1.0.0.redhat-1", "1.0.0", avaliableVersionsWithOSGIRev);
+        checkBMV("1.0.0.redhat-1", "1.0", avaliableVersionsWithOSGIRev);
+        checkBMV("1.0.0.redhat-1", "1", avaliableVersionsWithOSGIRev);
+
+        String[] avaliableVersionsWithoutOSGI = { "1.0.redhat-1", "1.redhat-1" };
+        checkBMV("1.0.redhat-1", "1.0.0", avaliableVersionsWithoutOSGI);
+        checkBMV("1.0.redhat-1", "1.0", avaliableVersionsWithoutOSGI);
+        checkBMV("1.0.redhat-1", "1", avaliableVersionsWithoutOSGI);
+
+        String[] avaliableVersionsWithoutOSGI2 = { "1.redhat-1" };
+        checkBMV("1.redhat-1", "1.0.0", avaliableVersionsWithoutOSGI2);
+        checkBMV("1.redhat-1", "1.0", avaliableVersionsWithoutOSGI2);
+        checkBMV("1.redhat-1", "1", avaliableVersionsWithoutOSGI2);
+    }
+
+    @Test
+    public void nonOSGIVersionsTest() {
+        String[] avaliableVersions1 = { "1.0.0.redhat-1", "1.0.redhat-2", "1.redhat-3" };
+        checkBMV("1.redhat-3", "1.0.0", avaliableVersions1);
+        checkBMV("1.redhat-3", "1.0", avaliableVersions1);
+        checkBMV("1.redhat-3", "1", avaliableVersions1);
+
+        String[] avaliableVersions10 = { "1.0.0.redhat-1", "1.0.redhat-3", "1.redhat-2" };
+        checkBMV("1.0.redhat-3", "1.0.0", avaliableVersions10);
+        checkBMV("1.0.redhat-3", "1.0", avaliableVersions10);
+        checkBMV("1.0.redhat-3", "1", avaliableVersions10);
+
+        String[] avaliableVersions100 = { "1.0.0.redhat-3", "1.0.redhat-2", "1.redhat-1" };
+        checkBMV("1.0.0.redhat-3", "1.0.0", avaliableVersions100);
+        checkBMV("1.0.0.redhat-3", "1.0", avaliableVersions100);
+        checkBMV("1.0.0.redhat-3", "1", avaliableVersions100);
+    }
+
+    private void checkBMV(String expectedVersion, String version, String[] versions) {
+        GAV gav = new GAV("commons-codec", "commons-codec", version);
+        Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav, Arrays.asList(versions));
+        assertTrue("Best match version expected to be present", bmv.isPresent());
+        assertEquals(expectedVersion, bmv.get());
+    }
+
 }
