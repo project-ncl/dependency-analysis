@@ -210,7 +210,7 @@
                         "1-redhat-1",
                         "1.redhat-4"
                     ],
-                    "bestMatchVersion":"1.redhat-4",
+                    "bestMatchVersion":"1.0.0.redhat-6",
                     "dependencyVersionsSatisfied":true,
                     "dependencies":[
 

@@ -18,7 +18,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.stream.Collectors;
+
 import org.jboss.da.listings.api.service.BlackArtifactService;
+
+import java.util.Comparator;
 
 /**
  * Performs single lookups for the built artifacts
@@ -98,37 +101,54 @@ public class VersionFinderImpl implements VersionFinder {
         if (obtainedVersions.isEmpty())
             return Optional.empty();
 
-        String origVersion = gav.getVersion();
-
-        Matcher origMatcher = osgiParser.getVersionMatcher(origVersion);
-        Optional<String> bestMatchVersion = findBiggestMatchingVersion(obtainedVersions,
-                origMatcher);
-        if (!bestMatchVersion.isPresent()) {
-            String osgiVersion = osgiParser.getOSGiVersion(origVersion);
-            Matcher osgiMatcher = osgiParser.getVersionMatcher(osgiVersion);
-            bestMatchVersion = findBiggestMatchingVersion(obtainedVersions, osgiMatcher);
-        }
-
-        return bestMatchVersion;
+        return findBiggestMatchingVersion(obtainedVersions, gav.getVersion());
     }
 
     private Optional<String> findBiggestMatchingVersion(List<String> obtainedVersions,
-            Matcher matcher) {
+            String version) {
+        Matcher matcher = osgiParser.getVersionMatcher(osgiParser.getOSGiVersion(version));
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
 
         for (String ver : obtainedVersions) {
-            matcher.reset(ver);
+            String osgiver = osgiParser.getOSGiVersion(ver);
+            matcher.reset(osgiver);
             if (matcher.matches()) {
                 int foundBuildNumber = Integer.parseInt(matcher.group(1));
                 if (foundBuildNumber > biggestBuildNumber) {
                     bestMatchVersion = ver;
                     biggestBuildNumber = foundBuildNumber;
                 }
+                if (foundBuildNumber == biggestBuildNumber) {
+                    bestMatchVersion = getMoreSpecificVersion(bestMatchVersion, ver);
+                }
             }
         }
 
         return Optional.ofNullable(bestMatchVersion);
+    }
+
+    /**
+     * Assuming the two versions have the same OSGi representation, returns the more specific
+     * version. That means X.Y.Z.something is preffered to X.Y.something which is preffered to
+     * X.something.
+     */
+    private String getMoreSpecificVersion(String first, String second) {
+        Matcher firstMatcher = VersionComparator.VERSION_PATTERN.matcher(first);
+        Matcher secondMatcher = VersionComparator.VERSION_PATTERN.matcher(second);
+        if (!firstMatcher.matches()) {
+            throw new IllegalArgumentException("Couldn't parse version " + first);
+        }
+        if (!secondMatcher.matches()) {
+            throw new IllegalArgumentException("Couldn't parse version " + second);
+        }
+        if (firstMatcher.group("minor") == null && secondMatcher.group("minor") != null) {
+            return second;
+        }
+        if (firstMatcher.group("micro") == null && secondMatcher.group("micro") != null) {
+            return second;
+        }
+        return first;
     }
 
 }
