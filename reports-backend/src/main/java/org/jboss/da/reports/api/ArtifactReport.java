@@ -1,6 +1,5 @@
 package org.jboss.da.reports.api;
 
-import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.model.rest.GAV;
 
 import javax.xml.bind.annotation.XmlTransient;
@@ -58,7 +57,7 @@ public class ArtifactReport implements Comparable<ArtifactReport> {
      */
     @Getter
     @Setter
-    private List<ProductVersion> whitelisted;
+    private List<org.jboss.da.products.backend.api.Product> whitelisted;
 
     public void setBestMatchVersion(Optional<String> version) {
         bestMatchVersion = version;

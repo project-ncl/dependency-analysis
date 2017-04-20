@@ -12,13 +12,15 @@ import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.cartographer.api.CartographerConnector;
-import org.jboss.da.listings.api.model.Product;
-import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.products.backend.api.Artifact;
+import org.jboss.da.products.backend.api.Product;
+import org.jboss.da.products.backend.api.ProductArtifacts;
+import org.jboss.da.products.backend.impl.AggregatedProductProvider;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
@@ -28,6 +30,8 @@ import org.jboss.da.reports.model.rest.GAVRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -38,6 +42,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -63,6 +69,9 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private ProductVersionService productVersionService;
+
+    @Mock
+    private AggregatedProductProvider productProvider;
 
     @InjectMocks
     @Spy
@@ -98,24 +107,36 @@ public class ReportsGeneratorImplTest {
     private final GAVDependencyTree daCoreDT = new GAVDependencyTree(daCoreGAV, new HashSet<>(
             Arrays.asList(daUtilDT, daCommonDT)));
 
-    private final ProductVersion productEAP = new ProductVersion(new Product("EAP"), "7.0",
-            ProductSupportStatus.UNKNOWN);
+    private final Product productEAP = new Product("EAP", "7.0", ProductSupportStatus.UNKNOWN);
 
-    private void prepare(List<ProductVersion> whitelisted, boolean blacklisted,
-            List<String> versions, String best, GAVDependencyTree dependencyTree)
-            throws CommunicationException, FindGAVDependencyException {
+    private void prepareProductProvider(List<String> versions, List<Product> whitelisted, GAV gav){
+        final Set<Artifact> artifacts = versions.stream()
+                .map(v -> new Artifact(new GAV(gav.getGA(),v)))
+                .collect(Collectors.toSet());
+
+        Set<ProductArtifacts> prodArts = new HashSet<>();
+        prodArts.add(new ProductArtifacts(Product.UNKNOWN, artifacts));
+        for(Product w : whitelisted){
+            prodArts.add(new ProductArtifacts(w, artifacts));
+        }
+
+        when(productProvider.getArtifacts(gav.getGA()))
+                .thenReturn(CompletableFuture.completedFuture(prodArts));
+    }
+
+    private void prepare(List<Product> whitelisted, boolean blacklisted, List<String> versions,
+            String best, GAVDependencyTree dependencyTree) throws CommunicationException,
+            FindGAVDependencyException {
         when(versionFinderImpl.getBuiltVersionsFor(daCoreGAV)).thenReturn(versions);
         when(versionFinderImpl.lookupBuiltVersions(daCoreGAV)).thenReturn(
                 new VersionLookupResult(Optional.ofNullable(best), versions));
-        when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV)).thenReturn(
+        when(versionFinderImpl.getBestMatchVersionFor(eq(daCoreGAV))).thenReturn(
                 Optional.ofNullable(best));
-        when(versionFinderImpl.getBestMatchVersionFor(daCoreGAV, versions)).thenReturn(
+        when(versionFinderImpl.getBestMatchVersionFor(eq(daCoreGAV), any(List.class))).thenReturn(
                 Optional.ofNullable(best));
-        when(versionFinderImpl.getBuiltVersionsFor(daCoreGAV, versions)).thenReturn(versions);
+
+        prepareProductProvider(versions, whitelisted, daCoreGAV);
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
-        when(
-                productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),
-                        daCoreGAV.getArtifactId(), daCoreGAV.getVersion())).thenReturn(whitelisted);
         when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
     }
 
@@ -128,31 +149,21 @@ public class ReportsGeneratorImplTest {
                 new VersionLookupResult(Optional.ofNullable(bestMatchVersion), daCoreVersionsBest));
         when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV)).thenReturn(
                 Optional.ofNullable(bestMatchVersion));
-        when(versionFinderImpl.getBestMatchVersionFor(daUtilGAV, daCoreVersionsBest)).thenReturn(
+        when(versionFinderImpl.getBestMatchVersionFor(eq(daUtilGAV), any(List.class))).thenReturn(
                 Optional.ofNullable(bestMatchVersion));
-        when(versionFinderImpl.getBuiltVersionsFor(daUtilGAV, daCoreVersionsBest)).thenReturn(
-                daCoreVersionsBest);
+        prepareProductProvider(daCoreVersionsBest, Collections.emptyList(), daUtilGAV);
 
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
-        when(
-                productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),
-                        daCoreGAV.getArtifactId(), daCoreGAV.getVersion())).thenReturn(
-                Collections.EMPTY_LIST);
 
         when(versionFinderImpl.getBuiltVersionsFor(daCommonGAV)).thenReturn(daCoreVersionsNoBest);
         when(versionFinderImpl.lookupBuiltVersions(daCommonGAV)).thenReturn(
                 new VersionLookupResult(Optional.empty(), daCoreVersionsNoBest));
         when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV)).thenReturn(Optional.empty());
 
-        when(versionFinderImpl.getBestMatchVersionFor(daCommonGAV, daCoreVersionsNoBest))
+        when(versionFinderImpl.getBestMatchVersionFor(eq(daCommonGAV), any(List.class)))
                 .thenReturn(Optional.empty());
-        when(versionFinderImpl.getBuiltVersionsFor(daCommonGAV, daCoreVersionsNoBest)).thenReturn(
-                daCoreVersionsNoBest);
+        prepareProductProvider(daCoreVersionsNoBest, Collections.emptyList(), daCommonGAV);
         when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
-        when(
-                productVersionService.getProductVersionsOfArtifact(daCoreGAV.getGroupId(),
-                        daCoreGAV.getArtifactId(), daCoreGAV.getVersion())).thenReturn(
-                Collections.EMPTY_LIST);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -187,7 +198,7 @@ public class ReportsGeneratorImplTest {
     @Test
     public void testWhiteListedNoBestMatchGAV() throws CommunicationException,
             FindGAVDependencyException {
-        List<ProductVersion> whitelisted = Arrays.asList(productEAP);
+        List<Product> whitelisted = Arrays.asList(productEAP);
         prepare(whitelisted, false, daCoreVersionsNoBest, null, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));

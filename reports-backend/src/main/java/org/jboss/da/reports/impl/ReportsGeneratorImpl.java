@@ -15,7 +15,6 @@ import org.jboss.da.listings.api.dao.ProductDAO;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
-import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.model.rest.RestProductInput;
@@ -61,7 +60,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CompletionException;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -121,8 +119,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private Optional<ArtifactReport> createGavReport(GAVRequest gav,
-            Set<ProductVersion> productVersions, Set<Long> productVersionIds)
-            throws CommunicationException, FindGAVDependencyException {
+            Set<ProductVersion> productVersions) throws CommunicationException,
+            FindGAVDependencyException {
 
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gav.asGavObject());
 
@@ -140,68 +138,63 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private Optional<ArtifactReport> createReport(GAVDependencyTree dt,
             Set<ProductVersion> productVersions) throws CommunicationException {
+        Set<Product> products = productVersions.stream().map(ReportsGeneratorImpl::toProduct).collect(Collectors.toSet());
 
-        VersionLookupResult result = versionFinder.lookupBuiltVersions(dt.getGav());
-        ArtifactReport report = toArtifactReport(dt.getGav(), result);
+        ArtifactReport report = new ArtifactReport(dt.getGav());
 
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
         nodesVisited.add(dt);
         addDependencyReports(report, dt.getDependencies(), nodesVisited);
-        if (!productVersions.isEmpty()) {
-            addArtifactsFromWhiteList(report, productVersions);
+        
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
+        traverseAndFill(report, products, futures);
+        try{
+            futures.stream().forEach(CompletableFuture::join);
+        }catch(CompletionException ex){
+            throw new CommunicationException(ex);
         }
 
         return Optional.of(report);
     }
 
-    private void addArtifactsFromWhiteList(ArtifactReport report,
-            Set<ProductVersion> productVersions) {
-        Set<WhiteArtifact> whiteArtifactsAndOrigin = getWhiteArtifacts(productVersions);
-        updateArtifact(report, whiteArtifactsAndOrigin);
-    }
-
-    private void updateArtifact(ArtifactReport ar, Set<WhiteArtifact> allArtifacts) {
-        // Process the current artifact
-        GAV gav = ar.getGav();
-
-        List<String> versions = new ArrayList<>();
-        versions.addAll(getAvailableWhitelistVersions(allArtifacts, gav));
-        versions.addAll(ar.getAvailableVersions());
-
-        ar.setAvailableVersions(versionFinder.getBuiltVersionsFor(gav, versions));
-        ar.setBestMatchVersion(versionFinder.getBestMatchVersionFor(gav, versions));
-
-        // Recurse or end
-        Set<ArtifactReport> dependencies = ar.getDependencies();
-        if (dependencies != null) {
-            for (ArtifactReport depArtifact : dependencies) {
-                updateArtifact(depArtifact, allArtifacts);
-            }
+    private void traverseAndFill(ArtifactReport report, Set<Product> products,
+            List<CompletableFuture<Void>> futures) {
+        futures.add(fillArtifactReport(report, products));
+        for (ArtifactReport dep : report.getDependencies()) {
+            traverseAndFill(dep, products, futures);
         }
     }
 
-    private List<String> getAvailableWhitelistVersions(Set<WhiteArtifact> allArtifacts,
-            GAV currentGav) {
-        Set<WhiteArtifact> whiteArtifactsForCurrentGav = allArtifacts.stream()
-                .filter(x -> {
-                    return x.getGa().getArtifactId()
-                            .equals(
-                           currentGav.getGA().getArtifactId())
-                            
-                            &&
-                           
-                           x.getGa().getGroupId()
-                            .equals(
-                           currentGav.getGA().getGroupId());
-                })
-                .collect(Collectors.toSet());
-                
-        List<String> whiteVersionsForCurrentGav = whiteArtifactsForCurrentGav.stream()
-                .map(x -> x.getVersion())
-                .collect(Collectors.toList());
+    private CompletableFuture<Void> fillArtifactReport(ArtifactReport report, Set<Product> products) {
+        GAV gav = report.getGav();
+
+        CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav
+                .getGA());
+        artifacts = filterProductArtifacts(products, artifacts);
         
-        List<String> availableVersionsFromWhitelist = versionFinder.getBuiltVersionsFor(currentGav, whiteVersionsForCurrentGav);
-        return availableVersionsFromWhitelist;
+        report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
+        return artifacts.thenAccept(pas -> {
+            final List<String> versions = getVersions(pas, gav);
+            List<Product> ps = pas.stream().map(pa -> pa.getProduct()).collect(Collectors.toList());
+            report.setAvailableVersions(versions);
+            report.setBestMatchVersion(versionFinder.getBestMatchVersionFor(gav, versions));
+            report.setWhitelisted(ps);
+        });
+    }
+
+    private void addDependencyReports(ArtifactReport ar, Set<GAVDependencyTree> dependencyTree,
+            Set<GAVDependencyTree> nodesVisited) throws CommunicationException {
+        for (GAVDependencyTree dt : dependencyTree) {
+
+            ArtifactReport dar = new ArtifactReport(dt.getGav());
+
+            // if dt hasn't been visited yet, add dependencies of dt in the report
+            if (!nodesVisited.contains(dt))
+                addDependencyReports(dar, dt.getDependencies(), nodesVisited);
+
+            ar.addDependency(dar);
+            nodesVisited.add(dt);
+        }
     }
 
     private Set<Long> getProductVersionIds(Set<ProductVersion> relevantProductVersions) {
@@ -269,14 +262,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         }
         errorMsg.append("]");
         errorMsg.append(";");
-    }
-
-    private Set<WhiteArtifact> getWhiteArtifacts(Set<ProductVersion> prodVers) {
-        Set<WhiteArtifact> mapProdVersToArtifact = new HashSet<>();
-        for (ProductVersion currentProdVer : prodVers) {
-            mapProdVersToArtifact.addAll(currentProdVer.getWhiteArtifacts());
-        }
-        return mapProdVersToArtifact;
     }
 
     @Override
@@ -471,38 +456,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         Set<ProductVersion> relevantProductVersions = getProductVersions(
                 gavRequest.getProductNames(), gavRequest.getProductVersionIds());
-        Set<Long> relevantProductVersionIds = getProductVersionIds(relevantProductVersions);
 
-        Optional<ArtifactReport> artReport = createGavReport(gavRequest, relevantProductVersions,
-                relevantProductVersionIds);
+        Optional<ArtifactReport> artReport = createGavReport(gavRequest, relevantProductVersions);
 
         return artReport.get();
-    }
-
-    private ArtifactReport toArtifactReport(GAV gav, VersionLookupResult result) {
-        ArtifactReport report = new ArtifactReport(gav);
-        report.setAvailableVersions(result.getAvailableVersions());
-        report.setBestMatchVersion(result.getBestMatchVersion());
-        report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
-        report.setWhitelisted(getWhitelistedProducts(gav));
-        return report;
-    }
-
-    private void addDependencyReports(ArtifactReport ar, Set<GAVDependencyTree> dependencyTree,
-            Set<GAVDependencyTree> nodesVisited) throws CommunicationException {
-        for (GAVDependencyTree dt : dependencyTree) {
-
-            VersionLookupResult result = versionFinder.lookupBuiltVersions(dt.getGav());
-
-            ArtifactReport dar = toArtifactReport(dt.getGav(), result);
-
-            // if dt hasn't been visited yet, add dependencies of dt in the report
-            if (!nodesVisited.contains(dt))
-                addDependencyReports(dar, dt.getDependencies(), nodesVisited);
-
-            ar.addDependency(dar);
-            nodesVisited.add(dt);
-        }
     }
 
     private AdvancedArtifactReport generateAdvancedArtifactReport(ArtifactReport report,
@@ -579,11 +536,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return pomAnalyzer.getPOMFileForGAV(repoFolder, dependency.getGav()).isPresent();
     }
 
-    private List<ProductVersion> getWhitelistedProducts(GAV gav) {
-        return productVersionService.getProductVersionsOfArtifact(gav.getGroupId(),
-                gav.getArtifactId(), gav.getVersion());
-    }
-
     private ProductArtifact toProductArtifact(Product p, Artifact a) {
         ProductArtifact ret = new ProductArtifact();
         ret.setArtifact(a.getGav());
@@ -619,21 +571,22 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private LookupReport toLookupReport(Set<ProductArtifacts> pas, GAV gav) {
+        List<String> versions = getVersions(pas, gav);
+        Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav, versions);
+        LookupReport lookupReport = new LookupReport(gav, bmv.orElse(null), versions,
+                blackArtifactService.isArtifactPresent(gav), toWhitelisted(pas));
+
+        return lookupReport;
+    }
+
+    private List<String> getVersions(Set<ProductArtifacts> pas, GAV gav) {
         List<String> versions = pas.stream()
                 .flatMap(as -> as.getArtifacts().stream())
                 .map(a -> a.getGav().getVersion())
                 .distinct()
                 .sorted(new VersionComparator(gav.getVersion()))
                 .collect(Collectors.toList());
-        Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav, versions);
-        LookupReport lookupReport = new LookupReport(
-                gav,
-                bmv.orElse(null),
-                versions,
-                blackArtifactService.isArtifactPresent(gav),
-                toWhitelisted(pas));
-
-        return lookupReport;
+        return versions;
     }
 
     private CompletableFuture<Set<ProductArtifacts>> filterProductArtifacts(Set<Product> products,
