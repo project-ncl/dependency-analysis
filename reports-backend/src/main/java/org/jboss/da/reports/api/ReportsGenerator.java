@@ -68,7 +68,7 @@ public interface ReportsGenerator {
      */
     public Set<AlignmentReportModule> getAligmentReport(SCMLocator scml,
             boolean useUnknownProducts, Set<Long> productIds) throws ScmException,
-            PomAnalysisException;
+            PomAnalysisException, CommunicationException;
 
     public Set<BuiltReportModule> getBuiltReport(SCMLocator scml) throws ScmException,
             PomAnalysisException, CommunicationException;

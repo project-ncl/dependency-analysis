@@ -2,7 +2,6 @@ package org.jboss.da.reports.impl;
 
 import static org.jboss.da.listings.model.ProductSupportStatus.SUPERSEDED;
 import static org.jboss.da.listings.model.ProductSupportStatus.SUPPORTED;
-import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
@@ -23,6 +22,11 @@ import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.VersionComparator;
+import org.jboss.da.products.backend.api.Artifact;
+import org.jboss.da.products.backend.api.Product;
+import static org.jboss.da.products.backend.api.Product.UNKNOWN;
+import org.jboss.da.products.backend.api.ProductArtifacts;
+import org.jboss.da.products.backend.impl.AggregatedProductProvider;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
@@ -48,6 +52,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -55,9 +60,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CompletionException;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * The implementation of reports, which provides information about
@@ -97,6 +104,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Inject
     private SCMConnector scmConnector;
+
+    @Inject
+    private AggregatedProductProvider productProvider;
 
     @Override
     public Optional<ArtifactReport> getReportFromSCM(SCMReportRequest scml) throws ScmException,
@@ -287,11 +297,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Override
     public Set<AlignmentReportModule> getAligmentReport(SCMLocator scml,
-            boolean useUnknownProducts, Set<Long> productIds) throws ScmException,
-            PomAnalysisException {
+            boolean useUnknownProduct, Set<Long> productIds) throws ScmException,
+            PomAnalysisException, CommunicationException {
         Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
                 scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
 
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
         Set<AlignmentReportModule> ret = new TreeSet<>(Comparator.comparing(x -> x.getModule()));
         for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
             AlignmentReportModule module = new AlignmentReportModule(e.getKey());
@@ -299,39 +310,92 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             Map<GAV, Set<ProductArtifact>> differentVersion = module.getDifferentVersion();
             Set<GAV> notBuilt = module.getNotBuilt();
             Set<GAV> blacklisted = module.getBlacklisted();
+            ret.add(module);
+
+            Map<GAV, CompletableFuture<Set<ProductArtifact>>> intr = new HashMap<>();
+            Map<GAV, CompletableFuture<Set<ProductArtifact>>> diff = new HashMap<>();
 
             for (GAV gav : e.getValue()) {
                 boolean bl = blackArtifactService.getArtifact(gav).isPresent();
 
                 if (bl) {
                     blacklisted.add(gav);
+                    internallyBuilt.put(gav, Collections.emptySet());
+                    differentVersion.put(gav, Collections.emptySet());
+                    continue;
                 }
 
-                Set<ProductArtifact> built;
-                if (!bl) {
-                    built = getBuiltInProducts(gav, productIds, useUnknownProducts);
-                } else {
-                    built = Collections.emptySet();
-                }
-                internallyBuilt.put(gav, built);
+                CompletableFuture<Set<ProductArtifact>> built = filterProducts(useUnknownProduct,
+                        productIds, productProvider.getArtifacts(gav));
+                intr.put(gav, built);
 
-                Set<ProductArtifact> different;
-                if (!bl && built.isEmpty()) {
-                    different = getDifferentInProducts(gav, productIds, useUnknownProducts);
-                } else {
-                    different = Collections.emptySet();
-                }
-
-                differentVersion.put(gav, different);
-                setAllVersionDifferences(gav, different);
-
-                if (!bl && built.isEmpty() && different.isEmpty()) {
-                    notBuilt.add(gav);
-                }
+                CompletableFuture<Set<ProductArtifact>> different = built
+                        .thenCompose(b -> getBuiltDifferent(b, useUnknownProduct, productIds, gav));
+                diff.put(gav, different);
             }
-            ret.add(module);
+
+            CompletableFuture<Void> intrDone = copyCompletedMap(intr, internallyBuilt);
+            CompletableFuture<Void> diffDone = copyCompletedMap(diff, differentVersion);
+
+            futures.add(CompletableFuture.allOf(intrDone, diffDone)
+                    .thenAccept(x -> fillNotBuilt(blacklisted, internallyBuilt,
+                            differentVersion, notBuilt)));
+        }
+        try{
+            futures.stream().forEach(f -> f.join());
+        }catch(CompletionException ex){
+            throw new CommunicationException(ex);
         }
         return ret;
+    }
+
+    private CompletableFuture<Set<ProductArtifact>> getBuiltDifferent(Set<ProductArtifact> built,
+            boolean useUnknownProduct, Set<Long> productIds, GAV gav) {
+        if (built.isEmpty()) {
+            CompletableFuture<Set<ProductArtifact>> different = filterProducts(useUnknownProduct,
+                    productIds, productProvider.getArtifacts(gav.getGA()));
+
+            return different.thenApply(d -> {
+                setAllVersionDifferences(gav, d);
+                return d;
+            });
+        } else {
+            return CompletableFuture.completedFuture(Collections.emptySet());
+        }
+    }
+
+    /**
+     * Fills notBuilt set with GAVs that are neither blacklisted, internally built nor built in
+     * different version.
+     */
+    private void fillNotBuilt(Set<GAV> blacklisted, Map<GAV, Set<ProductArtifact>> internallyBuilt,
+            Map<GAV, Set<ProductArtifact>> differentVersion, Set<GAV> notBuilt) {
+        for (Map.Entry<GAV, Set<ProductArtifact>> e : internallyBuilt.entrySet()) {
+            GAV gav = e.getKey();
+            Set<ProductArtifact> internally = e.getValue();
+            Set<ProductArtifact> different = differentVersion.get(gav);
+
+            if (!blacklisted.contains(gav) && internally.isEmpty() && different.isEmpty()) {
+                notBuilt.add(gav);
+            }
+        }
+    }
+
+    /**
+     * Returns future, that completes when all input futures are completed and copied to the result
+     * map.
+     */
+    private CompletableFuture<Void> copyCompletedMap(
+            Map<GAV, CompletableFuture<Set<ProductArtifact>>> futures,
+            Map<GAV, Set<ProductArtifact>> result) {
+        CompletableFuture<Void> diffDone = CompletableFuture.allOf(
+                futures.values().toArray(new CompletableFuture[futures.size()]))
+                .thenAccept(x -> {
+                    for (Map.Entry<GAV, CompletableFuture<Set<ProductArtifact>>> e : futures.entrySet()) {
+                        result.put(e.getKey(), e.getValue().join());
+                    }
+                });
+        return diffDone;
     }
 
     /**
@@ -365,69 +429,38 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return builtSet;
     }
 
-    private Set<ProductArtifact> getBuiltInProducts(GAV gav, Set<Long> productIds,
-            boolean useUnknownProducts) {
-        Stream<ProductVersionArtifactRelationship> internallyStream = productVersionService
-                .getProductVersionsWithArtifactByGAV(gav.getGroupId(), gav.getArtifactId(),
-                        gav.getVersion()).stream();
+    private CompletableFuture<Set<ProductArtifact>> filterProducts(boolean useUnknownProduct,
+            Set<Long> productIds, CompletableFuture<Set<ProductArtifacts>> artifacts) {
+        Set<Product> products = idsToProducts(productIds);
 
-        Set<ProductArtifact> built = filterAndMapProducts(productIds, internallyStream);
-
-        if (useUnknownProducts) {
-            try {
-                Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav);
-
-                if (bmv.isPresent()) {
-                    GAV bmgav = new GAV(gav.getGA(), bmv.get());
-                    ProductArtifact pa = new ProductArtifact("Unknown", "Unknown", UNKNOWN, bmgav);
-                    built.add(pa);
-                }
-            } catch (CommunicationException ex) {
-                log.warn("Failed to get best match versions for " + gav);
-            }
-        }
-        return built;
-    }
-
-    private Set<ProductArtifact> getDifferentInProducts(GAV gav, Set<Long> productIds,
-            boolean useUnknownProducts) {
-        Stream<ProductVersionArtifactRelationship> differentStream = productVersionService
-                .getProductVersionsWithArtifactsByGA(gav.getGroupId(), gav.getArtifactId())
-                .stream();
-
-        Set<ProductArtifact> different = filterAndMapProducts(productIds, differentStream);
-
-        if (useUnknownProducts) {
-            try {
-                List<String> bmvs = versionFinder.getBuiltVersionsFor(gav);
-
-                for (String bmv : bmvs) {
-                    GAV bmgav = new GAV(gav.getGA(), bmv);
-                    ProductArtifact pa = new ProductArtifact("Unknown", "Unknown", UNKNOWN, bmgav);
-                    different.add(pa);
-                }
-            } catch (CommunicationException ex) {
-                log.warn("Failed to get best match versions for " + gav);
+        Predicate<Product> pred = (x) -> true;
+        if (products.isEmpty()) {
+            pred = pred.and(p -> p.getStatus() == SUPPORTED || p.getStatus() == SUPERSEDED);
+            if(useUnknownProduct){
+                pred = pred.or(p -> UNKNOWN.equals(p));
             }
         }
 
-        return different;
+        artifacts = filterProductArtifacts(products, artifacts, pred);
+
+        CompletableFuture<Set<ProductArtifact>> thenApply = artifacts.thenApply(m -> mapProducts(m));
+
+        return thenApply;
     }
 
-    private Set<ProductArtifact> filterAndMapProducts(Set<Long> productIds,
-            Stream<ProductVersionArtifactRelationship> internallyStream) {
-        if (productIds.isEmpty()) { // All SUPPORTED or SUPERSEDED
-            internallyStream = internallyStream.filter(p ->
-                    p.getProductVersion().getSupport() == SUPPORTED ||
-                            p.getProductVersion().getSupport() == SUPERSEDED);
-        } else { // Specified
-            internallyStream = internallyStream.filter(p -> productIds.contains(p
-                    .getProductVersion().getId()));
-        }
-
-        return internallyStream
-                .map(x -> toProductArtifact(x))
+    private Set<ProductArtifact> mapProducts(Set<ProductArtifacts> products) {
+        return products.stream()
+                .flatMap(e -> e.getArtifacts().stream()
+                        .map(x -> toProductArtifact(e.getProduct(), x)))
                 .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(ProductArtifact::getArtifact))));
+    }
+
+    private Set<Product> idsToProducts(Set<Long> productIds) {
+        Set<Product> products = productIds.stream()
+                .map(id -> productVersionDao.read(id))
+                .map(ReportsGeneratorImpl::toProduct)
+                .collect(Collectors.toSet());
+        return products;
     }
 
     @Override
@@ -551,14 +584,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 gav.getArtifactId(), gav.getVersion());
     }
 
-    private ProductArtifact toProductArtifact(ProductVersionArtifactRelationship pa) {
+    private ProductArtifact toProductArtifact(Product p, Artifact a) {
         ProductArtifact ret = new ProductArtifact();
-        GAV gav = new GAV(pa.getArtifact().getGa().getGroupId(), pa.getArtifact().getGa()
-                .getArtifactId(), pa.getArtifact().getVersion());
-        ret.setArtifact(gav);
-        ret.setProductName(pa.getProductVersion().getProduct().getName());
-        ret.setProductVersion(pa.getProductVersion().getProductVersion());
-        ret.setSupportStatus(pa.getProductVersion().getSupport());
+        ret.setArtifact(a.getGav());
+        ret.setProductName(p.getName());
+        ret.setProductVersion(p.getVersion());
+        ret.setSupportStatus(p.getStatus());
         return ret;
     }
 
@@ -607,10 +638,34 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         }
     }
 
+    private static Product toProduct(ProductVersion pv) {
+        return new Product(pv.getProduct().getName(), pv.getProductVersion());
+    }
+
     private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {
         return new LookupReport(gav, lookupResult.getBestMatchVersion().orElse(null),
                 lookupResult.getAvailableVersions(), blackArtifactService.isArtifactPresent(gav),
                 toWhitelisted(getWhitelistedProducts(gav)));
+    }
+
+    private CompletableFuture<Set<ProductArtifacts>> filterProductArtifacts(Set<Product> products,
+            CompletableFuture<Set<ProductArtifacts>> artifacts) {
+        return filterProductArtifacts(products, artifacts, x -> true);
+    }
+
+    private CompletableFuture<Set<ProductArtifacts>> filterProductArtifacts(Set<Product> products,
+            CompletableFuture<Set<ProductArtifacts>> artifacts, Predicate<Product> pred) {
+        if(!products.isEmpty()){
+            pred = pred.and(p -> products.contains(p));
+        }
+        artifacts = AggregatedProductProvider.filterProducts(artifacts, pred);
+        artifacts = filterBuiltArtifacts(artifacts);
+        return artifacts;
+    }
+
+    private CompletableFuture<Set<ProductArtifacts>> filterBuiltArtifacts(CompletableFuture<Set<ProductArtifacts>> artifacts) {
+        return artifacts.thenApply(as -> AggregatedProductProvider.filterArtifacts(as,
+                a -> !blackArtifactService.isArtifactPresent(a.getGav())));
     }
 
     private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
