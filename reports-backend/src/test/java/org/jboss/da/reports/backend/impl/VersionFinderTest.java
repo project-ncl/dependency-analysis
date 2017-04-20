@@ -129,74 +129,38 @@ public class VersionFinderTest {
     }
 
     @Test
-    public void testVersionsForNonExistingGAV() throws CommunicationException {
-        prepare(Collections.EMPTY_LIST);
-        List<String> versions = versionFinder.getBuiltVersionsFor(SOME_GAV);
-        assertTrue(versions.isEmpty());
-    }
-
-    @Test
-    public void testVersionsForGAV() throws CommunicationException {
-        prepare(All_VERSIONS);
-        List<String> versions = versionFinder.getBuiltVersionsFor(SOME_GAV);
-        assertNotNull(versions);
-        assertEquals(BUILT_VERSIONS.size(), versions.size());
-        assertTrue(versions.containsAll(BUILT_VERSIONS));
-        assertFalse(versions.contains(NO_BUILT_VERSION));
-        assertFalse(versions.contains(NO_BUILT_VERSION_2));
-        assertFalse(versions.contains(BUILT_VERSION));
-        assertFalse(versions.contains(MULTI_BUILT_VERSION));
-        assertFalse(versions.contains(NON_OSGI_VERSION));
-    }
-
-    @Test
     public void getBestMatchVersionForNonExistingGAV() throws CommunicationException {
-        prepare(Collections.EMPTY_LIST);
-        Optional<String> bmv = versionFinder.getBestMatchVersionFor(SOME_GAV);
-        assertFalse(bmv.isPresent());
+        Optional<String> bmv = versionFinder.getBestMatchVersionFor(SOME_GAV,
+                Collections.EMPTY_LIST);
+        assertFalse("Best match version expected to not be present", bmv.isPresent());
     }
 
     @Test
     public void getBestMatchVersionForNotBuiltGAV() throws CommunicationException {
-        prepare(All_VERSIONS);
-        Optional<String> bmv = versionFinder.getBestMatchVersionFor(NO_BUILT_GAV);
-        assertFalse(bmv.isPresent());
+        Optional<String> bmv = versionFinder.getBestMatchVersionFor(NO_BUILT_GAV, All_VERSIONS);
+        assertFalse("Best match version expected to not be present", bmv.isPresent());
     }
 
     @Test
     public void getBestMatchVersionForBuiltGAV() throws CommunicationException {
-        String bmv;
-        prepare(All_VERSIONS);
-
-        bmv = versionFinder.getBestMatchVersionFor(BUILT_GAV).get();
-        assertNotNull(bmv);
-        assertEquals(BUILT_VERSION_RH, bmv);
-
-        bmv = versionFinder.getBestMatchVersionFor(BUILT_GAV_2).get();
-        assertNotNull(bmv);
-        assertEquals(BUILT_VERSION_2_RH, bmv);
+        checkBMV(BUILT_VERSION_RH, BUILT_GAV.getVersion(),
+                All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
+        checkBMV(BUILT_VERSION_2_RH, BUILT_GAV_2.getVersion(),
+                All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
     }
 
     @Test
     public void getBestMatchVersionForMultipleBuiltGAV() throws CommunicationException {
-        prepare(All_VERSIONS);
-        String bmv = versionFinder.getBestMatchVersionFor(MULTI_BUILT_GAV).get();
-        assertNotNull(bmv);
-        assertEquals(MULTI_BUILT_VERSION_RH_BEST, bmv);
+        checkBMV(MULTI_BUILT_VERSION_RH_BEST, MULTI_BUILT_GAV.getVersion(),
+                All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
     }
 
     @Test
     public void getBestMatchVersionForNoOSGIGAV() throws CommunicationException {
-        String bmv;
-        prepare(All_VERSIONS);
-
-        bmv = versionFinder.getBestMatchVersionFor(NON_OSGI_GAV).get();
-        assertNotNull(bmv);
-        assertEquals(NON_OSGI_VERSION_RHT, bmv);
-
-        bmv = versionFinder.getBestMatchVersionFor(NON_OSGI_GAV_2).get();
-        assertNotNull(bmv);
-        assertEquals(NON_OSGI_VERSION_2_RHT, bmv);
+        checkBMV(NON_OSGI_VERSION_RHT, NON_OSGI_GAV.getVersion(),
+                All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
+        checkBMV(NON_OSGI_VERSION_2_RHT, NON_OSGI_GAV_2.getVersion(),
+                All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
     }
 
     @Test
@@ -250,7 +214,7 @@ public class VersionFinderTest {
     }
 
     private void checkBMV(String expectedVersion, String version, String[] versions) {
-        GAV gav = new GAV("commons-codec", "commons-codec", version);
+        GAV gav = new GAV(REQUESTED_GA, version);
         Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav, Arrays.asList(versions));
         assertTrue("Best match version expected to be present", bmv.isPresent());
         assertEquals(expectedVersion, bmv.get());

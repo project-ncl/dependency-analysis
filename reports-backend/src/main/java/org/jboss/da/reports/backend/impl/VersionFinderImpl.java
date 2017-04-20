@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 import org.jboss.da.listings.api.service.BlackArtifactService;
 
-import java.util.Comparator;
+import java.util.Collection;
 
 /**
  * Performs single lookups for the built artifacts
@@ -45,17 +45,6 @@ public class VersionFinderImpl implements VersionFinder {
     private BlackArtifactService blackArtifactService;
 
     @Override
-    public List<String> getBuiltVersionsFor(GAV gav) throws CommunicationException {
-        List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
-        return getBuiltVersionsFor0(gav, allVersions);
-    }
-
-    @Override
-    public List<String> getBuiltVersionsFor(GAV gav, List<String> availableVersions) {
-        return getBuiltVersionsFor0(gav, availableVersions);
-    }
-
-    @Override
     public VersionLookupResult lookupBuiltVersions(GAV gav) throws CommunicationException {
         if (!gav.getGA().isValid()) {
             log.warn("Received nonvalid GAV: " + gav);
@@ -77,17 +66,11 @@ public class VersionFinderImpl implements VersionFinder {
     }
 
     @Override
-    public Optional<String> getBestMatchVersionFor(GAV gav) throws CommunicationException {
-        List<String> obtainedVersions = aproxConnector.getVersionsOfGA(gav.getGA());
-        return findBiggestMatchingVersion(gav, obtainedVersions);
-    }
-
-    @Override
     public Optional<String> getBestMatchVersionFor(GAV gav, List<String> availableVersions) {
         return findBiggestMatchingVersion(gav, availableVersions);
     }
 
-    private List<String> getBuiltVersionsFor0(GAV gav, List<String> allVersions) {
+    private List<String> getBuiltVersionsFor0(GAV gav, Collection<String> allVersions) {
         List<String> redhatVersions = allVersions.stream()
                 .filter(VersionParser::isRedhatVersion)
                 .sorted(new VersionComparator(gav.getVersion()))
