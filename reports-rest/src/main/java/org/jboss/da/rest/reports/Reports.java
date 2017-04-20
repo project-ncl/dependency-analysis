@@ -211,6 +211,13 @@ public class Reports {
     public Response alignReport(AlignReportRequest request) {
         try {
             return Response.status(Status.OK).entity(facade.alignReport(request)).build();
+        } catch (CommunicationException e) {
+            log.error("Exception thrown when communicating with external service", e);
+            return Response
+                    .status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new ErrorMessage(ErrorMessage.eType.SCM_ENDPOINT,
+                            "Exception thrown in communication with external service", e
+                                    .getMessage())).build();
         } catch (ScmException e) {
             log.error("Exception thrown in scm endpoint", e);
             return Response

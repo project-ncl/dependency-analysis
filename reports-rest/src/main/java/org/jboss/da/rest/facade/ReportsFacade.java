@@ -54,7 +54,7 @@ public class ReportsFacade {
     }
 
     public AlignReport alignReport(AlignReportRequest request) throws ScmException,
-            PomAnalysisException, ValidationException {
+            PomAnalysisException, ValidationException, CommunicationException {
         validation.validation(request,
                 "Getting allignment report for project specified in a repository URL failed");
         String pomPath = getPomPath(request.getPomPath());
