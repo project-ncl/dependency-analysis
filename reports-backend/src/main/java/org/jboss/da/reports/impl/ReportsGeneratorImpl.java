@@ -401,17 +401,30 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             PomAnalysisException, CommunicationException {
         Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
                 scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
-        Set<BuiltReportModule> builtSet = new HashSet<>();
+        Set<CompletableFuture<BuiltReportModule>> builtSet = new HashSet<>();
         for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
             for (GAV gav : e.getValue()) {
-                BuiltReportModule report = new BuiltReportModule(gav);
-                VersionLookupResult versionLookup = versionFinder.lookupBuiltVersions(gav);
-                versionLookup.getBestMatchVersion().ifPresent(bmv -> report.setBuiltVersion(bmv));
-                report.setAvailableVersions(versionLookup.getAvailableVersions());
-                builtSet.add(report);
+                CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
+                artifacts = filterBuiltArtifacts(artifacts);
+                builtSet.add(artifacts.thenApply(pas -> toBuiltReportModule(gav, pas)));
             }
         }
-        return builtSet;
+        try {
+            return builtSet.stream()
+                    .map(CompletableFuture::join)
+                    .collect(Collectors.toSet());
+        } catch (CompletionException ex) {
+            throw new CommunicationException(ex);
+        }
+    }
+
+    private BuiltReportModule toBuiltReportModule(GAV gav, Set<ProductArtifacts> pas) {
+        BuiltReportModule report = new BuiltReportModule(gav);
+        List<String> versions = getVersions(pas, gav);
+        versionFinder.getBestMatchVersionFor(gav, versions)
+                .ifPresent(bmv -> report.setBuiltVersion(bmv));
+        report.setAvailableVersions(versions);
+        return report;
     }
 
     private CompletableFuture<Set<ProductArtifact>> filterProducts(boolean useUnknownProduct,
