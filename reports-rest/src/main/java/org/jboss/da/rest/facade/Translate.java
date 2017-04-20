@@ -1,9 +1,9 @@
 package org.jboss.da.rest.facade;
 
-import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.model.rest.RestGavProducts;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.products.backend.api.Product;
 import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.BuiltReportModule;
 import org.jboss.da.reports.api.ProductArtifact;
@@ -102,11 +102,11 @@ class Translate {
         return ret;
     }
 
-    private static RestProductInput toRestProductInput(ProductVersion product) {
+    private static RestProductInput toRestProductInput(Product product) {
         RestProductInput ret = new RestProductInput();
-        ret.setName(product.getProduct().getName());
-        ret.setVersion(product.getProductVersion());
-        ret.setSupportStatus(product.getSupport());
+        ret.setName(product.getName());
+        ret.setVersion(product.getVersion());
+        ret.setSupportStatus(product.getStatus());
         return ret;
     }
 
@@ -120,9 +120,9 @@ class Translate {
                 advancedArtifactReport.getCommunityGavs());
     }
 
-    private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
+    private static List<RestProductInput> toWhitelisted(List<Product> whitelisted) {
         return whitelisted.stream()
-                .map(pv -> new RestProductInput(pv.getProduct().getName(), pv.getProductVersion(), pv.getSupport()))
+                .map(pv -> new RestProductInput(pv.getName(), pv.getVersion(), pv.getStatus()))
                 .collect(Collectors.toList());
     }
 
@@ -211,13 +211,13 @@ class Translate {
                 .collect(Collectors.toList());
     }
 
-    private static Set<RestProductInput> toRestProductInputs(Set<ProductVersion> product) {
+    private static Set<RestProductInput> toRestProductInputs(Set<Product> product) {
         return product.stream()
                 .map(Translate::toRestProductInput)
                 .collect(Collectors.toSet());
     }
 
-    private static Set<RestGavProducts> toRestGAVProducts(Map<GAV, Set<ProductVersion>> whitelistedArtifacts) {
+    private static Set<RestGavProducts> toRestGAVProducts(Map<GAV, Set<Product>> whitelistedArtifacts) {
         return whitelistedArtifacts.entrySet().stream()
                 .map(e -> new RestGavProducts(e.getKey(), toRestProductInputs(e.getValue())))
                 .collect(Collectors.toSet());
