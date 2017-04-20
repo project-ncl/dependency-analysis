@@ -594,58 +594,46 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request) throws CommunicationException {
-        
-        // Use a concurrent set since we're using parallel stream to add stuff
-        Set<LookupReport> reports = ConcurrentHashMap.newKeySet();
+    public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
+            throws CommunicationException{
+        Set<Product> products = 
+                getProductVersions(request.getProductNames(), request.getProductVersionIds()).stream()
+                .map(ReportsGeneratorImpl::toProduct)
+                .collect(Collectors.toSet());
 
-        boolean communicationSucceeded = request.getGavs().parallelStream().distinct().map((gav) -> {
-            try {
-                VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(gav);
-                LookupReport lookupReport = toLookupReport(gav, lookupResult);
-                reports.add(lookupReport);
-                return true;
-            } catch (CommunicationException ex) {
-                log.error("Communication with remote repository failed", ex);
-                return false;
-            }
-        }).allMatch(x -> {
-            return x;
-        });
-
-        if(communicationSucceeded){
-            Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductNames(), request.getProductVersionIds());
+        List<CompletableFuture<LookupReport>> reports = new ArrayList<>();
+        for(GAV gav : request.getGavs()){
+            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
+            artifacts = filterProductArtifacts(products, artifacts);
             
-            if(!relevantProductVersions.isEmpty()){
-                Set<WhiteArtifact> whiteArtifacts = getWhiteArtifacts(relevantProductVersions);
-                reports.stream().forEach(x ->
-                    {
-                        GAV gav = x.getGav();
-
-                        List<String> versions = new ArrayList<>();
-                        versions.addAll(getAvailableWhitelistVersions(whiteArtifacts, gav));
-                        versions.addAll(x.getAvailableVersions());
-
-                        x.setAvailableVersions(versionFinder.getBuiltVersionsFor(gav, versions));
-                        x.setBestMatchVersion(versionFinder.getBestMatchVersionFor(gav, versions)
-                                .orElse(null));
-                    }
-                 );
-            }
-            return new ArrayList<>(reports);
-        } else {
-            throw new CommunicationException("Communication with remote repository failed");
+            reports.add(artifacts.thenApply(pas -> toLookupReport(pas, gav)));
         }
+
+        return reports.stream()
+                .map(r -> r.join())
+                .collect(Collectors.toList());
     }
 
     private static Product toProduct(ProductVersion pv) {
         return new Product(pv.getProduct().getName(), pv.getProductVersion());
     }
 
-    private LookupReport toLookupReport(GAV gav, VersionLookupResult lookupResult) {
-        return new LookupReport(gav, lookupResult.getBestMatchVersion().orElse(null),
-                lookupResult.getAvailableVersions(), blackArtifactService.isArtifactPresent(gav),
-                toWhitelisted(getWhitelistedProducts(gav)));
+    private LookupReport toLookupReport(Set<ProductArtifacts> pas, GAV gav) {
+        List<String> versions = pas.stream()
+                .flatMap(as -> as.getArtifacts().stream())
+                .map(a -> a.getGav().getVersion())
+                .distinct()
+                .sorted(new VersionComparator(gav.getVersion()))
+                .collect(Collectors.toList());
+        Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav, versions);
+        LookupReport lookupReport = new LookupReport(
+                gav,
+                bmv.orElse(null),
+                versions,
+                blackArtifactService.isArtifactPresent(gav),
+                toWhitelisted(pas));
+
+        return lookupReport;
     }
 
     private CompletableFuture<Set<ProductArtifacts>> filterProductArtifacts(Set<Product> products,
@@ -668,11 +656,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 a -> !blackArtifactService.isArtifactPresent(a.getGav())));
     }
 
-    private static List<RestProductInput> toWhitelisted(List<ProductVersion> whitelisted) {
+    private static List<RestProductInput> toWhitelisted(Set<ProductArtifacts> whitelisted) {
         return whitelisted
                 .stream()
-                .map(pv -> new RestProductInput(pv.getProduct().getName(), pv.getProductVersion(),
-                        pv.getSupport()))
+                .map(pa -> pa.getProduct())
+                .filter(p -> !UNKNOWN.equals(p))
+                .map(p -> new RestProductInput(p.getName(), p.getVersion(), p.getStatus()))
                 .collect(Collectors.toList());
     }
 }
