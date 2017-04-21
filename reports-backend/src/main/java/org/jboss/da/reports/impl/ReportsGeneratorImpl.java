@@ -112,11 +112,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (scml == null)
             throw new IllegalArgumentException("SCM information can't be null");
 
-        Set<ProductVersion> relevantProductVersions = getProductVersions(scml.getProductNames(),
-                scml.getProductVersionIds());
+        Set<Product> products = getProducts(scml.getProductNames(), scml.getProductVersionIds());
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml.getScml());
 
-        return createReport(dt, relevantProductVersions);
+        return createReport(dt, products);
     }
 
     @Override
@@ -125,17 +124,15 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (gavRequest == null)
             throw new IllegalArgumentException("GAV can't be null");
 
-        Set<ProductVersion> relevantProductVersions = getProductVersions(
-                gavRequest.getProductNames(), gavRequest.getProductVersionIds());
+        Set<Product> products = getProducts(gavRequest.getProductNames(),
+                gavRequest.getProductVersionIds());
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gavRequest.asGavObject());
 
-        return createReport(dt, relevantProductVersions).get();
+        return createReport(dt, products).get();
     }
 
     private Optional<ArtifactReport> createReport(GAVDependencyTree dt,
-            Set<ProductVersion> productVersions) throws CommunicationException {
-        Set<Product> products = productVersions.stream().map(ReportsGeneratorImpl::toProduct).collect(Collectors.toSet());
-
+            Set<Product> products) throws CommunicationException {
         ArtifactReport report = new ArtifactReport(dt.getGav());
 
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
@@ -201,39 +198,30 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             throws ScmException, PomAnalysisException, CommunicationException {
 
         SCMLocator scml = request.getScml();
-        Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductNames(), request.getProductVersionIds());
-        Set<Long> relevantProductVersionIds = getProductVersionIds(relevantProductVersions);
+        Set<Product> products = getProducts(request.getProductNames(), request.getProductVersionIds());
 
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml);
-        Optional<ArtifactReport> artifactReport = createReport(dt, relevantProductVersions);
+        Optional<ArtifactReport> artifactReport = createReport(dt, products);
         // TODO: hardcoded to git
         // hopefully we'll get the cached cloned folder for this repo
         File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(),
                 scml.getRevision());
-        return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder, relevantProductVersionIds));
-    }
-
-    private Set<Long> getProductVersionIds(Set<ProductVersion> relevantProductVersions) {
-        return relevantProductVersions.stream()
-                .map(x -> x.getId())
-                .collect(Collectors.toSet());
+        return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder));
     }
 
     private AdvancedArtifactReport generateAdvancedArtifactReport(ArtifactReport report,
-            File repoFolder, Set<Long> validProductVersionIds) {
+            File repoFolder) {
         AdvancedArtifactReport advancedReport = new AdvancedArtifactReport();
         advancedReport.setArtifactReport(report);
         Set<GAV> modulesAnalyzed = new HashSet<>();
 
         // hopefully we'll get the folder already cloned from before
-        populateAdvancedArtifactReportFields(advancedReport, report, modulesAnalyzed, repoFolder,
-                validProductVersionIds);
+        populateAdvancedArtifactReportFields(advancedReport, report, modulesAnalyzed, repoFolder);
         return advancedReport;
     }
 
     private void populateAdvancedArtifactReportFields(AdvancedArtifactReport advancedReport,
-            ArtifactReport report, Set<GAV> modulesAnalyzed, File repoFolder,
-            Set<Long> validProductVersionIds) {
+            ArtifactReport report, Set<GAV> modulesAnalyzed, File repoFolder) {
         for (ArtifactReport dep : report.getDependencies()) {
             final GAV gav = dep.getGav();
             if (modulesAnalyzed.contains(gav)) {
@@ -243,7 +231,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 // if dependency is a module, but not yet analyzed
                 modulesAnalyzed.add(gav);
                 populateAdvancedArtifactReportFields(advancedReport, dep, modulesAnalyzed,
-                        repoFolder, validProductVersionIds);
+                        repoFolder);
             } else {
                 // only generate populate advanced report with community GAVs
                 if (VersionParser.isRedhatVersion(dep.getVersion()))
@@ -282,8 +270,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             PomAnalysisException, CommunicationException {
         Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
                 scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
-        Set<ProductVersion> productVersions = getProductVersions(Collections.emptySet(), productIds);
-        Set<Product> products = productVersions.stream().map(ReportsGeneratorImpl::toProduct).collect(Collectors.toSet());
+        Set<Product> products = getProducts(Collections.emptySet(), productIds);
 
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         Set<AlignmentReportModule> ret = new TreeSet<>(Comparator.comparing(x -> x.getModule()));
@@ -453,10 +440,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
             throws CommunicationException{
-        Set<Product> products = 
-                getProductVersions(request.getProductNames(), request.getProductVersionIds()).stream()
-                .map(ReportsGeneratorImpl::toProduct)
-                .collect(Collectors.toSet());
+        Set<Product> products = getProducts(request.getProductNames(),
+                request.getProductVersionIds());
 
         List<CompletableFuture<LookupReport>> reports = new ArrayList<>();
         for(GAV gav : request.getGavs()){
@@ -480,7 +465,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return lookupReport;
     }
 
-    private Set<ProductVersion> getProductVersions(Set<String> productNames, Set<Long> productVersionIds) {
+    private Set<Product> getProducts(Set<String> productNames, Set<Long> productVersionIds) {
         Set<ProductVersion> productVersions = new HashSet<>();
         StringBuilder errorMsg = new StringBuilder();
 
@@ -498,7 +483,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 errorMsg.append("Product names do not exist: ");
                 appendErrors(errorMsg, inexistingProductNames);
             }
-
         }
 
         if(productVersionIds != null && !productVersionIds.isEmpty()){
@@ -514,17 +498,13 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             }
         }
 
-        if((productNames == null || productNames.isEmpty())
-           &&
-           (productVersionIds == null || productVersionIds.isEmpty())){
-            productVersions.addAll(productVersionService.getAll());
-        }
-
         if(errorMsg.length() > 0){
             throw new IllegalArgumentException(errorMsg.toString());
         }
 
-        return productVersions;
+        return productVersions.stream()
+                .map(ReportsGeneratorImpl::toProduct)
+                .collect(Collectors.toSet());
     }
 
     private <T> void appendErrors(StringBuilder errorMsg, Collection<T> invalidItems) {
