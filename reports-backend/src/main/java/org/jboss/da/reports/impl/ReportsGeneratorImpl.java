@@ -471,30 +471,30 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         if(productNames != null && !productNames.isEmpty()){
             List<org.jboss.da.listings.api.model.Product> productsByName = productDao.findAllWithNames(new ArrayList<>(productNames));
-            if(productsByName!= null && (productNames.size() == productsByName.size())){
+            if(productNames.size() == productsByName.size()){
                 for(String productName : productNames){
                     List<ProductVersion> prodVers = productVersionService.getAllForProduct(productName);
                     productVersions.addAll(prodVers);
                 }
             } else {
                 // Error
-                Set<String> inexistingProductNames = new HashSet<>(productNames);
-                productsByName.stream().forEach(x -> inexistingProductNames.remove(x.getName()));
+                Set<String> unexistingProductNames = new HashSet<>(productNames);
+                productsByName.stream().forEach(x -> unexistingProductNames.remove(x.getName()));
                 errorMsg.append("Product names do not exist: ");
-                appendErrors(errorMsg, inexistingProductNames);
+                errorMsg.append(joinMissing(unexistingProductNames));
             }
         }
 
         if(productVersionIds != null && !productVersionIds.isEmpty()){
             List<ProductVersion> prodVersionsById = productVersionDao.findAllWithIds(new ArrayList<>(productVersionIds));
-            if(prodVersionsById != null && (productVersionIds.size() == prodVersionsById.size())){
+            if(productVersionIds.size() == prodVersionsById.size()){
                 productVersions.addAll(prodVersionsById);
             } else {
                 // Error
-                Set<Long> inexistingProductVersionIds = new HashSet<>(productVersionIds);
-                prodVersionsById.stream().forEach(x -> inexistingProductVersionIds.remove(x.getId()));
+                Set<Long> unexistingProductVersionIds = new HashSet<>(productVersionIds);
+                prodVersionsById.stream().forEach(x -> unexistingProductVersionIds.remove(x.getId()));
                 errorMsg.append("Product Versions do not exist: ");
-                appendErrors(errorMsg, inexistingProductVersionIds);
+                errorMsg.append(joinMissing(unexistingProductVersionIds));
             }
         }
 
@@ -507,18 +507,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 .collect(Collectors.toSet());
     }
 
-    private <T> void appendErrors(StringBuilder errorMsg, Collection<T> invalidItems) {
-        Iterator<T> i = invalidItems.iterator();
-        errorMsg.append("[");
-        while (i.hasNext()) {
-            T item = i.next();
-            errorMsg.append(item.toString());
-            if (i.hasNext()) {
-                errorMsg.append(", ");
-            }
-        }
-        errorMsg.append("]");
-        errorMsg.append(";");
+    private <T> String joinMissing(Collection<T> invalidItems) {
+        return invalidItems.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(",", "[", "];"));
     }
 
     private static Product toProduct(ProductVersion pv) {
