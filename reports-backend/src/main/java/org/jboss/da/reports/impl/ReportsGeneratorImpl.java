@@ -294,6 +294,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             PomAnalysisException, CommunicationException {
         Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
                 scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
+        Set<ProductVersion> productVersions = getProductVersions(Collections.emptySet(), productIds);
+        Set<Product> products = productVersions.stream().map(ReportsGeneratorImpl::toProduct).collect(Collectors.toSet());
 
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         Set<AlignmentReportModule> ret = new TreeSet<>(Comparator.comparing(x -> x.getModule()));
@@ -319,11 +321,11 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 }
 
                 CompletableFuture<Set<ProductArtifact>> built = filterProducts(useUnknownProduct,
-                        productIds, productProvider.getArtifacts(gav));
+                        products, productProvider.getArtifacts(gav));
                 intr.put(gav, built);
 
                 CompletableFuture<Set<ProductArtifact>> different = built
-                        .thenCompose(b -> getBuiltDifferent(b, useUnknownProduct, productIds, gav));
+                        .thenCompose(b -> getBuiltDifferent(b, useUnknownProduct, products, gav));
                 diff.put(gav, different);
             }
 
@@ -343,10 +345,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private CompletableFuture<Set<ProductArtifact>> getBuiltDifferent(Set<ProductArtifact> built,
-            boolean useUnknownProduct, Set<Long> productIds, GAV gav) {
+            boolean useUnknownProduct, Set<Product> products, GAV gav) {
         if (built.isEmpty()) {
             CompletableFuture<Set<ProductArtifact>> different = filterProducts(useUnknownProduct,
-                    productIds, productProvider.getArtifacts(gav.getGA()));
+                    products, productProvider.getArtifacts(gav.getGA()));
 
             return different.thenApply(d -> {
                 setAllVersionDifferences(gav, d);
@@ -358,8 +360,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private CompletableFuture<Set<ProductArtifact>> filterProducts(boolean useUnknownProduct,
-            Set<Long> productIds, CompletableFuture<Set<ProductArtifacts>> artifacts) {
-        Set<Product> products = idsToProducts(productIds);
+            Set<Product> products, CompletableFuture<Set<ProductArtifacts>> artifacts) {
 
         Predicate<Product> pred = (x) -> true;
         if (products.isEmpty()) {
@@ -374,14 +375,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         CompletableFuture<Set<ProductArtifact>> thenApply = artifacts.thenApply(m -> mapProducts(m));
 
         return thenApply;
-    }
-
-    private Set<Product> idsToProducts(Set<Long> productIds) {
-        Set<Product> products = productIds.stream()
-                .map(id -> productVersionDao.read(id))
-                .map(ReportsGeneratorImpl::toProduct)
-                .collect(Collectors.toSet());
-        return products;
     }
 
     private Set<ProductArtifact> mapProducts(Set<ProductArtifacts> products) {
