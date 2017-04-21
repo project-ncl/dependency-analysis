@@ -114,26 +114,22 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         Set<ProductVersion> relevantProductVersions = getProductVersions(scml.getProductNames(),
                 scml.getProductVersionIds());
+        GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml.getScml());
 
-        return createScmReport(scml.getScml(), relevantProductVersions);
+        return createReport(dt, relevantProductVersions);
     }
 
-    private Optional<ArtifactReport> createGavReport(GAVRequest gav,
-            Set<ProductVersion> productVersions) throws CommunicationException,
+    @Override
+    public ArtifactReport getReport(GAVRequest gavRequest) throws CommunicationException,
             FindGAVDependencyException {
+        if (gavRequest == null)
+            throw new IllegalArgumentException("GAV can't be null");
 
-        GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gav.asGavObject());
+        Set<ProductVersion> relevantProductVersions = getProductVersions(
+                gavRequest.getProductNames(), gavRequest.getProductVersionIds());
+        GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gavRequest.asGavObject());
 
-        return createReport(dt, productVersions);
-    }
-
-    private Optional<ArtifactReport> createScmReport(SCMLocator scml,
-            Set<ProductVersion> productVersions) throws ScmException, PomAnalysisException,
-            CommunicationException {
-
-        GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml);
-
-        return createReport(dt, productVersions);
+        return createReport(dt, relevantProductVersions).get();
     }
 
     private Optional<ArtifactReport> createReport(GAVDependencyTree dt,
@@ -155,6 +151,21 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         }
 
         return Optional.of(report);
+    }
+
+    private void addDependencyReports(ArtifactReport ar, Set<GAVDependencyTree> dependencyTree,
+            Set<GAVDependencyTree> nodesVisited) throws CommunicationException {
+        for (GAVDependencyTree dt : dependencyTree) {
+
+            ArtifactReport dar = new ArtifactReport(dt.getGav());
+
+            // if dt hasn't been visited yet, add dependencies of dt in the report
+            if (!nodesVisited.contains(dt))
+                addDependencyReports(dar, dt.getDependencies(), nodesVisited);
+
+            ar.addDependency(dar);
+            nodesVisited.add(dt);
+        }
     }
 
     private void traverseAndFill(ArtifactReport report, Set<Product> products,
@@ -182,19 +193,21 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         });
     }
 
-    private void addDependencyReports(ArtifactReport ar, Set<GAVDependencyTree> dependencyTree,
-            Set<GAVDependencyTree> nodesVisited) throws CommunicationException {
-        for (GAVDependencyTree dt : dependencyTree) {
+    @Override
+    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMReportRequest request)
+            throws ScmException, PomAnalysisException, CommunicationException {
 
-            ArtifactReport dar = new ArtifactReport(dt.getGav());
+        SCMLocator scml = request.getScml();
+        Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductNames(), request.getProductVersionIds());
+        Set<Long> relevantProductVersionIds = getProductVersionIds(relevantProductVersions);
 
-            // if dt hasn't been visited yet, add dependencies of dt in the report
-            if (!nodesVisited.contains(dt))
-                addDependencyReports(dar, dt.getDependencies(), nodesVisited);
-
-            ar.addDependency(dar);
-            nodesVisited.add(dt);
-        }
+        GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml);
+        Optional<ArtifactReport> artifactReport = createReport(dt, relevantProductVersions);
+        // TODO: hardcoded to git
+        // hopefully we'll get the cached cloned folder for this repo
+        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(),
+                scml.getRevision());
+        return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder, relevantProductVersionIds));
     }
 
     private Set<Long> getProductVersionIds(Set<ProductVersion> relevantProductVersions) {
@@ -203,81 +216,76 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 .collect(Collectors.toSet());
     }
 
-    private Set<ProductVersion> getProductVersions(Set<String> productNames, Set<Long> productVersionIds) {
-        Set<ProductVersion> productVersions = new HashSet<>();
-        StringBuilder errorMsg = new StringBuilder();
-        
-        if(productNames != null && !productNames.isEmpty()){
-            List<org.jboss.da.listings.api.model.Product> productsByName = productDao.findAllWithNames(new ArrayList<>(productNames));
-            if(productsByName!= null && (productNames.size() == productsByName.size())){
-                for(String productName : productNames){
-                    List<ProductVersion> prodVers = productVersionService.getAllForProduct(productName); 
-                    productVersions.addAll(prodVers);
+    private AdvancedArtifactReport generateAdvancedArtifactReport(ArtifactReport report,
+            File repoFolder, Set<Long> validProductVersionIds) {
+        AdvancedArtifactReport advancedReport = new AdvancedArtifactReport();
+        advancedReport.setArtifactReport(report);
+        Set<GAV> modulesAnalyzed = new HashSet<>();
+
+        // hopefully we'll get the folder already cloned from before
+        populateAdvancedArtifactReportFields(advancedReport, report, modulesAnalyzed, repoFolder,
+                validProductVersionIds);
+        return advancedReport;
+    }
+
+    private void populateAdvancedArtifactReportFields(AdvancedArtifactReport advancedReport,
+            ArtifactReport report, Set<GAV> modulesAnalyzed, File repoFolder,
+            Set<Long> validProductVersionIds) {
+        for (ArtifactReport dep : report.getDependencies()) {
+            final GAV gav = dep.getGav();
+            if (modulesAnalyzed.contains(gav)) {
+                // if module already analyzed, skip
+                continue;
+            } else if (isDependencyAModule(repoFolder, dep)) {
+                // if dependency is a module, but not yet analyzed
+                modulesAnalyzed.add(gav);
+                populateAdvancedArtifactReportFields(advancedReport, dep, modulesAnalyzed,
+                        repoFolder, validProductVersionIds);
+            } else {
+                // only generate populate advanced report with community GAVs
+                if (VersionParser.isRedhatVersion(dep.getVersion()))
+                    continue;
+
+                // we have a top-level module dependency
+                if (!dep.getWhitelisted().isEmpty())
+                    advancedReport.addWhitelistedArtifact(gav, new HashSet<>(dep.getWhitelisted()));
+                if (dep.isBlacklisted())
+                    advancedReport.addBlacklistedArtifact(gav);
+
+                if (dep.getBestMatchVersion().isPresent()) {
+                    advancedReport.addCommunityGavWithBestMatchVersion(gav, dep
+                            .getBestMatchVersion().get());
+                } else {
+                    Set<String> versions = new TreeSet<>(new VersionComparator(gav.getVersion()));
+                    versions.addAll(getWhitelistedVersions(dep.getGroupId(), dep.getArtifactId(),
+                            validProductVersionIds));
+                    versions.addAll(dep.getAvailableVersions());
+                    if (!versions.isEmpty()) {
+                        advancedReport.addCommunityGavWithBuiltVersion(dep.getGav(), versions);
+                    } else {
+                        advancedReport.addCommunityGav(gav);
+                    }
                 }
-            } else {
-                // Error
-                Set<String> inexistingProductNames = new HashSet<>(productNames);
-                productsByName.stream().forEach(x -> inexistingProductNames.remove(x.getName()));
-                errorMsg.append("Product names do not exist: ");
-                appendErrors(errorMsg, inexistingProductNames); 
-            }
-
-        }
-        
-        if(productVersionIds != null && !productVersionIds.isEmpty()){
-            List<ProductVersion> prodVersionsById = productVersionDao.findAllWithIds(new ArrayList<>(productVersionIds));
-            if(prodVersionsById != null && (productVersionIds.size() == prodVersionsById.size())){
-                productVersions.addAll(prodVersionsById);
-            } else {
-                // Error
-                Set<Long> inexistingProductVersionIds = new HashSet<>(productVersionIds);
-                prodVersionsById.stream().forEach(x -> inexistingProductVersionIds.remove(x.getId()));
-                errorMsg.append("Product Versions do not exist: ");
-                appendErrors(errorMsg, inexistingProductVersionIds); 
             }
         }
-        
-        if((productNames == null || productNames.isEmpty())  
-           && 
-           (productVersionIds == null || productVersionIds.isEmpty())){
-            productVersions.addAll(productVersionService.getAll());
-        }
-        
-        if(errorMsg.length() > 0){
-            throw new IllegalArgumentException(errorMsg.toString());
-        }
-        
-        return productVersions;
     }
 
-    private <T> void appendErrors(StringBuilder errorMsg, Collection<T> invalidItems) {
-        Iterator<T> i = invalidItems.iterator();
-        errorMsg.append("[");
-        while (i.hasNext()) {
-            T item = i.next();
-            errorMsg.append(item.toString());
-            if (i.hasNext()) {
-                errorMsg.append(", ");
-            }
-        }
-        errorMsg.append("]");
-        errorMsg.append(";");
+    private boolean isDependencyAModule(File repoFolder, ArtifactReport dependency) {
+        return pomAnalyzer.getPOMFileForGAV(repoFolder, dependency.getGav()).isPresent();
     }
 
-    @Override
-    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMReportRequest request)
-            throws ScmException, PomAnalysisException, CommunicationException {
-        
-        SCMLocator scml = request.getScml();
-        Set<ProductVersion> relevantProductVersions = getProductVersions(request.getProductNames(), request.getProductVersionIds());
-        Set<Long> relevantProductVersionIds = getProductVersionIds(relevantProductVersions);
+    private Set<String> getWhitelistedVersions(String groupId, String artifactId, Set<Long> validProductVersionIds) {
+        List<ProductVersionArtifactRelationship> prodVerRels = productVersionService.getProductVersionsWithArtifactsByGA(groupId, artifactId);
+        // If values are present restrict results based on id
+        if(validProductVersionIds != null && !validProductVersionIds.isEmpty()){
+            prodVerRels = prodVerRels.stream()
+                        .filter(rel -> validProductVersionIds.contains(rel.getProductVersion().getId()))
+                        .collect(Collectors.toList());
+        }
 
-        Optional<ArtifactReport> artifactReport = createScmReport(request.getScml(), relevantProductVersions);
-        // TODO: hardcoded to git
-        // hopefully we'll get the cached cloned folder for this repo
-        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(),
-                scml.getRevision());
-        return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder, relevantProductVersionIds));
+        return prodVerRels.stream()
+                .map(rel -> rel.getArtifact().getVersion())
+                .collect(Collectors.toCollection(() -> new HashSet<>()));
     }
 
     @Override
@@ -347,6 +355,40 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         } else {
             return CompletableFuture.completedFuture(Collections.emptySet());
         }
+    }
+
+    private CompletableFuture<Set<ProductArtifact>> filterProducts(boolean useUnknownProduct,
+            Set<Long> productIds, CompletableFuture<Set<ProductArtifacts>> artifacts) {
+        Set<Product> products = idsToProducts(productIds);
+
+        Predicate<Product> pred = (x) -> true;
+        if (products.isEmpty()) {
+            pred = pred.and(p -> p.getStatus() == SUPPORTED || p.getStatus() == SUPERSEDED);
+            if(useUnknownProduct){
+                pred = pred.or(p -> UNKNOWN.equals(p));
+            }
+        }
+
+        artifacts = filterProductArtifacts(products, artifacts, pred);
+
+        CompletableFuture<Set<ProductArtifact>> thenApply = artifacts.thenApply(m -> mapProducts(m));
+
+        return thenApply;
+    }
+
+    private Set<Product> idsToProducts(Set<Long> productIds) {
+        Set<Product> products = productIds.stream()
+                .map(id -> productVersionDao.read(id))
+                .map(ReportsGeneratorImpl::toProduct)
+                .collect(Collectors.toSet());
+        return products;
+    }
+
+    private Set<ProductArtifact> mapProducts(Set<ProductArtifacts> products) {
+        return products.stream()
+                .flatMap(e -> e.getArtifacts().stream()
+                        .map(x -> toProductArtifact(e.getProduct(), x)))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(ProductArtifact::getArtifact))));
     }
 
     /**
@@ -427,137 +469,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return report;
     }
 
-    private CompletableFuture<Set<ProductArtifact>> filterProducts(boolean useUnknownProduct,
-            Set<Long> productIds, CompletableFuture<Set<ProductArtifacts>> artifacts) {
-        Set<Product> products = idsToProducts(productIds);
-
-        Predicate<Product> pred = (x) -> true;
-        if (products.isEmpty()) {
-            pred = pred.and(p -> p.getStatus() == SUPPORTED || p.getStatus() == SUPERSEDED);
-            if(useUnknownProduct){
-                pred = pred.or(p -> UNKNOWN.equals(p));
-            }
-        }
-
-        artifacts = filterProductArtifacts(products, artifacts, pred);
-
-        CompletableFuture<Set<ProductArtifact>> thenApply = artifacts.thenApply(m -> mapProducts(m));
-
-        return thenApply;
-    }
-
-    private Set<ProductArtifact> mapProducts(Set<ProductArtifacts> products) {
-        return products.stream()
-                .flatMap(e -> e.getArtifacts().stream()
-                        .map(x -> toProductArtifact(e.getProduct(), x)))
-                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(ProductArtifact::getArtifact))));
-    }
-
-    private Set<Product> idsToProducts(Set<Long> productIds) {
-        Set<Product> products = productIds.stream()
-                .map(id -> productVersionDao.read(id))
-                .map(ReportsGeneratorImpl::toProduct)
-                .collect(Collectors.toSet());
-        return products;
-    }
-
-    @Override
-    public ArtifactReport getReport(GAVRequest gavRequest) throws CommunicationException,
-            FindGAVDependencyException {
-        if (gavRequest == null)
-            throw new IllegalArgumentException("GAV can't be null");
-
-        Set<ProductVersion> relevantProductVersions = getProductVersions(
-                gavRequest.getProductNames(), gavRequest.getProductVersionIds());
-
-        Optional<ArtifactReport> artReport = createGavReport(gavRequest, relevantProductVersions);
-
-        return artReport.get();
-    }
-
-    private AdvancedArtifactReport generateAdvancedArtifactReport(ArtifactReport report,
-            File repoFolder, Set<Long> validProductVersionIds) {
-        AdvancedArtifactReport advancedReport = new AdvancedArtifactReport();
-        advancedReport.setArtifactReport(report);
-        Set<GAV> modulesAnalyzed = new HashSet<>();
-
-        // hopefully we'll get the folder already cloned from before
-        populateAdvancedArtifactReportFields(advancedReport, report, modulesAnalyzed, repoFolder,
-                validProductVersionIds);
-        return advancedReport;
-    }
-
-    private void populateAdvancedArtifactReportFields(AdvancedArtifactReport advancedReport,
-            ArtifactReport report, Set<GAV> modulesAnalyzed, File repoFolder,
-            Set<Long> validProductVersionIds) {
-        for (ArtifactReport dep : report.getDependencies()) {
-            final GAV gav = dep.getGav();
-            if (modulesAnalyzed.contains(gav)) {
-                // if module already analyzed, skip
-                continue;
-            } else if (isDependencyAModule(repoFolder, dep)) {
-                // if dependency is a module, but not yet analyzed
-                modulesAnalyzed.add(gav);
-                populateAdvancedArtifactReportFields(advancedReport, dep, modulesAnalyzed,
-                        repoFolder, validProductVersionIds);
-            } else {
-                // only generate populate advanced report with community GAVs
-                if (VersionParser.isRedhatVersion(dep.getVersion()))
-                    continue;
-
-                // we have a top-level module dependency
-                if (!dep.getWhitelisted().isEmpty())
-                    advancedReport.addWhitelistedArtifact(gav, new HashSet<>(dep.getWhitelisted()));
-                if (dep.isBlacklisted())
-                    advancedReport.addBlacklistedArtifact(gav);
-
-                if (dep.getBestMatchVersion().isPresent()) {
-                    advancedReport.addCommunityGavWithBestMatchVersion(gav, dep
-                            .getBestMatchVersion().get());
-                } else {
-                    Set<String> versions = new TreeSet<>(new VersionComparator(gav.getVersion()));
-                    versions.addAll(getWhitelistedVersions(dep.getGroupId(), dep.getArtifactId(),
-                            validProductVersionIds));
-                    versions.addAll(dep.getAvailableVersions());
-                    if (!versions.isEmpty()) {
-                        advancedReport.addCommunityGavWithBuiltVersion(dep.getGav(), versions);
-                    } else {
-                        advancedReport.addCommunityGav(gav);
-                    }
-                }
-            }
-        }
-    }
-
-    private Set<String> getWhitelistedVersions(String groupId, String artifactId, Set<Long> validProductVersionIds) {
-        
-        List<ProductVersionArtifactRelationship> prodVerRels = productVersionService.getProductVersionsWithArtifactsByGA(groupId, artifactId);
-        
-        // If values are present restrict results based on id
-        if(validProductVersionIds != null && !validProductVersionIds.isEmpty()){
-            prodVerRels = prodVerRels.stream()
-                        .filter(rel -> validProductVersionIds.contains(rel.getProductVersion().getId()))
-                        .collect(Collectors.toList());
-        }
-        
-        return prodVerRels.stream()
-                .map(rel -> rel.getArtifact().getVersion())
-                .collect(Collectors.toCollection(() -> new HashSet<>()));
-    }
-
-    private boolean isDependencyAModule(File repoFolder, ArtifactReport dependency) {
-        return pomAnalyzer.getPOMFileForGAV(repoFolder, dependency.getGav()).isPresent();
-    }
-
-    private ProductArtifact toProductArtifact(Product p, Artifact a) {
-        ProductArtifact ret = new ProductArtifact();
-        ret.setArtifact(a.getGav());
-        ret.setProductName(p.getName());
-        ret.setProductVersion(p.getVersion());
-        ret.setSupportStatus(p.getStatus());
-        return ret;
-    }
-
     @Override
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
             throws CommunicationException{
@@ -579,10 +490,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 .collect(Collectors.toList());
     }
 
-    private static Product toProduct(ProductVersion pv) {
-        return new Product(pv.getProduct().getName(), pv.getProductVersion());
-    }
-
     private LookupReport toLookupReport(Set<ProductArtifacts> pas, GAV gav) {
         List<String> versions = getVersions(pas, gav);
         Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav, versions);
@@ -592,7 +499,81 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return lookupReport;
     }
 
-    private List<String> getVersions(Set<ProductArtifacts> pas, GAV gav) {
+    private Set<ProductVersion> getProductVersions(Set<String> productNames, Set<Long> productVersionIds) {
+        Set<ProductVersion> productVersions = new HashSet<>();
+        StringBuilder errorMsg = new StringBuilder();
+
+        if(productNames != null && !productNames.isEmpty()){
+            List<org.jboss.da.listings.api.model.Product> productsByName = productDao.findAllWithNames(new ArrayList<>(productNames));
+            if(productsByName!= null && (productNames.size() == productsByName.size())){
+                for(String productName : productNames){
+                    List<ProductVersion> prodVers = productVersionService.getAllForProduct(productName);
+                    productVersions.addAll(prodVers);
+                }
+            } else {
+                // Error
+                Set<String> inexistingProductNames = new HashSet<>(productNames);
+                productsByName.stream().forEach(x -> inexistingProductNames.remove(x.getName()));
+                errorMsg.append("Product names do not exist: ");
+                appendErrors(errorMsg, inexistingProductNames);
+            }
+
+        }
+
+        if(productVersionIds != null && !productVersionIds.isEmpty()){
+            List<ProductVersion> prodVersionsById = productVersionDao.findAllWithIds(new ArrayList<>(productVersionIds));
+            if(prodVersionsById != null && (productVersionIds.size() == prodVersionsById.size())){
+                productVersions.addAll(prodVersionsById);
+            } else {
+                // Error
+                Set<Long> inexistingProductVersionIds = new HashSet<>(productVersionIds);
+                prodVersionsById.stream().forEach(x -> inexistingProductVersionIds.remove(x.getId()));
+                errorMsg.append("Product Versions do not exist: ");
+                appendErrors(errorMsg, inexistingProductVersionIds);
+            }
+        }
+
+        if((productNames == null || productNames.isEmpty())
+           &&
+           (productVersionIds == null || productVersionIds.isEmpty())){
+            productVersions.addAll(productVersionService.getAll());
+        }
+
+        if(errorMsg.length() > 0){
+            throw new IllegalArgumentException(errorMsg.toString());
+        }
+
+        return productVersions;
+    }
+
+    private <T> void appendErrors(StringBuilder errorMsg, Collection<T> invalidItems) {
+        Iterator<T> i = invalidItems.iterator();
+        errorMsg.append("[");
+        while (i.hasNext()) {
+            T item = i.next();
+            errorMsg.append(item.toString());
+            if (i.hasNext()) {
+                errorMsg.append(", ");
+            }
+        }
+        errorMsg.append("]");
+        errorMsg.append(";");
+    }
+
+    private static Product toProduct(ProductVersion pv) {
+        return new Product(pv.getProduct().getName(), pv.getProductVersion());
+    }
+
+    private static ProductArtifact toProductArtifact(Product p, Artifact a) {
+        ProductArtifact ret = new ProductArtifact();
+        ret.setArtifact(a.getGav());
+        ret.setProductName(p.getName());
+        ret.setProductVersion(p.getVersion());
+        ret.setSupportStatus(p.getStatus());
+        return ret;
+    }
+
+    private static List<String> getVersions(Set<ProductArtifacts> pas, GAV gav) {
         List<String> versions = pas.stream()
                 .flatMap(as -> as.getArtifacts().stream())
                 .map(a -> a.getGav().getVersion())
