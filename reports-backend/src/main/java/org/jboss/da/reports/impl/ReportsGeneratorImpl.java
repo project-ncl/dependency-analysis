@@ -186,10 +186,13 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
         return artifacts.thenAccept(pas -> {
             final List<String> versions = getVersions(pas, gav);
-            List<Product> ps = pas.stream().map(pa -> pa.getProduct()).collect(Collectors.toList());
             report.setAvailableVersions(versions);
             report.setBestMatchVersion(versionFinder.getBestMatchVersionFor(gav, versions));
-            report.setWhitelisted(ps);
+            List<Product> whiteProducts = pas.stream()
+                    .map(pa -> pa.getProduct())
+                    .filter(p -> !UNKNOWN.equals(p))
+                    .collect(Collectors.toList());
+            report.setWhitelisted(whiteProducts);
         });
     }
 
