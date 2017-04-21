@@ -259,11 +259,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                     advancedReport.addCommunityGavWithBestMatchVersion(gav, dep
                             .getBestMatchVersion().get());
                 } else {
-                    Set<String> versions = new TreeSet<>(new VersionComparator(gav.getVersion()));
-                    versions.addAll(getWhitelistedVersions(dep.getGroupId(), dep.getArtifactId(),
-                            validProductVersionIds));
-                    versions.addAll(dep.getAvailableVersions());
-                    if (!versions.isEmpty()) {
+                    if (!dep.getAvailableVersions().isEmpty()) {
+                        Set<String> versions = new TreeSet<>(
+                                new VersionComparator(gav.getVersion()));
+                        versions.addAll(dep.getAvailableVersions());
                         advancedReport.addCommunityGavWithBuiltVersion(dep.getGav(), versions);
                     } else {
                         advancedReport.addCommunityGav(gav);
@@ -275,20 +274,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private boolean isDependencyAModule(File repoFolder, ArtifactReport dependency) {
         return pomAnalyzer.getPOMFileForGAV(repoFolder, dependency.getGav()).isPresent();
-    }
-
-    private Set<String> getWhitelistedVersions(String groupId, String artifactId, Set<Long> validProductVersionIds) {
-        List<ProductVersionArtifactRelationship> prodVerRels = productVersionService.getProductVersionsWithArtifactsByGA(groupId, artifactId);
-        // If values are present restrict results based on id
-        if(validProductVersionIds != null && !validProductVersionIds.isEmpty()){
-            prodVerRels = prodVerRels.stream()
-                        .filter(rel -> validProductVersionIds.contains(rel.getProductVersion().getId()))
-                        .collect(Collectors.toList());
-        }
-
-        return prodVerRels.stream()
-                .map(rel -> rel.getArtifact().getVersion())
-                .collect(Collectors.toCollection(() -> new HashSet<>()));
     }
 
     @Override
