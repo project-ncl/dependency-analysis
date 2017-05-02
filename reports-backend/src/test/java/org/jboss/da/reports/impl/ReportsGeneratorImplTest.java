@@ -127,10 +127,11 @@ public class ReportsGeneratorImplTest {
     private void prepare(List<Product> whitelisted, boolean blacklisted, List<String> versions,
             String best, GAVDependencyTree dependencyTree) throws CommunicationException,
             FindGAVDependencyException {
-        when(versionFinderImpl.lookupBuiltVersions(daCoreGAV)).thenReturn(
-                new VersionLookupResult(Optional.ofNullable(best), versions));
         when(versionFinderImpl.getBestMatchVersionFor(eq(daCoreGAV), any(List.class))).thenReturn(
                 Optional.ofNullable(best));
+        when(versionFinderImpl.getVersionsFor(eq(daCoreGAV), any())).thenReturn(
+                CompletableFuture.completedFuture(new VersionLookupResult(
+                        Optional.ofNullable(best), versions)));
 
         prepareProductProvider(versions, whitelisted, daCoreGAV);
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
@@ -141,19 +142,20 @@ public class ReportsGeneratorImplTest {
         prepare(Collections.emptyList(), false, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
         when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
-        when(versionFinderImpl.lookupBuiltVersions(daUtilGAV)).thenReturn(
-                new VersionLookupResult(Optional.ofNullable(bestMatchVersion), daCoreVersionsBest));
         when(versionFinderImpl.getBestMatchVersionFor(eq(daUtilGAV), any(List.class))).thenReturn(
                 Optional.ofNullable(bestMatchVersion));
+        when(versionFinderImpl.getVersionsFor(eq(daUtilGAV), any())).thenReturn(
+                CompletableFuture.completedFuture(new VersionLookupResult(Optional
+                        .ofNullable(bestMatchVersion), daCoreVersionsBest)));
         prepareProductProvider(daCoreVersionsBest, Collections.emptyList(), daUtilGAV);
 
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
 
-        when(versionFinderImpl.lookupBuiltVersions(daCommonGAV)).thenReturn(
-                new VersionLookupResult(Optional.empty(), daCoreVersionsNoBest));
-
         when(versionFinderImpl.getBestMatchVersionFor(eq(daCommonGAV), any(List.class)))
                 .thenReturn(Optional.empty());
+        when(versionFinderImpl.getVersionsFor(eq(daCommonGAV), any())).thenReturn(
+                CompletableFuture.completedFuture(new VersionLookupResult(Optional.empty(),
+                        daCoreVersionsNoBest)));
         prepareProductProvider(daCoreVersionsNoBest, Collections.emptyList(), daCommonGAV);
         when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
     }

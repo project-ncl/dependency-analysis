@@ -2,10 +2,13 @@ package org.jboss.da.reports.backend.api;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.products.backend.api.ProductArtifacts;
 import org.jboss.da.reports.api.VersionLookupResult;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 /**
  *
@@ -33,5 +36,8 @@ public interface VersionFinder {
      * @return Found biggest version of built artifact with given GAV or empty Optional if this artifact was not built yet
      */
     Optional<String> getBestMatchVersionFor(GAV gav, List<String> availableVersions);
+
+    CompletableFuture<VersionLookupResult> getVersionsFor(GAV gav,
+            CompletableFuture<Set<ProductArtifacts>> availableArtifacts);
 
 }
