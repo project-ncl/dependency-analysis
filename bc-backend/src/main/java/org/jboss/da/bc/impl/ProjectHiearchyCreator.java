@@ -26,7 +26,8 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.scm.api.SCMConnector;
 
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.reports.api.VersionLookupResult;
+import org.jboss.da.products.backend.api.ProductArtifacts;
+import org.jboss.da.products.backend.impl.AggregatedProductProvider;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 import org.jboss.da.reports.backend.api.VersionFinder;
@@ -34,6 +35,9 @@ import org.slf4j.Logger;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+
+import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 
 /**
  *
@@ -67,12 +71,19 @@ public class ProjectHiearchyCreator {
 
     private Optional<ProjectDetail.SCM> externalSCM;
 
+    private List<CompletableFuture<?>> futures;
+
+    @Inject
+    private AggregatedProductProvider productProvider;
+
     public void iterateNextLevel(ProjectHiearchy toplevel) {
         this.toplevel = toplevel;
         this.internalSCM = toplevel.getProject().getInternalSCM();
         this.externalSCM = toplevel.getProject().getExternalSCM();
+        this.futures = new ArrayList<>();
 
         iterate(toplevel);
+        this.futures.stream().forEach(f -> f.join());
     }
 
     public Set<ProjectHiearchy> processDependencies(ProjectHiearchy toplevel,
@@ -80,8 +91,11 @@ public class ProjectHiearchyCreator {
         this.toplevel = toplevel;
         this.internalSCM = toplevel.getProject().getInternalSCM();
         this.externalSCM = toplevel.getProject().getExternalSCM();
+        this.futures = new ArrayList<>();
 
-        return toProjectHiearchies(dependencies);
+        Set<ProjectHiearchy> ret = toProjectHiearchies(dependencies);
+        this.futures.stream().forEach(f -> f.join());
+        return ret;
     }
 
     /**
@@ -154,7 +168,7 @@ public class ProjectHiearchyCreator {
     }
 
     private Set<ProjectHiearchy> toProjectHiearchies(Collection<GAV> gavs) {
-        return gavs.parallelStream().map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet());
+        return gavs.stream().map(dep -> toProjectHiearchy(dep)).collect(Collectors.toSet());
     }
 
     /**
@@ -261,17 +275,12 @@ public class ProjectHiearchyCreator {
      * Looks up built versions for the ProjectDetail. Sets internallyBuilt, availableVersions.
      */
     private void getBuiltVersions(ProjectDetail project) {
-        try {
-            VersionLookupResult versionLookup = versionFinder.lookupBuiltVersions(project.getGav());
-            List<String> versionsBuilt = versionLookup.getAvailableVersions();
-            Optional<String> bestMatchVersionFor = versionLookup.getBestMatchVersion();
+        CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(project.getGav().getGA());
 
-            project.setAvailableVersions(versionsBuilt);
-            project.setInternallyBuilt(bestMatchVersionFor);
-        } catch (CommunicationException ex) {
-            log.warn("Could not obtain built versions for " + project.getGav(), ex);
-            project.setInternallyBuilt(Optional.empty());
-        }
+        futures.add(versionFinder.getVersionsFor(project.getGav(), artifacts).thenAccept(lr -> {
+            project.setAvailableVersions(lr.getAvailableVersions());
+            project.setInternallyBuilt(lr.getBestMatchVersion());
+        }));
     }
 
     /**
