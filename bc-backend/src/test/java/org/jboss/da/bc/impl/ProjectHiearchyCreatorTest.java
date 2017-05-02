@@ -15,16 +15,24 @@ import org.jboss.da.bc.model.backend.ProjectDetail;
 import org.jboss.da.bc.model.backend.ProjectHiearchy;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.products.backend.api.Product;
+import org.jboss.da.products.backend.impl.AggregatedProductProvider;
 import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.concurrent.CompletableFuture;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProjectHiearchyCreatorTest {
@@ -33,6 +41,9 @@ public class ProjectHiearchyCreatorTest {
 
     @Mock
     private VersionFinder versionFinder;
+
+    @Mock
+    private AggregatedProductProvider productProvider;
 
     @Mock
     private POMInfoGenerator pomInfoGenerator;
@@ -79,9 +90,15 @@ public class ProjectHiearchyCreatorTest {
 
         for (GAV gav : mapExpectedDepsToGavs.keySet()) {
 
+            // Mock ProductProvider: provide available versions for GAVs
+            when(productProvider.getVersions(eq(gav.getGA()))).thenReturn(
+                    CompletableFuture.completedFuture(Collections.singletonMap(Product.UNKNOWN,
+                            new HashSet<>(mapExpectedDepsToGavs.get(gav)))));
+
             // Mock VersionFinder: provide available versions for GAVs
-            when(versionFinder.lookupBuiltVersions(gav)).thenReturn(
-                    new VersionLookupResult(Optional.empty(), mapExpectedDepsToGavs.get(gav)));
+            when(versionFinder.getVersionsFor(eq(gav), any())).thenReturn(
+                    CompletableFuture.completedFuture(new VersionLookupResult(Optional.empty(),
+                            mapExpectedDepsToGavs.get(gav))));
 
             // Mock POMInfoGenerator: return empties as these are not critical
             when(pomInfoGenerator.getPomInfo(gav)).thenReturn(Optional.empty());
