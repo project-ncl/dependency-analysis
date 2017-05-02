@@ -14,7 +14,6 @@ import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.listings.api.dao.ProductDAO;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.model.rest.RestProductInput;
@@ -53,7 +52,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -181,16 +179,22 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         artifacts = filterProductArtifacts(products, artifacts);
         
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
-        return artifacts.thenAccept(pas -> {
-            final List<String> versions = getVersions(pas, gav);
-            report.setAvailableVersions(versions);
-            report.setBestMatchVersion(versionFinder.getBestMatchVersionFor(gav, versions));
+
+        CompletableFuture<Void> fillVersions = versionFinder.getVersionsFor(gav, artifacts)
+                .thenAccept(v -> {
+                    report.setAvailableVersions(v.getAvailableVersions());
+                    report.setBestMatchVersion(v.getBestMatchVersion());
+                });
+
+        CompletableFuture<Void> fillWhitelist = artifacts.thenAccept(pas -> {
             List<Product> whiteProducts = pas.stream()
                     .map(pa -> pa.getProduct())
                     .filter(p -> !UNKNOWN.equals(p))
                     .collect(Collectors.toList());
             report.setWhitelisted(whiteProducts);
         });
+
+        return CompletableFuture.allOf(fillVersions, fillWhitelist);
     }
 
     @Override
@@ -295,12 +299,17 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                     continue;
                 }
 
-                CompletableFuture<Set<ProductArtifact>> built = filterProducts(useUnknownProduct,
-                        products, productProvider.getArtifacts(gav));
+                CompletableFuture<Set<ProductArtifacts>> artifacts = filterProducts(
+                        useUnknownProduct, products, productProvider.getArtifacts(gav.getGA()));
+                CompletableFuture<VersionLookupResult> versions = versionFinder.getVersionsFor(gav,
+                        artifacts);
+
+                CompletableFuture<Set<ProductArtifact>> built = artifacts
+                        .thenCombine(versions, (a, v) -> mapProducts(getBuilt(a,v), gav));
                 intr.put(gav, built);
 
-                CompletableFuture<Set<ProductArtifact>> different = built
-                        .thenCompose(b -> getBuiltDifferent(b, useUnknownProduct, products, gav));
+                CompletableFuture<Set<ProductArtifact>> different = artifacts
+                        .thenCombine(versions, (a, v) -> mapProducts(getBuiltDifferent(a,v), gav));
                 diff.put(gav, different);
             }
 
@@ -319,22 +328,23 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return ret;
     }
 
-    private CompletableFuture<Set<ProductArtifact>> getBuiltDifferent(Set<ProductArtifact> built,
-            boolean useUnknownProduct, Set<Product> products, GAV gav) {
-        if (built.isEmpty()) {
-            CompletableFuture<Set<ProductArtifact>> different = filterProducts(useUnknownProduct,
-                    products, productProvider.getArtifacts(gav.getGA()));
-
-            return different.thenApply(d -> {
-                setAllVersionDifferences(gav, d);
-                return d;
-            });
+    private static Set<ProductArtifacts> getBuiltDifferent(Set<ProductArtifacts> a,
+            VersionLookupResult v) {
+        Optional<String> bmv = v.getBestMatchVersion();
+        if (bmv.isPresent()) {
+            return Collections.emptySet();
         } else {
-            return CompletableFuture.completedFuture(Collections.emptySet());
+            return a;
         }
     }
 
-    private CompletableFuture<Set<ProductArtifact>> filterProducts(boolean useUnknownProduct,
+    private static Set<ProductArtifacts> getBuilt(Set<ProductArtifacts> a, VersionLookupResult v) {
+        return v.getBestMatchVersion().map(b -> AggregatedProductProvider
+                .filterArtifacts(a, x -> b.equals(x.getGav().getVersion())))
+                .orElse(Collections.emptySet());
+    }
+
+    private CompletableFuture<Set<ProductArtifacts>> filterProducts(boolean useUnknownProduct,
             Set<Product> products, CompletableFuture<Set<ProductArtifacts>> artifacts) {
 
         Predicate<Product> pred = (x) -> true;
@@ -347,15 +357,13 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         artifacts = filterProductArtifacts(products, artifacts, pred);
 
-        CompletableFuture<Set<ProductArtifact>> thenApply = artifacts.thenApply(m -> mapProducts(m));
-
-        return thenApply;
+        return artifacts;
     }
 
-    private Set<ProductArtifact> mapProducts(Set<ProductArtifacts> products) {
+    private static Set<ProductArtifact> mapProducts(Set<ProductArtifacts> products, GAV gav) {
         return products.stream()
                 .flatMap(e -> e.getArtifacts().stream()
-                        .map(x -> toProductArtifact(e.getProduct(), x)))
+                        .map(x -> toProductArtifact(e.getProduct(), x, gav.getVersion())))
                 .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(ProductArtifact::getArtifact))));
     }
 
@@ -393,19 +401,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return diffDone;
     }
 
-    /**
-     * This method sets all different versions from GAV to product
-     * @param gav Compared GAV
-     * @param different Set of different artifacts
-     */
-    private void setAllVersionDifferences(GAV gav, Set<ProductArtifact> different) {
-        for (ProductArtifact productArtifact : different) {
-            String type = VersionComparator.difference(gav.getVersion(),
-                    productArtifact.getArtifact().getVersion()).toString();
-            productArtifact.setDifferenceType(type);
-        }
-    }
-
     @Override
     public Set<BuiltReportModule> getBuiltReport(SCMLocator scml) throws ScmException,
             PomAnalysisException, CommunicationException {
@@ -415,8 +410,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
             for (GAV gav : e.getValue()) {
                 CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
-                artifacts = filterBuiltArtifacts(artifacts);
-                builtSet.add(artifacts.thenApply(pas -> toBuiltReportModule(gav, pas)));
+                builtSet.add(versionFinder.getVersionsFor(gav, artifacts)
+                        .thenApply(v -> toBuiltReportModule(gav, v)));
             }
         }
         try {
@@ -428,12 +423,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         }
     }
 
-    private BuiltReportModule toBuiltReportModule(GAV gav, Set<ProductArtifacts> pas) {
+    private BuiltReportModule toBuiltReportModule(GAV gav, VersionLookupResult vlr) {
         BuiltReportModule report = new BuiltReportModule(gav);
-        List<String> versions = getVersions(pas, gav);
-        versionFinder.getBestMatchVersionFor(gav, versions)
-                .ifPresent(bmv -> report.setBuiltVersion(bmv));
-        report.setAvailableVersions(versions);
+        report.setAvailableVersions(vlr.getAvailableVersions());
+        vlr.getBestMatchVersion().ifPresent(bmv -> report.setBuiltVersion(bmv));
         return report;
     }
 
@@ -443,26 +436,34 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         Set<Product> products = getProducts(request.getProductNames(),
                 request.getProductVersionIds());
 
-        List<CompletableFuture<LookupReport>> reports = new ArrayList<>();
-        for(GAV gav : request.getGavs()){
+        List<CompletableFuture<?>> futures = new ArrayList<>();
+        List<LookupReport> reports = new ArrayList<>();
+        request.getGavs().stream()
+                .distinct()
+                .forEach((gav) -> {
+            LookupReport lr = new LookupReport(gav);
+            reports.add(lr);
+
             CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
             artifacts = filterProductArtifacts(products, artifacts);
-            
-            reports.add(artifacts.thenApply(pas -> toLookupReport(pas, gav)));
+
+            futures.add(versionFinder.getVersionsFor(gav, artifacts).thenAccept(v -> {
+                lr.setAvailableVersions(v.getAvailableVersions());
+                lr.setBestMatchVersion(v.getBestMatchVersion().orElse(null));
+            }));
+
+            futures.add(artifacts.thenAccept(pas -> {
+                lr.setWhitelisted(toWhitelisted(pas));
+            }));
+        });
+
+        try{
+            futures.stream().forEach(r -> r.join());
+        }catch(CompletionException ex){
+            throw new CommunicationException(ex);
         }
-
-        return reports.stream()
-                .map(r -> r.join())
-                .collect(Collectors.toList());
-    }
-
-    private LookupReport toLookupReport(Set<ProductArtifacts> pas, GAV gav) {
-        List<String> versions = getVersions(pas, gav);
-        Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav, versions);
-        LookupReport lookupReport = new LookupReport(gav, bmv.orElse(null), versions,
-                blackArtifactService.isArtifactPresent(gav), toWhitelisted(pas));
-
-        return lookupReport;
+        return reports;
+        
     }
 
     private Set<Product> getProducts(Set<String> productNames, Set<Long> productVersionIds) {
@@ -517,12 +518,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return new Product(pv.getProduct().getName(), pv.getProductVersion());
     }
 
-    private static ProductArtifact toProductArtifact(Product p, Artifact a) {
+    private static ProductArtifact toProductArtifact(Product p, Artifact a, String origVersion) {
         ProductArtifact ret = new ProductArtifact();
         ret.setArtifact(a.getGav());
         ret.setProductName(p.getName());
         ret.setProductVersion(p.getVersion());
         ret.setSupportStatus(p.getStatus());
+        ret.setDifferenceType(VersionComparator.difference(origVersion, a.getGav().getVersion())
+                .toString());
         return ret;
     }
 

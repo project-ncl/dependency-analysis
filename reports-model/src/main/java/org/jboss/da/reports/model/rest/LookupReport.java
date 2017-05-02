@@ -45,6 +45,10 @@ public class LookupReport {
     @Setter
     private List<RestProductInput> whitelisted;
 
+    public LookupReport(GAV gav) {
+        this.gav = gav;
+    }
+
     // **************************************************************************
     // Keep `getGroupId`, `getArtifactId`, and `getVersion` here for Swagger,
     // and so that Jackson knows how to marshall 'gav' properly!
