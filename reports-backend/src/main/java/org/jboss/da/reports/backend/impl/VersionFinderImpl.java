@@ -1,8 +1,6 @@
 package org.jboss.da.reports.backend.impl;
 
 import org.jboss.da.common.version.VersionParser;
-import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.VersionComparator;
 import org.jboss.da.reports.api.VersionLookupResult;
@@ -12,8 +10,6 @@ import org.slf4j.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -22,7 +18,6 @@ import java.util.stream.Collectors;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.products.backend.api.ProductArtifacts;
 
-import java.util.Collection;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
@@ -40,50 +35,16 @@ public class VersionFinderImpl implements VersionFinder {
     Logger log;
 
     @Inject
-    private AproxConnector aproxConnector;
-
-    @Inject
     private VersionParser osgiParser;
 
     @Inject
     private BlackArtifactService blackArtifactService;
 
     @Override
-    public VersionLookupResult lookupBuiltVersions(GAV gav) throws CommunicationException {
-        if (!gav.getGA().isValid()) {
-            log.warn("Received nonvalid GAV: " + gav);
-            return new VersionLookupResult(Optional.empty(), Collections.emptyList());
-        }
-
-        List<String> allVersions = aproxConnector.getVersionsOfGA(gav.getGA());
-
-        for (Iterator<String> iterator = allVersions.iterator(); iterator.hasNext();) {
-            String version = iterator.next();
-            if (blackArtifactService.isArtifactPresent(gav.getGroupId(), gav.getArtifactId(),
-                    version)) {
-                iterator.remove();
-            }
-        }
-
-        return new VersionLookupResult(getBestMatchVersionFor(gav, allVersions),
-                getBuiltVersionsFor0(gav, allVersions));
-    }
-
-    @Override
     public Optional<String> getBestMatchVersionFor(GAV gav, List<String> availableVersions) {
         List<String> versions = filterVersions(availableVersions.stream(), gav).collect(
                 Collectors.toList());
         return findBiggestMatchingVersion(gav, versions);
-    }
-
-    private List<String> getBuiltVersionsFor0(GAV gav, Collection<String> allVersions) {
-        List<String> redhatVersions = allVersions.stream()
-                .filter(VersionParser::isRedhatVersion)
-                .sorted(new VersionComparator(gav.getVersion()))
-                .distinct()
-                .collect(Collectors.toList());
-
-        return redhatVersions;
     }
 
     @Override
@@ -106,7 +67,7 @@ public class VersionFinderImpl implements VersionFinder {
         Stream<String> versions = pas.stream()
                 .flatMap(as -> as.getArtifacts().stream())
                 .map(a -> a.getGav().getVersion());
-
+        
         return filterVersions(versions, gav)
                 .sorted(new VersionComparator(gav.getVersion()))
                 .collect(Collectors.toList());

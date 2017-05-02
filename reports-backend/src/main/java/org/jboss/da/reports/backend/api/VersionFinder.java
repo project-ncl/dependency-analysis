@@ -1,6 +1,5 @@
 package org.jboss.da.reports.backend.api;
 
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.products.backend.api.ProductArtifacts;
 import org.jboss.da.reports.api.VersionLookupResult;
@@ -16,16 +15,6 @@ import java.util.concurrent.CompletableFuture;
  * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  */
 public interface VersionFinder {
-
-    /**
-     * Finds all Red Hat built artifacts (with suffix -redhat) with the same GA and also 
-     * the best match built artifact to the requested GA
-     * 
-     * @param gav GroupId and ArtifactId, which specifies the artifact
-     * @return Found data about built artifacts
-     * @throws CommunicationException when there is a problem with communication with remote services
-     */
-    VersionLookupResult lookupBuiltVersions(GAV gav) throws CommunicationException;
 
     /**
      * Tries to find the Red Hat built version of specified artifacts in the provided list of available built versions of artifact.

@@ -8,7 +8,6 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.reports.api.VersionLookupResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,6 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
 import org.jboss.da.listings.api.service.BlackArtifactService;
 
 /**
@@ -108,24 +108,6 @@ public class VersionFinderTest {
 
     private void prepare(List<String> versions) throws CommunicationException {
         when(aproxConnector.getVersionsOfGA(REQUESTED_GA)).thenReturn(versions);
-    }
-
-    @Test
-    public void lookupBuiltVersionsNonExistingGAVTest() throws CommunicationException {
-        prepare(Collections.EMPTY_LIST);
-        VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(SOME_GAV);
-        assertTrue(lookupResult.getAvailableVersions().isEmpty());
-        assertFalse(lookupResult.getBestMatchVersion().isPresent());
-    }
-
-    @Test
-    public void lookupBuiltVersionsBuiltGAVTest() throws CommunicationException {
-        prepare(All_VERSIONS);
-        VersionLookupResult lookupResult = versionFinder.lookupBuiltVersions(BUILT_GAV);
-        assertNotNull(lookupResult);
-        assertEquals(BUILT_VERSION_RH, lookupResult.getBestMatchVersion().get());
-        assertEquals(BUILT_VERSIONS.size(), lookupResult.getAvailableVersions().size());
-        assertTrue(lookupResult.getAvailableVersions().containsAll(BUILT_VERSIONS));
     }
 
     @Test
