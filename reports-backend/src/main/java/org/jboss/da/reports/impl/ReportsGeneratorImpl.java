@@ -27,7 +27,6 @@ import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.BuiltReportModule;
-import org.jboss.da.reports.api.Product;
 import org.jboss.da.reports.api.ProductArtifact;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.api.VersionLookupResult;
@@ -284,11 +283,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(),
                 scml.getRevision());
         return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder, relevantProductVersionIds));
-    }
-
-    @Override
-    public Optional<ArtifactReport> getReport(GAV gav, List<Product> products) {
-        throw new UnsupportedOperationException();
     }
 
     @Override

@@ -4,7 +4,6 @@ import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
-import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.rest.GAVRequest;
 import org.jboss.da.reports.model.rest.LookupGAVsRequest;
@@ -45,8 +44,6 @@ public interface ReportsGenerator {
      */
     public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMReportRequest scml)
             throws ScmException, PomAnalysisException, CommunicationException;
-
-    public Optional<ArtifactReport> getReport(GAV gav, List<Product> products);
 
     /**
      * Creates a report about built/not built/blacklisted artifacts. It performs searches
