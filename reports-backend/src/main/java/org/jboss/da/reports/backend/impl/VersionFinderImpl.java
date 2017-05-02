@@ -20,8 +20,12 @@ import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
 import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.products.backend.api.ProductArtifacts;
 
 import java.util.Collection;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Stream;
 
 /**
  * Performs single lookups for the built artifacts
@@ -67,7 +71,9 @@ public class VersionFinderImpl implements VersionFinder {
 
     @Override
     public Optional<String> getBestMatchVersionFor(GAV gav, List<String> availableVersions) {
-        return findBiggestMatchingVersion(gav, availableVersions);
+        List<String> versions = filterVersions(availableVersions.stream(), gav).collect(
+                Collectors.toList());
+        return findBiggestMatchingVersion(gav, versions);
     }
 
     private List<String> getBuiltVersionsFor0(GAV gav, Collection<String> allVersions) {
@@ -78,6 +84,32 @@ public class VersionFinderImpl implements VersionFinder {
                 .collect(Collectors.toList());
 
         return redhatVersions;
+    }
+
+    @Override
+    public CompletableFuture<VersionLookupResult> getVersionsFor(GAV gav, CompletableFuture<Set<ProductArtifacts>> availableArtifacts) {
+        return availableArtifacts.thenApply(pas -> {
+            List<String> versions = getVersions(pas, gav);
+            Optional<String> bmv = findBiggestMatchingVersion(gav, versions);
+
+            return new VersionLookupResult(bmv, versions);
+        });
+    }
+
+    private Stream<String> filterVersions(Stream<String> versions, GAV gav) {
+        return versions
+                .distinct()
+                .filter(v -> !blackArtifactService.isArtifactPresent(new GAV(gav.getGA(), v)));
+    }
+
+    private List<String> getVersions(Set<ProductArtifacts> pas, GAV gav) {
+        Stream<String> versions = pas.stream()
+                .flatMap(as -> as.getArtifacts().stream())
+                .map(a -> a.getGav().getVersion());
+
+        return filterVersions(versions, gav)
+                .sorted(new VersionComparator(gav.getVersion()))
+                .collect(Collectors.toList());
     }
 
     private Optional<String> findBiggestMatchingVersion(GAV gav, List<String> obtainedVersions) {
@@ -132,5 +164,4 @@ public class VersionFinderImpl implements VersionFinder {
         }
         return first;
     }
-
 }
