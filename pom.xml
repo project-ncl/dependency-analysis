@@ -98,6 +98,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <jboss.bom.version>7.0.0.GA</jboss.bom.version>
         <corsUrlPattern>/*</corsUrlPattern>
+        <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
     </properties>
 
     <dependencyManagement>
@@ -633,6 +634,9 @@
         </profile>
         <profile>
             <id>release</id>
+            <properties>
+                <persistence.hibernate.hbm2ddl.auto>validate</persistence.hibernate.hbm2ddl.auto>
+            </properties>
             <build>
                 <plugins>
                     <plugin>

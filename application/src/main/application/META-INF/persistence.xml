@@ -13,7 +13,7 @@
         <properties>
             <property name="org.hibernate.FlushMode" value="always" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.hbm2ddl.auto" value="@persistence.hibernate.hbm2ddl.auto@" />
             <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="false" />
         </properties>
