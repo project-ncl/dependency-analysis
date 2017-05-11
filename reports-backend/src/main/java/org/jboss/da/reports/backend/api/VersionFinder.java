@@ -1,7 +1,7 @@
 package org.jboss.da.reports.backend.api;
 
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.products.backend.api.ProductArtifacts;
+import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.reports.api.VersionLookupResult;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.jboss.da.products.backend.impl;
+package org.jboss.da.products.impl;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.version.VersionParser;
@@ -7,12 +7,12 @@ import org.jboss.da.listings.model.ProductSupportStatus;
 import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.products.backend.api.Artifact;
-import org.jboss.da.products.backend.api.Product;
-import org.jboss.da.products.backend.api.ProductArtifacts;
-import org.jboss.da.products.backend.api.ProductException;
-import org.jboss.da.products.backend.api.ProductProvider;
-import org.jboss.da.products.backend.impl.RepositoryProductProvider.Repository;
+import org.jboss.da.products.api.Artifact;
+import org.jboss.da.products.api.Product;
+import org.jboss.da.products.api.ProductArtifacts;
+import org.jboss.da.products.impl.ProductException;
+import org.jboss.da.products.api.ProductProvider;
+import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.slf4j.Logger;
 
 import javax.ejb.Asynchronous;

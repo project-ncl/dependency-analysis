@@ -57,7 +57,7 @@ public class ArtifactReport implements Comparable<ArtifactReport> {
      */
     @Getter
     @Setter
-    private List<org.jboss.da.products.backend.api.Product> whitelisted;
+    private List<org.jboss.da.products.api.Product> whitelisted;
 
     public void setBestMatchVersion(Optional<String> version) {
         bestMatchVersion = version;

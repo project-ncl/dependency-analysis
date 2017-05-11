@@ -1,4 +1,4 @@
-package org.jboss.da.products.backend.impl;
+package org.jboss.da.products.impl;
 
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.ProductVersion;
@@ -7,11 +7,11 @@ import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.products.backend.api.Artifact;
-import org.jboss.da.products.backend.api.Product;
-import org.jboss.da.products.backend.api.ProductArtifacts;
-import org.jboss.da.products.backend.api.ProductProvider;
-import org.jboss.da.products.backend.impl.DatabaseProductProvider.Database;
+import org.jboss.da.products.api.Artifact;
+import org.jboss.da.products.api.Product;
+import org.jboss.da.products.api.ProductArtifacts;
+import org.jboss.da.products.api.ProductProvider;
+import org.jboss.da.products.impl.DatabaseProductProvider.Database;
 
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;

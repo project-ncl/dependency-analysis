@@ -1,4 +1,4 @@
-package org.jboss.da.products.backend.api;
+package org.jboss.da.products.api;
 
 import java.util.Set;
 
