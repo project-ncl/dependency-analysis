@@ -217,7 +217,7 @@
             <dependency>
                 <groupId>org.commonjava.cartographer</groupId>
                 <artifactId>cartographer-rest-client-java</artifactId>
-                <version>0.11.0-FIX</version>
+                <version>0.12.2</version>
             </dependency>
 
 

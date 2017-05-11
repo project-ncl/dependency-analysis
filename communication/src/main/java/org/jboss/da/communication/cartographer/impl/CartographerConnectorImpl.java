@@ -3,17 +3,18 @@ package org.jboss.da.communication.cartographer.impl;
 import org.commonjava.cartographer.client.CartoClientException;
 import org.commonjava.cartographer.client.CartographerRESTClient;
 import org.commonjava.cartographer.graph.discover.patch.DepgraphPatcherConstants;
-import org.commonjava.cartographer.request.ProjectGraphRequest;
 import org.commonjava.cartographer.request.SingleGraphRequest;
 import org.commonjava.cartographer.result.GraphExport;
 import org.commonjava.maven.atlas.graph.rel.ProjectRelationship;
 import org.commonjava.maven.atlas.graph.rel.RelationshipType;
 import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
 import org.commonjava.maven.atlas.ident.ref.SimpleProjectVersionRef;
+import org.commonjava.maven.galley.model.SimpleLocation;
 import org.commonjava.propulsor.client.http.ClientHttpException;
 import org.commonjava.util.jhttpc.auth.MemoryPasswordManager;
 import org.commonjava.util.jhttpc.auth.PasswordManager;
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
@@ -27,6 +28,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,13 +67,14 @@ public class CartographerConnectorImpl implements CartographerConnector {
         }
 
         try {
-
+            final DAConfig conf = config.getConfig();
             SimpleProjectVersionRef rootRef = new SimpleProjectVersionRef(gav.getGroupId(),
                     gav.getArtifactId(), gav.getVersion());
 
             SingleGraphRequest r = new SingleGraphRequest();
             r.setWorkspaceId("export-" + rootRef.toString());
-            r.setSource("group:" + config.getConfig().getAproxGroupPublic());
+            r.setSourceLocation(new SimpleLocation(conf.getAproxServer() + "/api/group/"
+                    + conf.getAproxGroupPublic()));
             r.setPatcherIds(DepgraphPatcherConstants.ALL_PATCHERS);
             r.setResolve(true);
             r.setGraph(cartographer.newGraphDescription().withRoots(rootRef).withPreset("requires")
