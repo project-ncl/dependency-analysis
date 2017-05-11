@@ -1,0 +1,8 @@
+{
+    "id": 1,
+    "pomPath": "./pom.xml",
+    "productVersion": "4-redhat",
+    "repositories": [],
+    "scmRevision": "scmRevision",
+    "scmUrl": "scmUrl"
+}

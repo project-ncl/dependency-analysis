@@ -2,9 +2,6 @@ package org.jboss.da.bc.model.rest;
 
 import org.jboss.da.bc.model.DependencyAnalysisStatus;
 
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAccessType;
-
 import java.util.EnumSet;
 import java.util.List;
 
@@ -18,7 +15,6 @@ import org.jboss.da.bc.model.BcError;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.validators.ScmUrl;
 
-@XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString

@@ -1,0 +1,12 @@
+{
+    "artifactId": "a",
+    "availableVersions": [],
+    "bestMatchVersion": "4.3",
+    "blacklisted": true,
+    "dependencies": [],
+    "dependencyVersionsSatisfied": true,
+    "groupId": "g",
+    "notBuiltDependencies": 0,
+    "version": "v",
+    "whitelisted": []
+}

@@ -141,10 +141,16 @@ public class AproxConnectorImpl implements AproxConnector {
         }
     }
 
+    static String convertStreamToString(java.io.InputStream is) {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
+    }
+
     private VersionResponse parseMetadataFile(URLConnection connection) throws IOException,
             CommunicationException {
         try (InputStream in = connection.getInputStream()) {
-            return MetadataFileParser.parseMetadataFile(in);
+            VersionResponse k = MetadataFileParser.parseMetadataFile(in);
+            return k;
         } catch (JAXBException e) {
             throw new CommunicationException("Failed to parse metadataFile", e);
         }

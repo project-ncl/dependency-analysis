@@ -1,9 +1,8 @@
 package org.jboss.da.reports.api;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.model.rest.GAV;
-
-import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +31,7 @@ public class ArtifactReport implements Comparable<ArtifactReport> {
 
     @Getter
     @NonNull
-    @XmlTransient
+    @JsonIgnore
     private GAV gav;
 
     @NonNull
