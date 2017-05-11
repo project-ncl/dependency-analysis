@@ -115,11 +115,10 @@ public class VersionFinderImpl implements VersionFinder {
             matcher.reset(osgiver);
             if (matcher.matches()) {
                 int foundBuildNumber = Integer.parseInt(matcher.group(1));
-                if (foundBuildNumber > biggestBuildNumber) {
+                if (bestMatchVersion == null || foundBuildNumber > biggestBuildNumber) {
                     bestMatchVersion = ver;
                     biggestBuildNumber = foundBuildNumber;
-                }
-                if (foundBuildNumber == biggestBuildNumber) {
+                } else if (foundBuildNumber == biggestBuildNumber) {
                     bestMatchVersion = getMoreSpecificVersion(bestMatchVersion, ver);
                 }
             }
