@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
 import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.products.backend.api.ProductArtifacts;
+import org.jboss.da.products.api.ProductArtifacts;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;

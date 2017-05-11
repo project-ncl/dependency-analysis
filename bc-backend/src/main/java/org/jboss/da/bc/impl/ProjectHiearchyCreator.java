@@ -26,8 +26,8 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.scm.api.SCMConnector;
 
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.products.backend.api.ProductArtifacts;
-import org.jboss.da.products.backend.impl.AggregatedProductProvider;
+import org.jboss.da.products.api.ProductArtifacts;
+import org.jboss.da.products.impl.AggregatedProductProvider;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 import org.jboss.da.reports.backend.api.VersionFinder;

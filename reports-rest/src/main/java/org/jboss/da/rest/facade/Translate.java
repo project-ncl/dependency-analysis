@@ -3,7 +3,7 @@ package org.jboss.da.rest.facade;
 import org.jboss.da.listings.model.rest.RestGavProducts;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.products.backend.api.Product;
+import org.jboss.da.products.api.Product;
 import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.BuiltReportModule;
 import org.jboss.da.reports.api.ProductArtifact;

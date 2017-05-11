@@ -20,7 +20,7 @@ public class AdvancedArtifactReport {
     private final Set<GAV> blacklistedArtifacts = new TreeSet<>();
 
     @Getter
-    private final Map<GAV, Set<org.jboss.da.products.backend.api.Product>> whitelistedArtifacts = new HashMap<>();
+    private final Map<GAV, Set<org.jboss.da.products.api.Product>> whitelistedArtifacts = new HashMap<>();
 
     @Getter
     private final Map<GAV, String> communityGavsWithBestMatchVersions = new HashMap<>();
@@ -35,8 +35,7 @@ public class AdvancedArtifactReport {
         blacklistedArtifacts.add(gav);
     }
 
-    public void addWhitelistedArtifact(GAV gav,
-            Set<org.jboss.da.products.backend.api.Product> products) {
+    public void addWhitelistedArtifact(GAV gav, Set<org.jboss.da.products.api.Product> products) {
         whitelistedArtifacts.put(gav, products);
     }
 
