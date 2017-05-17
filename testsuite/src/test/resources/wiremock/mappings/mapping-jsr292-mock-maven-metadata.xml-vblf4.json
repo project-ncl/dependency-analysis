@@ -1,0 +1,17 @@
+{
+  "id" : "675eaee0-3afd-309b-b9f2-c4e55738bc79",
+  "request" : {
+    "url" : "/api/group/test-DA/com/headius/jsr292-mock/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jsr292-mock-maven-metadata.xml-vblf4.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:41 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "675eaee0-3afd-309b-b9f2-c4e55738bc79"
+}

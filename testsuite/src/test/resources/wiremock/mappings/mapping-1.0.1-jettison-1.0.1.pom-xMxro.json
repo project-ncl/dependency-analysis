@@ -1,0 +1,24 @@
+{
+  "id" : "ceb49bfa-141b-3889-afbf-e7ec59714067",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/jettison/jettison/1.0.1/jettison-1.0.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.1-jettison-1.0.1.pom-xMxro.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:48:28 GMT",
+      "ETAG" : "\"{SHA1{04186c0f4a40309c32dc5f83e46a0f4cefa4e7f9}}\"",
+      "LAST-MODIFIED" : "Mon, 11 Oct 2010 16:51:07 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ceb49bfa-141b-3889-afbf-e7ec59714067"
+}

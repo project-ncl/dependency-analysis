@@ -1,0 +1,24 @@
+{
+  "id" : "b52deabf-6856-30c9-aa33-58f55381c637",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/2.0.0/jackson-jaxrs-json-provider-2.0.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.0-jackson-jaxrs-json-provider-2.0.0.pom-FhgmR.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:45:36 GMT",
+      "ETAG" : "\"{SHA1{76a1dc998f0d516b6f635b6f373bba9638d77b7f}}\"",
+      "LAST-MODIFIED" : "Sun, 25 Mar 2012 21:00:45 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b52deabf-6856-30c9-aa33-58f55381c637"
+}

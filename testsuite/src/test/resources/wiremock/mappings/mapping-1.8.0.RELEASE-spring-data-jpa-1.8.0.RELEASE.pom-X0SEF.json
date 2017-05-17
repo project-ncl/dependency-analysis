@@ -1,0 +1,30 @@
+{
+  "id" : "91252eb8-dc51-34c6-bdc6-aed08d833ec7",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/data/spring-data-jpa/1.8.0.RELEASE/spring-data-jpa-1.8.0.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.0.RELEASE-spring-data-jpa-1.8.0.RELEASE.pom-X0SEF.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "b9e5560ab9d61d7d7918f3bfeebdf44bfdde697ece3961edbdd3150febfda233",
+      "X-CHECKSUM-MD5" : "2125c964b2639c11346110475f0d4c64",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:23 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"2125c964b2639c11346110475f0d4c64\"",
+      "LAST-MODIFIED" : "Mon, 23 Mar 2015 11:53:48 GMT",
+      "X-CHECKSUM-SHA1" : "66e956349e5252bcac6886d7a63cb15f93479fe0",
+      "X-SERVED-BY" : "cache-iad2140-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259884.571671,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2092891",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "91252eb8-dc51-34c6-bdc6-aed08d833ec7"
+}

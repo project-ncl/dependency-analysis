@@ -1,0 +1,2 @@
+Id: afa49b90a27088516fa64b3504e303347899be28cbd7bf41d898a0884d29afee
+Message: Path com/offbytwo/jenkins/jenkins-client/0.3.1-20150308/jenkins-client-0.3.1-20150308.pom is not available in store group:DApublic.

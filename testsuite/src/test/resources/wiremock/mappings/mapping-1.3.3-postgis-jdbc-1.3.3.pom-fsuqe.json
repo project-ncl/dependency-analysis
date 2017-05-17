@@ -1,0 +1,30 @@
+{
+  "id" : "55187fdb-2d05-3c43-b7ca-955538b66a43",
+  "request" : {
+    "url" : "/api/group/DApublic/org/postgis/postgis-jdbc/1.3.3/postgis-jdbc-1.3.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.3-postgis-jdbc-1.3.3.pom-fsuqe.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f363587fd6b00c40f3564d22e8bf0dafb4028555f9ae6b0c730dc0ddfb616b61",
+      "X-CHECKSUM-MD5" : "7593f58c8bdf73fb48bb3d2cdf53db38",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:48 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"7593f58c8bdf73fb48bb3d2cdf53db38\"",
+      "LAST-MODIFIED" : "Fri, 18 Dec 2009 17:42:41 GMT",
+      "X-CHECKSUM-SHA1" : "d8f08daffb82ad7df970d05c32b4209e11b4bf34",
+      "X-SERVED-BY" : "cache-iad2140-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260448.279510,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2265976",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "55187fdb-2d05-3c43-b7ca-955538b66a43"
+}

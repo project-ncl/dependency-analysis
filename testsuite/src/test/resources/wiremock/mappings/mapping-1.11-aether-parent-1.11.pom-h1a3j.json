@@ -1,0 +1,25 @@
+{
+  "id" : "e61cea3d-9364-3b47-9fa8-cfe5ab8ca783",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/aether/aether-parent/1.11/aether-parent-1.11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.11-aether-parent-1.11.pom-h1a3j.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 19 May 2017 08:32:40 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591950", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 19 Apr 2017 08:33:30 GMT",
+      "ETAG" : "\"{SHA1{e466889a5edfa81fc99d0fb4184038553c02ef6c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "e61cea3d-9364-3b47-9fa8-cfe5ab8ca783"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "c6516718-801d-3765-9be2-ccde646599c4",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/interceptor/javax.interceptor-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-javax.interceptor-api-maven-metadata.xml-uWbEc.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:32:37 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:32:37 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c6516718-801d-3765-9be2-ccde646599c4"
+}

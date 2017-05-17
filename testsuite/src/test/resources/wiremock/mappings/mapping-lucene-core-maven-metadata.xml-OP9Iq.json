@@ -1,0 +1,19 @@
+{
+  "id" : "72f910d8-f1f2-313f-ad84-7aef5fa269a6",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/lucene/lucene-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-lucene-core-maven-metadata.xml-OP9Iq.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:09 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:48 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "72f910d8-f1f2-313f-ad84-7aef5fa269a6"
+}

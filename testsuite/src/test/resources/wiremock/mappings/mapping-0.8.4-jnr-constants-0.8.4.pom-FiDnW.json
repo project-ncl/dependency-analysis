@@ -1,0 +1,25 @@
+{
+  "id" : "8729ee8c-d0c3-3384-bde7-88cf6538da69",
+  "request" : {
+    "url" : "/api/group/DApublic/com/github/jnr/jnr-constants/0.8.4/jnr-constants-0.8.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.8.4-jnr-constants-0.8.4.pom-FiDnW.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:24:18 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:18 GMT",
+      "ETAG" : "\"{SHA1{f34dd261e40d57f7d9024897f5ed9c9b3233ceb1}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8729ee8c-d0c3-3384-bde7-88cf6538da69"
+}

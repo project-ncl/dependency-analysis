@@ -1,0 +1,19 @@
+{
+  "id" : "24775f11-302f-33f8-b8e9-83c9650a84cd",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/commons/commons-compress/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-commons-compress-maven-metadata.xml-xNH5h.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:42:07 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:46 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "24775f11-302f-33f8-b8e9-83c9650a84cd"
+}

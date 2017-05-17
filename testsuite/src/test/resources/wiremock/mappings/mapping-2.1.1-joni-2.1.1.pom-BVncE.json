@@ -1,0 +1,30 @@
+{
+  "id" : "b6a58bbb-111a-3992-98d0-a67ab44f6e4d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/joni/joni/2.1.1/joni-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-joni-2.1.1.pom-BVncE.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "6906e23808e2372a676fad389c71e6fae2c3102a24fa4ba0038975d97144a654",
+      "X-CHECKSUM-MD5" : "bf62fbbbf95d5618ebeff143cc0c60b4",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:40 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"bf62fbbbf95d5618ebeff143cc0c60b4\"",
+      "LAST-MODIFIED" : "Tue, 10 Dec 2013 21:10:30 GMT",
+      "X-CHECKSUM-SHA1" : "69e309c41f405a21dbf65fcd7fa4b2c6456f82fb",
+      "X-SERVED-BY" : "cache-iad2130-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260680.340513,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2313124",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b6a58bbb-111a-3992-98d0-a67ab44f6e4d"
+}

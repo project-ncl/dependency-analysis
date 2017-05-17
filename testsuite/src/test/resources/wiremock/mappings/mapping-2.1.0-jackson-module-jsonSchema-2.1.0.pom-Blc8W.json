@@ -1,0 +1,25 @@
+{
+  "id" : "79b6376a-2a95-38ef-8b9c-642c49dc313a",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/module/jackson-module-jsonSchema/2.1.0/jackson-module-jsonSchema-2.1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.0-jackson-module-jsonSchema-2.1.0.pom-Blc8W.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 14:42:11 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2514474", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:14:17 GMT",
+      "ETAG" : "\"{SHA1{95ec761966502f3bc9d907dc9503388df57ec43e}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:14:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "79b6376a-2a95-38ef-8b9c-642c49dc313a"
+}

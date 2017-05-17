@@ -1,0 +1,17 @@
+{
+  "id" : "0f40a37d-1900-38a3-8fd6-f33550e2e776",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-events-email/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-events-email-maven-metadata.xml-HSLoN.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:39 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0f40a37d-1900-38a3-8fd6-f33550e2e776"
+}

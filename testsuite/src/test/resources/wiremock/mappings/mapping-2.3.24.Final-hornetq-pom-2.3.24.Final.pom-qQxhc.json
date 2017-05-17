@@ -1,0 +1,30 @@
+{
+  "id" : "2a230503-c796-3cb4-9430-324e234acb11",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hornetq/hornetq-pom/2.3.24.Final/hornetq-pom-2.3.24.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.24.Final-hornetq-pom-2.3.24.Final.pom-qQxhc.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "6bf60c40e0c4b8eae4ce82011df659e3e5f7b21858b5a69571c3222756f129b1",
+      "X-CHECKSUM-MD5" : "a7c0eeab616fdbfbb6ce7d76816ffebe",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:41 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a7c0eeab616fdbfbb6ce7d76816ffebe\"",
+      "LAST-MODIFIED" : "Fri, 21 Nov 2014 19:58:09 GMT",
+      "X-CHECKSUM-SHA1" : "11fdbf4f39d11451cb2a022d1254e0df4297f6d3",
+      "X-SERVED-BY" : "cache-iad2123-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259962.964767,VS0,VE34",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2a230503-c796-3cb4-9430-324e234acb11"
+}

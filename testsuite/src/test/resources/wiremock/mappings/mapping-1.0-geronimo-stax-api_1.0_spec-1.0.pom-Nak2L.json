@@ -1,0 +1,30 @@
+{
+  "id" : "95f9ea43-c2b2-3524-a4de-fb49f4f235b2",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0/geronimo-stax-api_1.0_spec-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-geronimo-stax-api_1.0_spec-1.0.pom-Nak2L.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "4e9c7cf188c460c3fb2e4e6e410942e358f57f1f80d119448ddde98063ed6df3",
+      "X-CHECKSUM-MD5" : "e602d8cc5a02e4474bf7d671ee55619c",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:50 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"e602d8cc5a02e4474bf7d671ee55619c\"",
+      "LAST-MODIFIED" : "Fri, 13 Jul 2007 14:18:35 GMT",
+      "X-CHECKSUM-SHA1" : "5a1b6c76a94fa43d16c4a962f1c0056e8ba3efd4",
+      "X-SERVED-BY" : "cache-iad2139-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260631.895905,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5209156",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "95f9ea43-c2b2-3524-a4de-fb49f4f235b2"
+}

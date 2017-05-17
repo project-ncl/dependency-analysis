@@ -1,0 +1,25 @@
+{
+  "id" : "6877d697-7dc3-3832-bfd8-15121f55dbed",
+  "request" : {
+    "url" : "/api/group/DApublic/net/sourceforge/serp/serp/1.14.1/serp-1.14.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.14.1-serp-1.14.1.pom-7jVGn.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:20:33 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:33 GMT",
+      "ETAG" : "\"{SHA1{aafca724ed0ff538579891916c6522f8a4bd7676}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:27:15 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6877d697-7dc3-3832-bfd8-15121f55dbed"
+}

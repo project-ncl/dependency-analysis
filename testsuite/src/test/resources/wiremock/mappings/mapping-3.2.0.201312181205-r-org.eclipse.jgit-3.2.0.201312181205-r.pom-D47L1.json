@@ -1,0 +1,24 @@
+{
+  "id" : "f27f5fa1-9167-3508-a041-18c47fdbb345",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/jgit/org.eclipse.jgit/3.2.0.201312181205-r/org.eclipse.jgit-3.2.0.201312181205-r.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.0.201312181205-r-org.eclipse.jgit-3.2.0.201312181205-r.pom-D47L1.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:15:29 GMT",
+      "ETAG" : "\"{SHA1{98bfa33582012574513dbd4ad600637d3fde8524}}\"",
+      "LAST-MODIFIED" : "Wed, 18 Dec 2013 21:23:24 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f27f5fa1-9167-3508-a041-18c47fdbb345"
+}

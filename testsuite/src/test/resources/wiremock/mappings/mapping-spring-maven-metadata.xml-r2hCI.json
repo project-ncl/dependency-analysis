@@ -1,0 +1,17 @@
+{
+  "id" : "56376b14-7f3f-330e-a16d-f3fb1da51f8d",
+  "request" : {
+    "url" : "/api/group/test-DA/org/springframework/spring/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-spring-maven-metadata.xml-r2hCI.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:08 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "56376b14-7f3f-330e-a16d-f3fb1da51f8d"
+}

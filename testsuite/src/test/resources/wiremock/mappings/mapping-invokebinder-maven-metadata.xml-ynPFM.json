@@ -1,0 +1,19 @@
+{
+  "id" : "a4490537-23da-3d96-bb51-eef93808bcef",
+  "request" : {
+    "url" : "/api/group/test-DA/com/headius/invokebinder/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-invokebinder-maven-metadata.xml-ynPFM.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:13 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:52 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a4490537-23da-3d96-bb51-eef93808bcef"
+}

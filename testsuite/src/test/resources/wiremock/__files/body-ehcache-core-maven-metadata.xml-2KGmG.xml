@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.sf.ehcache</groupId>
+  <artifactId>ehcache-core</artifactId>
+  <versioning>
+    <latest>2.5.1-redhat-1</latest>
+    <release>2.5.1-redhat-1</release>
+    <versions>
+      <version>1.7.2</version>
+      <version>2.0.1</version>
+      <version>2.2.0</version>
+      <version>2.4.4</version>
+      <version>2.5.1</version>
+      <version>2.5.1-redhat-1</version>
+    </versions>
+    <lastUpdated>20170420180825</lastUpdated>
+  </versioning>
+</metadata>

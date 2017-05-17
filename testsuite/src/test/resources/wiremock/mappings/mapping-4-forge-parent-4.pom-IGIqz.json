@@ -1,0 +1,25 @@
+{
+  "id" : "66295817-3f6c-3cf4-91f5-8f888cf330b1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/forge/forge-parent/4/forge-parent-4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4-forge-parent-4.pom-IGIqz.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 12:56:04 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2590343", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 11 Apr 2017 13:23:41 GMT",
+      "ETAG" : "\"{SHA1{564f266ea9323e57e246f0fca8f04f596663fb86}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:36 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "66295817-3f6c-3cf4-91f5-8f888cf330b1"
+}

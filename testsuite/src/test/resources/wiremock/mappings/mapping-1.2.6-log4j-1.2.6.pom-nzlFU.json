@@ -1,0 +1,30 @@
+{
+  "id" : "2d7f30b8-6353-3faa-8836-8dd017a63d82",
+  "request" : {
+    "url" : "/api/group/DApublic/log4j/log4j/1.2.6/log4j-1.2.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.6-log4j-1.2.6.pom-nzlFU.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "df78fbc66e80dfcbc747340996a2bf72c05054d1ebe84eaa009b77f46ab34013",
+      "X-CHECKSUM-MD5" : "e9d97e18163c13399ed78446ddb7cb99",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:03 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"e9d97e18163c13399ed78446ddb7cb99\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:08:35 GMT",
+      "X-CHECKSUM-SHA1" : "520ecea93562e1f2143dfc15b98038159767d680",
+      "X-SERVED-BY" : "cache-iad2125-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260284.523746,VS0,VE16",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5187378",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2d7f30b8-6353-3faa-8836-8dd017a63d82"
+}

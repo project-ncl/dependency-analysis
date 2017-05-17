@@ -1,0 +1,25 @@
+{
+  "id" : "99f8a6c1-dafc-3921-bd11-6b0b9ed79aa2",
+  "request" : {
+    "url" : "/api/group/DApublic/net/java/jvnet-parent/3/jvnet-parent-3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3-jvnet-parent-3.pom-9v5Eo.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 11:33:51 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2504171", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 11:57:40 GMT",
+      "ETAG" : "\"{SHA1{f8f3be3e980551a39b5679411e171aeb6931aaec}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:53 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "99f8a6c1-dafc-3921-bd11-6b0b9ed79aa2"
+}

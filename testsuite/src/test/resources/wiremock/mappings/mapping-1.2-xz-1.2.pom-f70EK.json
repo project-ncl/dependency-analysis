@@ -1,0 +1,25 @@
+{
+  "id" : "6919bd78-e399-30dd-b76d-add83d1841de",
+  "request" : {
+    "url" : "/api/group/DApublic/org/tukaani/xz/1.2/xz-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-xz-1.2.pom-f70EK.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 14:29:54 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2585704", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:50 GMT",
+      "ETAG" : "\"{SHA1{db296341cd63613ad1d6001b51fcc93690b46b65}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:15:14 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6919bd78-e399-30dd-b76d-add83d1841de"
+}

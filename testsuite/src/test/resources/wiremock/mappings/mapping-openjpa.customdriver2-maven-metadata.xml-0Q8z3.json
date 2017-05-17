@@ -1,0 +1,17 @@
+{
+  "id" : "fe880d61-d90f-3e31-b30a-2b49836e1190",
+  "request" : {
+    "url" : "/api/group/test-DA/openjpa/customdriver2/openjpa.customdriver2/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-openjpa.customdriver2-maven-metadata.xml-0Q8z3.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:55 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "fe880d61-d90f-3e31-b30a-2b49836e1190"
+}

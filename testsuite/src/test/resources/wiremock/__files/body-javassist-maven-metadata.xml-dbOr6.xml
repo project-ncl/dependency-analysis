@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.javassist</groupId>
+  <artifactId>javassist</artifactId>
+  <versioning>
+    <latest>3.20.0-GA</latest>
+    <release>3.20.0-GA</release>
+    <versions>
+      <version>3.14.0-GA</version>
+      <version>3.15.0-GA</version>
+      <version>3.15.0.GA-redhat-1</version>
+      <version>3.15.0-GA-redhat-2</version>
+      <version>3.16.1-GA</version>
+      <version>3.18.1-GA</version>
+      <version>3.18.1-GA-redhat-1</version>
+      <version>3.18.1.GA-redhat-2</version>
+      <version>3.18.2-GA</version>
+      <version>3.19.0-GA</version>
+      <version>3.20.0-GA</version>
+    </versions>
+    <lastUpdated>20170512214117</lastUpdated>
+  </versioning>
+</metadata>

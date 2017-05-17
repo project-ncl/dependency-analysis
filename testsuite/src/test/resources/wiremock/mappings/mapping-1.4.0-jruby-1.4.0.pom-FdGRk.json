@@ -1,0 +1,30 @@
+{
+  "id" : "976cafb8-1f13-389b-b523-b3440c804eda",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/jruby/1.4.0/jruby-1.4.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.0-jruby-1.4.0.pom-FdGRk.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "fd8f3268062ff0d28247758db74bab3bf4198022c7dfc2ee46c23f9a045c81d2",
+      "X-CHECKSUM-MD5" : "cf0a56c3262ae42490d11f52588250a4",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:17 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"cf0a56c3262ae42490d11f52588250a4\"",
+      "LAST-MODIFIED" : "Mon, 02 Nov 2009 21:10:39 GMT",
+      "X-CHECKSUM-SHA1" : "7d51fc6d7a136c8610f53bc6e649fdf18ee6618c",
+      "X-SERVED-BY" : "cache-iad2142-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260297.083045,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "976cafb8-1f13-389b-b523-b3440c804eda"
+}

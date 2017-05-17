@@ -1,0 +1,30 @@
+{
+  "id" : "067d0727-a8aa-3fd6-83fe-481f3d44b1af",
+  "request" : {
+    "url" : "/api/group/DApublic/net/sf/ehcache/ehcache-parent/2.4/ehcache-parent-2.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.4-ehcache-parent-2.4.pom-VZ1js.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "b89831d3c1eb2ee49b4f637b44f031460548126df8fea2bea928a05ea17fa04d",
+      "X-CHECKSUM-MD5" : "25c1f3c0539e254c7991ff33504907a2",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:40 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"25c1f3c0539e254c7991ff33504907a2\"",
+      "LAST-MODIFIED" : "Tue, 12 Mar 2013 20:59:06 GMT",
+      "X-CHECKSUM-SHA1" : "ce0bed4671dca41e8b712be21c78c855493e4d4a",
+      "X-SERVED-BY" : "cache-iad2148-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260380.304139,VS0,VE9",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "527827",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "067d0727-a8aa-3fd6-83fe-481f3d44b1af"
+}

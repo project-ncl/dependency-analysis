@@ -1,0 +1,17 @@
+{
+  "id" : "b61e7b3e-72de-3b38-bc94-0e059d17be9a",
+  "request" : {
+    "url" : "/api/group/test-DA/org/commonjava/maven/atlas/atlas-bindings-jackson-identities/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-atlas-bindings-jackson-identities-maven-metadata.xml-AOayu.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:04 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b61e7b3e-72de-3b38-bc94-0e059d17be9a"
+}

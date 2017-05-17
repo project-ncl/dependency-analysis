@@ -1,0 +1,30 @@
+{
+  "id" : "9c922e0f-4cd4-3f91-92ce-c6f2fc94d1f2",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hibernate/hibernate-envers/4.2.0.Final/hibernate-envers-4.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.2.0.Final-hibernate-envers-4.2.0.Final.pom-4dpwg.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "770b36abd2cc52e13075b39db93fb76314e850373f800bb948b2d427330ef33a",
+      "X-CHECKSUM-MD5" : "b3d61787d1abc4efc546b53a4065b8eb",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:30 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"b3d61787d1abc4efc546b53a4065b8eb\"",
+      "LAST-MODIFIED" : "Mon, 18 Mar 2013 15:42:59 GMT",
+      "X-CHECKSUM-SHA1" : "c7f8d5529b956f23f64fbfdf603e6aa7518cec39",
+      "X-SERVED-BY" : "cache-iad2120-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259891.948549,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9c922e0f-4cd4-3f91-92ce-c6f2fc94d1f2"
+}

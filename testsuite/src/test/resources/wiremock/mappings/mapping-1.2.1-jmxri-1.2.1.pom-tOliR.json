@@ -1,0 +1,25 @@
+{
+  "id" : "0e4aea4c-2e84-3ce2-90df-1193133de8cb",
+  "request" : {
+    "url" : "/api/group/DApublic/com/sun/jmx/jmxri/1.2.1/jmxri-1.2.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.1-jmxri-1.2.1.pom-tOliR.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:21:55 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:55 GMT",
+      "ETAG" : "\"{SHA1{24373c941a7992cc33de82007e085e3708a09db5}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:06:59 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0e4aea4c-2e84-3ce2-90df-1193133de8cb"
+}

@@ -1,0 +1,24 @@
+{
+  "id" : "c95b112f-b7ce-30e5-91b2-31b7def93e11",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-addons/0.25.1/aprox-addons-0.25.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.25.1-aprox-addons-0.25.1.pom-RBVlr.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:16:23 GMT",
+      "ETAG" : "\"{SHA1{3d4770abcffd2cd687ceb4c106a7ec1ec8a04f6e}}\"",
+      "LAST-MODIFIED" : "Thu, 15 Oct 2015 23:06:12 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c95b112f-b7ce-30e5-91b2-31b7def93e11"
+}

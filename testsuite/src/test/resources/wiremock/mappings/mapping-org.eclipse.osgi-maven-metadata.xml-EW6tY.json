@@ -1,0 +1,19 @@
+{
+  "id" : "efa007fb-f5ce-3cc2-9549-8d9d995272b1",
+  "request" : {
+    "url" : "/api/group/test-DA/org/eclipse/osgi/org.eclipse.osgi/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-org.eclipse.osgi-maven-metadata.xml-EW6tY.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 18:19:06 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 18:19:06 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "efa007fb-f5ce-3cc2-9549-8d9d995272b1"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "84c50c3a-b8fe-3b65-988c-c2a95aca5d7e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jvnet/hudson/hudson/1.7/hudson-1.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7-hudson-1.7.pom-nWsFY.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "76ee982d618df765649bca387fa684131e5e55f4dac024a1359260f412861fe6",
+      "X-CHECKSUM-MD5" : "5771b3114d2ed926113c3889c9f00710",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:14 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"5771b3114d2ed926113c3889c9f00710\"",
+      "LAST-MODIFIED" : "Mon, 09 Mar 2009 23:40:59 GMT",
+      "X-CHECKSUM-SHA1" : "4ea04b3b013e17125f358a6f85b127f715c629e6",
+      "X-SERVED-BY" : "cache-iad2128-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260175.932287,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2133786",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "84c50c3a-b8fe-3b65-988c-c2a95aca5d7e"
+}

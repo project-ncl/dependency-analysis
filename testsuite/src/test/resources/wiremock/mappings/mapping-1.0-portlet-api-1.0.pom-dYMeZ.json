@@ -1,0 +1,30 @@
+{
+  "id" : "dc822395-fe73-3311-aaac-382194b7377d",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/portlet/portlet-api/1.0/portlet-api-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-portlet-api-1.0.pom-dYMeZ.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "ea5f5b85e1f575fc112340b85d51a6f9a72e0741e1eaeaa13adf41acbdb43e12",
+      "X-CHECKSUM-MD5" : "eb6eb2468d552248f6d0d0fa1ab9c951",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:20 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"eb6eb2468d552248f6d0d0fa1ab9c951\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 21:58:48 GMT",
+      "X-CHECKSUM-SHA1" : "9c0dc05c04a8f687e8891dfeb3ec6ef5d8f8905b",
+      "X-SERVED-BY" : "cache-iad2151-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260541.588650,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5207442",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "dc822395-fe73-3311-aaac-382194b7377d"
+}

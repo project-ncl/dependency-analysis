@@ -1,0 +1,30 @@
+{
+  "id" : "0a298b47-0dca-34ca-9a92-0ec613537001",
+  "request" : {
+    "url" : "/api/group/DApublic/avalon-framework/avalon-framework/4.1.5/avalon-framework-4.1.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.1.5-avalon-framework-4.1.5.pom-Rkyp6.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "292706ea10483b9b4c9a60b2df92063834265172ebd39b2e3e2cf0ed0da26554",
+      "X-CHECKSUM-MD5" : "49483e3ed347ded47056b784290dc030",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:06 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"49483e3ed347ded47056b784290dc030\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:21:25 GMT",
+      "X-CHECKSUM-SHA1" : "53abc1925340ae59c77226912680e9137dffdb7d",
+      "X-SERVED-BY" : "cache-iad2147-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260287.931593,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1657984",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0a298b47-0dca-34ca-9a92-0ec613537001"
+}

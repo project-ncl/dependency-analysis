@@ -1,0 +1,19 @@
+{
+  "id" : "201021bf-ecdd-38e5-b01c-8094373291bf",
+  "request" : {
+    "url" : "/api/group/test-DA/rome/rome/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-rome-maven-metadata.xml-XSxLB.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:22 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:01 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "201021bf-ecdd-38e5-b01c-8094373291bf"
+}

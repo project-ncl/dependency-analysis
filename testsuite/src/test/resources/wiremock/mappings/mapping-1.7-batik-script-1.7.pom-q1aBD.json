@@ -1,0 +1,25 @@
+{
+  "id" : "728fd409-a4ea-37f8-a80d-295f02ed9325",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/xmlgraphics/batik-script/1.7/batik-script-1.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7-batik-script-1.7.pom-q1aBD.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 03 Jun 2017 02:48:42 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2197755", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:27 GMT",
+      "ETAG" : "\"{SHA1{188e89e0eb11abdacd18d9728c919e0bd7a40c2e}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:09:06 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "728fd409-a4ea-37f8-a80d-295f02ed9325"
+}

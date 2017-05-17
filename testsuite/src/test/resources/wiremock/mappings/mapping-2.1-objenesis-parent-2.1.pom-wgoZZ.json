@@ -1,0 +1,25 @@
+{
+  "id" : "26544dd6-8102-3ec5-96ff-331c473df7bd",
+  "request" : {
+    "url" : "/api/group/DApublic/org/objenesis/objenesis-parent/2.1/objenesis-parent-2.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1-objenesis-parent-2.1.pom-wgoZZ.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:48:40 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1927936", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:24 GMT",
+      "ETAG" : "\"{SHA1{156a12a0fcf8ed856bdc60ce10550ea46fba8eaa}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:55:31 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "26544dd6-8102-3ec5-96ff-331c473df7bd"
+}

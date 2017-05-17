@@ -1,0 +1,17 @@
+{
+  "id" : "86ad26a8-4eb5-391e-943b-31f6db76d417",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-kerberos-federation/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-kerberos-federation-maven-metadata.xml-MjlYN.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:39 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "86ad26a8-4eb5-391e-943b-31f6db76d417"
+}

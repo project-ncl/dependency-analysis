@@ -1,0 +1,24 @@
+{
+  "id" : "71ec50f3-32d4-3e46-9993-c827b754a544",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-parent/0.15.1/atlas-parent-0.15.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.1-atlas-parent-0.15.1.pom-grc22.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:02 GMT",
+      "ETAG" : "\"{SHA1{ea85f944f8f507ddcac30c94b76a49d60aad20be}}\"",
+      "LAST-MODIFIED" : "Wed, 30 Sep 2015 15:25:26 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "71ec50f3-32d4-3e46-9993-c827b754a544"
+}

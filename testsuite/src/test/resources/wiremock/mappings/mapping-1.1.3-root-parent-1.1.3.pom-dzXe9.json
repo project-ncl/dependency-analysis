@@ -1,0 +1,30 @@
+{
+  "id" : "2f680044-d9ce-33c7-8781-21f4ce519d4a",
+  "request" : {
+    "url" : "/api/group/DApublic/cz/jirutka/maven/root-parent/1.1.3/root-parent-1.1.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.3-root-parent-1.1.3.pom-dzXe9.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f9d5202fc0bbe2277b644a5d6061e5870b3b79014a97fa3f73feed8e8ea2f9ca",
+      "X-CHECKSUM-MD5" : "963ad2a5ef6051e72cf312f95672050f",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:18 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"963ad2a5ef6051e72cf312f95672050f\"",
+      "LAST-MODIFIED" : "Sun, 09 Mar 2014 10:40:45 GMT",
+      "X-CHECKSUM-SHA1" : "a608ca2f4a017dee086c041b085bd3324a317de4",
+      "X-SERVED-BY" : "cache-iad2151-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259879.826653,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1145133",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2f680044-d9ce-33c7-8781-21f4ce519d4a"
+}

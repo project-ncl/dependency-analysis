@@ -1,0 +1,19 @@
+{
+  "id" : "64294358-3593-3dd8-b825-a8033cc1650a",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/logging/jboss-logging/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-logging-maven-metadata.xml-K9sZB.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:24:45 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:24:24 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "64294358-3593-3dd8-b825-a8033cc1650a"
+}

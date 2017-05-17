@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.resteasy</groupId>
+  <artifactId>resteasy-client</artifactId>
+  <versioning>
+    <latest>3.0.19.SP1-redhat-1</latest>
+    <release>3.0.19.SP1-redhat-1</release>
+    <versions>
+      <version>3.0.8.Final</version>
+      <version>3.0.16.Final-redhat-1</version>
+      <version>3.0.17.Final-redhat-1</version>
+      <version>3.0.18.Final-redhat-1</version>
+      <version>3.0.19.Final-redhat-1</version>
+      <version>3.0.19.SP1-redhat-1</version>
+    </versions>
+    <lastUpdated>20170325202409</lastUpdated>
+  </versioning>
+</metadata>

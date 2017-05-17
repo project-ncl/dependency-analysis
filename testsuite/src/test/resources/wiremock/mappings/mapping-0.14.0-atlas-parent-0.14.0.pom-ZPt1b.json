@@ -1,0 +1,24 @@
+{
+  "id" : "e266fc06-4a8f-387d-8738-bd3ab22cb9db",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-parent/0.14.0/atlas-parent-0.14.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.14.0-atlas-parent-0.14.0.pom-ZPt1b.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:46:03 GMT",
+      "ETAG" : "\"{SHA1{e539a65070d50f26f92dc13737dd328d1e1ce304}}\"",
+      "LAST-MODIFIED" : "Mon, 04 May 2015 16:37:04 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e266fc06-4a8f-387d-8738-bd3ab22cb9db"
+}

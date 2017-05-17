@@ -1,0 +1,25 @@
+{
+  "id" : "76643402-528e-3ece-9381-88c62b12b7ca",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/geronimo/genesis/config/project-config/1.2/project-config-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-project-config-1.2.pom-pgOuc.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 31 May 2017 20:13:29 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2001320", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:09 GMT",
+      "ETAG" : "\"{SHA1{3b983df295c5362c117a25861e2a19f86a99cdfb}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:52:42 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "76643402-528e-3ece-9381-88c62b12b7ca"
+}

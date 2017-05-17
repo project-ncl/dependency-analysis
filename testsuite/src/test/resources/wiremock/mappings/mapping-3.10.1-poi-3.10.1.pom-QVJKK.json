@@ -1,0 +1,25 @@
+{
+  "id" : "1249453a-1955-34b5-9fce-39dffd7295e1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/poi/poi/3.10.1/poi-3.10.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.10.1-poi-3.10.1.pom-QVJKK.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:15:45 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591980", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:05 GMT",
+      "ETAG" : "\"{SHA1{07fb7f1f62dc1bc048d73eda35279600277b2b57}}\"",
+      "LAST-MODIFIED" : "Wed, 08 Apr 2015 18:59:08 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1249453a-1955-34b5-9fce-39dffd7295e1"
+}

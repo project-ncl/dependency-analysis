@@ -1,0 +1,30 @@
+{
+  "id" : "5ff8bca1-87b4-3b4d-9ff9-17f18016a888",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/persistence/javax.persistence/2.1.0/javax.persistence-2.1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.0-javax.persistence-2.1.0.pom-PxZRC.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "bde5596f99401ea878d6baef6f269bf7424ed6673fe144e4a656676e92977beb",
+      "X-CHECKSUM-MD5" : "d0094b1bfa18599b31f511eca0b5de99",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:20 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"d0094b1bfa18599b31f511eca0b5de99\"",
+      "LAST-MODIFIED" : "Fri, 10 May 2013 16:49:51 GMT",
+      "X-CHECKSUM-SHA1" : "fe5bb4d55ef0267e8523366b9e9fbb56ebc1801c",
+      "X-SERVED-BY" : "cache-iad2126-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260241.546708,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2871963",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5ff8bca1-87b4-3b4d-9ff9-17f18016a888"
+}

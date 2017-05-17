@@ -1,0 +1,25 @@
+{
+  "id" : "ffc7c3d2-9585-3a70-9fa1-f6162df20516",
+  "request" : {
+    "url" : "/api/group/DApublic/com/thoughtworks/xstream/xstream-parent/1.4.7/xstream-parent-1.4.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.7-xstream-parent-1.4.7.pom-5hDR1.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 11:55:57 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 11:55:57 GMT",
+      "ETAG" : "\"{SHA1{15a68d751ca4f347a8480035c3f1397aa44383ac}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:07:38 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ffc7c3d2-9585-3a70-9fa1-f6162df20516"
+}

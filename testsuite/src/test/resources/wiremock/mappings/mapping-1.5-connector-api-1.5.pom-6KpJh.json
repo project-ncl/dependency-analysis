@@ -1,0 +1,25 @@
+{
+  "id" : "6e3f868e-ec16-3561-b457-94d1a7f28aff",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/resource/connector-api/1.5/connector-api-1.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5-connector-api-1.5.pom-6KpJh.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:15:17 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591972", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:45 GMT",
+      "ETAG" : "\"{SHA1{d97cffda75f8d7180cd47ace6326976616a42a9c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:00 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6e3f868e-ec16-3561-b457-94d1a7f28aff"
+}

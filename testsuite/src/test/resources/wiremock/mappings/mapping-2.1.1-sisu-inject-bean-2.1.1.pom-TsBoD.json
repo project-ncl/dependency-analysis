@@ -1,0 +1,25 @@
+{
+  "id" : "f0119bdd-c531-334a-a3f8-2e09d0e7c161",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/sisu-inject-bean/2.1.1/sisu-inject-bean-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-sisu-inject-bean-2.1.1.pom-TsBoD.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 09:42:10 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 09:42:10 GMT",
+      "ETAG" : "\"{SHA1{38dcb086dd93031152e8181c512568ce1697c4f4}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:43 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f0119bdd-c531-334a-a3f8-2e09d0e7c161"
+}

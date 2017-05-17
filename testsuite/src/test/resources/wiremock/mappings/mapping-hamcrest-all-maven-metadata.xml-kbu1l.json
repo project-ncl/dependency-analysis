@@ -1,0 +1,19 @@
+{
+  "id" : "1214babb-abd8-3a86-b8b9-25661d4013d7",
+  "request" : {
+    "url" : "/api/group/test-DA/org/hamcrest/hamcrest-all/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-hamcrest-all-maven-metadata.xml-kbu1l.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:17 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:55 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "1214babb-abd8-3a86-b8b9-25661d4013d7"
+}

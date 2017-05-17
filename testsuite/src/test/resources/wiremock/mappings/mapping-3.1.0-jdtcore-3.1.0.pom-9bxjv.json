@@ -1,0 +1,25 @@
+{
+  "id" : "b0788f40-8788-3ae2-9d81-21bd927a9f72",
+  "request" : {
+    "url" : "/api/group/DApublic/eclipse/jdtcore/3.1.0/jdtcore-3.1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.1.0-jdtcore-3.1.0.pom-9bxjv.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:19:11 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591981", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:30 GMT",
+      "ETAG" : "\"{SHA1{372dd29fe551a0d993d10411be48b524e0ba4c72}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b0788f40-8788-3ae2-9d81-21bd927a9f72"
+}

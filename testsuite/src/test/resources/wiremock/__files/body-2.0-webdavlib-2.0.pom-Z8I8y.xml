@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>apache-slide</groupId>
+  <artifactId>webdavlib</artifactId>
+  <name>webdavlib</name>
+  <version>2.0</version>
+  <url>http://jakarta.apache.org/slide/index.html</url>
+  <description>WebDAV Support Library</description>
+  <licenses>
+   <license>
+     <name>apache-2.0</name>
+     <url>http://apache.org/licenses/LICENSE-2.0.txt</url>
+   </license>
+  </licenses>      
+</project>

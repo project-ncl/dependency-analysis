@@ -1,0 +1,17 @@
+{
+  "id" : "950c5eda-b456-3ab8-9090-d1e87861f995",
+  "request" : {
+    "url" : "/api/group/DApublic/com/vividsolutions/jts/1.10/jts-1.10.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-1.10-jts-1.10.pom-kIee2.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:30:33 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "950c5eda-b456-3ab8-9090-d1e87861f995"
+}

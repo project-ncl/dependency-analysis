@@ -1,0 +1,11 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>javax.jws</groupId>
+  <artifactId>jsr181</artifactId>
+  <version>1.0</version>
+  <name>Web Services Metadata for the Java Platform API</name>
+  <url>http://dev2dev.bea.com/webservices/jwsm.html</url>
+  <distributionManagement>
+    <downloadUrl>http://ftpna2.bea.com/pub/downloads/jwsri-1.0.zip</downloadUrl>
+  </distributionManagement>
+</project> 

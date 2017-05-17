@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.eclipse.jdt.core.compiler</groupId>
+  <artifactId>ecj</artifactId>
+  <versioning>
+    <latest>4.4.2.redhat-2</latest>
+    <release>4.4.2.redhat-2</release>
+    <versions>
+      <version>3.5.1</version>
+      <version>3.7.2</version>
+      <version>3.7.2-redhat-1</version>
+      <version>4.3.1</version>
+      <version>4.3.1.redhat-1</version>
+      <version>4.4</version>
+      <version>4.4.2</version>
+      <version>4.4.2.redhat-1</version>
+      <version>4.4.2.redhat-2</version>
+    </versions>
+    <lastUpdated>20170512214108</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,19 @@
+{
+  "id" : "7b765a61-f189-3b5f-9861-2abc5805cbcc",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/jmdns/jmdns/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jmdns-maven-metadata.xml-VGMNU.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 18:19:04 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 18:19:04 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7b765a61-f189-3b5f-9861-2abc5805cbcc"
+}

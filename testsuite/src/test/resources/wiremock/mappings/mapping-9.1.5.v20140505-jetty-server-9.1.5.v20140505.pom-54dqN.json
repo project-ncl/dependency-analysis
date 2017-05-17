@@ -1,0 +1,30 @@
+{
+  "id" : "e1db11c1-8e0b-39bb-93de-ee845220e97d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/jetty/jetty-server/9.1.5.v20140505/jetty-server-9.1.5.v20140505.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-9.1.5.v20140505-jetty-server-9.1.5.v20140505.pom-54dqN.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "5ab0a296feb1548706dfb73674de536481a8681c3887cb85bd0f162c9d021941",
+      "X-CHECKSUM-MD5" : "fc5b80737ce4220a6e25d5b53aa733e9",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:55 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"fc5b80737ce4220a6e25d5b53aa733e9\"",
+      "LAST-MODIFIED" : "Mon, 05 May 2014 18:27:38 GMT",
+      "X-CHECKSUM-SHA1" : "6b9dfa4b4b65a0f39ae7e577c5ba450700fb345e",
+      "X-SERVED-BY" : "cache-iad2137-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260156.592439,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2855161",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e1db11c1-8e0b-39bb-93de-ee845220e97d"
+}

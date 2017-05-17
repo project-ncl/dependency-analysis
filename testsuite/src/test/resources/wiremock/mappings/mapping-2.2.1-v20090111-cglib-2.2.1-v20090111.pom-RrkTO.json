@@ -1,0 +1,30 @@
+{
+  "id" : "f87c5804-2f12-31d6-89d6-49125b99d13f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/cglib/2.2.1-v20090111/cglib-2.2.1-v20090111.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.1-v20090111-cglib-2.2.1-v20090111.pom-RrkTO.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "90865bdd06c2ac960ebf215a07694b8ebee5a9ba856af0b4fec635f7779ff5f0",
+      "X-CHECKSUM-MD5" : "0c81260a864d3ab9d757fe9ea7968c76",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:48 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"0c81260a864d3ab9d757fe9ea7968c76\"",
+      "LAST-MODIFIED" : "Tue, 04 Jan 2011 13:12:44 GMT",
+      "X-CHECKSUM-SHA1" : "5f9401bc266cb66367350dd3bdd438f3a1c286e2",
+      "X-SERVED-BY" : "cache-iad2132-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260089.927434,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2185557",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f87c5804-2f12-31d6-89d6-49125b99d13f"
+}

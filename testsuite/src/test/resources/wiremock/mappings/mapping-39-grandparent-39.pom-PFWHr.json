@@ -1,0 +1,24 @@
+{
+  "id" : "b08cbf9d-a4e6-3361-9b94-c2f985034aff",
+  "request" : {
+    "url" : "/api/group/DApublic/org/neo4j/build/grandparent/39/grandparent-39.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-39-grandparent-39.pom-PFWHr.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:26 GMT",
+      "ETAG" : "\"{SHA1{8a42072c046e27d6955ec6f6c249c3c08a00cef7}}\"",
+      "LAST-MODIFIED" : "Mon, 25 Mar 2013 15:48:52 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b08cbf9d-a4e6-3361-9b94-c2f985034aff"
+}

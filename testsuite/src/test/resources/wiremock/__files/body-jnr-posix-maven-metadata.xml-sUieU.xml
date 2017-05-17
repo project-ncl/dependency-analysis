@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.github.jnr</groupId>
+  <artifactId>jnr-posix</artifactId>
+  <versioning>
+    <latest>3.0.9</latest>
+    <release>3.0.9</release>
+    <versions>
+      <version>3.0.9</version>
+    </versions>
+    <lastUpdated>20170320175518</lastUpdated>
+  </versioning>
+</metadata>

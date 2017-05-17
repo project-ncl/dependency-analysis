@@ -1,0 +1,30 @@
+{
+  "id" : "5af3a1ee-a120-31d0-9acc-6f52c1dac450",
+  "request" : {
+    "url" : "/api/group/DApublic/com/jcraft/jsch/0.1.31/jsch-0.1.31.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.1.31-jsch-0.1.31.pom-XQP2Z.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "0113b8bb9f3de4aaff8366f89f58aa4248ea8aeeda5542a628c23b32084c1bb0",
+      "X-CHECKSUM-MD5" : "9f1a48a729b53f16a44b02d5a4c4cc65",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:22 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"9f1a48a729b53f16a44b02d5a4c4cc65\"",
+      "LAST-MODIFIED" : "Mon, 26 Feb 2007 22:57:08 GMT",
+      "X-CHECKSUM-SHA1" : "9ffa032d5ce0589245487cd3ffa79e8a04711f82",
+      "X-SERVED-BY" : "cache-iad2141-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260482.206220,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2153771",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5af3a1ee-a120-31d0-9acc-6f52c1dac450"
+}

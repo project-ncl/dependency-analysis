@@ -1,0 +1,24 @@
+{
+  "id" : "4553524f-51b8-384d-8c96-51c0a3054187",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/wagon/wagon-http-lightweight/1.0-beta-7/wagon-http-lightweight-1.0-beta-7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-beta-7-wagon-http-lightweight-1.0-beta-7.pom-qIgID.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:46:43 GMT",
+      "ETAG" : "\"{SHA1{32e0fc07c9b45d9a8b14980c3b57b1eadca13fb9}}\"",
+      "LAST-MODIFIED" : "Sat, 13 Nov 2010 21:49:23 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "4553524f-51b8-384d-8c96-51c0a3054187"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "00a777c0-f047-3043-ac58-a92d9334edca",
+  "request" : {
+    "url" : "/api/group/DApublic/com/wordnik/swagger-project_2.10/1.3.12/swagger-project_2.10-1.3.12.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.12-swagger-project_2.10-1.3.12.pom-TcqaF.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:14:03 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:03 GMT",
+      "ETAG" : "\"{SHA1{c5e75e63b34f465b55b343e978edeee19eb888b5}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:00 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "00a777c0-f047-3043-ac58-a92d9334edca"
+}

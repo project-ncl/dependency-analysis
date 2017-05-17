@@ -1,0 +1,25 @@
+{
+  "id" : "a58e4645-8de7-3975-a8ef-19b2ad736d0e",
+  "request" : {
+    "url" : "/api/group/DApublic/log4j/log4j/1.2.12/log4j-1.2.12.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.12-log4j-1.2.12.pom-ZPep5.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 18:29:24 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1908714", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:30 GMT",
+      "ETAG" : "\"{SHA1{70545179454d298d1ff01335fbec3c2acfd381d5}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:29 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a58e4645-8de7-3975-a8ef-19b2ad736d0e"
+}

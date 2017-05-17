@@ -1,0 +1,19 @@
+{
+  "id" : "245fc18d-3412-3632-b8dd-5346d9f76550",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/openjpa/openjpa-jest/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-openjpa-jest-maven-metadata.xml-rgxva.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:59 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:38 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "245fc18d-3412-3632-b8dd-5346d9f76550"
+}

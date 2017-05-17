@@ -1,0 +1,30 @@
+{
+  "id" : "39484b9f-ead5-3b99-92c2-4a2422cb6c94",
+  "request" : {
+    "url" : "/api/group/DApublic/org/geolatte/geolatte-geom/0.13/geolatte-geom-0.13.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.13-geolatte-geom-0.13.pom-NLNve.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "b0d7f53b835d08cb5a411a5124fede1bf0454f8bf9222eeab45fe408063a5637",
+      "X-CHECKSUM-MD5" : "85a6acceae02f6d95e9018f681c8dafe",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:25 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"85a6acceae02f6d95e9018f681c8dafe\"",
+      "LAST-MODIFIED" : "Fri, 18 Apr 2014 12:32:15 GMT",
+      "X-CHECKSUM-SHA1" : "6a8748efdd339e0ae4062156d091b325a804eb8a",
+      "X-SERVED-BY" : "cache-iad2120-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260606.630534,VS0,VE2",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2154260",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "39484b9f-ead5-3b99-92c2-4a2422cb6c94"
+}

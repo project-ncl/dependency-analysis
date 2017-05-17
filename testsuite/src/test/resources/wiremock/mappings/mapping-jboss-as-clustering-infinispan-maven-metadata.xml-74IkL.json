@@ -1,0 +1,19 @@
+{
+  "id" : "68e63216-73d2-3580-b72f-7e88ec0a491b",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-clustering-infinispan/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-as-clustering-infinispan-maven-metadata.xml-74IkL.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:39 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:17 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "68e63216-73d2-3580-b72f-7e88ec0a491b"
+}

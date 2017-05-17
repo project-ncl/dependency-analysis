@@ -1,0 +1,25 @@
+{
+  "id" : "eef5daa4-1d10-3f6a-9602-aa2e935dc08e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/glassfish/json/1.0/json-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-json-1.0.pom-CcGkK.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 16:11:38 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2520399", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:04:59 GMT",
+      "ETAG" : "\"{SHA1{71ea1d862e6cc338c953c2d432db50f4f25cd90b}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:15:44 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "eef5daa4-1d10-3f6a-9602-aa2e935dc08e"
+}

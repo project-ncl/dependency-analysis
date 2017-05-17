@@ -1,0 +1,30 @@
+{
+  "id" : "ffe6ca6a-78ed-3f36-bc80-3856b9e54bb9",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/groovy/groovy-all/1.6.3/groovy-all-1.6.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6.3-groovy-all-1.6.3.pom-cidPg.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "a21697b4356a1ccb66f1235d5913ff0e69705436799b326315f5073cbaa8a0f1",
+      "X-CHECKSUM-MD5" : "29fea47bb52d11570e917494777c103e",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:14 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"29fea47bb52d11570e917494777c103e\"",
+      "LAST-MODIFIED" : "Wed, 13 May 2009 14:33:02 GMT",
+      "X-CHECKSUM-SHA1" : "f6b1f2bc04c827e5a0cd5d624983c2a27c649daa",
+      "X-SERVED-BY" : "cache-iad2149-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260295.629716,VS0,VE34",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ffe6ca6a-78ed-3f36-bc80-3856b9e54bb9"
+}

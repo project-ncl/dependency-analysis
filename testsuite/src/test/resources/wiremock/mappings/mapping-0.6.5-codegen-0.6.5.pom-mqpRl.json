@@ -1,0 +1,30 @@
+{
+  "id" : "c8ce116c-1546-3519-a6e7-07a636394e74",
+  "request" : {
+    "url" : "/api/group/DApublic/com/mysema/codegen/codegen/0.6.5/codegen-0.6.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.6.5-codegen-0.6.5.pom-mqpRl.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "06b69f58511899247dae0ca2975cf9910219952ad6712c5ab2210c927a76f9d8",
+      "X-CHECKSUM-MD5" : "b7826898158e57dfe6dc32c2fe629858",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:59 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"b7826898158e57dfe6dc32c2fe629858\"",
+      "LAST-MODIFIED" : "Wed, 05 Nov 2014 18:15:51 GMT",
+      "X-CHECKSUM-SHA1" : "783692acc20c5e373e3a7aa62588f9a1ce0e3984",
+      "X-SERVED-BY" : "cache-iad2135-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260339.307627,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "746486",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c8ce116c-1546-3519-a6e7-07a636394e74"
+}

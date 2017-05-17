@@ -1,0 +1,19 @@
+{
+  "id" : "f572d931-0d8d-3c5c-a3c0-3e06cd19fa71",
+  "request" : {
+    "url" : "/api/group/test-DA/com/fasterxml/jackson/core/jackson-databind/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jackson-databind-maven-metadata.xml-LqXpX.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:32:18 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:32:18 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f572d931-0d8d-3c5c-a3c0-3e06cd19fa71"
+}

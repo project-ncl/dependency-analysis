@@ -1,0 +1,25 @@
+{
+  "id" : "c01a0759-e0b7-3010-bf05-9203e84fc924",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/portlet/portlet-api/2.0/portlet-api-2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0-portlet-api-2.0.pom-7YgRf.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:15:43 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591989", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:54 GMT",
+      "ETAG" : "\"{SHA1{981a9286416c09a276202503e1ea12d90a3b73aa}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:00 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c01a0759-e0b7-3010-bf05-9203e84fc924"
+}

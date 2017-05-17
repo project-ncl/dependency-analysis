@@ -1,0 +1,19 @@
+{
+  "id" : "e7761605-1621-371d-9798-79f0fd476385",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-controller/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-as-controller-maven-metadata.xml-fd1TI.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:25:46 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:25:25 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e7761605-1621-371d-9798-79f0fd476385"
+}

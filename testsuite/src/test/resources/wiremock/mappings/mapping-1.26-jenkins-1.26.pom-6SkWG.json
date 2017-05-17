@@ -1,0 +1,22 @@
+{
+  "id" : "ea3c7191-e53d-3c51-a426-ffe117a27993",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jenkins-ci/jenkins/1.26/jenkins-1.26.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.26-jenkins-1.26.pom-6SkWG.xml",
+    "headers" : {
+      "ETAG" : "\"18d65635-6863-53786899cdbae\"",
+      "LAST-MODIFIED" : "Wed, 13 Jul 2016 16:04:17 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:04 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ea3c7191-e53d-3c51-a426-ffe117a27993"
+}

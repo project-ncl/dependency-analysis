@@ -1,0 +1,30 @@
+{
+  "id" : "fab11f2f-b386-363d-961d-003c4fc8f52e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/persistence/org.eclipse.persistence.core/2.5.1/org.eclipse.persistence.core-2.5.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5.1-org.eclipse.persistence.core-2.5.1.pom-0PToK.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "84b87f28309b43ae368ee7ed830e258ed7ed0958b3061422ff47d11eda057637",
+      "X-CHECKSUM-MD5" : "b4c7e7393811d08c57024852d33f6deb",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:21 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"b4c7e7393811d08c57024852d33f6deb\"",
+      "LAST-MODIFIED" : "Thu, 26 Sep 2013 17:35:35 GMT",
+      "X-CHECKSUM-SHA1" : "dda63e9d03a88e7a4c640152e7dc1361554d5b44",
+      "X-SERVED-BY" : "cache-iad2143-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260241.226134,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2649065",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "fab11f2f-b386-363d-961d-003c4fc8f52e"
+}

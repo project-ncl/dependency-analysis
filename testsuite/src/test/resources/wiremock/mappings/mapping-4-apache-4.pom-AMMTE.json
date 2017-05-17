@@ -1,0 +1,25 @@
+{
+  "id" : "87a22177-6c25-3c62-826d-98e29072842f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/apache/4/apache-4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4-apache-4.pom-AMMTE.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 11:13:36 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=263651", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:25 GMT",
+      "ETAG" : "\"{SHA1{602b647986c1d24301bc3d70e5923696bc7f1401}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:34:57 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "87a22177-6c25-3c62-826d-98e29072842f"
+}

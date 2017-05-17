@@ -1,0 +1,31 @@
+{
+  "id" : "7d2ebd53-4ba1-392b-b87f-1524e7c6f7ee",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jenkins-ci/annotation-indexer/1.4/annotation-indexer-1.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4-annotation-indexer-1.4.pom-mEweh.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "131f088678b7d68ce462411b2b3b87c9fc4e32487131404a6fdae9c2373b408a",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:02 GMT",
+      "X-CHECKSUM-SHA1" : "59182d6fd44df428526d40e9e26390fba02c0b81",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1427045690000",
+      "AGE" : "6904545",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "8e44cddf6aba496f9ea099d71e369054",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"8e44cddf6aba496f9ea099d71e369054\"",
+      "LAST-MODIFIED" : "Sun, 22 Mar 2015 17:34:50 GMT",
+      "X-SERVED-BY" : "cache-iad2136-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260403.888908,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7d2ebd53-4ba1-392b-b87f-1524e7c6f7ee"
+}

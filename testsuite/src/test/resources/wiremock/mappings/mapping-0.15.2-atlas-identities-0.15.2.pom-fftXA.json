@@ -1,0 +1,30 @@
+{
+  "id" : "9dadb881-bfb3-3d1c-89bc-e195a0ae8903",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-identities/0.15.2/atlas-identities-0.15.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.2-atlas-identities-0.15.2.pom-fftXA.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d5c3b53e5fb454a56f5dcad80e98fdee9ed4ddc7171ab45cab8930958cf922d7",
+      "X-CHECKSUM-MD5" : "b8cc4e1008eb26d56691d9dc874fe316",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:00 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"b8cc4e1008eb26d56691d9dc874fe316\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 15:40:29 GMT",
+      "X-CHECKSUM-SHA1" : "93a02d5f971b8bd921a62b771d44c4ae14ef8ee8",
+      "X-SERVED-BY" : "cache-iad2143-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494260041.549228,VS0,VE1",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1145674",
+      "X-CACHE-HITS" : "0, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9dadb881-bfb3-3d1c-89bc-e195a0ae8903"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "88345cc7-8ced-3fad-a00f-460a25363113",
+  "request" : {
+    "url" : "/api/group/test-DA/avalon-framework/avalon-framework/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-avalon-framework-maven-metadata.xml-byuIN.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:49 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:28:28 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "88345cc7-8ced-3fad-a00f-460a25363113"
+}

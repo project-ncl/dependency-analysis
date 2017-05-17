@@ -1,0 +1,25 @@
+{
+  "id" : "7f8e1f63-9a7e-3063-af86-6cab137e8113",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/jdo/jdo-api/3.0.1/jdo-api-3.0.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.1-jdo-api-3.0.1.pom-kUFdP.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:16:44 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591969", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:15 GMT",
+      "ETAG" : "\"{SHA1{8f24387b7ddcf79840d5539fb5cbeb80c3066f80}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:24:55 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "7f8e1f63-9a7e-3063-af86-6cab137e8113"
+}

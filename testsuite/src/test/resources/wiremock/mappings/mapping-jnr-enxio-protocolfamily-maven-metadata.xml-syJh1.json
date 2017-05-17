@@ -1,0 +1,17 @@
+{
+  "id" : "087c76fb-ef68-35a0-b1cd-8c6f541dae3d",
+  "request" : {
+    "url" : "/api/group/test-DA/com/github/jnr/jnr-enxio-protocolfamily/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jnr-enxio-protocolfamily-maven-metadata.xml-syJh1.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:41 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "087c76fb-ef68-35a0-b1cd-8c6f541dae3d"
+}

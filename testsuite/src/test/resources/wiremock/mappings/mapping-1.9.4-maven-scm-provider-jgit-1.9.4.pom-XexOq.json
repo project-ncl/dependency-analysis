@@ -1,0 +1,30 @@
+{
+  "id" : "8e4f4d0f-4cf9-3def-9e15-bb1ec907d191",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/scm/maven-scm-provider-jgit/1.9.4/maven-scm-provider-jgit-1.9.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.4-maven-scm-provider-jgit-1.9.4.pom-XexOq.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "2de113e3977b7c508a7fb1560362b4ea68c78081110889dbfe86d41bd69c38c7",
+      "X-CHECKSUM-MD5" : "dd1d45f1f3054b883d84557feed4ed3d",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:26 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"dd1d45f1f3054b883d84557feed4ed3d\"",
+      "LAST-MODIFIED" : "Fri, 27 Mar 2015 17:16:51 GMT",
+      "X-CHECKSUM-SHA1" : "ff9ce3edd1dc55fcb300109908f87615f1773559",
+      "X-SERVED-BY" : "cache-iad2127-IAD, cache-dfw1821-DFW",
+      "X-TIMER" : "S1494237567.856304,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1102065",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "8e4f4d0f-4cf9-3def-9e15-bb1ec907d191"
+}

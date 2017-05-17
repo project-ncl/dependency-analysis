@@ -1,0 +1,25 @@
+{
+  "id" : "d163c95e-294a-37aa-8f08-58acff64c96a",
+  "request" : {
+    "url" : "/api/group/DApublic/com/google/collections/google-collections/1.0/google-collections-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-google-collections-1.0.pom-EaT8p.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 18:29:53 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1908914", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:39 GMT",
+      "ETAG" : "\"{SHA1{292197f3cb1ebc0dd03e20897e4250b265177286}}\"",
+      "LAST-MODIFIED" : "Thu, 14 Jul 2016 18:45:57 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d163c95e-294a-37aa-8f08-58acff64c96a"
+}

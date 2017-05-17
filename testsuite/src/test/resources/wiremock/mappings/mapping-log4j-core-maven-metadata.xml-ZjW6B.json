@@ -1,0 +1,17 @@
+{
+  "id" : "a350d110-3792-33ab-82d4-c767b2b1e737",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/logging/log4j/log4j-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-log4j-core-maven-metadata.xml-ZjW6B.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:40 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a350d110-3792-33ab-82d4-c767b2b1e737"
+}

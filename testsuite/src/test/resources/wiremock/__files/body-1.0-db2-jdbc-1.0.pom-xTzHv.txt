@@ -1,0 +1,2 @@
+Id: d9738d9e60f53c37a25b5567d239910a57daa77cb442ba8662dfbbfa7855f0db
+Message: Path com/ibm/db2/db2-jdbc/1.0/db2-jdbc-1.0.pom is not available in store group:DApublic.

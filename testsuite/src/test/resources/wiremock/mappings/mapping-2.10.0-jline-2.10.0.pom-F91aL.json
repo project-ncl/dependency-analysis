@@ -1,0 +1,25 @@
+{
+  "id" : "eaa1cea2-a7d1-388b-b228-d838ca95739a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/scala-lang/jline/2.10.0/jline-2.10.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.10.0-jline-2.10.0.pom-F91aL.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:25:02 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:25:02 GMT",
+      "ETAG" : "\"{SHA1{6de67ef765c8de43ab27ee741dc2b90fd747eda6}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:31:32 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "eaa1cea2-a7d1-388b-b228-d838ca95739a"
+}

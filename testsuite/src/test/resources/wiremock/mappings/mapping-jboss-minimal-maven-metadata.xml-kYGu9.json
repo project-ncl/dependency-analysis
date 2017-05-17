@@ -1,0 +1,17 @@
+{
+  "id" : "61a3e180-fbfe-35e6-82fe-bc9bcf1bc9ad",
+  "request" : {
+    "url" : "/api/group/test-DA/jboss/jboss-minimal/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jboss-minimal-maven-metadata.xml-kYGu9.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:45 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "61a3e180-fbfe-35e6-82fe-bc9bcf1bc9ad"
+}

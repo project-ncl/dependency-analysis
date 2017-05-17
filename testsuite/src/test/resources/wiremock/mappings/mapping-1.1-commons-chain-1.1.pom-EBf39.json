@@ -1,0 +1,25 @@
+{
+  "id" : "afb7e52f-1682-3923-a6ba-3fb6d78f7d34",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-chain/commons-chain/1.1/commons-chain-1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-commons-chain-1.1.pom-EBf39.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 18:17:43 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2080411", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:12 GMT",
+      "ETAG" : "\"{SHA1{9925db0ce8bea3b13afdf0565bb1a14c1c8c645c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "afb7e52f-1682-3923-a6ba-3fb6d78f7d34"
+}

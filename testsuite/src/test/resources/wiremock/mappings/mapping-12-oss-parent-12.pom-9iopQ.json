@@ -1,0 +1,25 @@
+{
+  "id" : "f11b0b90-ed81-33ab-a4b4-24e31a5e23db",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/oss-parent/12/oss-parent-12.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-12-oss-parent-12.pom-9iopQ.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:11:35 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591968", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:07 GMT",
+      "ETAG" : "\"{SHA1{28d822058fb576f203afc098822f2db5d1537055}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:33 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f11b0b90-ed81-33ab-a4b4-24e31a5e23db"
+}

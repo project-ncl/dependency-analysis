@@ -1,0 +1,25 @@
+{
+  "id" : "e18ec841-89d9-3d80-ae09-268e47c3c25e",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-core/2.4.5/jackson-core-2.4.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.4.5-jackson-core-2.4.5.pom-WJA7q.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 17 May 2017 01:58:19 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2472378", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 18 Apr 2017 11:12:01 GMT",
+      "ETAG" : "\"{SHA1{ee4f50d2da9a96d7bba3cdc85fa001c627c367c6}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:16 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "e18ec841-89d9-3d80-ae09-268e47c3c25e"
+}

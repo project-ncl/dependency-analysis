@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.google.code.cookcc</groupId>
+  <artifactId>cookcc</artifactId>
+  <versioning>
+    <latest>0.3.3-redhat-1</latest>
+    <release>0.3.3-redhat-1</release>
+    <versions>
+      <version>0.3.3</version>
+      <version>0.3.3-redhat-1</version>
+    </versions>
+    <lastUpdated>20170320175519</lastUpdated>
+  </versioning>
+</metadata>

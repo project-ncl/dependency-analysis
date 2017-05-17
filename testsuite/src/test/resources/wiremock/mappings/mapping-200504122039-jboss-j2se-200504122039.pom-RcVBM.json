@@ -1,0 +1,30 @@
+{
+  "id" : "a6a981b9-dea6-3173-a16c-18444ec61e75",
+  "request" : {
+    "url" : "/api/group/DApublic/jboss/jboss-j2se/200504122039/jboss-j2se-200504122039.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-200504122039-jboss-j2se-200504122039.pom-RcVBM.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "0da3c84b6b3e86de426fc1c11792080cf508fdedc488cf63851e42dd43f47f82",
+      "X-CHECKSUM-MD5" : "6c34da89a9f799ae554fd13e8ff03bb4",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:57 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"6c34da89a9f799ae554fd13e8ff03bb4\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:11:48 GMT",
+      "X-CHECKSUM-SHA1" : "04a6db19c995dc30d0f66085fc72e98eddeb7542",
+      "X-SERVED-BY" : "cache-iad2124-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260637.292082,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "561353",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a6a981b9-dea6-3173-a16c-18444ec61e75"
+}

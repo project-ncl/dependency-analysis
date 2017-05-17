@@ -1,0 +1,25 @@
+{
+  "id" : "0b304711-0f73-30b8-b9d4-770ff9c50c72",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-2-stax-api-1.0-2.pom-oMd84.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 31 May 2017 13:27:16 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1976916", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:40 GMT",
+      "ETAG" : "\"{SHA1{5379b69f557c5ab7c144d22bf7c3768bd2adb93d}}\"",
+      "LAST-MODIFIED" : "Wed, 17 Jun 2015 14:15:51 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0b304711-0f73-30b8-b9d4-770ff9c50c72"
+}

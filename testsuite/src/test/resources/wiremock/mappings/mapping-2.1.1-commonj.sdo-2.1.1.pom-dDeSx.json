@@ -1,0 +1,31 @@
+{
+  "id" : "440bd452-caf9-3597-acbc-b0d5fc9f6988",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/persistence/commonj.sdo/2.1.1/commonj.sdo-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-commonj.sdo-2.1.1.pom-dDeSx.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "7ea3cecf3d17821e6e24591c68cab6affca89f97fe1f1dd2c8d69006652e7e73",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:57 GMT",
+      "X-CHECKSUM-SHA1" : "7d17ddd571572db5612260c3a2ecc5870fb5d8b2",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1365692598000",
+      "AGE" : "6623730",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "76e0ab841b9127a76b9391f283f47093",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"76e0ab841b9127a76b9391f283f47093\"",
+      "LAST-MODIFIED" : "Thu, 11 Apr 2013 15:03:18 GMT",
+      "X-SERVED-BY" : "cache-iad2148-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260457.177012,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "440bd452-caf9-3597-acbc-b0d5fc9f6988"
+}

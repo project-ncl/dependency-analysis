@@ -1,0 +1,17 @@
+{
+  "id" : "1333ac7f-f57e-3a10-9d17-2b4fd459c8d5",
+  "request" : {
+    "url" : "/api/group/test-DA/net/sourceforge/barbecue/barbecue/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-barbecue-maven-metadata.xml-fy2f6.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:44 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1333ac7f-f57e-3a10-9d17-2b4fd459c8d5"
+}

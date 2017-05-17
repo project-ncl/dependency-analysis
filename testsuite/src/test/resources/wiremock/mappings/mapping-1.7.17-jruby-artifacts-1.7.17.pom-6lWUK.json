@@ -1,0 +1,30 @@
+{
+  "id" : "6f77ad50-f75d-3f77-a39b-6ea59b534225",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/jruby-artifacts/1.7.17/jruby-artifacts-1.7.17.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.17-jruby-artifacts-1.7.17.pom-6lWUK.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "12e6d493068aba68ea7ece9685d1f1f30736fb00bfb3e0a9102153b96e7e5549",
+      "X-CHECKSUM-MD5" : "ded0f4128831fa9a71a67eaea0f1f562",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:29 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ded0f4128831fa9a71a67eaea0f1f562\"",
+      "LAST-MODIFIED" : "Tue, 09 Dec 2014 17:18:04 GMT",
+      "X-CHECKSUM-SHA1" : "e2900172a302cef2e2fa9b6165498b1afa54a578",
+      "X-SERVED-BY" : "cache-iad2140-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260189.197251,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2130386",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "6f77ad50-f75d-3f77-a39b-6ea59b534225"
+}

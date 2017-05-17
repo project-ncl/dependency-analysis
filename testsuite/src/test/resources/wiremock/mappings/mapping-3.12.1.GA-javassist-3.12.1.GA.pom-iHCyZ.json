@@ -1,0 +1,25 @@
+{
+  "id" : "dc146c80-70b0-3a70-9648-d8d6463c2591",
+  "request" : {
+    "url" : "/api/group/DApublic/javassist/javassist/3.12.1.GA/javassist-3.12.1.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.12.1.GA-javassist-3.12.1.GA.pom-iHCyZ.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:14:42 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:42 GMT",
+      "ETAG" : "\"{SHA1{146323d4a8cc5fbbdcef547a053f65de694cd5e6}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:24:51 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "dc146c80-70b0-3a70-9648-d8d6463c2591"
+}

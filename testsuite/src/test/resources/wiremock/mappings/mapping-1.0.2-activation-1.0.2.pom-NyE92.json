@@ -1,0 +1,30 @@
+{
+  "id" : "4f158245-fb52-31d6-996f-4664242ba5e2",
+  "request" : {
+    "url" : "/api/group/DApublic/activation/activation/1.0.2/activation-1.0.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.2-activation-1.0.2.pom-NyE92.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d53edaeb4b31cb259eefced96a161b25382161b1e09ee28114bde0b88aa41742",
+      "X-CHECKSUM-MD5" : "03692b1a45cf4fe84d9ed22d35a7d823",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:21 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"03692b1a45cf4fe84d9ed22d35a7d823\"",
+      "LAST-MODIFIED" : "Wed, 21 Dec 2005 15:36:57 GMT",
+      "X-CHECKSUM-SHA1" : "9a26a44c6c174fb90ec04e1a29ecce1f1a3653d1",
+      "X-SERVED-BY" : "cache-iad2130-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260542.621161,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5210460",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "4f158245-fb52-31d6-996f-4664242ba5e2"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "1cbfbb92-8933-349f-9200-e8d3742762b5",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/tiles/tiles-ognl/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-tiles-ognl-maven-metadata.xml-e88I8.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:47 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1cbfbb92-8933-349f-9200-e8d3742762b5"
+}

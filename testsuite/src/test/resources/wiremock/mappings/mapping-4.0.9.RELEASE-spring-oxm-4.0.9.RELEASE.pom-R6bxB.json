@@ -1,0 +1,25 @@
+{
+  "id" : "e2ec5841-afeb-3ab2-80ed-5884df5435ca",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-oxm/4.0.9.RELEASE/spring-oxm-4.0.9.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.9.RELEASE-spring-oxm-4.0.9.RELEASE.pom-R6bxB.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:12:09 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591962", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:47 GMT",
+      "ETAG" : "\"{SHA1{24deba72e3f7a7c230671761fd0f4c71745696d8}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:04:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "e2ec5841-afeb-3ab2-80ed-5884df5435ca"
+}

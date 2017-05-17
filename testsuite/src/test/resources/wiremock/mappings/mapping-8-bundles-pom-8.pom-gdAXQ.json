@@ -1,0 +1,25 @@
+{
+  "id" : "584af303-072b-3461-81cd-f7fa66053ab3",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/servicemix/bundles/bundles-pom/8/bundles-pom-8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-8-bundles-pom-8.pom-gdAXQ.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 12:58:00 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2061439", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:41 GMT",
+      "ETAG" : "\"{SHA1{fe7e2b2a97d4b8319c9b07231f0ad44520a8338d}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:03:11 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "584af303-072b-3461-81cd-f7fa66053ab3"
+}

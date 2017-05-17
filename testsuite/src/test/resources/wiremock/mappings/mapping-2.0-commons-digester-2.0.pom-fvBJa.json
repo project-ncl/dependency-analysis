@@ -1,0 +1,30 @@
+{
+  "id" : "88f0e6d7-afda-31d1-b37f-42d592ec4bb0",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-digester/commons-digester/2.0/commons-digester-2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0-commons-digester-2.0.pom-fvBJa.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "fd18fad6ae034c95739b418c667e68d812566a84fe4622e6d74ad7d6c13b43fe",
+      "X-CHECKSUM-MD5" : "5fe2be9822510445c51ec117f5cd0717",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:53 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"5fe2be9822510445c51ec117f5cd0717\"",
+      "LAST-MODIFIED" : "Sat, 03 Jan 2009 16:51:08 GMT",
+      "X-CHECKSUM-SHA1" : "32c34f112945abe150718fb1ccd0f3bfda829075",
+      "X-SERVED-BY" : "cache-iad2146-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260394.972049,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2164760",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "88f0e6d7-afda-31d1-b37f-42d592ec4bb0"
+}

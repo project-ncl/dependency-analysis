@@ -1,0 +1,25 @@
+{
+  "id" : "f942aef4-e3fb-38f3-a46b-aa1c613e752b",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-codec/commons-codec/1.4/commons-codec-1.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4-commons-codec-1.4.pom-BqcY5.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 06 Jun 2017 13:06:55 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2494332", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:43 GMT",
+      "ETAG" : "\"{SHA1{393db4ae967c6e831025d432632d1f72f7108b01}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:04 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f942aef4-e3fb-38f3-a46b-aa1c613e752b"
+}

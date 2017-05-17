@@ -1,0 +1,25 @@
+{
+  "id" : "cfe8da78-f1c3-39f4-8c2b-2ed181d9873f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/spec/jboss-javaee6-specs-bom/1.0.1.Final/jboss-javaee6-specs-bom-1.0.1.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.1.Final-jboss-javaee6-specs-bom-1.0.1.Final.pom-ZNGHa.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:08:00 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591960", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:08:40 GMT",
+      "ETAG" : "\"{SHA1{f0fed7168b3048f77a1190e7a97e09ec6db1998b}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:52:06 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "cfe8da78-f1c3-39f4-8c2b-2ed181d9873f"
+}

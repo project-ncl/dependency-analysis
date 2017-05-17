@@ -1,0 +1,25 @@
+{
+  "id" : "3cf3061d-536c-3950-ae65-b4eca59983f4",
+  "request" : {
+    "url" : "/api/group/DApublic/org/fusesource/jansi/jansi/1.8/jansi-1.8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8-jansi-1.8.pom-wOuRy.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 15:32:41 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2589298", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:43 GMT",
+      "ETAG" : "\"{SHA1{cf4159d2b11378d738892300d6a462bfb619d450}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:15:29 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3cf3061d-536c-3950-ae65-b4eca59983f4"
+}

@@ -1,0 +1,23 @@
+{
+  "id" : "55b10338-a123-3aed-b270-b3f85861d437",
+  "request" : {
+    "url" : "/api/depgraph/graph/export",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"workspaceId\":\"export-com.google.guava:guava:18.0\",\"patcherIds\":[\"*\"],\"timeoutSecs\":null,\"source\":\"group:DApublic\",\"resolve\":true,\"injectedBOMs\":null,\"versionSelections\":null,\"excludedSubgraphs\":null,\"graph\":{\"roots\":[\"com.google.guava:guava:18.0\"],\"preset\":\"requires\",\"mutator\":null,\"mutatorInstance\":null,\"presetParams\":{}}}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-graph-export-3r5sN.json",
+    "headers" : {
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json",
+      "Date" : "Thu, 18 May 2017 16:05:16 GMT",
+      "Set-Cookie" : "a5ed093a9f31d7f0f3119b466b58e96c=54fea50a180994d1163876556811d6e4; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "55b10338-a123-3aed-b270-b3f85861d437"
+}

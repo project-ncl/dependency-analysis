@@ -1,0 +1,17 @@
+{
+  "id" : "c88c3348-a99e-3e73-9784-98f5981de37a",
+  "request" : {
+    "url" : "/api/group/test-DA/com/offbytwo/jenkins/jenkins-client/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jenkins-client-maven-metadata.xml-KHoxs.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:00 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c88c3348-a99e-3e73-9784-98f5981de37a"
+}

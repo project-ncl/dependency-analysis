@@ -1,0 +1,24 @@
+{
+  "id" : "0227dc46-4cbe-380c-8b5d-90f8ad67eaca",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/jetty/jetty-security/9.1.5.v20140505/jetty-security-9.1.5.v20140505.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-9.1.5.v20140505-jetty-security-9.1.5.v20140505.pom-BTzQB.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:16:13 GMT",
+      "ETAG" : "\"{SHA1{0d1226022088dea7c6bdfa0d52c2d2afaba5f34a}}\"",
+      "LAST-MODIFIED" : "Mon, 05 May 2014 18:28:02 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0227dc46-4cbe-380c-8b5d-90f8ad67eaca"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "b5ba8f6d-c5a1-33ce-bb87-50c7df089e30",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/cxf/cxf-rt-ws-security/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-cxf-rt-ws-security-maven-metadata.xml-ELuQO.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:26 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:04 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b5ba8f6d-c5a1-33ce-bb87-50c7df089e30"
+}

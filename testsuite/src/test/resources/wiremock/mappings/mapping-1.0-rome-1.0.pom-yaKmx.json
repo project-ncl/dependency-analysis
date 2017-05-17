@@ -1,0 +1,25 @@
+{
+  "id" : "dbf1e740-17b1-35df-8c39-3d9b1cf95ca4",
+  "request" : {
+    "url" : "/api/group/DApublic/rome/rome/1.0/rome-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-rome-1.0.pom-yaKmx.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:15:13 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591963", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:50 GMT",
+      "ETAG" : "\"{SHA1{ccab507b5b8555e779a72ac0e7210de018bfe055}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:20:45 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "dbf1e740-17b1-35df-8c39-3d9b1cf95ca4"
+}

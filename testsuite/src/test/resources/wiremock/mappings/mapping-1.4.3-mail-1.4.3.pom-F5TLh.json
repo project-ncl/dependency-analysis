@@ -1,0 +1,30 @@
+{
+  "id" : "d44ec73b-8e29-3890-b69c-d3c26784ea2a",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/mail/mail/1.4.3/mail-1.4.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.3-mail-1.4.3.pom-F5TLh.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "82d8d7494ca3fa23e25a8d84f412b6a4c8def5bf318877cb4bedb428f0cfcbac",
+      "X-CHECKSUM-MD5" : "ebc11114c32d02e773499238c18e277d",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:39 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ebc11114c32d02e773499238c18e277d\"",
+      "LAST-MODIFIED" : "Thu, 20 May 2010  0:48:31 GMT",
+      "X-CHECKSUM-SHA1" : "ad5eac91961b0097e04a7072867ace7670bfb30b",
+      "X-SERVED-BY" : "cache-iad2135-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260319.012076,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "7456162",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d44ec73b-8e29-3890-b69c-d3c26784ea2a"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "4aee25c4-a85c-3c54-88c3-afeaa4e708e2",
+  "request" : {
+    "url" : "/api/group/test-DA/cz/jirutka/rsql/rsql-parser/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-rsql-parser-maven-metadata.xml-aq1Zh.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:36 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "4aee25c4-a85c-3c54-88c3-afeaa4e708e2"
+}

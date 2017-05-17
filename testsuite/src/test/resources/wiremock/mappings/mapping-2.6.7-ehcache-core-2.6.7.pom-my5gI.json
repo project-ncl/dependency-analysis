@@ -1,0 +1,22 @@
+{
+  "id" : "13e013d0-f79a-37f1-986a-0bb1bb24b03e",
+  "request" : {
+    "url" : "/api/group/DApublic/net/sf/ehcache/ehcache-core/2.6.7/ehcache-core-2.6.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.6.7-ehcache-core-2.6.7.pom-my5gI.xml",
+    "headers" : {
+      "ETAG" : "\"153e76f1-7351-503e0aa8ca562\"",
+      "LAST-MODIFIED" : "Thu, 25 Sep 2014 09:45:52 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:39 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "13e013d0-f79a-37f1-986a-0bb1bb24b03e"
+}

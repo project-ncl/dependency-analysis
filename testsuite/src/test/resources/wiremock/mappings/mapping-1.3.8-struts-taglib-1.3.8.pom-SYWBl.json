@@ -1,0 +1,25 @@
+{
+  "id" : "826b42ab-2e7c-3bca-b35a-a9a0e3f14dbc",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/struts/struts-taglib/1.3.8/struts-taglib-1.3.8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.8-struts-taglib-1.3.8.pom-SYWBl.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 18:17:35 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2080406", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:09 GMT",
+      "ETAG" : "\"{SHA1{2aeddb7ea2febcd4734ebcdf33968925c847ead3}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:08:13 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "826b42ab-2e7c-3bca-b35a-a9a0e3f14dbc"
+}

@@ -1,0 +1,2 @@
+Id: ecbf03da28bc17e51067d4d6f8a1d92ffa9fe5f39cf7a58136bbd518e41a0e36
+Message: Path org/springframework/roo/org.springframework.roo.annotations/maven-metadata.xml is not available in store group:test-DA.

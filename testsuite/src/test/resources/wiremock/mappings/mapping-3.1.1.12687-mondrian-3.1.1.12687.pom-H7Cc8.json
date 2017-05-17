@@ -1,0 +1,17 @@
+{
+  "id" : "3e334140-91fb-32af-98f9-25e899a99d23",
+  "request" : {
+    "url" : "/api/group/DApublic/mondrian/mondrian/3.1.1.12687/mondrian-3.1.1.12687.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-3.1.1.12687-mondrian-3.1.1.12687.pom-H7Cc8.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:02 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3e334140-91fb-32af-98f9-25e899a99d23"
+}

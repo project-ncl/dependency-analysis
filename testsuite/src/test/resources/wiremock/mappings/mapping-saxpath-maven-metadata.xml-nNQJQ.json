@@ -1,0 +1,17 @@
+{
+  "id" : "9b610cfd-7b98-369c-b5c1-d41021862a04",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jdom/saxpath/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-saxpath-maven-metadata.xml-nNQJQ.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:40 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "9b610cfd-7b98-369c-b5c1-d41021862a04"
+}

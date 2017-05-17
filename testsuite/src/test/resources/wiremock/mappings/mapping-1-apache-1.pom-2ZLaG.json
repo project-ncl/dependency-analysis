@@ -1,0 +1,25 @@
+{
+  "id" : "d9f118d2-eb89-360a-a6e9-94a679f45060",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/apache/1/apache-1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1-apache-1.pom-2ZLaG.xml",
+    "headers" : {
+      "EXPIRES" : "Sun, 21 May 2017 12:58:53 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1135839", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:28:14 GMT",
+      "ETAG" : "\"{SHA1{403723adb1ec1a705c65b2780b5803ebffb7819e}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:34:55 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d9f118d2-eb89-360a-a6e9-94a679f45060"
+}

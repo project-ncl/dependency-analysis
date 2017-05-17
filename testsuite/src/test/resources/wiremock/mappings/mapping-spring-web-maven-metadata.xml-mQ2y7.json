@@ -1,0 +1,19 @@
+{
+  "id" : "e04d3673-d505-3e27-8a82-d4ce4a4661e2",
+  "request" : {
+    "url" : "/api/group/test-DA/org/springframework/spring-web/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-spring-web-maven-metadata.xml-mQ2y7.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:21 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:59 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e04d3673-d505-3e27-8a82-d4ce4a4661e2"
+}

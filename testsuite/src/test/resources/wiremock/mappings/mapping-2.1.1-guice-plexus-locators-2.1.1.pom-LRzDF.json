@@ -1,0 +1,24 @@
+{
+  "id" : "5b4bb6d4-eeea-323a-a278-baf8495725d6",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-locators/2.1.1/guice-plexus-locators-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-guice-plexus-locators-2.1.1.pom-LRzDF.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:47:53 GMT",
+      "ETAG" : "\"{SHA1{3beb2139826c9c7442afd0d8b4babdba9dc7557c}}\"",
+      "LAST-MODIFIED" : "Fri, 11 Feb 2011 17:42:12 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5b4bb6d4-eeea-323a-a278-baf8495725d6"
+}

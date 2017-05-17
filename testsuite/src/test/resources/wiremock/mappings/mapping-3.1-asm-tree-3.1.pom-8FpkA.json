@@ -1,0 +1,25 @@
+{
+  "id" : "5131a0e2-0d40-3f94-87d7-09ddf2eb5a19",
+  "request" : {
+    "url" : "/api/group/DApublic/asm/asm-tree/3.1/asm-tree-3.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.1-asm-tree-3.1.pom-8FpkA.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 11:00:10 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591948", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 11:01:02 GMT",
+      "ETAG" : "\"{SHA1{73a37af3b37d1d4ef444e791efbc4f1d77764659}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:49:17 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "5131a0e2-0d40-3f94-87d7-09ddf2eb5a19"
+}

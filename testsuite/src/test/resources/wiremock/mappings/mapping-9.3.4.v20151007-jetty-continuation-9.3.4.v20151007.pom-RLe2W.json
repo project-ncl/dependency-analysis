@@ -1,0 +1,24 @@
+{
+  "id" : "ad5262dd-c181-3051-a318-46bc8aeef635",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/jetty/jetty-continuation/9.3.4.v20151007/jetty-continuation-9.3.4.v20151007.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-9.3.4.v20151007-jetty-continuation-9.3.4.v20151007.pom-RLe2W.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:22:20 GMT",
+      "ETAG" : "\"{SHA1{f80f4af16484f0ad62aa284516c9e4b874a12ffe}}\"",
+      "LAST-MODIFIED" : "Wed, 07 Oct 2015 22:07:26 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ad5262dd-c181-3051-a318-46bc8aeef635"
+}

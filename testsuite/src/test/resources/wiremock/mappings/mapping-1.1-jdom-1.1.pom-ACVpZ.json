@@ -1,0 +1,25 @@
+{
+  "id" : "115f3794-99c8-32d7-880f-c559b1db5aab",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jdom/jdom/1.1/jdom-1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-jdom-1.1.pom-ACVpZ.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 22:10:00 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2444935", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Thu, 13 Apr 2017 15:01:05 GMT",
+      "ETAG" : "\"{SHA1{34346a37a2ae0397ece7a64bb61c5618f32a91c6}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:52:50 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "115f3794-99c8-32d7-880f-c559b1db5aab"
+}

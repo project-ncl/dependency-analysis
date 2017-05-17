@@ -1,0 +1,19 @@
+{
+  "id" : "b940a558-a1ba-3e99-9d5f-e88e00be0fb6",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/ant/ant/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-ant-maven-metadata.xml-04NaP.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:25:31 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:25:09 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b940a558-a1ba-3e99-9d5f-e88e00be0fb6"
+}

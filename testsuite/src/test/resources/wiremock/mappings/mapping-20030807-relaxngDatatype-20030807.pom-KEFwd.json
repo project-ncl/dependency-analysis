@@ -1,0 +1,31 @@
+{
+  "id" : "d60fe487-4561-30cf-87a4-0422406a7284",
+  "request" : {
+    "url" : "/api/group/DApublic/msv/relaxngDatatype/20030807/relaxngDatatype-20030807.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-20030807-relaxngDatatype-20030807.pom-KEFwd.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "aa5b36f9f81631594f778bcfd3c292e81b9e46c8256e3560b7c86aab83b8a3f4",
+      "X-CHECKSUM-MD5" : "3f087143a58ba0dd6e740e41b14da2a5",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:12 GMT",
+      "CONNECTION" : "close",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"3f087143a58ba0dd6e740e41b14da2a5\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:21:20 GMT",
+      "X-CHECKSUM-SHA1" : "669afa21464e63c34f33fba3951cf09671b28268",
+      "X-SERVED-BY" : "cache-iad2126-IAD, cache-dfw1826-DFW",
+      "X-TIMER" : "S1494235813.977098,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2558971",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d60fe487-4561-30cf-87a4-0422406a7284"
+}

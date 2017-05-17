@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.resteasy</groupId>
+  <artifactId>jaxrs-api</artifactId>
+  <versioning>
+    <latest>3.0.10.Final</latest>
+    <release>3.0.10.Final</release>
+    <versions>
+      <version>2.1.0.GA</version>
+      <version>2.3.6.Final-redhat-1</version>
+      <version>2.3.7.Final</version>
+      <version>2.3.7.Final-redhat-2</version>
+      <version>2.3.7.1.Final-redhat-1</version>
+      <version>2.3.7.2.Final-redhat-1</version>
+      <version>2.3.8.Final-redhat-3</version>
+      <version>2.3.8.SP2-redhat-1</version>
+      <version>2.3.8.SP2-redhat-3</version>
+      <version>2.3.8.SP3-redhat-2</version>
+      <version>2.3.8.SP4-redhat-2</version>
+      <version>2.3.10.Final</version>
+      <version>2.3.10.Final-redhat-1</version>
+      <version>2.3.12.Final-redhat-1</version>
+      <version>2.3.13.Final-redhat-1</version>
+      <version>2.3.15.Final-redhat-1</version>
+      <version>2.3.16.Final-redhat-1</version>
+      <version>2.3.17.Final-redhat-1</version>
+      <version>3.0.8.Final</version>
+      <version>3.0.10.Final</version>
+    </versions>
+    <lastUpdated>20170512214146</lastUpdated>
+  </versioning>
+</metadata>

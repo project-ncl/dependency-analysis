@@ -1,0 +1,30 @@
+{
+  "id" : "6d4b5c8d-7d98-3212-955a-519254f905e8",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant-antlr/1.8.4/ant-antlr-1.8.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.4-ant-antlr-1.8.4.pom-Kgh4U.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "e01b822adcdd83aeafa5b23b876378cc0af77bfca51a6c3fcd026edc71ad33a9",
+      "X-CHECKSUM-MD5" : "9193ad48cd54149fbad8cb9841d22237",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:00 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"9193ad48cd54149fbad8cb9841d22237\"",
+      "LAST-MODIFIED" : "Tue, 22 May 2012  6:01:43 GMT",
+      "X-CHECKSUM-SHA1" : "6beb0716036f6bcf4dd3d94a5c15d4a265bc35e6",
+      "X-SERVED-BY" : "cache-iad2150-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260280.394296,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2155249",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "6d4b5c8d-7d98-3212-955a-519254f905e8"
+}

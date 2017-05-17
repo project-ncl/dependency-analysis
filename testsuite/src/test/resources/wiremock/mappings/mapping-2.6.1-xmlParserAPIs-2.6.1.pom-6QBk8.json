@@ -1,0 +1,30 @@
+{
+  "id" : "757d45a0-0867-35b9-82e9-bb0b5f10aeba",
+  "request" : {
+    "url" : "/api/group/DApublic/xerces/xmlParserAPIs/2.6.1/xmlParserAPIs-2.6.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.6.1-xmlParserAPIs-2.6.1.pom-6QBk8.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "aa4e99d67afb86a9e6d607cbf9f55be8d9435e63cdb089f032ff6a6f4fbfaf16",
+      "X-CHECKSUM-MD5" : "93059d57ced3560d452862f92a8f93f6",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:23 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"93059d57ced3560d452862f92a8f93f6\"",
+      "LAST-MODIFIED" : "Tue, 27 Dec 2005 15:54:21 GMT",
+      "X-CHECKSUM-SHA1" : "6f2dd60320d33314df3fbecb6a5170a194a3d0e8",
+      "X-SERVED-BY" : "cache-iad2140-IAD, cache-dfw1826-DFW",
+      "X-TIMER" : "S1494235823.303991,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2464794",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "757d45a0-0867-35b9-82e9-bb0b5f10aeba"
+}

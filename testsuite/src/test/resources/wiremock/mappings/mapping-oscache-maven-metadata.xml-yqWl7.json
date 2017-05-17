@@ -1,0 +1,17 @@
+{
+  "id" : "f1344059-3cbf-39fd-9fa0-556db2fc6096",
+  "request" : {
+    "url" : "/api/group/test-DA/opensymphony/oscache/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-oscache-maven-metadata.xml-yqWl7.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:45 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f1344059-3cbf-39fd-9fa0-556db2fc6096"
+}

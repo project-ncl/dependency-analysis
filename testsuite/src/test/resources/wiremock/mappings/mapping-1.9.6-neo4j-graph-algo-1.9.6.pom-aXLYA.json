@@ -1,0 +1,24 @@
+{
+  "id" : "01e99654-a937-3680-91e7-6d7779f9df97",
+  "request" : {
+    "url" : "/api/group/DApublic/org/neo4j/neo4j-graph-algo/1.9.6/neo4j-graph-algo-1.9.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.6-neo4j-graph-algo-1.9.6.pom-aXLYA.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:46 GMT",
+      "ETAG" : "\"{SHA1{cd839a7d2f907a05e6e3ac34009569438c96c325}}\"",
+      "LAST-MODIFIED" : "Fri, 31 Jan 2014 13:47:23 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "01e99654-a937-3680-91e7-6d7779f9df97"
+}

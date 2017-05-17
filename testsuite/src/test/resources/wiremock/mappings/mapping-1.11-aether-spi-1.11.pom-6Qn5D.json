@@ -1,0 +1,25 @@
+{
+  "id" : "2b8f5627-390d-3819-8887-44be6946b79b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/aether/aether-spi/1.11/aether-spi-1.11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.11-aether-spi-1.11.pom-6Qn5D.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 19 May 2017 08:33:02 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591970", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 19 Apr 2017 08:33:32 GMT",
+      "ETAG" : "\"{SHA1{6a7c9de0eec956a1b0c44ccb6dca9b2194f684d5}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2b8f5627-390d-3819-8887-44be6946b79b"
+}

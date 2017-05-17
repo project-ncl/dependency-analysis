@@ -1,0 +1,25 @@
+{
+  "id" : "5b3228ce-2c29-3ec9-9c9d-f7844f3091db",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/fabric3/parent/5/parent-5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-5-parent-5.pom-t98Ah.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:19:02 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591967", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:35 GMT",
+      "ETAG" : "\"{SHA1{c72951ab92779d3104b99002a18e15a18cdb55a6}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:10:09 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "5b3228ce-2c29-3ec9-9c9d-f7844f3091db"
+}

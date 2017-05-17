@@ -1,0 +1,19 @@
+{
+  "id" : "b00e5d03-b4fb-3dc1-a8f7-d7634b630f77",
+  "request" : {
+    "url" : "/api/group/test-DA/xalan/xalan/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-xalan-maven-metadata.xml-KT04b.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:53 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:32 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b00e5d03-b4fb-3dc1-a8f7-d7634b630f77"
+}

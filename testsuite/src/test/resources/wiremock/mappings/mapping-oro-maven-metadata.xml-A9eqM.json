@@ -1,0 +1,19 @@
+{
+  "id" : "b21c91da-ba7f-3299-82bd-e4ab0552e7c9",
+  "request" : {
+    "url" : "/api/group/test-DA/oro/oro/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-oro-maven-metadata.xml-A9eqM.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:55 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:28:33 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b21c91da-ba7f-3299-82bd-e4ab0552e7c9"
+}

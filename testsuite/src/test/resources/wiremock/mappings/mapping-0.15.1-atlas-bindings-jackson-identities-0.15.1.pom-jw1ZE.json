@@ -1,0 +1,24 @@
+{
+  "id" : "d8032d32-1de7-3c8d-8c4c-040f37ddb9d3",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-bindings-jackson-identities/0.15.1/atlas-bindings-jackson-identities-0.15.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.1-atlas-bindings-jackson-identities-0.15.1.pom-jw1ZE.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:19:54 GMT",
+      "ETAG" : "\"{SHA1{c20d33bbe9048a3da91a8d7360266e663c95c4fd}}\"",
+      "LAST-MODIFIED" : "Wed, 30 Sep 2015 15:26:12 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d8032d32-1de7-3c8d-8c4c-040f37ddb9d3"
+}

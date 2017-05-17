@@ -1,0 +1,19 @@
+{
+  "id" : "a52dc4e8-3f83-3227-8ad7-74398e9f2225",
+  "request" : {
+    "url" : "/api/group/test-DA/com/sun/jersey/jersey-server/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jersey-server-maven-metadata.xml-0ns2K.xml",
+    "headers" : {
+      "Last-Modified" : "Thu, 18 May 2017 11:32:10 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Thu, 18 May 2017 11:32:10 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a52dc4e8-3f83-3227-8ad7-74398e9f2225"
+}

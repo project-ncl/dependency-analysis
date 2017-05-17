@@ -1,0 +1,30 @@
+{
+  "id" : "7415dba3-3e7c-399f-b99a-781726672f82",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jibx/config/core-reactor/1.2.5/core-reactor-1.2.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.5-core-reactor-1.2.5.pom-Jemi5.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f5cd2777ffa860beff88fb3d7feb1f6b47934ed543965979a68a41aba7c27ad2",
+      "X-CHECKSUM-MD5" : "d674450c557e47884fce57b71dbc6aee",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:38 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"d674450c557e47884fce57b71dbc6aee\"",
+      "LAST-MODIFIED" : "Sun, 24 Feb 2013  7:24:18 GMT",
+      "X-CHECKSUM-SHA1" : "b151a6e03af87c4b8378033d91b8b0307ae1c4b1",
+      "X-SERVED-BY" : "cache-iad2121-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260138.419816,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2146927",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7415dba3-3e7c-399f-b99a-781726672f82"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "6e3968ed-b2b8-3258-bf41-051e3053331d",
+  "request" : {
+    "url" : "/api/group/DApublic/com/mysema/querydsl/querydsl-collections/3.6.2/querydsl-collections-3.6.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.6.2-querydsl-collections-3.6.2.pom-VI6vD.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "55f6ca9134ec1a3a35ef68640671688ae54362fc131b4705a9a87316a65e8759",
+      "X-CHECKSUM-MD5" : "6ea01e7119e98c44774d9a40f450b4ed",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:52 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"6ea01e7119e98c44774d9a40f450b4ed\"",
+      "LAST-MODIFIED" : "Sat, 28 Feb 2015 16:38:51 GMT",
+      "X-CHECKSUM-SHA1" : "16e4cfbd4784759b8272ba215957b0c8b9d47038",
+      "X-SERVED-BY" : "cache-iad2124-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259973.739407,VS0,VE125",
+      "X-CACHE" : "MISS, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "0, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "6e3968ed-b2b8-3258-bf41-051e3053331d"
+}

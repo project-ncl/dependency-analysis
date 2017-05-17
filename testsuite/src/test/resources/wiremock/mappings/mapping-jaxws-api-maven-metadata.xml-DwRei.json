@@ -1,0 +1,17 @@
+{
+  "id" : "b5cf2830-e88c-3f1d-8976-226d550194e1",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/xml/ws/jaxws-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jaxws-api-maven-metadata.xml-DwRei.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:32 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b5cf2830-e88c-3f1d-8976-226d550194e1"
+}

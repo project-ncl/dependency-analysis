@@ -1,0 +1,17 @@
+{
+  "id" : "42f62a61-dde4-3bcc-b741-006f5ad5c94f",
+  "request" : {
+    "url" : "/api/group/test-DA/org/codehaus/jcsp/jcsp/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jcsp-maven-metadata.xml-AFgaC.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:40 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "42f62a61-dde4-3bcc-b741-006f5ad5c94f"
+}

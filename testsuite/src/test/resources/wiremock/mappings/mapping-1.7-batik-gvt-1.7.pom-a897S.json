@@ -1,0 +1,25 @@
+{
+  "id" : "2efed130-7420-30f2-b5b7-0f5fd576e584",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/xmlgraphics/batik-gvt/1.7/batik-gvt-1.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7-batik-gvt-1.7.pom-a897S.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 03 Jun 2017 02:48:00 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2197706", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:34 GMT",
+      "ETAG" : "\"{SHA1{549b17acd8f9f796750fd58e83bdaf45221ceb83}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:09:05 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2efed130-7420-30f2-b5b7-0f5fd576e584"
+}

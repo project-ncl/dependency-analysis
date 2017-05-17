@@ -1,0 +1,25 @@
+{
+  "id" : "d94fcae2-0e4f-36a1-95d6-80cc8edb6f24",
+  "request" : {
+    "url" : "/api/group/DApublic/com/github/jnr/jnr-ffi/2.0.0/jnr-ffi-2.0.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.0-jnr-ffi-2.0.0.pom-OpJWc.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:23:09 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:09 GMT",
+      "ETAG" : "\"{SHA1{c06d1b0567279c4243a3764f8e2d39d7a63fca80}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:36 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d94fcae2-0e4f-36a1-95d6-80cc8edb6f24"
+}

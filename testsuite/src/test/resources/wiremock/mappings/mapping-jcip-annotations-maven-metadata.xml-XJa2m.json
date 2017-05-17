@@ -1,0 +1,19 @@
+{
+  "id" : "4ca709e7-26c5-3675-8206-24fae4571109",
+  "request" : {
+    "url" : "/api/group/test-DA/net/jcip/jcip-annotations/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jcip-annotations-maven-metadata.xml-XJa2m.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:36 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:14 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "4ca709e7-26c5-3675-8206-24fae4571109"
+}

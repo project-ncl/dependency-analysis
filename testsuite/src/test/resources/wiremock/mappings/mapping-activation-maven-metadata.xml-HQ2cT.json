@@ -1,0 +1,19 @@
+{
+  "id" : "a242f6b9-cb08-3e3b-aa27-f3a75bf54f00",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/activation/activation/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-activation-maven-metadata.xml-HQ2cT.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:36 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:14 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a242f6b9-cb08-3e3b-aa27-f3a75bf54f00"
+}

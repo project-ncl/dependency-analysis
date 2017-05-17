@@ -1,0 +1,25 @@
+{
+  "id" : "ffcf6e79-2cc3-3292-bbd1-8b63765ecfbb",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-aop/3.0.6.RELEASE/spring-aop-3.0.6.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.6.RELEASE-spring-aop-3.0.6.RELEASE.pom-cnWei.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:22:03 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:03 GMT",
+      "ETAG" : "\"{SHA1{5c5ac84e742a8d387713f12428eb476847d0c3a9}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:03:26 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ffcf6e79-2cc3-3292-bbd1-8b63765ecfbb"
+}

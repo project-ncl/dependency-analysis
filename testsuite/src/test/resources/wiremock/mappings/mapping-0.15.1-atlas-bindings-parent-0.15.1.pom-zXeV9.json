@@ -1,0 +1,24 @@
+{
+  "id" : "f9bdb739-adf1-3806-bfb2-225526bdc620",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-bindings-parent/0.15.1/atlas-bindings-parent-0.15.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.1-atlas-bindings-parent-0.15.1.pom-zXeV9.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:19:57 GMT",
+      "ETAG" : "\"{SHA1{a3697470a9122a4035c34ecea8683142c9f2edaf}}\"",
+      "LAST-MODIFIED" : "Wed, 30 Sep 2015 15:26:08 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f9bdb739-adf1-3806-bfb2-225526bdc620"
+}

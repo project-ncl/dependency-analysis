@@ -1,0 +1,25 @@
+{
+  "id" : "15241822-b409-3ebf-9ec4-c565e69ecb35",
+  "request" : {
+    "url" : "/api/group/DApublic/org/scala-lang/scala-library/2.11.7/scala-library-2.11.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.11.7-scala-library-2.11.7.pom-GhVST.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 27 May 2017 13:45:53 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Thu, 27 Apr 2017 13:45:53 GMT",
+      "ETAG" : "\"{SHA1{f9f4db37975bec28980e280d7f4ffa6bdad6955c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:01:25 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "15241822-b409-3ebf-9ec4-c565e69ecb35"
+}

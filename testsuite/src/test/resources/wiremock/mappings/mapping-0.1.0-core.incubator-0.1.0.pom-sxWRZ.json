@@ -1,0 +1,30 @@
+{
+  "id" : "0797d6de-f61c-3f29-abe4-bb27535340e8",
+  "request" : {
+    "url" : "/api/group/DApublic/org/clojure/core.incubator/0.1.0/core.incubator-0.1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.1.0-core.incubator-0.1.0.pom-sxWRZ.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "5b8a97744ac0f19e9bb99a7c30e1333c8da813b14e4fd032361c6469352ad893",
+      "X-CHECKSUM-MD5" : "8d3af54f6d3bc7461c9283ee52bd697e",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:53 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"8d3af54f6d3bc7461c9283ee52bd697e\"",
+      "LAST-MODIFIED" : "Wed, 04 May 2011 14:07:29 GMT",
+      "X-CHECKSUM-SHA1" : "52e2b81913615fc6dfacb69d3c58f5a9c1ff061d",
+      "X-SERVED-BY" : "cache-iad2124-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259913.435348,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1574905",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0797d6de-f61c-3f29-abe4-bb27535340e8"
+}

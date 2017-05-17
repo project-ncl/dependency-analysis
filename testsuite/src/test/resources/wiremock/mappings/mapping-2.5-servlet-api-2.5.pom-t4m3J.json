@@ -1,0 +1,25 @@
+{
+  "id" : "553239df-0c9f-3093-b28a-43c6ba5ffb6f",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/servlet/servlet-api/2.5/servlet-api-2.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5-servlet-api-2.5.pom-t4m3J.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 16:10:50 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2159812", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:13:58 GMT",
+      "ETAG" : "\"{SHA1{a159fa05cce714c83deff647655dd53db064b21c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "553239df-0c9f-3093-b28a-43c6ba5ffb6f"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "15dfa344-1253-34c9-858d-800dc4ec9cf9",
+  "request" : {
+    "url" : "/api/group/DApublic/org/kie/remote/ws/kie-remote-ws/6.2.0.Final/kie-remote-ws-6.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.2.0.Final-kie-remote-ws-6.2.0.Final.pom-rnXaS.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "b4ab50cb563325da6ad29ec5832385d8e6ed88169e8ba9b5d1651de996a50f2d",
+      "X-CHECKSUM-MD5" : "c4b3893afe5b54ff6695c890032ab142",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:34 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"c4b3893afe5b54ff6695c890032ab142\"",
+      "LAST-MODIFIED" : "Wed, 04 Mar 2015 22:12:01 GMT",
+      "X-CHECKSUM-SHA1" : "ca102e0e7adfb88328eb973938dbf5a0573469f3",
+      "X-SERVED-BY" : "cache-iad2132-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259954.027094,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "15dfa344-1253-34c9-858d-800dc4ec9cf9"
+}

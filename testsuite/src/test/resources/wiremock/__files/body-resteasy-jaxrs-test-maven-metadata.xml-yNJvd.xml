@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.resteasy</groupId>
+  <artifactId>resteasy-jaxrs-test</artifactId>
+  <versioning>
+    <latest>2.3.10.Final</latest>
+    <release>2.3.10.Final</release>
+    <versions>
+      <version>2.3.8.SP2-redhat-3</version>
+      <version>2.3.10.Final</version>
+    </versions>
+    <lastUpdated>20170320175519</lastUpdated>
+  </versioning>
+</metadata>

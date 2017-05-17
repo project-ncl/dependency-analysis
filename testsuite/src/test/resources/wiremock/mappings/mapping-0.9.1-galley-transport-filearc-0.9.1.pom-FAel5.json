@@ -1,0 +1,24 @@
+{
+  "id" : "34359c4c-069b-387c-9602-dad5f0e69c6b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-transport-filearc/0.9.1/galley-transport-filearc-0.9.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.9.1-galley-transport-filearc-0.9.1.pom-FAel5.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:45:30 GMT",
+      "ETAG" : "\"{SHA1{383b6a8f1b2ec3c52d14034171cec032f4a42507}}\"",
+      "LAST-MODIFIED" : "Wed, 22 Jul 2015 16:41:29 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "34359c4c-069b-387c-9602-dad5f0e69c6b"
+}

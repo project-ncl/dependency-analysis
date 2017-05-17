@@ -1,0 +1,25 @@
+{
+  "id" : "0f398804-481d-3720-ab0a-b7fe47d40b2b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/lucene/lucene-solr-grandparent/3.6.2/lucene-solr-grandparent-3.6.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.6.2-lucene-solr-grandparent-3.6.2.pom-X1bnL.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 18 May 2017 11:09:59 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 18 Apr 2017 11:09:59 GMT",
+      "ETAG" : "\"{SHA1{708019db3fdf67091bf1fc261ce2025861c2f070}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:00:04 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0f398804-481d-3720-ab0a-b7fe47d40b2b"
+}

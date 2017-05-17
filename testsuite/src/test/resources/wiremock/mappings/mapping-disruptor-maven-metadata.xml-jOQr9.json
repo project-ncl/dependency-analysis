@@ -1,0 +1,19 @@
+{
+  "id" : "03f1ba8b-f26b-3b4a-8826-a4bc734807ed",
+  "request" : {
+    "url" : "/api/group/test-DA/com/lmax/disruptor/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-disruptor-maven-metadata.xml-jOQr9.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 18:19:04 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 18:19:04 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "03f1ba8b-f26b-3b4a-8826-a4bc734807ed"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "574afebe-7efe-3116-a511-eb59dd1c9569",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/shrinkwrap/resolver/shrinkwrap-resolver-bom/2.0.0/shrinkwrap-resolver-bom-2.0.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.0-shrinkwrap-resolver-bom-2.0.0.pom-pBHEa.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 11:42:18 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=265400", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:58:58 GMT",
+      "ETAG" : "\"{SHA1{bea2a4c3d5446088f139d569be34426a2ef18641}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:51:53 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "574afebe-7efe-3116-a511-eb59dd1c9569"
+}

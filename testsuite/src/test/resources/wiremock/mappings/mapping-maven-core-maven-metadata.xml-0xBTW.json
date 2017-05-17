@@ -1,0 +1,19 @@
+{
+  "id" : "2011b876-14c0-3070-8bf3-9c22394fb70b",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/maven/maven-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-maven-core-maven-metadata.xml-0xBTW.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 18:19:06 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 18:19:06 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2011b876-14c0-3070-8bf3-9c22394fb70b"
+}

@@ -1,0 +1,24 @@
+{
+  "id" : "506d75eb-fb93-3bbf-a93b-2db302ba6845",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-client-core-java/0.25.1/aprox-client-core-java-0.25.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.25.1-aprox-client-core-java-0.25.1.pom-AzgG3.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:16:43 GMT",
+      "ETAG" : "\"{SHA1{bdf4eabcdaab82f49c2d9e721b393b8182549247}}\"",
+      "LAST-MODIFIED" : "Thu, 15 Oct 2015 23:06:21 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "506d75eb-fb93-3bbf-a93b-2db302ba6845"
+}

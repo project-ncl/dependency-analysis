@@ -1,0 +1,30 @@
+{
+  "id" : "d9d351e9-44a7-30fa-bbdb-9a4e5ceafaa1",
+  "request" : {
+    "url" : "/api/group/DApublic/ehcache/ehcache/1.1/ehcache-1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-ehcache-1.1.pom-YWDNk.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "1d8cbf32054c5605515ad424b0dcf4f7d228fd8afb20b7521577d10684236165",
+      "X-CHECKSUM-MD5" : "a50c1278f393d00b168bc4a63cc2e422",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:24 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a50c1278f393d00b168bc4a63cc2e422\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:23:27 GMT",
+      "X-CHECKSUM-SHA1" : "864455f41771428e7e8848637c936fd62adc3207",
+      "X-SERVED-BY" : "cache-iad2138-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260545.821874,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2420988",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d9d351e9-44a7-30fa-bbdb-9a4e5ceafaa1"
+}

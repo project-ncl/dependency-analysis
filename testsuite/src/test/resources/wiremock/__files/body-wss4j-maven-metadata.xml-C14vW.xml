@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.apache.ws.security</groupId>
+  <artifactId>wss4j</artifactId>
+  <versioning>
+    <latest>1.6.19.redhat-2</latest>
+    <release>1.6.19.redhat-2</release>
+    <versions>
+      <version>1.6.5-redhat-1</version>
+      <version>1.6.7-redhat-1</version>
+      <version>1.6.8</version>
+      <version>1.6.9-redhat-2</version>
+      <version>1.6.10-redhat-1</version>
+      <version>1.6.12.redhat-1</version>
+      <version>1.6.14.redhat-1</version>
+      <version>1.6.15.redhat-1</version>
+      <version>1.6.16.redhat-2</version>
+      <version>1.6.17.SP1-redhat-1</version>
+      <version>1.6.18.redhat-1</version>
+      <version>1.6.19</version>
+      <version>1.6.19.redhat-2</version>
+    </versions>
+    <lastUpdated>20170421125814</lastUpdated>
+  </versioning>
+</metadata>

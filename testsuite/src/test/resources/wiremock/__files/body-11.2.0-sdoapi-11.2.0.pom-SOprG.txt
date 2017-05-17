@@ -1,0 +1,2 @@
+Id: 11e74018a2a1dfbeec4f0fbff2ebed26ce4f558324cebb22cab317c7677187ad
+Message: Path oracle/sdoapi/11.2.0/sdoapi-11.2.0.pom is not available in store group:DApublic.

@@ -1,0 +1,25 @@
+{
+  "id" : "bb789685-a96d-3871-a508-8280634d52c4",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/spice/spice-parent/17/spice-parent-17.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-17-spice-parent-17.pom-HGLXB.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:46:57 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1928115", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:42 GMT",
+      "ETAG" : "\"{SHA1{7f500699ef371383492a4d6ee799b1a77ffd82cc}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:45 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "bb789685-a96d-3871-a508-8280634d52c4"
+}

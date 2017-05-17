@@ -1,0 +1,17 @@
+{
+  "id" : "570b4357-9565-3625-bfc2-151ad9f12592",
+  "request" : {
+    "url" : "/api/group/test-DA/org/osgi/core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-core-maven-metadata.xml-HKzB0.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:41 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "570b4357-9565-3625-bfc2-151ad9f12592"
+}

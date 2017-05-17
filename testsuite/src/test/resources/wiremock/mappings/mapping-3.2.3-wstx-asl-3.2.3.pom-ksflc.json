@@ -1,0 +1,30 @@
+{
+  "id" : "74e2c3e4-5b66-3c2c-8569-5096c25962d9",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/woodstox/wstx-asl/3.2.3/wstx-asl-3.2.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.3-wstx-asl-3.2.3.pom-ksflc.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d64583ae6ad43f3a5148df3a62914022afb8435c4ceac62c4c1fccad7a8e18b4",
+      "X-CHECKSUM-MD5" : "feb9577f59454228cad8dc6bf54f5251",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:48 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"feb9577f59454228cad8dc6bf54f5251\"",
+      "LAST-MODIFIED" : "Thu, 15 Nov 2007  6:33:43 GMT",
+      "X-CHECKSUM-SHA1" : "71f6ed3727f7a6a408c8d4ac8f2e58f8f19ece26",
+      "X-SERVED-BY" : "cache-iad2126-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260628.124894,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5369527",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "74e2c3e4-5b66-3c2c-8569-5096c25962d9"
+}

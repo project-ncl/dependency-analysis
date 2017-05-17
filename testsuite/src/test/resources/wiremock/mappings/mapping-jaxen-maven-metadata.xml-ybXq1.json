@@ -1,0 +1,19 @@
+{
+  "id" : "521552e1-f404-3a12-81c6-ebc1d581285b",
+  "request" : {
+    "url" : "/api/group/test-DA/jaxen/jaxen/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jaxen-maven-metadata.xml-ybXq1.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:34:01 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:34:02 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "521552e1-f404-3a12-81c6-ebc1d581285b"
+}

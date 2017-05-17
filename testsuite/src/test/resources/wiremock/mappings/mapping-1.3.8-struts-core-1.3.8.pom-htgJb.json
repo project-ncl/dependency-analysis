@@ -1,0 +1,25 @@
+{
+  "id" : "a14985df-862b-3af1-9623-c296c3f9ba47",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/struts/struts-core/1.3.8/struts-core-1.3.8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.8-struts-core-1.3.8.pom-htgJb.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 18:16:34 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2080341", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:13 GMT",
+      "ETAG" : "\"{SHA1{ce1c07f0ecddb23c50c2f0a12c0b12d8cf1eb6d5}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:08:12 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a14985df-862b-3af1-9623-c296c3f9ba47"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "6532aae9-57bd-349c-b009-3936eee93770",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jvnet/hudson/xstream/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-xstream-maven-metadata.xml-kCyIT.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:01 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6532aae9-57bd-349c-b009-3936eee93770"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "ee84d772-1201-3326-9f2a-cc0e9723cbdb",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/mail/mail/1.4/mail-1.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4-mail-1.4.pom-rAZ1z.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:13:44 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591986", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:13:58 GMT",
+      "ETAG" : "\"{SHA1{642e1d43e7bc2a409fce1f479bf4a9b5097de515}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:24:58 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ee84d772-1201-3326-9f2a-cc0e9723cbdb"
+}

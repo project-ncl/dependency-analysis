@@ -1,0 +1,24 @@
+{
+  "id" : "ea8e7893-5b2a-3dcb-9f0d-a66f7070d293",
+  "request" : {
+    "url" : "/api/group/DApublic/net/java/dev/jna/jna/3.2.3/jna-3.2.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.3-jna-3.2.3.pom-jX0uH.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:48:27 GMT",
+      "ETAG" : "\"{SHA1{b9b7a4ae15de0fa647d6a69210149d0c01bd561e}}\"",
+      "LAST-MODIFIED" : "Thu, 20 May 2010 08:45:23 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ea8e7893-5b2a-3dcb-9f0d-a66f7070d293"
+}

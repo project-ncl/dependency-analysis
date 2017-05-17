@@ -1,0 +1,30 @@
+{
+  "id" : "2b4bf8f0-2ad9-32fe-93d0-b5e8e43ed7b2",
+  "request" : {
+    "url" : "/api/group/DApublic/org/clojure/clojure/1.3.0/clojure-1.3.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.0-clojure-1.3.0.pom-PlEea.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "a3479b07a589ca3137bcf4ed389728c31076ed46489b6207209c845bf1d4cc80",
+      "X-CHECKSUM-MD5" : "25e4f340d7932ab20ac38caf6762b4a1",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:51 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"25e4f340d7932ab20ac38caf6762b4a1\"",
+      "LAST-MODIFIED" : "Fri, 23 Sep 2011 18:49:55 GMT",
+      "X-CHECKSUM-SHA1" : "db857140ab8989f1eb286fc54315a8ccd19888ef",
+      "X-SERVED-BY" : "cache-iad2145-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259911.032819,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2675353",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2b4bf8f0-2ad9-32fe-93d0-b5e8e43ed7b2"
+}

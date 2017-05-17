@@ -1,0 +1,19 @@
+{
+  "id" : "16d5f364-c988-3621-945a-21f69de64df4",
+  "request" : {
+    "url" : "/api/group/test-DA/org/infinispan/infinispan-server-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-infinispan-server-core-maven-metadata.xml-zJYpt.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:46 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:25 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "16d5f364-c988-3621-945a-21f69de64df4"
+}

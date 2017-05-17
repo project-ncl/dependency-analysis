@@ -1,0 +1,19 @@
+{
+  "id" : "dfe037d0-c9a8-3072-884c-a2b192e08d50",
+  "request" : {
+    "url" : "/api/group/test-DA/org/wildfly/wildfly-core-security-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-wildfly-core-security-api-maven-metadata.xml-HgXxR.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:25:46 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:25:24 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "dfe037d0-c9a8-3072-884c-a2b192e08d50"
+}

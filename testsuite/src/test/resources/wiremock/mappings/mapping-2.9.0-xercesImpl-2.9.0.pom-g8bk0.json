@@ -1,0 +1,30 @@
+{
+  "id" : "890ba4e5-bb3d-35e0-bd22-bc3e77e69d88",
+  "request" : {
+    "url" : "/api/group/DApublic/xerces/xercesImpl/2.9.0/xercesImpl-2.9.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.9.0-xercesImpl-2.9.0.pom-g8bk0.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "4445f062e4694db3a2a920e8805ff03272101f463b3043e4a6e3406c59ad7dd2",
+      "X-CHECKSUM-MD5" : "7864e6bbadd5749866351112bb095e33",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:59 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"7864e6bbadd5749866351112bb095e33\"",
+      "LAST-MODIFIED" : "Wed, 01 Oct 2008 22:19:06 GMT",
+      "X-CHECKSUM-SHA1" : "69d36addeedb3da633dc456aa1ee1c0c35cfae13",
+      "X-SERVED-BY" : "cache-iad2149-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260459.116309,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2758633",
+      "X-CACHE-HITS" : "1, 8",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "890ba4e5-bb3d-35e0-bd22-bc3e77e69d88"
+}

@@ -1,0 +1,26 @@
+{
+  "id" : "1fdaafcc-9c57-316b-85ed-724dfbe5904f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/jboss-parent/11-redhat-1/jboss-parent-11-redhat-1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-11-redhat-1-jboss-parent-11-redhat-1.pom-IE9jK.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 05:36:13 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=329836", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:58:57 GMT",
+      "CONNECTION" : "close",
+      "ETAG" : "\"{SHA1{4de3be193cb4b3c8143d3f0268106dc368a3d855}}\"",
+      "LAST-MODIFIED" : "Thu, 21 Nov 2013 04:30:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1fdaafcc-9c57-316b-85ed-724dfbe5904f"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "5988cd36-1bba-3dea-91e3-0b985753ca71",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-aspects/4.0.9.RELEASE/spring-aspects-4.0.9.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.9.RELEASE-spring-aspects-4.0.9.RELEASE.pom-PG85v.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "19e9e62b44b7a347da3ad75d8b64cd1e9de7b0aa201527e87d69104f653bff29",
+      "X-CHECKSUM-MD5" : "f7790a9c907ccfc03978cee26a6816f7",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:13:05 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"f7790a9c907ccfc03978cee26a6816f7\"",
+      "LAST-MODIFIED" : "Tue, 30 Dec 2014 15:30:15 GMT",
+      "X-CHECKSUM-SHA1" : "1b7470d4c05c76eeb273a9e593614e533c305430",
+      "X-SERVED-BY" : "cache-iad2133-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259985.434433,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "588193",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5988cd36-1bba-3dea-91e3-0b985753ca71"
+}

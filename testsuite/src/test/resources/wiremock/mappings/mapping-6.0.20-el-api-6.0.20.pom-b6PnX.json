@@ -1,0 +1,30 @@
+{
+  "id" : "39d873e6-bf7d-3de2-8018-2db5f0827b72",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/tomcat/el-api/6.0.20/el-api-6.0.20.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.0.20-el-api-6.0.20.pom-b6PnX.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "c011325c166a2d22282a954bec9f2f08f00460b528eeff9c8191cfd55727d144",
+      "X-CHECKSUM-MD5" : "fb63e9317b20cc21f029314614d3a1ee",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:08 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"fb63e9317b20cc21f029314614d3a1ee\"",
+      "LAST-MODIFIED" : "Mon, 15 Jun 2009 18:25:21 GMT",
+      "X-CHECKSUM-SHA1" : "66444370fad6030195a2a0019e5c50f8946ad4bd",
+      "X-SERVED-BY" : "cache-iad2146-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260649.574116,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "39d873e6-bf7d-3de2-8018-2db5f0827b72"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "347e8a46-e53b-3503-b7ab-9a2b9362f697",
+  "request" : {
+    "url" : "/api/group/DApublic/com/sun/xml/fastinfoset/FastInfoset/1.2.13/FastInfoset-1.2.13.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.13-FastInfoset-1.2.13.pom-rJG8L.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 13:27:33 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2581934", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:19 GMT",
+      "ETAG" : "\"{SHA1{bc1ac953addb710ec08dcca6465bb1f6fcfd7ee9}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:07:34 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "347e8a46-e53b-3503-b7ab-9a2b9362f697"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "a026f8e9-6689-39ad-8c97-bc5b384d4133",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant-antlr/1.8.3/ant-antlr-1.8.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.3-ant-antlr-1.8.3.pom-4RYNC.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "6ddd58b3bd5fbd516f31ec4ecfc239e6b8c462cedfaa6a7887038d8ebbe302e5",
+      "X-CHECKSUM-MD5" : "18e37e4d3be6b43208da6276592eaf9d",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:19 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"18e37e4d3be6b43208da6276592eaf9d\"",
+      "LAST-MODIFIED" : "Sun, 26 Feb 2012  6:06:00 GMT",
+      "X-CHECKSUM-SHA1" : "6150ee4a7e164d20c129f5ddefd1a8cab60a41ce",
+      "X-SERVED-BY" : "cache-iad2127-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260420.719492,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a026f8e9-6689-39ad-8c97-bc5b384d4133"
+}

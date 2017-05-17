@@ -1,0 +1,25 @@
+{
+  "id" : "fd2ef80d-f82c-3026-a938-5e01c2123e50",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/enterprise/concurrent/javax.enterprise.concurrent-api/1.0/javax.enterprise.concurrent-api-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-javax.enterprise.concurrent-api-1.0.pom-1D6ZP.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:16:28 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591963", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:05 GMT",
+      "ETAG" : "\"{SHA1{417cbaa36624e8c8c6a514eb48fea3c88e69f774}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:49:23 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "fd2ef80d-f82c-3026-a938-5e01c2123e50"
+}

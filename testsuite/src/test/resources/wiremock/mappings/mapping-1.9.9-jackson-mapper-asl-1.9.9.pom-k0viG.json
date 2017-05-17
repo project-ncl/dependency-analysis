@@ -1,0 +1,25 @@
+{
+  "id" : "60e84afd-8aec-349d-838a-1ff8d90a27f2",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/jackson/jackson-mapper-asl/1.9.9/jackson-mapper-asl-1.9.9.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.9-jackson-mapper-asl-1.9.9.pom-k0viG.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 27 May 2017 19:27:18 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1676689", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:42:29 GMT",
+      "ETAG" : "\"{SHA1{ddde3e1d6a27c5844a7e23bad299298b7b9eb466}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:07 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "60e84afd-8aec-349d-838a-1ff8d90a27f2"
+}

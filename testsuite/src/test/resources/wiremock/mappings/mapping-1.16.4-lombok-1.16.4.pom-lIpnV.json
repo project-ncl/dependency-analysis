@@ -1,0 +1,30 @@
+{
+  "id" : "65d3a84c-3ed8-3e9c-b374-76582b0b6443",
+  "request" : {
+    "url" : "/api/group/DApublic/org/projectlombok/lombok/1.16.4/lombok-1.16.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.16.4-lombok-1.16.4.pom-lIpnV.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "5e7325b2e506bfa106bd4072a3f8fb1a93beaeeade9a4d4efedb3a6aff85d930",
+      "X-CHECKSUM-MD5" : "e53497716bf702f943c65166e284db13",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:19 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"e53497716bf702f943c65166e284db13\"",
+      "LAST-MODIFIED" : "Tue, 14 Apr 2015 20:41:06 GMT",
+      "X-CHECKSUM-SHA1" : "5a73d33001886fdff976d79fc9d8d6bbcc3dbd13",
+      "X-SERVED-BY" : "cache-iad2129-IAD, cache-dfw1821-DFW",
+      "X-TIMER" : "S1494237560.673964,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2615688",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "65d3a84c-3ed8-3e9c-b374-76582b0b6443"
+}

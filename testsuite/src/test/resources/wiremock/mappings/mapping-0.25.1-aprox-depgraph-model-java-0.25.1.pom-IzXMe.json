@@ -1,0 +1,24 @@
+{
+  "id" : "d5e7e9c3-2ccc-3826-88b1-56d33b5dbe10",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-depgraph-model-java/0.25.1/aprox-depgraph-model-java-0.25.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.25.1-aprox-depgraph-model-java-0.25.1.pom-IzXMe.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:17:38 GMT",
+      "ETAG" : "\"{SHA1{98970907368488d5ee7dcec571ce74a0282079cd}}\"",
+      "LAST-MODIFIED" : "Thu, 15 Oct 2015 23:06:51 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d5e7e9c3-2ccc-3826-88b1-56d33b5dbe10"
+}

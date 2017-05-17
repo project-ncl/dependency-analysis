@@ -1,0 +1,24 @@
+{
+  "id" : "f51ca6e8-7766-3c16-aae4-55b912775275",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-driver-neo4j-embedded/0.15.0/atlas-driver-neo4j-embedded-0.15.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.0-atlas-driver-neo4j-embedded-0.15.0.pom-qJI39.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:45:04 GMT",
+      "ETAG" : "\"{SHA1{e7f07aaf91195a30a20af7ee86d8719cc90a5498}}\"",
+      "LAST-MODIFIED" : "Thu, 03 Sep 2015 21:02:56 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f51ca6e8-7766-3c16-aae4-55b912775275"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "90cd8de5-c099-3fd9-8d70-04fd79e0da62",
+  "request" : {
+    "url" : "/api/group/test-DA/com/sun/tools/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-tools-maven-metadata.xml-cS0Z4.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:34 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "90cd8de5-c099-3fd9-8d70-04fd79e0da62"
+}

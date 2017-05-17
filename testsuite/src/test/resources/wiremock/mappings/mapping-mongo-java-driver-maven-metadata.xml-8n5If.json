@@ -1,0 +1,19 @@
+{
+  "id" : "1b2b2d78-07ac-3400-8b4e-a54daa018a32",
+  "request" : {
+    "url" : "/api/group/test-DA/org/mongodb/mongo-java-driver/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-mongo-java-driver-maven-metadata.xml-8n5If.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 18:19:07 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 18:19:07 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "1b2b2d78-07ac-3400-8b4e-a54daa018a32"
+}

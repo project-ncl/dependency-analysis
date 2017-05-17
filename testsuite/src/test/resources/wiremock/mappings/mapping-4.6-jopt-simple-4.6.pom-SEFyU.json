@@ -1,0 +1,30 @@
+{
+  "id" : "028d93a6-3ec1-3ab4-b2b2-02c9ffd245a5",
+  "request" : {
+    "url" : "/api/group/DApublic/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.6-jopt-simple-4.6.pom-SEFyU.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "80eed2b2fecd2472d51035ad048aefeeb95796cf1e9ebcae0188798f0a83ff56",
+      "X-CHECKSUM-MD5" : "487131e7016567cd2760d0be137862b7",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:18 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"487131e7016567cd2760d0be137862b7\"",
+      "LAST-MODIFIED" : "Mon, 06 Jan 2014  1:49:03 GMT",
+      "X-CHECKSUM-SHA1" : "c6b45d57089efa973a68f3bdf8fc6b125fa532ee",
+      "X-SERVED-BY" : "cache-iad2137-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260178.044657,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2874937",
+      "X-CACHE-HITS" : "1, 2",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "028d93a6-3ec1-3ab4-b2b2-02c9ffd245a5"
+}

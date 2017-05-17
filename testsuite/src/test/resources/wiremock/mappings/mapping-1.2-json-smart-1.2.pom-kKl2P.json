@@ -1,0 +1,31 @@
+{
+  "id" : "605530b4-2545-3225-b2b5-023f673f815e",
+  "request" : {
+    "url" : "/api/group/DApublic/net/minidev/json-smart/1.2/json-smart-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-json-smart-1.2.pom-kKl2P.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "ec8608c2ffa74fb261ae683b7e68b0e4b37f4304d14d5776ed060380b2a9705d",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:09 GMT",
+      "X-CHECKSUM-SHA1" : "4d7faef8004020f4f66e78e0be285339ef8ec803",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1375619233000",
+      "AGE" : "2989456",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "afedec3d8261e41e3fdee7ce28690a12",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"afedec3d8261e41e3fdee7ce28690a12\"",
+      "LAST-MODIFIED" : "Sun, 04 Aug 2013 12:27:13 GMT",
+      "X-SERVED-BY" : "cache-iad2146-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260409.321540,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "605530b4-2545-3225-b2b5-023f673f815e"
+}

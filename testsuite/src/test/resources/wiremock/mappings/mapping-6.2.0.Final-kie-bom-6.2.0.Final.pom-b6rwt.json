@@ -1,0 +1,25 @@
+{
+  "id" : "c42c0203-d3fa-375d-8ea7-38067d4cdfbf",
+  "request" : {
+    "url" : "/api/group/DApublic/org/kie/kie-bom/6.2.0.Final/kie-bom-6.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.2.0.Final-kie-bom-6.2.0.Final.pom-b6rwt.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:10:52 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591994", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:58 GMT",
+      "ETAG" : "\"{SHA1{099826a1d2cfc588047508a0b2620a11b2504309}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:27:48 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c42c0203-d3fa-375d-8ea7-38067d4cdfbf"
+}

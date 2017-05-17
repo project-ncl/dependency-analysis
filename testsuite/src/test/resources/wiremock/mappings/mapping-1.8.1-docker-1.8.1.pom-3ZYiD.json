@@ -1,0 +1,30 @@
+{
+  "id" : "5311c7a9-35b4-3281-b85a-9fa250a02398",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/jclouds/labs/docker/1.8.1/docker-1.8.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.1-docker-1.8.1.pom-3ZYiD.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "5d5591a8c1a8af47df7c267c01ff7b55f6ad2d24c5ef34ee20642ee5163020c6",
+      "X-CHECKSUM-MD5" : "32756a94fbe5295acaf025a827f698e1",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:39 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"32756a94fbe5295acaf025a827f698e1\"",
+      "LAST-MODIFIED" : "Fri, 10 Oct 2014 22:10:22 GMT",
+      "X-CHECKSUM-SHA1" : "83fbf2dfd0dbfa2ef21208a1dc26793bbc3a2a56",
+      "X-SERVED-BY" : "cache-iad2148-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259839.922141,VS0,VE96",
+      "X-CACHE" : "MISS, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "0, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5311c7a9-35b4-3281-b85a-9fa250a02398"
+}

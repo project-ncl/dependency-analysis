@@ -1,0 +1,30 @@
+{
+  "id" : "6742410e-f2c6-340a-88c3-b9c8120f9832",
+  "request" : {
+    "url" : "/api/group/DApublic/cz/jirutka/rsql/rsql-parser/2.0.M1/rsql-parser-2.0.M1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.M1-rsql-parser-2.0.M1.pom-9h2O1.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "a88ed58e492756971bd17ab8935af85960dba7e203f498eaa8f8a6bf14d82dcf",
+      "X-CHECKSUM-MD5" : "5c655347acdeb279a0ff2802ba361fb2",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:18 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"5c655347acdeb279a0ff2802ba361fb2\"",
+      "LAST-MODIFIED" : "Thu, 20 Mar 2014  1:47:31 GMT",
+      "X-CHECKSUM-SHA1" : "2bd519847640e6db06a4ce5557b4e53d3025116d",
+      "X-SERVED-BY" : "cache-iad2141-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259879.555498,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1145133",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "6742410e-f2c6-340a-88c3-b9c8120f9832"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "81747daa-6bd4-3216-b6cc-0fcd5b68b797",
+  "request" : {
+    "url" : "/api/group/test-DA/org/ops4j/pax/url/pax-url-aether/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-pax-url-aether-maven-metadata.xml-80XD6.xml",
+    "headers" : {
+      "Last-Modified" : "Thu, 18 May 2017 11:32:10 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Thu, 18 May 2017 11:32:10 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "81747daa-6bd4-3216-b6cc-0fcd5b68b797"
+}

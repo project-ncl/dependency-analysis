@@ -1,0 +1,25 @@
+{
+  "id" : "43ee08a9-dead-3c87-b591-399cf45ce081",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/apache/3/apache-3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3-apache-3.pom-pWVty.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:51:18 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1928161", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:17 GMT",
+      "ETAG" : "\"{SHA1{207ea5447e82b09a2a959531c41ed578e19fa31c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:34:57 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "43ee08a9-dead-3c87-b591-399cf45ce081"
+}

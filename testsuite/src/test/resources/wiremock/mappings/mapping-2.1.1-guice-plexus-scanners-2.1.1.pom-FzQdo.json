@@ -1,0 +1,24 @@
+{
+  "id" : "53f14806-4007-32b9-b633-5aa829ee082c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-scanners/2.1.1/guice-plexus-scanners-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-guice-plexus-scanners-2.1.1.pom-FzQdo.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:48:25 GMT",
+      "ETAG" : "\"{SHA1{454a0fb4c5eefc4a4282c234d2624ef969f953da}}\"",
+      "LAST-MODIFIED" : "Fri, 11 Feb 2011 17:41:44 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "53f14806-4007-32b9-b633-5aa829ee082c"
+}

@@ -1,0 +1,24 @@
+{
+  "id" : "3fed34f8-ab5f-38b4-84fc-97a36e4818b4",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0-beta9-log4j-api-2.0-beta9.pom-CX50w.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 12:51:49 GMT",
+      "ETAG" : "\"{SHA1{55b57955a40c0f8f810353e95b984b037c5a00a1}}\"",
+      "LAST-MODIFIED" : "Sat, 14 Sep 2013 14:16:58 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "3fed34f8-ab5f-38b4-84fc-97a36e4818b4"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "29701554-6279-336c-bdc2-c930d2e98d68",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-social-twitter/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-social-twitter-maven-metadata.xml-n1V3b.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:41 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "29701554-6279-336c-bdc2-c930d2e98d68"
+}

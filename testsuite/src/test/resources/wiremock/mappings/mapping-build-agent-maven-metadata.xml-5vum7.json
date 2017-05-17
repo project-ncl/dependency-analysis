@@ -1,0 +1,17 @@
+{
+  "id" : "f8d95d44-ead1-351f-a6fa-9e6eea0d4c40",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/pnc/build-agent/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-build-agent-maven-metadata.xml-5vum7.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:12 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f8d95d44-ead1-351f-a6fa-9e6eea0d4c40"
+}

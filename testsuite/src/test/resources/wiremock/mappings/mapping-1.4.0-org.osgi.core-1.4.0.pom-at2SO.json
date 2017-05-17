@@ -1,0 +1,25 @@
+{
+  "id" : "ac67e20a-24d1-357d-9536-0e7980278960",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/felix/org.osgi.core/1.4.0/org.osgi.core-1.4.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.0-org.osgi.core-1.4.0.pom-at2SO.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:18:31 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591982", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:49 GMT",
+      "ETAG" : "\"{SHA1{ed2387ee25cee881d147c422a5f701e685351615}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 20:15:38 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ac67e20a-24d1-357d-9536-0e7980278960"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "a9bde360-73ab-3b4b-9bd5-797b1eb3e9e3",
+  "request" : {
+    "url" : "/api/group/test-DA/xsddoc/xsddoc/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-xsddoc-maven-metadata.xml-1cznR.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:36 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a9bde360-73ab-3b4b-9bd5-797b1eb3e9e3"
+}

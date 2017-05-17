@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>xbean</artifactId>
+    <groupId>org.apache.xbean</groupId>
+    <version>3.14</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>xbean-asm4-shaded</artifactId>
+  <packaging>bundle</packaging>
+  <name>Apache XBean :: ASM 4 shaded (repackaged)</name>
+  <description>Repackaged and shaded asm 4.x jars</description>
+  <licenses>
+    <license>
+      <url>http://asm.ow2.org/license.html</url>
+    </license>
+    <license>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <createSourcesJar>true</createSourcesJar>
+              <relocations>
+                <relocation>
+                  <pattern>org.apache.xbean.asm4.original.commons</pattern>
+                  <shadedPattern>org.apache.xbean.asm4.shade.commons</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.objectweb.asm</pattern>
+                  <shadedPattern>org.apache.xbean.asm4</shadedPattern>
+                </relocation>
+              </relocations>
+              <transformers>
+                <transformer>
+                  <manifestEntries>
+                    <Bundle-License>http://asm.ow2.org/license.html</Bundle-License>
+                    <Bundle-SymbolicName>org.apache.xbean.asm-shaded</Bundle-SymbolicName>
+                    <Export-Package>${xbean.osgi.export}</Export-Package>
+                    <Import-Package>${xbean.osgi.export}</Import-Package>
+                  </manifestEntries>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <properties>
+    <asm.version>4.1</asm.version>
+    <xbean.osgi.export>org.apache.xbean.asm4;version=${asm.version},org.apache.xbean.asm4.signature;version=${asm.version},org.apache.xbean.asm4.commons;version=${asm.version},org.apache.xbean.asm4.tree;version=${asm.version}</xbean.osgi.export>
+  </properties>
+</project>
+

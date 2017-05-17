@@ -1,0 +1,17 @@
+{
+  "id" : "eaffe178-66af-3e06-89c3-47b1f065d278",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/faces/javax.faces-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-javax.faces-api-maven-metadata.xml-dnZ5q.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:42 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "eaffe178-66af-3e06-89c3-47b1f065d278"
+}

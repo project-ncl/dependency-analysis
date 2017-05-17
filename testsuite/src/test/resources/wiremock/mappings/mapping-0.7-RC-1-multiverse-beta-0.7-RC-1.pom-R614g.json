@@ -1,0 +1,30 @@
+{
+  "id" : "0cb93ed8-5880-38cb-870d-c74667098775",
+  "request" : {
+    "url" : "/api/group/DApublic/org/multiverse/multiverse-beta/0.7-RC-1/multiverse-beta-0.7-RC-1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.7-RC-1-multiverse-beta-0.7-RC-1.pom-R614g.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "44038a50c73f6a3bcb72f53cb8a12e326c70eb315d2d73197395bc956d092705",
+      "X-CHECKSUM-MD5" : "7fa6ff28f2b33d447bfefee137f272af",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:12 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"7fa6ff28f2b33d447bfefee137f272af\"",
+      "LAST-MODIFIED" : "Thu, 02 Dec 2010 21:55:42 GMT",
+      "X-CHECKSUM-SHA1" : "ddc682a2b219fcb896732e8ff3546415d708e12e",
+      "X-SERVED-BY" : "cache-iad2148-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260473.918785,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1191737",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0cb93ed8-5880-38cb-870d-c74667098775"
+}

@@ -1,0 +1,24 @@
+{
+  "id" : "13e0d89c-cb11-3bc3-9fea-f982ad7c3ed1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-transports/0.9.1/galley-transports-0.9.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.9.1-galley-transports-0.9.1.pom-Lf1jF.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:45:16 GMT",
+      "ETAG" : "\"{SHA1{658a32e4fb6437cf5845803ce655dadcb6da0393}}\"",
+      "LAST-MODIFIED" : "Wed, 22 Jul 2015 16:41:20 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "13e0d89c-cb11-3bc3-9fea-f982ad7c3ed1"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "e8a06aa7-1d11-3493-b2f8-31d54596f1eb",
+  "request" : {
+    "url" : "/api/group/test-DA/io/netty/netty/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-netty-maven-metadata.xml-1km0Y.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:48 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:27 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e8a06aa7-1d11-3493-b2f8-31d54596f1eb"
+}

@@ -1,0 +1,24 @@
+{
+  "id" : "2265f503-956b-32c3-9afd-24c34dd60ff9",
+  "request" : {
+    "url" : "/api/group/DApublic/com/jcraft/jsch/0.1.46/jsch-0.1.46.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.1.46-jsch-0.1.46.pom-4zCRy.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:15:39 GMT",
+      "ETAG" : "\"{SHA1{46cec75e3bcb55d2f3512eade4fc1d9a3381988e}}\"",
+      "LAST-MODIFIED" : "Thu, 02 Feb 2012 12:39:27 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2265f503-956b-32c3-9afd-24c34dd60ff9"
+}

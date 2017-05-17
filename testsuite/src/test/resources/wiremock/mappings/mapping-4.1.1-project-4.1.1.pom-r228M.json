@@ -1,0 +1,25 @@
+{
+  "id" : "a8ca34ae-a66a-31a3-951d-ffd7f9ebd234",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/httpcomponents/project/4.1.1/project-4.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.1.1-project-4.1.1.pom-r228M.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 16:10:39 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2159933", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:46 GMT",
+      "ETAG" : "\"{SHA1{34c04480e3e97bccf10777c94651479b5ff55278}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:55:38 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a8ca34ae-a66a-31a3-951d-ffd7f9ebd234"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "595b948d-d903-3c99-b7f3-b6ee19e74650",
+  "request" : {
+    "url" : "/api/group/DApublic/asm/asm-parent/3.2/asm-parent-3.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2-asm-parent-3.2.pom-1OnbT.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:58:49 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1928300", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:29 GMT",
+      "ETAG" : "\"{SHA1{7397a51cf41c0ca224eb73355bcbde1d51d0092b}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:49:16 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "595b948d-d903-3c99-b7f3-b6ee19e74650"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "0887e100-98ba-3209-9973-9aae5da28ca9",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/remotingjmx/remoting-jmx/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-remoting-jmx-maven-metadata.xml-iSOXY.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:04 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:42 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0887e100-98ba-3209-9973-9aae5da28ca9"
+}

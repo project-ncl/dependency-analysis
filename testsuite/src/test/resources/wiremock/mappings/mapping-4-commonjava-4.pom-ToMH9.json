@@ -1,0 +1,25 @@
+{
+  "id" : "885c5b38-4511-3dea-a75d-58d95284f304",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/commonjava/4/commonjava-4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4-commonjava-4.pom-ToMH9.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 13:25:26 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591958", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 11 Apr 2017 13:26:08 GMT",
+      "ETAG" : "\"{SHA1{70135ccf3fbeeb8e65b2689058d3fd10ca8e1d91}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "885c5b38-4511-3dea-a75d-58d95284f304"
+}

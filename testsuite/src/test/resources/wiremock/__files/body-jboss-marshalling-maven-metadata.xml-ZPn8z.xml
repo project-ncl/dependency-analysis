@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.marshalling</groupId>
+  <artifactId>jboss-marshalling</artifactId>
+  <versioning>
+    <latest>1.4.10.Final-redhat-3</latest>
+    <release>1.4.10.Final-redhat-3</release>
+    <versions>
+      <version>1.3.0.GA</version>
+      <version>1.3.14.GA-redhat-1</version>
+      <version>1.3.15.GA</version>
+      <version>1.3.15.GA-redhat-1</version>
+      <version>1.3.16.GA</version>
+      <version>1.3.16.GA-redhat-1</version>
+      <version>1.3.18.GA</version>
+      <version>1.3.18.GA-redhat-1</version>
+      <version>1.4.0.Final</version>
+      <version>1.4.2.Final</version>
+      <version>1.4.2.Final-redhat-1</version>
+      <version>1.4.3.Final-redhat-1</version>
+      <version>1.4.4.Final</version>
+      <version>1.4.5.Final-redhat-1</version>
+      <version>1.4.6.Final</version>
+      <version>1.4.6.Final-redhat-1</version>
+      <version>1.4.8.Final-redhat-1</version>
+      <version>1.4.10.Final</version>
+      <version>1.4.10.Final-redhat-1</version>
+      <version>1.4.10.Final-redhat-3</version>
+    </versions>
+    <lastUpdated>20170512213915</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>javax.jdo</groupId>
+  <artifactId>jdo2-api</artifactId>
+  <versioning>
+    <latest>2.3-eb</latest>
+    <release>2.3-eb</release>
+    <versions>
+      <version>2.3-eb</version>
+    </versions>
+    <lastUpdated>20170320175518</lastUpdated>
+  </versioning>
+</metadata>

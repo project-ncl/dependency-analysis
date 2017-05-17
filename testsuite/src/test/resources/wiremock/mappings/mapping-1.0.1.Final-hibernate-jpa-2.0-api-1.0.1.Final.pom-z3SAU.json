@@ -1,0 +1,25 @@
+{
+  "id" : "a545851e-da2a-30bd-80f3-e7ea405bcbf2",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.1.Final-hibernate-jpa-2.0-api-1.0.1.Final.pom-z3SAU.xml",
+    "headers" : {
+      "EXPIRES" : "Sun, 28 May 2017 09:15:05 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1727096", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:09 GMT",
+      "ETAG" : "\"{SHA1{1ca953db1ccc87d2f77714d9377f7f3a7cf41bcb}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:16:32 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a545851e-da2a-30bd-80f3-e7ea405bcbf2"
+}

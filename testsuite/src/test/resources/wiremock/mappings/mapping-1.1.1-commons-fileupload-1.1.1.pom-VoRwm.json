@@ -1,0 +1,30 @@
+{
+  "id" : "7392f56e-ba52-352b-8ebb-95ec0b2b211a",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-fileupload/commons-fileupload/1.1.1/commons-fileupload-1.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.1-commons-fileupload-1.1.1.pom-VoRwm.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "7be9f4f9f08240a6c554d74623b75a9fbc324ffc76f0792de450839301d59efd",
+      "X-CHECKSUM-MD5" : "7fc5525a47aefc56d4896524a08925de",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:37 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"7fc5525a47aefc56d4896524a08925de\"",
+      "LAST-MODIFIED" : "Thu, 22 Jun 2006 20:45:18 GMT",
+      "X-CHECKSUM-SHA1" : "b35c7a237b3ec9f8fc4b91d14d2bf9f4c687f284",
+      "X-SERVED-BY" : "cache-iad2133-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260677.185425,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2664126",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7392f56e-ba52-352b-8ebb-95ec0b2b211a"
+}

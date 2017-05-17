@@ -1,0 +1,25 @@
+{
+  "id" : "006cbe55-e889-3f14-a9ee-7d1db1eb238d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/resteasy/resteasy-jaxrs/2.3.10.Final/resteasy-jaxrs-2.3.10.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.10.Final-resteasy-jaxrs-2.3.10.Final.pom-OQs2B.xml",
+    "headers" : {
+      "EXPIRES" : "Sun, 28 May 2017 05:18:26 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1711138", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:28 GMT",
+      "ETAG" : "\"{SHA1{24e56ff5b9d73883d2fa0adf4a22563f34bcc593}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:51:39 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "006cbe55-e889-3f14-a9ee-7d1db1eb238d"
+}

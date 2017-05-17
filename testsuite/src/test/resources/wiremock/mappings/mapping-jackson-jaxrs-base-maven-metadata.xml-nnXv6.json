@@ -1,0 +1,19 @@
+{
+  "id" : "f0b04180-ad93-3eea-9c98-deb22b98ef77",
+  "request" : {
+    "url" : "/api/group/test-DA/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jackson-jaxrs-base-maven-metadata.xml-nnXv6.xml",
+    "headers" : {
+      "Last-Modified" : "Thu, 18 May 2017 11:32:05 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Thu, 18 May 2017 11:32:05 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f0b04180-ad93-3eea-9c98-deb22b98ef77"
+}

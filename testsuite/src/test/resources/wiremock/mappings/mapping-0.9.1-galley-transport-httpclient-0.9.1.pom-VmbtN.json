@@ -1,0 +1,24 @@
+{
+  "id" : "94fb7d49-e8c0-366f-b88b-d4a948c43c20",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-transport-httpclient/0.9.1/galley-transport-httpclient-0.9.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.9.1-galley-transport-httpclient-0.9.1.pom-VmbtN.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:45:15 GMT",
+      "ETAG" : "\"{SHA1{9c17229ae2a15ff8e90ffbf7ee4500491d543554}}\"",
+      "LAST-MODIFIED" : "Wed, 22 Jul 2015 16:41:24 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "94fb7d49-e8c0-366f-b88b-d4a948c43c20"
+}

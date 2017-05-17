@@ -1,0 +1,25 @@
+{
+  "id" : "db414b61-c761-39fc-b1c9-28e10024e464",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/logging/jboss-logging/3.1.0.GA/jboss-logging-3.1.0.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.1.0.GA-jboss-logging-3.1.0.GA.pom-JTzep.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 27 May 2017 07:30:23 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1634415", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:08 GMT",
+      "ETAG" : "\"{SHA1{639216c5e6d8514c502a3fc8a6c0eaaf2b25166e}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:47:25 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "db414b61-c761-39fc-b1c9-28e10024e464"
+}

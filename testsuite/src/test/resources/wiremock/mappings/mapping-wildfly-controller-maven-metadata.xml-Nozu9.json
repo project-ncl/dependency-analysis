@@ -1,0 +1,19 @@
+{
+  "id" : "3a1fbfc8-36b6-324c-9df3-158f23b4ce45",
+  "request" : {
+    "url" : "/api/group/test-DA/org/wildfly/core/wildfly-controller/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-wildfly-controller-maven-metadata.xml-Nozu9.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:29:03 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:28:41 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "3a1fbfc8-36b6-324c-9df3-158f23b4ce45"
+}

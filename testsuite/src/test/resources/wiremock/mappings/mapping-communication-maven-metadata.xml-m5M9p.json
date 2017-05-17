@@ -1,0 +1,17 @@
+{
+  "id" : "9c637cff-63a0-3659-acf7-abff310d3681",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/da/communication/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-communication-maven-metadata.xml-m5M9p.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:27:08 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "9c637cff-63a0-3659-acf7-abff310d3681"
+}

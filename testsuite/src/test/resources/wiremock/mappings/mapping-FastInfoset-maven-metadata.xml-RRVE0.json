@@ -1,0 +1,19 @@
+{
+  "id" : "53e3062e-c86d-3489-850d-e3bf4ee962df",
+  "request" : {
+    "url" : "/api/group/test-DA/com/sun/xml/fastinfoset/FastInfoset/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-FastInfoset-maven-metadata.xml-RRVE0.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:39:56 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:35 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "53e3062e-c86d-3489-850d-e3bf4ee962df"
+}

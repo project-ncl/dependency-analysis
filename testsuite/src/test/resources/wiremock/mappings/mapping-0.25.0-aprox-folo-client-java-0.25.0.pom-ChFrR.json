@@ -1,0 +1,30 @@
+{
+  "id" : "21d9117e-51e5-3736-a017-1b31c56a0629",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-folo-client-java/0.25.0/aprox-folo-client-java-0.25.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.25.0-aprox-folo-client-java-0.25.0.pom-ChFrR.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "3ef0536c42f1dc068c584f09dfed88b85d77f2082a1f583fd4f9febbb2b23483",
+      "X-CHECKSUM-MD5" : "b5e7edc20e6c38894437a6571c8eccf8",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:09:54 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"b5e7edc20e6c38894437a6571c8eccf8\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 16:32:21 GMT",
+      "X-CHECKSUM-SHA1" : "a73a8fd739bc27364ac67feaab81a916f14b27f5",
+      "X-SERVED-BY" : "cache-iad2134-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259795.983525,VS0,VE1",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1144955",
+      "X-CACHE-HITS" : "0, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "21d9117e-51e5-3736-a017-1b31c56a0629"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "957f3f34-8e03-3df9-a34a-39b3cab34713",
+  "request" : {
+    "url" : "/api/group/DApublic/xalan/xalan/2.7.0/xalan-2.7.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.7.0-xalan-2.7.0.pom-YEEp7.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "36b3dcab7ff795869f70dc264bd4261bc9a914275bcb9db3fe708bf543c20069",
+      "X-CHECKSUM-MD5" : "a14a18d3a57f8a4a366cade8780c0acd",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:28:15 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a14a18d3a57f8a4a366cade8780c0acd\"",
+      "LAST-MODIFIED" : "Fri, 31 Jan 2014 15:15:54 GMT",
+      "X-CHECKSUM-SHA1" : "381cc72f23dab23faad6b902e71ba6f3eb245db4",
+      "X-SERVED-BY" : "cache-iad2136-IAD, cache-dfw1822-DFW",
+      "X-TIMER" : "S1494235696.785020,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5187037",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "957f3f34-8e03-3df9-a34a-39b3cab34713"
+}

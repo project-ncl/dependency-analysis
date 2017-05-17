@@ -1,0 +1,24 @@
+{
+  "id" : "d90761fe-36e7-3d3d-9f6d-af41e4196bc2",
+  "request" : {
+    "url" : "/api/group/DApublic/org/neo4j/neo4j-graph-matching/1.9.6/neo4j-graph-matching-1.9.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.6-neo4j-graph-matching-1.9.6.pom-6bYzY.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:51 GMT",
+      "ETAG" : "\"{SHA1{4c082f21d59c9fa43f618b4795a8ff69a85887f4}}\"",
+      "LAST-MODIFIED" : "Fri, 31 Jan 2014 13:47:47 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d90761fe-36e7-3d3d-9f6d-af41e4196bc2"
+}

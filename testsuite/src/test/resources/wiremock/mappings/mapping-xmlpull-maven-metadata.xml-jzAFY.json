@@ -1,0 +1,19 @@
+{
+  "id" : "2f73c81d-5a6e-3b00-864c-e040336fd895",
+  "request" : {
+    "url" : "/api/group/test-DA/xmlpull/xmlpull/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-xmlpull-maven-metadata.xml-jzAFY.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:05 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:44 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2f73c81d-5a6e-3b00-864c-e040336fd895"
+}

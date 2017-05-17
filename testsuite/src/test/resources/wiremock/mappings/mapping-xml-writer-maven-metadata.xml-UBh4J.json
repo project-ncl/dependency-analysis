@@ -1,0 +1,19 @@
+{
+  "id" : "c81a154e-9964-3a60-bcb6-42045292cf7f",
+  "request" : {
+    "url" : "/api/group/test-DA/com/megginson/sax/xml-writer/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-xml-writer-maven-metadata.xml-UBh4J.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:02 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:40 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c81a154e-9964-3a60-bcb6-42045292cf7f"
+}

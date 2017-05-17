@@ -1,0 +1,30 @@
+{
+  "id" : "198f141a-3517-3e54-a8cf-5f2f1bba1670",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/cartographer/cartographer/0.10.2/cartographer-0.10.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.10.2-cartographer-0.10.2.pom-8TWVm.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "bda90203280049949082bb5e3567996bf68d457baadb934b5a12ec6c79d41587",
+      "X-CHECKSUM-MD5" : "16319e60adc6b11f5c3d743600be3d35",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 06 Mar 2017 19:18:02 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"16319e60adc6b11f5c3d743600be3d35\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 15:53:01 GMT",
+      "X-CHECKSUM-SHA1" : "08afafd715b39557c80c7da71c65d4ae5dc13e46",
+      "X-SERVED-BY" : "cache-iad2123-IAD, cache-atl6248-ATL",
+      "X-TIMER" : "S1488827882.736246,VS0,VE0",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "3985219",
+      "X-CACHE-HITS" : "0, 1",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "198f141a-3517-3e54-a8cf-5f2f1bba1670"
+}

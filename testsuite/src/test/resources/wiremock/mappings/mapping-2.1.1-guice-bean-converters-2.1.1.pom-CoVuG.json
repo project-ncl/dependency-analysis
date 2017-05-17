@@ -1,0 +1,24 @@
+{
+  "id" : "ef26a945-5f22-3b9b-9af6-5443e63505c0",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-bean-converters/2.1.1/guice-bean-converters-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-guice-bean-converters-2.1.1.pom-CoVuG.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:48:24 GMT",
+      "ETAG" : "\"{SHA1{2b6059ec47079716812ec25cf30f94ce794f4ca0}}\"",
+      "LAST-MODIFIED" : "Fri, 11 Feb 2011 17:40:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ef26a945-5f22-3b9b-9af6-5443e63505c0"
+}

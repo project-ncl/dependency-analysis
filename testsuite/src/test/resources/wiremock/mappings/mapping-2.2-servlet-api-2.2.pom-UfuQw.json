@@ -1,0 +1,31 @@
+{
+  "id" : "78dc07d1-74b5-3390-8737-1b09ee6789c9",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/servlet/servlet-api/2.2/servlet-api-2.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2-servlet-api-2.2.pom-UfuQw.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "c36caf88a31f326e51200f090e906810c32d9cc21701bdb8f7e87322aee384d9",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:19 GMT",
+      "X-CHECKSUM-SHA1" : "3de056d24a5cf87dcfe875635ea7c7656de5a820",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1131487093000",
+      "AGE" : "8235621",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "ccd834e1f740687cb2be834aeb0af3ea",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ccd834e1f740687cb2be834aeb0af3ea\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 21:58:13 GMT",
+      "X-SERVED-BY" : "cache-iad2140-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260540.638255,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "78dc07d1-74b5-3390-8737-1b09ee6789c9"
+}

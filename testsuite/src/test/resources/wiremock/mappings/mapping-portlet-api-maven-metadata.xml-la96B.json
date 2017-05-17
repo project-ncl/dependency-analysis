@@ -1,0 +1,19 @@
+{
+  "id" : "7ae14b33-e44c-3c85-a32e-7f7b93b0e933",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/portlet/portlet-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-portlet-api-maven-metadata.xml-la96B.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:21 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:00 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7ae14b33-e44c-3c85-a32e-7f7b93b0e933"
+}

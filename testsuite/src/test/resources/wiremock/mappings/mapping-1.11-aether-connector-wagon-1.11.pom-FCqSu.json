@@ -1,0 +1,22 @@
+{
+  "id" : "87781e8e-0d9d-38eb-9530-79c6a5c9e6e4",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/aether/aether-connector-wagon/1.11/aether-connector-wagon-1.11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.11-aether-connector-wagon-1.11.pom-FCqSu.xml",
+    "headers" : {
+      "ETAG" : "\"116504c2-c19-4a85f3a81a1f1\"",
+      "LAST-MODIFIED" : "Mon, 18 Jul 2011 22:07:43 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:15:55 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "87781e8e-0d9d-38eb-9530-79c6a5c9e6e4"
+}

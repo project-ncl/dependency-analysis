@@ -1,0 +1,17 @@
+{
+  "id" : "165bbc97-3713-3e40-97ae-3aae9557dea2",
+  "request" : {
+    "url" : "/api/group/DApublic/xerces/xerces-impl/2.6.2/xerces-impl-2.6.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-2.6.2-xerces-impl-2.6.2.pom-pTcOx.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:14 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "165bbc97-3713-3e40-97ae-3aae9557dea2"
+}

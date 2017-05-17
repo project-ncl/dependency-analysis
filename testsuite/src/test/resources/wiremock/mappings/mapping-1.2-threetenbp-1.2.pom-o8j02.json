@@ -1,0 +1,30 @@
+{
+  "id" : "ac34d225-30f6-3b19-ac5e-453cd9e0c6ae",
+  "request" : {
+    "url" : "/api/group/DApublic/org/threeten/threetenbp/1.2/threetenbp-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-threetenbp-1.2.pom-o8j02.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "b4fdbeb84170036c861c6c8976aa2b07e5adf378490a90664eee41218d4ba02a",
+      "X-CHECKSUM-MD5" : "0a6c59c4a328cce301604d771302747c",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:51 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"0a6c59c4a328cce301604d771302747c\"",
+      "LAST-MODIFIED" : "Tue, 09 Dec 2014 11:59:27 GMT",
+      "X-CHECKSUM-SHA1" : "1848a894afd1e13c79fddc0fc19e6c0d4da72cb0",
+      "X-SERVED-BY" : "cache-iad2120-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259971.223727,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "435924",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ac34d225-30f6-3b19-ac5e-453cd9e0c6ae"
+}

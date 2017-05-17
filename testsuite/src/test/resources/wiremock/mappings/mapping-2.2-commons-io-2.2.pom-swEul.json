@@ -1,0 +1,25 @@
+{
+  "id" : "d9b925c8-0169-3d60-99a4-ca64b0f3cd05",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-io/commons-io/2.2/commons-io-2.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2-commons-io-2.2.pom-swEul.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 09:42:59 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 09:42:59 GMT",
+      "ETAG" : "\"{SHA1{1ef24807b2eaf9d51b5587710878146d630cc855}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:14 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d9b925c8-0169-3d60-99a4-ca64b0f3cd05"
+}

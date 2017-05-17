@@ -1,0 +1,25 @@
+{
+  "id" : "147599f9-393e-3a7b-a64c-ffa72df4a58a",
+  "request" : {
+    "url" : "/api/group/DApublic/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.6.1-icu4j-2.6.1.pom-dGm8H.xml",
+    "headers" : {
+      "EXPIRES" : "Sun, 04 Jun 2017 09:15:35 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2331914", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:21 GMT",
+      "ETAG" : "\"{SHA1{77707a20c99c9915d308ca6003bc4e99a1418b07}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:57:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "147599f9-393e-3a7b-a64c-ffa72df4a58a"
+}

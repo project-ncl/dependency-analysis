@@ -1,0 +1,19 @@
+{
+  "id" : "e3709403-8062-343d-8661-35ee26ca13c5",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/inject/javax.inject/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-javax.inject-maven-metadata.xml-gqh6w.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:32:35 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:32:35 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e3709403-8062-343d-8661-35ee26ca13c5"
+}

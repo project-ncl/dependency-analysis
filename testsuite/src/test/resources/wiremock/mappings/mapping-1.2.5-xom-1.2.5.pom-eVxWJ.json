@@ -1,0 +1,25 @@
+{
+  "id" : "c81600f2-7d06-39b8-aefc-6a5130ed7a24",
+  "request" : {
+    "url" : "/api/group/DApublic/xom/xom/1.2.5/xom-1.2.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.5-xom-1.2.5.pom-eVxWJ.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 15:18:50 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2516728", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:13:22 GMT",
+      "ETAG" : "\"{SHA1{0dd115e290161d438855c01eab8d1f5189eaefe1}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:21:23 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c81600f2-7d06-39b8-aefc-6a5130ed7a24"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "77b18891-fe20-3340-b99f-32ca4b48c70e",
+  "request" : {
+    "url" : "/api/group/test-DA/org/mockito/mockito-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-mockito-core-maven-metadata.xml-bg2O4.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:39 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:28:17 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "77b18891-fe20-3340-b99f-32ca4b48c70e"
+}

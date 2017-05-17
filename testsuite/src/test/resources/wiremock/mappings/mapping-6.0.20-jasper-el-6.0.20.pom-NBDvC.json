@@ -1,0 +1,30 @@
+{
+  "id" : "81a21233-7a7a-356f-916d-4e5f17d44a12",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/tomcat/jasper-el/6.0.20/jasper-el-6.0.20.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.0.20-jasper-el-6.0.20.pom-NBDvC.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "38ff8703e1db2dc577eeb06e39b01782ee7872e16dc01294c346b138ab95c0ed",
+      "X-CHECKSUM-MD5" : "a3a9b3d6ea1f80e1407c23d834e32a48",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:46 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a3a9b3d6ea1f80e1407c23d834e32a48\"",
+      "LAST-MODIFIED" : "Mon, 15 Jun 2009 18:29:10 GMT",
+      "X-CHECKSUM-SHA1" : "cf8c877755889bc02424974c625f0d150cc057bc",
+      "X-SERVED-BY" : "cache-iad2149-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260566.300059,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "492514",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "81a21233-7a7a-356f-916d-4e5f17d44a12"
+}

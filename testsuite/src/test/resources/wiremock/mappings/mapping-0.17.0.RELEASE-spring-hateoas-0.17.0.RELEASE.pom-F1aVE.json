@@ -1,0 +1,30 @@
+{
+  "id" : "08553674-e5fa-3c03-be5c-3e478bb02a96",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/hateoas/spring-hateoas/0.17.0.RELEASE/spring-hateoas-0.17.0.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.17.0.RELEASE-spring-hateoas-0.17.0.RELEASE.pom-F1aVE.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "8d755b38d3595f925a8fa61d19cd0bd9212091d71fc690709a4b32ff4df3b1af",
+      "X-CHECKSUM-MD5" : "c6b29e369f66756eebe9f1d52df0b58f",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:57 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"c6b29e369f66756eebe9f1d52df0b58f\"",
+      "LAST-MODIFIED" : "Thu, 05 Mar 2015  9:35:43 GMT",
+      "X-CHECKSUM-SHA1" : "abbd3ea1f8f6193add87cdda84a30fc29e4fe7aa",
+      "X-SERVED-BY" : "cache-iad2133-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259977.122943,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "585190",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "08553674-e5fa-3c03-be5c-3e478bb02a96"
+}

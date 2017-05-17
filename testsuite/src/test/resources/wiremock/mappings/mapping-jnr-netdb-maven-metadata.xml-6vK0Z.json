@@ -1,0 +1,19 @@
+{
+  "id" : "80ced3a0-537d-3005-ab1b-284d6630ee86",
+  "request" : {
+    "url" : "/api/group/test-DA/com/github/jnr/jnr-netdb/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jnr-netdb-maven-metadata.xml-6vK0Z.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:12 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:51 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "80ced3a0-537d-3005-ab1b-284d6630ee86"
+}

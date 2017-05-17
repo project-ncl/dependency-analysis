@@ -1,0 +1,17 @@
+{
+  "id" : "0a5beece-418f-3330-aa00-aa0fa9e94aa6",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/pnc/jenkins-build-driver/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jenkins-build-driver-maven-metadata.xml-5jGAX.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:00 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0a5beece-418f-3330-aa00-aa0fa9e94aa6"
+}

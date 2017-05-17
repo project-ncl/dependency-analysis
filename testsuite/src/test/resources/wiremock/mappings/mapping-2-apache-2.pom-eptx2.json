@@ -1,0 +1,25 @@
+{
+  "id" : "2a97a378-f8ae-3175-8019-9cfc3a9ea0b1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/apache/2/apache-2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2-apache-2.pom-eptx2.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 13:54:38 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2583029", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:09 GMT",
+      "ETAG" : "\"{SHA1{bfe8f1ae400b4fdf0365b6b61cde3a6cae5750e3}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:34:57 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2a97a378-f8ae-3175-8019-9cfc3a9ea0b1"
+}

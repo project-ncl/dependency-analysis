@@ -1,0 +1,25 @@
+{
+  "id" : "8415b097-413f-3aff-bdf2-41f338d25125",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/xml/bind/jaxb-api/2.1/jaxb-api-2.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1-jaxb-api-2.1.pom-dqGRH.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:18:18 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591976", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:42 GMT",
+      "ETAG" : "\"{SHA1{f376a65870ba3f94249e06d183396803d8d408bf}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:06 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8415b097-413f-3aff-bdf2-41f338d25125"
+}

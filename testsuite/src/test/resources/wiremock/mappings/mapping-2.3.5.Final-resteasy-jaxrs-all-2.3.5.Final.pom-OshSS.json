@@ -1,0 +1,30 @@
+{
+  "id" : "a2603b55-9443-3055-bf20-5380e990d97d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/resteasy/resteasy-jaxrs-all/2.3.5.Final/resteasy-jaxrs-all-2.3.5.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.5.Final-resteasy-jaxrs-all-2.3.5.Final.pom-OshSS.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "0d9ee7bb63b040c075e05ce4103f5a1b26b0a64cbd2503eef131276b42c16f25",
+      "X-CHECKSUM-MD5" : "10b8b70bec151e3570fe0d989f7c14b3",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:27 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"10b8b70bec151e3570fe0d989f7c14b3\"",
+      "LAST-MODIFIED" : "Mon, 22 Oct 2012 18:18:29 GMT",
+      "X-CHECKSUM-SHA1" : "d40bc4caa1e1cc08747151067baee6ef0f0b611f",
+      "X-SERVED-BY" : "cache-iad2130-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259827.047191,VS0,VE1",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1651938",
+      "X-CACHE-HITS" : "0, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a2603b55-9443-3055-bf20-5380e990d97d"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "064808f5-0c8d-3aa8-b286-adfd0a0f6a52",
+  "request" : {
+    "url" : "/api/group/test-DA/com/teradata/teradata-jdbc/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-teradata-jdbc-maven-metadata.xml-3oKHN.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:52 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "064808f5-0c8d-3aa8-b286-adfd0a0f6a52"
+}

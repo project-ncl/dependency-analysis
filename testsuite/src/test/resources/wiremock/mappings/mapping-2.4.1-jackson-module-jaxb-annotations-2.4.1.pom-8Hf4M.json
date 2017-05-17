@@ -1,0 +1,25 @@
+{
+  "id" : "3b1cb839-066f-31b7-b905-c8d8ed7c0b4e",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.4.1/jackson-module-jaxb-annotations-2.4.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.4.1-jackson-module-jaxb-annotations-2.4.1.pom-8Hf4M.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 14:40:34 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2514919", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:05:15 GMT",
+      "ETAG" : "\"{SHA1{99710e1bc2eceb3537cb0bb6f38ffee2eed86e0c}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:14:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3b1cb839-066f-31b7-b905-c8d8ed7c0b4e"
+}

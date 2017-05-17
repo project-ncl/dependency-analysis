@@ -1,0 +1,19 @@
+{
+  "id" : "627ebc86-32fd-31c6-ac3f-bba15d527c6e",
+  "request" : {
+    "url" : "/api/group/test-DA/com/ibm/websphere/uow/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-uow-maven-metadata.xml-pZWcm.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:19 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:58 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "627ebc86-32fd-31c6-ac3f-bba15d527c6e"
+}

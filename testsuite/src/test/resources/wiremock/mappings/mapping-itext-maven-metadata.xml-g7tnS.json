@@ -1,0 +1,19 @@
+{
+  "id" : "f5456a9d-6a5a-3265-b0b4-a9af70128c4e",
+  "request" : {
+    "url" : "/api/group/test-DA/com/lowagie/itext/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-itext-maven-metadata.xml-g7tnS.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:22 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:01 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f5456a9d-6a5a-3265-b0b4-a9af70128c4e"
+}

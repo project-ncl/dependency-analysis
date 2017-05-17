@@ -1,0 +1,25 @@
+{
+  "id" : "283aad1f-963a-3dc4-917b-f87a0227df5b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/maven-plugin-api/3.0.3/maven-plugin-api-3.0.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.3-maven-plugin-api-3.0.3.pom-VCKUq.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 09:41:23 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591963", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 09:42:00 GMT",
+      "ETAG" : "\"{SHA1{b092745df0b7d88d9d6610883cd522160c477aa8}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:00:37 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "283aad1f-963a-3dc4-917b-f87a0227df5b"
+}

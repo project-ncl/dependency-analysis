@@ -1,0 +1,19 @@
+{
+  "id" : "a8508c1b-4387-3af6-a232-817e49944fc8",
+  "request" : {
+    "url" : "/api/group/test-DA/com/fasterxml/jackson/core/jackson-annotations/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jackson-annotations-maven-metadata.xml-UFty0.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:32:22 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:32:23 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a8508c1b-4387-3af6-a232-817e49944fc8"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "8e6c7f30-7af0-3cd2-ba11-cb8cfa037c81",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/ws/rs/javax.ws.rs-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-javax.ws.rs-api-maven-metadata.xml-QcN6P.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:18:41 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:18:20 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "8e6c7f30-7af0-3cd2-ba11-cb8cfa037c81"
+}

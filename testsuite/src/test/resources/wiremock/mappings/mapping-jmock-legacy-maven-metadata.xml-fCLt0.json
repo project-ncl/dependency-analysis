@@ -1,0 +1,19 @@
+{
+  "id" : "6ab8c393-269c-3a4a-b37b-939b7f46f5e0",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jmock/jmock-legacy/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jmock-legacy-maven-metadata.xml-fCLt0.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 18:19:03 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 18:19:04 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "6ab8c393-269c-3a4a-b37b-939b7f46f5e0"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "f0d397cb-b66c-3c8b-8c22-3bf7061de297",
+  "request" : {
+    "url" : "/api/group/test-DA/com/headius/coro-mock/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-coro-mock-maven-metadata.xml-djEZB.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:41 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f0d397cb-b66c-3c8b-8c22-3bf7061de297"
+}

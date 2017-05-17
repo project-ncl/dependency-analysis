@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>javax.activation</groupId>
+  <artifactId>activation</artifactId>
+  <versioning>
+    <latest>1.1.1.redhat-5</latest>
+    <release>1.1.1.redhat-5</release>
+    <versions>
+      <version>1.0.2</version>
+      <version>1.1</version>
+      <version>1.1.1</version>
+      <version>1.1.1-redhat-1</version>
+      <version>1.1.1-redhat-2</version>
+      <version>1.1.1.redhat-4</version>
+      <version>1.1.1.redhat-5</version>
+    </versions>
+    <lastUpdated>20170512214025</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,2 @@
+Id: 53de2793c45d45be86d2f4230c9a5c3e2cf3c2cca97e5642f66053dfd122bea2
+Message: Path com/oracle/ojdbc6/maven-metadata.xml is not available in store group:test-DA.

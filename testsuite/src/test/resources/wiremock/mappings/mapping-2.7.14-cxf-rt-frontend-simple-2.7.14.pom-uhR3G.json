@@ -1,0 +1,25 @@
+{
+  "id" : "89133bca-b5d8-3539-9011-0b527b71ac13",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/cxf/cxf-rt-frontend-simple/2.7.14/cxf-rt-frontend-simple-2.7.14.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.7.14-cxf-rt-frontend-simple-2.7.14.pom-uhR3G.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:12:25 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:25 GMT",
+      "ETAG" : "\"{SHA1{0924a1549a85ec0a77a0802f4e09cf1961b09c26}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 20:12:08 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "89133bca-b5d8-3539-9011-0b527b71ac13"
+}

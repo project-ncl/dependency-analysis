@@ -1,0 +1,24 @@
+{
+  "id" : "c05b32b6-544d-3d3a-b7e3-1a4c3b926233",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-parent/0.13.6/atlas-parent-0.13.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.13.6-atlas-parent-0.13.6.pom-DahVR.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:45:10 GMT",
+      "ETAG" : "\"{SHA1{416f8382d9aafd6387fdf7a87986cfa2e8f39dde}}\"",
+      "LAST-MODIFIED" : "Thu, 18 Sep 2014 22:05:06 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c05b32b6-544d-3d3a-b7e3-1a4c3b926233"
+}

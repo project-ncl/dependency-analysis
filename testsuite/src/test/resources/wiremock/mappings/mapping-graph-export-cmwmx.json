@@ -1,0 +1,23 @@
+{
+  "id" : "99724778-7c95-39df-9a30-0e70cb244790",
+  "request" : {
+    "url" : "/api/depgraph/graph/export",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"workspaceId\":\"export-xom:xom:1.2.5\",\"patcherIds\":[\"*\"],\"timeoutSecs\":null,\"source\":\"group:DApublic\",\"resolve\":true,\"injectedBOMs\":null,\"versionSelections\":null,\"excludedSubgraphs\":null,\"graph\":{\"roots\":[\"xom:xom:1.2.5\"],\"preset\":\"requires\",\"mutator\":null,\"mutatorInstance\":null,\"presetParams\":{}}}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-graph-export-cmwmx.json",
+    "headers" : {
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json",
+      "Date" : "Thu, 18 May 2017 16:09:15 GMT",
+      "Set-Cookie" : "a5ed093a9f31d7f0f3119b466b58e96c=54fea50a180994d1163876556811d6e4; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "99724778-7c95-39df-9a30-0e70cb244790"
+}

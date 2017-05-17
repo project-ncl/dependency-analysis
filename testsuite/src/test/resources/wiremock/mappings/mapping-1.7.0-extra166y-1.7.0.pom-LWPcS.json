@@ -1,0 +1,30 @@
+{
+  "id" : "14dd1f15-670b-3cd5-acfa-f4ed3f62082c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/jsr166-mirror/extra166y/1.7.0/extra166y-1.7.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.0-extra166y-1.7.0.pom-LWPcS.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d55946df0ad40eb55dd0797f78a851e6ed444d3f4777681e64230c70718fb8d3",
+      "X-CHECKSUM-MD5" : "0d6fd21844c3f2049a2954b0c1749e5d",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:54 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"0d6fd21844c3f2049a2954b0c1749e5d\"",
+      "LAST-MODIFIED" : "Mon, 09 May 2011 14:04:27 GMT",
+      "X-CHECKSUM-SHA1" : "599b5c59b7964bb86f8d88d2af2afaa950455f40",
+      "X-SERVED-BY" : "cache-iad2141-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260634.079070,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "14dd1f15-670b-3cd5-acfa-f4ed3f62082c"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "6d017902-b420-3d22-8578-d8209282cc18",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-hamcrest-core-1.1.pom-tCTNx.xml",
+    "headers" : {
+      "EXPIRES" : "Sun, 04 Jun 2017 23:48:21 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2359627", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:14 GMT",
+      "ETAG" : "\"{SHA1{fe8b54d8729315853ee866322436df89aa8ab9ae}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:15:45 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6d017902-b420-3d22-8578-d8209282cc18"
+}

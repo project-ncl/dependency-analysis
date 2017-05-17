@@ -1,0 +1,25 @@
+{
+  "id" : "3d93e83b-2957-3461-9bab-891c1b092190",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/aether/aether-impl/1.11/aether-impl-1.11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.11-aether-impl-1.11.pom-zlNn5.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 19 May 2017 08:33:23 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591988", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 19 Apr 2017 08:33:35 GMT",
+      "ETAG" : "\"{SHA1{ec6bfcc3841927352dacf3d06d2011a089f8afa7}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3d93e83b-2957-3461-9bab-891c1b092190"
+}

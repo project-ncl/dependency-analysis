@@ -1,0 +1,17 @@
+{
+  "id" : "b029ca0c-90c5-3033-b860-170104c598b0",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-javax.servlet.jsp.jstl-api-maven-metadata.xml-73Pjm.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:43 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b029ca0c-90c5-3033-b860-170104c598b0"
+}

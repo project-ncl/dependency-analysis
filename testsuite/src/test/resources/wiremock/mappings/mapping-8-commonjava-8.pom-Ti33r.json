@@ -1,0 +1,30 @@
+{
+  "id" : "971ee2a4-776d-3483-ac74-9964641123b5",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/commonjava/8/commonjava-8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-8-commonjava-8.pom-Ti33r.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "c0d5ac56c0f9d5756ba663daddc9aec4948574ce120647fbce1dfb52ae517b9d",
+      "X-CHECKSUM-MD5" : "0f2c6fcf1d99db840e779b6c9198e6ef",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:39 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"0f2c6fcf1d99db840e779b6c9198e6ef\"",
+      "LAST-MODIFIED" : "Tue, 02 Jun 2015 19:38:09 GMT",
+      "X-CHECKSUM-SHA1" : "0abfbb78b70df996b351b882257259355903c9c0",
+      "X-SERVED-BY" : "cache-iad2120-IAD, cache-dfw1821-DFW",
+      "X-TIMER" : "S1494237579.382819,VS0,VE0",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "32790",
+      "X-CACHE-HITS" : "0, 2",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "971ee2a4-776d-3483-ac74-9964641123b5"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "4ab18d9c-4115-3c9d-a950-7c38531129c0",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/servicemix/bundles/org.apache.servicemix.bundles.javax-inject/1_2/org.apache.servicemix.bundles.javax-inject-1_2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1_2-org.apache.servicemix.bundles.javax-inject-1_2.pom-xuSdA.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:20:19 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591978", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:41 GMT",
+      "ETAG" : "\"{SHA1{391ffe02ae50708f7af3274d98898ec95ea59d23}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:05:31 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "4ab18d9c-4115-3c9d-a950-7c38531129c0"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "ed3e9695-e243-3ebd-8166-3dd454eccb5b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/beanshell/beanshell/2.0b4/beanshell-2.0b4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0b4-beanshell-2.0b4.pom-Z7hPs.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 04:53:56 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2574771", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 09:41:05 GMT",
+      "ETAG" : "\"{SHA1{d00ea1e44675318c6c9105473bc2168e6df4a9aa}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:09:30 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ed3e9695-e243-3ebd-8166-3dd454eccb5b"
+}

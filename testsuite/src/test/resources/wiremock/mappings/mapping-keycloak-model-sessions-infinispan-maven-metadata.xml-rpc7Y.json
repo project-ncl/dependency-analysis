@@ -1,0 +1,17 @@
+{
+  "id" : "c397a199-5e8b-3f9b-bfed-90d07a7254f4",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-model-sessions-infinispan/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-model-sessions-infinispan-maven-metadata.xml-rpc7Y.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:40 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c397a199-5e8b-3f9b-bfed-90d07a7254f4"
+}

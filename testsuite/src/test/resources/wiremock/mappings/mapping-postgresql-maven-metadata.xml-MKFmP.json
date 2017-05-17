@@ -1,0 +1,19 @@
+{
+  "id" : "c284ad16-44a0-368b-9560-eb37949ea945",
+  "request" : {
+    "url" : "/api/group/test-DA/postgresql/postgresql/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-postgresql-maven-metadata.xml-MKFmP.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:48 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:26 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c284ad16-44a0-368b-9560-eb37949ea945"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "2841a788-91fc-36f7-b54e-3d3c2f903267",
+  "request" : {
+    "url" : "/api/group/DApublic/com/thoughtworks/qdox/qdox/1.12/qdox-1.12.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.12-qdox-1.12.pom-7QlRL.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:17:49 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591999", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:50 GMT",
+      "ETAG" : "\"{SHA1{571f6872de0bf98d3f8afa5d2509c012b2aaaa57}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:07:38 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2841a788-91fc-36f7-b54e-3d3c2f903267"
+}

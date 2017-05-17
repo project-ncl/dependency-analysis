@@ -1,0 +1,25 @@
+{
+  "id" : "1aaef7a8-c182-3645-bf4b-bb10aed8da64",
+  "request" : {
+    "url" : "/api/group/DApublic/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.1-jsr305-2.0.1.pom-3YR3K.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 18:29:07 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1908327", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:40 GMT",
+      "ETAG" : "\"{SHA1{95efa8cea662452bb74b34abe09a93ff47625c8f}}\"",
+      "LAST-MODIFIED" : "Thu, 07 Apr 2016 19:49:17 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1aaef7a8-c182-3645-bf4b-bb10aed8da64"
+}

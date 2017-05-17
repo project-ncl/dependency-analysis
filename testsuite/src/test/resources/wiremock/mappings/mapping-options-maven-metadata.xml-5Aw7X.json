@@ -1,0 +1,19 @@
+{
+  "id" : "39559c4e-aa67-32bb-9e34-c1b885a7ae8e",
+  "request" : {
+    "url" : "/api/group/test-DA/com/headius/options/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-options-maven-metadata.xml-5Aw7X.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:14 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:52 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "39559c4e-aa67-32bb-9e34-c1b885a7ae8e"
+}

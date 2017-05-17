@@ -1,0 +1,25 @@
+{
+  "id" : "5f8f6b1c-9b6f-3a14-8a2d-c57f4129c18f",
+  "request" : {
+    "url" : "/api/group/DApublic/ldapsdk/ldapsdk/4.1/ldapsdk-4.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.1-ldapsdk-4.1.pom-yrmor.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:18:54 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591998", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:56 GMT",
+      "ETAG" : "\"{SHA1{80d547857cfe3bb719c872e6138687ca225b3d6b}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "5f8f6b1c-9b6f-3a14-8a2d-c57f4129c18f"
+}

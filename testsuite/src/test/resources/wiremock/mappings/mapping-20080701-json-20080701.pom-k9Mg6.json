@@ -1,0 +1,25 @@
+{
+  "id" : "ee1e6fcc-56bd-3cbd-8f74-f98e74d7886a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/json/json/20080701/json-20080701.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-20080701-json-20080701.pom-k9Mg6.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:20:41 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591980", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:01 GMT",
+      "ETAG" : "\"{SHA1{4bf5daa95eb5c12d753a359a3e00621fdc73d187}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:54:50 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ee1e6fcc-56bd-3cbd-8f74-f98e74d7886a"
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.web</groupId>
+  <artifactId>jbossweb</artifactId>
+  <versioning>
+    <latest>7.5.21.Final-redhat-2</latest>
+    <release>7.5.21.Final-redhat-2</release>
+    <versions>
+      <version>7.0.0.CR2</version>
+      <version>7.0.13.Final</version>
+      <version>7.0.16.Final-redhat-1</version>
+      <version>7.0.17.Final-redhat-1</version>
+      <version>7.2.0.Final-redhat-1</version>
+      <version>7.2.2.Final-redhat-1</version>
+      <version>7.2.2.Final-redhat-4</version>
+      <version>7.3.0.Final-redhat-1</version>
+      <version>7.3.1.Final-redhat-1</version>
+      <version>7.3.2.Final-redhat-1</version>
+      <version>7.4.7.Final-redhat-1</version>
+      <version>7.4.8.Final-redhat-4</version>
+      <version>7.4.9.Final-redhat-1</version>
+      <version>7.4.10.Final-redhat-1</version>
+      <version>7.5.7.Final-redhat-1</version>
+      <version>7.5.9.Final-redhat-1</version>
+      <version>7.5.10.Final-redhat-1</version>
+      <version>7.5.11.Final-redhat-1</version>
+      <version>7.5.12.Final-redhat-1</version>
+      <version>7.5.15.Final-redhat-1</version>
+      <version>7.5.16.Final-redhat-1</version>
+      <version>7.5.17.Final-redhat-1</version>
+      <version>7.5.19.Final-redhat-1</version>
+      <version>7.5.20.Final-redhat-1</version>
+      <version>7.5.21.Final-redhat-2</version>
+    </versions>
+    <lastUpdated>20170413173114</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,25 @@
+{
+  "id" : "a65eff8c-4acd-37c6-9ddc-83ac78f4a0b5",
+  "request" : {
+    "url" : "/api/group/DApublic/org/guvnor/guvnor-bom/6.2.0.Final/guvnor-bom-6.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.2.0.Final-guvnor-bom-6.2.0.Final.pom-yMis8.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:10:22 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591958", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:04 GMT",
+      "ETAG" : "\"{SHA1{31894994fa7e9f3e53cb6344a8b9967556836c63}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 20:36:21 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a65eff8c-4acd-37c6-9ddc-83ac78f4a0b5"
+}

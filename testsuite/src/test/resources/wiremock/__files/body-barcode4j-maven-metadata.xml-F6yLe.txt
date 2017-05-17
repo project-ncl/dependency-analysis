@@ -1,0 +1,2 @@
+Id: e1d28b8a4f4b3b43345e1c9824e77acf2044d0f7d5dcd17328de5bf3c04434e7
+Message: Path net/sf/barcode4j/barcode4j/maven-metadata.xml is not available in store group:test-DA.

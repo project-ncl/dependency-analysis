@@ -1,0 +1,24 @@
+{
+  "id" : "4f9cd35a-3633-3467-a074-426c89c8cb2a",
+  "request" : {
+    "url" : "/api/group/DApublic/com/lmax/disruptor/3.2.0/disruptor-3.2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.0-disruptor-3.2.0.pom-vfrrR.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 12:51:47 GMT",
+      "ETAG" : "\"{SHA1{bbe06fb79a40c4897d45690b61fe13867c95cac7}}\"",
+      "LAST-MODIFIED" : "Mon, 12 Aug 2013 20:08:23 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "4f9cd35a-3633-3467-a074-426c89c8cb2a"
+}

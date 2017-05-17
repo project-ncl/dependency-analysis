@@ -1,0 +1,17 @@
+{
+  "id" : "6b7b5ca7-87db-30fe-9304-d31d4ed39765",
+  "request" : {
+    "url" : "/api/group/test-DA/com/keypoint/png-encoder/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-png-encoder-maven-metadata.xml-w5J4m.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:43 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6b7b5ca7-87db-30fe-9304-d31d4ed39765"
+}

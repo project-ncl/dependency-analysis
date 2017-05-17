@@ -1,0 +1,17 @@
+{
+  "id" : "7c091f2f-3674-3267-ad82-532d98e375de",
+  "request" : {
+    "url" : "/api/group/test-DA/org/subethamail/subethasmtp/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-subethasmtp-maven-metadata.xml-q05Yx.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:03 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "7c091f2f-3674-3267-ad82-532d98e375de"
+}

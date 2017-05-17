@@ -1,0 +1,25 @@
+{
+  "id" : "f88f0b2a-428f-384e-a8c2-62abf96536c8",
+  "request" : {
+    "url" : "/api/group/DApublic/com/wordnik/swagger-jaxrs_2.10/1.3.11/swagger-jaxrs_2.10-1.3.11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.11-swagger-jaxrs_2.10-1.3.11.pom-LxwcH.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 12:10:32 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591982", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:10:50 GMT",
+      "ETAG" : "\"{SHA1{ca394e7b00936487a25ed92236408e2444108921}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:29:36 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f88f0b2a-428f-384e-a8c2-62abf96536c8"
+}

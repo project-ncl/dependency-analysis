@@ -1,0 +1,25 @@
+{
+  "id" : "d02977d3-e063-3c2a-938a-9c63327bf4fd",
+  "request" : {
+    "url" : "/api/group/DApublic/org/slf4j/slf4j-parent/1.6.3/slf4j-parent-1.6.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6.3-slf4j-parent-1.6.3.pom-CkPjU.xml",
+    "headers" : {
+      "EXPIRES" : "Sun, 04 Jun 2017 23:49:20 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2359902", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:38 GMT",
+      "ETAG" : "\"{SHA1{57c3f3cc0147d8a8e1f5cd8b01a3078e04b8edc2}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:33 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d02977d3-e063-3c2a-938a-9c63327bf4fd"
+}

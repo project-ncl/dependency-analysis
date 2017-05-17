@@ -1,0 +1,25 @@
+{
+  "id" : "e79fd5db-80a8-375a-99c8-9b5884a84fc9",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-httpclient/commons-httpclient/2.0.2/commons-httpclient-2.0.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.2-commons-httpclient-2.0.2.pom-xGJEK.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:23:37 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:37 GMT",
+      "ETAG" : "\"{SHA1{550c92401ae1458d4a4a1be4b8ab8ec19ce34e07}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:29:47 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "e79fd5db-80a8-375a-99c8-9b5884a84fc9"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "f8c22a75-190e-3929-92ae-8db63f9002e8",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/openjpa/openjpa-persistence/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-openjpa-persistence-maven-metadata.xml-OHe7G.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:53 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:31 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f8c22a75-190e-3929-92ae-8db63f9002e8"
+}

@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!-- $Header: /cvsroot/barbecue/barbecue/pom.xml,v 1.5 2006/10/22 18:35:43 sullis Exp $ -->
+<!-- ######################################################### -->
+<!--                                                           -->
+<!-- This is a Maven project file.                             -->
+<!-- For more information, see http://maven.apache.org/        -->
+<!--                                                           -->
+<!-- ######################################################### -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <name>barbecue</name>
+  <url>http://barbecue.sourceforge.net/</url>
+  <groupId>net.sourceforge.barbecue</groupId>
+  <artifactId>barbecue</artifactId>
+  <packaging>jar</packaging>
+  <version>1.5-beta1</version>
+  <description>barbecue</description>
+  <organization>
+    <name>barbecue.sourceforge.net</name>
+    <url>http://barbecue.sourceforge.net/</url>
+  </organization>
+  <inceptionYear>2003</inceptionYear>
+
+  <issueManagement>
+  <url>http://sourceforge.net/tracker/?group_id=78049</url>
+  </issueManagement>
+
+
+  <distributionManagement>
+  <site>
+    <id>barbecue-website</id>
+    <url>scp://shell.sourceforge.net/home/groups/b/ba/barbecue/htdocs</url>
+  </site>
+  </distributionManagement>
+
+  <scm>
+     <connection>scm:svn:https://barbecue.svn.sourceforge.net/svnroot/barbecue</connection>
+     <developerConnection>scm:svn:https://barbecue.svn.sourceforge.net/svnroot/barbecue</developerConnection>
+     <url>http://barbecue.svn.sourceforge.net/viewvc/barbecue/trunk/</url>
+  </scm>
+
+  <mailingLists>
+    <mailingList>
+      <name>barbecue developer list</name>
+      <subscribe>http://lists.sourceforge.net/lists/listinfo/barbecue-devel</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/barbecue-devel</unsubscribe>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum=barbecue-devel</archive>
+    </mailingList>
+    <mailingList>
+      <name>barbecue announce list</name>
+      <subscribe>http://lists.sourceforge.net/lists/listinfo/barbecue-announce</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/barbecue-announce</unsubscribe>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum=barbecue-announce</archive>
+    </mailingList>
+  </mailingLists>
+
+  <developers>
+    <developer>
+      <name>Sean C. Sullivan</name>
+      <id>sullis</id>
+      <email>sean --*-- seansullivan --*-- com</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <name>Werner Keil</name>
+      <id>keilw</id>
+      <email>keilw --*-- users.sf.net</email>
+      <organization></organization>
+    </developer>
+  </developers>
+
+  <dependencies>
+  	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>3.8.1</version>
+		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+		<groupId>jdom</groupId>
+		<artifactId>jdom</artifactId>
+		<version>1.0</version>
+		<optional>true</optional>
+  	</dependency>
+  	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.2</version>
+		<optional>true</optional>
+  	</dependency>
+  	<dependency>
+		<groupId>javax.portlet</groupId>
+		<artifactId>portlet-api</artifactId>
+		<version>1.0</version>
+		<optional>true</optional>
+  	</dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>${basedir}/src/java</sourceDirectory>
+  </build>
+    
+  <reporting>
+		<plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+        </plugin>
+		<plugin>
+        	<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-javadoc-plugin</artifactId>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+        </plugin>        
+        </plugins>  
+   </reporting>
+  
+</project>

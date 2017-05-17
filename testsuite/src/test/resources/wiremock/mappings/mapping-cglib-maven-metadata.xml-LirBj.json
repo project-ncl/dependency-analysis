@@ -1,0 +1,17 @@
+{
+  "id" : "3d7e983d-1e8a-3ecd-8ea9-c694b5651e94",
+  "request" : {
+    "url" : "/api/group/test-DA/org/sonatype/sisu/inject/cglib/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-cglib-maven-metadata.xml-LirBj.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:59 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3d7e983d-1e8a-3ecd-8ea9-c694b5651e94"
+}

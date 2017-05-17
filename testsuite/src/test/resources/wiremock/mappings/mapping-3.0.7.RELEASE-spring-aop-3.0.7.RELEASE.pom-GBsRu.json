@@ -1,0 +1,31 @@
+{
+  "id" : "cf6cace8-848f-3814-8a17-c77ab2cf1f1a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-aop/3.0.7.RELEASE/spring-aop-3.0.7.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.7.RELEASE-spring-aop-3.0.7.RELEASE.pom-GBsRu.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "92ab4a27b8a138cd72c6187c47dde624270beec442685ff4b7a5dd4b2bbc5532",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:27 GMT",
+      "X-CHECKSUM-SHA1" : "ea38247147dff97e09c8eac646852817c9c26eeb",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1324683626000",
+      "AGE" : "7491324",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "e30497ef533328517c1bf9bfd35e2cf0",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"e30497ef533328517c1bf9bfd35e2cf0\"",
+      "LAST-MODIFIED" : "Fri, 23 Dec 2011 23:40:26 GMT",
+      "X-SERVED-BY" : "cache-iad2124-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260307.037400,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "cf6cace8-848f-3814-8a17-c77ab2cf1f1a"
+}

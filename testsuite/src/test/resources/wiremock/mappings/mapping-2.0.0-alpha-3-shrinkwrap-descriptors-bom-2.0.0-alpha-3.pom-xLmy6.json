@@ -1,0 +1,25 @@
+{
+  "id" : "b2d3698c-6c95-302b-b88c-0693ace222ce",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-bom/2.0.0-alpha-3/shrinkwrap-descriptors-bom-2.0.0-alpha-3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.0-alpha-3-shrinkwrap-descriptors-bom-2.0.0-alpha-3.pom-xLmy6.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 11:29:26 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=264628", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:58:58 GMT",
+      "ETAG" : "\"{SHA1{0a20e00ad831b0f111660186f5cd2ce36895f40d}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:51:47 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b2d3698c-6c95-302b-b88c-0693ace222ce"
+}

@@ -1,0 +1,23 @@
+{
+  "id" : "b98906f4-fdfc-3265-a74c-38f59f13b8b0",
+  "request" : {
+    "url" : "/api/depgraph/graph/export",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"workspaceId\":\"export-org.codehaus.jackson:jackson-core-asl:1.9.9\",\"patcherIds\":[\"*\"],\"timeoutSecs\":null,\"source\":\"group:DApublic\",\"resolve\":true,\"injectedBOMs\":null,\"versionSelections\":null,\"excludedSubgraphs\":null,\"graph\":{\"roots\":[\"org.codehaus.jackson:jackson-core-asl:1.9.9\"],\"preset\":\"requires\",\"mutator\":null,\"mutatorInstance\":null,\"presetParams\":{}}}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-graph-export-6F21T.json",
+    "headers" : {
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json",
+      "Date" : "Thu, 18 May 2017 16:05:15 GMT",
+      "Set-Cookie" : "a5ed093a9f31d7f0f3119b466b58e96c=54fea50a180994d1163876556811d6e4; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b98906f4-fdfc-3265-a74c-38f59f13b8b0"
+}

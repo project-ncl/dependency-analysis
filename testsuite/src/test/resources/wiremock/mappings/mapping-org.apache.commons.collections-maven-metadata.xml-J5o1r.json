@@ -1,0 +1,17 @@
+{
+  "id" : "214c9bd3-d60a-37a4-877a-8058458a4e55",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/directory/studio/org.apache.commons.collections/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-org.apache.commons.collections-maven-metadata.xml-J5o1r.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:51 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "214c9bd3-d60a-37a4-877a-8058458a4e55"
+}

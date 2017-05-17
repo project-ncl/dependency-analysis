@@ -1,0 +1,24 @@
+{
+  "id" : "27a84746-90cf-3a30-abd4-0620def0a11c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-parent/0.24.0/aprox-parent-0.24.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.24.0-aprox-parent-0.24.0.pom-061Iy.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:44:18 GMT",
+      "ETAG" : "\"{SHA1{b0c6e00c030ae5d95829a78f9c7d3ad1b3911a0f}}\"",
+      "LAST-MODIFIED" : "Wed, 09 Sep 2015 16:39:20 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "27a84746-90cf-3a30-abd4-0620def0a11c"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "6a9d4d31-7096-3be5-a152-b844f2d79b31",
+  "request" : {
+    "url" : "/api/group/DApublic/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.6.2-xercesMinimal-1.9.6.2.pom-6aGNi.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 14:58:15 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2515291", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:16:44 GMT",
+      "ETAG" : "\"{SHA1{c8845acd7305ffee4c76ef626026fb396cc33463}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6a9d4d31-7096-3be5-a152-b844f2d79b31"
+}

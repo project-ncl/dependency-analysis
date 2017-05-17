@@ -1,0 +1,19 @@
+{
+  "id" : "e45b2343-66bd-3ae2-8f2c-b8958afc74ce",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/ballroom/ballroom/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-ballroom-maven-metadata.xml-i59Hf.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 13:44:40 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 13:44:40 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e45b2343-66bd-3ae2-8f2c-b8958afc74ce"
+}

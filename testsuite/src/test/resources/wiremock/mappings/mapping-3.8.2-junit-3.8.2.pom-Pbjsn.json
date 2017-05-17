@@ -1,0 +1,25 @@
+{
+  "id" : "cb6f7902-fbbb-358c-ab06-aa0bf707fd63",
+  "request" : {
+    "url" : "/api/group/DApublic/junit/junit/3.8.2/junit-3.8.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.8.2-junit-3.8.2.pom-Pbjsn.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 18:30:16 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1908556", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:00 GMT",
+      "ETAG" : "\"{SHA1{c735a15ca8fc2ea77db963c71ade153ffeb8212e}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:26 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "cb6f7902-fbbb-358c-ab06-aa0bf707fd63"
+}

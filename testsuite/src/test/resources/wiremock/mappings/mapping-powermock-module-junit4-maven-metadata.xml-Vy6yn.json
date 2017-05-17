@@ -1,0 +1,19 @@
+{
+  "id" : "009e6312-ff4b-34f1-ba2e-7ce2e2d7adf9",
+  "request" : {
+    "url" : "/api/group/test-DA/org/powermock/powermock-module-junit4/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-powermock-module-junit4-maven-metadata.xml-Vy6yn.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:02 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:40 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "009e6312-ff4b-34f1-ba2e-7ce2e2d7adf9"
+}

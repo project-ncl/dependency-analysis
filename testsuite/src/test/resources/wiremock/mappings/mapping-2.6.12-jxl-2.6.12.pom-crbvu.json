@@ -1,0 +1,31 @@
+{
+  "id" : "02a7a39c-0376-343c-bd40-52e7b561680a",
+  "request" : {
+    "url" : "/api/group/DApublic/net/sourceforge/jexcelapi/jxl/2.6.12/jxl-2.6.12.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.6.12-jxl-2.6.12.pom-crbvu.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "e9ed828ca4073430f0e0aa765eebcd8c0869813d8ef50d12cc50f97e4063b288",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:07 GMT",
+      "X-CHECKSUM-SHA1" : "1321c504f4afd56565fa04c0c2ed60a22dd3e8f6",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1304679140000",
+      "AGE" : "6904466",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "a723cc2e46886cc8545ff85d0d2d8429",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a723cc2e46886cc8545ff85d0d2d8429\"",
+      "LAST-MODIFIED" : "Fri, 06 May 2011 10:52:20 GMT",
+      "X-SERVED-BY" : "cache-iad2135-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260167.316520,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "02a7a39c-0376-343c-bd40-52e7b561680a"
+}

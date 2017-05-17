@@ -1,0 +1,30 @@
+{
+  "id" : "23b73535-b0ce-3240-9891-d6a7db594c82",
+  "request" : {
+    "url" : "/api/group/DApublic/com/github/jnr/jnr-ffi/1.0.7/jnr-ffi-1.0.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.7-jnr-ffi-1.0.7.pom-o9rGP.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "9a4ffeea6edd476aa1c4964a9683a0b219874b4234e7418b861631c3d5b0dc04",
+      "X-CHECKSUM-MD5" : "a5ae3bfcaaa43d457181aeecbfbaa8c6",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:38 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a5ae3bfcaaa43d457181aeecbfbaa8c6\"",
+      "LAST-MODIFIED" : "Tue, 17 Sep 2013  1:04:31 GMT",
+      "X-CHECKSUM-SHA1" : "cdda8b4f56b94068a8e6c00c5eaca87d53820414",
+      "X-SERVED-BY" : "cache-iad2123-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260679.793912,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5197929",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "23b73535-b0ce-3240-9891-d6a7db594c82"
+}

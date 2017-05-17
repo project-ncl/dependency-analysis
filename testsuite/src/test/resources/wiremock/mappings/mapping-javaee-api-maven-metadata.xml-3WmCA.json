@@ -1,0 +1,19 @@
+{
+  "id" : "7767ae9d-c77a-30d2-b97f-2cff0fc9bb8a",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/openejb/javaee-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-javaee-api-maven-metadata.xml-3WmCA.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:39:57 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:35 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7767ae9d-c77a-30d2-b97f-2cff0fc9bb8a"
+}

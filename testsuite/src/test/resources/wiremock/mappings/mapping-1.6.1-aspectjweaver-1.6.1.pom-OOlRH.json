@@ -1,0 +1,30 @@
+{
+  "id" : "fbf8f483-3550-3665-96b5-b701bb045da9",
+  "request" : {
+    "url" : "/api/group/DApublic/org/aspectj/aspectjweaver/1.6.1/aspectjweaver-1.6.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6.1-aspectjweaver-1.6.1.pom-OOlRH.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "e9ff7649cb75fee7eb1d366b70aee4c7b00a620fdbc54ea30ba49ab65e7e6fcb",
+      "X-CHECKSUM-MD5" : "ae74bcfd887109c9d6425b1a48842368",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:55 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ae74bcfd887109c9d6425b1a48842368\"",
+      "LAST-MODIFIED" : "Wed, 17 Nov 2010  7:18:37 GMT",
+      "X-CHECKSUM-SHA1" : "472b3ac3d7720ec63ae117d312805acdf3170093",
+      "X-SERVED-BY" : "cache-iad2121-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260696.642003,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "3276212",
+      "X-CACHE-HITS" : "104, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "fbf8f483-3550-3665-96b5-b701bb045da9"
+}

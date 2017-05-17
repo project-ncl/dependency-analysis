@@ -1,0 +1,25 @@
+{
+  "id" : "7a2e137e-e5ea-37b8-adb6-63c0894fb98e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-interpolation/1.14/plexus-interpolation-1.14.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.14-plexus-interpolation-1.14.pom-91cWm.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 11:07:29 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591951", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 11:08:18 GMT",
+      "ETAG" : "\"{SHA1{e296d45aff17c16ed268c5b9480214a0d92937ab}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:20 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "7a2e137e-e5ea-37b8-adb6-63c0894fb98e"
+}

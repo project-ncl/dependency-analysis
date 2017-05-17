@@ -1,0 +1,24 @@
+{
+  "id" : "02ab3025-1b3a-31b1-8ba1-a35f928e1b8e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant-antlr/1.8.1/ant-antlr-1.8.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.1-ant-antlr-1.8.1.pom-mmLEN.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:48:16 GMT",
+      "ETAG" : "\"{SHA1{f7f9abb1e7817fab107a234408e8b6913c387241}}\"",
+      "LAST-MODIFIED" : "Fri, 30 Apr 2010 22:04:20 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "02ab3025-1b3a-31b1-8ba1-a35f928e1b8e"
+}

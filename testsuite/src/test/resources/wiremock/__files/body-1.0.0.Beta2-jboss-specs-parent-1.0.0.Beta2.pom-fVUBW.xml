@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.jboss</groupId>
+    <artifactId>jboss-parent</artifactId>
+    <version>5</version>
+  </parent>
+  
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jboss.spec</groupId>
+  <artifactId>jboss-specs-parent</artifactId>
+  <version>1.0.0.Beta2</version>
+  <packaging>pom</packaging>
+  <name>JBoss Specification API Parent POM</name>
+  <url>http://www.jboss.org/</url>
+  <description>
+    Parent POM that allows building all specification projects at once.
+  </description>
+  
+  <scm>
+    <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossas/projects/specs/tags/jboss-specs-parent-1.0.0.Beta2</connection>
+    <developerConnection>scm:svn:https://svn.jboss.org/repos/jbossas/projects/specs/tags/jboss-specs-parent-1.0.0.Beta2</developerConnection>
+    <url>http://fisheye.jboss.org/browse/JBossAS/projects/specs/tags/jboss-specs-parent-1.0.0.Beta2</url>
+  </scm>
+  
+  <build>
+    <plugins>
+      <!-- Default compiler settings for the spec project -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.0</version>
+        <configuration>
+          <tagBase>https://svn.jboss.org/repos/jbossas/projects/specs/tags</tagBase>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <modules>
+	      
+    <!-- Bill of Materials -->
+    <module>../jboss-javaee6-specs-bom</module>
+
+    <!-- collections -->
+    <module>../jboss-javaee_6.0_spec</module>
+    
+    <!-- individual specs -->
+    <module>../jboss-annotations-api_1.1_spec</module>
+    <module>../jboss-connector-api_1.5_spec</module>
+    <module>../jboss-connector-api_1.6_spec</module>
+    <module>../jboss-ejb-api_3.0_spec</module>
+    <module>../jboss-ejb-api_3.1_spec</module>
+    <module>../jboss-el-api_2.2_spec</module>
+    <module>../jboss-interceptors-api_1.1_spec</module>
+    <module>../jboss-jacc-api_1.1_spec</module>
+    <module>../jboss-jacc-api_1.4_spec</module>
+    <module>../jboss-jad-api_1.2_spec</module>
+    <module>../jboss-jaspi-api_1.0_spec</module>
+    <module>../jboss-jaxr-api_1.0_spec</module>
+    <module>../jboss-jms-api_1.1_spec</module>
+    <module>../jboss-jsp-api_2.2_spec</module>
+    <module>../jboss-servlet-api_3.0_spec</module>
+    <module>../jboss-transaction-api_1.1_spec</module>
+    <module>../jboss-jaxws-api_2.2_spec</module>
+    <module>../jboss-jaxb-api_2.2_spec</module>
+    <module>../jboss-saaj-api_1.3_spec</module>
+    <!-- <module>../jboss-jaxrpc-api_1.1_spec</module> -->
+    
+  </modules>
+  
+  <profiles>
+    <profile>
+      <id>parent-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <arguments>-N</arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

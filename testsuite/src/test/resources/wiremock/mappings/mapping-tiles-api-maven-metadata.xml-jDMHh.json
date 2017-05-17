@@ -1,0 +1,17 @@
+{
+  "id" : "b8aeb5ef-e10a-3201-8161-364c5f9501e0",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/tiles/tiles-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-tiles-api-maven-metadata.xml-jDMHh.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:46 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b8aeb5ef-e10a-3201-8161-364c5f9501e0"
+}

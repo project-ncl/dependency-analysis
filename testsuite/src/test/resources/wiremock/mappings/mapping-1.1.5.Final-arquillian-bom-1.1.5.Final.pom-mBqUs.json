@@ -1,0 +1,25 @@
+{
+  "id" : "9cbfbc4d-cfa5-30fd-987c-d50ccfccb544",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/arquillian/arquillian-bom/1.1.5.Final/arquillian-bom-1.1.5.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.5.Final-arquillian-bom-1.1.5.Final.pom-mBqUs.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:07:58 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:07:58 GMT",
+      "ETAG" : "\"{SHA1{86f9ab55c3cfe390b063b504a47cc4ce5b73b7ac}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:25:22 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "9cbfbc4d-cfa5-30fd-987c-d50ccfccb544"
+}

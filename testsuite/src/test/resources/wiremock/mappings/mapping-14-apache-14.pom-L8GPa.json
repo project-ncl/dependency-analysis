@@ -1,0 +1,25 @@
+{
+  "id" : "b85c2324-7f2c-3626-8ae0-4ea2f910a4ba",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/apache/14/apache-14.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-14-apache-14.pom-L8GPa.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:54:34 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1928644", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:30 GMT",
+      "ETAG" : "\"{SHA1{5c7956a91f3faaa9534cdc2b571c90bde2235157}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:34:56 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b85c2324-7f2c-3626-8ae0-4ea2f910a4ba"
+}

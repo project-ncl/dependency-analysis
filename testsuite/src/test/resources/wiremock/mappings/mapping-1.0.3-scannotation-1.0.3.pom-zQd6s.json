@@ -1,0 +1,25 @@
+{
+  "id" : "86bb3c11-9356-3d50-9529-f8e650b17962",
+  "request" : {
+    "url" : "/api/group/DApublic/org/scannotation/scannotation/1.0.3/scannotation-1.0.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.3-scannotation-1.0.3.pom-zQd6s.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:11:45 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:45 GMT",
+      "ETAG" : "\"{SHA1{0bfe4b472c5abcd862f9185425378caaf2e4b892}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:22 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "86bb3c11-9356-3d50-9529-f8e650b17962"
+}

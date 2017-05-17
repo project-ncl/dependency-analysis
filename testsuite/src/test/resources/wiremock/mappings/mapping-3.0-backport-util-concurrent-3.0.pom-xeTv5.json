@@ -1,0 +1,25 @@
+{
+  "id" : "e1e69e80-52a5-3463-bfe8-1482c84a7e3f",
+  "request" : {
+    "url" : "/api/group/DApublic/backport-util-concurrent/backport-util-concurrent/3.0/backport-util-concurrent-3.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0-backport-util-concurrent-3.0.pom-xeTv5.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:18:20 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:20 GMT",
+      "ETAG" : "\"{SHA1{f5a234aac7b7d80ffc28cda27f83f077c01edf3f}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:49:18 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "e1e69e80-52a5-3463-bfe8-1482c84a7e3f"
+}

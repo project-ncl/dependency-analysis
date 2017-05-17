@@ -1,0 +1,17 @@
+{
+  "id" : "ee31435e-80b1-302f-8b5e-603ef5041662",
+  "request" : {
+    "url" : "/api/group/test-DA/org/commonjava/maven/atlas/atlas-identities/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-atlas-identities-maven-metadata.xml-pYsGu.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:04 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ee31435e-80b1-302f-8b5e-603ef5041662"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "64432d23-a95a-3728-9774-a0a39e3e45cb",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/gpars/gpars/1.0-beta-2/gpars-1.0-beta-2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-beta-2-gpars-1.0-beta-2.pom-eaLO3.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "eed039729686c73855689d17cdfd0dcbd13d62e6e697d2b3ab77611598b043b3",
+      "X-CHECKSUM-MD5" : "1d5dd34ae747d627f3fa7b6ee9040f31",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:22 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"1d5dd34ae747d627f3fa7b6ee9040f31\"",
+      "LAST-MODIFIED" : "Tue, 22 May 2012 15:23:43 GMT",
+      "X-CHECKSUM-SHA1" : "076f7a2a3acb45f7c26cec70c4de0638c250a407",
+      "X-SERVED-BY" : "cache-iad2144-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260542.449433,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "64432d23-a95a-3728-9774-a0a39e3e45cb"
+}

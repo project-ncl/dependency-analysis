@@ -1,0 +1,30 @@
+{
+  "id" : "9ffc9c07-7a13-36b5-9503-a417d3ceaf9b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/bouncycastle/bcprov-jdk14/1.45/bcprov-jdk14-1.45.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.45-bcprov-jdk14-1.45.pom-YnT4G.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "2a24a8f25a2f1d69b0815de5cbb8b3533655d2fa737f6670e42327942f401cb4",
+      "X-CHECKSUM-MD5" : "05090033f234c3c911a9d0f6a8396b39",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:21 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"05090033f234c3c911a9d0f6a8396b39\"",
+      "LAST-MODIFIED" : "Mon, 11 Jan 2010  4:26:24 GMT",
+      "X-CHECKSUM-SHA1" : "eaa1681ec2389c3361ecc26006f920f2f68ba674",
+      "X-SERVED-BY" : "cache-iad2138-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260481.287369,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2228056",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9ffc9c07-7a13-36b5-9503-a417d3ceaf9b"
+}

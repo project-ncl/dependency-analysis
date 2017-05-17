@@ -1,0 +1,19 @@
+{
+  "id" : "49259569-1911-314f-b311-d88414dd373f",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jruby/jruby-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jruby-core-maven-metadata.xml-D8Z0R.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:11 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:49 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "49259569-1911-314f-b311-d88414dd373f"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "cb2e935f-8695-3b89-822f-af1c7f08bc46",
+  "request" : {
+    "url" : "/api/group/DApublic/jline/jline/0.9.94/jline-0.9.94.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.9.94-jline-0.9.94.pom-9C0q3.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 16:10:03 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2159306", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:37 GMT",
+      "ETAG" : "\"{SHA1{419d0d7f80d7d00f8155bd45de15e7cf5d889f0a}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:15 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "cb2e935f-8695-3b89-822f-af1c7f08bc46"
+}

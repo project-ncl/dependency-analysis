@@ -1,0 +1,30 @@
+{
+  "id" : "ed0daf51-9ebf-3983-aa20-e01b8c3d0cdc",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-agent/2.5.6/spring-agent-2.5.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5.6-spring-agent-2.5.6.pom-9BAKG.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "2a94379a5d18b507f786421df1229c6b61bfd4874d370e1ee32a981a51882479",
+      "X-CHECKSUM-MD5" : "02c254c940e4767ffff90dd3ea1a2b60",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:32 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"02c254c940e4767ffff90dd3ea1a2b60\"",
+      "LAST-MODIFIED" : "Sun, 02 Nov 2008  1:45:14 GMT",
+      "X-CHECKSUM-SHA1" : "f472a77c2833c67f11e6b07b500b17b990a98582",
+      "X-SERVED-BY" : "cache-iad2139-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260672.166744,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2405935",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ed0daf51-9ebf-3983-aa20-e01b8c3d0cdc"
+}

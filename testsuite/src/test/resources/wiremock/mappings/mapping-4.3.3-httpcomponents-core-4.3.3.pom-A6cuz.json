@@ -1,0 +1,25 @@
+{
+  "id" : "af771868-807e-3fe1-afae-e4408c34f1b5",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/httpcomponents/httpcomponents-core/4.3.3/httpcomponents-core-4.3.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.3.3-httpcomponents-core-4.3.3.pom-A6cuz.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 31 May 2017 20:01:05 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2000927", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:18 GMT",
+      "ETAG" : "\"{SHA1{a65d6d871a98456bb0fd94d57fdb16222f9369e1}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:55:33 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "af771868-807e-3fe1-afae-e4408c34f1b5"
+}

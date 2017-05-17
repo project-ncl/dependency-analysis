@@ -1,0 +1,17 @@
+{
+  "id" : "2f5a0c84-0a8a-3a6d-84bd-18dc0f5ebccd",
+  "request" : {
+    "url" : "/api/group/test-DA/org/codehaus/jsr166-mirror/extra166y/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-extra166y-maven-metadata.xml-vvzOz.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:44 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2f5a0c84-0a8a-3a6d-84bd-18dc0f5ebccd"
+}

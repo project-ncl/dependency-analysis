@@ -1,0 +1,24 @@
+{
+  "id" : "92257375-e86b-391f-afb0-c7f165aab09a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/commonjava/6/commonjava-6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6-commonjava-6.pom-Wz9kH.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:19:33 GMT",
+      "ETAG" : "\"{SHA1{08da8c04033a138473553bf388a9f6f5db273227}}\"",
+      "LAST-MODIFIED" : "Mon, 20 Apr 2015 15:03:56 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "92257375-e86b-391f-afb0-c7f165aab09a"
+}

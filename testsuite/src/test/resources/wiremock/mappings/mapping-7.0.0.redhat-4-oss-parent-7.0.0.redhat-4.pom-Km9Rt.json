@@ -1,0 +1,25 @@
+{
+  "id" : "0cbe6f56-adc2-3077-bb71-ee8c30bfa805",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/oss/oss-parent/7.0.0.redhat-4/oss-parent-7.0.0.redhat-4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-7.0.0.redhat-4-oss-parent-7.0.0.redhat-4.pom-Km9Rt.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 05 Apr 2017 12:41:45 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2557826", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 06 Mar 2017 22:11:19 GMT",
+      "ETAG" : "\"{SHA1{d1ad0bd8a7fda0363f32dbc402da3fe63510edd0}}\"",
+      "LAST-MODIFIED" : "Tue, 10 May 2016 16:40:50 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0cbe6f56-adc2-3077-bb71-ee8c30bfa805"
+}

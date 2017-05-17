@@ -1,0 +1,24 @@
+{
+  "id" : "e5623d87-98db-3e5c-96a4-c6988e0083ba",
+  "request" : {
+    "url" : "/api/group/DApublic/org/neo4j/neo4j-cypher/1.9.6/neo4j-cypher-1.9.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.6-neo4j-cypher-1.9.6.pom-M6PtU.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:54 GMT",
+      "ETAG" : "\"{SHA1{87971a6eb0970b9f0477a471403e728b86ac8e86}}\"",
+      "LAST-MODIFIED" : "Fri, 31 Jan 2014 13:46:39 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e5623d87-98db-3e5c-96a4-c6988e0083ba"
+}

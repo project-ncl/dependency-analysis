@@ -1,0 +1,30 @@
+{
+  "id" : "7bd8d623-4e81-3c92-8078-1d0209f0149e",
+  "request" : {
+    "url" : "/api/group/DApublic/com/mysema/querydsl/querydsl-apt/3.6.2/querydsl-apt-3.6.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.6.2-querydsl-apt-3.6.2.pom-qFyMa.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "49444d88951f9e1ffa5cb9b19659ed8774e504bf223241555ae7d515f1803548",
+      "X-CHECKSUM-MD5" : "a6d4a0520f470e94be86eaf1890e7c28",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:46 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a6d4a0520f470e94be86eaf1890e7c28\"",
+      "LAST-MODIFIED" : "Sat, 28 Feb 2015 16:36:45 GMT",
+      "X-CHECKSUM-SHA1" : "e70653a9d151ac4066f01c01a85f18baaa807cec",
+      "X-SERVED-BY" : "cache-iad2138-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260146.431717,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "271493",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7bd8d623-4e81-3c92-8078-1d0209f0149e"
+}

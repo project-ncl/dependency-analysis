@@ -1,0 +1,25 @@
+{
+  "id" : "c24e42ef-7a7e-3555-9b06-c518e69f98c4",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-cli/commons-cli/1.2/commons-cli-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-commons-cli-1.2.pom-rJLWM.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 13:23:33 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591999", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 11 Apr 2017 13:23:34 GMT",
+      "ETAG" : "\"{SHA1{e1b71e4b511c3c63f8b19d0302fe1d1c6e79035a}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c24e42ef-7a7e-3555-9b06-c518e69f98c4"
+}

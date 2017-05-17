@@ -1,0 +1,17 @@
+{
+  "id" : "d15621f2-1740-380f-a4d9-d886d54646e5",
+  "request" : {
+    "url" : "/api/group/test-DA/jaxme/jaxme-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jaxme-api-maven-metadata.xml-owYIN.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:00 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d15621f2-1740-380f-a4d9-d886d54646e5"
+}

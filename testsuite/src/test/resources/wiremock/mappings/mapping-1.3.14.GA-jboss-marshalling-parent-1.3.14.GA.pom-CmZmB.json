@@ -1,0 +1,25 @@
+{
+  "id" : "245a382b-a3c9-36a5-882a-f9354541fd4e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/marshalling/jboss-marshalling-parent/1.3.14.GA/jboss-marshalling-parent-1.3.14.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.14.GA-jboss-marshalling-parent-1.3.14.GA.pom-CmZmB.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:18:46 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:46 GMT",
+      "ETAG" : "\"{SHA1{48effcd2af91444e7f883524a68091f8a2d3fe91}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:47:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "245a382b-a3c9-36a5-882a-f9354541fd4e"
+}

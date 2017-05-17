@@ -1,0 +1,25 @@
+{
+  "id" : "16cfde14-80dd-380e-8506-dd088b04ccc6",
+  "request" : {
+    "url" : "/api/group/DApublic/org/json4s/json4s-ast_2.10/3.2.11/json4s-ast_2.10-3.2.11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.11-json4s-ast_2.10-3.2.11.pom-FTT57.xml",
+    "headers" : {
+      "EXPIRES" : "Mon, 05 Jun 2017 00:34:28 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2362205", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:23 GMT",
+      "ETAG" : "\"{SHA1{066a35b22acdb97d8293dfb42e5c0b8538209353}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:54:50 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "16cfde14-80dd-380e-8506-dd088b04ccc6"
+}

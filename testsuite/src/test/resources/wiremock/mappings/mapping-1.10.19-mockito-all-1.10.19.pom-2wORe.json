@@ -1,0 +1,30 @@
+{
+  "id" : "8dd41474-ce05-3c3d-a269-4f47d0ac5f75",
+  "request" : {
+    "url" : "/api/group/DApublic/org/mockito/mockito-all/1.10.19/mockito-all-1.10.19.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.10.19-mockito-all-1.10.19.pom-2wORe.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "99ee4b342ccba611dfbdd9d3c495dc9617a2bcede7e12b4ca30d542a68e152cf",
+      "X-CHECKSUM-MD5" : "c452e8ba9ad49578e3ec12097e8cf961",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:44 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"c452e8ba9ad49578e3ec12097e8cf961\"",
+      "LAST-MODIFIED" : "Wed, 31 Dec 2014 16:43:36 GMT",
+      "X-CHECKSUM-SHA1" : "d85c81a54a028838b02452f74a5aeefe33e21563",
+      "X-SERVED-BY" : "cache-iad2139-IAD, cache-dfw1821-DFW",
+      "X-TIMER" : "S1494237584.130657,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2157026",
+      "X-CACHE-HITS" : "3, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "8dd41474-ce05-3c3d-a269-4f47d0ac5f75"
+}

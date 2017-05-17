@@ -1,0 +1,30 @@
+{
+  "id" : "51c31963-8176-3cb9-9de6-cae937130307",
+  "request" : {
+    "url" : "/api/group/DApublic/com/openshift/openshift-restclient-java/3.0.1.Final/openshift-restclient-java-3.0.1.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.1.Final-openshift-restclient-java-3.0.1.Final.pom-sDA3t.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "9420dac765d41e5a82725bd6b60297530a95978eff89552e07ee89ea9f0f594b",
+      "X-CHECKSUM-MD5" : "f7f41f640778eea262819491a7f773e2",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:46 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"f7f41f640778eea262819491a7f773e2\"",
+      "LAST-MODIFIED" : "Thu, 17 Sep 2015 17:19:27 GMT",
+      "X-CHECKSUM-SHA1" : "c71eaf3429e4dbcdc7c104f64305da247910a7ae",
+      "X-SERVED-BY" : "cache-iad2128-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259846.099451,VS0,VE101",
+      "X-CACHE" : "MISS, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "0, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "51c31963-8176-3cb9-9de6-cae937130307"
+}

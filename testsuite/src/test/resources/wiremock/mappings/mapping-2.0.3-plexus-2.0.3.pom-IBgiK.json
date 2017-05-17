@@ -1,0 +1,25 @@
+{
+  "id" : "2cc47ab2-42ad-3042-937a-3dfe71514210",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus/2.0.3/plexus-2.0.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.3-plexus-2.0.3.pom-IBgiK.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 11:07:39 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2583629", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 11 Apr 2017 13:27:10 GMT",
+      "ETAG" : "\"{SHA1{bf472ec56fe823f1b4b997fe5b9396490ae9b1dc}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:30 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2cc47ab2-42ad-3042-937a-3dfe71514210"
+}

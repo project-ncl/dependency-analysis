@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.jboss.bom</groupId>
+    <artifactId>jboss-bom-parent</artifactId>
+    <version>1.0.7.Final</version>
+
+    <packaging>pom</packaging>
+
+    <name>JBoss BOM Parent</name>
+    <description>Dependency Management BOM Parent</description>
+
+    <url>http://www.jboss.org</url>
+    <issueManagement>
+        <system>JIRA</system>
+        <url>https://issues.jboss.org/</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:git@github.com:jboss-jdf/jboss-bom.git</connection>
+        <developerConnection>scm:git:git@github.com:jboss-jdf/jboss-bom.git</developerConnection>
+        <url>http://github.com/jboss-jdf/jboss-bom</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>jboss.org</id>
+            <name>JBoss.org Community</name>
+            <organization>JBoss.org</organization>
+            <organizationUrl>http://www.jboss.org</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <!-- Versions of Arquillian and Shrinkwrap -->
+        <version.org.jboss.arquillian>1.1.0.Final</version.org.jboss.arquillian>
+        <version.org.jboss.arquillian.extension.drone>1.1.1.Final</version.org.jboss.arquillian.extension.drone>
+        <version.org.jboss.arquillian.graphene>1.0.0.Final</version.org.jboss.arquillian.graphene>
+        <version.org.jboss.as.arquillian.container>7.2.0.Final</version.org.jboss.as.arquillian.container>
+        <version.org.jboss.shrinkwrap.resolver>2.0.0</version.org.jboss.shrinkwrap.resolver>
+        
+        <!-- Version of Deltaspike -->
+        <version.org.apache.deltaspike>0.4</version.org.apache.deltaspike>
+
+        <!-- Version of Drools -->
+        <version.org.jboss.drools>5.5.0.Final </version.org.jboss.drools>
+
+        <!-- Versions of JBoss projects -->
+        <version.org.infinispan>5.2.4.Final</version.org.infinispan>
+        <version.org.jboss.errai>2.3.2.Final</version.org.jboss.errai>
+        <version.org.jboss.jbossts.jbossjts>4.16.4.Final</version.org.jboss.jbossts.jbossjts>
+        <version.org.jboss.logging>3.1.0.GA</version.org.jboss.logging>
+        <version.org.jboss.logging.processor>1.0.3.Final</version.org.jboss.logging.processor>
+        <version.org.jboss.resteasy>2.3.5.Final</version.org.jboss.resteasy>
+        <version.org.jboss.security.negotiation>2.1.1.Final</version.org.jboss.security.negotiation>
+        <version.org.jboss.spec.jboss.javaee.6.0>3.0.2.Final</version.org.jboss.spec.jboss.javaee.6.0>
+        <version.org.richfaces>4.3.3.Final</version.org.richfaces>
+        <version.org.picketlink>2.5.0.Final</version.org.picketlink>
+
+        <!-- Version of Hibernate projects -->
+        <version.org.hibernate>4.2.0.Final</version.org.hibernate>
+        <version.org.hibernate.validator>4.2.0.Final</version.org.hibernate.validator>
+        <version.org.hibernate.search>4.3.0.Final</version.org.hibernate.search>
+        <version.org.hibernate-jpamodelgen>1.2.0.Final</version.org.hibernate-jpamodelgen>
+
+        <!-- Version of Hibernate 3 projects -->
+        <version.org.hibernate3>3.6.10.Final</version.org.hibernate3>
+        <version.org.hibernate3.validator>3.1.0.GA</version.org.hibernate3.validator>
+        <version.org.hibernate3.commons.annotations>3.2.0.Final</version.org.hibernate3.commons.annotations>
+
+        <!-- Versions of projects not directly under JBoss umbrella -->
+        <version.com.google.gwt>2.5.1</version.com.google.gwt>
+        <version.junit>4.11</version.junit>
+        <version.log4j>1.2.16</version.log4j>
+        <version.org.mvel>2.1.Beta8</version.org.mvel>
+        <version.org.osgi>4.2.0</version.org.osgi>
+        <version.org.testng>5.14.6</version.org.testng>
+        <version.javax.validation>1.0.0.GA</version.javax.validation>
+        
+        <!-- Versions of Spring Projects-->
+        <version.spring>3.2.3.RELEASE</version.spring>
+        <version.spring.security>3.1.4.RELEASE</version.spring.security>
+        <version.spring.webflow>2.3.2.RELEASE</version.spring.webflow>
+        <version.spring.ws>2.1.2.RELEASE</version.spring.ws>
+
+        <!-- Versions of Snowdrop -->
+        <version.snowdrop>2.0.5.Final</version.snowdrop>
+
+        <!-- Versions of Spring Third Party dependencies -->
+        <version.aopalliance>1.0</version.aopalliance>
+        <version.aspectj>1.7.1</version.aspectj>
+
+        <!-- Versions of Maven plugins, user must setup them by his/her own -->
+        <version.surefire.plugin>2.10</version.surefire.plugin>
+        <version.org.codehaus.mojo.gwt.maven.plugin>${version.com.google.gwt}</version.org.codehaus.mojo.gwt.maven.plugin>
+        <version.org.jboss.as.plugins.maven.plugin>7.3.Final</version.org.jboss.as.plugins.maven.plugin>
+
+        <!-- Repository Deployment URLs -->
+        <jboss.releases.repo.url>
+            https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/
+        </jboss.releases.repo.url>
+        <jboss.snapshots.repo.url>
+            https://repository.jboss.org/nexus/content/repositories/snapshots/
+        </jboss.snapshots.repo.url>
+    </properties>
+
+    <modules>
+        <module>jboss-javaee-6.0-with-all</module>
+        <module>jboss-javaee-6.0-with-deltaspike</module>
+        <module>jboss-javaee-6.0-with-drools</module>
+        <module>jboss-javaee-6.0-with-errai</module>
+        <module>jboss-javaee-6.0-with-hibernate</module>
+        <module>jboss-javaee-6.0-with-hsearch</module>
+        <module>jboss-javaee-6.0-with-hibernate3</module>
+        <module>jboss-javaee-6.0-with-infinispan</module>
+        <module>jboss-javaee-6.0-with-logging</module>
+        <module>jboss-javaee-6.0-with-osgi</module>
+        <module>jboss-javaee-6.0-with-resteasy</module>
+        <module>jboss-javaee-6.0-with-richfaces</module>
+        <module>jboss-javaee-6.0-with-security</module>
+        <module>jboss-javaee-6.0-with-spring</module>
+        <module>jboss-javaee-6.0-with-tools</module>
+        <module>jboss-javaee-6.0-with-transactions</module>
+    </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>jboss-releases-repository</id>
+            <name>JBoss Releases Repository</name>
+            <url>${jboss.releases.repo.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>jboss-snapshots-repository</id>
+            <name>JBoss Snapshots Repository</name>
+            <url>${jboss.snapshots.repo.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

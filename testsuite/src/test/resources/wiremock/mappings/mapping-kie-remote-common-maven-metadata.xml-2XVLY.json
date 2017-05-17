@@ -1,0 +1,19 @@
+{
+  "id" : "e844e7ed-6def-3e0a-8b3d-f5635729ebaa",
+  "request" : {
+    "url" : "/api/group/test-DA/org/kie/remote/kie-remote-common/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-kie-remote-common-maven-metadata.xml-2XVLY.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:47 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:26 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e844e7ed-6def-3e0a-8b3d-f5635729ebaa"
+}

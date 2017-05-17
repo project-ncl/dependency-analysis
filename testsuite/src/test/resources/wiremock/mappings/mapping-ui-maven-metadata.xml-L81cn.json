@@ -1,0 +1,17 @@
+{
+  "id" : "838f3793-f96c-3305-8304-0442abc53cce",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/pnc/ui/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-ui-maven-metadata.xml-L81cn.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:12 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "838f3793-f96c-3305-8304-0442abc53cce"
+}

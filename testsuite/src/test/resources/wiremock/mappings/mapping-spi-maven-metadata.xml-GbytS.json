@@ -1,0 +1,17 @@
+{
+  "id" : "7784844d-975d-33db-94f8-f56a6f3f7e49",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/pnc/spi/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-spi-maven-metadata.xml-GbytS.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:11 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "7784844d-975d-33db-94f8-f56a6f3f7e49"
+}

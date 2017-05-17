@@ -1,0 +1,25 @@
+{
+  "id" : "2c1c34ce-99ee-3e0f-b886-46ca0ca11fe2",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/jms/jms/1.1/jms-1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-jms-1.1.pom-zNLC7.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:21:07 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591953", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:54 GMT",
+      "ETAG" : "\"{SHA1{27a2e84f6118a2bbd0266edd9d53870528473f92}}\"",
+      "LAST-MODIFIED" : "Wed, 15 Jan 2014 12:07:41 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2c1c34ce-99ee-3e0f-b886-46ca0ca11fe2"
+}

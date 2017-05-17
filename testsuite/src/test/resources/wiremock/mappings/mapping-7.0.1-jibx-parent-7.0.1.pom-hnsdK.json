@@ -1,0 +1,30 @@
+{
+  "id" : "24892110-f834-39e4-92e1-b2f27a27bb92",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jibx/config/jibx-parent/7.0.1/jibx-parent-7.0.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-7.0.1-jibx-parent-7.0.1.pom-hnsdK.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "43cf621bce28260072a7e345e0333f971f4b054128b8152773241a252948ebf5",
+      "X-CHECKSUM-MD5" : "41c32cd21b7640e0bf9a222c256bff0c",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:38 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"41c32cd21b7640e0bf9a222c256bff0c\"",
+      "LAST-MODIFIED" : "Sun, 24 Feb 2013  7:18:41 GMT",
+      "X-CHECKSUM-SHA1" : "2968f238fc79711922ae6c03ef01ce3e74dd6398",
+      "X-SERVED-BY" : "cache-iad2143-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260139.525881,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1564681",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "24892110-f834-39e4-92e1-b2f27a27bb92"
+}

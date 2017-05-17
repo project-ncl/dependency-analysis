@@ -1,0 +1,17 @@
+{
+  "id" : "057367f4-2811-3598-be4c-3b4241c666d5",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/da/reports-rest/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-reports-rest-maven-metadata.xml-VgugH.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:27:08 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "057367f4-2811-3598-be4c-3b4241c666d5"
+}

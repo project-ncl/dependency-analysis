@@ -1,0 +1,30 @@
+{
+  "id" : "0bcd545c-5bc1-34d0-833d-904c3f14e7bf",
+  "request" : {
+    "url" : "/api/group/DApublic/myfaces/myfaces-api/1.1.0/myfaces-api-1.1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.0-myfaces-api-1.1.0.pom-9NCA3.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "637a9e8e2d09637583f05e3cea06f00c3fa788474af5808abf12b7b2efd354d0",
+      "X-CHECKSUM-MD5" : "149376b3da361716c8528980b875c7ca",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:36 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"149376b3da361716c8528980b875c7ca\"",
+      "LAST-MODIFIED" : "Mon, 21 Nov 2005 13:21:56 GMT",
+      "X-CHECKSUM-SHA1" : "02424ec96589f2d08ee448619d45663c172d917c",
+      "X-SERVED-BY" : "cache-iad2148-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260676.050967,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1650771",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0bcd545c-5bc1-34d0-833d-904c3f14e7bf"
+}

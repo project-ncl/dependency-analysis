@@ -1,0 +1,19 @@
+{
+  "id" : "02872283-edfd-3421-8160-11ab9a300094",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/resteasy/resteasy-jackson2-provider/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-resteasy-jackson2-provider-maven-metadata.xml-Sth5e.xml",
+    "headers" : {
+      "Last-Modified" : "Thu, 18 May 2017 11:32:11 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Thu, 18 May 2017 11:32:12 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "02872283-edfd-3421-8160-11ab9a300094"
+}

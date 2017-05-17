@@ -1,0 +1,17 @@
+{
+  "id" : "1a43b50d-0d9c-3874-b393-7d20160e1750",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-javaflow/commons-javaflow/20060411/commons-javaflow-20060411.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-20060411-commons-javaflow-20060411.pom-99gwe.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:30:56 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1a43b50d-0d9c-3874-b393-7d20160e1750"
+}

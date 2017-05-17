@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>jacorb</groupId>
+  <artifactId>jacorb</artifactId>
+  <versioning>
+    <latest>2.3.1jboss.patch01-brew</latest>
+    <release>2.3.1jboss.patch01-brew</release>
+    <versions>
+      <version>2.3.0jboss.patch6-brew</version>
+      <version>2.3.1jboss.patch01-brew</version>
+    </versions>
+    <lastUpdated>20170413164145</lastUpdated>
+  </versioning>
+</metadata>

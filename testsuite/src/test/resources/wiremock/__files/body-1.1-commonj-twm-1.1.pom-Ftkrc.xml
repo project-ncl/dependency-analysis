@@ -1,0 +1,11 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.bea.wlplatform</groupId>
+  <artifactId>commonj-twm</artifactId>
+  <version>1.1</version>
+  <name>Timer and Work Manager for Application Servers</name>
+  <url>http://dev2dev.bea.com/wlplatform/commonj/twm.html</url>
+  <distributionManagement>
+    <downloadUrl>http://ftpna2.bea.com/pub/downloads/commonj/commonj-twm.jar</downloadUrl>
+  </distributionManagement>
+</project>

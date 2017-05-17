@@ -1,0 +1,24 @@
+{
+  "id" : "b6d1c5ef-fd56-3a4c-95a1-3a498f4a4559",
+  "request" : {
+    "url" : "/api/group/DApublic/org/neo4j/neo4j-kernel/1.9.6/neo4j-kernel-1.9.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.6-neo4j-kernel-1.9.6.pom-dvc7i.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:29 GMT",
+      "ETAG" : "\"{SHA1{23d71c8bd5b90b9e3935ce725dbbd1cc175a9698}}\"",
+      "LAST-MODIFIED" : "Fri, 31 Jan 2014 13:49:25 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b6d1c5ef-fd56-3a4c-95a1-3a498f4a4559"
+}

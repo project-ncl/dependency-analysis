@@ -1,0 +1,2 @@
+Id: e1eb064bad9a6b0f8632394f4463767aa8f2b9866e2a9d4da50bb2b73b4619a6
+Message: Path org/keycloak/keycloak-installed-adapter/maven-metadata.xml is not available in store group:test-DA.

@@ -1,0 +1,25 @@
+{
+  "id" : "de0a7ed5-e88f-3a31-a6b4-3c8b38eba848",
+  "request" : {
+    "url" : "/api/group/DApublic/logkit/logkit/1.0.1/logkit-1.0.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.1-logkit-1.0.1.pom-l5q26.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 13:54:44 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2583434", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:30 GMT",
+      "ETAG" : "\"{SHA1{ff3b4e6ced322bc8a21fa3aadfcf7f131a1ee08c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:31 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "de0a7ed5-e88f-3a31-a6b4-3c8b38eba848"
+}

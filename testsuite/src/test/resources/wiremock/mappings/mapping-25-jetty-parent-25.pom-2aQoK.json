@@ -1,0 +1,25 @@
+{
+  "id" : "11be0cc3-0559-3782-85b1-4dc4792d822e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/jetty/jetty-parent/25/jetty-parent-25.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-25-jetty-parent-25.pom-2aQoK.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 18 May 2017 11:12:04 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591978", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 18 Apr 2017 11:12:26 GMT",
+      "ETAG" : "\"{SHA1{3f56c6170f7600efb2f49e7364b9fe747b62b76a}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:13:46 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "11be0cc3-0559-3782-85b1-4dc4792d822e"
+}

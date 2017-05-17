@@ -1,0 +1,30 @@
+{
+  "id" : "4a3db443-21af-32a4-9fb2-f4999a848672",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/castor/castor/1.2/castor-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-castor-1.2.pom-4ya1u.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "efc7a303b974d4ad178dc5402af4d8225db1cea47dd79e5c7d5fb25b10f41509",
+      "X-CHECKSUM-MD5" : "53dc37da130d08017d3ff9bf376a0cab",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:07 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"53dc37da130d08017d3ff9bf376a0cab\"",
+      "LAST-MODIFIED" : "Mon, 04 Feb 2008 21:13:21 GMT",
+      "X-CHECKSUM-SHA1" : "8d69998ab1bf811b37853363982af62dd92bac61",
+      "X-SERVED-BY" : "cache-iad2138-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260347.108468,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5527466",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "4a3db443-21af-32a4-9fb2-f4999a848672"
+}

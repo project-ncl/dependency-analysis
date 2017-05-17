@@ -1,0 +1,25 @@
+{
+  "id" : "99e57130-2f46-359d-abd2-bc1645400671",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/el/el-api/1.0/el-api-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-el-api-1.0.pom-a93WD.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:22:02 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591942", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:00 GMT",
+      "ETAG" : "\"{SHA1{c5dfdf2997d4ff7f5362da566a53f3bfaea5721c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:24:52 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "99e57130-2f46-359d-abd2-bc1645400671"
+}

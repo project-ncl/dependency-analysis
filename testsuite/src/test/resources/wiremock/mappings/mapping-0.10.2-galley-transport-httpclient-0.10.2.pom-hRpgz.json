@@ -1,0 +1,24 @@
+{
+  "id" : "e40382f8-1889-3824-bf87-52461ee4faa6",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-transport-httpclient/0.10.2/galley-transport-httpclient-0.10.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.10.2-galley-transport-httpclient-0.10.2.pom-hRpgz.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:19:24 GMT",
+      "ETAG" : "\"{SHA1{0eff5193376ae73d4dd1ce9f6afa31e0588ea453}}\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 15:31:59 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e40382f8-1889-3824-bf87-52461ee4faa6"
+}

@@ -1,0 +1,15 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.jcip</groupId>
+  <artifactId>jcip-annotations</artifactId>
+  <version>1.0</version>
+  <url>http://www.jcip.net/</url>
+  <description>Java Concurrency In Practice Annotations</description>
+  <licenses>
+   <license>
+     <name>Creative Commons Attribution License</name>
+     <url>http://creativecommons.org/licenses/by/2.5</url>
+   </license>
+  </licenses>    
+</project>
+

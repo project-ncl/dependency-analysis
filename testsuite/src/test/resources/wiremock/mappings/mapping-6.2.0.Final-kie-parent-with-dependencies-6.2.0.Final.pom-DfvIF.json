@@ -1,0 +1,25 @@
+{
+  "id" : "f27f21d9-93a2-32a6-83e4-14331c7211c9",
+  "request" : {
+    "url" : "/api/group/DApublic/org/kie/kie-parent-with-dependencies/6.2.0.Final/kie-parent-with-dependencies-6.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.2.0.Final-kie-parent-with-dependencies-6.2.0.Final.pom-DfvIF.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:10:45 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591990", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:55 GMT",
+      "ETAG" : "\"{SHA1{8ba950e50a325d50a176c7b8678131664cb9ad19}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:27:48 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f27f21d9-93a2-32a6-83e4-14331c7211c9"
+}

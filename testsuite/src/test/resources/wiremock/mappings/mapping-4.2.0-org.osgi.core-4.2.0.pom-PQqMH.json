@@ -1,0 +1,25 @@
+{
+  "id" : "246efcad-29a5-3d3c-86af-c5710f5888a5",
+  "request" : {
+    "url" : "/api/group/DApublic/org/osgi/org.osgi.core/4.2.0/org.osgi.core-4.2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.2.0-org.osgi.core-4.2.0.pom-PQqMH.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 24 May 2017 14:10:08 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2335385", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Thu, 27 Apr 2017 13:27:03 GMT",
+      "ETAG" : "\"{SHA1{90a641496feab22ef450f1a2aa646c132e6cc69c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:56:39 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "246efcad-29a5-3d3c-86af-c5710f5888a5"
+}

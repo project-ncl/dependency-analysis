@@ -1,0 +1,25 @@
+{
+  "id" : "245078ce-c65f-3360-bdfb-80e1d75b7438",
+  "request" : {
+    "url" : "/api/group/DApublic/com/google/code/findbugs/annotations/2.0.1/annotations-2.0.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.1-annotations-2.0.1.pom-dF0M4.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:59:53 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1928542", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:31 GMT",
+      "ETAG" : "\"{SHA1{4c76bfc299e25298ed91cb8968e3c5678bf27aa8}}\"",
+      "LAST-MODIFIED" : "Thu, 07 Apr 2016 19:49:17 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "245078ce-c65f-3360-bdfb-80e1d75b7438"
+}

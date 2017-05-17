@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.stdio</groupId>
+  <artifactId>jboss-stdio</artifactId>
+  <versioning>
+    <latest>1.0.2.GA-redhat-2</latest>
+    <release>1.0.2.GA-redhat-2</release>
+    <versions>
+      <version>1.0.1.GA</version>
+      <version>1.0.1.GA-redhat-1</version>
+      <version>1.0.1.GA-redhat-2</version>
+      <version>1.0.2.GA-redhat-1</version>
+      <version>1.0.2.GA-redhat-2</version>
+    </versions>
+    <lastUpdated>20170512214152</lastUpdated>
+  </versioning>
+</metadata>

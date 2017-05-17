@@ -1,0 +1,25 @@
+{
+  "id" : "a4ece517-1b2d-3de9-8b3f-6870a67522a5",
+  "request" : {
+    "url" : "/api/group/DApublic/com/google/guava/guava-parent/15.0/guava-parent-15.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-15.0-guava-parent-15.0.pom-PIj7E.xml",
+    "headers" : {
+      "EXPIRES" : "Sun, 04 Jun 2017 23:47:28 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2359796", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:32 GMT",
+      "ETAG" : "\"{SHA1{b105fd57a854e155c14b358c34617c15b7e592ab}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:52:51 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a4ece517-1b2d-3de9-8b3f-6870a67522a5"
+}

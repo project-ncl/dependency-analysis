@@ -1,0 +1,17 @@
+{
+  "id" : "7090940a-ce34-3475-9586-0951bb4f553a",
+  "request" : {
+    "url" : "/api/group/test-DA/mondrian/mondrian/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-mondrian-maven-metadata.xml-WliFU.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:43 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "7090940a-ce34-3475-9586-0951bb4f553a"
+}

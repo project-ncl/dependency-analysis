@@ -1,0 +1,30 @@
+{
+  "id" : "eea683d9-f3e1-3f38-a350-aa1bb5bee39b",
+  "request" : {
+    "url" : "/api/group/DApublic/proxool/proxool/0.8.3/proxool-0.8.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.8.3-proxool-0.8.3.pom-o4rAU.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "8b08e34c726e254f0c1956f6bd2d3cfb69951cbe3a03ed81e66805fdfb6d2577",
+      "X-CHECKSUM-MD5" : "7635469d782ce64389ff52444e567d46",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:33 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"7635469d782ce64389ff52444e567d46\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 21:52:23 GMT",
+      "X-CHECKSUM-SHA1" : "f801557ad8a2d3ac3d8830407a6adc96ab00bf6d",
+      "X-SERVED-BY" : "cache-iad2142-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260554.786897,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2657001",
+      "X-CACHE-HITS" : "1, 5",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "eea683d9-f3e1-3f38-a350-aa1bb5bee39b"
+}

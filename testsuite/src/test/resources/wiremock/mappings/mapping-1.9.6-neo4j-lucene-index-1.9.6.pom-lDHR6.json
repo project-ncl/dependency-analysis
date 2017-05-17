@@ -1,0 +1,24 @@
+{
+  "id" : "54d8ee32-a6d6-3ef1-901c-520324b2b0e9",
+  "request" : {
+    "url" : "/api/group/DApublic/org/neo4j/neo4j-lucene-index/1.9.6/neo4j-lucene-index-1.9.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.6-neo4j-lucene-index-1.9.6.pom-lDHR6.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:35 GMT",
+      "ETAG" : "\"{SHA1{75924c30f07d956e65e73f2b3e3981fcd3c6f34e}}\"",
+      "LAST-MODIFIED" : "Fri, 31 Jan 2014 13:49:49 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "54d8ee32-a6d6-3ef1-901c-520324b2b0e9"
+}

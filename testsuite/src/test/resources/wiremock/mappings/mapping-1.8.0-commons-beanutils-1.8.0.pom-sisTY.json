@@ -1,0 +1,30 @@
+{
+  "id" : "aed1aa44-f635-3356-b872-9c28583eafa9",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-beanutils/commons-beanutils/1.8.0/commons-beanutils-1.8.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.0-commons-beanutils-1.8.0.pom-sisTY.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f74d3fd17f01d9eea359892e2eb36dfbcaeb57171848c1dfd29ce2625833952e",
+      "X-CHECKSUM-MD5" : "c7ada2c2feac25ac3e3dd912acf26ea9",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:05 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"c7ada2c2feac25ac3e3dd912acf26ea9\"",
+      "LAST-MODIFIED" : "Thu, 28 Aug 2008 16:21:24 GMT",
+      "X-CHECKSUM-SHA1" : "483da4e14bedeb5a1d4d2b1914e02396f6380154",
+      "X-SERVED-BY" : "cache-iad2130-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260346.853705,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5214413",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "aed1aa44-f635-3356-b872-9c28583eafa9"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "ba2bf89e-080e-32fa-a71f-d4bea7023d99",
+  "request" : {
+    "url" : "/api/group/DApublic/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-xml-resolver-1.2.pom-wlXKr.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 31 May 2017 19:59:20 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2000643", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:17 GMT",
+      "ETAG" : "\"{SHA1{f18c0830ec69bbd60e39f6c22492e7fd86489f2e}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:21:22 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ba2bf89e-080e-32fa-a71f-d4bea7023d99"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "050faac2-01f3-3b7b-86d0-a86b1e5ade2d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hibernate/common/hibernate-commons-annotations/4.0.1.Final/hibernate-commons-annotations-4.0.1.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.1.Final-hibernate-commons-annotations-4.0.1.Final.pom-5xXMC.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:17:38 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:38 GMT",
+      "ETAG" : "\"{SHA1{7799cd969d65c0e535dd11123fa9382ce0a6783c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:15:46 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "050faac2-01f3-3b7b-86d0-a86b1e5ade2d"
+}

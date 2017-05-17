@@ -1,0 +1,19 @@
+{
+  "id" : "b9b3a3d3-6c99-3758-a103-e23dcb2aa6da",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/web/jbossweb/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jbossweb-maven-metadata.xml-P42DN.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:54 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:33 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b9b3a3d3-6c99-3758-a103-e23dcb2aa6da"
+}

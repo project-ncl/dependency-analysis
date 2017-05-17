@@ -1,0 +1,17 @@
+{
+  "id" : "c9591355-60e0-373b-b22a-67ce14d4f5c4",
+  "request" : {
+    "url" : "/api/group/test-DA/xerces/xerces-impl/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-xerces-impl-maven-metadata.xml-qcimx.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:38 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c9591355-60e0-373b-b22a-67ce14d4f5c4"
+}

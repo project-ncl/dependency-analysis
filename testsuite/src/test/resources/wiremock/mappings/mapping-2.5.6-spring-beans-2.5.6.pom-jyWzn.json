@@ -1,0 +1,25 @@
+{
+  "id" : "182ddbf9-47e8-36b0-8d66-6af249d9e1be",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-beans/2.5.6/spring-beans-2.5.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5.6-spring-beans-2.5.6.pom-jyWzn.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:24:04 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:04 GMT",
+      "ETAG" : "\"{SHA1{24ffcedb04c6c114d841de2b3bc6e75f7bac19ec}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:03:31 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "182ddbf9-47e8-36b0-8d66-6af249d9e1be"
+}

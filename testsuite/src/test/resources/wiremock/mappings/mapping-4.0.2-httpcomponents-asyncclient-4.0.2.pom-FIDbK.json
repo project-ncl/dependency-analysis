@@ -1,0 +1,30 @@
+{
+  "id" : "382149e4-9fb9-30ea-a673-c465e250ee4f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/httpcomponents/httpcomponents-asyncclient/4.0.2/httpcomponents-asyncclient-4.0.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.2-httpcomponents-asyncclient-4.0.2.pom-FIDbK.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "a641e84449b062801564dfed2ac402a202f0c0d2e852aec6d222e23ad9f17e51",
+      "X-CHECKSUM-MD5" : "665c6d2705fbe28b14b6b30e41644e2b",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:56 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"665c6d2705fbe28b14b6b30e41644e2b\"",
+      "LAST-MODIFIED" : "Sat, 02 Aug 2014 12:54:41 GMT",
+      "X-CHECKSUM-SHA1" : "6025bead2a39003973a3aa7b0c7fa086340e429d",
+      "X-SERVED-BY" : "cache-iad2147-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260157.544411,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5198551",
+      "X-CACHE-HITS" : "1, 119",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "382149e4-9fb9-30ea-a673-c465e250ee4f"
+}

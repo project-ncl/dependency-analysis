@@ -1,0 +1,19 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ehcache</groupId>
+  <artifactId>ehcache</artifactId>
+  <name>Ehcache</name>
+  <version>1.1</version>
+  <description>Ehcache is a pure
+Java, in-process cache with the following features: Fast, Simple, Acts as
+a pluggable cache for Hibernate 2.1. Small foot print. Both in terms of size and memory requirements. Minimal dependencies. Fully documented. See the online Documentation, FAQ and the online JavaDoc. Comprehensively Test Coverage. Scalable to hundreds of caches and large multi-cpu servers. Production tested. All versions of
+ehcache are production tested for several weeks on a large and very
+busy eCommerce site before release.</description>
+  <dependencies>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+  </dependencies>
+</project>

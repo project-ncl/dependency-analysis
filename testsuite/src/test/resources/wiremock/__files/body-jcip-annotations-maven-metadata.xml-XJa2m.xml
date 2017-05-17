@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.jcip</groupId>
+  <artifactId>jcip-annotations</artifactId>
+  <versioning>
+    <latest>1.0.0.redhat-8</latest>
+    <release>1.0.0.redhat-8</release>
+    <versions>
+      <version>1.0</version>
+      <version>1.0-redhat-1</version>
+      <version>1.0-redhat-2</version>
+      <version>1.0-redhat-3</version>
+      <version>1.0-redhat-4</version>
+      <version>1.0.redhat-6</version>
+      <version>1.0.0.redhat-7</version>
+      <version>1.0.0.redhat-8</version>
+    </versions>
+    <lastUpdated>20170512214031</lastUpdated>
+  </versioning>
+</metadata>

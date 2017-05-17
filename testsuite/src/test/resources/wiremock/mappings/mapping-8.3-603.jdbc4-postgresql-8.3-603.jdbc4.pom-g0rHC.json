@@ -1,0 +1,30 @@
+{
+  "id" : "bad4bd03-e7e8-3777-9bc1-a306ff0abe50",
+  "request" : {
+    "url" : "/api/group/DApublic/postgresql/postgresql/8.3-603.jdbc4/postgresql-8.3-603.jdbc4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-8.3-603.jdbc4-postgresql-8.3-603.jdbc4.pom-g0rHC.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d6b098a128823bbfc46968481d79289e50ef77695749f676f37d52635c186114",
+      "X-CHECKSUM-MD5" : "83fbbc8531f525412538ce40499f6d5f",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:22 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"83fbbc8531f525412538ce40499f6d5f\"",
+      "LAST-MODIFIED" : "Fri, 29 Feb 2008 18:06:41 GMT",
+      "X-CHECKSUM-SHA1" : "a859980c296d8cb730772a6c6c5f16885066f996",
+      "X-SERVED-BY" : "cache-iad2140-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260663.754656,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "33061",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "bad4bd03-e7e8-3777-9bc1-a306ff0abe50"
+}

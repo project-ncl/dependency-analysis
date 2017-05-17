@@ -1,0 +1,31 @@
+{
+  "id" : "07857b93-ab2d-36e0-9477-467763b282e6",
+  "request" : {
+    "url" : "/api/group/DApublic/joda-time/joda-time/1.5.2/joda-time-1.5.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.2-joda-time-1.5.2.pom-cvgvx.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "b98bf495765e72524868e94b615aed256dcfbb270fd3f9d0ab855a44ba17fd9e",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 11:00:02 GMT",
+      "X-CHECKSUM-SHA1" : "a604c011a8b8dd632591aeaed3e90c85279658de",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1201517282000",
+      "AGE" : "9698578",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "651ba1719b27137c298ab2d18d9268a2",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"651ba1719b27137c298ab2d18d9268a2\"",
+      "LAST-MODIFIED" : "Mon, 28 Jan 2008 10:48:02 GMT",
+      "X-SERVED-BY" : "cache-iad2143-IAD, cache-dfw1829-DFW",
+      "X-TIMER" : "S1494241203.524704,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "07857b93-ab2d-36e0-9477-467763b282e6"
+}

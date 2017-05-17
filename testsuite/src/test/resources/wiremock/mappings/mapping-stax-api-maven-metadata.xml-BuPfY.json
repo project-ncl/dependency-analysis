@@ -1,0 +1,19 @@
+{
+  "id" : "a541c907-119d-36f0-a48b-49c5293256a3",
+  "request" : {
+    "url" : "/api/group/test-DA/stax/stax-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-stax-api-maven-metadata.xml-BuPfY.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:34:05 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:34:06 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a541c907-119d-36f0-a48b-49c5293256a3"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "1daf2276-0ca7-3e94-bb9f-e720d1904722",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-social-github/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-social-github-maven-metadata.xml-zd2x5.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:41 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1daf2276-0ca7-3e94-bb9f-e720d1904722"
+}

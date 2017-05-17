@@ -1,0 +1,24 @@
+{
+  "id" : "fb95ccad-0300-3f1a-879d-5548d036821b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/resteasy/resteasy-jaxrs-all/3.0.12.Final/resteasy-jaxrs-all-3.0.12.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.12.Final-resteasy-jaxrs-all-3.0.12.Final.pom-vrrGK.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:49:03 GMT",
+      "ETAG" : "\"{SHA1{f5bdacad63bdfd4ffedc9b8d0cbbaa4a22649bc1}}\"",
+      "LAST-MODIFIED" : "Wed, 19 Aug 2015 02:02:33 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "fb95ccad-0300-3f1a-879d-5548d036821b"
+}

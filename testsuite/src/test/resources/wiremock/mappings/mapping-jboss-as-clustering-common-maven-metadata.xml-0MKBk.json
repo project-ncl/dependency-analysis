@@ -1,0 +1,19 @@
+{
+  "id" : "800c06b0-5e80-38e4-8a80-46473fa05ef7",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-clustering-common/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-as-clustering-common-maven-metadata.xml-0MKBk.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:38 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:16 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "800c06b0-5e80-38e4-8a80-46473fa05ef7"
+}

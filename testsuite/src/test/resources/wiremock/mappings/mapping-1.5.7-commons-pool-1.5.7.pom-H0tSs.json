@@ -1,0 +1,25 @@
+{
+  "id" : "b9636562-6b8c-3cd9-833a-ed0f361e6629",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-pool/commons-pool/1.5.7/commons-pool-1.5.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.7-commons-pool-1.5.7.pom-H0tSs.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:22:09 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591948", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:01 GMT",
+      "ETAG" : "\"{SHA1{66e8cdbe69cbd01476571e8a108bab2f3d76a9ab}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:20 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b9636562-6b8c-3cd9-833a-ed0f361e6629"
+}

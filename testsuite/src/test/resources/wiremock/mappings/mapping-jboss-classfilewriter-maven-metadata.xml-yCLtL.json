@@ -1,0 +1,19 @@
+{
+  "id" : "6b094410-bd1c-37c4-8e37-786aa9e8aff9",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/classfilewriter/jboss-classfilewriter/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-classfilewriter-maven-metadata.xml-yCLtL.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:24:54 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:24:32 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "6b094410-bd1c-37c4-8e37-786aa9e8aff9"
+}

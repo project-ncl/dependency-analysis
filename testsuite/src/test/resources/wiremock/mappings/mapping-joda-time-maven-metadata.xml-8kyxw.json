@@ -1,0 +1,19 @@
+{
+  "id" : "e0b63064-db48-3559-89a3-1f7b3a34742b",
+  "request" : {
+    "url" : "/api/group/test-DA/joda-time/joda-time/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-joda-time-maven-metadata.xml-8kyxw.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:24:41 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:24:20 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e0b63064-db48-3559-89a3-1f7b3a34742b"
+}

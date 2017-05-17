@@ -1,0 +1,17 @@
+{
+  "id" : "238326b9-8b8f-3e5e-b784-7b90ba9c272c",
+  "request" : {
+    "url" : "/api/group/DApublic/com/oracle/ojdbc6/11.1.0.7.0/ojdbc6-11.1.0.7.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-11.1.0.7.0-ojdbc6-11.1.0.7.0.pom-iDGbe.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:30:09 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "238326b9-8b8f-3e5e-b784-7b90ba9c272c"
+}

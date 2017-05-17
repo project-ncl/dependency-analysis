@@ -1,0 +1,25 @@
+{
+  "id" : "5c08252e-19b3-3600-9180-53517007ec9e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/bom/eap/jboss-javaee-6.0-with-tools/6.3.2.GA/jboss-javaee-6.0-with-tools-6.3.2.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.3.2.GA-jboss-javaee-6.0-with-tools-6.3.2.GA.pom-ENqTc.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 09:58:56 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:58:56 GMT",
+      "ETAG" : "\"{SHA1{8792d3f44079d1eafbb3bfd5c4e2aa0814d66873}}\"",
+      "LAST-MODIFIED" : "Tue, 21 Oct 2014 08:39:10 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "5c08252e-19b3-3600-9180-53517007ec9e"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "3ac15f71-8c11-3317-9df7-832b22aa5caf",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.4.5/jackson-dataformat-yaml-2.4.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.4.5-jackson-dataformat-yaml-2.4.5.pom-D1ds4.xml",
+    "headers" : {
+      "EXPIRES" : "Sun, 04 Jun 2017 23:48:23 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2360112", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:13:11 GMT",
+      "ETAG" : "\"{SHA1{fb98958580f49a0b8938770c4bbe8f56e1f2a6f5}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3ac15f71-8c11-3317-9df7-832b22aa5caf"
+}

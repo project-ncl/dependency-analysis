@@ -1,0 +1,19 @@
+{
+  "id" : "d0ffb5b5-1ab1-3baa-bf25-09db974ab91c",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/ant/ant-launcher/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-ant-launcher-maven-metadata.xml-x13bo.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:06 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:45 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d0ffb5b5-1ab1-3baa-bf25-09db974ab91c"
+}

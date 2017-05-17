@@ -1,0 +1,17 @@
+{
+  "id" : "fe449142-cf15-32d7-8fec-4b048a3b6e87",
+  "request" : {
+    "url" : "/api/group/test-DA/msv/xsdlib/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-xsdlib-maven-metadata.xml-z2r5w.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:00 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "fe449142-cf15-32d7-8fec-4b048a3b6e87"
+}

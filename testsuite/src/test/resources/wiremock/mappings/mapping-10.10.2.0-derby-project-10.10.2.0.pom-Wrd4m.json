@@ -1,0 +1,31 @@
+{
+  "id" : "60a38f3e-3e1f-3ef8-adab-81ae8365ef04",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/derby/derby-project/10.10.2.0/derby-project-10.10.2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-10.10.2.0-derby-project-10.10.2.0.pom-Wrd4m.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "4752fd9196349140b78c23a4820dbac0ff58e4835546fc6e4eaa1fe8dfa611fa",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:21 GMT",
+      "X-CHECKSUM-SHA1" : "34db406c59a8a0c99d2cbd6318612606a9b2e107",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1397668503000",
+      "AGE" : "1666369",
+      "X-CACHE-HITS" : "0, 1",
+      "X-CHECKSUM-MD5" : "6fd6091f4f59a7c6311e0e0141469bd4",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"6fd6091f4f59a7c6311e0e0141469bd4\"",
+      "LAST-MODIFIED" : "Wed, 16 Apr 2014 17:15:03 GMT",
+      "X-SERVED-BY" : "cache-iad2131-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260422.729090,VS0,VE0",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "60a38f3e-3e1f-3ef8-adab-81ae8365ef04"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "8e273854-fab0-3abf-b96f-6136bace6cc3",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jvnet/hudson/annotation-indexer/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-annotation-indexer-maven-metadata.xml-LNgy1.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:38 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8e273854-fab0-3abf-b96f-6136bace6cc3"
+}

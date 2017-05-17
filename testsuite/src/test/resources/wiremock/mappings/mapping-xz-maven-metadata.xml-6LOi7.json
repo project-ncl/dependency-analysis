@@ -1,0 +1,19 @@
+{
+  "id" : "8bb62ea7-3790-3d37-817a-ea8c4e1bfb87",
+  "request" : {
+    "url" : "/api/group/test-DA/org/tukaani/xz/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-xz-maven-metadata.xml-6LOi7.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:42:07 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:46 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "8bb62ea7-3790-3d37-817a-ea8c4e1bfb87"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "b554039f-fbd5-3f28-a492-2c38a0f26ab4",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/felix/org.osgi.compendium/1.2.0/org.osgi.compendium-1.2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.0-org.osgi.compendium-1.2.0.pom-808MD.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "6931af241da8353bafe8fafc4bbf7154743361e091cc6cb72dbc2b073dac6b37",
+      "X-CHECKSUM-MD5" : "a7e718ef3c67ebacebeb412947ba9e33",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:21 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a7e718ef3c67ebacebeb412947ba9e33\"",
+      "LAST-MODIFIED" : "Sun, 24 Aug 2008  4:39:25 GMT",
+      "X-CHECKSUM-SHA1" : "37ee4d2c055719738c249d55ea85b0b3c111a79c",
+      "X-SERVED-BY" : "cache-iad2121-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260602.728273,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2204073",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b554039f-fbd5-3f28-a492-2c38a0f26ab4"
+}

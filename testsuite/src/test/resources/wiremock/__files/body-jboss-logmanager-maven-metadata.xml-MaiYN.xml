@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.logmanager</groupId>
+  <artifactId>jboss-logmanager</artifactId>
+  <versioning>
+    <latest>2.0.3.Final-redhat-1</latest>
+    <release>2.0.3.Final-redhat-1</release>
+    <versions>
+      <version>1.2.0.GA</version>
+      <version>1.2.2.GA</version>
+      <version>1.3.0.Final</version>
+      <version>1.3.1.Final-redhat-1</version>
+      <version>1.3.2.Final-redhat-1</version>
+      <version>1.4.0.Final</version>
+      <version>1.4.0.Final-redhat-1</version>
+      <version>1.4.3.Final-redhat-1</version>
+      <version>1.5.1.Final</version>
+      <version>1.5.1.Final-redhat-1</version>
+      <version>1.5.2.Final-redhat-1</version>
+      <version>1.5.2.Final-redhat-2</version>
+      <version>1.5.4.Final-redhat-1</version>
+      <version>1.5.6.Final-redhat-1</version>
+      <version>2.0.3.Final-redhat-1</version>
+    </versions>
+    <lastUpdated>20170512214137</lastUpdated>
+  </versioning>
+</metadata>

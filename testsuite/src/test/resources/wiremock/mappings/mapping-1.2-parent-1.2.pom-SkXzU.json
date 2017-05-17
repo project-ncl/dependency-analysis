@@ -1,0 +1,30 @@
+{
+  "id" : "0da1d536-3eea-3e9d-945a-900c264edee4",
+  "request" : {
+    "url" : "/api/group/DApublic/net/minidev/parent/1.2/parent-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-parent-1.2.pom-SkXzU.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f117c7ef9782b1eae36cf5fdb86524f94308388d0295d4f8e5d29438ed5ee9e7",
+      "X-CHECKSUM-MD5" : "ffbb108b018b25daaff349cbd347e0a0",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:09 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ffbb108b018b25daaff349cbd347e0a0\"",
+      "LAST-MODIFIED" : "Sun, 04 Aug 2013 12:26:55 GMT",
+      "X-CHECKSUM-SHA1" : "a3f689ab3eea03cb82c2ffb7ee7173db0490b533",
+      "X-SERVED-BY" : "cache-iad2129-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260409.439271,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5196944",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0da1d536-3eea-3e9d-945a-900c264edee4"
+}

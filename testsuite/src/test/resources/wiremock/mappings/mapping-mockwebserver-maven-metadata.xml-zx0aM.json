@@ -1,0 +1,17 @@
+{
+  "id" : "51798ce4-464c-3b4d-a784-365452e697d9",
+  "request" : {
+    "url" : "/api/group/test-DA/com/squareup/okhttp/mockwebserver/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-mockwebserver-maven-metadata.xml-zx0aM.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:59 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "51798ce4-464c-3b4d-a784-365452e697d9"
+}

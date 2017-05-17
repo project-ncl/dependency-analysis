@@ -1,0 +1,30 @@
+{
+  "id" : "d7ca93e9-e9bc-3821-9121-8f422f914c6d",
+  "request" : {
+    "url" : "/api/group/DApublic/struts/struts/1.2.7/struts-1.2.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.7-struts-1.2.7.pom-o5eam.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "23373d358340b4572a2af4acb58d01d0d37f6cc1658c38d36daa8609f3171113",
+      "X-CHECKSUM-MD5" : "8782d3bf91df19d0a4bceecdc0bfd32e",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:35 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"8782d3bf91df19d0a4bceecdc0bfd32e\"",
+      "LAST-MODIFIED" : "Thu, 24 Nov 2005  5:19:48 GMT",
+      "X-CHECKSUM-SHA1" : "a7508fed9c4678c0257baa1a2248bde16bf3f32c",
+      "X-SERVED-BY" : "cache-iad2120-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260675.135395,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "597425",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d7ca93e9-e9bc-3821-9121-8f422f914c6d"
+}

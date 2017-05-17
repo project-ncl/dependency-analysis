@@ -1,0 +1,17 @@
+{
+  "id" : "30928a15-b31f-34ba-95e5-ff72c8ca5c03",
+  "request" : {
+    "url" : "/api/group/test-DA/com/openshift/openshift-restclient-java/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-openshift-restclient-java-maven-metadata.xml-HkltN.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:06 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "30928a15-b31f-34ba-95e5-ff72c8ca5c03"
+}

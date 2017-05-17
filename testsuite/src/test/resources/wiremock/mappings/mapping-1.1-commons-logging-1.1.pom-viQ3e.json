@@ -1,0 +1,25 @@
+{
+  "id" : "247dd2fc-35ca-3843-a26e-fe33a2dacd01",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-logging/commons-logging/1.1/commons-logging-1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-commons-logging-1.1.pom-viQ3e.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 13:54:40 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2583297", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:43 GMT",
+      "ETAG" : "\"{SHA1{d80c5278c4f112aba0a6e987d7321676ce074a22}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:19 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "247dd2fc-35ca-3843-a26e-fe33a2dacd01"
+}

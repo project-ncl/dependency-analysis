@@ -1,0 +1,30 @@
+{
+  "id" : "0c0b3fbe-caa7-3831-b1a5-8ab87fb2d0e4",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-parent/0.25.0/aprox-parent-0.25.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.25.0-aprox-parent-0.25.0.pom-E3kDo.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "41e7dbc92e0d54f2759257a76823df864245114e62202dcedd707817cae1f71f",
+      "X-CHECKSUM-MD5" : "5f9758c932f793bd0c8693a70d4cec88",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:08:54 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"5f9758c932f793bd0c8693a70d4cec88\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 16:25:57 GMT",
+      "X-CHECKSUM-SHA1" : "09708ef1bf9bbd00ede6a28c99d52d4df62e7a6b",
+      "X-SERVED-BY" : "cache-iad2125-IAD, cache-dfw1825-DFW",
+      "X-TIMER" : "S1494259735.600516,VS0,VE37",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0c0b3fbe-caa7-3831-b1a5-8ab87fb2d0e4"
+}

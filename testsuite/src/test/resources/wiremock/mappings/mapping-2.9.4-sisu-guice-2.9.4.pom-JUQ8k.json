@@ -1,0 +1,25 @@
+{
+  "id" : "aa82b723-d33b-3d36-8f4f-8dd3d995f1c4",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/sisu-guice/2.9.4/sisu-guice-2.9.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.9.4-sisu-guice-2.9.4.pom-JUQ8k.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 09:41:43 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591973", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 09:42:10 GMT",
+      "ETAG" : "\"{SHA1{789a6b0e49022acd7e952b4f784753f4a31f8e9a}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:40 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "aa82b723-d33b-3d36-8f4f-8dd3d995f1c4"
+}

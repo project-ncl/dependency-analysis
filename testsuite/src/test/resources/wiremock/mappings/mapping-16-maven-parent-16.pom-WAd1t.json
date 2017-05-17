@@ -1,0 +1,25 @@
+{
+  "id" : "a5cca407-a34f-3324-8aff-c413e88fae6a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/maven-parent/16/maven-parent-16.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-16-maven-parent-16.pom-WAd1t.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 05:36:19 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2571094", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 11:24:45 GMT",
+      "ETAG" : "\"{SHA1{00fed95187c0c9bfd13c08a858cb6f00245a3fa9}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:00:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a5cca407-a34f-3324-8aff-c413e88fae6a"
+}

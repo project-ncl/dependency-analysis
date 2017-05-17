@@ -1,0 +1,46 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jboss</groupId>
+  <artifactId>jboss-common</artifactId>
+  <packaging>jar</packaging>
+  <name>JBoss Common</name>
+  <version>4.0.2</version>
+  <description>JBoss common framework.</description>
+  <url>http://www.jboss.com/</url>
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License</name>
+      <url>http://www.gnu.org/licenses/lgpl.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>http://anoncvs.forge.jboss.com/viewrep/JBoss/jboss-common</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>slide</groupId>
+      <artifactId>webdavlib</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+  </dependencies>
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+{
+  "id" : "d5dc21f8-c306-3fd8-9bd1-9a2b73421369",
+  "request" : {
+    "url" : "/api/group/test-DA/org/lightcouch/lightcouch/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-lightcouch-maven-metadata.xml-IXPgb.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 18:19:07 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 18:19:08 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d5dc21f8-c306-3fd8-9bd1-9a2b73421369"
+}

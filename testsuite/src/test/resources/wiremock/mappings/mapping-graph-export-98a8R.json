@@ -1,0 +1,23 @@
+{
+  "id" : "6c43e2da-8c9d-37b5-ad89-f68d8c609915",
+  "request" : {
+    "url" : "/api/depgraph/graph/export",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"workspaceId\":\"export-org.scala-lang:scala-library:2.11.7\",\"patcherIds\":[\"*\"],\"timeoutSecs\":null,\"source\":\"group:DApublic\",\"resolve\":true,\"injectedBOMs\":null,\"versionSelections\":null,\"excludedSubgraphs\":null,\"graph\":{\"roots\":[\"org.scala-lang:scala-library:2.11.7\"],\"preset\":\"requires\",\"mutator\":null,\"mutatorInstance\":null,\"presetParams\":{}}}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-graph-export-98a8R.json",
+    "headers" : {
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json",
+      "Date" : "Thu, 18 May 2017 16:09:16 GMT",
+      "Set-Cookie" : "a5ed093a9f31d7f0f3119b466b58e96c=54fea50a180994d1163876556811d6e4; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6c43e2da-8c9d-37b5-ad89-f68d8c609915"
+}

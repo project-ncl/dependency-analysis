@@ -1,0 +1,25 @@
+{
+  "id" : "8db64f3b-3abb-3110-a7c3-caeff3365e67",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-web/2.5.6/spring-web-2.5.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5.6-spring-web-2.5.6.pom-1md9u.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 17:33:55 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2077874", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:41 GMT",
+      "ETAG" : "\"{SHA1{ae2921b153c81fbd1667743f05e94248bbc16888}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:04:07 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8db64f3b-3abb-3110-a7c3-caeff3365e67"
+}

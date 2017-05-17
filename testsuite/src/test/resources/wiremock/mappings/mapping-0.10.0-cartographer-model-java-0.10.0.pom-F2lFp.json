@@ -1,0 +1,24 @@
+{
+  "id" : "b8aa2c1e-7a47-3935-be3f-5556cfc2820f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/cartographer/cartographer-model-java/0.10.0/cartographer-model-java-0.10.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.10.0-cartographer-model-java-0.10.0.pom-F2lFp.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:44:27 GMT",
+      "ETAG" : "\"{SHA1{d36b27c9b8e048e29db45e4d3bdef7700950ac10}}\"",
+      "LAST-MODIFIED" : "Thu, 03 Sep 2015 21:14:13 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b8aa2c1e-7a47-3935-be3f-5556cfc2820f"
+}

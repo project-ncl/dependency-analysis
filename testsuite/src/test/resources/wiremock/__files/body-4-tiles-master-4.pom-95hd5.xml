@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements. See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version
+    2.0 (the "License"); you may not use this file except in compliance
+    with the License. You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0 Unless required by
+    applicable law or agreed to in writing, software distributed under
+    the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+    OR CONDITIONS OF ANY KIND, either express or implied. See the
+    License for the specific language governing permissions and
+    limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.apache</groupId>
+    <artifactId>apache</artifactId>
+    <version>10</version>
+  </parent>
+  <groupId>org.apache.tiles</groupId>
+  <artifactId>tiles-master</artifactId>
+  <version>4</version>
+  <packaging>pom</packaging>
+  <name>Apache Tiles (Master POM)</name>
+
+  <scm>
+    <connection>scm:svn:http://svn.apache.org/repos/asf/tiles/maven/tags/tiles-master-4</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/tiles/maven/tags/tiles-master-4</developerConnection>
+    <url>http://svn.apache.org/repos/asf/tiles/maven/tags/tiles-master-4</url>
+  </scm>
+
+  <description>
+      The Apache Tiles project.  This master pom provides the default values for
+      common maven configuration throughout the Tiles project.
+   </description>
+  <url>http://tiles.apache.org/</url>
+  <inceptionYear>2001</inceptionYear>
+
+  <organization>
+    <name>Apache Software Foundation</name>
+    <url>http://www.apache.org</url>
+  </organization>
+
+  <mailingLists>
+    <mailingList>
+      <name>Tiles User List</name>
+      <subscribe>users-subscribe@tiles.apache.org</subscribe>
+      <unsubscribe>users-unsubscribe@tiles.apache.org</unsubscribe>
+      <post>users@tiles.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/tiles-users/</archive>
+    </mailingList>
+    <mailingList>
+      <name>Tiles Development List</name>
+      <subscribe>dev-subscribe@tiles.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@tiles.apache.org</unsubscribe>
+      <post>dev@tiles.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/tiles-dev/</archive>
+    </mailingList>
+    <mailingList>
+      <name>Tiles Commits List</name>
+      <subscribe>commits-subscribe@tiles.apache.org</subscribe>
+      <unsubscribe>commits-unsubscribe@tiles.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/mod_mbox/tiles-commits/</archive>
+    </mailingList>
+    <mailingList>
+      <name>Tiles Issues List</name>
+      <subscribe>issues-subscribe@tiles.apache.org</subscribe>
+      <unsubscribe>issues-unsubscribe@tiles.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/mod_mbox/tiles-issues/</archive>
+    </mailingList>
+    <mailingList>
+      <name>Tiles Notifications List</name>
+      <subscribe>notifications-subscribe@tiles.apache.org</subscribe>
+      <unsubscribe>notifications-unsubscribe@tiles.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/mod_mbox/tiles-notifications/</archive>
+    </mailingList>
+  </mailingLists>
+
+  <developers>
+
+    <developer>
+      <name>Antonio Petrelli</name>
+      <id>apetrelli</id>
+      <email>apetrelli at apache.org</email>
+      <roles>
+        <role>PMC Member</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>David H. DeWolf</name>
+      <id>ddewolf</id>
+      <email>ddewolf at apache.org</email>
+      <roles>
+        <role>PMC Member</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Greg Reddin</name>
+      <id>greddin</id>
+      <email>greddin at apache.org</email>
+      <roles>
+        <role>PMC Chair</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Joe Germuska</name>
+      <id>germuska</id>
+      <email>germuska at apache.org</email>
+      <roles>
+        <role>PMC Member</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Martin Cooper</name>
+      <id>martinc</id>
+      <email>martinc at apache.org</email>
+      <roles>
+        <role>PMC Member</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Nathan Bubna</name>
+      <id>nbubna</id>
+      <email>nbubna at apache.org</email>
+      <roles>
+        <role>PMC Member</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Wendy Smoak</name>
+      <id>wsmoak</id>
+      <email>wsmoak at apache.org</email>
+      <roles>
+        <role>PMC Member</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Craig McClanahan</name>
+      <id>craigmcc</id>
+      <email>craigmcc at apache.org</email>
+      <roles>
+        <role>PMC Member</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Mick Semb Wever</name>
+      <id>mck</id>
+      <email>mck at apache.org</email>
+      <url>http://people.apache.org/~mck</url>
+      <roles>
+        <role>PMC Member</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Nicolas Le Bas</name>
+      <id>nlebas</id>
+      <email>nlebas at apache.org</email>
+      <roles>
+        <role>PMC Member</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <name>Cserveny Tamás</name>
+    </contributor>
+    <contributor>
+      <name>Dirk Alexander Schaefer</name>
+    </contributor>
+    <contributor>
+      <name>Jacky Chan</name>
+    </contributor>
+    <contributor>
+      <name>Joe Pemberton</name>
+    </contributor>
+    <contributor>
+      <name>Matthieu Chase Heimer</name>
+    </contributor>
+    <contributor>
+      <name>Mike Calmus</name>
+    </contributor>
+    <contributor>
+      <name>Neil Aggarwal</name>
+    </contributor>
+    <contributor>
+      <name>Niall Pemberton</name>
+    </contributor>
+    <contributor>
+      <name>pijmleko</name>
+    </contributor>
+    <contributor>
+      <name>Scot Meyer</name>
+    </contributor>
+    <contributor>
+      <name>Thom Hehl</name>
+    </contributor>
+    <contributor>
+      <name>Zarick Lau</name>
+    </contributor>
+    <contributor>
+      <name>Morten Lied Johansen</name>
+    </contributor>
+  </contributors>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.12</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <configLocation>http://svn.apache.org/repos/asf/tiles/maven/trunk/build/tiles_checks_v5.xml
+                    </configLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.3</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>2.7.1</version>
+                <configuration>
+                  <targetJdk>1.5</targetJdk>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8</version>
+                <reportSets>
+                    <reportSet>
+                        <id>aggregated</id>
+                        <configuration>
+                            <excludePackageNames>org.apache.tiles.test</excludePackageNames>
+                            <links>
+                                <link>http://docs.oracle.com/javase/6/docs/api</link>
+                                <link>http://docs.oracle.com/javaee/5/api</link>
+                                <link>http://commons.apache.org/chain/apidocs</link>
+                                <link>http://commons.apache.org/digester/commons-digester-1.6/docs/api</link>
+                                <link>http://www.slf4j.org/api</link>
+                            </links>
+                            <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
+                            <docletArtifact>
+                                <groupId>gr.spinellis</groupId>
+                                <artifactId>UmlGraph</artifactId>
+                                <version>4.6</version>
+                            </docletArtifact>
+                            <additionalparam>
+                                -inferrel -inferdep -quiet -hide java.*
+                                -collpackages java.util.* -qualify
+                                -postfixpackage -nodefontsize 9
+                                -nodefontpackagesize 7
+                            </additionalparam>
+                        </configuration>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>rat-maven-plugin</artifactId>
+                <version>1.0-alpha-3</version>
+                <configuration>
+                    <includes>
+                        <include>pom.xml</include>
+                        <include>src/**</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*LICENSE.txt</exclude>
+                        <exclude>**/*MANIFEST.MF</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.5.1</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
+</project>

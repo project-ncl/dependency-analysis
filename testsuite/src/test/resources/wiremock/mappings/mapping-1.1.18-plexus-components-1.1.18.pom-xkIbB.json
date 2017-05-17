@@ -1,0 +1,25 @@
+{
+  "id" : "0006028a-6531-31f5-b2eb-dde4a81ba50c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-components/1.1.18/plexus-components-1.1.18.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.18-plexus-components-1.1.18.pom-xkIbB.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 12:55:56 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2512057", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 11:08:19 GMT",
+      "ETAG" : "\"{SHA1{41abf89f075e6b912a2ff728aa002e98591de425}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:18 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0006028a-6531-31f5-b2eb-dde4a81ba50c"
+}

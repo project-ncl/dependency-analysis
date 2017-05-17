@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.test</groupId>
+  <artifactId>jboss-test</artifactId>
+  <versioning>
+    <latest>1.1.9.GA-redhat-2</latest>
+    <release>1.1.9.GA-redhat-2</release>
+    <versions>
+      <version>1.1.1.GA</version>
+      <version>1.1.4.GA</version>
+      <version>1.1.9.GA</version>
+      <version>1.1.9.GA-redhat-2</version>
+    </versions>
+    <lastUpdated>20170320175518</lastUpdated>
+  </versioning>
+</metadata>

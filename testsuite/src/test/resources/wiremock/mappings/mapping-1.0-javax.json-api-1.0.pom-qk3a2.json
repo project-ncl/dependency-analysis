@@ -1,0 +1,25 @@
+{
+  "id" : "6dedfae0-75b2-39e6-a2d0-c2be47e59af5",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/json/javax.json-api/1.0/javax.json-api-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-javax.json-api-1.0.pom-qk3a2.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 14:52:33 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2515656", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:04:57 GMT",
+      "ETAG" : "\"{SHA1{b6f6ba0952c3f1465e53ab115ccfbc966e7906fe}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:24:56 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6dedfae0-75b2-39e6-a2d0-c2be47e59af5"
+}

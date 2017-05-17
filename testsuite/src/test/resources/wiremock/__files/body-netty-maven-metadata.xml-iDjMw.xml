@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.netty</groupId>
+  <artifactId>netty</artifactId>
+  <versioning>
+    <latest>3.2.7.Final</latest>
+    <release>3.2.7.Final</release>
+    <versions>
+      <version>3.2.2.Final</version>
+      <version>3.2.3.Final</version>
+      <version>3.2.4.Final</version>
+      <version>3.2.5.Final</version>
+      <version>3.2.6.Final-redhat-1</version>
+      <version>3.2.6.Final-redhat-2</version>
+      <version>3.2.7.Final</version>
+    </versions>
+    <lastUpdated>20170420183154</lastUpdated>
+  </versioning>
+</metadata>

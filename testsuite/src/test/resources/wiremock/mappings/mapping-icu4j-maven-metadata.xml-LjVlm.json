@@ -1,0 +1,19 @@
+{
+  "id" : "ab32a787-d493-3237-96aa-2ba502b50102",
+  "request" : {
+    "url" : "/api/group/test-DA/com/ibm/icu/icu4j/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-icu4j-maven-metadata.xml-LjVlm.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:34:21 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:34:21 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ab32a787-d493-3237-96aa-2ba502b50102"
+}

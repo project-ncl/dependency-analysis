@@ -1,0 +1,22 @@
+{
+  "id" : "07d72dcf-8550-3e3c-a030-969cafde34bb",
+  "request" : {
+    "url" : "/api/group/DApublic/org/slf4j/com.springsource.slf4j.api/1.5.6/com.springsource.slf4j.api-1.5.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.6-com.springsource.slf4j.api-1.5.6.pom-tREMC.xml",
+    "headers" : {
+      "ETAG" : "\"13280d78-24d-48f5e276cea07\"",
+      "LAST-MODIFIED" : "Fri, 03 Sep 2010 17:20:57 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:49 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "07d72dcf-8550-3e3c-a030-969cafde34bb"
+}

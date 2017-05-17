@@ -1,0 +1,7 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jdom</groupId>
+  <artifactId>saxpath</artifactId>
+  <version>1.0-FCS</version>
+  <name>saxpath from jdom 1.1 distribution</name>
+</project>

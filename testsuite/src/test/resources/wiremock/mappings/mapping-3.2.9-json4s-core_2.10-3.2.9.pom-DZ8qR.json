@@ -1,0 +1,25 @@
+{
+  "id" : "a23ed720-6345-3300-b073-baa88e93e42d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/json4s/json4s-core_2.10/3.2.9/json4s-core_2.10-3.2.9.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.9-json4s-core_2.10-3.2.9.pom-DZ8qR.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 15:11:16 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2516174", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:15:02 GMT",
+      "ETAG" : "\"{SHA1{a6123ec8def36be0569e0e2338874f9495d72db3}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:27:43 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a23ed720-6345-3300-b073-baa88e93e42d"
+}

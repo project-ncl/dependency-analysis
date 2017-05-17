@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.mvel</groupId>
+  <artifactId>mvel2</artifactId>
+  <versioning>
+    <latest>2.3.1.Final</latest>
+    <release>2.3.1.Final</release>
+    <versions>
+      <version>2.0.17</version>
+      <version>2.0.18-RC4</version>
+      <version>2.1.7.Final-redhat-4</version>
+      <version>2.1.9.Final-redhat-4</version>
+      <version>2.1.9.Final-redhat-9</version>
+      <version>2.1.9.Final-redhat-13</version>
+      <version>2.2.1.Final</version>
+      <version>2.2.2.Final</version>
+      <version>2.2.4.Final</version>
+      <version>2.2.4.Final-redhat-1</version>
+      <version>2.2.6.Final</version>
+      <version>2.2.7.Final</version>
+      <version>2.2.7.Final-redhat-1</version>
+      <version>2.2.8.Final-redhat-1</version>
+      <version>2.3.1.Final</version>
+    </versions>
+    <lastUpdated>20170512214210</lastUpdated>
+  </versioning>
+</metadata>

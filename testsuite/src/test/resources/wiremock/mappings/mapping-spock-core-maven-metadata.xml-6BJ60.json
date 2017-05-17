@@ -1,0 +1,17 @@
+{
+  "id" : "b5b83c3b-2f98-3481-9418-57ac8415b34f",
+  "request" : {
+    "url" : "/api/group/test-DA/org/spockframework/spock-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-spock-core-maven-metadata.xml-6BJ60.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:36 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b5b83c3b-2f98-3481-9418-57ac8415b34f"
+}

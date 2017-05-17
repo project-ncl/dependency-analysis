@@ -1,0 +1,24 @@
+{
+  "id" : "0ed5afa9-e233-3c9d-ae83-99e40c6ca066",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/atservice/atservice-annotation/0.1/atservice-annotation-0.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.1-atservice-annotation-0.1.pom-YtSC4.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:06 GMT",
+      "ETAG" : "\"{SHA1{7635034b947387571b2175fcf0bb0805671f5212}}\"",
+      "LAST-MODIFIED" : "Thu, 06 Jan 2011 01:57:27 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0ed5afa9-e233-3c9d-ae83-99e40c6ca066"
+}

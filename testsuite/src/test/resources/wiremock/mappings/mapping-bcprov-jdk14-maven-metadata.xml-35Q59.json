@@ -1,0 +1,19 @@
+{
+  "id" : "dcd8e907-ea94-39e3-9fc0-48d58af22be7",
+  "request" : {
+    "url" : "/api/group/test-DA/bouncycastle/bcprov-jdk14/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-bcprov-jdk14-maven-metadata.xml-35Q59.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:23 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:01 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "dcd8e907-ea94-39e3-9fc0-48d58af22be7"
+}

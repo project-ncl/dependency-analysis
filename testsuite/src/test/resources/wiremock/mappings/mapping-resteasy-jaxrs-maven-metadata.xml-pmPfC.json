@@ -1,0 +1,19 @@
+{
+  "id" : "7fc60046-6c0e-3e2c-8e87-117669014f7e",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/resteasy/resteasy-jaxrs/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-resteasy-jaxrs-maven-metadata.xml-pmPfC.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:18:40 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:18:19 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7fc60046-6c0e-3e2c-8e87-117669014f7e"
+}

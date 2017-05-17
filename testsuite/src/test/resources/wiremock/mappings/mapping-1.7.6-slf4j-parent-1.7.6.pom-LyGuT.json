@@ -1,0 +1,25 @@
+{
+  "id" : "fbb59dd0-4d60-3ebc-ad7b-0ef88df7a4f0",
+  "request" : {
+    "url" : "/api/group/DApublic/org/slf4j/slf4j-parent/1.7.6/slf4j-parent-1.7.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.6-slf4j-parent-1.7.6.pom-LyGuT.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 11:56:21 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2144185", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:56 GMT",
+      "ETAG" : "\"{SHA1{656e48b9c59dad7b29db12e0bb58963bf86cbf43}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:34 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "fbb59dd0-4d60-3ebc-ad7b-0ef88df7a4f0"
+}
