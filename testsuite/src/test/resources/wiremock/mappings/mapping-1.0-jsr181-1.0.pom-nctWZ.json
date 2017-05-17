@@ -1,0 +1,30 @@
+{
+  "id" : "48044678-bf73-3978-b1a8-de7c473a5708",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/jws/jsr181/1.0/jsr181-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-jsr181-1.0.pom-nctWZ.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "54f4a53e6b0c8b10e2e7b4946d6f7e04da798e3a3b4ec96fea17eabc67a9b624",
+      "X-CHECKSUM-MD5" : "c36863152cd215ac8d7bb1ddbb34da37",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:42 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"c36863152cd215ac8d7bb1ddbb34da37\"",
+      "LAST-MODIFIED" : "Thu, 22 Dec 2005 12:21:00 GMT",
+      "X-CHECKSUM-SHA1" : "a9b8151bb1fe7c4e906df1f204c52a2f659d92a0",
+      "X-SERVED-BY" : "cache-iad2125-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260503.852043,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "542915",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "48044678-bf73-3978-b1a8-de7c473a5708"
+}

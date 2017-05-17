@@ -1,0 +1,30 @@
+{
+  "id" : "1bd609a0-a6fe-3eac-b4f9-03bf157ef43a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/jcsp/jcsp/1.1-rc5/jcsp-1.1-rc5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-rc5-jcsp-1.1-rc5.pom-31uiu.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "506f91c2bb7877cfdd83a3a2b2e09b118129e8443eb072fe278e3b2755fa88ea",
+      "X-CHECKSUM-MD5" : "cf42c153576d53a999bf6a78df9ffe9c",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:11 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"cf42c153576d53a999bf6a78df9ffe9c\"",
+      "LAST-MODIFIED" : "Sat, 07 Aug 2010  8:37:02 GMT",
+      "X-CHECKSUM-SHA1" : "8cfc121f18b5a2da9f0dbc3281613383bb2fd8be",
+      "X-SERVED-BY" : "cache-iad2127-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260472.795864,VS0,VE34",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "1bd609a0-a6fe-3eac-b4f9-03bf157ef43a"
+}

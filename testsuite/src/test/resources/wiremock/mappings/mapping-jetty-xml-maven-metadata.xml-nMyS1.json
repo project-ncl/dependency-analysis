@@ -1,0 +1,19 @@
+{
+  "id" : "2dfbad4f-a72e-3273-bacf-b37755891d8b",
+  "request" : {
+    "url" : "/api/group/test-DA/org/eclipse/jetty/jetty-xml/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jetty-xml-maven-metadata.xml-nMyS1.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 18:17:20 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 18:17:21 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2dfbad4f-a72e-3273-bacf-b37755891d8b"
+}

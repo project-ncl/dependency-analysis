@@ -1,0 +1,17 @@
+{
+  "id" : "0e845e64-e82b-3cbd-b2c6-10ec9a28cea1",
+  "request" : {
+    "url" : "/api/group/test-DA/org/commonjava/aprox/aprox-folo-client-java/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-aprox-folo-client-java-maven-metadata.xml-EGtTZ.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:04 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0e845e64-e82b-3cbd-b2c6-10ec9a28cea1"
+}

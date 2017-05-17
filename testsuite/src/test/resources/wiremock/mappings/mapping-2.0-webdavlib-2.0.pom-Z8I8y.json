@@ -1,0 +1,22 @@
+{
+  "id" : "a3308d42-9a9d-30d5-b23f-c09bc85828b8",
+  "request" : {
+    "url" : "/api/group/DApublic/apache-slide/webdavlib/2.0/webdavlib-2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0-webdavlib-2.0.pom-Z8I8y.xml",
+    "headers" : {
+      "ETAG" : "\"1129605c-1e0-45feb421f1001\"",
+      "LAST-MODIFIED" : "Wed, 07 Jan 2009 21:32:18 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 11:00:16 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a3308d42-9a9d-30d5-b23f-c09bc85828b8"
+}

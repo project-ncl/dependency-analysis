@@ -1,0 +1,538 @@
+<!--
+
+    Copyright (C) 2015 Red Hat, Inc. (jcasey@redhat.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.redhat.rcm</groupId>
+  <artifactId>redhat-releng-tools</artifactId>
+  <version>1</version>
+  <packaging>pom</packaging>
+
+  <name>Red Hat RelEng Parent</name>
+
+  <url>https://github.com/release-engineering/redhat-releng-tools</url>
+
+  <description>Top-level parent POM for Red Hat Release Engineering Tooling.</description>
+  <inceptionYear>2015</inceptionYear>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>jdcasey</id>
+      <email>jdcasey@commonjava.org</email>
+      <name>John Casey</name>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/release-engineering/redhat-releng-tools.git</connection>
+    <developerConnection>scm:git:git@github.com:release-engineering/redhat-releng-tools.git</developerConnection>
+    <url>http://github.com/release-engineering/redhat-releng-tools</url>
+    <tag>redhat-releng-tools-1</tag>
+  </scm>
+
+  <properties>
+    <javaVersion>1.8</javaVersion>
+    <projectOwner>Red Hat, Inc.</projectOwner>
+    <projectEmail>jcasey@redhat.com</projectEmail>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <version.plugin.assembly>2.5.5</version.plugin.assembly>
+    <version.plugin.clean>2.6.1</version.plugin.clean>
+    <version.plugin.compiler>3.1</version.plugin.compiler>
+    <version.plugin.deploy>2.8.2</version.plugin.deploy>
+    <version.plugin.enforcer>1.4</version.plugin.enforcer>
+    <version.plugin.failsafe>2.18.1</version.plugin.failsafe>
+    <version.plugin.gpg>1.1</version.plugin.gpg>
+    <version.plugin.install>2.5.2</version.plugin.install>
+    <version.plugin.jar>2.4</version.plugin.jar>
+    <version.plugin.javadoc>2.8.1</version.plugin.javadoc>
+    <version.plugin.plexus-component-metadata>1.5.5</version.plugin.plexus-component-metadata>
+    <version.plugin.plugin>3.2</version.plugin.plugin>
+    <version.plugin.release>2.5</version.plugin.release>
+    <version.plugin.resources>2.6</version.plugin.resources>
+    <version.plugin.site>3.3</version.plugin.site>
+    <version.plugin.source>2.1.2</version.plugin.source>
+    <version.plugin.surefire>2.18.1</version.plugin.surefire>
+
+    <illegaltransitivereportonly>false</illegaltransitivereportonly>
+    <enforceManagedDeps>true</enforceManagedDeps>
+
+    <unEnforcedPlugins>org.eclipse.m2e:lifecycle-mapping</unEnforcedPlugins>
+    <enforcedMavenVersion>(,2.1.0),(2.1.0,2.2.0),(2.2.0,)</enforcedMavenVersion>
+    <enforcedJavaVersion>${javaVersion}</enforcedJavaVersion>
+
+    <enforceBestPractices>true</enforceBestPractices>
+    <enforceStandards>true</enforceStandards>
+    <enforceVersions>true</enforceVersions>
+    <enforceTripHazards>true</enforceTripHazards>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${version.plugin.compiler}</version>
+          <configuration>
+            <debug>true</debug>
+            <source>${javaVersion}</source>
+            <target>${javaVersion}</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>${version.plugin.clean}</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${version.plugin.deploy}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${version.plugin.install}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${version.plugin.site}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${version.plugin.resources}</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>${version.plugin.plugin}</version>
+          <executions>
+            <execution>
+              <id>generate-descriptor</id>
+              <goals>
+                <goal>descriptor</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-component-metadata</artifactId>
+          <version>${version.plugin.plexus-component-metadata}</version>
+          <executions>
+            <execution>
+              <id>components.xml</id>
+              <goals>
+                <goal>generate-metadata</goal>
+                <goal>generate-test-metadata</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${version.plugin.surefire}</version>
+          <configuration>
+            <excludes>
+              <exclude>**/*Fixture*.java</exclude>
+              <exclude>**/fixture/*.java</exclude>
+              <exclude>**/*Live*.java</exclude>
+              <exclude>**/live/*.java</exclude>
+              <exclude>**/live/**/*.java</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${version.plugin.failsafe}</version>
+          <configuration>
+            <excludes>
+              <exclude>**/*Fixture*.java</exclude>
+              <exclude>**/fixture/*.java</exclude>
+            </excludes>
+            <includes>
+              <exclude>**/*Live*.java</exclude>
+              <include>**/live/*.java</include>
+              <include>**/live/**/*.java</include>
+            </includes>
+          </configuration>
+          <executions>
+            <execution>
+              <id>integration-tests</id>
+              <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>${version.plugin.release}</version>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <mavenExecutorId>forked-path</mavenExecutorId>
+            <useReleaseProfile>false</useReleaseProfile>
+            <arguments>-Prelease</arguments>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${version.plugin.enforcer}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.commonjava.maven.enforcer</groupId>
+              <artifactId>enforce-managed-deps-rule</artifactId>
+              <version>1.0</version>
+            </dependency>
+            <dependency>
+              <groupId>de.is24.maven.enforcer.rules</groupId>
+              <artifactId>illegal-transitive-dependency-check</artifactId>
+              <version>1.7.4</version>
+            </dependency>
+          </dependencies>
+          <executions>
+            <execution>
+              <id>avoid-trip-hazards</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <phase>initialize</phase>
+              <configuration>
+                <fail>${enforceTripHazards}</fail>
+                <rules>
+                  <requireSameVersions>
+                    <dependencies>
+                      <dependency>${project.groupId}*</dependency>
+                    </dependencies>
+                  </requireSameVersions>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-commonjava-standards</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <phase>initialize</phase>
+              <configuration>
+                <fail>${enforceStandards}</fail>
+                <rules>
+                  <requireManagedDeps implementation="org.commonjava.maven.enforcer.rule.EnforceManagedDepsRule">
+                    <!-- <message>Capture dependencies in top-level dependencyManagement section for easy reference.</message> -->
+                    <checkProfiles>false</checkProfiles>
+                    <failOnViolation>${enforceManagedDeps}</failOnViolation>
+                  </requireManagedDeps>
+                  <illegalTransitiveDependencyCheck implementation="de.is24.maven.enforcer.rules.IllegalTransitiveDependencyCheck">
+                    <reportOnly>${illegaltransitivereportonly}</reportOnly>
+                    <regexIgnoredClasses>
+                        <regexIgnoredClass>com\.sun\.net\.httpserver\..+</regexIgnoredClass>
+                        <regexIgnoredClass>javax\..+</regexIgnoredClass>
+                        <regexIgnoredClass>org\.w3c\.dom\..+</regexIgnoredClass>
+                        <regexIgnoredClass>org\.xml\.sax\..+</regexIgnoredClass>
+                    </regexIgnoredClasses>
+                    <useClassesFromLastBuild>true</useClassesFromLastBuild>
+                  </illegalTransitiveDependencyCheck>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-best-practices</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <phase>initialize</phase>
+              <configuration>
+                <fail>${enforceBestPractices}</fail>
+                <rules>
+                  <reactorModuleConvergence />
+                  <requireNoRepositories />
+                  <requirePluginVersions>
+                    <banLatest />
+                    <banRelease />
+                    <banSnapshots />
+                    <unCheckedPluginList>${unEnforcedPlugins}</unCheckedPluginList>
+                  </requirePluginVersions>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-versions</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <fail>${enforceVersions}</fail>
+                <rules>
+                  <requireMavenVersion>
+                    <version>${enforcedMavenVersion}</version>
+                  </requireMavenVersion>
+                  <requireJavaVersion>
+                    <version>${enforcedJavaVersion}</version>
+                  </requireJavaVersion>
+                </rules>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>${version.plugin.assembly}</version>
+          <configuration>
+            <archive>
+              <index>true</index>
+              <manifest>
+                <addDefaultSpecificationEntries>
+                  true
+                </addDefaultSpecificationEntries>
+                <addDefaultImplementationEntries>
+                  true
+                </addDefaultImplementationEntries>
+              </manifest>
+              <manifestEntries>
+                <Implementation-URL>${project.url}</Implementation-URL>
+                <Java-Version>${java.version}</Java-Version>
+                <Java-Vendor>${java.vendor}</Java-Vendor>
+                <Os-Name>${os.name}</Os-Name>
+                <Os-Arch>${os.arch}</Os-Arch>
+                <Os-Version>${os.version}</Os-Version>
+                <Scm-Url>${project.scm.url}</Scm-Url>
+                <Scm-Connection>${project.scm.connection}</Scm-Connection>
+                <Scm-Revision>${buildNumber}</Scm-Revision>
+                <Build-Timestamp>${datetime}</Build-Timestamp>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${version.plugin.jar}</version>
+          <configuration>
+            <archive>
+              <index>true</index>
+              <manifest>
+                <addDefaultSpecificationEntries>
+                  true
+                </addDefaultSpecificationEntries>
+                <addDefaultImplementationEntries>
+                  true
+                </addDefaultImplementationEntries>
+              </manifest>
+              <manifestEntries>
+                <Implementation-URL>${project.url}</Implementation-URL>
+                <Java-Version>${java.version}</Java-Version>
+                <Java-Vendor>${java.vendor}</Java-Vendor>
+                <Os-Name>${os.name}</Os-Name>
+                <Os-Arch>${os.arch}</Os-Arch>
+                <Os-Version>${os.version}</Os-Version>
+                <Scm-Url>${project.scm.url}</Scm-Url>
+                <Scm-Connection>${project.scm.connection}</Scm-Connection>
+                <Scm-Revision>${buildNumber}</Scm-Revision>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${version.plugin.javadoc}</version>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+              <configuration>
+                <detectOfflineLinks>false</detectOfflineLinks>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>buildnumber-maven-plugin</artifactId>
+          <version>1.3</version>
+          <executions>
+            <execution>
+              <phase>validate</phase>
+              <id>buildnumber</id>
+              <goals>
+                <goal>create</goal>
+              </goals>
+              <configuration>
+                <shortRevisionLength>8</shortRevisionLength>
+                <timestampFormat>{0,date,dd MMMM yyyy}</timestampFormat>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>2.10</version>
+          <configuration>
+            <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+            <properties>
+              <owner>${projectOwner}</owner>
+              <email>${projectEmail}</email>
+            </properties>
+            <excludes>
+              <exclude>**/README</exclude>
+              <exclude>**/LICENSE*</exclude>
+              <exclude>src/test/resources/**</exclude>
+              <exclude>src/main/resources/**</exclude>
+              <exclude>**/*.groovy</exclude>
+            </excludes>
+            <mapping>
+              <service>SCRIPT_STYLE</service>
+            </mapping>
+          </configuration>
+        </plugin>
+
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <versionRange>[3.2,)</versionRange>
+                    <goals>
+                      <goal>descriptor</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>formatting</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${version.plugin.source}</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${version.plugin.gpg}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <distributionManagement>
+    <repository>
+      <id>sonatype-nexus-staging</id>
+      <name>Release Repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+</project>

@@ -1,0 +1,30 @@
+{
+  "id" : "23856fe4-3ef9-33f0-a779-c9627bed29f2",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/cxf/cxf-rt-transports-local/2.7.14/cxf-rt-transports-local-2.7.14.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.7.14-cxf-rt-transports-local-2.7.14.pom-JIrHt.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "8f98736228a6874abfb600cf71c9cc6961e30967ac934e0a02dc2191943968a8",
+      "X-CHECKSUM-MD5" : "ae34542d843a18348e97220f8954da4b",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:05 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ae34542d843a18348e97220f8954da4b\"",
+      "LAST-MODIFIED" : "Tue, 02 Dec 2014 21:12:31 GMT",
+      "X-CHECKSUM-SHA1" : "43b1caf15a882f2f3a822af03325e76ce2087648",
+      "X-SERVED-BY" : "cache-iad2138-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260106.526727,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "23856fe4-3ef9-33f0-a779-c9627bed29f2"
+}

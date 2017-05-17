@@ -1,0 +1,19 @@
+{
+  "id" : "dda7712b-1b8c-3051-bb2a-9bea162275a5",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/jbossts/jts/orbportability/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-orbportability-maven-metadata.xml-mJbKv.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:32 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:10 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "dda7712b-1b8c-3051-bb2a-9bea162275a5"
+}

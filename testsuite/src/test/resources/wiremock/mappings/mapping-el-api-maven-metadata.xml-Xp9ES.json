@@ -1,0 +1,19 @@
+{
+  "id" : "a5c4937b-64b8-3670-a37e-dc39d5d988b0",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/el/el-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-el-api-maven-metadata.xml-Xp9ES.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:39:49 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:28 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a5c4937b-64b8-3670-a37e-dc39d5d988b0"
+}

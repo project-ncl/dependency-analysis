@@ -1,0 +1,25 @@
+{
+  "id" : "8694a87f-e719-3eda-b777-f6e107135bb8",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/jboss-parent/6-beta-2/jboss-parent-6-beta-2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6-beta-2-jboss-parent-6-beta-2.pom-ugfWg.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:10:49 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:49 GMT",
+      "ETAG" : "\"{SHA1{c53a4aade88b0ee77529c3f18da4dbbc6e8e27c9}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:47:07 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8694a87f-e719-3eda-b777-f6e107135bb8"
+}

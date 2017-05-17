@@ -1,0 +1,19 @@
+{
+  "id" : "517fbb99-c1ff-347c-930a-d3b39fe7c4d3",
+  "request" : {
+    "url" : "/api/group/test-DA/jdom/jdom/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jdom-maven-metadata.xml-UXycs.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:34:10 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:34:11 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "517fbb99-c1ff-347c-930a-d3b39fe7c4d3"
+}

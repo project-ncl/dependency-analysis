@@ -1,0 +1,25 @@
+{
+  "id" : "d76c0d70-c2e8-3211-8196-fae8e6047362",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/oss/oss-parent/3/oss-parent-3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3-oss-parent-3.pom-ICWIC.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 17:13:48 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2076950", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:58 GMT",
+      "ETAG" : "\"{SHA1{31e7e4502123f2f7b42b4e426146f9efc8e94110}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:37 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d76c0d70-c2e8-3211-8196-fae8e6047362"
+}

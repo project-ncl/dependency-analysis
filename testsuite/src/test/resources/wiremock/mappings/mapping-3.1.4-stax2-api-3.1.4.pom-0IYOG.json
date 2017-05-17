@@ -1,0 +1,25 @@
+{
+  "id" : "3179a33f-0c46-387e-a312-355cd34292fe",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.1.4-stax2-api-3.1.4.pom-0IYOG.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:55:51 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1928231", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:40 GMT",
+      "ETAG" : "\"{SHA1{99256d9abcf494e10152ed6212c05927e3033b01}}\"",
+      "LAST-MODIFIED" : "Mon, 22 Feb 2016 22:06:19 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3179a33f-0c46-387e-a312-355cd34292fe"
+}

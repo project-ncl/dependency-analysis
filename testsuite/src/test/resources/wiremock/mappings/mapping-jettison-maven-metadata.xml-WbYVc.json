@@ -1,0 +1,19 @@
+{
+  "id" : "644667f6-82ce-3a43-9a97-f964e18aed63",
+  "request" : {
+    "url" : "/api/group/test-DA/org/codehaus/jettison/jettison/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jettison-maven-metadata.xml-WbYVc.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:05 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:44 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "644667f6-82ce-3a43-9a97-f964e18aed63"
+}

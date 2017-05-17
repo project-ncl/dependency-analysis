@@ -1,0 +1,17 @@
+{
+  "id" : "4547556d-ee2b-30a9-9fc2-e47913c0117b",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/pnc/docker-environment-driver/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-docker-environment-driver-maven-metadata.xml-DegBt.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:57 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "4547556d-ee2b-30a9-9fc2-e47913c0117b"
+}

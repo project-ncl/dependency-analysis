@@ -1,0 +1,31 @@
+{
+  "id" : "74373fa0-b822-36b0-9ef8-90cdbadc48dc",
+  "request" : {
+    "url" : "/api/group/DApublic/jboss/javassist/3.7.ga/javassist-3.7.ga.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.7.ga-javassist-3.7.ga.pom-JH8HK.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "3439e94225842da1eba263a0bab560d410fe65b7d1d0a431a15f43d0d107f90d",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:07 GMT",
+      "X-CHECKSUM-SHA1" : "cb98520952e394d5d2223baa88112f89335060a5",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1204823673000",
+      "AGE" : "6802101",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "c96d31e08674dc957d85621383887d7e",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"c96d31e08674dc957d85621383887d7e\"",
+      "LAST-MODIFIED" : "Thu, 06 Mar 2008 17:14:33 GMT",
+      "X-SERVED-BY" : "cache-iad2140-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260648.747401,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "74373fa0-b822-36b0-9ef8-90cdbadc48dc"
+}

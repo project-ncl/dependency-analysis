@@ -1,0 +1,30 @@
+{
+  "id" : "101baf02-a062-34b0-8991-66b9f5baceea",
+  "request" : {
+    "url" : "/api/group/DApublic/dom4j/dom4j/1.5.2/dom4j-1.5.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.2-dom4j-1.5.2.pom-RnsyG.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "b990cf4383d1c0ea92a771d2eb05ad120c7df78efd74cdb3dc963ffc35d756ed",
+      "X-CHECKSUM-MD5" : "917d13e035b58dd6bb03213af42f8066",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:19 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"917d13e035b58dd6bb03213af42f8066\"",
+      "LAST-MODIFIED" : "Thu, 24 Nov 2005  5:20:11 GMT",
+      "X-CHECKSUM-SHA1" : "f69b1b5e5738ca74da015c481791246fe74973b4",
+      "X-SERVED-BY" : "cache-iad2145-IAD, cache-dfw1826-DFW",
+      "X-TIMER" : "S1494235819.397310,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2129156",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "101baf02-a062-34b0-8991-66b9f5baceea"
+}

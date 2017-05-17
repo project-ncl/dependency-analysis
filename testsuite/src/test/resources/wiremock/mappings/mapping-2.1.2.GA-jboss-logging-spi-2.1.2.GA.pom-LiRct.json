@@ -1,0 +1,30 @@
+{
+  "id" : "d847a5d5-0dec-3fe7-9369-39a5fb4ef533",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/logging/jboss-logging-spi/2.1.2.GA/jboss-logging-spi-2.1.2.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.2.GA-jboss-logging-spi-2.1.2.GA.pom-LiRct.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "e4255c53bfdbe40d06e5dca4497e10d7a74f6d6a97706badfa2c9af4c5762243",
+      "X-CHECKSUM-MD5" : "7c2d1b69fb07c7e65adc3c88fce6ad60",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 11:00:47 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"7c2d1b69fb07c7e65adc3c88fce6ad60\"",
+      "LAST-MODIFIED" : "Tue, 21 Sep 2010 15:01:00 GMT",
+      "X-CHECKSUM-SHA1" : "ad29b4483cd1396bb1cbba6dcc19a78e926d97b0",
+      "X-SERVED-BY" : "cache-iad2133-IAD, cache-dfw1829-DFW",
+      "X-TIMER" : "S1494241247.460292,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "4718082",
+      "X-CACHE-HITS" : "1, 80",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d847a5d5-0dec-3fe7-9369-39a5fb4ef533"
+}

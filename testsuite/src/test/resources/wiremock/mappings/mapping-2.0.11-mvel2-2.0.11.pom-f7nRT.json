@@ -1,0 +1,30 @@
+{
+  "id" : "7a2e299a-d44a-30dc-a1aa-7ca9edc26918",
+  "request" : {
+    "url" : "/api/group/DApublic/org/mvel/mvel2/2.0.11/mvel2-2.0.11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.11-mvel2-2.0.11.pom-f7nRT.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "e0b6532a4075ba6d7a88f7f6d0e32700481989960d18a7aa2256e59d334beba4",
+      "X-CHECKSUM-MD5" : "8c06e9d1c802023a89a7c8b15498e171",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:45 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"8c06e9d1c802023a89a7c8b15498e171\"",
+      "LAST-MODIFIED" : "Mon, 29 Jun 2009 18:47:16 GMT",
+      "X-CHECKSUM-SHA1" : "e1f933ef54ad42b9a7e6447e9a07d74a426fe7e6",
+      "X-SERVED-BY" : "cache-iad2147-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260565.141467,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2856054",
+      "X-CACHE-HITS" : "20, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7a2e299a-d44a-30dc-a1aa-7ca9edc26918"
+}

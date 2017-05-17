@@ -1,0 +1,30 @@
+{
+  "id" : "a3286d8e-e5a9-30ae-990f-dc8589e6df84",
+  "request" : {
+    "url" : "/api/group/DApublic/bsh/bsh/1.2b7/bsh-1.2b7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2b7-bsh-1.2b7.pom-4XCCU.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d77e948b348e531c37fb79f76b6db51de6ec57f95dfbfc1a44cfbfa0bd2bf5aa",
+      "X-CHECKSUM-MD5" : "5ed92e39ba2c370c72afabbdc2e91107",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 11:00:49 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"5ed92e39ba2c370c72afabbdc2e91107\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 21:51:28 GMT",
+      "X-CHECKSUM-SHA1" : "cb8fbe3c3103bed49a7e2061aeee895e4a005a11",
+      "X-SERVED-BY" : "cache-iad2144-IAD, cache-dfw1829-DFW",
+      "X-TIMER" : "S1494241250.642973,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a3286d8e-e5a9-30ae-990f-dc8589e6df84"
+}

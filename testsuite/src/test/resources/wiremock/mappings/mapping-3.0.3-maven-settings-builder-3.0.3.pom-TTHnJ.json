@@ -1,0 +1,25 @@
+{
+  "id" : "5ce9ea21-acd6-3400-9c8b-ab8afb6b4f82",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/maven-settings-builder/3.0.3/maven-settings-builder-3.0.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.3-maven-settings-builder-3.0.3.pom-TTHnJ.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 19 May 2017 08:33:19 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 19 Apr 2017 08:33:19 GMT",
+      "ETAG" : "\"{SHA1{fee36bd86c22b34eb9cd9a7c7b9192775e1d0652}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:00:41 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "5ce9ea21-acd6-3400-9c8b-ab8afb6b4f82"
+}

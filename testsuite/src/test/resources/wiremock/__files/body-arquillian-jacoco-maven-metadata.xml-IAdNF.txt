@@ -1,0 +1,2 @@
+Id: 989007babab2e6fdc5de731e22b84314b2b2c3cbcd4f147bbf07c1c37aa2ab8c
+Message: Path org/jboss/arquillian/extension/arquillian-jacoco/maven-metadata.xml is not available in store group:test-DA.

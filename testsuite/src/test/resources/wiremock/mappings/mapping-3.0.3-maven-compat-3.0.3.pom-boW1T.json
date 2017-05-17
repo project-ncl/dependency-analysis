@@ -1,0 +1,25 @@
+{
+  "id" : "451b43a6-e411-358f-b82b-095596f097f1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/maven-compat/3.0.3/maven-compat-3.0.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.3-maven-compat-3.0.3.pom-boW1T.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 15 Jun 2017 22:14:31 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2529570", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 17 May 2017 15:35:01 GMT",
+      "ETAG" : "\"{SHA1{0eb069bf560525d1049bb98f9bc208affbd68ae4}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:00:29 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "451b43a6-e411-358f-b82b-095596f097f1"
+}

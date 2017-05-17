@@ -1,0 +1,25 @@
+{
+  "id" : "89152ab9-205d-3d0d-919b-7902b6bd917e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/spec/javax/xml/ws/jboss-jaxws-api_2.2_spec/2.0.2.Final/jboss-jaxws-api_2.2_spec-2.0.2.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.2.Final-jboss-jaxws-api_2.2_spec-2.0.2.Final.pom-JyO60.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:12:25 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591994", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:31 GMT",
+      "ETAG" : "\"{SHA1{37d3bcecf7d9ddb3b6842c3647674c83184f2010}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:52:06 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "89152ab9-205d-3d0d-919b-7902b6bd917e"
+}

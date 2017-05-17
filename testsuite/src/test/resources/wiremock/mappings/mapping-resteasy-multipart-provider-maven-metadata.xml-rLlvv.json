@@ -1,0 +1,19 @@
+{
+  "id" : "59b99075-431d-3aba-b7fb-4a288dc2565a",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/resteasy/resteasy-multipart-provider/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-resteasy-multipart-provider-maven-metadata.xml-rLlvv.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:15 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:53 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "59b99075-431d-3aba-b7fb-4a288dc2565a"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "249642a9-a74b-3a82-a051-8a3b50bd44e1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/jboss-common-core/2.2.22.GA/jboss-common-core-2.2.22.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.22.GA-jboss-common-core-2.2.22.GA.pom-nViMv.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "07d1f5bdc480b1e24ed12d8e1ea9690e801ec274be9b17b7948673edc2281550",
+      "X-CHECKSUM-MD5" : "72301cb43cab38fda02ac545a4ba5a86",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:19 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"72301cb43cab38fda02ac545a4ba5a86\"",
+      "LAST-MODIFIED" : "Thu, 06 Jun 2013 20:45:10 GMT",
+      "X-CHECKSUM-SHA1" : "6806997b58ca104e230392b377d14e65bd9d2c46",
+      "X-SERVED-BY" : "cache-iad2135-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259819.410712,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2148536",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "249642a9-a74b-3a82-a051-8a3b50bd44e1"
+}

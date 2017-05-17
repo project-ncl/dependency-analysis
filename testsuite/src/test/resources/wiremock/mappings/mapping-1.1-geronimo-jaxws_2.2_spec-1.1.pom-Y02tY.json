@@ -1,0 +1,30 @@
+{
+  "id" : "99554270-505c-33e9-994b-978de3a8cf9a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/geronimo/specs/geronimo-jaxws_2.2_spec/1.1/geronimo-jaxws_2.2_spec-1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-geronimo-jaxws_2.2_spec-1.1.pom-Y02tY.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "1bd736f7e9272969effba372c6ea126b24f0b3beded4378a50d325f5d2ddda5d",
+      "X-CHECKSUM-MD5" : "74a9cebfd703046acf27558ff074175e",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:15 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"74a9cebfd703046acf27558ff074175e\"",
+      "LAST-MODIFIED" : "Tue, 19 Jul 2011 14:29:42 GMT",
+      "X-CHECKSUM-SHA1" : "bf50a0f2d0a6d9abe3eeed6a7bc2626ae67eb2b0",
+      "X-SERVED-BY" : "cache-iad2135-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260115.123522,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2751222",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "99554270-505c-33e9-994b-978de3a8cf9a"
+}

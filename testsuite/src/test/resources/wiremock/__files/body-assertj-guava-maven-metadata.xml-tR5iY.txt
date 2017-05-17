@@ -1,0 +1,2 @@
+Id: 311cbf87edf57d54e807dc42178b50b91cf1c6ed193747dceef64a8f153eb6a5
+Message: Path org/assertj/assertj-guava/maven-metadata.xml is not available in store group:test-DA.

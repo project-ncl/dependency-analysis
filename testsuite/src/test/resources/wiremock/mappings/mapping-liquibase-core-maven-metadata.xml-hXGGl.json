@@ -1,0 +1,17 @@
+{
+  "id" : "82ef1759-4646-34f1-b2de-6b57c2b5e0a9",
+  "request" : {
+    "url" : "/api/group/test-DA/org/liquibase/liquibase-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-liquibase-core-maven-metadata.xml-hXGGl.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:41 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "82ef1759-4646-34f1-b2de-6b57c2b5e0a9"
+}

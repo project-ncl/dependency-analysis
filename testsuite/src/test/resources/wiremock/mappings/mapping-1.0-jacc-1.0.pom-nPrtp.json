@@ -1,0 +1,25 @@
+{
+  "id" : "45be8410-8ce5-3199-9c98-4688fe7f84dd",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/security/jacc/1.0/jacc-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-jacc-1.0.pom-nPrtp.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:22:32 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:32 GMT",
+      "ETAG" : "\"{SHA1{dec5ae5efb8af02e2c2273f1331cb41e28324274}}\"",
+      "LAST-MODIFIED" : "Wed, 15 Jan 2014 12:07:47 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "45be8410-8ce5-3199-9c98-4688fe7f84dd"
+}

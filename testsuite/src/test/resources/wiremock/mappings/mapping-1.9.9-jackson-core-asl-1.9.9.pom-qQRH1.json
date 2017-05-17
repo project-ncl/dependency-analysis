@@ -1,0 +1,25 @@
+{
+  "id" : "fa4652d2-92f9-3f40-ab00-72624b7f2b5a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/jackson/jackson-core-asl/1.9.9/jackson-core-asl-1.9.9.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.9-jackson-core-asl-1.9.9.pom-qQRH1.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 09:34:59 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2159550", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:42:29 GMT",
+      "ETAG" : "\"{SHA1{62c230da487150a003a6d7564762cfe8cf6d78a5}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:01 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "fa4652d2-92f9-3f40-ab00-72624b7f2b5a"
+}

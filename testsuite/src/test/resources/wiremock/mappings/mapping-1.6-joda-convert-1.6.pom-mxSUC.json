@@ -1,0 +1,25 @@
+{
+  "id" : "ae161b86-04b1-35db-a7de-b2fa1cfe98d1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/joda/joda-convert/1.6/joda-convert-1.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6-joda-convert-1.6.pom-mxSUC.xml",
+    "headers" : {
+      "EXPIRES" : "Mon, 05 Jun 2017 00:33:24 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2362182", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:42 GMT",
+      "ETAG" : "\"{SHA1{0da853fa00284d30e049df35c1e061c1d19909a3}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:53:21 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ae161b86-04b1-35db-a7de-b2fa1cfe98d1"
+}

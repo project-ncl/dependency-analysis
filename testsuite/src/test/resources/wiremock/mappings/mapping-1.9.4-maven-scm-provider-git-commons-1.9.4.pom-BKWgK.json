@@ -1,0 +1,24 @@
+{
+  "id" : "da2d5e21-96b1-34b9-be06-79fe3deed9d0",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/scm/maven-scm-provider-git-commons/1.9.4/maven-scm-provider-git-commons-1.9.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.4-maven-scm-provider-git-commons-1.9.4.pom-BKWgK.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 10:40:38 GMT",
+      "ETAG" : "\"{SHA1{d2b29df9d4137b77634fed08c7453b463b54b9d1}}\"",
+      "LAST-MODIFIED" : "Fri, 27 Mar 2015 17:14:59 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "da2d5e21-96b1-34b9-be06-79fe3deed9d0"
+}

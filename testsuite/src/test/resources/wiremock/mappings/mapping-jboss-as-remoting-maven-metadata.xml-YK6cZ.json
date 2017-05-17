@@ -1,0 +1,19 @@
+{
+  "id" : "68fb40f5-b0b1-31d1-a91e-55ef0c7ab073",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-remoting/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-as-remoting-maven-metadata.xml-YK6cZ.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:15 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:25:54 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "68fb40f5-b0b1-31d1-a91e-55ef0c7ab073"
+}

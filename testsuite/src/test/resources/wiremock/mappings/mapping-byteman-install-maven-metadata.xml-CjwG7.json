@@ -1,0 +1,19 @@
+{
+  "id" : "dc8f6654-e2ef-3e10-ad40-10cd2475cd9c",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/byteman/byteman-install/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-byteman-install-maven-metadata.xml-CjwG7.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:20 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:25:59 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "dc8f6654-e2ef-3e10-ad40-10cd2475cd9c"
+}

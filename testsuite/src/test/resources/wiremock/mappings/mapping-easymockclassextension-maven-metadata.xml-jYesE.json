@@ -1,0 +1,19 @@
+{
+  "id" : "93261956-a2e5-3313-8b58-9610848285c1",
+  "request" : {
+    "url" : "/api/group/test-DA/org/easymock/easymockclassextension/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-easymockclassextension-maven-metadata.xml-jYesE.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:35 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:13 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "93261956-a2e5-3313-8b58-9610848285c1"
+}

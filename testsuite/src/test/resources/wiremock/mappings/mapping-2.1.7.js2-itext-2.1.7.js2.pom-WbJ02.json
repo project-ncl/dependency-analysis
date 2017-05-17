@@ -1,0 +1,22 @@
+{
+  "id" : "63939f1a-0a39-3d65-885d-f4a7c32f12a9",
+  "request" : {
+    "url" : "/api/group/DApublic/com/lowagie/itext/2.1.7.js2/itext-2.1.7.js2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.7.js2-itext-2.1.7.js2.pom-WbJ02.xml",
+    "headers" : {
+      "ETAG" : "\"12183db6-be6-51c70014d7585\"",
+      "LAST-MODIFIED" : "Mon, 03 Aug 2015 22:51:07 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:11 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "63939f1a-0a39-3d65-885d-f4a7c32f12a9"
+}

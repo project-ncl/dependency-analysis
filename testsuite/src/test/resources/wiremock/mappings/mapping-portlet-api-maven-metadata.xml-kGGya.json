@@ -1,0 +1,17 @@
+{
+  "id" : "79fa69d4-ca1d-3608-8544-3610d87b28ea",
+  "request" : {
+    "url" : "/api/group/test-DA/portlet-api/portlet-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-portlet-api-maven-metadata.xml-kGGya.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:42 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "79fa69d4-ca1d-3608-8544-3610d87b28ea"
+}

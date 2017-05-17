@@ -1,0 +1,25 @@
+{
+  "id" : "25107e16-b87d-31f4-b26c-e281a978254d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/maven-artifact/3.0.3/maven-artifact-3.0.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.3-maven-artifact-3.0.3.pom-r4Sr3.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 09:41:29 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591965", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 09:42:04 GMT",
+      "ETAG" : "\"{SHA1{bd2efb6ae22e9a43cf3c7094fbd24e4e81671c16}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:00:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "25107e16-b87d-31f4-b26c-e281a978254d"
+}

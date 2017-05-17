@@ -1,0 +1,30 @@
+{
+  "id" : "0e4a62aa-0bcb-35e3-95c5-df4fd982dd4f",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/ws/rs/jsr311-api/1.0/jsr311-api-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-jsr311-api-1.0.pom-GdlFO.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "aae0bf4ed2498de089b586574bcae00173af557da901a3e22c8a8b96cebed147",
+      "X-CHECKSUM-MD5" : "f80f4f8be364131dd75f274e4960ce2c",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:19 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"f80f4f8be364131dd75f274e4960ce2c\"",
+      "LAST-MODIFIED" : "Tue, 07 Oct 2008 10:34:35 GMT",
+      "X-CHECKSUM-SHA1" : "712628bb3cc86de262f65d79c4bd5fad71bfcf67",
+      "X-SERVED-BY" : "cache-iad2144-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260180.705936,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5537255",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0e4a62aa-0bcb-35e3-95c5-df4fd982dd4f"
+}

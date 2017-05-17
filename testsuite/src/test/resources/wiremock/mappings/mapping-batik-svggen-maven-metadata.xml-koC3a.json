@@ -1,0 +1,19 @@
+{
+  "id" : "9e2e57e7-9cd6-3f68-8aa3-3cdc7e7acdbc",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/xmlgraphics/batik-svggen/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-batik-svggen-maven-metadata.xml-koC3a.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:30 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:08 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9e2e57e7-9cd6-3f68-8aa3-3cdc7e7acdbc"
+}

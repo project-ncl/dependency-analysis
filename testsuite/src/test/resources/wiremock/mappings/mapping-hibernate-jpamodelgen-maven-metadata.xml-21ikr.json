@@ -1,0 +1,19 @@
+{
+  "id" : "fd44c389-be16-31bf-8961-7422356a57de",
+  "request" : {
+    "url" : "/api/group/test-DA/org/hibernate/hibernate-jpamodelgen/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-hibernate-jpamodelgen-maven-metadata.xml-21ikr.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:56 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:35 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "fd44c389-be16-31bf-8961-7422356a57de"
+}

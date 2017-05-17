@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.as</groupId>
+  <artifactId>jboss-as-dist</artifactId>
+  <versioning>
+    <latest>7.5.7.Final-redhat-3</latest>
+    <release>7.5.7.Final-redhat-3</release>
+    <versions>
+      <version>7.1.2.Final-redhat-1</version>
+      <version>7.5.5.Final-redhat-3</version>
+      <version>7.5.6.Final-redhat-2</version>
+      <version>7.5.7.Final-redhat-3</version>
+    </versions>
+    <lastUpdated>20170105084416</lastUpdated>
+  </versioning>
+</metadata>

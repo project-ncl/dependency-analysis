@@ -1,0 +1,19 @@
+{
+  "id" : "04a44f1f-4aa5-3b0e-a74d-6e650b878ce6",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jbpm/jbpm-test/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jbpm-test-maven-metadata.xml-v6pE6.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:39 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:18 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "04a44f1f-4aa5-3b0e-a74d-6e650b878ce6"
+}

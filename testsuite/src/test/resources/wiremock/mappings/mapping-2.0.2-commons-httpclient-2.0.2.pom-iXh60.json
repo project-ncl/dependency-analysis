@@ -1,0 +1,22 @@
+{
+  "id" : "b701d6ce-3c20-37e5-8c28-7c05e6e8d031",
+  "request" : {
+    "url" : "/api/group/DApublic/apache-httpclient/commons-httpclient/2.0.2/commons-httpclient-2.0.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.2-commons-httpclient-2.0.2.pom-iXh60.xml",
+    "headers" : {
+      "ETAG" : "\"11296056-22c-45feb4127ff29\"",
+      "LAST-MODIFIED" : "Wed, 07 Jan 2009 21:32:01 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 11:00:13 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b701d6ce-3c20-37e5-8c28-7c05e6e8d031"
+}

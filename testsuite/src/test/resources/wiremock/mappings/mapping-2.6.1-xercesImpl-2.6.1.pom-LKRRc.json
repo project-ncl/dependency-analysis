@@ -1,0 +1,25 @@
+{
+  "id" : "559bc82d-4eb9-37c5-8b98-1f4a860c2fe6",
+  "request" : {
+    "url" : "/api/group/DApublic/xerces/xercesImpl/2.6.1/xercesImpl-2.6.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.6.1-xercesImpl-2.6.1.pom-LKRRc.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:23:31 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:31 GMT",
+      "ETAG" : "\"{SHA1{ef8788de05830e3286f1d05b94bceadb54b1e5bf}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:53:29 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "559bc82d-4eb9-37c5-8b98-1f4a860c2fe6"
+}

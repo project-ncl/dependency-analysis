@@ -1,0 +1,30 @@
+{
+  "id" : "b95d8bad-0ba0-3f72-a781-1c1e2e8b7778",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/axis/axis/1.4/axis-1.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4-axis-1.4.pom-82utg.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "cd85413dfd6b9f84650e77be0aeaf6ba8759cc7f4713dcd453260c3b8a0517a1",
+      "X-CHECKSUM-MD5" : "d02a2e1c4abda14acc940265ce6000cf",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:05 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"d02a2e1c4abda14acc940265ce6000cf\"",
+      "LAST-MODIFIED" : "Sun, 23 Apr 2006  5:17:21 GMT",
+      "X-CHECKSUM-SHA1" : "3e3999baf7b732ac2a5e1d1c2c330dccefb18fa7",
+      "X-SERVED-BY" : "cache-iad2131-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260646.791014,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2582581",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b95d8bad-0ba0-3f72-a781-1c1e2e8b7778"
+}

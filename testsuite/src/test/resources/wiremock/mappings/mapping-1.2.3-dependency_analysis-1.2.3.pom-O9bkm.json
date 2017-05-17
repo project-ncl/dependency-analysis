@@ -1,0 +1,17 @@
+{
+  "id" : "ba7c6186-1def-3e77-9d9d-3b5000fc7801",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/dependency_analysis/1.2.3/dependency_analysis-1.2.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-1.2.3-dependency_analysis-1.2.3.pom-O9bkm.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 15:01:15 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ba7c6186-1def-3e77-9d9d-3b5000fc7801"
+}

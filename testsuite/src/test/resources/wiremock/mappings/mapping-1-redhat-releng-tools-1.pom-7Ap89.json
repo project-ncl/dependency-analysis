@@ -1,0 +1,24 @@
+{
+  "id" : "9fd638d5-3ad7-31e0-bc3c-177a8b3b3d4f",
+  "request" : {
+    "url" : "/api/group/DApublic/com/redhat/rcm/redhat-releng-tools/1/redhat-releng-tools-1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1-redhat-releng-tools-1.pom-7Ap89.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:13:17 GMT",
+      "ETAG" : "\"{SHA1{a9545d452743b4179b882beda9526bbdcc40c14b}}\"",
+      "LAST-MODIFIED" : "Wed, 29 Jul 2015 15:27:00 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9fd638d5-3ad7-31e0-bc3c-177a8b3b3d4f"
+}

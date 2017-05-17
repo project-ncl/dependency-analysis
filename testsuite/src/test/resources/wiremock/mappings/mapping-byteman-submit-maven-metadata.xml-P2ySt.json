@@ -1,0 +1,19 @@
+{
+  "id" : "081416f4-579c-3f56-b234-9a1e4a25bcd3",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/byteman/byteman-submit/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-byteman-submit-maven-metadata.xml-P2ySt.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:05 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:43 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "081416f4-579c-3f56-b234-9a1e4a25bcd3"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "b8f1a586-ff0a-3c7d-b7ec-50e08dbf013b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hibernate/hibernate-core/4.2.14.SP4-redhat-1/hibernate-core-4.2.14.SP4-redhat-1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.2.14.SP4-redhat-1-hibernate-core-4.2.14.SP4-redhat-1.pom-orFy7.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 09:59:17 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:17 GMT",
+      "ETAG" : "\"{SHA1{8f99825767da02324d403b6238364357aee805e2}}\"",
+      "LAST-MODIFIED" : "Tue, 21 Oct 2014 08:40:09 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b8f1a586-ff0a-3c7d-b7ec-50e08dbf013b"
+}

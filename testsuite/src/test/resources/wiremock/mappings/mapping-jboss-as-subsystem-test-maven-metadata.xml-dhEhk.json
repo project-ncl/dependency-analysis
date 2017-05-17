@@ -1,0 +1,19 @@
+{
+  "id" : "33f1d7d3-3c5a-38d0-834d-855991cd41ed",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-subsystem-test/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-as-subsystem-test-maven-metadata.xml-dhEhk.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:24:55 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:24:33 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "33f1d7d3-3c5a-38d0-834d-855991cd41ed"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "0d596c04-e50f-3901-8445-b6ad19d2653b",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/oss-parent/18/oss-parent-18.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-18-oss-parent-18.pom-55WXR.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f8d2a2c0dbb8226856e95467e85d6191fb3a52de2f096e333b42c4186218486a",
+      "X-CHECKSUM-MD5" : "d3f3499c7e6bf39b8e367834b3898c42",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:59 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"d3f3499c7e6bf39b8e367834b3898c42\"",
+      "LAST-MODIFIED" : "Thu, 04 Sep 2014  5:33:52 GMT",
+      "X-CHECKSUM-SHA1" : "83e412b7753374c0e0a349c4132d0315da0bf7a5",
+      "X-SERVED-BY" : "cache-iad2150-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259979.293962,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5211361",
+      "X-CACHE-HITS" : "3, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0d596c04-e50f-3901-8445-b6ad19d2653b"
+}

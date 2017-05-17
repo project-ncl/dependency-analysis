@@ -1,0 +1,25 @@
+{
+  "id" : "f3db2117-ebbb-30ac-8612-aa4f56073963",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/bom/eap/jboss-eap-bom-parent/6.3.2.GA/jboss-eap-bom-parent-6.3.2.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.3.2.GA-jboss-eap-bom-parent-6.3.2.GA.pom-4OJ4k.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 09:58:56 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:58:56 GMT",
+      "ETAG" : "\"{SHA1{87cd264ae799570c7a5dc23f3d06c4763c281ab6}}\"",
+      "LAST-MODIFIED" : "Tue, 21 Oct 2014 08:39:10 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f3db2117-ebbb-30ac-8612-aa4f56073963"
+}

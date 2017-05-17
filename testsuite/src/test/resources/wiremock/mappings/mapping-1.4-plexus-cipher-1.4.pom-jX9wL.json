@@ -1,0 +1,25 @@
+{
+  "id" : "cea71121-a03d-3931-9e43-b4d31569a7ba",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4-plexus-cipher-1.4.pom-jX9wL.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 12:56:02 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2590340", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 11 Apr 2017 13:23:42 GMT",
+      "ETAG" : "\"{SHA1{8c0bee97c1badb926611bf82358e392fedc07764}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:38 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "cea71121-a03d-3931-9e43-b4d31569a7ba"
+}

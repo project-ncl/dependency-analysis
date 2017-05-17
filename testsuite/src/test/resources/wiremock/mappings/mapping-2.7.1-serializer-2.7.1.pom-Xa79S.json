@@ -1,0 +1,25 @@
+{
+  "id" : "0d4a4326-3fd8-30c5-b4fa-5d8f88d53c03",
+  "request" : {
+    "url" : "/api/group/DApublic/xalan/serializer/2.7.1/serializer-2.7.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.7.1-serializer-2.7.1.pom-Xa79S.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 16:18:41 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2073404", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:57 GMT",
+      "ETAG" : "\"{SHA1{01f3c7ff4346220238dd23d5c4973b8f928953ce}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:20:54 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0d4a4326-3fd8-30c5-b4fa-5d8f88d53c03"
+}

@@ -1,0 +1,2 @@
+Id: 26f0c5077b28e548aa5b16be982621eb3c8e4781e737bc8c301316e6f8a26e0b
+Message: Path do/not-exist/2.0/not-exist-2.0.pom is not available in store group:DApublic.

@@ -1,0 +1,25 @@
+{
+  "id" : "d25d64ca-13af-3297-bdec-503b82504c71",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/geronimo/specs/specs/1.4/specs-1.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4-specs-1.4.pom-nuFcW.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 31 May 2017 20:14:27 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2001378", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:09 GMT",
+      "ETAG" : "\"{SHA1{c69551a00e6ca89236558ecb847deab338419a3c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:52:50 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d25d64ca-13af-3297-bdec-503b82504c71"
+}

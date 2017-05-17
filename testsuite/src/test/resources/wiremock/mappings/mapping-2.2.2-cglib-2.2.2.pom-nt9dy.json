@@ -1,0 +1,30 @@
+{
+  "id" : "56b4f513-2887-37cb-9ac6-7c7dbead4a82",
+  "request" : {
+    "url" : "/api/group/DApublic/cglib/cglib/2.2.2/cglib-2.2.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.2-cglib-2.2.2.pom-nt9dy.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "ef3310afc3a60221391830448db95ce8b5e1b9e60a58add8318e22177e3365b7",
+      "X-CHECKSUM-MD5" : "166322fea42cfc9babeada192073344b",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:17 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"166322fea42cfc9babeada192073344b\"",
+      "LAST-MODIFIED" : "Tue, 10 May 2011 13:54:13 GMT",
+      "X-CHECKSUM-SHA1" : "f5b7f35716edd620ed9df63060dccf5a2a2a02e7",
+      "X-SERVED-BY" : "cache-iad2125-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260177.382583,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5210473",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "56b4f513-2887-37cb-9ac6-7c7dbead4a82"
+}

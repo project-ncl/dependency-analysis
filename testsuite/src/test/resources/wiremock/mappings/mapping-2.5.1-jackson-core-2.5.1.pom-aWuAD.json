@@ -1,0 +1,30 @@
+{
+  "id" : "46a5eaf8-b07a-3348-b9c7-d97ffac75a54",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-core/2.5.1/jackson-core-2.5.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5.1-jackson-core-2.5.1.pom-aWuAD.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "4e6f46a3c14fb2fcac8064f89a70c980f0046c171e3b4c04d842a33423bd1052",
+      "X-CHECKSUM-MD5" : "d0c50d43fa24cbc32de44830f9990dcb",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:07 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"d0c50d43fa24cbc32de44830f9990dcb\"",
+      "LAST-MODIFIED" : "Sat, 07 Feb 2015  0:06:04 GMT",
+      "X-CHECKSUM-SHA1" : "0bb1185bab7f2e9dd9e144649f362cf7a4f90c67",
+      "X-SERVED-BY" : "cache-iad2130-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260228.599629,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5210474",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "46a5eaf8-b07a-3348-b9c7-d97ffac75a54"
+}

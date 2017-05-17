@@ -1,0 +1,30 @@
+{
+  "id" : "c2fea082-6785-30e3-b15c-ae69c4c1c93d",
+  "request" : {
+    "url" : "/api/group/DApublic/swarmcache/swarmcache/1.0RC2/swarmcache-1.0RC2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0RC2-swarmcache-1.0RC2.pom-VBNT4.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "867b25a35524f467e42061edc0635ca53047e7912f820940e9cc3fc761a50eb1",
+      "X-CHECKSUM-MD5" : "8ac46d92330c4b2e20e2aa694cb53ed7",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:26 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"8ac46d92330c4b2e20e2aa694cb53ed7\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:18:18 GMT",
+      "X-CHECKSUM-SHA1" : "9b04feed440eae68fe910bdef37e7ef9fab610e7",
+      "X-SERVED-BY" : "cache-iad2142-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260546.392073,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "3521586",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c2fea082-6785-30e3-b15c-ae69c4c1c93d"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "35c14192-8952-3a69-9a4f-6978de92f0d4",
+  "request" : {
+    "url" : "/api/group/DApublic/asm/asm-util/3.3.1/asm-util-3.3.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.3.1-asm-util-3.3.1.pom-bhpVV.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "0df128a45b11758a0780c4fe03d604c49930322132c92a1a9f5fde55d5304a22",
+      "X-CHECKSUM-MD5" : "47daa3ff62c36fcce8dbe48cf3a52b2c",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:06 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"47daa3ff62c36fcce8dbe48cf3a52b2c\"",
+      "LAST-MODIFIED" : "Wed, 12 Jan 2011 14:03:49 GMT",
+      "X-CHECKSUM-SHA1" : "68b4168fdf4effc93df897fc2c54e82363e324fb",
+      "X-SERVED-BY" : "cache-iad2148-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260406.302591,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2760214",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "35c14192-8952-3a69-9a4f-6978de92f0d4"
+}

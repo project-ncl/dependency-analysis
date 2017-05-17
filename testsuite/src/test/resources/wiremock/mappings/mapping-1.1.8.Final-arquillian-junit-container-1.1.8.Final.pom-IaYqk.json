@@ -1,0 +1,30 @@
+{
+  "id" : "ba370e21-c2fc-3b53-955f-c42099c27083",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/arquillian/junit/arquillian-junit-container/1.1.8.Final/arquillian-junit-container-1.1.8.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.8.Final-arquillian-junit-container-1.1.8.Final.pom-IaYqk.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "2f8c7ecc1ff20190122d73fe71a3faf7407a4dcd3e553eece7724ccfac7f2ee5",
+      "X-CHECKSUM-MD5" : "ef6662160dfbc9880115ddc66c462a98",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:42 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ef6662160dfbc9880115ddc66c462a98\"",
+      "LAST-MODIFIED" : "Fri, 17 Apr 2015  7:58:19 GMT",
+      "X-CHECKSUM-SHA1" : "eeb333aa9ba7466eacd7e329c8c58cbbf50c205d",
+      "X-SERVED-BY" : "cache-iad2123-IAD, cache-dfw1821-DFW",
+      "X-TIMER" : "S1494237583.983623,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1194335",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ba370e21-c2fc-3b53-955f-c42099c27083"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "df0c97db-b3fb-3597-a4d1-d4aa602059db",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/mail/javax.mail-api/1.4.7/javax.mail-api-1.4.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.7-javax.mail-api-1.4.7.pom-Onusg.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "abd9402b7c4b462eb353957629cc09d57aa7e2d9d6328400aaa739a5e85455cd",
+      "X-CHECKSUM-MD5" : "314efd8945d60ce595f0cd06aa4c3ae9",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:36 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"314efd8945d60ce595f0cd06aa4c3ae9\"",
+      "LAST-MODIFIED" : "Sat, 09 Mar 2013  1:36:46 GMT",
+      "X-CHECKSUM-SHA1" : "538b3e205aed7330f76f9b907d8e645742d6a900",
+      "X-SERVED-BY" : "cache-iad2145-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260376.465738,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2745831",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "df0c97db-b3fb-3597-a4d1-d4aa602059db"
+}

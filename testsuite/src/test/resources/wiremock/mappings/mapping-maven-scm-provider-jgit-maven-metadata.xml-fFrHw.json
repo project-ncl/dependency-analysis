@@ -1,0 +1,17 @@
+{
+  "id" : "caf3acd3-d907-37e4-9966-1816d867cabd",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/maven/scm/maven-scm-provider-jgit/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-maven-scm-provider-jgit-maven-metadata.xml-fFrHw.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:25:40 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "caf3acd3-d907-37e4-9966-1816d867cabd"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "9bf22510-fdea-3623-9d3e-efa743c21a35",
+  "request" : {
+    "url" : "/api/group/DApublic/com/mysema/home/mysema-source/0.3.0/mysema-source-0.3.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.3.0-mysema-source-0.3.0.pom-uSrI1.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "68a744ece33fd31b79a2ee1b38ba5a867e752ebeabc1343419015bd19321d55f",
+      "X-CHECKSUM-MD5" : "2fd1b4afd0e3b80ff8eb8c09bf4b4ca5",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:16 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"2fd1b4afd0e3b80ff8eb8c09bf4b4ca5\"",
+      "LAST-MODIFIED" : "Thu, 06 Sep 2012 18:18:59 GMT",
+      "X-CHECKSUM-SHA1" : "81e0178193f6bc6b0616d84f30196eac2cb90a60",
+      "X-SERVED-BY" : "cache-iad2125-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260176.352354,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "4770208",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9bf22510-fdea-3623-9d3e-efa743c21a35"
+}

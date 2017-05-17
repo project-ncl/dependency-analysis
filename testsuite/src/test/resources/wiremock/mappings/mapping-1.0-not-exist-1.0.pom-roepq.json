@@ -1,0 +1,17 @@
+{
+  "id" : "3bb2ee49-80ab-34b6-bc53-efdb8b6eb75a",
+  "request" : {
+    "url" : "/api/group/DApublic/do/not-exist/1.0/not-exist-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-1.0-not-exist-1.0.pom-roepq.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 01 Jun 2017 13:12:44 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3bb2ee49-80ab-34b6-bc53-efdb8b6eb75a"
+}

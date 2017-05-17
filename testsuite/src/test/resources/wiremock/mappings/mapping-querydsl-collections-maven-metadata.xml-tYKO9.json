@@ -1,0 +1,17 @@
+{
+  "id" : "1c260fa3-a0dc-3f6c-bc41-c4d3d0fceb1f",
+  "request" : {
+    "url" : "/api/group/test-DA/com/mysema/querydsl/querydsl-collections/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-querydsl-collections-maven-metadata.xml-tYKO9.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:37 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1c260fa3-a0dc-3f6c-bc41-c4d3d0fceb1f"
+}

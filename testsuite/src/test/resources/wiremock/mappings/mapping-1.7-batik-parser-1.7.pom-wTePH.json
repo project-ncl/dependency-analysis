@@ -1,0 +1,25 @@
+{
+  "id" : "a1376ecf-5d93-3dd5-9b0f-80a6d423134b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/xmlgraphics/batik-parser/1.7/batik-parser-1.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7-batik-parser-1.7.pom-wTePH.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 03 Jun 2017 02:47:06 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2197499", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:07 GMT",
+      "ETAG" : "\"{SHA1{3f97e33e1ee4c53a6f581dc8c6b7a60b07298ff9}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:09:06 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a1376ecf-5d93-3dd5-9b0f-80a6d423134b"
+}

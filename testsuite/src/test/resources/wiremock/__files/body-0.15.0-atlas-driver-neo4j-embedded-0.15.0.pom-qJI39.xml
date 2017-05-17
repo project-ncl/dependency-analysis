@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2012 Red Hat, Inc. (jdcasey@commonjava.org)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.commonjava.maven.atlas</groupId>
+    <artifactId>atlas-drivers-parent</artifactId>
+    <version>0.15.0</version>
+  </parent>
+
+  <artifactId>atlas-driver-neo4j-embedded</artifactId>
+
+  <name>Atlas :: Maven Project-Graph :: Embedded Neo4J API</name>
+
+  <properties>
+    <test-forkCount>1C</test-forkCount>
+    <test-redirectOutput>true</test-redirectOutput>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.commonjava.maven.atlas</groupId>
+      <artifactId>atlas-bindings-jackson-identities</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.commonjava.maven.atlas</groupId>
+      <artifactId>atlas-bindings-jackson-relationships</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.neo4j</groupId>
+      <artifactId>neo4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+  </dependencies>
+  
+</project>

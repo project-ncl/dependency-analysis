@@ -1,0 +1,30 @@
+{
+  "id" : "e057f4b5-472e-373d-8221-ef5548414e86",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/jettison/jettison/1.0-RC2/jettison-1.0-RC2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-RC2-jettison-1.0-RC2.pom-Eh7JN.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f1832b31d67f4c090154598e70051733be76c563bf403581869be000e62c9bff",
+      "X-CHECKSUM-MD5" : "ab8541941d1267b4bdb8e4476d64aabf",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:47 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ab8541941d1267b4bdb8e4476d64aabf\"",
+      "LAST-MODIFIED" : "Sat, 28 Jul 2007 12:15:44 GMT",
+      "X-CHECKSUM-SHA1" : "604219e807ecfca7583a2e5772ec807f221cf507",
+      "X-SERVED-BY" : "cache-iad2133-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260627.279634,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2132322",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e057f4b5-472e-373d-8221-ef5548414e86"
+}

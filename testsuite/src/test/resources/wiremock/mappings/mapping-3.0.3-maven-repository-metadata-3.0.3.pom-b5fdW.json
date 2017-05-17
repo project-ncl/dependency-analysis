@@ -1,0 +1,25 @@
+{
+  "id" : "745b2484-30f0-3675-afa2-58d77a64661b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/maven-repository-metadata/3.0.3/maven-repository-metadata-3.0.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.3-maven-repository-metadata-3.0.3.pom-b5fdW.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 19 May 2017 08:33:23 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 19 Apr 2017 08:33:23 GMT",
+      "ETAG" : "\"{SHA1{e4873c28ab61e55743ccbefa5305c8fab6304f6d}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:00:41 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "745b2484-30f0-3675-afa2-58d77a64661b"
+}

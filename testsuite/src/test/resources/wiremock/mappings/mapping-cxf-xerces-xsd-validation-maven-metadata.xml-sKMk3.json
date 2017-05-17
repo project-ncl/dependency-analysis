@@ -1,0 +1,19 @@
+{
+  "id" : "9762e0e3-374c-3853-8aab-d8afe085b6bc",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/cxf/cxf-xerces-xsd-validation/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-cxf-xerces-xsd-validation-maven-metadata.xml-sKMk3.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:26 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:04 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9762e0e3-374c-3853-8aab-d8afe085b6bc"
+}

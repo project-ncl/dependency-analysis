@@ -1,0 +1,30 @@
+{
+  "id" : "e80d3f9d-5f40-3970-b146-d07bf1857d3a",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-databind/2.5.1/jackson-databind-2.5.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5.1-jackson-databind-2.5.1.pom-N2sWg.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "a60572b4a2275896aff47d0c0df8a27af876c4723d583c5fb567f635a7f92f18",
+      "X-CHECKSUM-MD5" : "7a99da9f2fd5eea24f1af7028dee97c2",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:59 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"7a99da9f2fd5eea24f1af7028dee97c2\"",
+      "LAST-MODIFIED" : "Sat, 07 Feb 2015  0:10:45 GMT",
+      "X-CHECKSUM-SHA1" : "16202c5a54c81ef07b39b64a783af7cd9d92b115",
+      "X-SERVED-BY" : "cache-iad2142-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259979.042911,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2765052",
+      "X-CACHE-HITS" : "2, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e80d3f9d-5f40-3970-b146-d07bf1857d3a"
+}

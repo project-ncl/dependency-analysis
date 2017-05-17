@@ -1,0 +1,25 @@
+{
+  "id" : "5b6ec5d5-9c7c-3b1b-b0d8-fa44deb97f23",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/httpcomponents/httpcore/4.1.2/httpcore-4.1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.1.2-httpcore-4.1.2.pom-sOKnr.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:14:31 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591988", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:43 GMT",
+      "ETAG" : "\"{SHA1{3c3a6ff5baac595286025a34b5ad5c938d37ca56}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:55:34 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "5b6ec5d5-9c7c-3b1b-b0d8-fa44deb97f23"
+}

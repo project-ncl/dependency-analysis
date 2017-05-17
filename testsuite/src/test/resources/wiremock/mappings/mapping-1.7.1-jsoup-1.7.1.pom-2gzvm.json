@@ -1,0 +1,25 @@
+{
+  "id" : "446f715c-3342-37ce-be4f-5ec899923d25",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jsoup/jsoup/1.7.1/jsoup-1.7.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.1-jsoup-1.7.1.pom-2gzvm.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:12:35 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:35 GMT",
+      "ETAG" : "\"{SHA1{39e335b850a506c5dd7d2ee1ccaf288c92930500}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:54:53 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "446f715c-3342-37ce-be4f-5ec899923d25"
+}

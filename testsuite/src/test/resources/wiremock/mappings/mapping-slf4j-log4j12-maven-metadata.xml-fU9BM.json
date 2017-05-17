@@ -1,0 +1,19 @@
+{
+  "id" : "b5aedabf-f1da-3378-a7f2-765a999fffbe",
+  "request" : {
+    "url" : "/api/group/test-DA/org/slf4j/slf4j-log4j12/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-slf4j-log4j12-maven-metadata.xml-fU9BM.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:48 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:28:27 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b5aedabf-f1da-3378-a7f2-765a999fffbe"
+}

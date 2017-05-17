@@ -1,0 +1,19 @@
+{
+  "id" : "765f12e8-44a4-364f-a76b-4801f56a92b0",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jbpm/jbpm-persistence-jpa/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jbpm-persistence-jpa-maven-metadata.xml-sUqqU.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:37 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:15 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "765f12e8-44a4-364f-a76b-4801f56a92b0"
+}

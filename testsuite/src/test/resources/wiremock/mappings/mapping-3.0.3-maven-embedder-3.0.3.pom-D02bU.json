@@ -1,0 +1,25 @@
+{
+  "id" : "e7b9037d-56dc-313c-ae9e-1811f99f31c3",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/maven-embedder/3.0.3/maven-embedder-3.0.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.3-maven-embedder-3.0.3.pom-D02bU.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 01 Jul 2017 13:14:09 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Thu, 01 Jun 2017 13:14:09 GMT",
+      "ETAG" : "\"{SHA1{f9df75cd940c6848d6338860476a26080d784a1e}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:00:31 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "e7b9037d-56dc-313c-ae9e-1811f99f31c3"
+}

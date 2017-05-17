@@ -1,0 +1,25 @@
+{
+  "id" : "d7d32658-8f1d-3da7-b456-14d557b04d74",
+  "request" : {
+    "url" : "/api/group/DApublic/org/fusesource/fusesource-pom/1.8/fusesource-pom-1.8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8-fusesource-pom-1.8.pom-qq3ET.xml",
+    "headers" : {
+      "EXPIRES" : "Mon, 05 Jun 2017 00:36:37 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2362734", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:43 GMT",
+      "ETAG" : "\"{SHA1{d4f1b288004e1a8c8bc9f61f5f151d1ef0d4211a}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:15:26 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d7d32658-8f1d-3da7-b456-14d557b04d74"
+}

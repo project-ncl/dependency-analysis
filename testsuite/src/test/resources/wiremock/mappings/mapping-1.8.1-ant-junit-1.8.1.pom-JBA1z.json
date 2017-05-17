@@ -1,0 +1,24 @@
+{
+  "id" : "dfd47513-6a85-3676-baee-87577841b23b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant-junit/1.8.1/ant-junit-1.8.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.1-ant-junit-1.8.1.pom-JBA1z.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:48:18 GMT",
+      "ETAG" : "\"{SHA1{0f846b930e7c7637a233dd4135ec3f38efe29a97}}\"",
+      "LAST-MODIFIED" : "Fri, 30 Apr 2010 22:04:20 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "dfd47513-6a85-3676-baee-87577841b23b"
+}

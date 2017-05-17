@@ -1,0 +1,30 @@
+{
+  "id" : "65350d8b-48d6-36d6-a211-60f7567ddda4",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/jruby-parent/1.7.10/jruby-parent-1.7.10.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.10-jruby-parent-1.7.10.pom-kLkj8.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "6756d7fca36f2d9cfeed6db87d1ca3e76e607770c923587302099120d1de4810",
+      "X-CHECKSUM-MD5" : "cc6336b4e8b8b6dec7524b10e5e8f8c8",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:58 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"cc6336b4e8b8b6dec7524b10e5e8f8c8\"",
+      "LAST-MODIFIED" : "Thu, 09 Jan 2014 16:19:22 GMT",
+      "X-CHECKSUM-SHA1" : "f55f801000e214f385ec5eff76f33ed219255730",
+      "X-SERVED-BY" : "cache-iad2121-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260578.450290,VS0,VE35",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "65350d8b-48d6-36d6-a211-60f7567ddda4"
+}

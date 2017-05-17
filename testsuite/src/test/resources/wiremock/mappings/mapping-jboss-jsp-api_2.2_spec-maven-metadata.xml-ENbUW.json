@@ -1,0 +1,19 @@
+{
+  "id" : "804cfeec-28ae-3b09-bdcc-86b43c02824d",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/spec/javax/servlet/jsp/jboss-jsp-api_2.2_spec/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-jsp-api_2.2_spec-maven-metadata.xml-ENbUW.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:00 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:38 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "804cfeec-28ae-3b09-bdcc-86b43c02824d"
+}

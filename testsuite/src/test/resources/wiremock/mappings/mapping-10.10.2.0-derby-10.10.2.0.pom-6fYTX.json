@@ -1,0 +1,30 @@
+{
+  "id" : "06b6edcd-b925-357b-9ca0-1d1032f0cd63",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/derby/derby/10.10.2.0/derby-10.10.2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-10.10.2.0-derby-10.10.2.0.pom-6fYTX.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "99c57c6a1bda9c336e5f452eb91fb074bd9f27b0e02e74c97695911557b17426",
+      "X-CHECKSUM-MD5" : "5740505ce1478f0fb621acfeadcaf079",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:21 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"5740505ce1478f0fb621acfeadcaf079\"",
+      "LAST-MODIFIED" : "Wed, 16 Apr 2014 17:15:15 GMT",
+      "X-CHECKSUM-SHA1" : "0924f28da2a07daad4f97e93a9e3b699a24c9936",
+      "X-SERVED-BY" : "cache-iad2142-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260422.620091,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2164641",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "06b6edcd-b925-357b-9ca0-1d1032f0cd63"
+}

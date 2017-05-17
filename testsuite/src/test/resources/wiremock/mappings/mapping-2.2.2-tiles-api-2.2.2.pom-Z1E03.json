@@ -1,0 +1,30 @@
+{
+  "id" : "5da002a6-c864-3388-bad7-ec568550bd59",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/tiles/tiles-api/2.2.2/tiles-api-2.2.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.2-tiles-api-2.2.2.pom-Z1E03.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "14d02cf4d25bc8042f8b243dd4ff912abe48c5f6caee7bb96c7a07a2bd079897",
+      "X-CHECKSUM-MD5" : "13bf64a7d439aa42351e5e14ac227092",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:52 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"13bf64a7d439aa42351e5e14ac227092\"",
+      "LAST-MODIFIED" : "Tue, 15 Jun 2010 19:48:26 GMT",
+      "X-CHECKSUM-SHA1" : "6977e6cbc6443fcb6bdd134e3cd04fc12b81d71d",
+      "X-SERVED-BY" : "cache-iad2134-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260393.854636,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2164396",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5da002a6-c864-3388-bad7-ec568550bd59"
+}

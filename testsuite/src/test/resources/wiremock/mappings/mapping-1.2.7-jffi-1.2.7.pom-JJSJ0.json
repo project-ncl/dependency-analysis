@@ -1,0 +1,25 @@
+{
+  "id" : "d5842e36-d047-395e-b634-30b49b9070b6",
+  "request" : {
+    "url" : "/api/group/DApublic/com/github/jnr/jffi/1.2.7/jffi-1.2.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.7-jffi-1.2.7.pom-JJSJ0.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 16:13:08 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2159404", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:04 GMT",
+      "ETAG" : "\"{SHA1{a978127f45014ed55bab756fcf3bebd4971392c2}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d5842e36-d047-395e-b634-30b49b9070b6"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "cab57886-267c-3147-a41f-a60a85be7445",
+  "request" : {
+    "url" : "/api/group/test-DA/org/atteo/evo-inflector/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-evo-inflector-maven-metadata.xml-DD2ln.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:50 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "cab57886-267c-3147-a41f-a60a85be7445"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "4e68f3e0-2d0d-3864-96cc-9d47bd88cb36",
+  "request" : {
+    "url" : "/api/group/DApublic/ant/ant-trax/1.6.2/ant-trax-1.6.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6.2-ant-trax-1.6.2.pom-d2SjC.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d97c1c53094430e4d67d787e5aa966f30df6eec48f3658591b30e48cd329968d",
+      "X-CHECKSUM-MD5" : "64723de1ab624817d033765029b98599",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:20 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"64723de1ab624817d033765029b98599\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:24:33 GMT",
+      "X-CHECKSUM-SHA1" : "0026762604f727b098f8dbb7d652c91b91d71a08",
+      "X-SERVED-BY" : "cache-iad2150-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260481.532298,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2676701",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "4e68f3e0-2d0d-3864-96cc-9d47bd88cb36"
+}

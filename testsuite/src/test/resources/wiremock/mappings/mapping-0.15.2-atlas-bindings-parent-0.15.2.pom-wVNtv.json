@@ -1,0 +1,30 @@
+{
+  "id" : "95a3cadb-c0fa-3184-b365-d9b3e3df2392",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-bindings-parent/0.15.2/atlas-bindings-parent-0.15.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.2-atlas-bindings-parent-0.15.2.pom-wVNtv.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "0bec3ae197ae8dd846321032e673eaa4ed54633b9583310130f67533e2b881d8",
+      "X-CHECKSUM-MD5" : "f472cecb413c87b781e5fba76a3f74dc",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:01 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"f472cecb413c87b781e5fba76a3f74dc\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 15:40:43 GMT",
+      "X-CHECKSUM-SHA1" : "07c3970110791e3baf2a5c9a2705a8d05134f537",
+      "X-SERVED-BY" : "cache-iad2149-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494260042.763859,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "311316",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "95a3cadb-c0fa-3184-b365-d9b3e3df2392"
+}

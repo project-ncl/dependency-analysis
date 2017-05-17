@@ -1,0 +1,30 @@
+{
+  "id" : "cf9f5a9e-f062-37fd-9628-15f771184aad",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/bcel/bcel/5.2/bcel-5.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-5.2-bcel-5.2.pom-0AHvg.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "592b9d4f2fc00ddae9371837dbcc195af832bef4e89e0db51269af2c709a0259",
+      "X-CHECKSUM-MD5" : "a691cc2bb8fe12cec388c7edf3ab27f0",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:42 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a691cc2bb8fe12cec388c7edf3ab27f0\"",
+      "LAST-MODIFIED" : "Tue, 13 Jun 2006 11:07:49 GMT",
+      "X-CHECKSUM-SHA1" : "dd43d196b68b0a16c9613ac8fef50b5519ee90ee",
+      "X-SERVED-BY" : "cache-iad2138-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260322.017874,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2184430",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "cf9f5a9e-f062-37fd-9628-15f771184aad"
+}

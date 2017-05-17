@@ -1,0 +1,25 @@
+{
+  "id" : "0099368f-3e9b-3d5d-9d28-457199d6290c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/ow2/asm/asm-commons/4.0/asm-commons-4.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0-asm-commons-4.0.pom-WGW13.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 13:30:48 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2581649", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:19 GMT",
+      "ETAG" : "\"{SHA1{c942bdc936faa4475d4babbd296b9bf38cb20c9b}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:56:45 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0099368f-3e9b-3d5d-9d28-457199d6290c"
+}

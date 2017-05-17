@@ -1,0 +1,31 @@
+{
+  "id" : "68c73ab3-6491-323d-bd6c-502d15a5aab9",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jvnet/hudson/lib/1.7/lib-1.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7-lib-1.7.pom-gwJXH.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "74de884bb3fbd8fc19ee991f2ac93c2a4279bf2bd469a06d76176bbb8c55a7f9",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:14 GMT",
+      "X-CHECKSUM-SHA1" : "4206d6641dbcc229639b5916171bcf1374762457",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1250634647000",
+      "AGE" : "5272367",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "c0ee924f1b4e4d1b6da25430ed961928",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"c0ee924f1b4e4d1b6da25430ed961928\"",
+      "LAST-MODIFIED" : "Tue, 18 Aug 2009 22:30:47 GMT",
+      "X-SERVED-BY" : "cache-iad2125-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260175.819732,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "68c73ab3-6491-323d-bd6c-502d15a5aab9"
+}

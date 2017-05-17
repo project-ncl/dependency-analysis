@@ -1,0 +1,25 @@
+{
+  "id" : "c4d25939-9357-31a1-bb11-16c0ba4ba25c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-asm/3.0.6.RELEASE/spring-asm-3.0.6.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.6.RELEASE-spring-asm-3.0.6.RELEASE.pom-JafrY.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:22:05 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:05 GMT",
+      "ETAG" : "\"{SHA1{0a963306910c196874d37c5d458374b7a5163ed7}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:03:30 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c4d25939-9357-31a1-bb11-16c0ba4ba25c"
+}

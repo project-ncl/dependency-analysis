@@ -1,0 +1,25 @@
+{
+  "id" : "0d5e5e74-90e1-3527-8f44-bd3108c27d37",
+  "request" : {
+    "url" : "/api/group/DApublic/xml-apis/xml-apis/2.0.2/xml-apis-2.0.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.2-xml-apis-2.0.2.pom-fCXfk.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 09:42:53 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=346477", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:28:16 GMT",
+      "ETAG" : "\"{SHA1{bf2e4baaea312f54f2934c6eb9bbde0a2a4afb07}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:21:22 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0d5e5e74-90e1-3527-8f44-bd3108c27d37"
+}

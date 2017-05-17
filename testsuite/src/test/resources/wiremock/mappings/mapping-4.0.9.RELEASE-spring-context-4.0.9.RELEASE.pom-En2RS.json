@@ -1,0 +1,25 @@
+{
+  "id" : "0a1bba98-7e2e-3019-a4c6-cf2579749d35",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-context/4.0.9.RELEASE/spring-context-4.0.9.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.9.RELEASE-spring-context-4.0.9.RELEASE.pom-En2RS.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:12:57 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:57 GMT",
+      "ETAG" : "\"{SHA1{0fb79778e7409144fdd4cdcb675eda31b376179f}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:03:46 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0a1bba98-7e2e-3019-a4c6-cf2579749d35"
+}

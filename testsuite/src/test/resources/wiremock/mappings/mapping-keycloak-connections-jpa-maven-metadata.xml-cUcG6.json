@@ -1,0 +1,17 @@
+{
+  "id" : "0bf0a4b5-c43a-31ba-9b51-62f16add6a59",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-connections-jpa/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-connections-jpa-maven-metadata.xml-cUcG6.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:36 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0bf0a4b5-c43a-31ba-9b51-62f16add6a59"
+}

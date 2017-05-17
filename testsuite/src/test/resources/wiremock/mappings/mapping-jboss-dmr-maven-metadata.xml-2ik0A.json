@@ -1,0 +1,19 @@
+{
+  "id" : "b7e61b4d-dbe6-3555-aa87-5c5651c2f9ff",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/jboss-dmr/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-dmr-maven-metadata.xml-2ik0A.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:25:35 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:25:14 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b7e61b4d-dbe6-3555-aa87-5c5651c2f9ff"
+}

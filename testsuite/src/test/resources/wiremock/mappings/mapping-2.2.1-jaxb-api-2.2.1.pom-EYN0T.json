@@ -1,0 +1,30 @@
+{
+  "id" : "9595c2b8-d4f0-35bd-b46f-36638729e955",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/xml/bind/jaxb-api/2.2.1/jaxb-api-2.2.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.1-jaxb-api-2.2.1.pom-EYN0T.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "8a30e4af9f254963f19739ff4301bc47005386d2be9db462b02ef75497b46f8a",
+      "X-CHECKSUM-MD5" : "450c1401584400ff9159618ace3d2b27",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:31 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"450c1401584400ff9159618ace3d2b27\"",
+      "LAST-MODIFIED" : "Wed, 12 May 2010 14:22:28 GMT",
+      "X-CHECKSUM-SHA1" : "ba24a34a10f0ee5dfd909eb3cd3e1b3d5921a0dc",
+      "X-SERVED-BY" : "cache-iad2133-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260432.657829,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2866251",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9595c2b8-d4f0-35bd-b46f-36638729e955"
+}

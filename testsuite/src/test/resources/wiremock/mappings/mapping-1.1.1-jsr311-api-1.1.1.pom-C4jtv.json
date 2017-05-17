@@ -1,0 +1,25 @@
+{
+  "id" : "a7f29c1d-3e5d-3614-90b5-6344cba31f87",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.1-jsr311-api-1.1.1.pom-C4jtv.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 31 May 2017 00:04:28 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1929150", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:58 GMT",
+      "ETAG" : "\"{SHA1{a243a99ab8b7229423ff7ac83bf8f2c8737914e7}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:06 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a7f29c1d-3e5d-3614-90b5-6344cba31f87"
+}

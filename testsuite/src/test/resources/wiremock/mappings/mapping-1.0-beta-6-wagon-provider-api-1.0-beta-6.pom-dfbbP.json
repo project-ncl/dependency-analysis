@@ -1,0 +1,25 @@
+{
+  "id" : "79660a05-4a69-3802-a13d-edc888b38595",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-beta-6-wagon-provider-api-1.0-beta-6.pom-dfbbP.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 12:16:08 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 12:16:08 GMT",
+      "ETAG" : "\"{SHA1{5dfdc8e497311085c9a1d6a634320b553442d281}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:01:13 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "79660a05-4a69-3802-a13d-edc888b38595"
+}

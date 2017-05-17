@@ -1,0 +1,24 @@
+{
+  "id" : "935227bd-3ca8-313b-bed4-c6eab009b142",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/scm/maven-scm/1.9.4/maven-scm-1.9.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.4-maven-scm-1.9.4.pom-XbwDS.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 10:40:14 GMT",
+      "ETAG" : "\"{SHA1{e8b73cb0f9c4df7aad645172363824ccdd487e71}}\"",
+      "LAST-MODIFIED" : "Fri, 27 Mar 2015 17:06:38 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "935227bd-3ca8-313b-bed4-c6eab009b142"
+}

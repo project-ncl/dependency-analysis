@@ -1,0 +1,17 @@
+{
+  "id" : "cef5b9e2-c97b-34db-8ea1-b63642e03e7d",
+  "request" : {
+    "url" : "/api/group/test-DA/org/springframework/hateoas/spring-hateoas/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-spring-hateoas-maven-metadata.xml-O4GxX.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:50 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "cef5b9e2-c97b-34db-8ea1-b63642e03e7d"
+}

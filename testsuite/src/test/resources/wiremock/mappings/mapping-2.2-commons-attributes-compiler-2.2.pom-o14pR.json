@@ -1,0 +1,30 @@
+{
+  "id" : "b83d2512-0894-3982-8d4f-cfb4b85fdd35",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-attributes/commons-attributes-compiler/2.2/commons-attributes-compiler-2.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2-commons-attributes-compiler-2.2.pom-o14pR.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "e20120374faa55578647e05bf3117eb54fceb25d59f55370fe4d763b11efab34",
+      "X-CHECKSUM-MD5" : "5b3480339010fcda88bc50425dac93b3",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:54 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"5b3480339010fcda88bc50425dac93b3\"",
+      "LAST-MODIFIED" : "Thu, 16 Jun 2011  7:58:38 GMT",
+      "X-CHECKSUM-SHA1" : "bca7ccd75c7871842d9aa36d67f461d306f4dd58",
+      "X-SERVED-BY" : "cache-iad2132-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260694.041602,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1210268",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b83d2512-0894-3982-8d4f-cfb4b85fdd35"
+}

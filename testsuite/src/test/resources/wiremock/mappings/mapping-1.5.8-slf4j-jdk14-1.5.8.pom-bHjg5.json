@@ -1,0 +1,25 @@
+{
+  "id" : "8deb94c6-6068-303e-ad12-dca2cc8e016b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/slf4j/slf4j-jdk14/1.5.8/slf4j-jdk14-1.5.8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.8-slf4j-jdk14-1.5.8.pom-bHjg5.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:19:13 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591970", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:43 GMT",
+      "ETAG" : "\"{SHA1{f62d7583313918c68bb0d7745182f23cb5b5a163}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:32 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8deb94c6-6068-303e-ad12-dca2cc8e016b"
+}

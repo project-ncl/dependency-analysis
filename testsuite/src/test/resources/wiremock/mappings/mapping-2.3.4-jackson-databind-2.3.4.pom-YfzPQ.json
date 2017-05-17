@@ -1,0 +1,25 @@
+{
+  "id" : "cc6b7156-c86f-3d3a-b6cd-f20fa2db9e69",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-databind/2.3.4/jackson-databind-2.3.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.4-jackson-databind-2.3.4.pom-YfzPQ.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:11:42 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591973", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:09 GMT",
+      "ETAG" : "\"{SHA1{35f85ff2adbdaa320527b9e6157eb9cf07772a0f}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:20 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "cc6b7156-c86f-3d3a-b6cd-f20fa2db9e69"
+}

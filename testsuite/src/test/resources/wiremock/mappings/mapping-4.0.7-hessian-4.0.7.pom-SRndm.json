@@ -1,0 +1,30 @@
+{
+  "id" : "f9cc53ac-dd5b-3e0d-909a-429d6ef851f2",
+  "request" : {
+    "url" : "/api/group/DApublic/com/caucho/hessian/4.0.7/hessian-4.0.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.7-hessian-4.0.7.pom-SRndm.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f702ac056e1cd79d2175b70499772b686fb5095f0d5aa08d2edb5e137611b980",
+      "X-CHECKSUM-MD5" : "2cd8f1cb1f495a8b06b0c380f432425d",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:52 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"2cd8f1cb1f495a8b06b0c380f432425d\"",
+      "LAST-MODIFIED" : "Fri, 10 Sep 2010 20:01:26 GMT",
+      "X-CHECKSUM-SHA1" : "12c4d4f53f897bb6a2c08d9a8bb2484418eba6bb",
+      "X-SERVED-BY" : "cache-iad2140-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260153.985181,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1603218",
+      "X-CACHE-HITS" : "1, 17",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f9cc53ac-dd5b-3e0d-909a-429d6ef851f2"
+}

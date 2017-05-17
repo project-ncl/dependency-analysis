@@ -1,0 +1,25 @@
+{
+  "id" : "74535e41-1cb2-338d-8d5c-7fe16e05f7f8",
+  "request" : {
+    "url" : "/api/group/DApublic/antlr/antlr/2.7.2/antlr-2.7.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.7.2-antlr-2.7.2.pom-tI5qs.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 18:16:09 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2080485", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:24 GMT",
+      "ETAG" : "\"{SHA1{60b2b206af3df735765e8e284396bcfdbced5665}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:49:14 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "74535e41-1cb2-338d-8d5c-7fe16e05f7f8"
+}

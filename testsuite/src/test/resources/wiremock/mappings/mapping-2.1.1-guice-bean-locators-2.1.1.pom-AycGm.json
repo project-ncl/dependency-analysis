@@ -1,0 +1,24 @@
+{
+  "id" : "dc34463f-f856-393b-95c2-0a9a32df024c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-bean-locators/2.1.1/guice-bean-locators-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-guice-bean-locators-2.1.1.pom-AycGm.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:48:04 GMT",
+      "ETAG" : "\"{SHA1{f5634a697bff857b8ca97fd40a7abb29b4fb506b}}\"",
+      "LAST-MODIFIED" : "Fri, 11 Feb 2011 17:40:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "dc34463f-f856-393b-95c2-0a9a32df024c"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "2e8f6e33-07dd-3e20-88f9-1d99a32420f3",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jvnet/hudson/xstream/1.4.7-jenkins-1/xstream-1.4.7-jenkins-1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-1.4.7-jenkins-1-xstream-1.4.7-jenkins-1.pom-6RZM5.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:29:51 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2e8f6e33-07dd-3e20-88f9-1d99a32420f3"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "d8f306bf-4551-3613-8fa9-df2566ca427f",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/xmlgraphics/batik-bridge/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-batik-bridge-maven-metadata.xml-Senvh.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:27 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:06 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d8f306bf-4551-3613-8fa9-df2566ca427f"
+}

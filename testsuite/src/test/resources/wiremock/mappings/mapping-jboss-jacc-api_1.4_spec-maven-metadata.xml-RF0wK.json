@@ -1,0 +1,19 @@
+{
+  "id" : "08c36774-7424-35bc-9469-78c09e68920f",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/spec/javax/security/jacc/jboss-jacc-api_1.4_spec/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-jacc-api_1.4_spec-maven-metadata.xml-RF0wK.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:53 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:32 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "08c36774-7424-35bc-9469-78c09e68920f"
+}

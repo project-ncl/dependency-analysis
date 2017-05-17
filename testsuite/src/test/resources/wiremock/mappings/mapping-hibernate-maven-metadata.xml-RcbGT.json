@@ -1,0 +1,17 @@
+{
+  "id" : "bb3f8ca8-535b-3cb2-a9c6-f7512bd389b8",
+  "request" : {
+    "url" : "/api/group/test-DA/net/sf/hibernate/hibernate/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-hibernate-maven-metadata.xml-RcbGT.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:49 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "bb3f8ca8-535b-3cb2-a9c6-f7512bd389b8"
+}

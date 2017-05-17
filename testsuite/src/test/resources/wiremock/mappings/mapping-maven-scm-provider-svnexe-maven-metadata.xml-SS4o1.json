@@ -1,0 +1,19 @@
+{
+  "id" : "51dedec7-f05c-3c43-a732-8afa98956634",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/maven/scm/maven-scm-provider-svnexe/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-maven-scm-provider-svnexe-maven-metadata.xml-SS4o1.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:19:08 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:18:47 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "51dedec7-f05c-3c43-a732-8afa98956634"
+}

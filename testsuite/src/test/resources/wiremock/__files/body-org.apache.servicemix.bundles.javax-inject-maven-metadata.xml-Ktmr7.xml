@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.apache.servicemix.bundles</groupId>
+  <artifactId>org.apache.servicemix.bundles.javax-inject</artifactId>
+  <versioning>
+    <latest>1_2</latest>
+    <release>1_2</release>
+    <versions>
+      <version>1_1</version>
+      <version>1_2</version>
+    </versions>
+    <lastUpdated>20170420182334</lastUpdated>
+  </versioning>
+</metadata>

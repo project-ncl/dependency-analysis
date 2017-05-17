@@ -1,0 +1,31 @@
+{
+  "id" : "34d9a30e-f2c4-332e-b360-319b93b77be3",
+  "request" : {
+    "url" : "/api/group/DApublic/org/yaml/snakeyaml/1.6/snakeyaml-1.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6-snakeyaml-1.6.pom-3W7f8.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "5f495ddd568208a5cf7c57719155a10527b8982fff50ca8f055e7b2508160432",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:17 GMT",
+      "X-CHECKSUM-SHA1" : "6b776b4a055e60b2ee170bb435707f18e51d4b7b",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1268051683000",
+      "AGE" : "8310161",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "38ffb52702ba0f8689d203e831e79ace",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"38ffb52702ba0f8689d203e831e79ace\"",
+      "LAST-MODIFIED" : "Mon, 08 Mar 2010 12:34:43 GMT",
+      "X-SERVED-BY" : "cache-iad2125-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260477.353655,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "34d9a30e-f2c4-332e-b360-319b93b77be3"
+}

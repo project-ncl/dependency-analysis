@@ -1,0 +1,26 @@
+{
+  "id" : "ab0949a7-18cb-31f5-9f5c-80fde86c3540",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-beanutils/commons-beanutils/1.9.2/commons-beanutils-1.9.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.2-commons-beanutils-1.9.2.pom-lolhf.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 31 May 2017 19:56:18 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2000693", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:25 GMT",
+      "CONNECTION" : "close",
+      "ETAG" : "\"{SHA1{5748d82b6a32272a9df8607ed3753ffd00a05ceb}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ab0949a7-18cb-31f5-9f5c-80fde86c3540"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "14cd9d83-f8ad-3f2f-bf3f-7897bcb02d6c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/boms/web-commons-bom/17/web-commons-bom-17.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-17-web-commons-bom-17.pom-FzATv.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "3cbb25fcb7bf0c121f2e16f091b08522f8f0eee602f7a8cd01e65fb55dac029c",
+      "X-CHECKSUM-MD5" : "678862872032e15676fb7eed2a2375af",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:39 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"678862872032e15676fb7eed2a2375af\"",
+      "LAST-MODIFIED" : "Wed, 12 Aug 2015  2:39:55 GMT",
+      "X-CHECKSUM-SHA1" : "6f585751ffb669e707ed7f092ae1ed6a4f4e15df",
+      "X-SERVED-BY" : "cache-iad2141-IAD, cache-dfw1821-DFW",
+      "X-TIMER" : "S1494237579.248347,VS0,VE1",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1202336",
+      "X-CACHE-HITS" : "0, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "14cd9d83-f8ad-3f2f-bf3f-7897bcb02d6c"
+}

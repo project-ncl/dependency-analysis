@@ -1,0 +1,25 @@
+{
+  "id" : "43a0c041-1b4e-3bda-a6f6-04c054b4e63e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-bean/2.1.1/guice-bean-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-guice-bean-2.1.1.pom-LDOrg.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 09:42:06 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 09:42:06 GMT",
+      "ETAG" : "\"{SHA1{192b945ce3835c20862ec3bd7f10bf749b1ca02b}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:39 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "43a0c041-1b4e-3bda-a6f6-04c054b4e63e"
+}

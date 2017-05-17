@@ -1,0 +1,30 @@
+{
+  "id" : "d1eb29ea-6a0d-3460-87df-2ab38b67f445",
+  "request" : {
+    "url" : "/api/group/DApublic/com/github/jnr/jnr-posix/3.0.8/jnr-posix-3.0.8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.8-jnr-posix-3.0.8.pom-R6rzz.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "9e61ce82f9eb98e2a7b97d9fd547872a4cffc6d09bc999d9fc01020237d135c5",
+      "X-CHECKSUM-MD5" : "5d536b4ffc2eb020428781fac36fae34",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:13 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"5d536b4ffc2eb020428781fac36fae34\"",
+      "LAST-MODIFIED" : "Mon, 08 Dec 2014 20:45:50 GMT",
+      "X-CHECKSUM-SHA1" : "b7ff6630e91aa3c70b3e399f6d65cb065d252950",
+      "X-SERVED-BY" : "cache-iad2151-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260594.949689,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2132254",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d1eb29ea-6a0d-3460-87df-2ab38b67f445"
+}

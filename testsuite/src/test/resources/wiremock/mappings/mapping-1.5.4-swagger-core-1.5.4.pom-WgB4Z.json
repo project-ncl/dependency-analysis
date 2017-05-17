@@ -1,0 +1,24 @@
+{
+  "id" : "3d298156-0f0e-329c-a165-cc601dc08ead",
+  "request" : {
+    "url" : "/api/group/DApublic/io/swagger/swagger-core/1.5.4/swagger-core-1.5.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.4-swagger-core-1.5.4.pom-WgB4Z.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:21:35 GMT",
+      "ETAG" : "\"{SHA1{73ba4c517bff0bbc4bccc935faf60a21d77ea29e}}\"",
+      "LAST-MODIFIED" : "Mon, 19 Oct 2015 22:42:40 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "3d298156-0f0e-329c-a165-cc601dc08ead"
+}

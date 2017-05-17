@@ -1,0 +1,31 @@
+{
+  "id" : "397319bb-e9b5-3af9-8bd6-73ef663bf89c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-asm/3.0.7.RELEASE/spring-asm-3.0.7.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.7.RELEASE-spring-asm-3.0.7.RELEASE.pom-qhWoa.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "77c2186680522e72d88792025bd783c73627fef69e730c792be054e52f91b5b7",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:12 GMT",
+      "X-CHECKSUM-SHA1" : "e52343694f8d97d6e7a964ca9c3a93c55c597f02",
+      "X-AMZ-META-LAST-MODIFIED-EPOCH" : "1324683627000",
+      "AGE" : "5212537",
+      "X-CACHE-HITS" : "1, 1",
+      "X-CHECKSUM-MD5" : "665c91e12eca94a0615b5fa655ec08c7",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"665c91e12eca94a0615b5fa655ec08c7\"",
+      "LAST-MODIFIED" : "Fri, 23 Dec 2011 23:40:27 GMT",
+      "X-SERVED-BY" : "cache-iad2134-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260292.368039,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "397319bb-e9b5-3af9-8bd6-73ef663bf89c"
+}

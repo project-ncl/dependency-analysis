@@ -1,0 +1,30 @@
+{
+  "id" : "bd2c5ba3-9ffb-32df-afa2-82657f53b0a3",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/poi/poi-ooxml-schemas/3.7/poi-ooxml-schemas-3.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.7-poi-ooxml-schemas-3.7.pom-CBpaT.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "1781bb397efc5f38c6412428215c8e2881ab4deb09ad3c2e11397aebeb68e926",
+      "X-CHECKSUM-MD5" : "34c0a4bd6a656b0ed36e9d55513284ef",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:14 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"34c0a4bd6a656b0ed36e9d55513284ef\"",
+      "LAST-MODIFIED" : "Sun, 31 Oct 2010 10:15:28 GMT",
+      "X-CHECKSUM-SHA1" : "c1c13cbafde6e8b84dcdc019bfc3453a6d6eae11",
+      "X-SERVED-BY" : "cache-iad2134-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260535.825687,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2764845",
+      "X-CACHE-HITS" : "3439, 10",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "bd2c5ba3-9ffb-32df-afa2-82657f53b0a3"
+}

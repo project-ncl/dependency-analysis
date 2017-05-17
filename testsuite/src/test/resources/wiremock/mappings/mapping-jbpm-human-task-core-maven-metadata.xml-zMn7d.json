@@ -1,0 +1,19 @@
+{
+  "id" : "408b87b8-6711-35d8-87dc-5b9a60f8e7b4",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jbpm/jbpm-human-task-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jbpm-human-task-core-maven-metadata.xml-zMn7d.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:35 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:13 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "408b87b8-6711-35d8-87dc-5b9a60f8e7b4"
+}

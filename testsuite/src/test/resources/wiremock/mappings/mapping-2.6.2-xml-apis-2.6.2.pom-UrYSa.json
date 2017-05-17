@@ -1,0 +1,17 @@
+{
+  "id" : "ee9c218c-e3ee-3d9a-b34b-87e8f58a2cfc",
+  "request" : {
+    "url" : "/api/group/DApublic/xml-apis/xml-apis/2.6.2/xml-apis-2.6.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-2.6.2-xml-apis-2.6.2.pom-UrYSa.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:21 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ee9c218c-e3ee-3d9a-b34b-87e8f58a2cfc"
+}

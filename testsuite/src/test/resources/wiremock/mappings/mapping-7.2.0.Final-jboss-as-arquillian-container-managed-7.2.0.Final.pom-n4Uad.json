@@ -1,0 +1,25 @@
+{
+  "id" : "035c0c42-9909-3630-a02c-0041201d11d7",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/as/jboss-as-arquillian-container-managed/7.2.0.Final/jboss-as-arquillian-container-managed-7.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-7.2.0.Final-jboss-as-arquillian-container-managed-7.2.0.Final.pom-n4Uad.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 09:59:11 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:11 GMT",
+      "ETAG" : "\"{SHA1{b61f90f3078f7783bdd3f40ec224a5be9a3b6636}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:25:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "035c0c42-9909-3630-a02c-0041201d11d7"
+}

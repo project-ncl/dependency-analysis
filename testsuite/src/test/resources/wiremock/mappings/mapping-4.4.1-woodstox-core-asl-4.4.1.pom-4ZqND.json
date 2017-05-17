@@ -1,0 +1,25 @@
+{
+  "id" : "1548dd2c-1e88-3d4a-b267-17d7b11ff24a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/woodstox/woodstox-core-asl/4.4.1/woodstox-core-asl-4.4.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.4.1-woodstox-core-asl-4.4.1.pom-4ZqND.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:53:54 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1928311", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:23 GMT",
+      "ETAG" : "\"{SHA1{9be3e17ce3334b3a020691ac3efd08c9aa82f91d}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:32 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1548dd2c-1e88-3d4a-b267-17d7b11ff24a"
+}

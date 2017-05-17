@@ -1,0 +1,19 @@
+{
+  "id" : "ea53d2d1-1490-3433-84a9-a27b5202078f",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/geronimo/specs/geronimo-saaj_1.3_spec/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-geronimo-saaj_1.3_spec-maven-metadata.xml-NE2c6.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:20 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:59 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ea53d2d1-1490-3433-84a9-a27b5202078f"
+}

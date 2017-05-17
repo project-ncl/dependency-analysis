@@ -1,0 +1,17 @@
+{
+  "id" : "179e8c52-ecf7-3f5c-a26f-6614691da4fc",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jacoco/org.jacoco.core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-org.jacoco.core-maven-metadata.xml-TNogF.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:32 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "179e8c52-ecf7-3f5c-a26f-6614691da4fc"
+}

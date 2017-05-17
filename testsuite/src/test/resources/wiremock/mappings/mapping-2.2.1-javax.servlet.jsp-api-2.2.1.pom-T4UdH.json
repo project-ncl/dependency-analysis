@@ -1,0 +1,30 @@
+{
+  "id" : "ac1c7df1-c7cf-3737-b993-03f65c38f48a",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/servlet/jsp/javax.servlet.jsp-api/2.2.1/javax.servlet.jsp-api-2.2.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.1-javax.servlet.jsp-api-2.2.1.pom-T4UdH.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "770abccfb2b9ad72211367a6c39d6d41c2d66a0d7b37ff25713c4701e2b91955",
+      "X-CHECKSUM-MD5" : "bddfbeafc64121f420d4a7c6435e0efd",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:53 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"bddfbeafc64121f420d4a7c6435e0efd\"",
+      "LAST-MODIFIED" : "Wed, 20 Jul 2011 20:01:36 GMT",
+      "X-CHECKSUM-SHA1" : "c913a156b1a52f9704baa0f92f4d1d02b4ec0131",
+      "X-SERVED-BY" : "cache-iad2127-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260154.781560,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2156270",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ac1c7df1-c7cf-3737-b993-03f65c38f48a"
+}

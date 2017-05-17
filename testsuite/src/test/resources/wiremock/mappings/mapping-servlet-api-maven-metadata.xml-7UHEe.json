@@ -1,0 +1,19 @@
+{
+  "id" : "0b3b742e-3ce5-35da-924a-e3276f06a261",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/servlet/servlet-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-servlet-api-maven-metadata.xml-7UHEe.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:07 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:45 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0b3b742e-3ce5-35da-924a-e3276f06a261"
+}

@@ -1,0 +1,24 @@
+{
+  "id" : "192b2b51-b9d7-3b99-93c0-3ecfa285e6fc",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-core/0.9.1/galley-core-0.9.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.9.1-galley-core-0.9.1.pom-ELCgO.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:45:22 GMT",
+      "ETAG" : "\"{SHA1{9c2394f8466a417a79529bf846ce01d8f80e8a08}}\"",
+      "LAST-MODIFIED" : "Wed, 22 Jul 2015 16:41:17 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "192b2b51-b9d7-3b99-93c0-3ecfa285e6fc"
+}

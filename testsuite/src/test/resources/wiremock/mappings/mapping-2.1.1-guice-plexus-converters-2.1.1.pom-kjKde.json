@@ -1,0 +1,24 @@
+{
+  "id" : "22785f2e-e9fc-362c-8f6d-75a6d707bb7b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-converters/2.1.1/guice-plexus-converters-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-guice-plexus-converters-2.1.1.pom-kjKde.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:47:57 GMT",
+      "ETAG" : "\"{SHA1{e3be4bb155fd89b8d06ad4885cec8535c28c884e}}\"",
+      "LAST-MODIFIED" : "Fri, 11 Feb 2011 17:41:59 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "22785f2e-e9fc-362c-8f6d-75a6d707bb7b"
+}

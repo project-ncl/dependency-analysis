@@ -1,0 +1,24 @@
+{
+  "id" : "2ffb893f-12bb-3c47-9120-1585cce445c6",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-bean-containers/2.1.1/guice-bean-containers-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-guice-bean-containers-2.1.1.pom-rfF6p.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:47:52 GMT",
+      "ETAG" : "\"{SHA1{027a0ac4cd526dceb6b5ad37f2bab1667a0810c3}}\"",
+      "LAST-MODIFIED" : "Fri, 11 Feb 2011 17:41:00 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2ffb893f-12bb-3c47-9120-1585cce445c6"
+}

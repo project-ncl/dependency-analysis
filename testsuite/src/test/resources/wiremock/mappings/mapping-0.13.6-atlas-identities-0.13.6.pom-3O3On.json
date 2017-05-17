@@ -1,0 +1,24 @@
+{
+  "id" : "c259049f-b62b-34d5-8dc1-3e48bd02dcdb",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-identities/0.13.6/atlas-identities-0.13.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.13.6-atlas-identities-0.13.6.pom-3O3On.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:45:08 GMT",
+      "ETAG" : "\"{SHA1{c4a594b787f9ad901eac7fad9469e9288f3a7155}}\"",
+      "LAST-MODIFIED" : "Thu, 18 Sep 2014 22:05:17 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c259049f-b62b-34d5-8dc1-3e48bd02dcdb"
+}

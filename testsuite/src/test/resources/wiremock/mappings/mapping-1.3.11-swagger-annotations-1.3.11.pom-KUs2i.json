@@ -1,0 +1,25 @@
+{
+  "id" : "dd23b4e1-68bc-37bf-a4fc-5dbe47bbc2cd",
+  "request" : {
+    "url" : "/api/group/DApublic/com/wordnik/swagger-annotations/1.3.11/swagger-annotations-1.3.11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.11-swagger-annotations-1.3.11.pom-KUs2i.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 12:14:15 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:14:15 GMT",
+      "ETAG" : "\"{SHA1{20e866e7adcf8fa31d0b13e8b31fceb7e4715182}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:29:33 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "dd23b4e1-68bc-37bf-a4fc-5dbe47bbc2cd"
+}

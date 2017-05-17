@@ -1,0 +1,30 @@
+{
+  "id" : "ba6cf8d0-62a4-3922-9ce4-2698295e0a87",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/tiles/tiles-freemarker/2.2.2/tiles-freemarker-2.2.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.2-tiles-freemarker-2.2.2.pom-NEhxM.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "a8e109b4ac705b0a69270f99625b3ff7861b5b3a5c7cdc292d83c14535603b1b",
+      "X-CHECKSUM-MD5" : "b15190e76a4758893f0eb1bdfb40bbc5",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:46 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"b15190e76a4758893f0eb1bdfb40bbc5\"",
+      "LAST-MODIFIED" : "Tue, 15 Jun 2010 19:50:55 GMT",
+      "X-CHECKSUM-SHA1" : "6094b1c1d285c93762f1f6d92835722078a33944",
+      "X-SERVED-BY" : "cache-iad2142-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260387.858697,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1559899",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ba6cf8d0-62a4-3922-9ce4-2698295e0a87"
+}

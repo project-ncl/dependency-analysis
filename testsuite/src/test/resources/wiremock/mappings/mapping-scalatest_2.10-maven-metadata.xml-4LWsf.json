@@ -1,0 +1,17 @@
+{
+  "id" : "8c35cf58-1dce-39a1-b5b8-6e80b6acb2a8",
+  "request" : {
+    "url" : "/api/group/test-DA/org/scalatest/scalatest_2.10/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-scalatest_2.10-maven-metadata.xml-4LWsf.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:04 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8c35cf58-1dce-39a1-b5b8-6e80b6acb2a8"
+}

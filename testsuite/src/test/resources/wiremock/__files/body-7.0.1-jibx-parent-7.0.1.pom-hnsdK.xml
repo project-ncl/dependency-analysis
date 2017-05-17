@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- NOTE: Before you release, make sure you change your ~/.m2/settings.xml file. See jibx/setup.txt -->
+
+  <parent>
+    <artifactId>oss-parent</artifactId>
+    <groupId>org.sonatype.oss</groupId>
+    <version>7</version>
+  </parent>
+
+  <groupId>org.jibx.config</groupId>
+  <artifactId>jibx-parent</artifactId>
+  <version>7.0.1</version>
+
+  <packaging>pom</packaging>
+  <name>jibx-parent - JiBX parent project</name>
+  <description>JiBX parent shared settings</description>
+  
+  <url>http://www.jibx.org</url>
+
+  <organization>
+    <name>jibx.org</name>
+    <url>http://www.jibx.org</url>
+  </organization>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <releaseRepository>http://oss.sonatype.org/service/local/staging/deploy/maven2</releaseRepository>
+    <snapshotRepository>http://oss.sonatype.org/content/repositories/snapshots</snapshotRepository>
+    <publicRepository>http://oss.sonatype.org/content/groups/public</publicRepository>
+    <stagingRepository>http://oss.sonatype.org/content/groups/staging</stagingRepository>
+    <publicReleaseRepository>http://repo.maven.apache.org/maven2</publicReleaseRepository>
+
+    <projectName>jibx</projectName>	<!-- Default -->
+    <remoteOBRName>${projectName}-repository-${project.version}.xml</remoteOBRName>
+    <!-- remoteOBRName>NONE</remoteOBRName -->   <!-- Set to NONE if not used -->
+    <obrDeploy>local-file::default::file:///${workspace}/bin/obr/repository</obrDeploy>
+    <!-- obrDeploy>sonatype-nexus-staging::obr::http://repository.jbundle.org:8081/nexus/content/repositories/repository</obrDeploy --> <!-- Remote -->
+
+    <workspace>${jibx-root}</workspace>	<!-- This value (The location of the root jibx directory) is in settings.xml -->
+    <jibx-version>1.2.5</jibx-version>
+    <jibx-schema-version>1.0.9</jibx-schema-version>
+    <jibx-plugin-version>1.2.5</jibx-plugin-version>
+    <jibx-build-plugin-version>1.2.4</jibx-build-plugin-version>    <!-- TODO(don) Plugin version to use in jibx builds (initially can't be current version) -->
+
+    <joda-time-version>2.1</joda-time-version>
+    <cxf-version>2.7.3</cxf-version>
+    <geronimo-ws-metadata.version>1.1.3</geronimo-ws-metadata.version>	<!-- Same as in org.apache.servicemix/features/${cxf-version} -->
+
+    <!-- Location of jars from ant projects -->
+    <jibxRootDir>${workspace}</jibxRootDir>
+    <jibxLibDir>${jibxRootDir}/core/lib</jibxLibDir>
+    <coreSourceDir>${jibxRootDir}/core/build/src</coreSourceDir>
+    <extrasSourceDir>${jibxRootDir}/core/build/extras</extrasSourceDir>
+    <runBaseDir>${jibxRootDir}/main/jibx-run</runBaseDir>
+    <extrasBaseDir>${jibxRootDir}/main/jibx-extras</extrasBaseDir>
+    <bindBaseDir>${jibxRootDir}/main/jibx-bind</bindBaseDir>
+    <schemaBaseDir>${jibxRootDir}/main/jibx-schema</schemaBaseDir>
+    <toolsBaseDir>${jibxRootDir}/main/jibx-tools</toolsBaseDir>
+  </properties>
+
+  <profiles>
+    <profile> 
+      <id>sonatype-oss-release</id>
+      <properties>
+        <releaseRepository>http://oss.sonatype.org/service/local/staging/deploy/maven2</releaseRepository>
+        <snapshotRepository>http://oss.sonatype.org/content/repositories/snapshots</snapshotRepository>
+        <publicRepository>http://oss.sonatype.org/content/groups/public</publicRepository>
+        <stagingRepository>http://oss.sonatype.org/content/groups/staging</stagingRepository>
+        <publicReleaseRepository>http://repo.maven.apache.org/maven2</publicReleaseRepository>
+      </properties>
+    </profile>
+  </profiles>
+  
+  <developers>
+    <developer>
+      <name>Dennis Sosnoski</name>
+      <email>dms@sosnoski.com</email>
+      <url>http://www.sosnoski.co.nz</url>
+      <timezone>+13</timezone>
+    </developer>
+  </developers>
+  <contributors>
+      <contributor>
+	      <name>Dennis Sosnoski</name> <!-- So Dennis shows up on sub-projects where developer is overriden -->
+	      <email>dms@sosnoski.com</email>
+	      <url>http://www.sosnoski.co.nz</url>
+	      <timezone>+13</timezone>
+      </contributor>
+      <contributor>
+          <name>Nigel Charman</name>
+          <email>nigel.charman.nz@gmail.com</email>
+          <timezone>+13</timezone>
+      </contributor>
+      <contributor>
+          <name>Andreas Brenk</name>
+          <email>mail@andreasbrenk.com</email>
+          <url>http://andreasbrenk.com/</url>
+          <timezone>+01</timezone>
+      </contributor>
+      <contributor>
+          <name>Frank Mena</name>
+          <email>frankm.os@gmail.com</email>
+          <timezone>-08</timezone>
+      </contributor>
+      <contributor>
+          <name>Jerome Bernard</name>
+          <email>jerome.bernard@gmail.com</email>
+          <timezone>+1</timezone>
+      </contributor>
+      <contributor>
+          <name>Don Corley</name>
+          <email>don@tourgeek.com</email>
+          <url>http://www.tourgeek.com/</url>
+          <timezone>-8</timezone>
+      </contributor>
+  </contributors>
+  <inceptionYear>2005</inceptionYear>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.jibx</groupId>
+          <artifactId>maven-jibx-plugin</artifactId>
+          <version>${jibx-plugin-version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.jibx</groupId>
+          <artifactId>jibx-maven-plugin</artifactId>
+          <version>${jibx-plugin-version}</version>
+        </plugin>
+        <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-resources-plugin</artifactId>
+		    <version>2.4.3</version>
+        </plugin>
+        <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-compiler-plugin</artifactId>
+		    <version>2.3.2</version>
+		    <configuration>
+		        <source>1.5</source>
+		        <target>1.5</target>
+		    </configuration>
+        </plugin>
+        <plugin>
+		    <groupId>org.codehaus.mojo</groupId>
+		    <artifactId>xml-maven-plugin</artifactId>
+		    <version>1.0</version>
+        </plugin>
+        <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-jar-plugin</artifactId>
+	        <version>2.3.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <extensions> 
+      <extension> 
+        <groupId>org.apache.maven.wagon</groupId> 
+         <artifactId>wagon-ssh</artifactId> 
+         <version>1.0-beta-7</version> 
+      </extension> 
+    </extensions> 
+
+    <plugins>
+      <plugin>
+        <inherited>true</inherited>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>  <!-- Need to check with Dennis on this -->
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <prefixUrl>${publicReleaseRepository}</prefixUrl>
+          <remoteOBR>${remoteOBRName}</remoteOBR> <!-- The filename of the remote obj (NONE if not used) -->
+          <obrDeploymentRepository>${obrDeploy}</obrDeploymentRepository>   <!-- The location to deploy obr xml file -->
+          <instructions>
+            <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+            <Bundle-Version>${project.version}</Bundle-Version> <!-- Just being careful -->
+            <Export-Package>${project.artifactId}.*;version=${project.version}</Export-Package>    <!-- Override jibxPackage or jibxPackageExport with actual packages -->
+            <Import-Package>*;resolution:=optional</Import-Package>    <!-- Since I want these to be optional -->
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <scm>
+    <url>https://github.com/jibx/jibx-parent</url>
+    <connection>scm:git:git://github.com/jibx/jibx-parent.git</connection>
+    <developerConnection>scm:git:git@github.com:jibx/jibx-parent.git</developerConnection>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>BSD</name>
+      <url>http://jibx.sourceforge.net/jibx-license.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <issueManagement>
+    <system>jira</system>
+    <url>http://jira.codehaus.org/browse/JIBX</url>
+  </issueManagement>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <!-- TODO Should move this to a dependency POM and do an import (only works after maven 2.0.9) -->
+  <dependencyManagement>
+    <dependencies>
+    <dependency>
+      <groupId>org.jibx</groupId>
+      <artifactId>jibx-run</artifactId>
+      <version>${jibx-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jibx</groupId>
+      <artifactId>jibx-extras</artifactId>
+      <version>${jibx-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jibx</groupId>
+      <artifactId>jibx-bind</artifactId>
+      <version>${jibx-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jibx</groupId>
+      <artifactId>jibx-schema</artifactId>
+      <version>${jibx-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jibx</groupId>
+      <artifactId>jibx-tools</artifactId>
+      <version>${jibx-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>4.2.0</version>
+    </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.11</version>
+      </dependency>
+    <dependency>
+      <groupId>bcel</groupId>
+      <artifactId>bcel</artifactId>
+      <version>5.1</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+    <dependency>
+       <groupId>com.thoughtworks.qdox</groupId>
+       <artifactId>qdox</artifactId>
+       <version>1.12.1</version>
+    </dependency>
+    <dependency>
+       <groupId>dom4j</groupId>
+       <artifactId>dom4j</artifactId>
+       <version>1.6.1</version>
+       <scope>compile</scope>
+    </dependency>
+    <dependency>
+       <groupId>org.jdom</groupId>
+       <artifactId>jdom</artifactId>
+       <version>1.1.3</version>
+       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>${joda-time-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>xpp3</groupId>
+      <artifactId>xpp3</artifactId>
+      <version>1.1.3.4.O</version>
+    </dependency>
+
+    <!-- jibxws dependencies -->    
+    <dependency> 
+      <groupId>commons-logging</groupId> 
+      <artifactId>commons-logging</artifactId> 
+      <version>1.1.1</version> 
+    </dependency>
+    <dependency> 
+      <groupId>javax.servlet</groupId> 
+      <artifactId>servlet-api</artifactId> 
+      <version>2.5</version> 
+    </dependency> 
+    <dependency>
+      <groupId>xmlunit</groupId> 
+      <artifactId>xmlunit</artifactId> 
+      <version>1.3</version> 
+    </dependency> 
+    <dependency> 
+      <groupId>org.springframework</groupId> 
+      <artifactId>spring-webmvc</artifactId> 
+      <version>3.0.6.RELEASE</version> 
+    </dependency> 
+    <dependency> 
+      <groupId>org.springframework</groupId> 
+      <artifactId>spring-aop</artifactId> 
+      <version>3.0.6.RELEASE</version> 
+    </dependency> 
+    <dependency> 
+      <groupId>cglib</groupId> 
+      <artifactId>cglib</artifactId> 
+      <version>2.2.2</version> 
+    </dependency> 
+    </dependencies>
+  </dependencyManagement>
+  
+</project>

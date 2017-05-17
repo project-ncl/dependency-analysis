@@ -1,0 +1,17 @@
+{
+  "id" : "05a806fd-cdbb-3b4e-824d-f1f95b60127e",
+  "request" : {
+    "url" : "/api/group/test-DA/org/springframework/plugin/spring-plugin-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-spring-plugin-core-maven-metadata.xml-TvQdb.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:50 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "05a806fd-cdbb-3b4e-824d-f1f95b60127e"
+}

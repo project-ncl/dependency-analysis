@@ -1,0 +1,25 @@
+{
+  "id" : "1ac0bae3-139e-3dcb-ab9c-97b44d6dd83c",
+  "request" : {
+    "url" : "/api/group/DApublic/com/lowagie/itext/2.1.7/itext-2.1.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.7-itext-2.1.7.pom-7sZr9.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:15:13 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591942", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:11 GMT",
+      "ETAG" : "\"{SHA1{6a7b0cdb8000f1d85414777e9100547ad01d8560}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:57:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1ac0bae3-139e-3dcb-ab9c-97b44d6dd83c"
+}

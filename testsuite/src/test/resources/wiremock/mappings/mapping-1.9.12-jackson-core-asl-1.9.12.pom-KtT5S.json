@@ -1,0 +1,25 @@
+{
+  "id" : "a6e5ed0b-5829-3d7b-8173-bfc51b9eec42",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/jackson/jackson-core-asl/1.9.12/jackson-core-asl-1.9.12.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.12-jackson-core-asl-1.9.12.pom-KtT5S.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 08:20:43 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2058089", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 18 Apr 2017 12:39:14 GMT",
+      "ETAG" : "\"{SHA1{eb91d978af186e8b596556e211c34e2f578f926d}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:00 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a6e5ed0b-5829-3d7b-8173-bfc51b9eec42"
+}

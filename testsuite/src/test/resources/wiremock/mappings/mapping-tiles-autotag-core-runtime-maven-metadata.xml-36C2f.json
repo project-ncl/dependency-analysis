@@ -1,0 +1,17 @@
+{
+  "id" : "3ca3b85a-27ee-3bee-ab88-ad2b3afb214d",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/tiles/tiles-autotag-core-runtime/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-tiles-autotag-core-runtime-maven-metadata.xml-36C2f.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:48 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3ca3b85a-27ee-3bee-ab88-ad2b3afb214d"
+}

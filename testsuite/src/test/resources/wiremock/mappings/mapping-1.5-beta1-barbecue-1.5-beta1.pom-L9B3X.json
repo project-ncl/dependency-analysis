@@ -1,0 +1,30 @@
+{
+  "id" : "36a2c269-f564-3c69-b72f-d614aea58b4d",
+  "request" : {
+    "url" : "/api/group/DApublic/net/sourceforge/barbecue/barbecue/1.5-beta1/barbecue-1.5-beta1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5-beta1-barbecue-1.5-beta1.pom-L9B3X.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "90ace1ccc9777bf4a6037ed112cb0461606b798ec4a831fe4a0603321fa471fa",
+      "X-CHECKSUM-MD5" : "9ec37eb09e19690cc437c0b377b59dd0",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:20 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"9ec37eb09e19690cc437c0b377b59dd0\"",
+      "LAST-MODIFIED" : "Wed, 08 Jul 2009 22:57:39 GMT",
+      "X-CHECKSUM-SHA1" : "e48845989b9d37b90ca7fb1b3f2b7fc31ca4ffca",
+      "X-SERVED-BY" : "cache-iad2134-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260360.478444,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2163446",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "36a2c269-f564-3c69-b72f-d614aea58b4d"
+}

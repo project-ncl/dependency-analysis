@@ -1,0 +1,24 @@
+{
+  "id" : "d8f0d3fa-731b-3dcf-9d2c-45f370bd450f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/neo4j/neo4j-jmx/1.9.6/neo4j-jmx-1.9.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.6-neo4j-jmx-1.9.6.pom-m0XKN.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:19:02 GMT",
+      "ETAG" : "\"{SHA1{1ef9dfeead54d83172cf95a7eaf7bb00163c6f70}}\"",
+      "LAST-MODIFIED" : "Fri, 31 Jan 2014 13:48:54 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d8f0d3fa-731b-3dcf-9d2c-45f370bd450f"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "29fecc59-ceef-312c-a1e1-956a66a7e10c",
+  "request" : {
+    "url" : "/api/group/test-DA/net/java/dev/jna/jna/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jna-maven-metadata.xml-jyP4c.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:11 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:49 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "29fecc59-ceef-312c-a1e1-956a66a7e10c"
+}

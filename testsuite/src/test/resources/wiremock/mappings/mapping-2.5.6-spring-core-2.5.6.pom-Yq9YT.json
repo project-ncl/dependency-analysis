@@ -1,0 +1,25 @@
+{
+  "id" : "210a7012-605d-3da7-8725-2041bd8425b5",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-core/2.5.6/spring-core-2.5.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5.6-spring-core-2.5.6.pom-Yq9YT.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:23:39 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591975", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:04 GMT",
+      "ETAG" : "\"{SHA1{4584af961234a191b07b90efbd71c2e717681ed6}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:03:48 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "210a7012-605d-3da7-8725-2041bd8425b5"
+}

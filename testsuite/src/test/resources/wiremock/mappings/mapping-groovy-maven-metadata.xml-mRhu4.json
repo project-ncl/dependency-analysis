@@ -1,0 +1,19 @@
+{
+  "id" : "9fa35982-b51a-39f4-b4c0-4af012b30830",
+  "request" : {
+    "url" : "/api/group/test-DA/org/codehaus/groovy/groovy/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-groovy-maven-metadata.xml-mRhu4.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:32:28 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:32:28 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9fa35982-b51a-39f4-b4c0-4af012b30830"
+}

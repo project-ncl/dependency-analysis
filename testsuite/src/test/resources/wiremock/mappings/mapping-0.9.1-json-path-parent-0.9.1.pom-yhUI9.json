@@ -1,0 +1,30 @@
+{
+  "id" : "1e78c1bd-e803-3f1a-b9ec-df5c09f88217",
+  "request" : {
+    "url" : "/api/group/DApublic/com/jayway/jsonpath/json-path-parent/0.9.1/json-path-parent-0.9.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.9.1-json-path-parent-0.9.1.pom-yhUI9.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "42a17e46a2972ffa3abccc8584cdd309720c3853be7376f50981bdefb2ece1bb",
+      "X-CHECKSUM-MD5" : "ad966ed5235ef5cb6de0c269633ff24e",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:23 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ad966ed5235ef5cb6de0c269633ff24e\"",
+      "LAST-MODIFIED" : "Thu, 24 Oct 2013 18:05:05 GMT",
+      "X-CHECKSUM-SHA1" : "f80ffd0ea763ed365bdb05360b9ef514f37336b5",
+      "X-SERVED-BY" : "cache-iad2129-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260184.699882,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2179180",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "1e78c1bd-e803-3f1a-b9ec-df5c09f88217"
+}

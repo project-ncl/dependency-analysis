@@ -1,0 +1,30 @@
+{
+  "id" : "5ff2504c-d350-3be2-8ad8-147db60a811a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-cdi-embedder/0.10.2/galley-cdi-embedder-0.10.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.10.2-galley-cdi-embedder-0.10.2.pom-O4Gl5.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "b0af251c960cd71859d90ed612dd4ecf6951501a6c3c3908c3834b07d36e31d2",
+      "X-CHECKSUM-MD5" : "1b58c550c64d4d90f2e67ea4a350be36",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 06 Mar 2017 19:18:21 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"1b58c550c64d4d90f2e67ea4a350be36\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 15:32:27 GMT",
+      "X-CHECKSUM-SHA1" : "afe691d15fbc02eb35128e6737f879c75ab7cc2e",
+      "X-SERVED-BY" : "cache-iad2146-IAD, cache-atl6220-ATL",
+      "X-TIMER" : "S1488827901.423372,VS0,VE0",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "3985187",
+      "X-CACHE-HITS" : "0, 1",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5ff2504c-d350-3be2-8ad8-147db60a811a"
+}

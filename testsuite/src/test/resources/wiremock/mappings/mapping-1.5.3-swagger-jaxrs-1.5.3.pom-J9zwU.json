@@ -1,0 +1,25 @@
+{
+  "id" : "dddc02ff-7af4-3cda-b104-7db62cb26b98",
+  "request" : {
+    "url" : "/api/group/DApublic/io/swagger/swagger-jaxrs/1.5.3/swagger-jaxrs-1.5.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.3-swagger-jaxrs-1.5.3.pom-J9zwU.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:10:59 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591972", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:27 GMT",
+      "ETAG" : "\"{SHA1{954eb371b0c86f732af3a21d02a31816b5f01d1d}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:48:52 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "dddc02ff-7af4-3cda-b104-7db62cb26b98"
+}

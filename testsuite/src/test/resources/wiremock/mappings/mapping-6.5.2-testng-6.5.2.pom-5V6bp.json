@@ -1,0 +1,30 @@
+{
+  "id" : "7d4e2719-8eb5-3224-92e8-74b548a3326d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/testng/testng/6.5.2/testng-6.5.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.5.2-testng-6.5.2.pom-5V6bp.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "14b8eb146b19f33e3890bbc4d3de77198a1dd72e1b5c0241f460ee520ece5e38",
+      "X-CHECKSUM-MD5" : "6b834be65fca69042ab975b7b3c0b1fd",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:57 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"6b834be65fca69042ab975b7b3c0b1fd\"",
+      "LAST-MODIFIED" : "Fri, 20 Apr 2012  7:20:37 GMT",
+      "X-CHECKSUM-SHA1" : "4a054df52f15c752fb33a21d5d71ee0c729963a6",
+      "X-SERVED-BY" : "cache-iad2132-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260278.852728,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2164409",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7d4e2719-8eb5-3224-92e8-74b548a3326d"
+}

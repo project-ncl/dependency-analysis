@@ -1,0 +1,25 @@
+{
+  "id" : "1d020f56-5e06-3e77-9738-17afed0e37b1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus/3.3.2/plexus-3.3.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.3.2-plexus-3.3.2.pom-wp0ao.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:45:03 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1928001", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:42 GMT",
+      "ETAG" : "\"{SHA1{7ba5dd42cae4e80cf4d34ecff014dbf34df26b59}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:30 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1d020f56-5e06-3e77-9738-17afed0e37b1"
+}

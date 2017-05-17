@@ -1,0 +1,30 @@
+{
+  "id" : "b16db797-f378-30c1-9d95-7b5f7a0fb94e",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-parent/0.15.2/atlas-parent-0.15.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.2-atlas-parent-0.15.2.pom-GjlSq.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "dda6372afdec163abd249d8a0e52080b4d9ff7de90d75d25142ae031d284b8cd",
+      "X-CHECKSUM-MD5" : "39adcb4ecb49f90c92f6d9113fd556a0",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:00 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"39adcb4ecb49f90c92f6d9113fd556a0\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 15:40:22 GMT",
+      "X-CHECKSUM-SHA1" : "ed0a8b6254b433ebfe7e2234ff711a79c1bc43fc",
+      "X-SERVED-BY" : "cache-iad2120-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494260041.657646,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "311312",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b16db797-f378-30c1-9d95-7b5f7a0fb94e"
+}

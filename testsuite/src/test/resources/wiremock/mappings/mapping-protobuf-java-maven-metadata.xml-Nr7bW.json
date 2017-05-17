@@ -1,0 +1,19 @@
+{
+  "id" : "1ceb4e23-5cc4-3172-8e83-fb61d7f85727",
+  "request" : {
+    "url" : "/api/group/test-DA/com/google/protobuf/protobuf-java/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-protobuf-java-maven-metadata.xml-Nr7bW.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:34 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:13 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "1ceb4e23-5cc4-3172-8e83-fb61d7f85727"
+}

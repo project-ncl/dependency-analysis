@@ -1,0 +1,30 @@
+{
+  "id" : "741cf4da-18dd-3720-9831-1e68458ff868",
+  "request" : {
+    "url" : "/api/group/DApublic/com/mysema/querydsl/querydsl-spatial/3.6.2/querydsl-spatial-3.6.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.6.2-querydsl-spatial-3.6.2.pom-7Ypup.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "a1e624e92a566a000aa457cf07a9f85984eab8cb49f3b9ea73f0ec723d1a2f10",
+      "X-CHECKSUM-MD5" : "065c856b3caf9f64899f1de1ca197ac3",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:40 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"065c856b3caf9f64899f1de1ca197ac3\"",
+      "LAST-MODIFIED" : "Sat, 28 Feb 2015 16:38:08 GMT",
+      "X-CHECKSUM-SHA1" : "5d38a1a5ca84b3aef8720ed9edea50e190ac332c",
+      "X-SERVED-BY" : "cache-iad2126-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260441.792491,VS0,VE87",
+      "X-CACHE" : "MISS, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "0, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "741cf4da-18dd-3720-9831-1e68458ff868"
+}

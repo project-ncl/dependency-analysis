@@ -1,0 +1,25 @@
+{
+  "id" : "91a90994-1688-3f38-8ad1-a45527afb9cb",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-jxpath/commons-jxpath/1.3/commons-jxpath-1.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3-commons-jxpath-1.3.pom-zFHnU.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 16 May 2017 15:30:58 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2434903", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 18 Apr 2017 11:09:15 GMT",
+      "ETAG" : "\"{SHA1{5e055fca16d713557023ff042f49eb365938c683}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:15 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "91a90994-1688-3f38-8ad1-a45527afb9cb"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "58c6ef7d-a935-37cf-840c-f091820712ce",
+  "request" : {
+    "url" : "/api/group/DApublic/jaxen/jaxen/1.0-FCS/jaxen-1.0-FCS.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-FCS-jaxen-1.0-FCS.pom-qWK5z.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "ce52930a4c4b308c97582ab60bf27194e9a6421414373c5a2213facb5e2d7d06",
+      "X-CHECKSUM-MD5" : "a55b10165f56c568df2ee42e27103d08",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:21 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a55b10165f56c568df2ee42e27103d08\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:11:58 GMT",
+      "X-CHECKSUM-SHA1" : "a73d557d1c900f5c131fec784300799a1c66503e",
+      "X-SERVED-BY" : "cache-iad2130-IAD, cache-dfw1826-DFW",
+      "X-TIMER" : "S1494235822.592633,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5176626",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "58c6ef7d-a935-37cf-840c-f091820712ce"
+}

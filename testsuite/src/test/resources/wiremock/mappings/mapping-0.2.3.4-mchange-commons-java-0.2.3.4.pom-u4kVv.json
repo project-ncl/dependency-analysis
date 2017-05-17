@@ -1,0 +1,25 @@
+{
+  "id" : "59ee4966-884a-3315-829f-f9d46a836e5b",
+  "request" : {
+    "url" : "/api/group/DApublic/com/mchange/mchange-commons-java/0.2.3.4/mchange-commons-java-0.2.3.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.2.3.4-mchange-commons-java-0.2.3.4.pom-u4kVv.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:23:20 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:20 GMT",
+      "ETAG" : "\"{SHA1{d21e51f7221c6efd03756a3c88f740c99b044c38}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:20:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "59ee4966-884a-3315-829f-f9d46a836e5b"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "e1fcbcf7-389d-32e3-81b8-9f36a1f413c8",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/persistence/eclipselink/2.6.0-RC1/eclipselink-2.6.0-RC1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.6.0-RC1-eclipselink-2.6.0-RC1.pom-ww6ea.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d9311fcf649be87435fe9410e009ca4588a1a9fc39f3702cfb310b1500abf581",
+      "X-CHECKSUM-MD5" : "94dfd5e78363ada9624c02f84a29d572",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:27 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"94dfd5e78363ada9624c02f84a29d572\"",
+      "LAST-MODIFIED" : "Tue, 10 Feb 2015  9:38:08 GMT",
+      "X-CHECKSUM-SHA1" : "c7206a89254b48cc82ec2f875481d4d1a279511c",
+      "X-SERVED-BY" : "cache-iad2124-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260247.053495,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e1fcbcf7-389d-32e3-81b8-9f36a1f413c8"
+}

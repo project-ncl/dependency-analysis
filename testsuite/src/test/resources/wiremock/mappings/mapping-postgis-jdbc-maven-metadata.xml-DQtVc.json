@@ -1,0 +1,17 @@
+{
+  "id" : "193ce4e2-6f7c-316d-a5f8-ee49953a03f0",
+  "request" : {
+    "url" : "/api/group/test-DA/org/postgis/postgis-jdbc/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-postgis-jdbc-maven-metadata.xml-DQtVc.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:53 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "193ce4e2-6f7c-316d-a5f8-ee49953a03f0"
+}

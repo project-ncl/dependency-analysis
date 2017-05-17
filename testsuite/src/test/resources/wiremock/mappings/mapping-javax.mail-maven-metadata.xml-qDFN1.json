@@ -1,0 +1,19 @@
+{
+  "id" : "eccfc2ca-97c9-39b0-802e-da93c202f7bd",
+  "request" : {
+    "url" : "/api/group/test-DA/com/sun/mail/javax.mail/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-javax.mail-maven-metadata.xml-qDFN1.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 18:19:05 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 18:19:05 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "eccfc2ca-97c9-39b0-802e-da93c202f7bd"
+}

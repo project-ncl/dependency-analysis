@@ -1,0 +1,30 @@
+{
+  "id" : "8404e398-fcf2-32c2-8c20-a03c1bcf7221",
+  "request" : {
+    "url" : "/api/group/DApublic/net/sf/barcode4j/barcode4j/2.1/barcode4j-2.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1-barcode4j-2.1.pom-cJFmZ.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "8fd09a351d31499a698c8e7a432677b78b9a62ee8e7d87f91ea244f28eb9bc86",
+      "X-CHECKSUM-MD5" : "2abe0a1b39ae9e1e95dfe46616c4971a",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:09 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"2abe0a1b39ae9e1e95dfe46616c4971a\"",
+      "LAST-MODIFIED" : "Wed, 25 Jul 2012  7:44:13 GMT",
+      "X-CHECKSUM-SHA1" : "720e07a3be314a241955cbb07667b9a72fc0296d",
+      "X-SERVED-BY" : "cache-iad2142-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260349.114842,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2422953",
+      "X-CACHE-HITS" : "2, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "8404e398-fcf2-32c2-8c20-a03c1bcf7221"
+}

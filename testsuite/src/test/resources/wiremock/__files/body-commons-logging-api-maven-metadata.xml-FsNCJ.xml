@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>commons-logging</groupId>
+  <artifactId>commons-logging-api</artifactId>
+  <versioning>
+    <latest>99.0-does-not-exist</latest>
+    <release>99.0-does-not-exist</release>
+    <versions>
+      <version>1.0.4</version>
+      <version>1.1</version>
+      <version>99.0-does-not-exist</version>
+    </versions>
+    <lastUpdated>20170320175519</lastUpdated>
+  </versioning>
+</metadata>

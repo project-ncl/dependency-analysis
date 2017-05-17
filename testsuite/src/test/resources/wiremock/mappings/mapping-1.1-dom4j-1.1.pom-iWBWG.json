@@ -1,0 +1,25 @@
+{
+  "id" : "875c0d9b-ca6b-3db5-8bf4-fa0444e6b390",
+  "request" : {
+    "url" : "/api/group/DApublic/dom4j/dom4j/1.1/dom4j-1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-dom4j-1.1.pom-iWBWG.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 13:54:32 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2583020", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:12 GMT",
+      "ETAG" : "\"{SHA1{5e401c1611e45fb0d472073d394f891fadc99fa6}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:26 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "875c0d9b-ca6b-3db5-8bf4-fa0444e6b390"
+}

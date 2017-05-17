@@ -1,0 +1,25 @@
+{
+  "id" : "ef1f9c93-3f8e-32ab-b367-45dd395951b3",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jgroups/jgroups/3.2.13.Final/jgroups-3.2.13.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.13.Final-jgroups-3.2.13.Final.pom-3Z0LZ.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:15:15 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591984", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:31 GMT",
+      "ETAG" : "\"{SHA1{3155242af0f60bac71c7458b99e694433064e537}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:52:54 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ef1f9c93-3f8e-32ab-b367-45dd395951b3"
+}

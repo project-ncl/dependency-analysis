@@ -1,0 +1,19 @@
+{
+  "id" : "7904d317-ec28-3f70-8092-5e76ceb146ed",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-jacorb/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-as-jacorb-maven-metadata.xml-MNuzr.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:26 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:04 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7904d317-ec28-3f70-8092-5e76ceb146ed"
+}

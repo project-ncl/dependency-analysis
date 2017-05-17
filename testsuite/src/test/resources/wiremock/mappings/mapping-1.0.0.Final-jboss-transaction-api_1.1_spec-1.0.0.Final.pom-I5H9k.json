@@ -1,0 +1,25 @@
+{
+  "id" : "a664f900-f69b-3166-8055-6359d5b6f4e5",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/spec/javax/transaction/jboss-transaction-api_1.1_spec/1.0.0.Final/jboss-transaction-api_1.1_spec-1.0.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.0.Final-jboss-transaction-api_1.1_spec-1.0.0.Final.pom-I5H9k.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:17:41 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:41 GMT",
+      "ETAG" : "\"{SHA1{dfacd7c09bace03538d10133d2e994da095f4472}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:52:06 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a664f900-f69b-3166-8055-6359d5b6f4e5"
+}

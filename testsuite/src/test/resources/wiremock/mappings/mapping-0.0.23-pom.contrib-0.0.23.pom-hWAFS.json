@@ -1,0 +1,30 @@
+{
+  "id" : "e71711f9-5ca5-32e9-8559-77fef736249c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/clojure/pom.contrib/0.0.23/pom.contrib-0.0.23.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.0.23-pom.contrib-0.0.23.pom-hWAFS.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "a4090dcf420e52d1235f96f5bccd840e001d4ede750145ecffc881871d86f88c",
+      "X-CHECKSUM-MD5" : "c3843ee3ffad7347862f3e9ff74a9c24",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:51 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"c3843ee3ffad7347862f3e9ff74a9c24\"",
+      "LAST-MODIFIED" : "Fri, 24 Jun 2011 13:07:37 GMT",
+      "X-CHECKSUM-SHA1" : "a0fca140b51a9fb769623830bd714842eb726a35",
+      "X-SERVED-BY" : "cache-iad2137-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259912.918797,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1488736",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e71711f9-5ca5-32e9-8559-77fef736249c"
+}

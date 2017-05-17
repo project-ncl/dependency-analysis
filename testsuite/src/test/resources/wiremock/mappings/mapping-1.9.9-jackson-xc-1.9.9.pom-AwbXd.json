@@ -1,0 +1,25 @@
+{
+  "id" : "9a4712cf-4182-3eed-978a-3b0b1fdde21d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/jackson/jackson-xc/1.9.9/jackson-xc-1.9.9.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.9-jackson-xc-1.9.9.pom-AwbXd.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 18:23:15 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2081293", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:02 GMT",
+      "ETAG" : "\"{SHA1{0f4f03d5026350d8a4db95a85644b7f255ade1eb}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:07 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "9a4712cf-4182-3eed-978a-3b0b1fdde21d"
+}

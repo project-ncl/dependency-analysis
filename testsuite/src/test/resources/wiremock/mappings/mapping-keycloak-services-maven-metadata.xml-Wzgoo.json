@@ -1,0 +1,17 @@
+{
+  "id" : "17a1c05a-652f-3a2a-84e6-167115331fb9",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-services/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-services-maven-metadata.xml-Wzgoo.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:37 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "17a1c05a-652f-3a2a-84e6-167115331fb9"
+}

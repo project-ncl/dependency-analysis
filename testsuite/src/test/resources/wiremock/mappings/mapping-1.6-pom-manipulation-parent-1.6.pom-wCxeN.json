@@ -1,0 +1,22 @@
+{
+  "id" : "b65cf95a-c733-36fb-8630-b68e5e7289bb",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/ext/pom-manipulation-parent/1.6/pom-manipulation-parent-1.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6-pom-manipulation-parent-1.6.pom-wCxeN.xml",
+    "headers" : {
+      "ETAG" : "\"17b8dd1b-3ae9-51c0f8447907b\"",
+      "LAST-MODIFIED" : "Thu, 30 Jul 2015 03:44:12 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:44:34 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "b65cf95a-c733-36fb-8630-b68e5e7289bb"
+}

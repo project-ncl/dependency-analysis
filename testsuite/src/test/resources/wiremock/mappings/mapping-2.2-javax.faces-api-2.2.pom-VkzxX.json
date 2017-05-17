@@ -1,0 +1,30 @@
+{
+  "id" : "24e9e493-e30f-34bf-8e9f-112a21a14919",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/faces/javax.faces-api/2.2/javax.faces-api-2.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2-javax.faces-api-2.2.pom-VkzxX.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "9c5e3372963b8f2811442248549f0b824135b90e4259b20e0c2328e41dc69f0f",
+      "X-CHECKSUM-MD5" : "bb5bc3634be6c2f1200515ece2cc1459",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:52 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"bb5bc3634be6c2f1200515ece2cc1459\"",
+      "LAST-MODIFIED" : "Tue, 14 May 2013 23:42:06 GMT",
+      "X-CHECKSUM-SHA1" : "affff461a98e8b3442b9345830d3292fe6e5ee9c",
+      "X-SERVED-BY" : "cache-iad2134-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260152.013280,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5204396",
+      "X-CACHE-HITS" : "1, 50",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "24e9e493-e30f-34bf-8e9f-112a21a14919"
+}

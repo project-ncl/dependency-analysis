@@ -1,0 +1,17 @@
+{
+  "id" : "8fbf9e6d-8357-32df-a9a9-8df636b30200",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/tiles/tiles-freemarker/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-tiles-freemarker-maven-metadata.xml-zrvlG.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:47 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8fbf9e6d-8357-32df-a9a9-8df636b30200"
+}

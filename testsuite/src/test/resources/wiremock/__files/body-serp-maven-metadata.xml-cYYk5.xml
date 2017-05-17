@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.sourceforge.serp</groupId>
+  <artifactId>serp</artifactId>
+  <versioning>
+    <latest>1.15.1</latest>
+    <release>1.15.1</release>
+    <versions>
+      <version>1.13.1</version>
+      <version>1.14.1</version>
+      <version>1.15.1</version>
+    </versions>
+    <lastUpdated>20170320175519</lastUpdated>
+  </versioning>
+</metadata>

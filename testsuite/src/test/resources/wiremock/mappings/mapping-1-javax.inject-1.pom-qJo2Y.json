@@ -1,0 +1,25 @@
+{
+  "id" : "adec6730-95ee-3162-a212-d7c2e5d94ab6",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/inject/javax.inject/1/javax.inject-1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1-javax.inject-1.pom-qJo2Y.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 11:20:18 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=263735", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 10:04:43 GMT",
+      "ETAG" : "\"{SHA1{b8e00a8a0deb0ebef447570e37ff8146ccd92cbe}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:24:54 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "adec6730-95ee-3162-a212-d7c2e5d94ab6"
+}

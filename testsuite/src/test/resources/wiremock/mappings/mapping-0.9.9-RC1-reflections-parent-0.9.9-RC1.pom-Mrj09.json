@@ -1,0 +1,25 @@
+{
+  "id" : "c9410a51-0e46-393e-ac8c-86461e40ed22",
+  "request" : {
+    "url" : "/api/group/DApublic/org/reflections/reflections-parent/0.9.9-RC1/reflections-parent-0.9.9-RC1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.9.9-RC1-reflections-parent-0.9.9-RC1.pom-Mrj09.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 15:01:45 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2515666", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:13:59 GMT",
+      "ETAG" : "\"{SHA1{06af608ef2b2a5475d941cafc7d4aa920a5a817d}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:30:00 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c9410a51-0e46-393e-ac8c-86461e40ed22"
+}

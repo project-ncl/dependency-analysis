@@ -1,0 +1,19 @@
+{
+  "id" : "2759db78-9d2f-350d-9833-0b24bee21fde",
+  "request" : {
+    "url" : "/api/group/test-DA/commons-logging/commons-logging-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-commons-logging-api-maven-metadata.xml-FsNCJ.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:29:02 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:28:40 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2759db78-9d2f-350d-9833-0b24bee21fde"
+}

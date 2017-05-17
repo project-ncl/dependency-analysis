@@ -1,0 +1,30 @@
+{
+  "id" : "546b71dd-0dbb-3fec-a7c9-2905c750836a",
+  "request" : {
+    "url" : "/api/group/DApublic/com/keypoint/png-encoder/1.5/png-encoder-1.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5-png-encoder-1.5.pom-zTDEc.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "c7432d164e0b3e83168c51cf5a571d79d40082aa79e64ef96f692ecc52edb1ef",
+      "X-CHECKSUM-MD5" : "1f4b10bd651a54aa8726a770345ee467",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:08 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"1f4b10bd651a54aa8726a770345ee467\"",
+      "LAST-MODIFIED" : "Fri, 07 Apr 2006 20:31:57 GMT",
+      "X-CHECKSUM-SHA1" : "d921d80a3656115083deba1edde1b4a4fe15bf09",
+      "X-SERVED-BY" : "cache-iad2128-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260348.185612,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1836176",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "546b71dd-0dbb-3fec-a7c9-2905c750836a"
+}

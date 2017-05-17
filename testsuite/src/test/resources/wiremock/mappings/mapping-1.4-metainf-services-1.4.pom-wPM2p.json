@@ -1,0 +1,30 @@
+{
+  "id" : "ef8a6260-22ab-3548-8f76-5d5a21e3eae6",
+  "request" : {
+    "url" : "/api/group/DApublic/org/kohsuke/metainf-services/metainf-services/1.4/metainf-services-1.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4-metainf-services-1.4.pom-wPM2p.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "3968c600047b6260a019c17b4296ceffc4ec86336adc5b6a696af9ac88eeb5c1",
+      "X-CHECKSUM-MD5" : "553559a69006210dacbe227599e558ba",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:51 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"553559a69006210dacbe227599e558ba\"",
+      "LAST-MODIFIED" : "Mon, 27 Feb 2012 23:37:02 GMT",
+      "X-CHECKSUM-SHA1" : "3925dd455bc4d306865d7b82bdb581b976991296",
+      "X-SERVED-BY" : "cache-iad2128-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260571.121696,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "502240",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ef8a6260-22ab-3548-8f76-5d5a21e3eae6"
+}

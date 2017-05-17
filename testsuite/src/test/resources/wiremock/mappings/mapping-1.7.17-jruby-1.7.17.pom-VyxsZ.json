@@ -1,0 +1,30 @@
+{
+  "id" : "c7f79db6-192d-3253-a716-35191e47f0e9",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/jruby/1.7.17/jruby-1.7.17.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.17-jruby-1.7.17.pom-VyxsZ.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "98b88bd250c6f45418e63079b69127742561ee47f516023a359ecbe8caddfdd2",
+      "X-CHECKSUM-MD5" : "bb952fbe70db74bc7c899d3315042583",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:29 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"bb952fbe70db74bc7c899d3315042583\"",
+      "LAST-MODIFIED" : "Tue, 09 Dec 2014 17:19:10 GMT",
+      "X-CHECKSUM-SHA1" : "3ae9736d3c0ffa234d85e9f0be411ee37fe87053",
+      "X-SERVED-BY" : "cache-iad2139-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260189.053596,VS0,VE33",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c7f79db6-192d-3253-a716-35191e47f0e9"
+}

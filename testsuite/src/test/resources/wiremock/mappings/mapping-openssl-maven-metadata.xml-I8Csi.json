@@ -1,0 +1,17 @@
+{
+  "id" : "4cdbc667-a97f-335f-84d4-7f1924bd364e",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jruby/openssl/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-openssl-maven-metadata.xml-I8Csi.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:50 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "4cdbc667-a97f-335f-84d4-7f1924bd364e"
+}

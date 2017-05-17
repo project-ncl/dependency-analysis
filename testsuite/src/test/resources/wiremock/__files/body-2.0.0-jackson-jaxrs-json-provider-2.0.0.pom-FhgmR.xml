@@ -1,0 +1,227 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion> 
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+  <groupId>com.fasterxml.jackson.jaxrs</groupId>
+  <artifactId>jackson-jaxrs-json-provider</artifactId>
+  <name>Jackson-JAXRS-JSON_Provider</name>
+  <version>2.0.0</version>
+  <packaging>bundle</packaging>
+  <description>Functionality to handle JSON input/output for JAX-RS implementations (like Jersey and RESTeasy) using standard Jackson data binding.
+  </description>
+  <url>http://wiki.fasterxml.com/JacksonHome</url>
+  <scm>
+    <connection>scm:git:git@github.com:FasterXML/jackson-jaxrs-json-provider.git</connection>
+    <developerConnection>scm:git:git@github.com:FasterXML/jackson-jaxrs-json-provider.git</developerConnection>
+    <url>http://github.com/FasterXML/jackson-jaxrs-json-provider</url>    
+  </scm>
+  <developers>
+        <developer>
+            <id>tatu</id>
+            <name>Tatu Saloranta</name>
+            <email>tatu@fasterxml.com</email>
+        </developer>
+  </developers>
+
+  <prerequisites>
+    <maven>2.2.1</maven>
+  </prerequisites>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <!-- Licensing -->
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <organization>
+    <name>fasterxml.com</name>
+    <url>http://fasterxml.com</url>
+  </organization>
+
+  <dependencies>
+    <!-- Extends Jackson core, mapper, and also (sort of optionally) on JAXB annotation handler -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <!-- also need JAXB annotation support -->
+    <dependency> 
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-jaxb-annotations</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+
+    <!-- and we need JAX-RS annotations as well -->
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>jsr311-api</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+     <!-- and for testing, JUnit (or TestNG?) is needed -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <!--  and for some reason actual JAX-RS impl too -->
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-core</artifactId>
+      <version>1.8</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-server</artifactId>
+      <version>1.8</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!--  need to enable filtering to add version info -->
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>  
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <mavenExecutorId>forked-path</mavenExecutorId>
+        </configuration>
+      </plugin>
+      <plugin><!-- plug-in to attach source bundle in repo -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
+        <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+        </executions>
+      </plugin>
+      <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <encoding>UTF-8</encoding>
+                    <maxmemory>512m</maxmemory>
+                    <links>
+                      <link>http://docs.oracle.com/javase/6/docs/api/</link>
+                    </links>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+        </plugin>
+
+        <!-- Plus, let's make jars OSGi bundles as well  -->
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>2.3.6</version>
+          <extensions>true</extensions>
+          <configuration>
+            <instructions>
+              <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+              <Bundle-Vendor>fasterml.com</Bundle-Vendor>
+              <Import-Package>
+javax.ws.rs
+,javax.ws.rs.core
+,javax.ws.rs.ext
+,com.fasterxml.jackson.annotation
+,com.fasterxml.jackson.core
+,com.fasterxml.jackson.core.type
+,com.fasterxml.jackson.core.util
+,com.fasterxml.jackson.databind
+,com.fasterxml.jackson.databind.introspect
+,com.fasterxml.jackson.databind.type
+,com.fasterxml.jackson.databind.util
+,com.fasterxml.jackson.module.jaxb
+</Import-Package>
+              <Private-Package>
+</Private-Package>
+              <Export-Package>
+com.fasterxml.jackson.jaxrs.json,
+com.fasterxml.jackson.jaxrs.json.annotation,
+com.fasterxml.jackson.jaxrs.json.cfg,
+com.fasterxml.jackson.jaxrs.json.util
+</Export-Package>
+            </instructions>
+          </configuration>
+        </plugin>
+    </plugins>
+  </build>
+  <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+  </profiles>
+  <!-- NOTE: repositories from parent POM -->
+
+</project>

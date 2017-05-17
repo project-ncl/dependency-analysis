@@ -1,0 +1,25 @@
+{
+  "id" : "74925fc7-7a7e-30d0-b1e0-3301c75a9b8e",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.0.Final-validation-api-1.1.0.Final.pom-Gy3Fr.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 15:53:10 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2590533", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:37 GMT",
+      "ETAG" : "\"{SHA1{0d2ad4d1498d1048abc6c6948fd3f835d8fdafb0}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:04 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "74925fc7-7a7e-30d0-b1e0-3301c75a9b8e"
+}

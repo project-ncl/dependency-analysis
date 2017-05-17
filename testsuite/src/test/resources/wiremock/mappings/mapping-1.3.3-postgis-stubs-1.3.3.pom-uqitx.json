@@ -1,0 +1,30 @@
+{
+  "id" : "ecafe3d4-8b2e-3d16-9e88-ae5ce8161cad",
+  "request" : {
+    "url" : "/api/group/DApublic/org/postgis/postgis-stubs/1.3.3/postgis-stubs-1.3.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.3-postgis-stubs-1.3.3.pom-uqitx.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "a885f4e1a36b8e2d90f2b78a6d8613c36f2615f23e22b757c8076afb33542f46",
+      "X-CHECKSUM-MD5" : "f583786b3cd2c91627ea452fb227cf6f",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:26 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"f583786b3cd2c91627ea452fb227cf6f\"",
+      "LAST-MODIFIED" : "Fri, 18 Dec 2009 17:42:21 GMT",
+      "X-CHECKSUM-SHA1" : "b398c1b6482bae8b5c8df1f65e6b439ca827fe0c",
+      "X-SERVED-BY" : "cache-iad2147-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260607.849795,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2144181",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "ecafe3d4-8b2e-3d16-9e88-ae5ce8161cad"
+}

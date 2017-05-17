@@ -1,0 +1,25 @@
+{
+  "id" : "e65e3917-c511-35ee-93aa-28705bcb5f61",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/interceptor/javax.interceptor-api/1.2/javax.interceptor-api-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-javax.interceptor-api-1.2.pom-efRwW.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 03 Jun 2017 08:07:30 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2239368", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 10:04:42 GMT",
+      "ETAG" : "\"{SHA1{ec75b6795586f1a682c742da2cc035a64fd6f87f}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:24:54 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "e65e3917-c511-35ee-93aa-28705bcb5f61"
+}

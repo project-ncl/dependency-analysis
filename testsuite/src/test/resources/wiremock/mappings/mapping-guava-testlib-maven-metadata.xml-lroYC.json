@@ -1,0 +1,17 @@
+{
+  "id" : "23e30762-f1ba-3315-8cb5-55ae65ead028",
+  "request" : {
+    "url" : "/api/group/test-DA/com/google/guava/guava-testlib/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-guava-testlib-maven-metadata.xml-lroYC.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:33 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "23e30762-f1ba-3315-8cb5-55ae65ead028"
+}

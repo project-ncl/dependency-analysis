@@ -1,0 +1,19 @@
+{
+  "id" : "36acb363-93c5-3a34-84c4-1a5a2c9083ac",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/enterprise/concurrent/javax.enterprise.concurrent-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-javax.enterprise.concurrent-api-maven-metadata.xml-gBqsy.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:10 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:48 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "36acb363-93c5-3a34-84c4-1a5a2c9083ac"
+}

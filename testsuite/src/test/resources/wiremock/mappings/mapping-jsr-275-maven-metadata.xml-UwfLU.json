@@ -1,0 +1,17 @@
+{
+  "id" : "a228ce12-893d-3acb-a54e-d2ad8ac3b884",
+  "request" : {
+    "url" : "/api/group/test-DA/javax/measure/jsr-275/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jsr-275-maven-metadata.xml-UwfLU.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:37 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a228ce12-893d-3acb-a54e-d2ad8ac3b884"
+}

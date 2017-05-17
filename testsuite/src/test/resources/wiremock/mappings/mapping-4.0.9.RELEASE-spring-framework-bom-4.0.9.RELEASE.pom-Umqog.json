@@ -1,0 +1,30 @@
+{
+  "id" : "da501fb2-2e96-3875-a151-9e9aefaa2523",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-framework-bom/4.0.9.RELEASE/spring-framework-bom-4.0.9.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.9.RELEASE-spring-framework-bom-4.0.9.RELEASE.pom-Umqog.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "efe02ec7ac5a62612dba606ba1f80168b57156a35fa70a08f60b0cfbcc4c5736",
+      "X-CHECKSUM-MD5" : "dba8a62c0f17c5d2389d70fc1aed1ea3",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:20 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"dba8a62c0f17c5d2389d70fc1aed1ea3\"",
+      "LAST-MODIFIED" : "Tue, 30 Dec 2014 15:30:10 GMT",
+      "X-CHECKSUM-SHA1" : "3e4678500a975f7922676d5d0884dd3444eb4021",
+      "X-SERVED-BY" : "cache-iad2131-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259881.809762,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5381507",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "da501fb2-2e96-3875-a151-9e9aefaa2523"
+}

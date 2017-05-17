@@ -1,0 +1,30 @@
+{
+  "id" : "988de6f4-1026-3241-8508-660c5550f134",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/plugin/spring-plugin-core/1.1.0.RELEASE/spring-plugin-core-1.1.0.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.0.RELEASE-spring-plugin-core-1.1.0.RELEASE.pom-ZfBMo.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "81f32f0a1026c109e12b58757781a2d282ca88b9ed588806b6e431f11befdf37",
+      "X-CHECKSUM-MD5" : "98068555ae982e0550131e8a46664ee4",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:21 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"98068555ae982e0550131e8a46664ee4\"",
+      "LAST-MODIFIED" : "Thu, 01 May 2014 17:32:36 GMT",
+      "X-CHECKSUM-SHA1" : "c6b64c253270276d8fcd9f22f1df70918df6b49b",
+      "X-SERVED-BY" : "cache-iad2133-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260182.886277,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2153408",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "988de6f4-1026-3241-8508-660c5550f134"
+}

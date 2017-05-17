@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.jbossts.jta</groupId>
+  <artifactId>narayana-jta</artifactId>
+  <versioning>
+    <latest>4.17.39.Final-redhat-1</latest>
+    <release>4.17.39.Final-redhat-1</release>
+    <versions>
+      <version>4.17.4.Final-redhat-2</version>
+      <version>4.17.7.Final-redhat-4</version>
+      <version>4.17.15.Final-redhat-4</version>
+      <version>4.17.15.Final-redhat-5</version>
+      <version>4.17.19.Final</version>
+      <version>4.17.21.Final-redhat-2</version>
+      <version>4.17.22.Final-redhat-2</version>
+      <version>4.17.26.Final-redhat-1</version>
+      <version>4.17.29.Final</version>
+      <version>4.17.29.Final-redhat-1</version>
+      <version>4.17.30.Final-redhat-1</version>
+      <version>4.17.32.Final-redhat-1</version>
+      <version>4.17.34.Final-redhat-1</version>
+      <version>4.17.35.Final-redhat-1</version>
+      <version>4.17.38.Final-redhat-1</version>
+      <version>4.17.39.Final-redhat-1</version>
+    </versions>
+    <lastUpdated>20170413170637</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,24 @@
+{
+  "id" : "359d7cf8-35c3-3ed8-9195-60aa70af46e8",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-relationships-api/0.15.0/atlas-relationships-api-0.15.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.0-atlas-relationships-api-0.15.0.pom-XFWfG.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:44:51 GMT",
+      "ETAG" : "\"{SHA1{73d3143a53091a08a3ecc8dd01bf9630c4aea416}}\"",
+      "LAST-MODIFIED" : "Thu, 03 Sep 2015 21:02:05 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "359d7cf8-35c3-3ed8-9195-60aa70af46e8"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "8170e90a-3b77-3729-a6cc-c3f6ee43de93",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/ant/ant-antunit/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-ant-antunit-maven-metadata.xml-TudH4.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:42 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8170e90a-3b77-3729-a6cc-c3f6ee43de93"
+}

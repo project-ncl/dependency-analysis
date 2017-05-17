@@ -1,0 +1,177 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.postgis</groupId>
+	<artifactId>postgis-main</artifactId>
+	<version>1.3.3</version>
+	<packaging>pom</packaging>
+	
+	<name>Postgis JDBC Driver Parent POM</name>
+	<url>http://www.postgis.org</url>
+	<description>PostGIS adds support for geographic objects to the PostgreSQL object-relational database.</description>
+
+	<modules>
+		<module>stubs</module>
+		<module>jdbc</module>
+	</modules>
+
+	<properties>
+		<!-- project defaults -->
+		<java.version>1.5</java.version>
+		<java.version.javadoc>http://java.sun.com/j2se/1.5.0/docs/api/</java.version.javadoc>
+		<file.encoding>UTF-8</file.encoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License</name>
+			<url>http://www.gnu.org/licenses/lgpl-2.1.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Postgis Development Team</name>
+		</developer>
+	</developers>
+
+	<contributors>
+		<contributor>
+			<name>Hakan Tandogan</name>
+			<email>hakan@gurkensalat.com</email>
+			<url>http://www.gurkensalat.com/</url>
+			<roles>
+				<role>Maven Packager</role>
+			</roles>
+		</contributor>
+	</contributors>
+
+	<mailingLists>
+		<mailingList>
+			<name>User List</name>
+			<subscribe>postgis-users-subscribe@postgis.refractions.net</subscribe>
+			<unsubscribe>postgis-users-unsubscribe@postgis.refractions.net</unsubscribe>
+			<post>postgis-users@postgis.refractions.net</post>
+			<archive>http://postgis.refractions.net/pipermail/postgis-users/</archive>
+		</mailingList>
+		<mailingList>
+			<name>Developer List</name>
+			<subscribe>postgis-devel-subscribe@postgis.refractions.net</subscribe>
+			<unsubscribe>postgis-devel-unsubscribe@postgis.refractions.net</unsubscribe>
+			<post>postgis-devel@postgis.refractions.net</post>
+			<archive>http://postgis.refractions.net/pipermail/postgis-devel/</archive>
+		</mailingList>
+	</mailingLists>
+
+	<issueManagement>
+		<system>Trac</system>
+		<url>http://trac.osgeo.org/postgis/</url>
+	</issueManagement>
+
+	<scm>
+		<url>http://trac.osgeo.org/postgis/browser/tags/1.3.3</url>
+		<connection>scm:svn:http://svn.osgeo.org/postgis/tags/1.3.3/</connection>
+		<developerConnection>scm:svn:http://svn.osgeo.org/postgis/tags/1.3.3/</developerConnection>
+	</scm>
+
+	<!-- Global Build Settings -->
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<addVersionToProjectName>true</addVersionToProjectName>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<useProjectReferences>true</useProjectReferences>
+					<m2eclipse>true</m2eclipse>
+					<classpathContainer>org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER</classpathContainer>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+	<dependencies>
+
+		<!-- Logging -->
+
+		<!-- scope TEST -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>javancss-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jxr-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<distributionManagement>
+		<repository>
+			<id>sonatype-postgis-releases</id>
+			<name>Sonatype Postgis Releases Repo</name>
+			<url>http://oss.sonatype.org/content/repositories/postgis-releases</url>
+		</repository>
+	</distributionManagement>
+
+</project>

@@ -1,0 +1,25 @@
+{
+  "id" : "c0b72aec-5815-39a0-80a2-61a6d5277bf1",
+  "request" : {
+    "url" : "/api/group/DApublic/com/google/google/5/google-5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-5-google-5.pom-hhsAT.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:11:46 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591989", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:57 GMT",
+      "ETAG" : "\"{SHA1{d94d040e8ce2ae7ff75945227e262e369445f736}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:52:47 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c0b72aec-5815-39a0-80a2-61a6d5277bf1"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "147ad976-cd63-3bd7-b1e6-65cfa083f248",
+  "request" : {
+    "url" : "/api/group/test-DA/commons-collections/commons-collections-testframework/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-commons-collections-testframework-maven-metadata.xml-AL9Ys.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:36 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "147ad976-cd63-3bd7-b1e6-65cfa083f248"
+}

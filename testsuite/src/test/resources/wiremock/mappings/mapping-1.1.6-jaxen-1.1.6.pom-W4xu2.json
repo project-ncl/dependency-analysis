@@ -1,0 +1,22 @@
+{
+  "id" : "94c44917-15b8-32ab-8080-7e6024d97b5d",
+  "request" : {
+    "url" : "/api/group/DApublic/jaxen/jaxen/1.1.6/jaxen-1.1.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.6-jaxen-1.1.6.pom-W4xu2.xml",
+    "headers" : {
+      "ETAG" : "\"178b2990-352f-514df1629099a\"",
+      "LAST-MODIFIED" : "Wed, 29 Apr 2015 16:01:05 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:15:32 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "94c44917-15b8-32ab-8080-7e6024d97b5d"
+}

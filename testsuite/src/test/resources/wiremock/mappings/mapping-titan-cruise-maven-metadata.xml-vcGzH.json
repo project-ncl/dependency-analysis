@@ -1,0 +1,17 @@
+{
+  "id" : "19f4d05a-fef9-36d5-a4ec-0640d5f98e27",
+  "request" : {
+    "url" : "/api/group/test-DA/org/resteasy/titan-cruise/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-titan-cruise-maven-metadata.xml-vcGzH.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:35 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "19f4d05a-fef9-36d5-a4ec-0640d5f98e27"
+}

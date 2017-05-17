@@ -1,0 +1,30 @@
+{
+  "id" : "dd5439e1-08a7-37e1-a04b-33b973f2d281",
+  "request" : {
+    "url" : "/api/group/DApublic/jdom/jdom/b10/jdom-b10.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-b10-jdom-b10.pom-8rRw4.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "6e70dea6d68054cd0a7c3c7c83a7c9bf1a114c647e1f70f3abbdae09c6302d4f",
+      "X-CHECKSUM-MD5" : "272fec5905361223176f7939bbf647e4",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:23 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"272fec5905361223176f7939bbf647e4\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 21:52:03 GMT",
+      "X-CHECKSUM-SHA1" : "406a754a525872ac410ab4b482c73a277f50511e",
+      "X-SERVED-BY" : "cache-iad2136-IAD, cache-dfw1831-DFW",
+      "X-TIMER" : "S1494235823.355283,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2129158",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "dd5439e1-08a7-37e1-a04b-33b973f2d281"
+}

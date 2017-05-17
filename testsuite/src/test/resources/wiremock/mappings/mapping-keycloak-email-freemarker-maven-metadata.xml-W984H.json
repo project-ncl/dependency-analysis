@@ -1,0 +1,17 @@
+{
+  "id" : "16439918-848e-39dc-9f4f-4a680b044122",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-email-freemarker/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-email-freemarker-maven-metadata.xml-W984H.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:38 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "16439918-848e-39dc-9f4f-4a680b044122"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "f4af8ced-a262-3a6d-a3b8-865f34a9842b",
+  "request" : {
+    "url" : "/api/group/DApublic/net/sf/jasperreports/jasperreports/5.5.1/jasperreports-5.5.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-5.5.1-jasperreports-5.5.1.pom-6aEe9.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f2bd520f8d4f562c3050072d32b4fa7eec46ac865db75545cf2443694cd52b5c",
+      "X-CHECKSUM-MD5" : "019b997387c6285defd1b099421ad200",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:00 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"019b997387c6285defd1b099421ad200\"",
+      "LAST-MODIFIED" : "Fri, 07 Feb 2014 11:32:09 GMT",
+      "X-CHECKSUM-SHA1" : "21d19e93cf21a527813a57d7c26f5427a49b54ad",
+      "X-SERVED-BY" : "cache-iad2149-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260161.683232,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1641655",
+      "X-CACHE-HITS" : "1, 14",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f4af8ced-a262-3a6d-a3b8-865f34a9842b"
+}

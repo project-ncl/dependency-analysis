@@ -1,0 +1,30 @@
+{
+  "id" : "5eda12a7-a878-3c8d-bb6b-a54aa9765847",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/jruby-parent/1.7.17/jruby-parent-1.7.17.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.17-jruby-parent-1.7.17.pom-ARzmk.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "92c794cc4a935064a6f6d677a1a55aea36bc1c6b305332512dd37f83ddc7d20b",
+      "X-CHECKSUM-MD5" : "f0850e3ec26a8f9c6a29b1f6705c9b77",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:29 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"f0850e3ec26a8f9c6a29b1f6705c9b77\"",
+      "LAST-MODIFIED" : "Tue, 09 Dec 2014 17:13:46 GMT",
+      "X-CHECKSUM-SHA1" : "9c5943b424440f2a2db760480317e44c95ad5555",
+      "X-SERVED-BY" : "cache-iad2127-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260189.306878,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2760960",
+      "X-CACHE-HITS" : "1, 17",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5eda12a7-a878-3c8d-bb6b-a54aa9765847"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "de713c74-150a-358e-8926-5da28737f217",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-web/4.0.9.RELEASE/spring-web-4.0.9.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.9.RELEASE-spring-web-4.0.9.RELEASE.pom-wEB6D.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "c19bcf229194b7b47a57aa05afdd0151299321be70986e213dee4ed6a201f6f1",
+      "X-CHECKSUM-MD5" : "b20e52c0294a8ecbf2e64d76f2509071",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:54 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"b20e52c0294a8ecbf2e64d76f2509071\"",
+      "LAST-MODIFIED" : "Tue, 30 Dec 2014 15:30:19 GMT",
+      "X-CHECKSUM-SHA1" : "e625912ddf9dfa9b552a762ef6591381e18b7ec5",
+      "X-SERVED-BY" : "cache-iad2125-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259975.639846,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2131195",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "de713c74-150a-358e-8926-5da28737f217"
+}

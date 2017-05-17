@@ -1,0 +1,30 @@
+{
+  "id" : "4e02a907-6ebf-33bd-a19e-f173f2493e83",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-depgraph-client-java/0.24.0/aprox-depgraph-client-java-0.24.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.24.0-aprox-depgraph-client-java-0.24.0.pom-VvXyO.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "9e7297ed210fcf1cb927669c67fa42de58c5438749a168383e83931af85b5a29",
+      "X-CHECKSUM-MD5" : "5c8f792b1035027d81321fa02248deb6",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:38 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"5c8f792b1035027d81321fa02248deb6\"",
+      "LAST-MODIFIED" : "Wed, 09 Sep 2015 16:41:46 GMT",
+      "X-CHECKSUM-SHA1" : "eeeec3bf261c898f3ccf1e3ddb96717b7bef4181",
+      "X-SERVED-BY" : "cache-iad2138-IAD, cache-dfw1821-DFW",
+      "X-TIMER" : "S1494237578.357631,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "262598",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "4e02a907-6ebf-33bd-a19e-f173f2493e83"
+}

@@ -1,0 +1,24 @@
+{
+  "id" : "8ccee46c-789d-3c4c-a1f4-df60cb5abd8d",
+  "request" : {
+    "url" : "/api/group/DApublic/io/swagger/swagger-annotations/1.5.4/swagger-annotations-1.5.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.4-swagger-annotations-1.5.4.pom-leDaW.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:21:47 GMT",
+      "ETAG" : "\"{SHA1{81ca27e91d857b25dd5864e18dbe8a5b84fa7ca7}}\"",
+      "LAST-MODIFIED" : "Mon, 19 Oct 2015 22:42:08 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "8ccee46c-789d-3c4c-a1f4-df60cb5abd8d"
+}

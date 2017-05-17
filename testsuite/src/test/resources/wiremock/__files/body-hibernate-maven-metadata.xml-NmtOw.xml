@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.hibernate</groupId>
+  <artifactId>hibernate</artifactId>
+  <versioning>
+    <latest>3.2.6.ga</latest>
+    <release>3.2.6.ga</release>
+    <versions>
+      <version>3.2.6.ga</version>
+    </versions>
+    <lastUpdated>20170320175519</lastUpdated>
+  </versioning>
+</metadata>

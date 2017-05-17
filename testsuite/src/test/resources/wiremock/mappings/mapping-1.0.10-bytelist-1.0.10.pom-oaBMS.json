@@ -1,0 +1,30 @@
+{
+  "id" : "8a91a742-fc03-39fa-a53a-15d77e953360",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/extras/bytelist/1.0.10/bytelist-1.0.10.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.10-bytelist-1.0.10.pom-oaBMS.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "c5aff6440eea43f29be2e32c51769dae46b64b6d5e744f3976776759aaeacdfb",
+      "X-CHECKSUM-MD5" : "9fefddda5880f9a9fd7d77ba55317dba",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:39 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"9fefddda5880f9a9fd7d77ba55317dba\"",
+      "LAST-MODIFIED" : "Wed, 21 Dec 2011 16:09:05 GMT",
+      "X-CHECKSUM-SHA1" : "03767b201a046d6823b0771fe4d2a12c698fb630",
+      "X-SERVED-BY" : "cache-iad2131-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260680.586536,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1496461",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "8a91a742-fc03-39fa-a53a-15d77e953360"
+}

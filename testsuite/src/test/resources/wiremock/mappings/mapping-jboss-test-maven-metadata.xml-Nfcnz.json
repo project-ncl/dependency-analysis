@@ -1,0 +1,20 @@
+{
+  "id" : "79884a61-7045-3352-ad99-c21f1e206e3a",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/test/jboss-test/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-test-maven-metadata.xml-Nfcnz.xml",
+    "headers" : {
+      "Connection" : "close",
+      "Last-Modified" : "Mon, 15 May 2017 13:25:02 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:24:40 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "79884a61-7045-3352-ad99-c21f1e206e3a"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "2b78c9cd-ac0c-3420-b280-0afcdacd2418",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/yecht/1.0/yecht-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-yecht-1.0.pom-46fkr.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:23:06 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:06 GMT",
+      "ETAG" : "\"{SHA1{da4102af3625804c30140a221640977ab1f0161f}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:54:49 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2b78c9cd-ac0c-3420-b280-0afcdacd2418"
+}

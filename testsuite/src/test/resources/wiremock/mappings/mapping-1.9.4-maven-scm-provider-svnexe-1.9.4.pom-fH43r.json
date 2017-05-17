@@ -1,0 +1,30 @@
+{
+  "id" : "1b86b419-dc5d-39b0-9377-2a907368825a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/scm/maven-scm-provider-svnexe/1.9.4/maven-scm-provider-svnexe-1.9.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.4-maven-scm-provider-svnexe-1.9.4.pom-fH43r.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "9d2de6507216e0b62c2b60bc10771bc05ee42117dc6141410ff499b77eb50a71",
+      "X-CHECKSUM-MD5" : "14229dbdaa42e576907530af93bf4117",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:21 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"14229dbdaa42e576907530af93bf4117\"",
+      "LAST-MODIFIED" : "Fri, 27 Mar 2015 17:20:26 GMT",
+      "X-CHECKSUM-SHA1" : "8ee9f8d1cb17e872798b480f194cb72eead945b6",
+      "X-SERVED-BY" : "cache-iad2135-IAD, cache-dfw1821-DFW",
+      "X-TIMER" : "S1494237561.055866,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2141951",
+      "X-CACHE-HITS" : "2, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "1b86b419-dc5d-39b0-9377-2a907368825a"
+}

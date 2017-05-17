@@ -1,0 +1,25 @@
+{
+  "id" : "4189205d-62ca-3418-aa22-a834d95ccc3f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-utils/1.4.2/plexus-utils-1.4.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.2-plexus-utils-1.4.2.pom-MwimY.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 11:56:25 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 11:56:25 GMT",
+      "ETAG" : "\"{SHA1{f530a0f2aae3ef8e65ca359e7243d67ecc366076}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:21 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "4189205d-62ca-3418-aa22-a834d95ccc3f"
+}

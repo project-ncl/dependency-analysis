@@ -1,0 +1,17 @@
+{
+  "id" : "4dd35abc-49d8-339c-b9ff-bbd5b01164b9",
+  "request" : {
+    "url" : "/api/group/test-DA/proxool/proxool/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-proxool-maven-metadata.xml-F8vKQ.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:46 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "4dd35abc-49d8-339c-b9ff-bbd5b01164b9"
+}

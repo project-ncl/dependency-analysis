@@ -1,0 +1,25 @@
+{
+  "id" : "32e432be-ab55-3c4e-8bda-56949c0ee317",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.5-plexus-component-annotations-1.5.5.pom-PD6V3.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 11:12:59 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2529106", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 04:41:13 GMT",
+      "ETAG" : "\"{SHA1{fd506865d5d083d8cef9fdbf525ad99fcc3416c1}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:18 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "32e432be-ab55-3c4e-8bda-56949c0ee317"
+}

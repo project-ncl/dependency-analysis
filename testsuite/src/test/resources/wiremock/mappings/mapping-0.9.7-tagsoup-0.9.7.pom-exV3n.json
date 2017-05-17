@@ -1,0 +1,30 @@
+{
+  "id" : "0d0873ca-5399-3993-b4ce-3b93db4ef874",
+  "request" : {
+    "url" : "/api/group/DApublic/org/ccil/cowan/tagsoup/tagsoup/0.9.7/tagsoup-0.9.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.9.7-tagsoup-0.9.7.pom-exV3n.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "2209b4f66a3c8d60b861e301b8c8da5da278554ddf8067abaaf8843a684abf69",
+      "X-CHECKSUM-MD5" : "d1943a441a7ba820f86af2fc80a64c29",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:20 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"d1943a441a7ba820f86af2fc80a64c29\"",
+      "LAST-MODIFIED" : "Tue, 20 Dec 2005 16:20:43 GMT",
+      "X-CHECKSUM-SHA1" : "62cadeac457d7451bb1ea932a8126b6d1bc26825",
+      "X-SERVED-BY" : "cache-iad2143-IAD, cache-dfw1826-DFW",
+      "X-TIMER" : "S1494235820.425566,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5182715",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0d0873ca-5399-3993-b4ce-3b93db4ef874"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "994871b4-a355-383c-8f7c-01eeb77e5791",
+  "request" : {
+    "url" : "/api/group/DApublic/com/sun/mail/all/1.4.3/all-1.4.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.3-all-1.4.3.pom-DsWID.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "c561f07c48eb901971bb301839292ed93889a8f05369e806fe9f506cc1bcc266",
+      "X-CHECKSUM-MD5" : "1fa244f4d1fd69cf08f9927f13a10bf1",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:39 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"1fa244f4d1fd69cf08f9927f13a10bf1\"",
+      "LAST-MODIFIED" : "Thu, 20 May 2010  6:20:35 GMT",
+      "X-CHECKSUM-SHA1" : "4c60db6b31817406e556fd3e2ac14ec1561c72a2",
+      "X-SERVED-BY" : "cache-iad2146-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260319.124278,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5205624",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "994871b4-a355-383c-8f7c-01eeb77e5791"
+}

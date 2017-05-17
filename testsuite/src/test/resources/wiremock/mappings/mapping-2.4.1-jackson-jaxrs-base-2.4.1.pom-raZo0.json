@@ -1,0 +1,25 @@
+{
+  "id" : "35255b89-b8d6-329a-a14e-8fdbe492492e",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/2.4.1/jackson-jaxrs-base-2.4.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.4.1-jackson-jaxrs-base-2.4.1.pom-raZo0.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 14:40:44 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2514930", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:05:14 GMT",
+      "ETAG" : "\"{SHA1{3815dd032a03ed2eedd6e2e4edc1ce74f5656258}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:14:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "35255b89-b8d6-329a-a14e-8fdbe492492e"
+}

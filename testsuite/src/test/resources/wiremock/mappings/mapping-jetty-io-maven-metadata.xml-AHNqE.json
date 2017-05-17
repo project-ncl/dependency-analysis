@@ -1,0 +1,19 @@
+{
+  "id" : "56ded184-e4e4-3157-8571-8b1f0cd98da7",
+  "request" : {
+    "url" : "/api/group/test-DA/org/eclipse/jetty/jetty-io/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jetty-io-maven-metadata.xml-AHNqE.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:59 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:28:38 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "56ded184-e4e4-3157-8571-8b1f0cd98da7"
+}

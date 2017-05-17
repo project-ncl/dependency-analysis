@@ -1,0 +1,24 @@
+{
+  "id" : "cb6f0d62-9bb6-3d4a-baac-ff5f7715f3e8",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.0.0/jackson-module-jaxb-annotations-2.0.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.0-jackson-module-jaxb-annotations-2.0.0.pom-NJS9O.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:46:23 GMT",
+      "ETAG" : "\"{SHA1{565e5e5dabd82d1a613177bf09d4756332dc48de}}\"",
+      "LAST-MODIFIED" : "Sun, 25 Mar 2012 20:14:52 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "cb6f0d62-9bb6-3d4a-baac-ff5f7715f3e8"
+}

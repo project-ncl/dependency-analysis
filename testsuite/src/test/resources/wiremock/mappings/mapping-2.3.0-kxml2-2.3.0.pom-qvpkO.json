@@ -1,0 +1,25 @@
+{
+  "id" : "465b9ac2-88ea-37d7-a0b6-83ef8c839459",
+  "request" : {
+    "url" : "/api/group/DApublic/net/sf/kxml/kxml2/2.3.0/kxml2-2.3.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.0-kxml2-2.3.0.pom-qvpkO.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:21:07 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:07 GMT",
+      "ETAG" : "\"{SHA1{8efa75f9cdc57687076b2125b1a098e6f42e737d}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:26:42 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "465b9ac2-88ea-37d7-a0b6-83ef8c839459"
+}

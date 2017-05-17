@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.h2database</groupId>
+  <artifactId>h2</artifactId>
+  <versioning>
+    <latest>1.4.186</latest>
+    <release>1.4.186</release>
+    <versions>
+      <version>1.0.79</version>
+      <version>1.3.161-redhat-1</version>
+      <version>1.3.168</version>
+      <version>1.3.168-redhat-1</version>
+      <version>1.3.168-redhat-2</version>
+      <version>1.3.168.redhat-4</version>
+      <version>1.3.168.redhat-5</version>
+      <version>1.3.171</version>
+      <version>1.3.173.redhat-2</version>
+      <version>1.4.180.redhat-3</version>
+      <version>1.4.186</version>
+    </versions>
+    <lastUpdated>20170512214015</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,24 @@
+{
+  "id" : "50a03d81-f038-3fb1-b9f3-754e15201aac",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-binders/2.1.1/guice-plexus-binders-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-guice-plexus-binders-2.1.1.pom-XG4au.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:48:01 GMT",
+      "ETAG" : "\"{SHA1{a85dc983e58f067f073139cd4e570a55a1ab6959}}\"",
+      "LAST-MODIFIED" : "Fri, 11 Feb 2011 17:42:27 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "50a03d81-f038-3fb1-b9f3-754e15201aac"
+}

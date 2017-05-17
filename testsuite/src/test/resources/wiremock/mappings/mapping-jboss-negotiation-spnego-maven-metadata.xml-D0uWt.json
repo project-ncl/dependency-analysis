@@ -1,0 +1,19 @@
+{
+  "id" : "e6e08c8d-4d11-3ca6-b362-70d62d2fce39",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/security/jboss-negotiation-spnego/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-negotiation-spnego-maven-metadata.xml-D0uWt.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:27:53 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:27:31 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e6e08c8d-4d11-3ca6-b362-70d62d2fce39"
+}

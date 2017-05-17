@@ -1,0 +1,2 @@
+Id: 68979da79cbb78ab6ab0c66366bf81aa6c2fc83dacd0f17a28c6a670c972b60a
+Message: Path org/keycloak/keycloak-social-github/maven-metadata.xml is not available in store group:test-DA.

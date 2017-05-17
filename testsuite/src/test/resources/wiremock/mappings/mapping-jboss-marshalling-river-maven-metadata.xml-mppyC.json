@@ -1,0 +1,19 @@
+{
+  "id" : "e7d9b56c-2958-3c0b-8843-55dbf725a481",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/marshalling/jboss-marshalling-river/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-marshalling-river-maven-metadata.xml-mppyC.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:25:22 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:25:00 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e7d9b56c-2958-3c0b-8843-55dbf725a481"
+}

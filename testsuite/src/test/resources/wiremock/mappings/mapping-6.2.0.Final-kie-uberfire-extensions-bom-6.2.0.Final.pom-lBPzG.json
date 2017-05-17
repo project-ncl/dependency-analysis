@@ -1,0 +1,25 @@
+{
+  "id" : "e59a7497-7679-35bc-b8b2-c5b600782151",
+  "request" : {
+    "url" : "/api/group/DApublic/org/kie/uberfire/kie-uberfire-extensions-bom/6.2.0.Final/kie-uberfire-extensions-bom-6.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.2.0.Final-kie-uberfire-extensions-bom-6.2.0.Final.pom-lBPzG.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:10:16 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591953", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:03 GMT",
+      "ETAG" : "\"{SHA1{9ebf775a18358051a8e94526442c531962c3493f}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:27:49 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "e59a7497-7679-35bc-b8b2-c5b600782151"
+}

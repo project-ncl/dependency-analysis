@@ -1,0 +1,25 @@
+{
+  "id" : "8a32e37c-4bbf-3272-8ec0-cb0cec828c04",
+  "request" : {
+    "url" : "/api/group/DApublic/org/slf4j/slf4j-api/1.6.3/slf4j-api-1.6.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6.3-slf4j-api-1.6.3.pom-eukbe.xml",
+    "headers" : {
+      "EXPIRES" : "Sun, 04 Jun 2017 23:48:31 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2359853", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:38 GMT",
+      "ETAG" : "\"{SHA1{462ac8057e3113b6625dbd41fee6b31c25dc1b04}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:31 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8a32e37c-4bbf-3272-8ec0-cb0cec828c04"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "1ef58769-aa9e-31a0-997e-d23a8dce3862",
+  "request" : {
+    "url" : "/api/group/test-DA/org/slf4j/integration/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-integration-maven-metadata.xml-IH5iJ.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:03 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1ef58769-aa9e-31a0-997e-d23a8dce3862"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "31bb1b5e-7426-3c4b-83ab-51a9b919027b",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-annotations/2.4.0/jackson-annotations-2.4.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.4.0-jackson-annotations-2.4.0.pom-54Lis.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 03 Jun 2017 08:31:44 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2240821", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 10:04:43 GMT",
+      "ETAG" : "\"{SHA1{2b75fa41636e5d02edc961ee9c68e6f041dc85a9}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:16 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "31bb1b5e-7426-3c4b-83ab-51a9b919027b"
+}

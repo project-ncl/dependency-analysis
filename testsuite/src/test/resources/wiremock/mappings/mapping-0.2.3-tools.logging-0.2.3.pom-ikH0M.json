@@ -1,0 +1,30 @@
+{
+  "id" : "a14c6702-bad5-38d2-a370-89aca3e16819",
+  "request" : {
+    "url" : "/api/group/DApublic/org/clojure/tools.logging/0.2.3/tools.logging-0.2.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.2.3-tools.logging-0.2.3.pom-ikH0M.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f8ad316ae5915759b8d976ee4ee482c339390e16d99aed0634d409867c593670",
+      "X-CHECKSUM-MD5" : "e426a84f9782291e16d1e249167e64e5",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:51 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"e426a84f9782291e16d1e249167e64e5\"",
+      "LAST-MODIFIED" : "Thu, 29 Sep 2011 20:37:10 GMT",
+      "X-CHECKSUM-SHA1" : "1d12523130169fc8a1efb5289011943f53d17db3",
+      "X-SERVED-BY" : "cache-iad2127-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259912.816831,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1566764",
+      "X-CACHE-HITS" : "3925, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a14c6702-bad5-38d2-a370-89aca3e16819"
+}

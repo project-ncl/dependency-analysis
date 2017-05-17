@@ -1,0 +1,22 @@
+{
+  "id" : "fdb2a155-7d35-3f0c-a635-d0682687fa9b",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/validation/com.springsource.javax.validation/1.0.0.GA/com.springsource.javax.validation-1.0.0.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.0.GA-com.springsource.javax.validation-1.0.0.GA.pom-v4wEk.xml",
+    "headers" : {
+      "ETAG" : "\"12b0dee7-25e-4a5b0b8d428bb\"",
+      "LAST-MODIFIED" : "Tue, 14 Jun 2011 19:05:40 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:46 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "fdb2a155-7d35-3f0c-a635-d0682687fa9b"
+}

@@ -1,0 +1,24 @@
+{
+  "id" : "cd6dd7dc-ab4c-3973-a494-9c230e7cd959",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/cdi/util/weft/0.8/weft-0.8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.8-weft-0.8.pom-XkRMq.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:19:29 GMT",
+      "ETAG" : "\"{SHA1{81d8507abdc10e7129fe1681624400803bc84ed6}}\"",
+      "LAST-MODIFIED" : "Mon, 20 Apr 2015 15:22:57 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "cd6dd7dc-ab4c-3973-a494-9c230e7cd959"
+}

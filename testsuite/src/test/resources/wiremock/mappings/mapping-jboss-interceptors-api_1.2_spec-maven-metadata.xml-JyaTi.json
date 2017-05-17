@@ -1,0 +1,19 @@
+{
+  "id" : "d764a004-c8f6-3d74-b215-68c04462c7dc",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/spec/javax/interceptor/jboss-interceptors-api_1.2_spec/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jboss-interceptors-api_1.2_spec-maven-metadata.xml-JyaTi.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:37 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:28:16 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d764a004-c8f6-3d74-b215-68c04462c7dc"
+}

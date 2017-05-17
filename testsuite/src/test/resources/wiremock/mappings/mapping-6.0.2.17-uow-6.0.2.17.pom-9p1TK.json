@@ -1,0 +1,25 @@
+{
+  "id" : "01f30edc-96cb-3b8d-a9be-de9e8e90a301",
+  "request" : {
+    "url" : "/api/group/DApublic/com/ibm/websphere/uow/6.0.2.17/uow-6.0.2.17.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.0.2.17-uow-6.0.2.17.pom-9p1TK.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:15:21 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591978", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:43 GMT",
+      "ETAG" : "\"{SHA1{631b2b62af1d5cb671c3f00b436cf8e4ae43ef5f}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:57:21 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "01f30edc-96cb-3b8d-a9be-de9e8e90a301"
+}

@@ -1,0 +1,24 @@
+{
+  "id" : "66e39e65-fae3-3a52-a3a7-1357c78e8f44",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/persistence/com.springsource.javax.persistence/2.0.0/com.springsource.javax.persistence-2.0.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0.0-com.springsource.javax.persistence-2.0.0.pom-6MSzz.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:20:36 GMT",
+      "ETAG" : "\"{SHA1{c014f28cc52fffc9f4baed02367a958ba0bc24db}}\"",
+      "LAST-MODIFIED" : "Fri, 11 Dec 2009 15:09:45 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "66e39e65-fae3-3a52-a3a7-1357c78e8f44"
+}

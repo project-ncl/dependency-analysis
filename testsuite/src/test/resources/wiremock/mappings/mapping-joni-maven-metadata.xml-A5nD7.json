@@ -1,0 +1,19 @@
+{
+  "id" : "a3e00fb0-3a8c-3746-845a-ed8f5cbd2e1b",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jruby/joni/joni/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-joni-maven-metadata.xml-A5nD7.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:12 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:50 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a3e00fb0-3a8c-3746-845a-ed8f5cbd2e1b"
+}

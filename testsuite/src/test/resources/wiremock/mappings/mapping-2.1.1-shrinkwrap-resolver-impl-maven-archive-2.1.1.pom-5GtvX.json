@@ -1,0 +1,25 @@
+{
+  "id" : "7a45eb43-0ef3-306d-b0f3-67c9a7f94a96",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/shrinkwrap/resolver/shrinkwrap-resolver-impl-maven-archive/2.1.1/shrinkwrap-resolver-impl-maven-archive-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-shrinkwrap-resolver-impl-maven-archive-2.1.1.pom-5GtvX.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 09:59:18 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591994", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:24 GMT",
+      "ETAG" : "\"{SHA1{66788e32ba7952ed6f8430d31c367a884c9759f6}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:24:41 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "7a45eb43-0ef3-306d-b0f3-67c9a7f94a96"
+}

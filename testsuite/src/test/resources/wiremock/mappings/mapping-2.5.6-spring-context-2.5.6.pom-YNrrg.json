@@ -1,0 +1,25 @@
+{
+  "id" : "f15522d1-9070-3a67-95f6-c925c1174d01",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-context/2.5.6/spring-context-2.5.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5.6-spring-context-2.5.6.pom-YNrrg.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:24:06 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:06 GMT",
+      "ETAG" : "\"{SHA1{cc79cbd268e5554661c6beb3a3c728c349e42022}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:03:38 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f15522d1-9070-3a67-95f6-c925c1174d01"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "e3d35355-d596-3127-8767-488fbe1d318f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/cxf/cxf-xerces-xsd-validation/2.7.14/cxf-xerces-xsd-validation-2.7.14.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.7.14-cxf-xerces-xsd-validation-2.7.14.pom-MAPv8.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "531bd502780ea3c5713099cdd0affcf527a8f5a7ef749b7be445db0670f1188c",
+      "X-CHECKSUM-MD5" : "873b84718775ddf1c4f2c3b4231d7e13",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:11 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"873b84718775ddf1c4f2c3b4231d7e13\"",
+      "LAST-MODIFIED" : "Tue, 02 Dec 2014 21:08:50 GMT",
+      "X-CHECKSUM-SHA1" : "af675ac85ee8bc7f52a5e404147c3c63c55fdeec",
+      "X-SERVED-BY" : "cache-iad2134-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260112.695833,VS0,VE95",
+      "X-CACHE" : "MISS, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "0, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e3d35355-d596-3127-8767-488fbe1d318f"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "98322634-24b3-3dcc-805b-dccf4e71b5b8",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/openjpa/openjpa-jdbc/2.3.0/openjpa-jdbc-2.3.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.0-openjpa-jdbc-2.3.0.pom-PlWjf.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:17:17 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:17 GMT",
+      "ETAG" : "\"{SHA1{9364a2c491cc3c37b7578f217af906e6107daf85}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 20:23:26 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "98322634-24b3-3dcc-805b-dccf4e71b5b8"
+}

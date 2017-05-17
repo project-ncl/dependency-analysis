@@ -1,0 +1,17 @@
+{
+  "id" : "ae03ecf8-f968-3e41-9c97-ae3cd6dde9d8",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-timer-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-timer-api-maven-metadata.xml-FN1BN.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:39 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ae03ecf8-f968-3e41-9c97-ae3cd6dde9d8"
+}

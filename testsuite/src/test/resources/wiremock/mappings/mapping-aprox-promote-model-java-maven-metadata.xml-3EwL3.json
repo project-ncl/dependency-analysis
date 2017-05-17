@@ -1,0 +1,17 @@
+{
+  "id" : "d890897e-9087-3df1-aab1-9dbc16c20ed3",
+  "request" : {
+    "url" : "/api/group/test-DA/org/commonjava/aprox/aprox-promote-model-java/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-aprox-promote-model-java-maven-metadata.xml-3EwL3.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:05 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d890897e-9087-3df1-aab1-9dbc16c20ed3"
+}

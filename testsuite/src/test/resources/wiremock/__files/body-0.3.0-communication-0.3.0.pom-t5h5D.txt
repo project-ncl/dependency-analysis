@@ -1,0 +1,2 @@
+Id: 3651e325ffb697a84c318c98a7ebd7ac5245a3b09497405b15516e7a421df582
+Message: Path org/jboss/da/communication/0.3.0/communication-0.3.0.pom is not available in store group:DApublic.

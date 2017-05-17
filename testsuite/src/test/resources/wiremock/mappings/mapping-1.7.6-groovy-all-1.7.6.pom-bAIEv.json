@@ -1,0 +1,24 @@
+{
+  "id" : "039efab8-4b42-3ef4-86bf-7117a3da20d6",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/groovy/groovy-all/1.7.6/groovy-all-1.7.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.6-groovy-all-1.7.6.pom-bAIEv.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:47:45 GMT",
+      "ETAG" : "\"{SHA1{f9f2e45942b25bfded764cce615156228e7b8a3a}}\"",
+      "LAST-MODIFIED" : "Thu, 16 Dec 2010 18:36:45 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "039efab8-4b42-3ef4-86bf-7117a3da20d6"
+}

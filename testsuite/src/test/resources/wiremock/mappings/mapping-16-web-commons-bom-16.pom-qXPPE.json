@@ -1,0 +1,24 @@
+{
+  "id" : "7c752f3c-3c64-3c10-a1ad-03ef49154228",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/boms/web-commons-bom/16/web-commons-bom-16.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-16-web-commons-bom-16.pom-qXPPE.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:19:36 GMT",
+      "ETAG" : "\"{SHA1{98ad00df99f6cd7e72e4d37a0cd3a39c96b21392}}\"",
+      "LAST-MODIFIED" : "Mon, 20 Apr 2015 15:31:21 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7c752f3c-3c64-3c10-a1ad-03ef49154228"
+}

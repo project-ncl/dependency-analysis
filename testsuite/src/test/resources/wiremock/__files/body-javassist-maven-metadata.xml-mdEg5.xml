@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>javassist</groupId>
+  <artifactId>javassist</artifactId>
+  <versioning>
+    <latest>3.12.1.GA</latest>
+    <release>3.12.1.GA</release>
+    <versions>
+      <version>3.10.0.GA</version>
+      <version>3.11.0.GA</version>
+      <version>3.12.0.GA</version>
+      <version>3.12.1.GA</version>
+    </versions>
+    <lastUpdated>20170420180732</lastUpdated>
+  </versioning>
+</metadata>

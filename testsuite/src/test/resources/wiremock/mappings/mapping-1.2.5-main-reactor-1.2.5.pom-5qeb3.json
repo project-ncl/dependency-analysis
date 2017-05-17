@@ -1,0 +1,30 @@
+{
+  "id" : "3ba4a055-2ab1-30e6-a350-994badc4d6f3",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jibx/config/main-reactor/1.2.5/main-reactor-1.2.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.5-main-reactor-1.2.5.pom-5qeb3.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "874c51d2c7b0f13bc425c3ab996bb17d3cf8273a1a5f32f24e82b97c6ab458f8",
+      "X-CHECKSUM-MD5" : "e88859cc7559c3d3a5bc3625ab7ff70b",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:38 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"e88859cc7559c3d3a5bc3625ab7ff70b\"",
+      "LAST-MODIFIED" : "Sun, 24 Feb 2013  7:24:27 GMT",
+      "X-CHECKSUM-SHA1" : "3188e934d9f9fffcfe0f14dcee70bcf3411f2be7",
+      "X-SERVED-BY" : "cache-iad2126-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260138.297835,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "44247",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "3ba4a055-2ab1-30e6-a350-994badc4d6f3"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "935b4122-9d94-3143-98b0-c1245fc40de8",
+  "request" : {
+    "url" : "/api/group/test-DA/activation/activation/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-activation-maven-metadata.xml-eaiNF.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:43 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "935b4122-9d94-3143-98b0-c1245fc40de8"
+}

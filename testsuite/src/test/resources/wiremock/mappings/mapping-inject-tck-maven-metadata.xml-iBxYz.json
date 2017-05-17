@@ -1,0 +1,17 @@
+{
+  "id" : "ded93936-8677-3e20-a711-ad4da0452657",
+  "request" : {
+    "url" : "/api/group/test-DA/org/atinject/inject-tck/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-inject-tck-maven-metadata.xml-iBxYz.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:33 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ded93936-8677-3e20-a711-ad4da0452657"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "6ee7e486-2df4-3e9a-988f-6687d17a9535",
+  "request" : {
+    "url" : "/api/group/test-DA/org/codehaus/woodstox/stax2-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-stax2-api-maven-metadata.xml-J2XMl.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:00 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:39 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "6ee7e486-2df4-3e9a-988f-6687d17a9535"
+}

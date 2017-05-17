@@ -1,0 +1,25 @@
+{
+  "id" : "9b4141d2-ac90-3a1f-ad0b-6e97f416d2ac",
+  "request" : {
+    "url" : "/api/group/DApublic/org/json4s/json4s-jackson_2.10/3.2.9/json4s-jackson_2.10-3.2.9.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.9-json4s-jackson_2.10-3.2.9.pom-869Is.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 15:12:23 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2516289", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:14:14 GMT",
+      "ETAG" : "\"{SHA1{c7d0e589f5b5ff023f75ae1f6e83616e55c85332}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:27:44 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "9b4141d2-ac90-3a1f-ad0b-6e97f416d2ac"
+}

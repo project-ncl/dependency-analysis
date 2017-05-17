@@ -1,0 +1,17 @@
+{
+  "id" : "5ce1325d-4656-333a-b49c-e0cbceda62c7",
+  "request" : {
+    "url" : "/api/group/test-DA/org/xerial/sqlite-jdbc/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-sqlite-jdbc-maven-metadata.xml-I4SCh.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:53 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "5ce1325d-4656-333a-b49c-e0cbceda62c7"
+}

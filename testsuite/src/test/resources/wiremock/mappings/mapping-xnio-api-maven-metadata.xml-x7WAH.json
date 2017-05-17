@@ -1,0 +1,19 @@
+{
+  "id" : "45a016e1-ce23-3a9b-b96e-7d303d169316",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/xnio/xnio-api/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-xnio-api-maven-metadata.xml-x7WAH.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:25:23 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:25:01 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "45a016e1-ce23-3a9b-b96e-7d303d169316"
+}

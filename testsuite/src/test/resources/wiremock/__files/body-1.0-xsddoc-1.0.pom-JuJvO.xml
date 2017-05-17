@@ -1,0 +1,107 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>xsddoc</groupId>
+  <artifactId>xsddoc</artifactId>
+  <name>xsddoc</name>
+  <version>1.0</version>
+  <description>The xsddoc subproject is a XML Schema documentation generator
+    for W3C XML Schemas.</description>
+  <url>http://xframe.sourceforge.net/xsddoc/index.html</url>
+  <issueManagement>
+    <url>http://sourceforge.net/tracker/?group_id=48863&amp;atid=454391</url>
+  </issueManagement>
+  <ciManagement>
+    <notifiers>
+      <notifier>
+        <configuration>
+          <address>kriede@users.sourceforge.net</address>
+        </configuration>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+  <inceptionYear>2004</inceptionYear>
+  <mailingLists>
+    <mailingList>
+      <name>xframe announcement list</name>
+      <subscribe>http://lists.sourceforge.net/mailman/listinfo/xframe-announce</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/mailman/listinfo/xframe-announce</unsubscribe>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum=xframe-announce</archive>
+    </mailingList>
+    <mailingList>
+      <name>xsddoc user list</name>
+      <subscribe>http://lists.sourceforge.net/mailman/listinfo/xframe-xsddoc</subscribe>
+      <unsubscribe>http://lists.sourceforge.net/mailman/listinfo/xframe-xsddoc</unsubscribe>
+      <archive>http://sourceforge.net/mailarchive/forum.php?forum=xframe-xsddoc</archive>
+    </mailingList>
+  </mailingLists>
+  <developers>
+    <developer>
+      <name>Kurt Riede</name>
+      <email>kriede@users.sourceforge.net</email>
+      <url>http://jroller.com/page/kriede</url>
+      <organization>xframe</organization>
+      <roles>
+        <role>Project Admin</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Corey Tripp</name>
+      <email>trippcr@users.sourceforge.net</email>
+      <url></url>
+      <organization></organization>
+      <roles>
+        <role></role>
+      </roles>
+      <timezone></timezone>
+    </contributor>
+    <contributor>
+      <name>Peter Runge</name>
+      <email>prunge@users.sourceforge.net</email>
+      <url>http://www.ozemail.com.au/~prunge/</url>
+      <organization>Private</organization>
+      <roles>
+        <role>developer</role>
+        <role>tester</role>
+      </roles>
+      <timezone>10</timezone>
+    </contributor>
+  </contributors>
+  <scm>
+    <connection>scm:cvs:pserver:anonymous@cvs.sourceforge.net:/cvsroot/xframe:xsddoc</connection>
+    <developerConnection>scm:developername@cvs.sourceforge.net:/cvsroot/xframe:xsddoc</developerConnection>
+    <url>http://cvs.sourceforge.net/viewcvs.py/xframe/xsddoc/</url>
+  </scm>
+  <organization>
+    <name>xframe</name>
+    <url>http://xframe.sourceforge.net/</url>
+  </organization>
+  <build>
+    <sourceDirectory>/src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>${basedir}/src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+          <exclude>**/package.html</exclude>
+        </excludes>
+      </resource>
+    </resources>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.6.5</version>
+    </dependency>
+  </dependencies>
+  <distributionManagement>
+    <site>
+      <id>default</id>
+      <name>Default Site</name>
+      <url>scp://xframe.sourceforge.net//home/groups/x/xf/xframe/htdocs</url>
+    </site>
+  </distributionManagement>
+</project>

@@ -1,0 +1,25 @@
+{
+  "id" : "71470c4e-be0c-36bd-91bb-c01892b594a3",
+  "request" : {
+    "url" : "/api/group/DApublic/org/eclipse/jdt/core/compiler/ecj/4.3.1/ecj-4.3.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.3.1-ecj-4.3.1.pom-hsLYt.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:21:08 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591942", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:06 GMT",
+      "ETAG" : "\"{SHA1{7e7596503417c922309d48c39a195109efdb7ebb}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:13:21 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "71470c4e-be0c-36bd-91bb-c01892b594a3"
+}

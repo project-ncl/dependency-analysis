@@ -1,0 +1,19 @@
+{
+  "id" : "3db17cac-8951-36ad-a4d7-6dc23b634a7d",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/santuario/xmlsec/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-xmlsec-maven-metadata.xml-JIY3t.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:28:49 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:28:28 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "3db17cac-8951-36ad-a4d7-6dc23b634a7d"
+}

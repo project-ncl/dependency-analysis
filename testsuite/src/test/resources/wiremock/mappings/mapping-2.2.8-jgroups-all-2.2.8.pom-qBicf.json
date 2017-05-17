@@ -1,0 +1,30 @@
+{
+  "id" : "2343969a-65ff-3e25-bdb0-7c636f73659c",
+  "request" : {
+    "url" : "/api/group/DApublic/jgroups/jgroups-all/2.2.8/jgroups-all-2.2.8.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.8-jgroups-all-2.2.8.pom-qBicf.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "7c81f533487c68c3d95e5bc555928b1728d5d4fb21787dc496c9afe00db4a951",
+      "X-CHECKSUM-MD5" : "f96e98829f49d8ea2d09fcdc27145d86",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:54 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"f96e98829f49d8ea2d09fcdc27145d86\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 21:53:50 GMT",
+      "X-CHECKSUM-SHA1" : "b3447ead1769d8d0019fc5b8fac3ce02f7cd2d8f",
+      "X-SERVED-BY" : "cache-iad2149-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260635.939885,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1563062",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2343969a-65ff-3e25-bdb0-7c636f73659c"
+}

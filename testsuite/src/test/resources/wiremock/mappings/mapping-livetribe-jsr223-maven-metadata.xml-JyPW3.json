@@ -1,0 +1,19 @@
+{
+  "id" : "fdf89cdd-62ae-38ee-91bb-3b2a46f4232d",
+  "request" : {
+    "url" : "/api/group/test-DA/org/livetribe/livetribe-jsr223/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-livetribe-jsr223-maven-metadata.xml-JyPW3.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:07 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:39:46 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "fdf89cdd-62ae-38ee-91bb-3b2a46f4232d"
+}

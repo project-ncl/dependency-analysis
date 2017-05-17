@@ -1,0 +1,25 @@
+{
+  "id" : "eb71026f-959b-384b-a815-ef7dcd949fda",
+  "request" : {
+    "url" : "/api/group/DApublic/com/wordnik/swagger-core_2.10/1.3.12/swagger-core_2.10-1.3.12.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.12-swagger-core_2.10-1.3.12.pom-dCjsf.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:17:11 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591950", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:01 GMT",
+      "ETAG" : "\"{SHA1{9f7e6786b006f61fcada6f8f38cfdb9529a19f72}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:07:59 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "eb71026f-959b-384b-a815-ef7dcd949fda"
+}

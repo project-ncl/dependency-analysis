@@ -1,0 +1,17 @@
+{
+  "id" : "93282813-209f-3425-aaa7-3eda6ea4cbb6",
+  "request" : {
+    "url" : "/api/group/test-DA/com/oracle/ojdbc5/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-ojdbc5-maven-metadata.xml-iqOHT.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:56 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "93282813-209f-3425-aaa7-3eda6ea4cbb6"
+}

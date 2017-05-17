@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.springframework.data</groupId>
+  <artifactId>spring-data-commons</artifactId>
+  <versioning>
+    <latest>1.6.5.RELEASE</latest>
+    <release>1.6.5.RELEASE</release>
+    <versions>
+      <version>1.6.1.RELEASE</version>
+      <version>1.6.5.RELEASE</version>
+    </versions>
+    <lastUpdated>20170320175519</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,24 @@
+{
+  "id" : "bd049bc2-0af4-3119-ae52-374d6f144b7a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-api/0.10.2/galley-api-0.10.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.10.2-galley-api-0.10.2.pom-YmrJp.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:17:52 GMT",
+      "ETAG" : "\"{SHA1{b087afd0eb5088f390a46f274c14e9d2150b0837}}\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 15:31:29 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "bd049bc2-0af4-3119-ae52-374d6f144b7a"
+}

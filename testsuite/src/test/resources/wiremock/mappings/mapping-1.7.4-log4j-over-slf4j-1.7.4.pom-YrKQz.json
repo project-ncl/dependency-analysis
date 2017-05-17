@@ -1,0 +1,24 @@
+{
+  "id" : "505b24f5-dfee-309b-9942-77164eb1a2da",
+  "request" : {
+    "url" : "/api/group/DApublic/org/slf4j/log4j-over-slf4j/1.7.4/log4j-over-slf4j-1.7.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.4-log4j-over-slf4j-1.7.4.pom-YrKQz.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 08:58:55 GMT",
+      "ETAG" : "\"{SHA1{212c378834572b58f9ff9b3d2295375e1fe8675e}}\"",
+      "LAST-MODIFIED" : "Mon, 18 Mar 2013 14:52:24 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "505b24f5-dfee-309b-9942-77164eb1a2da"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "7362e582-0298-375d-9fec-6a261437ee02",
+  "request" : {
+    "url" : "/api/group/DApublic/junit/junit/3.7/junit-3.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.7-junit-3.7.pom-0jzlc.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "7152d61fa2ed29802291fffc85ce7660cc8587c378de521d973800455111801e",
+      "X-CHECKSUM-MD5" : "ac6e8c6c366828c66f26f3b460e5a2a8",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:26 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ac6e8c6c366828c66f26f3b460e5a2a8\"",
+      "LAST-MODIFIED" : "Mon, 14 May 2007 21:35:34 GMT",
+      "X-CHECKSUM-SHA1" : "be8085714e355694be89d94d57b1a8bf3e3f5c08",
+      "X-SERVED-BY" : "cache-iad2136-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260666.038025,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5213542",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7362e582-0298-375d-9fec-6a261437ee02"
+}

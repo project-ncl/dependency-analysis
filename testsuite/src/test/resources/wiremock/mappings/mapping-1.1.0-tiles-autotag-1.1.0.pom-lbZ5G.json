@@ -1,0 +1,30 @@
+{
+  "id" : "cc56e76f-42b8-317f-9bd4-8aa12c6e9c33",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/tiles/tiles-autotag/1.1.0/tiles-autotag-1.1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1.0-tiles-autotag-1.1.0.pom-lbZ5G.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "253e53fe7d580c27843eb2861c0430d4e729b69cef5de75a50b1b8a7af9c926f",
+      "X-CHECKSUM-MD5" : "0a5bfc478177826f4a6541fc29406187",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:48 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"0a5bfc478177826f4a6541fc29406187\"",
+      "LAST-MODIFIED" : "Wed, 11 Jul 2012 17:33:17 GMT",
+      "X-CHECKSUM-SHA1" : "f0c9ac8ab664142d3c70f2a5c5fc77b8cf5f42e2",
+      "X-SERVED-BY" : "cache-iad2128-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260569.738152,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2163906",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "cc56e76f-42b8-317f-9bd4-8aa12c6e9c33"
+}

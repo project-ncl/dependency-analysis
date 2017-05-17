@@ -1,0 +1,17 @@
+{
+  "id" : "5e1cfaf7-f864-3ca1-a31b-9d1d579eea37",
+  "request" : {
+    "url" : "/api/group/test-DA/org/threeten/threetenbp/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-threetenbp-maven-metadata.xml-9dQtu.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:50 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "5e1cfaf7-f864-3ca1-a31b-9d1d579eea37"
+}

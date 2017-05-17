@@ -1,0 +1,19 @@
+{
+  "id" : "914315ff-ee84-3a44-92cb-4a2b0487a7a1",
+  "request" : {
+    "url" : "/api/group/test-DA/org/ow2/asm/asm-util/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-asm-util-maven-metadata.xml-jGQeo.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:16 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:54 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "914315ff-ee84-3a44-92cb-4a2b0487a7a1"
+}

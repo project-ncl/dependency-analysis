@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-instrument</artifactId>
+  <versioning>
+    <latest>4.1.6.RELEASE</latest>
+    <release>4.1.6.RELEASE</release>
+    <versions>
+      <version>3.2.16.RELEASE</version>
+      <version>4.1.6.RELEASE</version>
+    </versions>
+    <lastUpdated>20170320175519</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,25 @@
+{
+  "id" : "3b7738bb-30ad-3772-aed4-b29c173d3c41",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/plexus/plexus-sec-dispatcher/1.3/plexus-sec-dispatcher-1.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3-plexus-sec-dispatcher-1.3.pom-Z6h0b.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 12:55:48 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2590328", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 11 Apr 2017 13:23:40 GMT",
+      "ETAG" : "\"{SHA1{b953c3a84a7d3f2a7f606e18c07ee38fb6766e3d}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:38 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3b7738bb-30ad-3772-aed4-b29c173d3c41"
+}

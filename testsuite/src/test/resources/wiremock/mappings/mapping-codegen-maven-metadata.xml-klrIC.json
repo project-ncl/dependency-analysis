@@ -1,0 +1,17 @@
+{
+  "id" : "1cf96bfc-587f-37d6-b6c9-b5d09772fcba",
+  "request" : {
+    "url" : "/api/group/test-DA/com/mysema/codegen/codegen/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-codegen-maven-metadata.xml-klrIC.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:38 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1cf96bfc-587f-37d6-b6c9-b5d09772fcba"
+}

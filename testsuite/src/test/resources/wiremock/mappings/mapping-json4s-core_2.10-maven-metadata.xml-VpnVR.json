@@ -1,0 +1,19 @@
+{
+  "id" : "c2e063a9-6a43-3b51-b3c9-6b395530a5be",
+  "request" : {
+    "url" : "/api/group/test-DA/org/json4s/json4s-core_2.10/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-json4s-core_2.10-maven-metadata.xml-VpnVR.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:42:21 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:42:00 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c2e063a9-6a43-3b51-b3c9-6b395530a5be"
+}

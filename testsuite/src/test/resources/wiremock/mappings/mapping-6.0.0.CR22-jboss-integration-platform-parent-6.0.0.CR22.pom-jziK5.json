@@ -1,0 +1,25 @@
+{
+  "id" : "da0edd06-fc42-3e94-93e0-6969b6e9a4ed",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/integration-platform/jboss-integration-platform-parent/6.0.0.CR22/jboss-integration-platform-parent-6.0.0.CR22.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.0.0.CR22-jboss-integration-platform-parent-6.0.0.CR22.pom-jziK5.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:10:42 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591968", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:14 GMT",
+      "ETAG" : "\"{SHA1{6907f45f09e80d2f563e8b05d5564dc3e253632d}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:21:22 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "da0edd06-fc42-3e94-93e0-6969b6e9a4ed"
+}

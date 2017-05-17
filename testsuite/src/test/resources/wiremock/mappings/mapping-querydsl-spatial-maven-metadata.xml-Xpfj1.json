@@ -1,0 +1,17 @@
+{
+  "id" : "16aef424-ab8d-3f1f-8372-10e5d9ddafb7",
+  "request" : {
+    "url" : "/api/group/test-DA/com/mysema/querydsl/querydsl-spatial/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-querydsl-spatial-maven-metadata.xml-Xpfj1.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:51 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "16aef424-ab8d-3f1f-8372-10e5d9ddafb7"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "9b5bc2b9-deae-3d7d-8eb2-d87746ee06f4",
+  "request" : {
+    "url" : "/api/group/DApublic/com/infradna/tool/bridge-method-injector-parent/1.13/bridge-method-injector-parent-1.13.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.13-bridge-method-injector-parent-1.13.pom-xCEsH.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "1155a8247832dae77679f0a2ed446a9b3216ad1f45964c981cb46fbcd61d6181",
+      "X-CHECKSUM-MD5" : "94ddedaa15292ce382cc15ad743873c6",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:13 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"94ddedaa15292ce382cc15ad743873c6\"",
+      "LAST-MODIFIED" : "Thu, 31 Jul 2014 16:45:19 GMT",
+      "X-CHECKSUM-SHA1" : "14a924814f1f5d9837eef248bb120680c7627fe6",
+      "X-SERVED-BY" : "cache-iad2124-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260174.752488,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5470976",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9b5bc2b9-deae-3d7d-8eb2-d87746ee06f4"
+}

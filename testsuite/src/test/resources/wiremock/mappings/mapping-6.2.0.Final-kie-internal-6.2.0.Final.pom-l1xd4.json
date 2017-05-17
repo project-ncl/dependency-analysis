@@ -1,0 +1,25 @@
+{
+  "id" : "f775dd2d-a08d-3267-a4dc-6f9919f9b388",
+  "request" : {
+    "url" : "/api/group/DApublic/org/kie/kie-internal/6.2.0.Final/kie-internal-6.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.2.0.Final-kie-internal-6.2.0.Final.pom-l1xd4.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:12:27 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591988", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:39 GMT",
+      "ETAG" : "\"{SHA1{29dfbff86d25fb7fab0b5ccc2cd10e51341882c6}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:27:48 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f775dd2d-a08d-3267-a4dc-6f9919f9b388"
+}

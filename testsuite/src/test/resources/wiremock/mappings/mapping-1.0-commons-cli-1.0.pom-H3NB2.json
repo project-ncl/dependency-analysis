@@ -1,0 +1,25 @@
+{
+  "id" : "ab98a84e-4cd2-37b4-ba72-87595d74db2c",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-cli/commons-cli/1.0/commons-cli-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-commons-cli-1.0.pom-H3NB2.xml",
+    "headers" : {
+      "EXPIRES" : "Tue, 30 May 2017 23:52:58 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1927845", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:13 GMT",
+      "ETAG" : "\"{SHA1{bc51fd74ed7c8ccf75b3abc84b3613d6ba60eb89}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ab98a84e-4cd2-37b4-ba72-87595d74db2c"
+}

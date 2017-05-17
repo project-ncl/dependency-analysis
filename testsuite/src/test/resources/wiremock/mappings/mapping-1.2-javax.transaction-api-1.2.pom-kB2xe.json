@@ -1,0 +1,25 @@
+{
+  "id" : "446df836-ac0f-33ca-9cb6-5a30f6a657b4",
+  "request" : {
+    "url" : "/api/group/DApublic/javax/transaction/javax.transaction-api/1.2/javax.transaction-api-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-javax.transaction-api-1.2.pom-kB2xe.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:15:44 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:44 GMT",
+      "ETAG" : "\"{SHA1{3c48b866b21e1d3181ce04af8874844aa41bf8f6}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "446df836-ac0f-33ca-9cb6-5a30f6a657b4"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "aadcf9ff-246b-303c-b0c4-34d02e988f8b",
+  "request" : {
+    "url" : "/api/group/test-DA/io/swagger/swagger-core/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-swagger-core-maven-metadata.xml-NOyzB.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:42:29 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:42:07 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "aadcf9ff-246b-303c-b0c4-34d02e988f8b"
+}

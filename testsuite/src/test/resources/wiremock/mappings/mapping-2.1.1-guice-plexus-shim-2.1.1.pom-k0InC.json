@@ -1,0 +1,24 @@
+{
+  "id" : "2be2ba71-f3c6-3f12-b030-95aa8b13e38b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-shim/2.1.1/guice-plexus-shim-2.1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.1-guice-plexus-shim-2.1.1.pom-k0InC.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:47:32 GMT",
+      "ETAG" : "\"{SHA1{9518c772428b5025fcf55177b62bb4dd37b14e62}}\"",
+      "LAST-MODIFIED" : "Fri, 11 Feb 2011 17:42:50 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2be2ba71-f3c6-3f12-b030-95aa8b13e38b"
+}

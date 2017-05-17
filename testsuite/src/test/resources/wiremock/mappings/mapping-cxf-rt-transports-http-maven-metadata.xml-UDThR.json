@@ -1,0 +1,19 @@
+{
+  "id" : "a5c052f2-4e99-3c0e-806f-10c08780c3ba",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/cxf/cxf-rt-transports-http/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-cxf-rt-transports-http-maven-metadata.xml-UDThR.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:40:24 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:03 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a5c052f2-4e99-3c0e-806f-10c08780c3ba"
+}

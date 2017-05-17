@@ -1,0 +1,19 @@
+{
+  "id" : "7b72f62f-57a7-3eb9-9342-8582c9a143b3",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/openjpa/openjpa-lib/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-openjpa-lib-maven-metadata.xml-TBm91.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:52 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:30 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7b72f62f-57a7-3eb9-9342-8582c9a143b3"
+}

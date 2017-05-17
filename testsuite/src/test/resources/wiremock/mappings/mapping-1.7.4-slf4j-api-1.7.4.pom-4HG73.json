@@ -1,0 +1,30 @@
+{
+  "id" : "2d8eb103-914a-346a-b68e-ac1ca21044ac",
+  "request" : {
+    "url" : "/api/group/DApublic/org/slf4j/slf4j-api/1.7.4/slf4j-api-1.7.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.4-slf4j-api-1.7.4.pom-4HG73.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "e62b86269fec888015dd75187b4cc504fedb0b9551b3897307a3e0f2908e963d",
+      "X-CHECKSUM-MD5" : "3ed4cb7361e5906410a1f356f52158ae",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:13:54 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"3ed4cb7361e5906410a1f356f52158ae\"",
+      "LAST-MODIFIED" : "Mon, 18 Mar 2013 14:48:46 GMT",
+      "X-CHECKSUM-SHA1" : "259d623cf577b0392ee6a6578ae9e16b26e4c2c1",
+      "X-SERVED-BY" : "cache-iad2141-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494260034.457072,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5210593",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2d8eb103-914a-346a-b68e-ac1ca21044ac"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "6fa4ded3-84ef-3d85-8d64-6f99001f5ccf",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ivy/ivy/2.2.0/ivy-2.2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.0-ivy-2.2.0.pom-s5eph.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "c0b81ac38337b44eaa188cf29eef196eea0bfd9fe3fdbc32057caf4b9cfcbfe5",
+      "X-CHECKSUM-MD5" : "c7d356aa3ecc1cc899866bac1d69087f",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:59 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"c7d356aa3ecc1cc899866bac1d69087f\"",
+      "LAST-MODIFIED" : "Thu, 23 Sep 2010 22:06:47 GMT",
+      "X-CHECKSUM-SHA1" : "4e240e17117e928dc600636cbbd91a7f0dd101b6",
+      "X-SERVED-BY" : "cache-iad2139-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260280.690837,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5211292",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "6fa4ded3-84ef-3d85-8d64-6f99001f5ccf"
+}

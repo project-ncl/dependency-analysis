@@ -1,0 +1,30 @@
+{
+  "id" : "0813e7e1-c019-3a66-b17e-5db1152c417f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/atteo/evo-inflector/1.2.1/evo-inflector-1.2.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2.1-evo-inflector-1.2.1.pom-ZjUw9.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "775953f60d89ffdaa688bacd5c0cd8d1ff1ce620a817b35bb576b1b69d0f35cc",
+      "X-CHECKSUM-MD5" : "4d5573069596d35e77d92949c19737e0",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:20 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"4d5573069596d35e77d92949c19737e0\"",
+      "LAST-MODIFIED" : "Tue, 23 Sep 2014 20:28:54 GMT",
+      "X-CHECKSUM-SHA1" : "a5517b4d12e3b088a003c398fbc6de01247f56c7",
+      "X-SERVED-BY" : "cache-iad2141-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260180.494068,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "6836436",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0813e7e1-c019-3a66-b17e-5db1152c417f"
+}

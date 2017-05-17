@@ -1,0 +1,30 @@
+{
+  "id" : "f4300872-8d2c-3a89-b5a8-0209550180dc",
+  "request" : {
+    "url" : "/api/group/DApublic/ant/ant/1.5.1/ant-1.5.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.1-ant-1.5.1.pom-lcM9j.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "54ccf4503b9340b946849c8821e2ecb3445ba6607da4499073825f9c6870bad7",
+      "X-CHECKSUM-MD5" : "7355c2b5eb2bd89c37ce6df5d6da96d8",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:15 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"7355c2b5eb2bd89c37ce6df5d6da96d8\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:24:01 GMT",
+      "X-CHECKSUM-SHA1" : "0ffdb41f140a621beeec4dc81b3d3ecaee085d28",
+      "X-SERVED-BY" : "cache-iad2125-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260475.122955,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2141323",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f4300872-8d2c-3a89-b5a8-0209550180dc"
+}

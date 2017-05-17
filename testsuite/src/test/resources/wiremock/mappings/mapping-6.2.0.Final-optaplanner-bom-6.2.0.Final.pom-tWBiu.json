@@ -1,0 +1,25 @@
+{
+  "id" : "a214bcac-41dd-3a91-86f0-d000e79e5de1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/optaplanner/optaplanner-bom/6.2.0.Final/optaplanner-bom-6.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.2.0.Final-optaplanner-bom-6.2.0.Final.pom-tWBiu.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 20:01:32 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2173831", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:01 GMT",
+      "ETAG" : "\"{SHA1{884f6bd593484d2fb7933e6f288b3dd8f1d13d1f}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:56:31 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "a214bcac-41dd-3a91-86f0-d000e79e5de1"
+}

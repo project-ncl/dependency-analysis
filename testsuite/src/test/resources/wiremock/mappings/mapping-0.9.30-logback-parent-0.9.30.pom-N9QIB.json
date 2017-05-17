@@ -1,0 +1,24 @@
+{
+  "id" : "a4c62ee6-3cfd-3d44-8971-cbe0cb238a78",
+  "request" : {
+    "url" : "/api/group/DApublic/ch/qos/logback/logback-parent/0.9.30/logback-parent-0.9.30.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.9.30-logback-parent-0.9.30.pom-N9QIB.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:47:23 GMT",
+      "ETAG" : "\"{SHA1{28ac58098951614b0965afc0b042e068add245c6}}\"",
+      "LAST-MODIFIED" : "Tue, 20 Sep 2011 22:20:14 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a4c62ee6-3cfd-3d44-8971-cbe0cb238a78"
+}

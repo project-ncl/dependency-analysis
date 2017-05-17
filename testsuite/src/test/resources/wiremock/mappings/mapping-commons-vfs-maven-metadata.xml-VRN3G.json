@@ -1,0 +1,17 @@
+{
+  "id" : "aca60b37-2e3d-34bb-b7fd-0c6fa6484ecd",
+  "request" : {
+    "url" : "/api/group/test-DA/commons-vfs/commons-vfs/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-commons-vfs-maven-metadata.xml-VRN3G.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:02 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "aca60b37-2e3d-34bb-b7fd-0c6fa6484ecd"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "c330b88a-1322-35b4-9c73-018a93d786e5",
+  "request" : {
+    "url" : "/api/group/DApublic/org/uberfire/uberfire-extensions-bom/0.5.0.Final/uberfire-extensions-bom-0.5.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.5.0.Final-uberfire-extensions-bom-0.5.0.Final.pom-O2X98.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:11:12 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:12 GMT",
+      "ETAG" : "\"{SHA1{66dc0130287d4632e83b56f0b75850f4450e0248}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:47:25 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c330b88a-1322-35b4-9c73-018a93d786e5"
+}

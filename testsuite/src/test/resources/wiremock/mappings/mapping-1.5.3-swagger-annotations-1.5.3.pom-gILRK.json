@@ -1,0 +1,25 @@
+{
+  "id" : "f8d6fd23-efff-3f55-a95a-d699cb72388d",
+  "request" : {
+    "url" : "/api/group/DApublic/io/swagger/swagger-annotations/1.5.3/swagger-annotations-1.5.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5.3-swagger-annotations-1.5.3.pom-gILRK.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:11:00 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591972", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:28 GMT",
+      "ETAG" : "\"{SHA1{c721897d040fcbf44526c970fb5c2ded106b134a}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 19:48:52 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "f8d6fd23-efff-3f55-a95a-d699cb72388d"
+}

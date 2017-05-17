@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.apache.geronimo.specs</groupId>
+  <artifactId>geronimo-stax-api_1.2_spec</artifactId>
+  <versioning>
+    <latest>1.2</latest>
+    <release>1.2</release>
+    <versions>
+      <version>1.2</version>
+    </versions>
+    <lastUpdated>20170320175520</lastUpdated>
+  </versioning>
+</metadata>

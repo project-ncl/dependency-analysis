@@ -1,0 +1,25 @@
+{
+  "id" : "44ea153b-d74d-3a48-871f-178258300343",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/netty/netty/3.2.7.Final/netty-3.2.7.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.7.Final-netty-3.2.7.Final.pom-BfnRc.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:20:16 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591946", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:10 GMT",
+      "ETAG" : "\"{SHA1{0ff44999a1f899c3b44a39b29fc62ba95711a41d}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:47:39 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "44ea153b-d74d-3a48-871f-178258300343"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "bb3612e1-c070-3f12-982d-d16bb80430aa",
+  "request" : {
+    "url" : "/api/group/test-DA/ldapsdk/ldapsdk/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-ldapsdk-maven-metadata.xml-VqyFn.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:18 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:57 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "bb3612e1-c070-3f12-982d-d16bb80430aa"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "6ef9899d-d3f6-3e4f-a99f-1555d73b7eb6",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/janino/janino-parent/2.6.1/janino-parent-2.6.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.6.1-janino-parent-2.6.1.pom-uCCPb.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:13:45 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591989", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:13:56 GMT",
+      "ETAG" : "\"{SHA1{bcbecf6659e91c389990fed57b8e1bdc13277272}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:07 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6ef9899d-d3f6-3e4f-a99f-1555d73b7eb6"
+}

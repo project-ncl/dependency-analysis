@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>javax.mail</groupId>
+  <artifactId>mail</artifactId>
+  <versioning>
+    <latest>1.5.0-b01</latest>
+    <release>1.5.0-b01</release>
+    <versions>
+      <version>1.4</version>
+      <version>1.4.1</version>
+      <version>1.4.2</version>
+      <version>1.4.4</version>
+      <version>1.4.4-redhat-1</version>
+      <version>1.4.4-redhat-2</version>
+      <version>1.4.5</version>
+      <version>1.4.5-redhat-1</version>
+      <version>1.4.5.redhat-2</version>
+      <version>1.4.7</version>
+      <version>1.5.0-b01</version>
+    </versions>
+    <lastUpdated>20170512214306</lastUpdated>
+  </versioning>
+</metadata>

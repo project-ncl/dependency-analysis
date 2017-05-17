@@ -1,0 +1,25 @@
+{
+  "id" : "d04865ee-3535-3f78-9cd6-4c03a0122839",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/jackson/jackson-jaxrs/1.9.9/jackson-jaxrs-1.9.9.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.9-jackson-jaxrs-1.9.9.pom-3Jzwe.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 18:22:17 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2081240", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:57 GMT",
+      "ETAG" : "\"{SHA1{ffe63b916c573f5b8fb0abd9e3102263643bf659}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:01 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "d04865ee-3535-3f78-9cd6-4c03a0122839"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "0a430634-92a7-3f77-8bb8-8ec49013d527",
+  "request" : {
+    "url" : "/api/group/DApublic/org/json4s/json4s-jackson_2.10/3.2.11/json4s-jackson_2.10-3.2.11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.2.11-json4s-jackson_2.10-3.2.11.pom-iqThD.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:21:29 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:29 GMT",
+      "ETAG" : "\"{SHA1{7bf06e1f771a761a90cf6871271ae7d50d5689fc}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:54:53 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0a430634-92a7-3f77-8bb8-8ec49013d527"
+}

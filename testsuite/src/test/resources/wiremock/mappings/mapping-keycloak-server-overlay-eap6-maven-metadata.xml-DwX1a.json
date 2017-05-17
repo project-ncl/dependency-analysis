@@ -1,0 +1,17 @@
+{
+  "id" : "903909a3-4df5-3ad5-a68b-d8f56596f164",
+  "request" : {
+    "url" : "/api/group/test-DA/org/keycloak/keycloak-server-overlay-eap6/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-keycloak-server-overlay-eap6-maven-metadata.xml-DwX1a.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 14:27:35 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "903909a3-4df5-3ad5-a68b-d8f56596f164"
+}

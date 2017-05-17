@@ -1,0 +1,25 @@
+{
+  "id" : "6a1add34-9e3d-3287-b27a-386c275e2381",
+  "request" : {
+    "url" : "/api/group/DApublic/junit/junit/4.10/junit-4.10.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.10-junit-4.10.pom-JYwbS.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 01:53:59 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2108169", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:50 GMT",
+      "ETAG" : "\"{SHA1{35bef83e80c3431f95d267e19252bddfe965041c}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:26 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6a1add34-9e3d-3287-b27a-386c275e2381"
+}

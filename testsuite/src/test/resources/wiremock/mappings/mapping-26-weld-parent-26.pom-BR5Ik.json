@@ -1,0 +1,25 @@
+{
+  "id" : "58b13498-5863-38b2-a78b-ea77d1b46502",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/weld/weld-parent/26/weld-parent-26.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-26-weld-parent-26.pom-BR5Ik.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 19 May 2017 20:13:09 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=987222", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:27 GMT",
+      "ETAG" : "\"{SHA1{54a75d96c0c3f6bb4b32293d2ababb8fae665e91}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:52:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "58b13498-5863-38b2-a78b-ea77d1b46502"
+}

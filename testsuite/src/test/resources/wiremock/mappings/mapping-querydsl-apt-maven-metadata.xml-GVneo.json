@@ -1,0 +1,17 @@
+{
+  "id" : "27d08a3d-71dd-30b2-8cb6-ca5e9daed187",
+  "request" : {
+    "url" : "/api/group/test-DA/com/mysema/querydsl/querydsl-apt/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-querydsl-apt-maven-metadata.xml-GVneo.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:37 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "27d08a3d-71dd-30b2-8cb6-ca5e9daed187"
+}

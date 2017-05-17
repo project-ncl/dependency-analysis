@@ -1,0 +1,30 @@
+{
+  "id" : "a8b73cf3-6f8c-353f-83b4-9aed368110f1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/shared/1.4.0/shared-1.4.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.0-shared-1.4.0.pom-BRIWG.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "5c6171bfe3fb136580d7075318582d937a2cc5152ca585fbf36b879269ed5b0c",
+      "X-CHECKSUM-MD5" : "9318b7a0b447a1d95f01ab359797cca5",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:17 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"9318b7a0b447a1d95f01ab359797cca5\"",
+      "LAST-MODIFIED" : "Mon, 02 Nov 2009 21:08:01 GMT",
+      "X-CHECKSUM-SHA1" : "fd283661a7fa559d50ff9d57e083060a4aba9e93",
+      "X-SERVED-BY" : "cache-iad2129-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260297.226218,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "350184",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a8b73cf3-6f8c-353f-83b4-9aed368110f1"
+}

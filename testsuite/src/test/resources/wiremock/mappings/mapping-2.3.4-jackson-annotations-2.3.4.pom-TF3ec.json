@@ -1,0 +1,30 @@
+{
+  "id" : "5351a237-1b13-3e48-8262-f1ef00c4fb42",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-annotations/2.3.4/jackson-annotations-2.3.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.4-jackson-annotations-2.3.4.pom-TF3ec.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "6566c79a064b401159cac03dc2c90a54c5de8626abba713e5587852c42bbb922",
+      "X-CHECKSUM-MD5" : "3be620335e00f7c046f081d744cb0b30",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:04 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"3be620335e00f7c046f081d744cb0b30\"",
+      "LAST-MODIFIED" : "Fri, 15 Aug 2014  0:18:59 GMT",
+      "X-CHECKSUM-SHA1" : "e809afa3dfcfbb58abd9f3f9114c32ba25cc6576",
+      "X-SERVED-BY" : "cache-iad2122-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259924.372753,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1531769",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5351a237-1b13-3e48-8262-f1ef00c4fb42"
+}

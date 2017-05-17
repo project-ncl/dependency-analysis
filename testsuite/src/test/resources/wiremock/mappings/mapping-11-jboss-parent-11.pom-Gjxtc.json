@@ -1,0 +1,25 @@
+{
+  "id" : "3be0861f-9eb1-39b0-82ad-350114cdb158",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/jboss-parent/11/jboss-parent-11.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-11-jboss-parent-11.pom-Gjxtc.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 24 May 2017 16:17:34 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=1405097", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:17 GMT",
+      "ETAG" : "\"{SHA1{1f59065c8e72ecb51f60603169c06de4b2b156e6}}\"",
+      "LAST-MODIFIED" : "Thu, 21 Nov 2013 04:30:03 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3be0861f-9eb1-39b0-82ad-350114cdb158"
+}

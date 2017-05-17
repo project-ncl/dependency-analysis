@@ -1,0 +1,2 @@
+Id: 1fbd789de147cfc3002fb895aa2ec67d981b7d7eb8b40a79b085dd24ae56fbca
+Message: Path org/keycloak/keycloak-social-core/maven-metadata.xml is not available in store group:test-DA.

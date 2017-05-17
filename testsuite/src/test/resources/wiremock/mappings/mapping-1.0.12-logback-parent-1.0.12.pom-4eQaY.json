@@ -1,0 +1,30 @@
+{
+  "id" : "9594c5b1-746f-33ef-89df-f93ec1f2c6e9",
+  "request" : {
+    "url" : "/api/group/DApublic/ch/qos/logback/logback-parent/1.0.12/logback-parent-1.0.12.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.12-logback-parent-1.0.12.pom-4eQaY.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "187a1e7704854a20d9e49bd1f78b6cb115611e38d9f2e8e0f373124a1c0d9836",
+      "X-CHECKSUM-MD5" : "dfb9e2e1aaea2046b360dc290d963704",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:11:37 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"dfb9e2e1aaea2046b360dc290d963704\"",
+      "LAST-MODIFIED" : "Fri, 26 Apr 2013 16:29:30 GMT",
+      "X-CHECKSUM-SHA1" : "e609d7eaeeef212de15f0db5f14af7e057367edb",
+      "X-SERVED-BY" : "cache-iad2135-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259898.608230,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "4742022",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9594c5b1-746f-33ef-89df-f93ec1f2c6e9"
+}

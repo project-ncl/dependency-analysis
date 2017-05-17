@@ -1,0 +1,19 @@
+{
+  "id" : "433cf396-dccc-34a7-84f3-1b0df4ff7238",
+  "request" : {
+    "url" : "/api/group/test-DA/com/vividsolutions/jts/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jts-maven-metadata.xml-jeRAM.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:46 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:24 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "433cf396-dccc-34a7-84f3-1b0df4ff7238"
+}

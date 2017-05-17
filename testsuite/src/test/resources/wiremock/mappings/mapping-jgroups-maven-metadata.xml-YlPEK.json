@@ -1,0 +1,19 @@
+{
+  "id" : "4de5916b-3c0f-3388-b8de-e47c79f8af47",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jgroups/jgroups/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jgroups-maven-metadata.xml-YlPEK.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:44 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:23 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "4de5916b-3c0f-3388-b8de-e47c79f8af47"
+}

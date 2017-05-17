@@ -1,0 +1,19 @@
+{
+  "id" : "d4a1ef07-582b-3b65-8226-92055038b7fd",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jsoup/jsoup/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jsoup-maven-metadata.xml-WUOLJ.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:24:48 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:24:26 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d4a1ef07-582b-3b65-8226-92055038b7fd"
+}

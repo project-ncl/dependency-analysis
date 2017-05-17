@@ -1,0 +1,30 @@
+{
+  "id" : "7847f250-d988-3456-8e67-0dab58aa2357",
+  "request" : {
+    "url" : "/api/group/DApublic/ant/ant/1.5/ant-1.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.5-ant-1.5.pom-sQuU1.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f73924a7a9ab4119a2d2c31d5f3f1b9d3e2a7facdf0ac491dab02e8b9e6cbda1",
+      "X-CHECKSUM-MD5" : "cb40a08b22f0a5214d8e035f51545cfc",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:25:04 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"cb40a08b22f0a5214d8e035f51545cfc\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:24:01 GMT",
+      "X-CHECKSUM-SHA1" : "bbb603f9f7a32a10eb539c1067992dabab58d33a",
+      "X-SERVED-BY" : "cache-iad2137-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260705.851476,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5213485",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7847f250-d988-3456-8e67-0dab58aa2357"
+}

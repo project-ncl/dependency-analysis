@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.eclipse.osgi</groupId>
+  <artifactId>org.eclipse.osgi</artifactId>
+  <versioning>
+    <latest>3.7.1</latest>
+    <release>3.7.1</release>
+    <versions>
+      <version>3.7.1</version>
+    </versions>
+    <lastUpdated>20170320175519</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,30 @@
+{
+  "id" : "570ca216-caa0-3fe0-998e-df86142698a3",
+  "request" : {
+    "url" : "/api/group/DApublic/com/infradna/tool/bridge-method-annotation/1.13/bridge-method-annotation-1.13.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.13-bridge-method-annotation-1.13.pom-WmAf5.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "8cb1e37b8a7fee19a2f46c2e7f8302448ccc0b5b8e9a0d7610ff7d93071c5532",
+      "X-CHECKSUM-MD5" : "492442e4c720f8fe00a03839fb279fa4",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:13 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"492442e4c720f8fe00a03839fb279fa4\"",
+      "LAST-MODIFIED" : "Thu, 31 Jul 2014 16:45:47 GMT",
+      "X-CHECKSUM-SHA1" : "e64931ba407690b4a576c6d34c82cc8604180392",
+      "X-SERVED-BY" : "cache-iad2135-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260174.639942,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5210517",
+      "X-CACHE-HITS" : "2, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "570ca216-caa0-3fe0-998e-df86142698a3"
+}

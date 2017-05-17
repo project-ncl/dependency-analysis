@@ -1,0 +1,24 @@
+{
+  "id" : "48b0a411-f859-340d-8cb3-eb46fb40a389",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-bindings-jackson-relationships/0.15.0/atlas-bindings-jackson-relationships-0.15.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.0-atlas-bindings-jackson-relationships-0.15.0.pom-IjP1H.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:44:58 GMT",
+      "ETAG" : "\"{SHA1{7df709524a487e2c70d3c37aca9a7be90af2b28a}}\"",
+      "LAST-MODIFIED" : "Thu, 03 Sep 2015 21:02:15 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "48b0a411-f859-340d-8cb3-eb46fb40a389"
+}

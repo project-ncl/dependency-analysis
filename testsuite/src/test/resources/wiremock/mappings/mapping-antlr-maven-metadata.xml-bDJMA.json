@@ -1,0 +1,19 @@
+{
+  "id" : "2d575212-ba4a-3640-9b41-e0a72c22589c",
+  "request" : {
+    "url" : "/api/group/test-DA/antlr/antlr/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-antlr-maven-metadata.xml-bDJMA.xml",
+    "headers" : {
+      "Last-Modified" : "Wed, 17 May 2017 14:33:57 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Wed, 17 May 2017 14:33:57 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2d575212-ba4a-3640-9b41-e0a72c22589c"
+}

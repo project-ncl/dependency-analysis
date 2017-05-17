@@ -1,0 +1,25 @@
+{
+  "id" : "ca195f77-508f-3a8e-85eb-2b691eea6b00",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant/1.8.1/ant-1.8.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.1-ant-1.8.1.pom-d3lPk.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 03:55:08 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2115424", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:04 GMT",
+      "ETAG" : "\"{SHA1{381a0b0df3f0ee802f0bda5d7d312b60d2cb019f}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:34:40 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ca195f77-508f-3a8e-85eb-2b691eea6b00"
+}

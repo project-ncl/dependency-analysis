@@ -1,0 +1,17 @@
+{
+  "id" : "4d99a96d-26c4-3d7d-a16b-8b7986716cf3",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/pnc/test-arquillian-container/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-test-arquillian-container-maven-metadata.xml-eL2CD.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:00 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "4d99a96d-26c4-3d7d-a16b-8b7986716cf3"
+}

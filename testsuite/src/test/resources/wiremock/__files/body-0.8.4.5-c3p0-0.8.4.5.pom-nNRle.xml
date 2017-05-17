@@ -1,0 +1,7 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>c3p0</groupId>
+  <artifactId>c3p0</artifactId>
+  <name>c3p0</name>
+  <version>0.8.4.5</version>
+</project>

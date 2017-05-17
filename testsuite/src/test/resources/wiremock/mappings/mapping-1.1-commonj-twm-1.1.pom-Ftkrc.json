@@ -1,0 +1,30 @@
+{
+  "id" : "21836e79-e403-3beb-b7bd-9938a779143a",
+  "request" : {
+    "url" : "/api/group/DApublic/com/bea/wlplatform/commonj-twm/1.1/commonj-twm-1.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.1-commonj-twm-1.1.pom-Ftkrc.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "5a081bb80c357f584dadd5d26f641a1c83690207de8a60dc8271941a34bb579a",
+      "X-CHECKSUM-MD5" : "8cede24db0631039bc45bf560e64d4a3",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:33 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"8cede24db0631039bc45bf560e64d4a3\"",
+      "LAST-MODIFIED" : "Sun, 25 Dec 2005 22:52:12 GMT",
+      "X-CHECKSUM-SHA1" : "a0bf449e5cd60693f70244fbcd4c06e53ec3a372",
+      "X-SERVED-BY" : "cache-iad2148-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260673.216361,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1128217",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "21836e79-e403-3beb-b7bd-9938a779143a"
+}

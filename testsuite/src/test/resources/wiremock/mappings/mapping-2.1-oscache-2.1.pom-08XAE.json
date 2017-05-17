@@ -1,0 +1,30 @@
+{
+  "id" : "5fbe3fd0-b7fe-336d-ac33-3094933843f2",
+  "request" : {
+    "url" : "/api/group/DApublic/opensymphony/oscache/2.1/oscache-2.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1-oscache-2.1.pom-08XAE.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "61c81592d43cc245553b8b11fbd7534f8c0bd8c6225c388b3d24ccf6387be317",
+      "X-CHECKSUM-MD5" : "8d6315fcdfad175ba3454d32a8607923",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:27 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"8d6315fcdfad175ba3454d32a8607923\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:06:21 GMT",
+      "X-CHECKSUM-SHA1" : "1d2a33d92f8b9e039624c0719d692fa34074a861",
+      "X-SERVED-BY" : "cache-iad2143-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260547.308038,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1601387",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5fbe3fd0-b7fe-336d-ac33-3094933843f2"
+}

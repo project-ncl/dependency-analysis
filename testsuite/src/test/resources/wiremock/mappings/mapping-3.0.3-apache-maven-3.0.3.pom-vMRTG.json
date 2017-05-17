@@ -1,0 +1,22 @@
+{
+  "id" : "44e7f4c1-43d6-33a0-83a3-83f1c1940259",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/maven/apache-maven/3.0.3/apache-maven-3.0.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-3.0.3-apache-maven-3.0.3.pom-vMRTG.xml",
+    "headers" : {
+      "ETAG" : "\"1285d909-159f-4afc1a8a3b081\"",
+      "LAST-MODIFIED" : "Thu, 20 Oct 2011 21:29:59 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 12:15:22 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "44e7f4c1-43d6-33a0-83a3-83f1c1940259"
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "6ff67d16-b465-31df-b6d9-4b3e30894f0c",
+  "request" : {
+    "url" : "/api/group/test-DA/org/json4s/json4s-ext_2.10/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-json4s-ext_2.10-maven-metadata.xml-uhQhD.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:42:21 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:59 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "6ff67d16-b465-31df-b6d9-4b3e30894f0c"
+}

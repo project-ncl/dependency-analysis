@@ -1,0 +1,25 @@
+{
+  "id" : "b71c2e27-d1ee-345b-b120-e5ccff26a74f",
+  "request" : {
+    "url" : "/api/group/DApublic/joda-time/joda-time/2.3/joda-time-2.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3-joda-time-2.3.pom-41UNb.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:17:06 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:06 GMT",
+      "ETAG" : "\"{SHA1{1673e7e7cf3b24e9808f0133f03e51d10812de66}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:25:19 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "b71c2e27-d1ee-345b-b120-e5ccff26a74f"
+}

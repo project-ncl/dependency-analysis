@@ -1,0 +1,25 @@
+{
+  "id" : "42ba0c65-42c0-3f7b-9a05-415738a8db37",
+  "request" : {
+    "url" : "/api/group/DApublic/org/kie/kie-parent-metadata/6.2.0.Final/kie-parent-metadata-6.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.2.0.Final-kie-parent-metadata-6.2.0.Final.pom-LivQq.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 20:01:24 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2173828", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:56 GMT",
+      "ETAG" : "\"{SHA1{69ece66992973492094b31396a1e91e1785d44d4}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:54:57 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "42ba0c65-42c0-3f7b-9a05-415738a8db37"
+}

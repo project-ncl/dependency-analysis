@@ -1,0 +1,19 @@
+{
+  "id" : "cb9082f7-8d63-3a32-bea0-1c3807c5002d",
+  "request" : {
+    "url" : "/api/group/test-DA/com/jcraft/jsch/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jsch-maven-metadata.xml-mpZvD.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:42:12 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:50 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "cb9082f7-8d63-3a32-bea0-1c3807c5002d"
+}

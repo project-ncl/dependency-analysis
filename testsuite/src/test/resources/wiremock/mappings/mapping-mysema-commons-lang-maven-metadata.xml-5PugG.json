@@ -1,0 +1,17 @@
+{
+  "id" : "0e0018c6-bcdb-37d0-bdc2-13304bb06178",
+  "request" : {
+    "url" : "/api/group/test-DA/com/mysema/commons/mysema-commons-lang/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-mysema-commons-lang-maven-metadata.xml-5PugG.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:38 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0e0018c6-bcdb-37d0-bdc2-13304bb06178"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "3f2635a6-8426-3643-9489-9dc09d26ada2",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/bom/eap/jboss-javaee-6.0-with-hibernate/6.3.2.GA/jboss-javaee-6.0-with-hibernate-6.3.2.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.3.2.GA-jboss-javaee-6.0-with-hibernate-6.3.2.GA.pom-KaxNz.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 09:58:43 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591982", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:01 GMT",
+      "ETAG" : "\"{SHA1{fdb2beb90c94fbf07e9598c314af84ce2c8e07be}}\"",
+      "LAST-MODIFIED" : "Tue, 21 Oct 2014 08:39:10 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3f2635a6-8426-3643-9489-9dc09d26ada2"
+}

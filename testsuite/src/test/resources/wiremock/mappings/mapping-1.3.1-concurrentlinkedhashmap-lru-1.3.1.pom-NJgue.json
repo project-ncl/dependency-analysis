@@ -1,0 +1,24 @@
+{
+  "id" : "eaa235d1-85ae-39c6-819d-1d11a09c710d",
+  "request" : {
+    "url" : "/api/group/DApublic/com/googlecode/concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.3.1/concurrentlinkedhashmap-lru-1.3.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.3.1-concurrentlinkedhashmap-lru-1.3.1.pom-NJgue.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:59 GMT",
+      "ETAG" : "\"{SHA1{2323cbebdd02d3547a2fb591f88d8b10a19001f3}}\"",
+      "LAST-MODIFIED" : "Thu, 19 Jul 2012 02:40:10 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "eaa235d1-85ae-39c6-819d-1d11a09c710d"
+}

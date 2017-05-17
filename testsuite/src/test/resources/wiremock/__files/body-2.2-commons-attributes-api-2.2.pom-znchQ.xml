@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>commons-attributes</groupId>
+  <artifactId>commons-attributes-api</artifactId>
+  <name>Jakarta Commons Attributes API</name>
+  <version>2.2</version>
+  <description>A precompiler for java that enables the use of attributes as seen in C#.</description>
+  <dependencies>
+    <dependency>
+      <groupId>ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.5</version>
+    </dependency>
+    <dependency>
+      <groupId>qdox</groupId>
+      <artifactId>qdox</artifactId>
+      <version>1.5</version>
+    </dependency>
+  </dependencies>
+</project>

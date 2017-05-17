@@ -1,0 +1,25 @@
+{
+  "id" : "07073694-a36e-3dd2-a966-37b44c7c7b4f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/openjpa/openjpa-kernel/2.3.0/openjpa-kernel-2.3.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.0-openjpa-kernel-2.3.0.pom-NbSKw.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:20:37 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:37 GMT",
+      "ETAG" : "\"{SHA1{8da37747f262ac64f79ba0c8dff755082cd24899}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 20:23:27 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "07073694-a36e-3dd2-a966-37b44c7c7b4f"
+}

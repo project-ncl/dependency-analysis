@@ -1,0 +1,30 @@
+{
+  "id" : "cd85feac-2638-3fca-a05a-3b72be5fc31c",
+  "request" : {
+    "url" : "/api/group/DApublic/ch/qos/logback/logback-core/1.0.12/logback-core-1.0.12.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.12-logback-core-1.0.12.pom-zENDH.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "7aff5500d683abe8a2b87b303029508474537267b70e5874cfd868c598089d94",
+      "X-CHECKSUM-MD5" : "a3f532934b229fb11f8ae0968e4f9875",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:13:55 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a3f532934b229fb11f8ae0968e4f9875\"",
+      "LAST-MODIFIED" : "Fri, 26 Apr 2013 16:30:33 GMT",
+      "X-CHECKSUM-SHA1" : "777abc923a4f99d1d6b30860155a9bbb494633ab",
+      "X-SERVED-BY" : "cache-iad2121-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494260036.782338,VS0,VE2",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2430312",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "cd85feac-2638-3fca-a05a-3b72be5fc31c"
+}

@@ -1,0 +1,28 @@
+{
+  "id" : "d0dc7adf-f1e2-3f16-809b-1835fe977fe9",
+  "request" : {
+    "url" : "/api/group/DApublic/com/thoughtworks/xstream/xstream/1.4.1/xstream-1.4.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.1-xstream-1.4.1.pom-cmBi7.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "4f137c93cc4852225dc06f17376a5d628d774a995e64a1ea6b0adb3832ceb7e7",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:14 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"4e434133-3469\"",
+      "LAST-MODIFIED" : "Thu, 11 Aug 2011 02:40:51 GMT",
+      "X-SERVED-BY" : "cache-iad2130-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260415.700373,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "4745034",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d0dc7adf-f1e2-3f16-809b-1835fe977fe9"
+}

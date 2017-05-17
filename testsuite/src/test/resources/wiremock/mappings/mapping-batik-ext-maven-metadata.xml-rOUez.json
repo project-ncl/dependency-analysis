@@ -1,0 +1,19 @@
+{
+  "id" : "7c63b608-0936-39f6-ba7b-bc751d0d7a00",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/xmlgraphics/batik-ext/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-batik-ext-maven-metadata.xml-rOUez.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:28 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:06 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "7c63b608-0936-39f6-ba7b-bc751d0d7a00"
+}

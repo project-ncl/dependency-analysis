@@ -1,0 +1,30 @@
+{
+  "id" : "73caac75-ae25-3caa-8ded-e6b2576e1d82",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/ext/pom-manipulation-core/1.6/pom-manipulation-core-1.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6-pom-manipulation-core-1.6.pom-SNLzG.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "9b6c821c1fd53e8b10e295b6ec834e4685a4c8204f0ea7f2707cace173e1c2ff",
+      "X-CHECKSUM-MD5" : "4dcc04fd872b5983d5182309da05e3f6",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:59:16 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"4dcc04fd872b5983d5182309da05e3f6\"",
+      "LAST-MODIFIED" : "Wed, 29 Jul 2015 17:16:27 GMT",
+      "X-CHECKSUM-SHA1" : "c7d0cb28d53fed522561e38beec61390dc531f27",
+      "X-SERVED-BY" : "cache-iad2143-IAD, cache-dfw1821-DFW",
+      "X-TIMER" : "S1494237557.585215,VS0,VE1",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1123184",
+      "X-CACHE-HITS" : "0, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "73caac75-ae25-3caa-8ded-e6b2576e1d82"
+}

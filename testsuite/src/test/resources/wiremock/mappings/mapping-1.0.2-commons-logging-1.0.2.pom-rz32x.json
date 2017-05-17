@@ -1,0 +1,30 @@
+{
+  "id" : "a37b32aa-3bfc-3fec-adc9-7f57802587ce",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-logging/commons-logging/1.0.2/commons-logging-1.0.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.2-commons-logging-1.0.2.pom-rz32x.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "2ef35a4dda567e3295bd0eb99719096387b3086fbd835d95b41474b130b3bfe1",
+      "X-CHECKSUM-MD5" : "b7e001b135a56678ac81f21ac2469957",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:55 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"b7e001b135a56678ac81f21ac2469957\"",
+      "LAST-MODIFIED" : "Thu, 17 Nov 2005 13:22:23 GMT",
+      "X-CHECKSUM-SHA1" : "994768b3b18380239296871de3d732935d390c24",
+      "X-SERVED-BY" : "cache-iad2141-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260636.721558,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5211905",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a37b32aa-3bfc-3fec-adc9-7f57802587ce"
+}

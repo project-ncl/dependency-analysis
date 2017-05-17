@@ -1,0 +1,22 @@
+{
+  "id" : "4c5e6be0-4d22-3321-8ddd-884f4e5845d1",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hibernate/com.springsource.org.hibernate.validator/4.1.0.GA/com.springsource.org.hibernate.validator-4.1.0.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.1.0.GA-com.springsource.org.hibernate.validator-4.1.0.GA.pom-DjTjX.xml",
+    "headers" : {
+      "ETAG" : "\"121f4f3b-4dd-5191eb7ee6140\"",
+      "LAST-MODIFIED" : "Mon, 22 Jun 2015 17:36:49 GMT",
+      "SERVER" : "Apache",
+      "Content-Type" : "application/maven+xml",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:24 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "4c5e6be0-4d22-3321-8ddd-884f4e5845d1"
+}

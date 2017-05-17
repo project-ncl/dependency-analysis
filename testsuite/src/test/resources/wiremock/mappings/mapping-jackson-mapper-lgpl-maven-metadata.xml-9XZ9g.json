@@ -1,0 +1,17 @@
+{
+  "id" : "01a53a2d-6095-341b-9226-1cf7dcc34da3",
+  "request" : {
+    "url" : "/api/group/test-DA/org/codehaus/jackson/jackson-mapper-lgpl/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jackson-mapper-lgpl-maven-metadata.xml-9XZ9g.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:51 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "01a53a2d-6095-341b-9226-1cf7dcc34da3"
+}

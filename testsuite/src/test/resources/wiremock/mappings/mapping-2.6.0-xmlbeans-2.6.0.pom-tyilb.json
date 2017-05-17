@@ -1,0 +1,25 @@
+{
+  "id" : "13ccf505-544c-36dc-af04-f7c0a70bce1b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/xmlbeans/xmlbeans/2.6.0/xmlbeans-2.6.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.6.0-xmlbeans-2.6.0.pom-tyilb.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 16:16:51 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2160075", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:36 GMT",
+      "ETAG" : "\"{SHA1{f1d5251b50228c13f6ee0ee9a45f9cac71d3f2cf}}\"",
+      "LAST-MODIFIED" : "Mon, 22 Feb 2016 22:06:17 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "13ccf505-544c-36dc-af04-f7c0a70bce1b"
+}

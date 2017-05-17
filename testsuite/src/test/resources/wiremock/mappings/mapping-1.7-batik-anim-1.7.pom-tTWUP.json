@@ -1,0 +1,25 @@
+{
+  "id" : "42fc4109-a4b3-36ef-9f4b-981ff875812b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/xmlgraphics/batik-anim/1.7/batik-anim-1.7.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7-batik-anim-1.7.pom-tTWUP.xml",
+    "headers" : {
+      "EXPIRES" : "Sat, 03 Jun 2017 02:48:14 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2197565", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:09 GMT",
+      "ETAG" : "\"{SHA1{aa8c0e289d9abfc72c52f739858c1dd4fd5abeba}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:09:02 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "42fc4109-a4b3-36ef-9f4b-981ff875812b"
+}

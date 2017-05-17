@@ -1,0 +1,30 @@
+{
+  "id" : "adc91fc1-2137-3042-97b3-24f35492dc44",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant-nodeps/1.7.1/ant-nodeps-1.7.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.1-ant-nodeps-1.7.1.pom-GIxo8.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f7b59085e30cdf09ffa099d58578ddb14e62019f5bae4eeb356776b4884e04bf",
+      "X-CHECKSUM-MD5" : "64267d0da6b5cb97dd52fc1893cd5b14",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:44 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"64267d0da6b5cb97dd52fc1893cd5b14\"",
+      "LAST-MODIFIED" : "Wed, 09 Jul 2008 20:04:58 GMT",
+      "X-CHECKSUM-SHA1" : "a016a28acd8c6b2549a1a26110a4526d02f2ef1d",
+      "X-SERVED-BY" : "cache-iad2141-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260264.364871,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1576237",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "adc91fc1-2137-3042-97b3-24f35492dc44"
+}

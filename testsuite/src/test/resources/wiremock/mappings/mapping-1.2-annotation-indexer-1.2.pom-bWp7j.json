@@ -1,0 +1,30 @@
+{
+  "id" : "9794ac8a-a671-3283-bcb5-b95ceb2c8237",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jvnet/hudson/annotation-indexer/1.2/annotation-indexer-1.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.2-annotation-indexer-1.2.pom-bWp7j.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d627192dd0b1c85757bc8189c5fc6ff30dacaa82080f78a19f3af70c8cacee39",
+      "X-CHECKSUM-MD5" : "a16be6ff778b2d7f112ebf1cdd86f5a9",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:14 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"a16be6ff778b2d7f112ebf1cdd86f5a9\"",
+      "LAST-MODIFIED" : "Wed, 11 Nov 2009  2:32:44 GMT",
+      "X-CHECKSUM-SHA1" : "1d84e621550c54461c0cff5cd8d6fea28d46c9b2",
+      "X-SERVED-BY" : "cache-iad2137-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260175.710992,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1140361",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9794ac8a-a671-3283-bcb5-b95ceb2c8237"
+}

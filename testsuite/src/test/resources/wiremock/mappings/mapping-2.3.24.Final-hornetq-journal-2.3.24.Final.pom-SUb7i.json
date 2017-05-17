@@ -1,0 +1,30 @@
+{
+  "id" : "49e2721a-c7be-3d24-88a5-919f666e8439",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hornetq/hornetq-journal/2.3.24.Final/hornetq-journal-2.3.24.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.24.Final-hornetq-journal-2.3.24.Final.pom-SUb7i.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "ba4131c37b85f44ac05e65cd45b6fcd9cde178454f6ffc346ac4c8a9dc410b9c",
+      "X-CHECKSUM-MD5" : "62e3027e4196ca1e933019b2d16f5c0d",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:15:32 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"62e3027e4196ca1e933019b2d16f5c0d\"",
+      "LAST-MODIFIED" : "Fri, 21 Nov 2014 19:58:27 GMT",
+      "X-CHECKSUM-SHA1" : "354d03aa3ad9e891987ddac360d257dcda7c91fb",
+      "X-SERVED-BY" : "cache-iad2137-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260132.053282,VS0,VE1",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1145254",
+      "X-CACHE-HITS" : "0, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "49e2721a-c7be-3d24-88a5-919f666e8439"
+}

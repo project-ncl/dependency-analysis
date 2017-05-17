@@ -1,0 +1,30 @@
+{
+  "id" : "fb904fe8-8b0e-3e54-8b68-d5206afb10ae",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jruby/jruby/1.7.10/jruby-1.7.10.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.10-jruby-1.7.10.pom-AvafA.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "fd6799fe97afc9bcc223a5d86eeb81e2405ae83f04e0c3ecd64cb7fe20ef9e37",
+      "X-CHECKSUM-MD5" : "1651015c8c0fd0237359b15c4974e4dd",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:22:58 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"1651015c8c0fd0237359b15c4974e4dd\"",
+      "LAST-MODIFIED" : "Thu, 09 Jan 2014 16:25:33 GMT",
+      "X-CHECKSUM-SHA1" : "d55c92e9475c48c4f2482724eac80ccd64184541",
+      "X-SERVED-BY" : "cache-iad2128-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260578.109467,VS0,VE47",
+      "X-CACHE" : "HIT, MISS",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "0",
+      "X-CACHE-HITS" : "1, 0",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "fb904fe8-8b0e-3e54-8b68-d5206afb10ae"
+}

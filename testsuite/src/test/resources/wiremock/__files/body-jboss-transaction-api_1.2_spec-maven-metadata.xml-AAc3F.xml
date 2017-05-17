@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.jboss.spec.javax.transaction</groupId>
+  <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+  <versioning>
+    <latest>1.0.0.Final-redhat-1</latest>
+    <release>1.0.0.Final-redhat-1</release>
+    <versions>
+      <version>1.0.0.Alpha3</version>
+      <version>1.0.0.Final-redhat-1</version>
+    </versions>
+    <lastUpdated>20170421021427</lastUpdated>
+  </versioning>
+</metadata>

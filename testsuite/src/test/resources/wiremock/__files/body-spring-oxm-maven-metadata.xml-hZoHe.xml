@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-oxm</artifactId>
+  <versioning>
+    <latest>4.1.6.RELEASE</latest>
+    <release>4.1.6.RELEASE</release>
+    <versions>
+      <version>3.0.5.RELEASE</version>
+      <version>3.2.4.RELEASE</version>
+      <version>3.2.16.RELEASE</version>
+      <version>4.0.5.RELEASE</version>
+      <version>4.0.9.RELEASE</version>
+      <version>4.1.6.RELEASE</version>
+    </versions>
+    <lastUpdated>20170420183816</lastUpdated>
+  </versioning>
+</metadata>

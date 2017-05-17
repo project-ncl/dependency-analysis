@@ -1,0 +1,19 @@
+{
+  "id" : "e6a151d8-1c3f-3ebf-9959-9f0cadc43d27",
+  "request" : {
+    "url" : "/api/group/test-DA/org/eclipse/persistence/org.eclipse.persistence.jpa.jpql/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-org.eclipse.persistence.jpa.jpql-maven-metadata.xml-Vbun8.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:55 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:33 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "e6a151d8-1c3f-3ebf-9959-9f0cadc43d27"
+}

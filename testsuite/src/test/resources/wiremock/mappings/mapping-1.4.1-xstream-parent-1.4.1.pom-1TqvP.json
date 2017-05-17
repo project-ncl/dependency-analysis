@@ -1,0 +1,30 @@
+{
+  "id" : "44e6a174-2008-3477-b45b-333718ae48fc",
+  "request" : {
+    "url" : "/api/group/DApublic/com/thoughtworks/xstream/xstream-parent/1.4.1/xstream-parent-1.4.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.1-xstream-parent-1.4.1.pom-1TqvP.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "1041f76689d2ba25da18a8a43ff7f453799cdc1adcd59c208331133891e7bd4c",
+      "X-CHECKSUM-MD5" : "55600bb712b6ff622f42077853d24324",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:14 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"55600bb712b6ff622f42077853d24324\"",
+      "LAST-MODIFIED" : "Thu, 11 Aug 2011  2:39:48 GMT",
+      "X-CHECKSUM-SHA1" : "906dd5581deeae0893864aa192e25e9ff8fb039c",
+      "X-SERVED-BY" : "cache-iad2123-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260415.820020,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2091344",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "44e6a174-2008-3477-b45b-333718ae48fc"
+}

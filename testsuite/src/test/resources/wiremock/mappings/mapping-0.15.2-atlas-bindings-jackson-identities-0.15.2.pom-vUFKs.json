@@ -1,0 +1,30 @@
+{
+  "id" : "d8b87eeb-28ab-3e48-b0f8-d18fab53e49b",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-bindings-jackson-identities/0.15.2/atlas-bindings-jackson-identities-0.15.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.15.2-atlas-bindings-jackson-identities-0.15.2.pom-vUFKs.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "70f9fa8f8ba8a2599fd75731ba27f58732fabc7aac998b25a52bdfb951268923",
+      "X-CHECKSUM-MD5" : "2216047ad65132888ed7cb36feac4930",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:01 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"2216047ad65132888ed7cb36feac4930\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 15:40:47 GMT",
+      "X-CHECKSUM-SHA1" : "bc05fb587512dbe1fd7942e231464820f0826793",
+      "X-SERVED-BY" : "cache-iad2149-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494260042.647123,VS0,VE1",
+      "X-CACHE" : "MISS, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1145679",
+      "X-CACHE-HITS" : "0, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d8b87eeb-28ab-3e48-b0f8-d18fab53e49b"
+}

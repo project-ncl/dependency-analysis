@@ -1,0 +1,17 @@
+{
+  "id" : "8928001c-4503-39ee-bc2e-510d88a75b8a",
+  "request" : {
+    "url" : "/api/group/test-DA/org/jboss/javaee/jboss-jacc-api_JDK4/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jboss-jacc-api_JDK4-maven-metadata.xml-SiVrz.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:57 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "8928001c-4503-39ee-bc2e-510d88a75b8a"
+}

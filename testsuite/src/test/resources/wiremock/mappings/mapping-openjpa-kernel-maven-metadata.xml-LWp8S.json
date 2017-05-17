@@ -1,0 +1,19 @@
+{
+  "id" : "bac3968d-84e9-3044-8b99-7ed78b0ec012",
+  "request" : {
+    "url" : "/api/group/test-DA/org/apache/openjpa/openjpa-kernel/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-openjpa-kernel-maven-metadata.xml-LWp8S.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:51 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:41:30 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "bac3968d-84e9-3044-8b99-7ed78b0ec012"
+}

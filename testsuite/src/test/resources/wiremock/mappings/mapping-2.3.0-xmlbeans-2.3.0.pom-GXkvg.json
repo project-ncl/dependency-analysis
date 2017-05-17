@@ -1,0 +1,30 @@
+{
+  "id" : "a425440f-476a-3ee5-bc24-362d4c3b220a",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/xmlbeans/xmlbeans/2.3.0/xmlbeans-2.3.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.0-xmlbeans-2.3.0.pom-GXkvg.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "6b2b98f8092eabc18bd3d037724e18307948e9555f73119001a60f600debfa94",
+      "X-CHECKSUM-MD5" : "8efdc934ebaeb21686f2e1640003386a",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:51 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"8efdc934ebaeb21686f2e1640003386a\"",
+      "LAST-MODIFIED" : "Wed, 04 Jul 2007  2:16:32 GMT",
+      "X-CHECKSUM-SHA1" : "d8edac007eb94c76da06b0e138117dab907e5f5e",
+      "X-SERVED-BY" : "cache-iad2127-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260632.991959,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2685047",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "a425440f-476a-3ee5-bc24-362d4c3b220a"
+}

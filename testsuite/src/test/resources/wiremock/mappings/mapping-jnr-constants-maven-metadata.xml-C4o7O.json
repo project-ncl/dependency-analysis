@@ -1,0 +1,19 @@
+{
+  "id" : "27d0a04c-1547-3a98-a1c2-e7a8103ceb54",
+  "request" : {
+    "url" : "/api/group/test-DA/com/github/jnr/jnr-constants/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jnr-constants-maven-metadata.xml-C4o7O.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:11 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:50 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "27d0a04c-1547-3a98-a1c2-e7a8103ceb54"
+}

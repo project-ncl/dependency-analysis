@@ -1,0 +1,25 @@
+{
+  "id" : "7bac1437-a3e6-387e-b9e2-2dae3f042968",
+  "request" : {
+    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-classworlds/2.2.2/plexus-classworlds-2.2.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.2.2-plexus-classworlds-2.2.2.pom-FDKtE.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 11 May 2017 12:55:15 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2590802", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 11 Apr 2017 13:15:13 GMT",
+      "ETAG" : "\"{SHA1{df1dfb0099c8759b378fe0af3b4a564d2c16aa18}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:12:16 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "7bac1437-a3e6-387e-b9e2-2dae3f042968"
+}

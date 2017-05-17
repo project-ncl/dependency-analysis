@@ -1,0 +1,30 @@
+{
+  "id" : "9e08f4e5-dde0-3d19-9425-efe6feb6c561",
+  "request" : {
+    "url" : "/api/group/DApublic/org/drools/droolsjbpm-integration/6.2.0.Final/droolsjbpm-integration-6.2.0.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-6.2.0.Final-droolsjbpm-integration-6.2.0.Final.pom-qGOPa.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "d4d2de29b61f57297dda127b7836adb4689eec656ebe1fd8ee8604d85fb744f6",
+      "X-CHECKSUM-MD5" : "cc5f15d99be31d1bf3cdc623c10ad787",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:10:51 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"cc5f15d99be31d1bf3cdc623c10ad787\"",
+      "LAST-MODIFIED" : "Wed, 04 Mar 2015 22:09:34 GMT",
+      "X-CHECKSUM-SHA1" : "d474ce951efad21f4996a04bfa7c4d7a2b23d545",
+      "X-SERVED-BY" : "cache-iad2122-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259852.860346,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1144998",
+      "X-CACHE-HITS" : "1, 3",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9e08f4e5-dde0-3d19-9425-efe6feb6c561"
+}

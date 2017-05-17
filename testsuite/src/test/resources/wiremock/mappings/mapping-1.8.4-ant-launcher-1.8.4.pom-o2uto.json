@@ -1,0 +1,25 @@
+{
+  "id" : "bcd94100-80f0-3982-8fc3-60f0d69da69f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant-launcher/1.8.4/ant-launcher-1.8.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.4-ant-launcher-1.8.4.pom-o2uto.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:17:57 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:57 GMT",
+      "ETAG" : "\"{SHA1{3b8f7cbc83cca7d36da76639cd542d3f5869e774}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:34:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "bcd94100-80f0-3982-8fc3-60f0d69da69f"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "250f7927-5afc-3219-9091-df8b31082984",
+  "request" : {
+    "url" : "/api/group/DApublic/org/ow2/asm/asm-analysis/4.0/asm-analysis-4.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0-asm-analysis-4.0.pom-WyrN9.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 13:30:12 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2581625", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:07 GMT",
+      "ETAG" : "\"{SHA1{fa445fc3e11010428cbea67ac8cf9cdd78004f03}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:56:45 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "250f7927-5afc-3219-9091-df8b31082984"
+}

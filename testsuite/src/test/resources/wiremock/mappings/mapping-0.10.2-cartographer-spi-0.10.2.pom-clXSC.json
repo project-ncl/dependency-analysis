@@ -1,0 +1,24 @@
+{
+  "id" : "5ea64cbd-0f1d-35f9-a72a-e8c39e3e5619",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/maven/cartographer/cartographer-spi/0.10.2/cartographer-spi-0.10.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.10.2-cartographer-spi-0.10.2.pom-clXSC.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:19:13 GMT",
+      "ETAG" : "\"{SHA1{9c930ce25f312e6ddd148de18d5e5bc998eb1f9d}}\"",
+      "LAST-MODIFIED" : "Fri, 09 Oct 2015 15:52:15 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5ea64cbd-0f1d-35f9-a72a-e8c39e3e5619"
+}

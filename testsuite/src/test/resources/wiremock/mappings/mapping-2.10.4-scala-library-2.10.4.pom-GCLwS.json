@@ -1,0 +1,25 @@
+{
+  "id" : "9e97c4db-2332-360b-92f5-bc3bb3adf8e5",
+  "request" : {
+    "url" : "/api/group/DApublic/org/scala-lang/scala-library/2.10.4/scala-library-2.10.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.10.4-scala-library-2.10.4.pom-GCLwS.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 02 Jun 2017 16:12:46 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2159686", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:00 GMT",
+      "ETAG" : "\"{SHA1{931df627e2963728cdb369b5609ae1ba269e2d19}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:00:58 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "9e97c4db-2332-360b-92f5-bc3bb3adf8e5"
+}

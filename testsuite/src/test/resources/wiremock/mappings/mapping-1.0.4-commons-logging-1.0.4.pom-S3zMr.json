@@ -1,0 +1,25 @@
+{
+  "id" : "ff382d13-3388-3ae9-ae36-bb35ea5ed31a",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.4-commons-logging-1.0.4.pom-S3zMr.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 16:14:40 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2073596", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:14:44 GMT",
+      "ETAG" : "\"{SHA1{7d32e7520b801cabc3dc704d2afe59d020d00c45}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:18 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "ff382d13-3388-3ae9-ae36-bb35ea5ed31a"
+}

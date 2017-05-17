@@ -1,0 +1,19 @@
+{
+  "id" : "56bc2382-e3ef-3621-93c6-28d723fd1e09",
+  "request" : {
+    "url" : "/api/group/test-DA/org/ops4j/pax/exam/pax-exam-link-mvn/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-pax-exam-link-mvn-maven-metadata.xml-nPqwg.xml",
+    "headers" : {
+      "Last-Modified" : "Thu, 18 May 2017 11:32:09 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Thu, 18 May 2017 11:32:10 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "56bc2382-e3ef-3621-93c6-28d723fd1e09"
+}

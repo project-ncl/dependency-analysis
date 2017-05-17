@@ -1,0 +1,30 @@
+{
+  "id" : "c9b98fe1-9382-3df9-a2ac-ed959c543727",
+  "request" : {
+    "url" : "/api/group/DApublic/org/aspectj/aspectjrt/1.6.1/aspectjrt-1.6.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6.1-aspectjrt-1.6.1.pom-1RhQw.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "4122e1843e24b68f7709beacd718f10fad91f83b9cf7461db159fc504e82b65d",
+      "X-CHECKSUM-MD5" : "6efcbe388242976d248c9fe09149444b",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:53 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"6efcbe388242976d248c9fe09149444b\"",
+      "LAST-MODIFIED" : "Wed, 17 Nov 2010  7:18:37 GMT",
+      "X-CHECKSUM-SHA1" : "704afc18118377e4c06c03692b538944de06d02a",
+      "X-SERVED-BY" : "cache-iad2147-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260693.030435,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "1970940",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "c9b98fe1-9382-3df9-a2ac-ed959c543727"
+}

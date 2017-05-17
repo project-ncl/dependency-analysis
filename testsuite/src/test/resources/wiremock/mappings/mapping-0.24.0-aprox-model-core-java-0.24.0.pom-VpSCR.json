@@ -1,0 +1,24 @@
+{
+  "id" : "8209ceb2-f358-3e98-a6c5-bb5e9187df9c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-model-core-java/0.24.0/aprox-model-core-java-0.24.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.24.0-aprox-model-core-java-0.24.0.pom-VpSCR.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:45:00 GMT",
+      "ETAG" : "\"{SHA1{1ccd25e92a3995ce75bd8836a21fe670c4b2a93c}}\"",
+      "LAST-MODIFIED" : "Wed, 09 Sep 2015 16:39:26 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "8209ceb2-f358-3e98-a6c5-bb5e9187df9c"
+}

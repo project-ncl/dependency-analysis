@@ -1,0 +1,6 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jboss</groupId>
+  <artifactId>jboss-j2se</artifactId>
+  <version>200504122039</version>
+</project>

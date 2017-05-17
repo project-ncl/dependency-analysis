@@ -1,0 +1,25 @@
+{
+  "id" : "df870373-95d8-3e3f-8651-219b6cee4603",
+  "request" : {
+    "url" : "/api/group/DApublic/com/github/jnr/jnr-x86asm/1.0.2/jnr-x86asm-1.0.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0.2-jnr-x86asm-1.0.2.pom-yTBFb.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 13:12:48 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2580580", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:08 GMT",
+      "ETAG" : "\"{SHA1{91de5c25955d1f321832738dce614b45e9939050}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:37 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "df870373-95d8-3e3f-8651-219b6cee4603"
+}

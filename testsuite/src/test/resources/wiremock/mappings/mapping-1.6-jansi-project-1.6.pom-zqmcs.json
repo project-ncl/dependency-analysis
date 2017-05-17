@@ -1,0 +1,30 @@
+{
+  "id" : "f1f6043e-4067-35f3-9eb0-be176e2cb859",
+  "request" : {
+    "url" : "/api/group/DApublic/org/fusesource/jansi/jansi-project/1.6/jansi-project-1.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.6-jansi-project-1.6.pom-zqmcs.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "e8e355800e1d450225af4069af61530904615550512f18998abd49b8eece532a",
+      "X-CHECKSUM-MD5" : "ee0eef8ad3d480badc1895bacb7a5eea",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:53 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"ee0eef8ad3d480badc1895bacb7a5eea\"",
+      "LAST-MODIFIED" : "Sun, 19 Jun 2011 14:52:02 GMT",
+      "X-CHECKSUM-SHA1" : "d4709ee2860eec66b361bb26527f18b9191e7159",
+      "X-SERVED-BY" : "cache-iad2126-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260273.236769,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5178541",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f1f6043e-4067-35f3-9eb0-be176e2cb859"
+}

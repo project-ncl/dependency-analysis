@@ -1,0 +1,30 @@
+{
+  "id" : "94062f0c-8dd7-3622-b989-6bf61dfc00da",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/jackson-parent/2.5/jackson-parent-2.5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.5-jackson-parent-2.5.pom-tHyT1.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "cae9bee3e2f5c611daf644c8cae16382e7c1aec1471bfd6e51c85ea56b6fddb2",
+      "X-CHECKSUM-MD5" : "873032d02a8b7ddecea59ba02299060e",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:12:59 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"873032d02a8b7ddecea59ba02299060e\"",
+      "LAST-MODIFIED" : "Fri, 19 Dec 2014  3:32:03 GMT",
+      "X-CHECKSUM-SHA1" : "44bd5bcc43b53804a28ba803ec5b10fcb5976f2a",
+      "X-SERVED-BY" : "cache-iad2148-IAD, cache-dfw1845-DFW",
+      "X-TIMER" : "S1494259979.163657,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5211359",
+      "X-CACHE-HITS" : "4, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "94062f0c-8dd7-3622-b989-6bf61dfc00da"
+}

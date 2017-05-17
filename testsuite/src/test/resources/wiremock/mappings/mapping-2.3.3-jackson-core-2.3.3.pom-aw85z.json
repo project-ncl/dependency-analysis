@@ -1,0 +1,24 @@
+{
+  "id" : "2852bb14-7aad-3dde-83e6-5b8b9208c5a4",
+  "request" : {
+    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-core/2.3.3/jackson-core-2.3.3.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.3.3-jackson-core-2.3.3.pom-aw85z.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 14 Mar 2017 13:46:00 GMT",
+      "ETAG" : "\"{SHA1{fc05676963f49f5c338cdc115b4ff74dfe041c4f}}\"",
+      "LAST-MODIFIED" : "Thu, 10 Apr 2014 16:47:08 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "2852bb14-7aad-3dde-83e6-5b8b9208c5a4"
+}

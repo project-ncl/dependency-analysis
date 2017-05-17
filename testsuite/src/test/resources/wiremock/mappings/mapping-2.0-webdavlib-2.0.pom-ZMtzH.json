@@ -1,0 +1,30 @@
+{
+  "id" : "9c84b1b4-d507-3dca-8113-87e60ea932c8",
+  "request" : {
+    "url" : "/api/group/DApublic/slide/webdavlib/2.0/webdavlib-2.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.0-webdavlib-2.0.pom-ZMtzH.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "b80d440d3c8ff60045b3242a9b273ec31d4f2fd4d4394484e4fc3192c5cb3a3c",
+      "X-CHECKSUM-MD5" : "8e4131ed4cfa3a71ebc998a16bf77020",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:24:27 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"8e4131ed4cfa3a71ebc998a16bf77020\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:20:47 GMT",
+      "X-CHECKSUM-SHA1" : "8695d64a2f4f4285eeded122be8a34cc86e9778c",
+      "X-SERVED-BY" : "cache-iad2132-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260668.815941,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2144770",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9c84b1b4-d507-3dca-8113-87e60ea932c8"
+}

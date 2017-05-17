@@ -1,0 +1,30 @@
+{
+  "id" : "33d40460-ad79-3a45-8fc3-082c8b413e91",
+  "request" : {
+    "url" : "/api/group/DApublic/stax/stax-api/1.0/stax-api-1.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.0-stax-api-1.0.pom-XCdOz.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "16a6535b0188d96e1b2fd5491312257a13a43c29c5935cbab908a6fc10f9a8ef",
+      "X-CHECKSUM-MD5" : "cca9f36227a6afc85e7badc7d6ce75fe",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 09:30:17 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"cca9f36227a6afc85e7badc7d6ce75fe\"",
+      "LAST-MODIFIED" : "Tue, 08 Nov 2005 22:10:46 GMT",
+      "X-CHECKSUM-SHA1" : "d46f92c4e7143f4964e00255934ee54085ad28a6",
+      "X-SERVED-BY" : "cache-iad2126-IAD, cache-dfw1826-DFW",
+      "X-TIMER" : "S1494235818.633367,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2099917",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "33d40460-ad79-3a45-8fc3-082c8b413e91"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "10410f44-470e-3690-91a7-42d8ace5c3db",
+  "request" : {
+    "url" : "/api/group/test-DA/com/microsoft/sqlserver/msjdbc/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-msjdbc-maven-metadata.xml-QdQYP.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:31:56 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "10410f44-470e-3690-91a7-42d8ace5c3db"
+}

@@ -1,0 +1,25 @@
+{
+  "id" : "2703beff-f3ae-3aec-b9d1-815abfb8017f",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant/1.7.0/ant-1.7.0.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.0-ant-1.7.0.pom-nQXPq.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 14:40:13 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2585935", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:18 GMT",
+      "ETAG" : "\"{SHA1{6c896738d6345ed0812c34b4392867c210dad051}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:34:38 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2703beff-f3ae-3aec-b9d1-815abfb8017f"
+}

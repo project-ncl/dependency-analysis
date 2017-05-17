@@ -1,0 +1,25 @@
+{
+  "id" : "2568e7d9-85eb-3358-887e-c5872cfa4b84",
+  "request" : {
+    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-parent/2.9.4/guice-parent-2.9.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.9.4-guice-parent-2.9.4.pom-nl5R6.xml",
+    "headers" : {
+      "EXPIRES" : "Fri, 12 May 2017 09:42:11 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 12 Apr 2017 09:42:11 GMT",
+      "ETAG" : "\"{SHA1{e3384998bebccae239ae80008bfe9fd2c8d41ed2}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:02:39 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "2568e7d9-85eb-3358-887e-c5872cfa4b84"
+}

@@ -1,0 +1,17 @@
+{
+  "id" : "169d4db3-306c-3006-930c-a1289920b1b5",
+  "request" : {
+    "url" : "/api/group/test-DA/org/bouncycastle/bcpg-jdk14/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-bcpg-jdk14-maven-metadata.xml-6jYaD.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Thu, 18 May 2017 11:32:02 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=7708e1fb55f7443100a3eb629aecaf67; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "169d4db3-306c-3006-930c-a1289920b1b5"
+}

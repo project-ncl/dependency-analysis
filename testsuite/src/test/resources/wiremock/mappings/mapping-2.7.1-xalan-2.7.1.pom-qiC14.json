@@ -1,0 +1,25 @@
+{
+  "id" : "6b296fe4-12df-3f76-962d-7d67383b3fba",
+  "request" : {
+    "url" : "/api/group/DApublic/xalan/xalan/2.7.1/xalan-2.7.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.7.1-xalan-2.7.1.pom-qiC14.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 16:20:48 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2073727", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:18:41 GMT",
+      "ETAG" : "\"{SHA1{325325b70fd1ad761567c9e352097b95faf1716d}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 10:21:06 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "6b296fe4-12df-3f76-962d-7d67383b3fba"
+}

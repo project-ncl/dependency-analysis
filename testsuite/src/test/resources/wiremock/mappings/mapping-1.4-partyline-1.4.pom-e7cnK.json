@@ -1,0 +1,24 @@
+{
+  "id" : "273d3450-7337-33fe-a86b-f24cbe6e9058",
+  "request" : {
+    "url" : "/api/group/DApublic/org/commonjava/util/partyline/1.4/partyline-1.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4-partyline-1.4.pom-e7cnK.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:19:51 GMT",
+      "ETAG" : "\"{SHA1{8103605767e2b6772b8ac924358bbb91fe778e51}}\"",
+      "LAST-MODIFIED" : "Tue, 02 Jun 2015 20:14:08 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "273d3450-7337-33fe-a86b-f24cbe6e9058"
+}

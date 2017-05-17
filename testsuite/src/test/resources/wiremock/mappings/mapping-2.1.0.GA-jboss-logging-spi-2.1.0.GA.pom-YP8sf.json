@@ -1,0 +1,25 @@
+{
+  "id" : "4e432897-ea42-31a1-bc37-50d2bb8e5302",
+  "request" : {
+    "url" : "/api/group/DApublic/org/jboss/logging/jboss-logging-spi/2.1.0.GA/jboss-logging-spi-2.1.0.GA.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-2.1.0.GA-jboss-logging-spi-2.1.0.GA.pom-YP8sf.xml",
+    "headers" : {
+      "EXPIRES" : "Thu, 01 Jun 2017 15:06:17 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2517301", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Wed, 03 May 2017 11:51:16 GMT",
+      "ETAG" : "\"{SHA1{14a3ceddaa2f0af47566aa8902eafc509c5dfa7e}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:47:25 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=8865f679f320dfdf840163b3f1e5e272; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "4e432897-ea42-31a1-bc37-50d2bb8e5302"
+}

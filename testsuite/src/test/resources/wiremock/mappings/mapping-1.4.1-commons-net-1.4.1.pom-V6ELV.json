@@ -1,0 +1,25 @@
+{
+  "id" : "c45e776a-d250-30da-9336-de9c90dad449",
+  "request" : {
+    "url" : "/api/group/DApublic/commons-net/commons-net/1.4.1/commons-net-1.4.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.4.1-commons-net-1.4.1.pom-V6ELV.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:23:00 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591964", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:36 GMT",
+      "ETAG" : "\"{SHA1{e21c0081315853aa4c9f23f9229ddcd9dd4a58cd}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:08:19 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "c45e776a-d250-30da-9336-de9c90dad449"
+}

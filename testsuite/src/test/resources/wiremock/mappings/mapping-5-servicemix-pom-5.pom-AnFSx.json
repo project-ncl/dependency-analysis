@@ -1,0 +1,25 @@
+{
+  "id" : "28248fbe-1d71-38b6-8c7c-757a358f778c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/servicemix/servicemix-pom/5/servicemix-pom-5.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-5-servicemix-pom-5.pom-AnFSx.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 31 May 2017 19:58:46 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2000284", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:42 GMT",
+      "ETAG" : "\"{SHA1{4f53bf281fce17f284f33a133cceebe2bcf87488}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:07:14 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "28248fbe-1d71-38b6-8c7c-757a358f778c"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "d089f7c4-f6ed-3b84-9deb-7b856a915a7c",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/httpcomponents/httpcore-nio/4.3.2/httpcore-nio-4.3.2.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.3.2-httpcore-nio-4.3.2.pom-NUZs7.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "3c2a4c03379fabeeb28e55a3d850d1d969c18f9ea3444b73318675adaa242193",
+      "X-CHECKSUM-MD5" : "d065b8f1a4aebe9b1101a22a5f58ce7f",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:19:02 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"d065b8f1a4aebe9b1101a22a5f58ce7f\"",
+      "LAST-MODIFIED" : "Wed, 12 Feb 2014 20:45:16 GMT",
+      "X-CHECKSUM-SHA1" : "9591e303358fdb0d1915cd8a9cb69ce72c43d373",
+      "X-SERVED-BY" : "cache-iad2137-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260342.320082,VS0,VE2",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5547905",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "d089f7c4-f6ed-3b84-9deb-7b856a915a7c"
+}

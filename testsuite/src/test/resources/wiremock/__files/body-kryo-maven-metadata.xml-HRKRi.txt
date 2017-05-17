@@ -1,0 +1,2 @@
+Id: 6c1cc51cfb2b2e64ca317fcac0bbd098e5c49d04809350fa9d25a96395f3b88b
+Message: Path com/googlecode/kryo/maven-metadata.xml is not available in store group:test-DA.

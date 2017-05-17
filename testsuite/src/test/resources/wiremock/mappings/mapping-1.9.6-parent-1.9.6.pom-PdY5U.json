@@ -1,0 +1,24 @@
+{
+  "id" : "495bee98-e509-3de1-b661-6e65c15245a0",
+  "request" : {
+    "url" : "/api/group/DApublic/org/neo4j/parent/1.9.6/parent-1.9.6.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.9.6-parent-1.9.6.pom-PdY5U.xml",
+    "headers" : {
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Tue, 07 Mar 2017 11:18:21 GMT",
+      "ETAG" : "\"{SHA1{9306a586c72f6426ddb5f9218fcd90c9070ed19c}}\"",
+      "LAST-MODIFIED" : "Fri, 31 Jan 2014 13:51:33 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=9a35e9007bb22923ca99b5e826e9c662; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "495bee98-e509-3de1-b661-6e65c15245a0"
+}

@@ -1,0 +1,30 @@
+{
+  "id" : "48d3ca22-daf3-3965-abcf-b527d3487d6d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hibernate/common/hibernate-commons-annotations/4.0.5.Final/hibernate-commons-annotations-4.0.5.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.5.Final-hibernate-commons-annotations-4.0.5.Final.pom-uaZYv.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "efd9b132256e176e859c0d082f7fe5956c18b98cc3eb3768042e249250856efe",
+      "X-CHECKSUM-MD5" : "f9dd00882febc2f9ae0b3d95875c9ac6",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:20:54 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"f9dd00882febc2f9ae0b3d95875c9ac6\"",
+      "LAST-MODIFIED" : "Fri, 11 Jul 2014 22:23:50 GMT",
+      "X-CHECKSUM-SHA1" : "8ce2956b499132ff98bb9c8079d9ed9fa89fccc9",
+      "X-SERVED-BY" : "cache-iad2127-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260455.547064,VS0,VE0",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "5210950",
+      "X-CACHE-HITS" : "1, 2",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "48d3ca22-daf3-3965-abcf-b527d3487d6d"
+}

@@ -1,0 +1,2 @@
+Id: d666042856ea8b58ba8a224b4bdd20f341ff7f19b2e8712374906ddec3509a50
+Message: Path com/oracle/ojdbc6/11.1.0.7.0/ojdbc6-11.1.0.7.0.pom is not available in store group:DApublic.

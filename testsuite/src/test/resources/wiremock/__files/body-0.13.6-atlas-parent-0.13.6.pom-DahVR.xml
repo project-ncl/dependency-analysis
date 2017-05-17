@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2014 Red Hat, Inc..
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the GNU Public License v3.0
+  which accompanies this distribution, and is available at
+  http://www.gnu.org/licenses/gpl.html
+  
+  Contributors:
+      Red Hat, Inc. - initial API and implementation
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.commonjava</groupId>
+    <artifactId>commonjava</artifactId>
+    <version>4</version>
+  </parent>
+
+  <groupId>org.commonjava.maven.atlas</groupId>
+  <artifactId>atlas-parent</artifactId>
+  <version>0.13.6</version>
+  <packaging>pom</packaging>
+
+  <name>Atlas :: Maven Project-Graph :: Parent</name>
+  
+  <scm>
+    <connection>scm:git:http://jdcasey@github.com/jdcasey/atlas.git</connection>
+    <developerConnection>scm:git:git@github.com:jdcasey/atlas.git</developerConnection>
+    <url>http://github.com/jdcasey/atlas</url>
+    <tag>atlas-parent-0.13.6</tag>
+  </scm>
+  
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.commonjava.maven.atlas</groupId>
+        <artifactId>atlas-identities</artifactId>
+        <version>0.13.6</version>
+      </dependency>
+      <dependency>
+        <groupId>org.commonjava.maven.atlas</groupId>
+        <artifactId>atlas-relationships-api</artifactId>
+        <version>0.13.6</version>
+      </dependency>
+      <dependency>
+        <groupId>org.commonjava.maven.atlas</groupId>
+        <artifactId>atlas-drivers-tck</artifactId>
+        <version>0.13.6</version>
+        <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.commonjava.boms</groupId>
+        <artifactId>web-commons-bom</artifactId>
+        <version>9</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.neo4j</groupId>
+        <artifactId>neo4j</artifactId>
+        <version>1.9.6</version>
+      </dependency>
+      <dependency>
+        <groupId>net.sf.jung</groupId>
+        <artifactId>jung-graph-impl</artifactId>
+        <version>2.0.1</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>javacc-maven-plugin</artifactId>
+          <version>2.6</version>
+          <executions>
+            <execution>
+              <id>javacc</id>
+              <goals>
+                <goal>javacc</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  
+  <modules>
+    <module>identities</module>
+    <module>relationships-api</module>
+    <module>tck</module>
+    <module>drivers</module>
+  </modules>
+</project>

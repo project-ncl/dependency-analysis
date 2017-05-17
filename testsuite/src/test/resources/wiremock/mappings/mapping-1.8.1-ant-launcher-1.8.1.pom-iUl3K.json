@@ -1,0 +1,25 @@
+{
+  "id" : "3552323d-7a4d-3bcb-9daa-f5f8621c877d",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant-launcher/1.8.1/ant-launcher-1.8.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.8.1-ant-launcher-1.8.1.pom-iUl3K.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 13:31:13 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2581780", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:33 GMT",
+      "ETAG" : "\"{SHA1{436b71817fb83bb7a162a22b1aadebe0a2910133}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 08:34:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "3552323d-7a4d-3bcb-9daa-f5f8621c877d"
+}

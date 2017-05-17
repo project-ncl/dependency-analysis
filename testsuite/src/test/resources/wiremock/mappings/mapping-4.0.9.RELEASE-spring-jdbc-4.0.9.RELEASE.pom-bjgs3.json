@@ -1,0 +1,25 @@
+{
+  "id" : "7880ae10-ed77-3ce2-aaf2-b2bbb3036c66",
+  "request" : {
+    "url" : "/api/group/DApublic/org/springframework/spring-jdbc/4.0.9.RELEASE/spring-jdbc-4.0.9.RELEASE.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.0.9.RELEASE-spring-jdbc-4.0.9.RELEASE.pom-bjgs3.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:16:33 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591964", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:17:09 GMT",
+      "ETAG" : "\"{SHA1{5a5530aa7e9f8cd314e975377f920184d98d7b32}}\"",
+      "LAST-MODIFIED" : "Tue, 18 Apr 2017 21:36:23 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "7880ae10-ed77-3ce2-aaf2-b2bbb3036c66"
+}

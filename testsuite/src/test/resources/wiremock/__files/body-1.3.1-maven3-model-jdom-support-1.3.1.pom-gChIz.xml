@@ -1,0 +1,255 @@
+<!--
+
+    Copyright (C) 2012 Apache Software Foundation (jdcasey@commonjava.org)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Setup Sonatype OSS deployment mechanism -->
+  <parent>
+    <groupId>org.commonjava</groupId>
+    <artifactId>commonjava</artifactId>
+    <version>7</version>
+  </parent>
+  
+  <groupId>org.commonjava.maven</groupId>
+  <artifactId>maven3-model-jdom-support</artifactId>
+  <version>1.3.1</version>
+
+  <name>maven-model-jdom-support</name>
+
+  <scm>
+    <connection>scm:git:http://jdcasey@github.com/jdcasey/maven-model-jdom-support.git</connection>
+    <developerConnection>scm:git:git@github.com:jdcasey/maven-model-jdom-support.git</developerConnection>
+    <url>http://github.com/jdcasey/maven-model-jdom-support</url>
+    <tag>maven3-model-jdom-support-1.3.1</tag>
+  </scm>
+  
+  <properties>
+    <projectOwner>Apache Software Foundation</projectOwner>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mavenVersion>3.0.3</mavenVersion>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jdom</groupId>
+        <artifactId>jdom2</artifactId>
+        <version>2.0.6</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-model</artifactId>
+        <version>${mavenVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-repository-metadata</artifactId>
+        <version>${mavenVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-settings</artifactId>
+        <version>${mavenVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-core</artifactId>
+        <version>${mavenVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.4</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-core</artifactId>
+        <version>1.3</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.jdom</groupId>
+      <artifactId>jdom2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-repository-metadata</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-settings</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.0-alpha-4</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.1.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  
+  <profiles>
+   <profile>
+      <id>generate</id>
+      
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.maven</groupId>
+          <artifactId>apache-maven</artifactId>
+          <version>${mavenVersion}</version>
+          <type>zip</type>
+          <classifier>src</classifier>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.1</version>
+            <executions>
+              <execution>
+                <id>unpack-maven-mdo</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <configuration>
+                  <includeArtifactIds>apache-maven</includeArtifactIds>
+                  <includeGroupIds>org.apache.maven</includeGroupIds>
+                  <includeClassifiers>src</includeClassifiers>
+                  <includeTypes>zip</includeTypes>
+                  <includes>**/*.mdo</includes>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.modello</groupId>
+            <artifactId>modello-maven-plugin</artifactId>
+            <version>1.4.1</version>
+            <configuration>
+              <useJava5>true</useJava5>
+              <outputDirectory>src/main/java</outputDirectory>
+            </configuration>
+            <executions>
+              <execution>
+                <id>toolchains</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>jdom-writer</goal>
+                </goals>
+                <configuration>
+                  <version>1.0.0</version>
+                  <models>
+                    <model>target/dependency/apache-maven-${mavenVersion}/maven-core/src/main/mdo/toolchains.mdo</model>
+                  </models>
+                </configuration>
+              </execution>
+              <execution>
+                <id>pom</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>jdom-writer</goal>
+                </goals>
+                <configuration>
+                  <version>4.0.0</version>
+                  <models>
+                    <model>target/dependency/apache-maven-${mavenVersion}/maven-model/src/main/mdo/maven.mdo</model>
+                  </models>
+                </configuration>
+              </execution>
+              <execution>
+                <id>repository-metadata</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>jdom-writer</goal>
+                </goals>
+                <configuration>
+                  <version>1.1.0</version>
+                  <models>
+                    <model>target/dependency/apache-maven-${mavenVersion}/maven-repository-metadata/src/main/mdo/metadata.mdo</model>
+                  </models>
+                </configuration>
+              </execution>
+              <execution>
+                <id>settings</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>jdom-writer</goal>
+                </goals>
+                <configuration>
+                  <version>1.1.0</version>
+                  <models>
+                    <model>target/dependency/apache-maven-${mavenVersion}/maven-settings/src/main/mdo/settings.mdo</model>
+                  </models>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

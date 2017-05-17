@@ -1,0 +1,153 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>commons-net</groupId>
+  <artifactId>commons-net</artifactId>
+  <name>Jakarta Commons Net</name>
+  <version>1.4.1</version>
+  <description></description>
+  <url>http://jakarta.apache.org/commons/${pom.artifactId.substring(8)}/</url>
+  <issueManagement>
+    <url>http://issues.apache.org/bugzilla/</url>
+  </issueManagement>
+  <ciManagement>
+    <notifiers>
+      <notifier>
+        <configuration>
+          <address>commons-dev@jakarta.apache.org</address>
+        </configuration>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+  <inceptionYear>1997</inceptionYear>
+  <mailingLists>
+    <mailingList>
+      <name>Commons Dev List</name>
+      <subscribe>commons-dev-subscribe@jakarta.apache.org</subscribe>
+      <unsubscribe>commons-dev-unsubscribe@jakarta.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listName=commons-dev@jakarta.apache.org</archive>
+    </mailingList>
+    <mailingList>
+      <name>Commons User List</name>
+      <subscribe>commons-user-subscribe@jakarta.apache.org</subscribe>
+      <unsubscribe>commons-user-unsubscribe@jakarta.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listName=commons-user@jakarta.apache.org</archive>
+    </mailingList>
+  </mailingLists>
+  <developers>
+    <developer>
+      <id>brekke</id>
+      <name>Jeffrey D. Brekke</name>
+      <email>Jeff.Brekke@qg.com</email>
+      <organization>Quad/Graphics, Inc.</organization>
+    </developer>
+    <developer>
+      <id>scohen</id>
+      <name>Steve Cohen</name>
+      <email>scohen@apache.org</email>
+      <organization>javactivity.org</organization>
+    </developer>
+    <developer>
+      <id>brudav</id>
+      <name>Bruno D'Avanzo</name>
+      <email>bruno.davanzo@hp.com</email>
+      <organization>Hewlett-Packard</organization>
+    </developer>
+    <developer>
+      <id>dfs</id>
+      <name>Daniel F. Savarese</name>
+      <email>dfs -> apache.org</email>
+      <organization>savarese.org</organization>
+    </developer>
+    <developer>
+      <id>rwinston</id>
+      <name>Rory Winston</name>
+      <email>rwinston@apache.org</email>
+      <organization></organization>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Mario Ivankovits</name>
+      <email>mario@ops.co.at</email>
+    </contributor>
+    <contributor>
+      <name>Tapan Karecha</name>
+      <email>tapan@india.hp.com</email>
+    </contributor>
+    <contributor>
+      <name>Winston Ojeda</name>
+      <email>Winston.Ojeda@qg.com</email>
+      <organization>Quad/Graphics, Inc.</organization>
+    </contributor>
+    <contributor>
+      <name>Ted Wise</name>
+      <email>ctwise@bellsouth.net</email>
+    </contributor>
+  </contributors>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>/LICENSE.txt</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:svn:http://svn.apache.org/repos/asf/jakarta/commons/proper/${pom.artifactId.substring(8)}/trunk</connection>
+    <url>http://svn.apache.org/repos/asf/jakarta/commons/proper/${pom.artifactId.substring(8)}/trunk</url>
+  </scm>
+  <organization>
+    <name>The Apache Software Foundation</name>
+    <url>http://jakarta.apache.org</url>
+  </organization>
+  <build>
+    <sourceDirectory>src/java</sourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory>
+    <resources>
+      <resource>
+        <targetPath>META-INF</targetPath>
+        <directory>${basedir}</directory>
+        <includes>
+          <include>NOTICE.txt</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>surefire</artifactId>
+        <configuration>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+          <excludes>
+            <exclude>**/*FunctionalTest.java</exclude>
+            <exclude>**/*POP3*.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>statcvs</groupId>
+        <artifactId>maven-statcvs-plugin</artifactId>
+        <version>2.5</version>
+        <configuration />
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>oro</groupId>
+      <artifactId>oro</artifactId>
+      <version>2.0.8</version>
+    </dependency>
+  </dependencies>
+  <distributionManagement>
+    <repository>
+      <id>default</id>
+      <name>Default Repository</name>
+      <url>file:///www/jakarta.apache.org/builds/jakarta-commons/${pom.artifactId.substring(8)}/</url>
+    </repository>
+    <site>
+      <id>default</id>
+      <name>Default Site</name>
+      <url>scp://jakarta.apache.org//www/jakarta.apache.org/commons/${pom.artifactId.substring(8)}/</url>
+    </site>
+  </distributionManagement>
+</project>

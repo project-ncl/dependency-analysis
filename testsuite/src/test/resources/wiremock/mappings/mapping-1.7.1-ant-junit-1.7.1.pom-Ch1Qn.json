@@ -1,0 +1,30 @@
+{
+  "id" : "db28ec5e-23c0-3b99-a66b-b1ee89fb8d21",
+  "request" : {
+    "url" : "/api/group/DApublic/org/apache/ant/ant-junit/1.7.1/ant-junit-1.7.1.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-1.7.1-ant-junit-1.7.1.pom-Ch1Qn.xml",
+    "headers" : {
+      "FASTLY-DEBUG-DIGEST" : "f988293b062a036ac2d540a91dc8e96f2b8bf59f1470a49db6e97a4b252b669e",
+      "X-CHECKSUM-MD5" : "e21a7908ac57080c977e5b766dbb9629",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:21:39 GMT",
+      "VIA" : "1.1 varnish",
+      "ETAG" : "\"e21a7908ac57080c977e5b766dbb9629\"",
+      "LAST-MODIFIED" : "Wed, 09 Jul 2008 20:04:58 GMT",
+      "X-CHECKSUM-SHA1" : "e1b5b19595390fbf91f8fa5f372225616d234e13",
+      "X-SERVED-BY" : "cache-iad2127-IAD, cache-dfw1833-DFW",
+      "X-TIMER" : "S1494260499.292284,VS0,VE1",
+      "X-CACHE" : "HIT, HIT",
+      "Content-Type" : "application/maven+xml",
+      "AGE" : "2311069",
+      "X-CACHE-HITS" : "1, 1",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "db28ec5e-23c0-3b99-a66b-b1ee89fb8d21"
+}

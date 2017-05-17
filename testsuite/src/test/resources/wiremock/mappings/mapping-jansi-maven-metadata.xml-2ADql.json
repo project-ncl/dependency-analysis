@@ -1,0 +1,19 @@
+{
+  "id" : "9af9d82e-4365-301c-84a5-75e285e6f786",
+  "request" : {
+    "url" : "/api/group/test-DA/org/fusesource/jansi/jansi/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jansi-maven-metadata.xml-2ADql.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:41:11 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:40:49 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "9af9d82e-4365-301c-84a5-75e285e6f786"
+}

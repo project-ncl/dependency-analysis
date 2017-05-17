@@ -1,0 +1,25 @@
+{
+  "id" : "4f0055ea-23fc-3056-a838-d3352e785314",
+  "request" : {
+    "url" : "/api/group/DApublic/com/github/jnr/jnr-enxio/0.4/jnr-enxio-0.4.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-0.4-jnr-enxio-0.4.pom-YMPsx.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:23:09 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2591996", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:23:13 GMT",
+      "ETAG" : "\"{SHA1{6747709c72e14e02013419d3b6927a1bf6f3c451}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 07:51:35 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "4f0055ea-23fc-3056-a838-d3352e785314"
+}

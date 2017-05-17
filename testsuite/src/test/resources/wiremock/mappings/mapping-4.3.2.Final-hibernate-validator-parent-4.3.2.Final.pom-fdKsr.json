@@ -1,0 +1,25 @@
+{
+  "id" : "92262503-20e7-30dd-958e-6b8dcab7ad62",
+  "request" : {
+    "url" : "/api/group/DApublic/org/hibernate/hibernate-validator-parent/4.3.2.Final/hibernate-validator-parent-4.3.2.Final.pom",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-4.3.2.Final-hibernate-validator-parent-4.3.2.Final.pom-fdKsr.xml",
+    "headers" : {
+      "EXPIRES" : "Wed, 07 Jun 2017 16:16:28 GMT",
+      "CACHE-CONTROL" : [ "public, max-age=2592000", "private" ],
+      "SERVER" : "Nexus/2.13.0-01",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "ACCEPT-RANGES" : "bytes",
+      "DATE" : "Mon, 08 May 2017 16:16:28 GMT",
+      "ETAG" : "\"{SHA1{ae4ef97559e06d6f6228d588fe53cbd9524577ef}}\"",
+      "LAST-MODIFIED" : "Tue, 11 Apr 2017 09:16:28 GMT",
+      "X-CONTENT-TYPE-OPTIONS" : "nosniff",
+      "Content-Type" : "application/maven+xml",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "92262503-20e7-30dd-958e-6b8dcab7ad62"
+}

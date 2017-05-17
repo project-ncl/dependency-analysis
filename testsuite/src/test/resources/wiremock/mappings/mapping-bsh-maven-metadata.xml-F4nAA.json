@@ -1,0 +1,19 @@
+{
+  "id" : "073ca5ed-ba16-395d-9f20-c4cccca3a538",
+  "request" : {
+    "url" : "/api/group/test-DA/org/beanshell/bsh/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-bsh-maven-metadata.xml-F4nAA.xml",
+    "headers" : {
+      "Last-Modified" : "Mon, 15 May 2017 13:26:56 GMT",
+      "Content-Type" : "application/octet-stream",
+      "Date" : "Mon, 15 May 2017 13:26:35 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "073ca5ed-ba16-395d-9f20-c4cccca3a538"
+}
