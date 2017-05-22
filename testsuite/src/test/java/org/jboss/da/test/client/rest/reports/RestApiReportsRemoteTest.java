@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
 import org.json.JSONException;
 import static org.junit.Assert.fail;
+import org.junit.Before;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -26,6 +27,11 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
     private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 
     private static final String PATH_SCM = "/reports/scm";
+
+    @Before
+    public void workaroundNoHttpResponseException() throws InterruptedException {
+        Thread.sleep(2000);
+    }
 
     @Test
     public void testGavReportBasic() throws Exception {

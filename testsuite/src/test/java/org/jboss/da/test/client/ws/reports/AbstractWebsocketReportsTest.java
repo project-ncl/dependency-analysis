@@ -5,6 +5,7 @@ import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
+import org.jboss.da.test.ArquillianDeploymentFactory.TestSide;
 import org.jboss.da.test.client.ws.AbstractWebsocketApiTest;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 
@@ -14,7 +15,7 @@ public abstract class AbstractWebsocketReportsTest extends AbstractWebsocketApiT
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
+        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS, TestSide.CLIENT);
     }
 
     @Override
