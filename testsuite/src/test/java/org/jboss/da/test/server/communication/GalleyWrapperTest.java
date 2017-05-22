@@ -1,12 +1,12 @@
 package org.jboss.da.test.server.communication;
 
+import org.jboss.da.test.server.AbstractServerTest;
 import org.apache.maven.scm.ScmException;
 import org.commonjava.cartographer.CartoDataException;
 import org.commonjava.cartographer.CartographerCore;
 import org.commonjava.maven.galley.maven.GalleyMavenException;
 import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
@@ -18,8 +18,6 @@ import org.jboss.da.communication.pom.qualifier.DACartographerCore;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
-import org.jboss.da.test.ArquillianDeploymentFactory;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -42,7 +40,7 @@ import java.util.Set;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RunWith(Arquillian.class)
-public class GalleyWrapperTest {
+public class GalleyWrapperTest extends AbstractServerTest {
 
     private static final String VERSION = "0.5.1";
 
@@ -75,12 +73,6 @@ public class GalleyWrapperTest {
     private MavenModelProcessor processor;
 
     private File clonedRepository;
-
-    @Deployment
-    public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory()
-                .createDeployment(ArquillianDeploymentFactory.DepType.REPORTS);
-    }
 
     @Before
     public void cloneRepo() throws ScmException {

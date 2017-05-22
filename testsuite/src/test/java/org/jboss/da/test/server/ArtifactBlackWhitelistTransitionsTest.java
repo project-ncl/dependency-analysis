@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.auth.impl.JAASAuthenticatorService;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
@@ -21,9 +20,6 @@ import org.jboss.da.listings.api.service.ProductService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.listings.model.rest.RestProductArtifact;
-import org.jboss.da.test.ArquillianDeploymentFactory;
-import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +30,7 @@ import org.junit.runner.RunWith;
  * @author fkujikis
  */
 @RunWith(Arquillian.class)
-public class ArtifactBlackWhitelistTransitionsTest {
+public class ArtifactBlackWhitelistTransitionsTest extends AbstractServerTest {
 
     @Inject
     private BlackArtifactService blackService;
@@ -47,11 +43,6 @@ public class ArtifactBlackWhitelistTransitionsTest {
 
     @Inject
     private ProductService productService;
-
-    @Deployment
-    public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
-    }
 
     private RestProductArtifact whiteArtifact1;
 
