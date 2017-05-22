@@ -11,6 +11,7 @@ import org.jboss.shrinkwrap.api.importer.ZipImporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,22 +27,37 @@ public class ArquillianDeploymentFactory {
         BC, REPORTS
     }
 
+    public enum TestSide {
+        CLIENT, SERVER
+    }
+
     public static final String DEPLOYMENT_NAME = "testsuite";
 
     private static final String TEST_JAR = "testsuite.jar";
 
     private static final String TEST_EAR = DEPLOYMENT_NAME + ".ear";
 
-    public EnterpriseArchive createDeployment(DepType type) {
+    public EnterpriseArchive createDeployment(DepType type, TestSide testSide) {
         File earProjectBuildDir = new File(new File(getProjectTopLevelDir(), "application"),
                 "target");
         File earFile = new File(earProjectBuildDir, "dependency-analysis.ear");
         EnterpriseArchive ear = createFromZipFile(EnterpriseArchive.class, earFile, TEST_EAR);
         updateEar(ear, type);
+        switch (testSide) {
+            case SERVER:
+                updateEarServer(ear);
+        }
         if (isCreateArchiveCopy()) {
             writeArchiveToFile(ear, new File("target", ear.getName()));
         }
         return ear;
+    }
+
+    private void updateEarServer(EnterpriseArchive ear) {
+        File wiremockJar = Maven.resolver().loadPomFromFile("pom.xml")
+                .resolve("com.github.tomakehurst:wiremock-standalone").withoutTransitivity()
+                .asSingleFile();
+        ear.addAsLibraries(wiremockJar);
     }
 
     private void updateEar(EnterpriseArchive ear, DepType type) {

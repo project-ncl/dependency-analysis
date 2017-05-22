@@ -81,6 +81,11 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     private GAV jacksonGav;
 
     @Before
+    public void workaroundNoHttpResponseException() throws InterruptedException {
+        Thread.sleep(2000);
+    }
+
+    @Before
     public void setUp() {
         JAASAuthenticatorService.setUser("user");
 

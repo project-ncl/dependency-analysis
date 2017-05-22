@@ -3,6 +3,7 @@ package org.jboss.da.test.server;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
+import org.jboss.da.test.ArquillianDeploymentFactory.TestSide;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.Rule;
 
@@ -21,7 +22,7 @@ public class AbstractServerTest {
 
     @Deployment
     public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
+        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS, TestSide.SERVER);
     }
 
 }

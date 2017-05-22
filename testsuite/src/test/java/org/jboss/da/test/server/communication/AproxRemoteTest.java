@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertFalse;
+import org.junit.Before;
 
 @RunWith(Arquillian.class)
 public class AproxRemoteTest extends AbstractServerTest {
@@ -33,6 +34,11 @@ public class AproxRemoteTest extends AbstractServerTest {
 
     @Inject
     private CartographerConnector cartographerConnector;
+
+    @Before
+    public void workaroundNoHttpResponseException() throws InterruptedException {
+        Thread.sleep(2000);
+    }
 
     @Test
     public void testGetVersionsOfGA() throws CommunicationException {

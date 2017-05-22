@@ -10,14 +10,22 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import static org.junit.Assert.*;
+import org.junit.Rule;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
+
 @RunWith(Arquillian.class)
 @RunAsClient
 public abstract class AbstractClientApiTest {
+
+    @Rule
+    public WireMockRule wireMockRule = new WireMockRule(options().port(8081)
+            .usingFilesUnderDirectory("src/test/resources/wiremock"));
 
     protected static final String ENCODING = "utf-8";
 
