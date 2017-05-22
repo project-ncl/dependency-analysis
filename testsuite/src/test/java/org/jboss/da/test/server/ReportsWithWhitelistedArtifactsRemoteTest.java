@@ -3,7 +3,6 @@ package org.jboss.da.test.server;
 import static org.junit.Assert.*;
 
 import org.apache.maven.scm.ScmException;
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
@@ -23,9 +22,6 @@ import org.jboss.da.reports.model.rest.GAVRequest;
 import org.jboss.da.reports.model.rest.LookupGAVsRequest;
 import org.jboss.da.reports.model.rest.LookupReport;
 import org.jboss.da.reports.model.rest.SCMReportRequest;
-import org.jboss.da.test.ArquillianDeploymentFactory;
-import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,12 +40,7 @@ import java.util.Set;
 * @author fkujikis
 */
 @RunWith(Arquillian.class)
-public class ReportsWithWhitelistedArtifactsRemoteTest {
-
-    @Deployment
-    public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
-    }
+public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTest {
 
     @Inject
     private ReportsGenerator reportGenerator;

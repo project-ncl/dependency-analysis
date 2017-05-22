@@ -1,17 +1,15 @@
 package org.jboss.da.test.server.communication;
 
+import org.jboss.da.test.server.AbstractServerTest;
+
 import javax.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.test.ArquillianDeploymentFactory;
-import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -26,15 +24,10 @@ import java.util.Collections;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RunWith(Arquillian.class)
-public class SCMRemoteTest {
+public class SCMRemoteTest extends AbstractServerTest {
 
     @Inject
     private SCMConnector scmConnector;
-
-    @Deployment
-    public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS);
-    }
 
     @Test
     public void testGetDependencyTreeOfRevision() throws ScmException, PomAnalysisException {

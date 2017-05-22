@@ -1,15 +1,11 @@
 package org.jboss.da.test.server.communication;
 
+import org.jboss.da.test.server.AbstractServerTest;
 import static org.junit.Assert.*;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
-import org.jboss.da.communication.pnc.impl.PNCConnectorProviderImpl;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.test.ArquillianDeploymentFactory;
-import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -24,15 +20,10 @@ import java.util.List;
  *
  */
 @RunWith(Arquillian.class)
-public class PncRemoteTest {
+public class PncRemoteTest extends AbstractServerTest {
 
     @Inject
     private PNCConnectorProvider pncConnector;
-
-    @Deployment
-    public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment(DepType.BC);
-    }
 
     @Test
     public void testGetBuildConfigurationByScmUrlAndRevision() throws Exception {
