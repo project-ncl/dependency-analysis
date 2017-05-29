@@ -236,7 +236,7 @@
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-jaxrs</artifactId>
-                <version>1.5.4</version>
+                <version>1.5.13</version>
             </dependency>
 
             <!-- maven scm libraries -->
