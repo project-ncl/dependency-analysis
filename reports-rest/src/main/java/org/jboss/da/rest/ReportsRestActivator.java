@@ -11,6 +11,7 @@ import java.util.Set;
 
 import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
 import org.jboss.da.rest.products.Products;
+import org.jboss.da.rest.listings.BlackListImpl;
 
 /**
  *
@@ -47,5 +48,6 @@ public class ReportsRestActivator extends Application {
         resources.add(Artifacts.class);
         resources.add(Reports.class);
         resources.add(Products.class);
+        resources.add(BlackListImpl.class);
     }
 }
