@@ -317,6 +317,24 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     }
 
     @Test
+    public void testGetGABlackArtifacts() throws Exception {
+        // Check empty list
+        checkExpectedResponse(getBlacklisted("foo", "bar"), "gaBlacklistEmpty");
+
+        // Add artifacts
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobar", true);
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobaz-1", true);
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobaz-2", true);
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobarbaz", true);
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobarbaz-4", true);
+
+        // Check responses
+        checkExpectedResponse(getBlacklisted("foo", "bar"), "gaBlacklistFoobar");
+        checkExpectedResponse(getBlacklisted("foo", "baz"), "gaBlacklistFoobaz");
+        checkExpectedResponse(getBlacklisted("foo", "bar-baz"), "gaBlacklistFoobarbaz");
+    }
+
+    @Test
     public void testCheckRHBlackArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
 
@@ -336,6 +354,13 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         Response response = createClientRequest(
                 PATH_BLACK_LIST + "?groupid=" + groupId + "&artifactid=" + artifactId + "&version="
                         + version).get();
+        assertEquals(200, response.getStatus());
+        return response;
+    }
+
+    private Response getBlacklisted(String groupId, String artifactId) {
+        Response response = createClientRequest(
+                PATH_BLACK_LISTINGS_GA + "?groupid=" + groupId + "&artifactid=" + artifactId).get();
         assertEquals(200, response.getStatus());
         return response;
     }

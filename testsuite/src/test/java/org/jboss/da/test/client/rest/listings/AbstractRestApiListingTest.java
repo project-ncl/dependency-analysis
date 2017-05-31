@@ -43,6 +43,8 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
 
     protected static final String PATH_BLACK_LISTINGS_GAV = "/listings/blacklist/gav";
 
+    protected static final String PATH_BLACK_LISTINGS_GA = "/listings/blacklist/ga";
+
     protected static final String PATH_PRODUCT = "/listings/whitelist/product";
 
     protected static final String PATH_PRODUCTS = "/listings/whitelist/products";

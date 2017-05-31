@@ -1,0 +1,9 @@
+[{
+	"groupId": "foo",
+	"artifactId": "baz",
+	"version": "1.0.0.redhat-1"
+},{
+	"groupId": "foo",
+	"artifactId": "baz",
+	"version": "1.0.0.redhat-2"
+}]
