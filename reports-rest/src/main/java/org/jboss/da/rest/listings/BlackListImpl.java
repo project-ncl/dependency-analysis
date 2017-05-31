@@ -92,4 +92,9 @@ public class BlackListImpl implements BlackList {
                 artifact.getArtifactId(), artifact.getVersion()));
         return response;
     }
+
+    @Override
+    public Collection<RestArtifact> getBlackArtifacts(String groupId, String artifactId) {
+        return convert.toRestArtifacts(blackService.getArtifacts(groupId, artifactId));
+    }
 }

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Inject;
+
 import org.jboss.da.common.version.VersionParser;
 
 import org.jboss.da.listings.api.dao.ArtifactDAO;
@@ -17,6 +18,12 @@ import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.model.rest.VersionComparator;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -32,9 +39,6 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
 
     @Inject
     private WhiteArtifactDAO whiteArtifactDAO;
-
-    @Inject
-    private WhiteArtifactServiceImpl whiteService;
 
     @Inject
     private GADAO gaDAO;
@@ -110,5 +114,19 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Set<BlackArtifact> getArtifacts(String groupId, String artifactId) {
+        List<BlackArtifact> artifacts = blackArtifactDAO.findArtifacts(groupId, artifactId);
+        Set<GA> communityGAs = artifacts.stream()
+                .filter(a -> !VersionParser.isRedhatVersion(a.getVersion()))
+                .map(BlackArtifact::getGa)
+                .collect(Collectors.toSet());
+
+        Comparator<BlackArtifact> baComparator = (a, b) -> VersionComparator.compareVersions(a.getVersion(), b.getVersion());
+        return artifacts.stream()
+                .filter(a -> !(communityGAs.contains(a.getGa()) && VersionParser.isRedhatVersion(a.getVersion())))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(baComparator)));
     }
 }
