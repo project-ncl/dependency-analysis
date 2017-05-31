@@ -10,6 +10,7 @@ import org.jboss.da.listings.model.rest.RestProductGAV;
 import javax.enterprise.context.ApplicationScoped;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class RestConvert {
 
-    public <T extends Artifact> List<RestArtifact> toRestArtifacts(List<T> artifacts) {
+    public <T extends Artifact> List<RestArtifact> toRestArtifacts(Collection<T> artifacts) {
         return artifacts.stream().map(RestConvert::toRestArtifact).collect(Collectors.toList());
     }
 

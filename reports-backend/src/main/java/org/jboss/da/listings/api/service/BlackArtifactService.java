@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.model.rest.GAV;
 
+import java.util.Set;
+
 /**
  * 
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
@@ -66,4 +68,6 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
      * @return True if artifact was deleted.
      */
     public boolean removeArtifact(String groupId, String artifactId, String version);
+
+    public Set<BlackArtifact> getArtifacts(String groupId, String artifactId);
 }
