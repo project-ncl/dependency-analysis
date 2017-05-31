@@ -13,7 +13,7 @@ import org.jboss.da.listings.api.model.Artifact;
 public interface ArtifactDAO<T extends Artifact> extends GenericDAO<T> {
 
     /**
-     * Finds artifact by given group id, artifact id and version. When not found returns null.
+     * Finds artifact by given group id, artifact id and version.
      * 
      * @param groupId Group id of desired artifact.
      * @param artifactId Artifact id of desired artifact.
