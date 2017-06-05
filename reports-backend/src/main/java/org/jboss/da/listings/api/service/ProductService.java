@@ -1,11 +1,9 @@
 package org.jboss.da.listings.api.service;
 
-import org.jboss.da.listings.api.model.Product;
 import org.jboss.da.listings.model.ProductSupportStatus;
 
 import javax.persistence.EntityNotFoundException;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 public interface ProductService {
@@ -41,10 +39,4 @@ public interface ProductService {
      */
     boolean changeProductStatus(String name, String version, ProductSupportStatus newStatus);
 
-    /**
-     * Get all Products
-     * 
-     * @return List of products
-     */
-    List<Product> getAll();
 }
