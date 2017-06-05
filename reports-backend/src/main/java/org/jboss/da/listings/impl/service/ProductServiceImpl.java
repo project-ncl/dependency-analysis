@@ -11,7 +11,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
 
-import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
@@ -49,11 +48,6 @@ public class ProductServiceImpl implements ProductService {
             return true;
         }
         throw new EntityNotFoundException("Product with this name and version is not in database");
-    }
-
-    @Override
-    public List<Product> getAll() {
-        return productDAO.findAll();
     }
 
     @Override
