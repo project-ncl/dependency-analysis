@@ -529,16 +529,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return ret;
     }
 
-    private static List<String> getVersions(Set<ProductArtifacts> pas, GAV gav) {
-        List<String> versions = pas.stream()
-                .flatMap(as -> as.getArtifacts().stream())
-                .map(a -> a.getGav().getVersion())
-                .distinct()
-                .sorted(new VersionComparator(gav.getVersion()))
-                .collect(Collectors.toList());
-        return versions;
-    }
-
     private CompletableFuture<Set<ProductArtifacts>> filterProductArtifacts(Set<Product> products,
             CompletableFuture<Set<ProductArtifacts>> artifacts) {
         return filterProductArtifacts(products, artifacts, x -> true);

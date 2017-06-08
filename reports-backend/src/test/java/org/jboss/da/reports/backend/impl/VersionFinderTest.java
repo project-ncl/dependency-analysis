@@ -106,10 +106,6 @@ public class VersionFinderTest {
             MULTI_BUILT_VERSION_RH1, BUILT_VERSION_2_RH, MULTI_BUILT_VERSION_RH_BEST,
             MULTI_BUILT_VERSION_RH4, NON_OSGI_VERSION_RHT, NON_OSGI_VERSION_2_RHT);
 
-    private void prepare(List<String> versions) throws CommunicationException {
-        when(aproxConnector.getVersionsOfGA(REQUESTED_GA)).thenReturn(versions);
-    }
-
     @Test
     public void getBestMatchVersionForNonExistingGAV() throws CommunicationException {
         Optional<String> bmv = versionFinder.getBestMatchVersionFor(SOME_GAV,
