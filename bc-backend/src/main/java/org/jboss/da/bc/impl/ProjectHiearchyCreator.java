@@ -65,8 +65,6 @@ public class ProjectHiearchyCreator {
     @Inject
     private VersionFinder versionFinder;
 
-    private ProjectHiearchy toplevel;
-
     private Optional<ProjectDetail.SCM> internalSCM;
 
     private Optional<ProjectDetail.SCM> externalSCM;
@@ -77,7 +75,6 @@ public class ProjectHiearchyCreator {
     private AggregatedProductProvider productProvider;
 
     public void iterateNextLevel(ProjectHiearchy toplevel) {
-        this.toplevel = toplevel;
         this.internalSCM = toplevel.getProject().getInternalSCM();
         this.externalSCM = toplevel.getProject().getExternalSCM();
         this.futures = new ArrayList<>();
@@ -88,7 +85,6 @@ public class ProjectHiearchyCreator {
 
     public Set<ProjectHiearchy> processDependencies(ProjectHiearchy toplevel,
             Collection<GAV> dependencies) {
-        this.toplevel = toplevel;
         this.internalSCM = toplevel.getProject().getInternalSCM();
         this.externalSCM = toplevel.getProject().getExternalSCM();
         this.futures = new ArrayList<>();
