@@ -196,8 +196,6 @@ public class Artifacts {
                                     "Can't add artifact to whitelist, artifact is blacklisted"))
                             .build();
                 case NOT_MODIFIED:
-                    response.setSuccess(false);
-                    return Response.ok(response).build();
                 case GA_EXISTS:
                     response.setSuccess(false);
                     return Response.ok(response).build();
