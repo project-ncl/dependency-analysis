@@ -1,8 +1,12 @@
 package org.jboss.da.model.rest.validators;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +20,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @NoArgsConstructor
-public class Validations {
+public class Validations implements Serializable {
 
     @Getter
     private final List<ValidationField> validation = new ArrayList<>();

@@ -1,10 +1,14 @@
 package org.jboss.da.model.rest.validators;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +22,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @JsonInclude(Include.NON_NULL)
-public class ValidationField {
+public class ValidationField implements Serializable {
 
     @Getter
     private final String attribute;
