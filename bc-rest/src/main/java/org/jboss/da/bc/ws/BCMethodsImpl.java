@@ -8,7 +8,7 @@ import org.jboss.da.common.websocket.DefaultMethod;
 import org.jboss.da.common.websocket.Method;
 import org.jboss.da.common.websocket.Methods;
 
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import java.util.HashMap;

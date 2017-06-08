@@ -15,7 +15,7 @@ import org.jboss.da.reports.model.rest.Report;
 import org.jboss.da.reports.model.rest.SCMReportRequest;
 import org.jboss.da.rest.facade.ReportsFacade;
 
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import java.util.HashMap;
