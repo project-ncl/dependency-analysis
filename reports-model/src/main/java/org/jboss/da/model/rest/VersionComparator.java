@@ -1,5 +1,6 @@
 package org.jboss.da.model.rest;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-public class VersionComparator implements Comparator<String> {
+public class VersionComparator implements Comparator<String>, Serializable {
 
     // major.minor.micro.qualifier-redhat-X
     // numbers limited to max 9 digits, beacuse of integer limitatations
