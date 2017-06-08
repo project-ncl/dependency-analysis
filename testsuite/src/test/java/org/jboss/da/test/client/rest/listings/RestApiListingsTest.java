@@ -15,7 +15,7 @@ import static org.junit.Assert.fail;
 
 public class RestApiListingsTest extends AbstractRestApiListingTest {
 
-    private RequestGenerator generator = new RequestGenerator();
+    private final RequestGenerator generator = new RequestGenerator();
 
     @Test
     public void testAddProduct() throws Exception {

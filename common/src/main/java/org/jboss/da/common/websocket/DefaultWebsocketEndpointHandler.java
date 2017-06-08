@@ -27,10 +27,12 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
 
     private Methods methods;
 
+    @Override
     public void setMethods(Methods methods) {
         this.methods = methods;
     }
 
+    @Override
     public void onMessage(Session session, String msg) {
         Basic basic = session.getBasicRemote();
         try {
