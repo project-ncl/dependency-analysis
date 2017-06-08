@@ -23,6 +23,7 @@ public abstract class AbstractWebsocketReportsTest extends AbstractWebsocketApiT
         return "testsuite";
     }
 
+    @Override
     protected String readRestApiVersion() {
         return readConfigurationValue("testsuite.restApiVersion", DEFAULT_REST_API_VERSION);
     }

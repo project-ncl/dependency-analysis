@@ -19,7 +19,7 @@ import lombok.ToString;
 public class Validations {
 
     @Getter
-    private List<ValidationField> validation = new ArrayList<ValidationField>();
+    private final List<ValidationField> validation = new ArrayList<>();
 
     public void addValidationField(ValidationField vf) {
         this.validation.add(vf);

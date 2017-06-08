@@ -19,13 +19,13 @@ public class BuiltReportModule {
     }
 
     @Getter
-    private String groupId;
+    private final String groupId;
 
     @Getter
-    private String artifactId;
+    private final String artifactId;
 
     @Getter
-    private String version;
+    private final String version;
 
     @Getter
     @Setter

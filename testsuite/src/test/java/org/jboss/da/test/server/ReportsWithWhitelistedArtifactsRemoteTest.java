@@ -385,7 +385,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         Set<String> productNames = new HashSet<>();
         Set<Long> productVersionIds = new HashSet<>();
 
-        List<GAV> gavs = new ArrayList<GAV>();
+        List<GAV> gavs = new ArrayList<>();
         gavs.add(hibernateGav);
         gavs.add(daGav);
         gavs.add(jacksonGav);

@@ -10,7 +10,7 @@ import lombok.Getter;
 class GAExistsException extends Exception {
 
     @Getter
-    private String GA;
+    private final String GA;
 
     public GAExistsException(String GA) {
         this.GA = GA;

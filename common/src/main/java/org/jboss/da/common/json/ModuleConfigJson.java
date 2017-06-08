@@ -17,7 +17,7 @@ public class ModuleConfigJson {
     @JsonCreator
     public ModuleConfigJson(@JsonProperty("name") String name) {
         this.name = name;
-        configs = new ArrayList<AbstractModuleGroup>();
+        configs = new ArrayList<>();
     }
 
     public void setConfigs(List<AbstractModuleGroup> configs) {

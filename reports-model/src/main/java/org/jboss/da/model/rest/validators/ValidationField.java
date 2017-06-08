@@ -21,10 +21,10 @@ import lombok.ToString;
 public class ValidationField {
 
     @Getter
-    private String attribute;
+    private final String attribute;
 
     @Getter
-    private List<String> messages = new ArrayList<String>();
+    private final List<String> messages = new ArrayList<>();
 
     @Setter
     @Getter

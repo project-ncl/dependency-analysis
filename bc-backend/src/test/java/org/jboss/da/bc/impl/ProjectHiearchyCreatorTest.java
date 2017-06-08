@@ -115,7 +115,7 @@ public class ProjectHiearchyCreatorTest {
 
     @SuppressWarnings("serial")
     private void initGavs() {
-        mapExpectedDepsToGavs = new HashMap<GAV, List<String>>();
+        mapExpectedDepsToGavs = new HashMap<>();
         mapExpectedDepsToGavs.put(new GAV("org.jboss.da.bc.impl", "test-artifact-one", "1.5"),
                 new ArrayList<String>() {
 
@@ -142,7 +142,7 @@ public class ProjectHiearchyCreatorTest {
                     }
                 });
         mapExpectedDepsToGavs.put(new GAV("org.jboss.da.bc.impl", "test-artifact-b", "2.7"),
-                new ArrayList<String>());
+                new ArrayList<>());
     }
 
 }

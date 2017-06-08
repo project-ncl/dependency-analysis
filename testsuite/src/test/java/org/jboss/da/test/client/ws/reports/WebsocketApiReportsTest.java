@@ -10,13 +10,13 @@ import java.io.IOException;
 
 public class WebsocketApiReportsTest extends AbstractWebsocketReportsTest {
 
-    private static String PATH_REPORTS_ALIGN = "/reports/align";
+    private static final String PATH_REPORTS_ALIGN = "/reports/align";
 
-    private static String METHOD_REPORTS_ALIGN = "reports.align";
+    private static final String METHOD_REPORTS_ALIGN = "reports.align";
 
-    private static String PATH_REPORTS_BUILT = "/reports/built";
+    private static final String PATH_REPORTS_BUILT = "/reports/built";
 
-    private static String METHOD_REPORTS_BUILT = "reports.built";
+    private static final String METHOD_REPORTS_BUILT = "reports.built";
 
     @Test
     public void testAlignReportBasic() throws IOException, Exception {

@@ -16,8 +16,8 @@ import lombok.Getter;
 public class VersionLookupResult {
 
     @Getter
-    private Optional<String> bestMatchVersion;
+    private final Optional<String> bestMatchVersion;
 
     @Getter
-    private List<String> availableVersions;
+    private final List<String> availableVersions;
 }

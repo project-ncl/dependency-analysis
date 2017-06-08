@@ -26,7 +26,7 @@ public class RestApiProductsTest extends AbstractRestApiListingTest {
 
     protected static final String PATH_PRODUCTS_DIFF = "/products/diff";
 
-    private RequestGenerator generator = new RequestGenerator();
+    private final RequestGenerator generator = new RequestGenerator();
 
     @Test
     public void testProductsDiff() throws Exception {
