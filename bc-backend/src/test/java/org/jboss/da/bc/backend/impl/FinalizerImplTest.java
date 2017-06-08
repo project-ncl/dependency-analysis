@@ -6,7 +6,6 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCAuthConnector;
 import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
-import org.jboss.da.communication.pnc.impl.PNCConnectorProviderImpl;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.model.rest.GAV;
 import org.junit.Assert;

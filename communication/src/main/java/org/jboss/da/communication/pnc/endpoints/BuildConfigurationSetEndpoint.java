@@ -6,7 +6,6 @@ import static org.jboss.da.communication.pnc.endpoints.EndpointsParams.PAGE_SIZE
 import static org.jboss.da.communication.pnc.endpoints.EndpointsParams.PAGE_SIZE_QUERY_PARAM;
 import static org.jboss.da.communication.pnc.endpoints.EndpointsParams.QUERY_QUERY_PARAM;
 import static org.jboss.da.communication.pnc.endpoints.EndpointsParams.SORTING_QUERY_PARAM;
-import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.PNCResponseWrapper;
 

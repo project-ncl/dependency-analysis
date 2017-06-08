@@ -3,7 +3,6 @@ package org.jboss.da.communication.cartographer.impl;
 import org.commonjava.cartographer.client.CartoClientException;
 import org.commonjava.cartographer.client.CartographerRESTClient;
 import org.commonjava.cartographer.graph.discover.patch.DepgraphPatcherConstants;
-import org.commonjava.cartographer.request.ProjectGraphRequest;
 import org.commonjava.cartographer.request.SingleGraphRequest;
 import org.commonjava.cartographer.result.GraphExport;
 import org.commonjava.maven.atlas.graph.rel.ProjectRelationship;
@@ -27,6 +26,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+
 import java.util.HashMap;
 import java.util.Map;
 

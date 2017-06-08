@@ -23,8 +23,6 @@ import org.jboss.da.model.rest.ErrorMessage;
 import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
 
-import java.util.logging.Level;
-
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;

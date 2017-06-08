@@ -23,7 +23,6 @@ import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 import org.jboss.da.reports.model.api.SCMLocator;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
 

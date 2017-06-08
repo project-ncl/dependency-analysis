@@ -2,8 +2,6 @@ package org.jboss.da.listings.api.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.UniqueConstraint;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
