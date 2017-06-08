@@ -118,15 +118,17 @@ public class LocalRepo {
         if(Files.exists(metadata)){
             throw new UnsupportedOperationException("Merging of metadata is not supported yet. Conflicting metadata: " + metadata);
         }
-        InputStream is = this.getClass().getResourceAsStream("/template/maven-metadata.xml");
-        
-        Stream<String> lines = new BufferedReader(new InputStreamReader(is)).lines()
-                .map(l -> l.replace("${groupId}", key.getGroupId()))
-                .map(l -> l.replace("${artifactId}", key.getGroupId()))
-                .map(l -> l.replace("${version}", key.getVersionString().replace("-SNAPSHOT", "")));
-                
-        Files.write(metadata, (Iterable<String>) lines::iterator);
-        Path newPomFile = dir.resolve(p.getFileName().toString().replace("-SNAPSHOT.pom", SUFFIX));
-        Files.copy(pomFile, newPomFile);
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+                this.getClass().getResourceAsStream("/template/maven-metadata.xml")))) {
+
+            Stream<String> lines = reader.lines()
+                    .map(l -> l.replace("${groupId}", key.getGroupId()))
+                    .map(l -> l.replace("${artifactId}", key.getGroupId()))
+                    .map(l -> l.replace("${version}", key.getVersionString().replace("-SNAPSHOT", "")));
+
+            Files.write(metadata, (Iterable<String>) lines::iterator);
+            Path newPomFile = dir.resolve(p.getFileName().toString().replace("-SNAPSHOT.pom", SUFFIX));
+            Files.copy(pomFile, newPomFile);
+        }
     }
 }
