@@ -10,7 +10,6 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
-import org.jboss.da.products.impl.ProductException;
 import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.slf4j.Logger;

@@ -1,6 +1,7 @@
 package org.jboss.da.communication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.commonjava.cartographer.CartoDataException;
 import org.commonjava.cartographer.CartographerCore;
 import org.commonjava.cartographer.CartographerCoreBuilder;
@@ -38,7 +39,6 @@ import org.commonjava.maven.galley.spi.transport.LocationResolver;
 import org.commonjava.maven.galley.spi.transport.TransportManager;
 import org.commonjava.maven.galley.transport.NoOpLocationExpander;
 import org.commonjava.maven.galley.transport.SimpleUrlLocationResolver;
-import org.commonjava.maven.galley.transport.TransportManagerImpl;
 import org.commonjava.maven.galley.transport.htcli.Http;
 import org.commonjava.maven.galley.transport.htcli.HttpImpl;
 import org.commonjava.maven.galley.transport.htcli.conf.GlobalHttpConfiguration;
@@ -46,6 +46,7 @@ import org.jboss.da.communication.pom.qualifier.DACartographerCore;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+
 import java.io.File;
 import java.io.IOException;
 

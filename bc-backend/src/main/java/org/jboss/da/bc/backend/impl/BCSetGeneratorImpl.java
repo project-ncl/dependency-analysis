@@ -4,7 +4,6 @@ import org.jboss.da.bc.backend.api.BCSetGenerator;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
-import org.jboss.da.communication.pnc.impl.PNCConnectorProviderImpl;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.ProductVersion;
 

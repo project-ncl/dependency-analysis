@@ -1,15 +1,9 @@
 package org.jboss.da.test.server.communication;
 
-import java.util.TreeSet;
-import javax.swing.event.TreeSelectionEvent;
-import org.commonjava.maven.atlas.graph.rel.SimpleDependencyRelationship;
-import org.commonjava.maven.atlas.ident.DependencyScope;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.model.rest.GAV;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  *

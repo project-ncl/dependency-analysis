@@ -2,8 +2,6 @@ package org.jboss.da.listings.api.service;
 
 import java.util.List;
 
-import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.model.ProductVersionArtifactRelationship;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.model.rest.GAV;
 
