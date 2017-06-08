@@ -21,9 +21,9 @@ public class MetadataFileParserTest {
 
     @BeforeClass
     public static void init() throws JAXBException, IOException, CommunicationException {
-        InputStream in = getResourceSteam("maven-metadata.xml");
-        versionResponse = MetadataFileParser.parseMetadataFile(in);
-        in.close();
+        try (InputStream in = getResourceSteam("maven-metadata.xml")) {
+            versionResponse = MetadataFileParser.parseMetadataFile(in);
+        }
     }
 
     @Test
