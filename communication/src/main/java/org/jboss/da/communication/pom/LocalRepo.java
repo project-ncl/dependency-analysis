@@ -119,7 +119,7 @@ public class LocalRepo {
             throw new UnsupportedOperationException("Merging of metadata is not supported yet. Conflicting metadata: " + metadata);
         }
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                this.getClass().getResourceAsStream("/template/maven-metadata.xml")))) {
+                LocalRepo.class.getResourceAsStream("/template/maven-metadata.xml")))) {
 
             Stream<String> lines = reader.lines()
                     .map(l -> l.replace("${groupId}", key.getGroupId()))
