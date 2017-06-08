@@ -22,6 +22,8 @@ import java.util.TreeSet;
 
 import org.jboss.da.model.rest.VersionComparator;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
@@ -164,7 +166,7 @@ public class DependencyTreeBuilder {
     }
 
     private static class DependencyRelationshipComparator implements
-            Comparator<DependencyRelationship> {
+            Comparator<DependencyRelationship>, Serializable {
 
         @Override
         public int compare(DependencyRelationship o1, DependencyRelationship o2) {
@@ -195,7 +197,7 @@ public class DependencyTreeBuilder {
 
     }
 
-    private static class PathNodeComparator implements Comparator<PathNode> {
+    private static class PathNodeComparator implements Comparator<PathNode>, Serializable {
 
         @Override
         public int compare(PathNode o1, PathNode o2) {
