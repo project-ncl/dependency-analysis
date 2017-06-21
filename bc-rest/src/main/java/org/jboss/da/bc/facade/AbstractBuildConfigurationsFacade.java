@@ -18,11 +18,14 @@ import org.jboss.da.bc.model.rest.InfoEntity;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pom.PomAnalysisException;
-import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.model.api.SCMLocator;
+import org.jboss.da.validation.Validation;
 import org.slf4j.Logger;
 
 import java.util.Comparator;
+import java.util.logging.Level;
+import org.jboss.da.model.rest.validators.Validations;
+import org.jboss.da.validation.ValidationException;
 
 /**
  *
@@ -35,9 +38,12 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
     @Inject
     private Logger log;
 
+    @Inject
+    private Validation validation;
+
     @Override
     public I startAnalyse(EntryEntity entry) throws ScmException, PomAnalysisException,
-            CommunicationException {
+            CommunicationException, ValidationException {
         log.info("Start process " + entry);
         SCMLocator scm;
         if (entry.getScmUrl() == null || entry.getScmRevision() == null
@@ -48,6 +54,7 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
             scm = SCMLocator.internal(entry.getScmUrl(), entry.getScmRevision(),
                     entry.getPomPath(), entry.getRepositories());
         }
+        validation.validation(entry, "Starting process failed");
         return start(scm, entry);
     }
 
@@ -89,6 +96,9 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         ProjectDetail pd = new ProjectDetail(bc.getGav());
         pd.setExistingBCs(bc.getExistingBCs());
         pd.setBuildScript(bc.getBuildScript());
+        if (bc.getBuildScript().equals("")) {
+            throw new IllegalArgumentException("Buildscript cannot be empty in finish process.");
+        }
         pd.setDescription(bc.getDescription());
         pd.setEnvironmentId(bc.getEnvironmentId());
         pd.setInternallyBuilt(Optional.ofNullable(bc.getInternallyBuilt()));
@@ -137,17 +147,19 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
             bc.setExternalScmRevision(scm.getRevision());
         });
         bc.setSelected(ph.isSelected());
+        if (ph.isSelected() && p.getBuildScript().equals("")) {
+            throw new IllegalArgumentException("Buildscript cannot be empty if buildconfiguration is selected.");
+        }
         bc.setBcId(p.getBcId());
         bc.setAnalysisStatus(ph.getAnalysisStatus());
         bc.setErrors(p.getErrors());
 
         List<BuildConfiguration> dependencies = ph.getDependencies()
-                .stream()
-                .map(x -> toBuildConfiguration(x))
-                .sorted(Comparator.comparing(BuildConfiguration::getGav))
-                .collect(Collectors.toList());
+            .stream()
+            .map(x -> toBuildConfiguration(x))
+            .sorted(Comparator.comparing(BuildConfiguration::getGav))
+            .collect(Collectors.toList());
         bc.setDependencies(dependencies);
-
         return bc;
     }
 
