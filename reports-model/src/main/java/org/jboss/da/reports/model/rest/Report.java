@@ -13,7 +13,7 @@ import org.jboss.da.model.rest.GAV;
 
 /**
  *
- * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @JsonRootName(value = "report")
 @AllArgsConstructor

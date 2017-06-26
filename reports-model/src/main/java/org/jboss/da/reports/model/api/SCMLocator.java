@@ -12,7 +12,7 @@ import org.jboss.da.model.rest.validators.ScmUrl;
 
 /**
  *
- * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ToString
 public class SCMLocator {

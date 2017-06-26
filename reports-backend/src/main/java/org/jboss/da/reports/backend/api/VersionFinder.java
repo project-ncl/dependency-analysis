@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  *
- * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  */
 public interface VersionFinder {

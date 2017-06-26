@@ -26,7 +26,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ApplicationScoped
 public class DependencyTreeBuilder {

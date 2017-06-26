@@ -17,7 +17,7 @@ import lombok.NonNull;
 
 /**
  *
- * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @JsonRootName(value = "report")
 public class GAVRequest {

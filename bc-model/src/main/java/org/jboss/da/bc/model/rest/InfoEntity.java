@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  *
- * @author Honza Brázdil &lt;janinko.g@gmail.com&gt;
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @EqualsAndHashCode
 public class InfoEntity {
