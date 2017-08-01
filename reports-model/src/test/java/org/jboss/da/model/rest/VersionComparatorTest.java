@@ -1,5 +1,12 @@
 package org.jboss.da.model.rest;
 
+import static org.jboss.da.model.rest.VersionComparator.VersionDifference.EQUAL;
+import static org.jboss.da.model.rest.VersionComparator.VersionDifference.MAJOR;
+import static org.jboss.da.model.rest.VersionComparator.VersionDifference.MICRO;
+import static org.jboss.da.model.rest.VersionComparator.VersionDifference.MINOR;
+import static org.jboss.da.model.rest.VersionComparator.VersionDifference.QUALIFIER;
+import static org.jboss.da.model.rest.VersionComparator.VersionDifference.RH_SUFFIX;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -100,5 +107,37 @@ public class VersionComparatorTest {
         assertTrue(vc.compare("2.2.0.GA", "2.2.0.CR1") < 0);
         assertTrue(vc.compare("2.2.0.MR1", "2.2.0.SP4") > 0); // Too difficult to implement correctly
         assertTrue(vc.compare("2.2.0.MR1", "2.2.0.CR1") < 0);
+    }
+
+    @Test
+    public void testVersionDifference() {
+        assertEquals(MAJOR, VersionComparator.difference("3.4.2.Final", "2.4.2.Final"));
+        assertEquals(MINOR, VersionComparator.difference("3.4.2.Final", "3.3.2.Final"));
+        assertEquals(MICRO, VersionComparator.difference("3.4.2.Final", "3.4.1.Final"));
+        assertEquals(QUALIFIER, VersionComparator.difference("3.4.2.Final", "3.4.2.Beta"));
+
+        assertEquals(EQUAL, VersionComparator.difference("3.0.0.Final", "3.Final"));
+        assertEquals(EQUAL, VersionComparator.difference("3.0.0.Final", "3.0.Final"));
+        assertEquals(EQUAL, VersionComparator.difference("3.0.0.Final", "3.0.0.Final"));
+
+        assertEquals(EQUAL, VersionComparator.difference("3.0.0", "3"));
+        assertEquals(EQUAL, VersionComparator.difference("3.0.0", "3.0"));
+        assertEquals(EQUAL, VersionComparator.difference("3.0.0", "3.0.0"));
+
+        assertEquals(MAJOR, VersionComparator.difference("3.4.2.Final", "4.4.2.Final"));
+        assertEquals(MINOR, VersionComparator.difference("3.4.2.Final", "3.5.2.Final"));
+        assertEquals(MICRO, VersionComparator.difference("3.4.2.Final", "3.4.3.Final"));
+
+        assertEquals(QUALIFIER, VersionComparator.difference("3.4.2.Alpha", "3.4.2.Beta"));
+
+        assertEquals(RH_SUFFIX, VersionComparator.difference("3.4.2.Final", "3.4.2.Final-redhat-1"));
+        assertEquals(RH_SUFFIX, VersionComparator.difference("3.4.2", "3.4.2.redhat-1"));
+
+        assertEquals(RH_SUFFIX,
+                VersionComparator.difference("3.4.2.Final-redhat-1", "3.4.2.Final-redhat-2"));
+        assertEquals(RH_SUFFIX, VersionComparator.difference("3.4.2.redhat-1", "3.4.2.redhat-2"));
+
+        assertEquals(QUALIFIER,
+                VersionComparator.difference("1.1.0.SP18-redhat-1", "1.1.0.SP17-redhat-1")); // NCL-3208
     }
 }

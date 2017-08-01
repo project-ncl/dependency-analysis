@@ -55,7 +55,7 @@ public class VersionComparator implements Comparator<String>, Serializable {
         if (v1.micro != v2.micro) {
             return VersionDifference.MICRO;
         }
-        if (v1.qualifier.equals(v2.qualifier)) {
+        if (!v1.qualifier.equals(v2.qualifier)) {
             return VersionDifference.QUALIFIER;
         }
         if (v1.rhversion != v2.rhversion) {
