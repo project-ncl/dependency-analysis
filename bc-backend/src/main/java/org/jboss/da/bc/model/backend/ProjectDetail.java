@@ -20,13 +20,7 @@ import org.jboss.da.model.rest.GAV;
 @ToString
 public class ProjectDetail {
 
-    @Getter
-    @Setter
-    private Optional<SCM> internalSCM = Optional.empty();
-
-    @Getter
-    @Setter
-    private Optional<SCM> externalSCM = Optional.empty();
+    private Optional<SCM> scm = Optional.empty();
 
     @Getter
     @Setter
@@ -90,12 +84,20 @@ public class ProjectDetail {
         return existingBCs == null ? false : !existingBCs.isEmpty();
     }
 
-    public void setInternalSCM(String url, String revision) {
-        this.internalSCM = Optional.of(new SCM(url, revision));
+    public Optional<SCM> getSCM() {
+        return scm;
     }
 
-    public void setExternalSCM(String url, String revision) {
-        this.externalSCM = Optional.of(new SCM(url, revision));
+    public void setSCM(Optional<SCM> scm) {
+        this.scm = scm;
+    }
+
+    public void setSCM(String url, String revision) {
+        if (url == null && revision == null) {
+            this.scm = Optional.empty();
+        } else {
+            this.scm = Optional.of(new SCM(url, revision));
+        }
     }
 
     public static class SCM {

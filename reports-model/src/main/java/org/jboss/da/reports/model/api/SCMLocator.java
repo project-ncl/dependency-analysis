@@ -30,8 +30,6 @@ public class SCMLocator {
     @NonNull
     private String pomPath;
 
-    private Boolean internal;
-
     @Getter
     @NonNull
     private List<String> repositories = Collections.emptyList();
@@ -55,18 +53,6 @@ public class SCMLocator {
     public static SCMLocator internal(String scmUrl, String revision, String pomPath,
             List<String> repositories) {
         SCMLocator ret = new SCMLocator(scmUrl, revision, pomPath, repositories);
-        ret.internal = true;
-        return ret;
-    }
-
-    public static SCMLocator external(String scmUrl, String revision, String pomPath) {
-        return external(scmUrl, revision, pomPath, null);
-    }
-
-    public static SCMLocator external(String scmUrl, String revision, String pomPath,
-            List<String> repositories) {
-        SCMLocator ret = new SCMLocator(scmUrl, revision, pomPath, repositories);
-        ret.internal = false;
         return ret;
     }
 
@@ -77,15 +63,6 @@ public class SCMLocator {
     public static SCMLocator generic(String scmUrl, String revision, String pomPath,
             List<String> repositories) {
         SCMLocator ret = new SCMLocator(scmUrl, revision, pomPath, repositories);
-        ret.internal = null;
         return ret;
-    }
-
-    public boolean isInternal() {
-        return internal != null && internal;
-    }
-
-    public boolean isExternal() {
-        return internal != null && !internal;
     }
 }

@@ -80,7 +80,7 @@ public class ProjectHiearchyCreatorTest {
     public void init() throws Exception {
         topLevelHierarchy = new ProjectHiearchy(new ProjectDetail(new GAV("org.jboss.da.bc.impl",
                 "unittest", "1.0")), true);
-        topLevelHierarchy.getProject().setExternalSCM("goo", "bar");
+        topLevelHierarchy.getProject().setSCM("goo", "bar");
 
         initGavs();
         initMocks();

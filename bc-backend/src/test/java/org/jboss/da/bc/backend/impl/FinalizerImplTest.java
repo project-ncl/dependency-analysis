@@ -21,9 +21,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 /**
  *
@@ -42,6 +43,8 @@ public class FinalizerImplTest {
     private FinalizerImpl finalizer;
 
     private static int projectCounter = 0;
+
+    private static final String EXAMPLE_URL = "http://example.com/foo";
 
     private static final ProjectHiearchy ROOT_1 = new ProjectHiearchy(getProject(), true);
     static {
@@ -63,11 +66,12 @@ public class FinalizerImplTest {
      */
     @Test
     public void testCreateAllSelected() throws CommunicationException, PNCRequestException {
-        when(pnc.getBuildConfiguration(Matchers.anyString())).then(new BCCAnswer());
+        when(pnc.createBuildConfiguration(Matchers.any())).then(new BCCAnswer());
         ProjectHiearchy root = getHiearchy(true);
         root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(true), getHiearchy(true))));
 
-        Set<Integer> ret = finalizer.createDeps(root, new HashSet<>());
+        Set<Integer> ret = finalizer.createDeps(root, new HashSet<>(),
+                Collections.singletonMap(EXAMPLE_URL, CompletableFuture.completedFuture(1)));
         Assert.assertEquals(1, ret.size());
     }
 
@@ -75,12 +79,14 @@ public class FinalizerImplTest {
      * This test case test option b) of FinalizerImpl.createDeps method: Returns set containing
      * multiple integers, when the hiearchy object is not selected AND it has selected dependencies
      */
+    @Test
     public void testCreateRootNotSelected() throws CommunicationException, PNCRequestException {
-        when(pnc.getBuildConfiguration(Matchers.anyString())).then(new BCCAnswer());
+        when(pnc.createBuildConfiguration(Matchers.any())).then(new BCCAnswer());
         ProjectHiearchy root = getHiearchy(false);
         root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(true), getHiearchy(true))));
 
-        Set<Integer> ret = finalizer.createDeps(root, new HashSet<>());
+        Set<Integer> ret = finalizer.createDeps(root, new HashSet<>(),
+                Collections.singletonMap(EXAMPLE_URL, CompletableFuture.completedFuture(1)));
         Assert.assertEquals(2, ret.size());
     }
 
@@ -88,12 +94,13 @@ public class FinalizerImplTest {
      * This test case test option c) of FinalizerImpl.create method: Returns set containing NO
      * integer, when the hiearchy object is not selected AND it has NO selected dependencies
      */
+    @Test
     public void testCreateNothingSelected() throws CommunicationException, PNCRequestException {
-        when(pnc.getBuildConfiguration(Matchers.anyString())).then(new BCCAnswer());
+        when(pnc.createBuildConfiguration(Matchers.any())).then(new BCCAnswer());
         ProjectHiearchy root = getHiearchy(false);
-        root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(true), getHiearchy(true))));
+        root.setDependencies(new HashSet<>(Arrays.asList(getHiearchy(false), getHiearchy(false))));
 
-        Set<Integer> ret = finalizer.createDeps(root, new HashSet<>());
+        Set<Integer> ret = finalizer.createDeps(root, new HashSet<>(), Collections.emptyMap());
         Assert.assertTrue(ret.isEmpty());
     }
 
@@ -108,18 +115,19 @@ public class FinalizerImplTest {
         ret.setEnvironmentId(projectCounter);
         ret.setProjectId(projectCounter);
         ret.setName("Project " + projectCounter);
+        ret.setSCM(EXAMPLE_URL, "bar");
         return ret;
     }
 
-    private static class BCCAnswer implements Answer<Optional<BuildConfiguration>> {
+    private static class BCCAnswer implements Answer<BuildConfiguration> {
 
         private int counter;
 
         @Override
-        public Optional<BuildConfiguration> answer(InvocationOnMock invocation) throws Throwable {
+        public BuildConfiguration answer(InvocationOnMock invocation) throws Throwable {
             BuildConfiguration ret = new BuildConfiguration();
             ret.setId(counter++);
-            return Optional.of(ret);
+            return ret;
         }
 
     }

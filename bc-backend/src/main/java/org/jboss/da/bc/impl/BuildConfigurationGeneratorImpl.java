@@ -136,8 +136,7 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
         if (!validate(projects.getToplevelBc()))
             return Optional.empty();
 
-        return Optional.of(finalizer.createBCs(projects.getId(), projects.getToplevelBc(),
-                projects.getAuthToken()));
+        return Optional.of(finalizer.createBCs(projects.getToplevelBc(), projects.getAuthToken()));
     }
 
     private boolean validate(ProjectHiearchy hiearchy) throws IllegalStateException {
@@ -162,7 +161,7 @@ public class BuildConfigurationGeneratorImpl implements ProductBuildConfiguratio
                 noerror = false;
             }
 
-            if (!project.getInternalSCM().isPresent() && !project.getExternalSCM().isPresent()) {
+            if (!project.getSCM().isPresent()) {
                 project.addError(BcError.NO_SCM_URL);
                 noerror = false;
             }

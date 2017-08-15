@@ -18,11 +18,16 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.communication.pnc.model.BuildConfigurationBPMCreate;
+import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.slf4j.Logger;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  *
@@ -31,6 +36,8 @@ import javax.ejb.TransactionAttributeType;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class FinalizerImpl implements Finalizer {
+
+    private static final String NO_SCM_URL = "Build configuration selected for creation, but doesn't have scm information.";
 
     @Inject
     private Logger log;
@@ -48,9 +55,10 @@ public class FinalizerImpl implements Finalizer {
             String bcSetName, String authToken) throws CommunicationException, PNCRequestException {
         this.token = authToken;
         Set<Integer> ids = new HashSet<>();
+        HashMap<String, Future<Integer>> repos = new HashMap<>();
         try {
-            create(toplevelBc);
-            createDeps(toplevelBc, ids);
+            createRepositories(toplevelBc, repos);
+            createDeps(toplevelBc, ids, repos);
             int productVersionId = bcSetGenerator.createProductVersion(productId, productVersion,
                     token);
             bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList<>(ids), token);
@@ -68,13 +76,25 @@ public class FinalizerImpl implements Finalizer {
     }
 
     @Override
-    public Integer createBCs(int id, ProjectHiearchy toplevelBc, String authToken)
+    public Integer createBCs(ProjectHiearchy toplevelBc, String authToken)
             throws CommunicationException, PNCRequestException {
         this.token = authToken;
         Set<Integer> ids = new HashSet<>();
-        create(toplevelBc);
-        Set<Integer> toplevelId = createDeps(toplevelBc, ids);
-        return toplevelId.iterator().next(); // get single integer
+        HashMap<String, Future<Integer>> repos = new HashMap<>();
+        try {
+            createRepositories(toplevelBc, repos);
+            Set<Integer> toplevelId = createDeps(toplevelBc, ids, repos);
+            return toplevelId.iterator().next(); // get single integer
+        } catch (CommunicationException | PNCRequestException | RuntimeException ex) {
+            for (Integer id : ids) {
+                try {
+                    pnc.getAuthConnector(token).deleteBuildConfiguration(id);
+                } catch (CommunicationException | PNCRequestException | RuntimeException e) {
+                    log.error("Rollback: Failed to delete configuration " + id, e);
+                }
+            }
+            throw new RuntimeException("Fail while finishing import process. Rolled back.", ex);
+        }
     }
 
     /**
@@ -84,11 +104,11 @@ public class FinalizerImpl implements Finalizer {
      *      b) multiple integers, when the hiearchy object is not selected AND it has selected dependencies
      *      c) NO integer, when the hiearchy object is not selected AND it has NO selected dependencies
      */
-    Set<Integer> createDeps(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds) throws CommunicationException, PNCRequestException {
+    Set<Integer> createDeps(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds, Map<String, Future<Integer>> repos) throws CommunicationException, PNCRequestException {
         Set<Integer> nextLevelDependencyIds = new HashSet<>();
 
         for (ProjectHiearchy dep : hiearchy.getDependencies()) {
-            nextLevelDependencyIds.addAll(createDeps(dep, allDependencyIds));
+            nextLevelDependencyIds.addAll(createDeps(dep, allDependencyIds, repos));
         }
 
         if(hiearchy.isSelected()){
@@ -97,18 +117,11 @@ public class FinalizerImpl implements Finalizer {
             if (project.isUseExistingBc()) {
                 List<BuildConfiguration> existingBcs = new ArrayList<>();
 
-                Optional<ProjectDetail.SCM> internalSCM = project.getInternalSCM();
-                if(internalSCM.isPresent()){
+                Optional<ProjectDetail.SCM> scm = project.getSCM();
+                if(scm.isPresent()){
                     existingBcs.addAll(pnc.getConnector().getBuildConfigurations(
-                            internalSCM.get().getUrl(),
-                            internalSCM.get().getRevision()));
-                }
-
-                Optional<ProjectDetail.SCM> externalSCM = project.getExternalSCM();
-                if(externalSCM.isPresent()){
-                    existingBcs.addAll(pnc.getConnector().getBuildConfigurations(
-                            externalSCM.get().getUrl(),
-                            externalSCM.get().getRevision()));
+                            scm.get().getUrl(),
+                            scm.get().getRevision()));
                 }
 
                 Optional<BuildConfiguration> optionalBc = existingBcs.stream()
@@ -117,7 +130,8 @@ public class FinalizerImpl implements Finalizer {
 
                 bc = optionalBc.orElseThrow(() -> new IllegalStateException("useExistingBC is true, but there is no BC to use."));
             } else {
-                bc = waitForBC(project.getName());
+                BuildConfigurationCreate bcc = toBC(project, repos);
+                bc = pnc.getAuthConnector(token).createBuildConfiguration(bcc);
             }
             if (!nextLevelDependencyIds.isEmpty()) {
                 bc.getDependencyIds().addAll(nextLevelDependencyIds);
@@ -131,59 +145,45 @@ public class FinalizerImpl implements Finalizer {
         }
     }
 
-    private BuildConfiguration waitForBC(String name) throws CommunicationException,
-            PNCRequestException {
-        int tries = 13;
-        while (tries-- > 0) {
-            Optional<BuildConfiguration> buildConfiguration = pnc.getConnector()
-                    .getBuildConfiguration(name);
-            if (buildConfiguration.isPresent()) {
-                return buildConfiguration.get();
-            }
-
-            try {
-                Thread.sleep(1000 * 30);
-            } catch (InterruptedException ex) {
-                throw new CommunicationException("Waiting for buildconfiguration " + name
-                        + " was interrupted", ex);
-            }
-        }
-        throw new CommunicationException("Timeout while waiting for buildconfiguration " + name
-                + ".");
-    }
-
-    private void create(ProjectHiearchy hiearchy) throws CommunicationException,
-            PNCRequestException {
-        for (ProjectHiearchy dep : hiearchy.getDependencies()) {
-            create(dep);
-        }
-
-        if (hiearchy.isSelected()) {
-            ProjectDetail project = hiearchy.getProject();
-            if (!project.isUseExistingBc()) {
-                BuildConfigurationBPMCreate bcc = toBC(project);
-                pnc.getAuthConnector(token).createBuildConfiguration(bcc);
-            }
-        }
-    }
-
-    private BuildConfigurationBPMCreate toBC(ProjectDetail project) {
-        BuildConfigurationBPMCreate bc = new BuildConfigurationBPMCreate();
+    private BuildConfigurationCreate toBC(ProjectDetail project, Map<String, Future<Integer>> repos) throws CommunicationException {
+        BuildConfigurationCreate bc = new BuildConfigurationCreate();
         bc.setBuildScript(project.getBuildScript());
         bc.setDescription(project.getDescription());
         bc.setEnvironmentId(project.getEnvironmentId());
         bc.setName(project.getName());
         bc.setProjectId(project.getProjectId());
+        ProjectDetail.SCM scmInfo = project.getSCM().orElseThrow(() -> new IllegalArgumentException(
+                NO_SCM_URL));
 
-        project.getInternalSCM().ifPresent(scm -> {
-            bc.setScmRepoURL(scm.getUrl());
-            bc.setScmRevision(scm.getRevision());
-        });
-        project.getExternalSCM().ifPresent(scm -> {
-            bc.setScmExternalRepoURL(scm.getUrl());
-            bc.setScmExternalRevision(scm.getRevision());
-        });
+        Future<Integer> repo = repos.get(scmInfo.getUrl());
+        
+        try {
+            bc.setRepositoryId(repo.get());
+        } catch (InterruptedException | ExecutionException ex) {
+            throw new CommunicationException("Failed to wait for repository creation", ex);
+        }
+        bc.setScmRevision(scmInfo.getRevision());
 
         return bc;
+    }
+
+    private void createRepositories(ProjectHiearchy toplevelBc, HashMap<String, Future<Integer>> repos) throws CommunicationException {
+        for(ProjectHiearchy d: toplevelBc.getDependencies()){
+            createRepositories(d, repos);
+        }
+        
+        if(toplevelBc.isSelected()){
+            ProjectDetail project = toplevelBc.getProject();
+            if(!project.isUseExistingBc()){
+                Optional<ProjectDetail.SCM> scm = project.getSCM();
+                ProjectDetail.SCM scmInfo = scm.orElseThrow(() -> new IllegalArgumentException(
+                        NO_SCM_URL));
+                if(!repos.containsKey(scmInfo.getUrl())){
+                    Future<Integer> rcid = pnc.getAuthConnector(token)
+                            .createRepositoryConfiguration(scmInfo.getUrl());
+                    repos.put(scmInfo.getUrl(), rcid);
+                }
+            }
+        }
     }
 }
