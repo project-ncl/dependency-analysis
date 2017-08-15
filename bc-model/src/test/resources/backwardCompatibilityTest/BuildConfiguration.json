@@ -21,7 +21,5 @@
     "projectId": 0,
     "scmRevision": "scmRevision",
     "scmUrl": "scmUrl",
-    "externalScmUrl": "externalScmUrl",
-    "externalScmRevision": "externalScmRevision",
     "selected": true
 }

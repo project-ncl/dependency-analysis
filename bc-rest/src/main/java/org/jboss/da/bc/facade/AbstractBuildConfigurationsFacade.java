@@ -38,15 +38,8 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
     public I startAnalyse(EntryEntity entry) throws ScmException, PomAnalysisException,
             CommunicationException {
         log.info("Start process " + entry);
-        SCMLocator scm;
-        if (entry.getScmUrl() == null || entry.getScmRevision() == null
-                || entry.getScmUrl().isEmpty() || entry.getScmRevision().isEmpty()) {
-            scm = SCMLocator.external(entry.getExternalScmUrl(), entry.getExternalScmRevision(),
-                    entry.getPomPath(), entry.getRepositories());
-        } else {
-            scm = SCMLocator.internal(entry.getScmUrl(), entry.getScmRevision(),
-                    entry.getPomPath(), entry.getRepositories());
-        }
+        SCMLocator scm = SCMLocator.internal(entry.getScmUrl(), entry.getScmRevision(),
+                entry.getPomPath(), entry.getRepositories());
         return start(scm, entry);
     }
 
@@ -95,10 +88,7 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         pd.setName(bc.getName());
         pd.setProjectId(bc.getProjectId());
         if(bc.getScmUrl() != null && !bc.getScmUrl().isEmpty()){
-            pd.setInternalSCM(bc.getScmUrl(), bc.getScmRevision());
-        }
-        if(bc.getExternalScmUrl() != null && !bc.getExternalScmUrl().isEmpty()){
-            pd.setExternalSCM(bc.getExternalScmUrl(), bc.getExternalScmRevision());
+            pd.setSCM(bc.getScmUrl(), bc.getScmRevision());
         }
         if(bc.getErrors() != null)
             pd.setErrors(bc.getErrors());
@@ -127,13 +117,9 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
         bc.setAvailableVersions(p.getAvailableVersions());
         bc.setName(p.getName());
         bc.setProjectId(p.getProjectId());
-        p.getInternalSCM().ifPresent(scm -> {
+        p.getSCM().ifPresent(scm -> {
             bc.setScmUrl(scm.getUrl());
             bc.setScmRevision(scm.getRevision());
-        });
-        p.getExternalSCM().ifPresent(scm -> {
-            bc.setExternalScmUrl(scm.getUrl());
-            bc.setExternalScmRevision(scm.getRevision());
         });
         bc.setSelected(ph.isSelected());
         bc.setBcId(p.getBcId());
@@ -161,12 +147,7 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
             InfoEntity ie) {
         SCMLocator scml;
         final BuildConfiguration bc = ie.getTopLevelBc();
-        if (bc.getScmUrl() == null || bc.getScmUrl().isEmpty()) {
-            scml = SCMLocator.external(bc.getExternalScmUrl(), bc.getExternalScmRevision(),
-                    ie.getPomPath());
-        } else {
-            scml = SCMLocator.internal(bc.getScmUrl(), bc.getScmRevision(), ie.getPomPath());
-        }
+        scml = SCMLocator.internal(bc.getScmUrl(), bc.getScmRevision(), ie.getPomPath());
 
         T ge = constructor.construct(scml, ie.getId(), bc.getGav());
 

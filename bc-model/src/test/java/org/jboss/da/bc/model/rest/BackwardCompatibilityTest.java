@@ -49,8 +49,6 @@ public class BackwardCompatibilityTest {
         bc.setInternallyBuilt("internallyBuilt");
         bc.setName("name");
         bc.setProjectId(0);
-        bc.setExternalScmRevision("externalScmRevision");
-        bc.setExternalScmUrl("externalScmUrl");
         bc.setScmRevision("scmRevision");
         bc.setScmUrl("scmUrl");
         bc.setSelected(true);
@@ -67,8 +65,6 @@ public class BackwardCompatibilityTest {
         entity.setRepositories(new ArrayList<>());
         entity.setScmRevision("scmRevision");
         entity.setScmUrl("scmUrl");
-        entity.setExternalScmUrl("externalScmUrl");
-        entity.setExternalScmRevision("externalScmRevision");
 
         compare(entity, "EntryEntity");
     }

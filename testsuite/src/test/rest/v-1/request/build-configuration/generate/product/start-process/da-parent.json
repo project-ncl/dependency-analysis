@@ -1,9 +1,7 @@
 {
     "id":1,
-    "scmUrl":null,
-    "scmRevision":null,
-    "externalScmUrl": "https://github.com/project-ncl/dependency-analysis.git",
+    "scmUrl": "https://github.com/project-ncl/dependency-analysis.git",
     "pomPath": "pom.xml",
     "productVersion": "0.3",
-    "externalScmRevision": "0.3.0"
+    "scmRevision": "0.3.0"
 }

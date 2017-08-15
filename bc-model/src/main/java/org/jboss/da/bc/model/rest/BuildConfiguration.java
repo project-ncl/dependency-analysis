@@ -15,9 +15,12 @@ import org.jboss.da.bc.model.BcError;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.validators.ScmUrl;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BuildConfiguration {
 
     @Getter
@@ -31,16 +34,7 @@ public class BuildConfiguration {
 
     @Getter
     @Setter
-    @ScmUrl
-    protected String externalScmUrl;
-
-    @Getter
-    @Setter
     protected String scmRevision;
-
-    @Getter
-    @Setter
-    protected String externalScmRevision;
 
     @Getter
     @Setter

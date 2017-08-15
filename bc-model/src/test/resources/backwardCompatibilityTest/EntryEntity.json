@@ -3,8 +3,6 @@
     "pomPath": "./pom.xml",
     "productVersion": "4-redhat",
     "repositories": [],
-    "externalScmRevision": "externalScmRevision",
-    "externalScmUrl": "externalScmUrl",
     "scmRevision": "scmRevision",
     "scmUrl": "scmUrl"
 }

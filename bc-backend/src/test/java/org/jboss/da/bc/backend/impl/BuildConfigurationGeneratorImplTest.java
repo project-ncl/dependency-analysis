@@ -56,7 +56,7 @@ public class BuildConfigurationGeneratorImplTest {
         singleProject.setEnvironmentId(1);
         singleProject.setProjectId(1);
         singleProject.setName(bcName);
-        singleProject.setExternalSCM("https://github.com/example/test.git", "master");
+        singleProject.setSCM("https://github.com/example/test.git", "master");
         ProjectHiearchy projectHierarchy = new ProjectHiearchy(singleProject, false);
         projectHierarchy.setSelected(true);
 

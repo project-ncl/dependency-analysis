@@ -65,9 +65,7 @@ public class ProjectHiearchyCreator {
     @Inject
     private VersionFinder versionFinder;
 
-    private Optional<ProjectDetail.SCM> internalSCM;
-
-    private Optional<ProjectDetail.SCM> externalSCM;
+    private Optional<ProjectDetail.SCM> scmLocation;
 
     private List<CompletableFuture<?>> futures;
 
@@ -75,8 +73,7 @@ public class ProjectHiearchyCreator {
     private AggregatedProductProvider productProvider;
 
     public void iterateNextLevel(ProjectHiearchy toplevel) {
-        this.internalSCM = toplevel.getProject().getInternalSCM();
-        this.externalSCM = toplevel.getProject().getExternalSCM();
+        this.scmLocation = toplevel.getProject().getSCM();
         this.futures = new ArrayList<>();
 
         iterate(toplevel);
@@ -85,8 +82,7 @@ public class ProjectHiearchyCreator {
 
     public Set<ProjectHiearchy> processDependencies(ProjectHiearchy toplevel,
             Collection<GAV> dependencies) {
-        this.internalSCM = toplevel.getProject().getInternalSCM();
-        this.externalSCM = toplevel.getProject().getExternalSCM();
+        this.scmLocation = toplevel.getProject().getSCM();
         this.futures = new ArrayList<>();
 
         Set<ProjectHiearchy> ret = toProjectHiearchies(dependencies);
@@ -131,9 +127,8 @@ public class ProjectHiearchyCreator {
             hiearchy.setAnalysisStatus(DependencyAnalysisStatus.FAILED);
         } catch (FindGAVDependencyException ex) {
             try {
-                // try to get dependencies from internal and external scm url instead
-                // intermal scm url and revision are prioritized
-                ProjectDetail.SCM scmInfo = firstOrSecond(internalSCM, externalSCM);
+                // try to get dependencies from scm url instead
+                ProjectDetail.SCM scmInfo = scmLocation.get();
                 dependencies = depGenerator.getToplevelDependencies(scmInfo.getUrl(),
                         scmInfo.getRevision(), gav);
 
@@ -207,7 +202,7 @@ public class ProjectHiearchyCreator {
 
         if (!pomInfo.isPresent()) {
             try {
-                ProjectDetail.SCM scmInfo = firstOrSecond(internalSCM, externalSCM);
+                ProjectDetail.SCM scmInfo = scmLocation.get();
                 pomInfo = pom.getPomInfo(scmInfo.getUrl(), scmInfo.getRevision(), gav);
             } catch (ScmException ex) {
                 log.warn("Failed to get pom for gav " + gav + " from product SCM repository", ex);
@@ -222,21 +217,18 @@ public class ProjectHiearchyCreator {
      */
     private void setSCMInfo(ProjectDetail project, Optional<POMInfo> pomInfo) {
         try {
-            ProjectDetail.SCM scmInfo = firstOrSecond(internalSCM, externalSCM);
+            ProjectDetail.SCM scmInfo = scmLocation.get();
             boolean gavInRepository = scm.isGAVInRepository(scmInfo.getUrl(), scmInfo.getRevision(), project.getGav());
             if (gavInRepository) {
-                //we should copy the coordinates (internal and external) from the toplevel
-                project.setInternalSCM(internalSCM);
-                project.setExternalSCM(externalSCM);
-            }
-            else {
+                //we should copy the scn coordinates from the toplevel
+                project.setSCM(scmLocation);
+            } else {
                 Optional<String> url = pomInfo.flatMap(p -> p.getScmURL());
                 Optional<String> rev = pomInfo.flatMap(p -> p.getScmRevision());
-                //we should consider the url from pom to be external url
                 //if the gav is not in repository and there are no coordinates in the pom
-                //both internal and external url are null
+                // scm url is null
                 if(url.isPresent() && rev.isPresent()){
-                    project.setExternalSCM(url.get(), rev.get());
+                    project.setSCM(url.get(), rev.get());
                 }
             }
 
@@ -251,11 +243,11 @@ public class ProjectHiearchyCreator {
      * @param project Project with SCM information set.
      */
     private void findExistingBuildConfiguration(ProjectDetail project) {
-        if(!project.getInternalSCM().isPresent() && !project.getExternalSCM().isPresent())
+        if(!project.getSCM().isPresent())
             return;
 
         try {
-            ProjectDetail.SCM scmInfo = firstOrSecond(project.getInternalSCM(), project.getExternalSCM());
+            ProjectDetail.SCM scmInfo = project.getSCM().get();
             List<Integer> existingBcIds = pnc.getConnector().getBuildConfigurations(
                     scmInfo.getUrl(), scmInfo.getRevision()).stream()
                     .map(x -> x.getId()).collect(Collectors.toList());
@@ -277,14 +269,5 @@ public class ProjectHiearchyCreator {
             project.setAvailableVersions(lr.getAvailableVersions());
             project.setInternallyBuilt(lr.getBestMatchVersion());
         }));
-    }
-
-    /**
-     * Returns content of first optional if it's present or content of the second one.
-     * 
-     * @throws IllegalArgumentException When neither of the optionals is present.
-     */
-    private <T> T firstOrSecond(Optional<T> first, Optional<T> second){
-        return first.map(Optional::of).orElse(second).orElseThrow(() -> new IllegalArgumentException("Neither first nor second optional present."));
     }
 }

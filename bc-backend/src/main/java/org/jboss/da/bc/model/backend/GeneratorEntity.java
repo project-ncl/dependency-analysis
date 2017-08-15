@@ -34,11 +34,7 @@ public abstract class GeneratorEntity {
 
     protected GeneratorEntity(SCMLocator scm, int id, GAV gav) {
         ProjectDetail pd = new ProjectDetail(gav);
-        if (scm.isInternal()) {
-            pd.setInternalSCM(scm.getScmUrl(), scm.getRevision());
-        } else {
-            pd.setExternalSCM(scm.getScmUrl(), scm.getRevision());
-        }
+        pd.setSCM(scm.getScmUrl(), scm.getRevision());
 
         this.id = id;
         this.pomPath = scm.getPomPath();
