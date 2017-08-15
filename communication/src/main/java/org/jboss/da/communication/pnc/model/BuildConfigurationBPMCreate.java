@@ -33,19 +33,11 @@ public class BuildConfigurationBPMCreate {
 
     @Getter
     @Setter
-    private String scmRepoURL;
+    private Integer repositoryId;
 
     @Getter
     @Setter
     private String scmRevision;
-
-    @Getter
-    @Setter
-    private String scmExternalRepoURL;
-
-    @Getter
-    @Setter
-    private String scmExternalRevision;
 
     @Getter
     @Setter

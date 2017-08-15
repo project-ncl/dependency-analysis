@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -26,6 +27,7 @@ public class PncRemoteTest extends AbstractServerTest {
     private PNCConnectorProvider pncConnector;
 
     @Test
+    @Ignore
     public void testGetBuildConfigurationByScmUrlAndRevision() throws Exception {
         List<BuildConfiguration> obtainedBcs = pncConnector.getConnector().getBuildConfigurations(
                 "https://github.com/project-ncl/pnc.git", "*/v0.2");
@@ -45,7 +47,7 @@ public class PncRemoteTest extends AbstractServerTest {
 
     private void testBcValues(BuildConfiguration bc) {
         assertFalse(bc.getName().isEmpty());
-        assertFalse(bc.getScmRepoURL().isEmpty());
+        assertNotNull(bc.getRepositoryConfiguration());
         assertFalse(bc.getScmRevision().isEmpty());
         assertFalse(bc.getBuildScript().isEmpty());
     }
