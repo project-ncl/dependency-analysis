@@ -2,9 +2,11 @@ package org.jboss.da.communication.pnc.api;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.communication.pnc.model.BuildConfigurationBPMCreate;
+import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 import org.jboss.da.communication.pnc.model.ProductVersion;
+
+import java.util.concurrent.Future;
 
 /**
  *
@@ -13,19 +15,29 @@ import org.jboss.da.communication.pnc.model.ProductVersion;
 public interface PNCAuthConnector extends PNCConnector {
 
     /**
-     * Starts creation of build configuration. The build configuration is created asynchronously.
+     * Creates Build Configuration.
      *
      * @param bc The build configuration to be created.
+     * @return Created Build Configuration
      * @throws CommunicationException Thrown if communication with PNC failed
      * @throws PNCRequestException Thrown if PNC returns an error
      */
-    void createBuildConfiguration(BuildConfigurationBPMCreate bc) throws CommunicationException,
-            PNCRequestException;
+    BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
+            throws CommunicationException, PNCRequestException;
 
     /**
-     * Starts creation of build configuration. The build configuration is created asynchronously.
+     * Starts creation of repository configuration. The repository configuration is created
+     * asynchronously and with default configuration.
      *
-     * @param bc The build configuration to be created.
+     * @param url Url of the repository
+     * @return Id of the created configuration.
+     */
+    Future<Integer> createRepositoryConfiguration(String url);
+
+    /**
+     * Updates existing Build Configuration.
+     *
+     * @param bc The build configuration to be updated.
      * @throws CommunicationException Thrown if communication with PNC failed
      * @throws PNCRequestException Thrown if PNC returns an error
      */

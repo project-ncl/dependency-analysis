@@ -32,7 +32,7 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    private String scmRepoURL;
+    private RepositoryConfiguration repositoryConfiguration;
 
     @Getter
     @Setter
@@ -60,15 +60,7 @@ public class BuildConfigurationCreate {
 
     @Getter
     @Setter
-    private String scmExternalRepoURL;
-
-    @Getter
-    @Setter
     private boolean archived;
-
-    @Getter
-    @Setter
-    private String scmExternalRevision;
 
     @Getter
     @Setter
@@ -84,6 +76,10 @@ public class BuildConfigurationCreate {
         Project proj = new Project();
         proj.setId(id);
         this.project = proj;
+    }
+
+    public void setRepositoryId(int id) {
+        this.repositoryConfiguration = RepositoryConfiguration.builder().id(id).build();
     }
 
     public Date getCreationTime() {

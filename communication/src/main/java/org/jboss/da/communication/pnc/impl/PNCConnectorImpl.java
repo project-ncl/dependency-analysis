@@ -4,20 +4,30 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCAuthConnector;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.endpoints.BpmEndpoint;
+import org.jboss.da.communication.pnc.endpoints.BpmEndpoint.BPMTaskSingleton;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
-import org.jboss.da.communication.pnc.model.BuildConfigurationBPMCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 
 import org.jboss.da.communication.pnc.model.ProductVersion;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.jboss.da.communication.pnc.endpoints.BuildConfigurationEndpoint;
 import org.jboss.da.communication.pnc.endpoints.BuildConfigurationEndpoint.BuildConfigurationPage;
+import org.jboss.da.communication.pnc.endpoints.BuildConfigurationEndpoint.BuildConfigurationSingleton;
 import org.jboss.da.communication.pnc.endpoints.BuildConfigurationSetEndpoint;
 import org.jboss.da.communication.pnc.endpoints.BuildConfigurationSetEndpoint.BuildConfigurationSetPage;
 import org.jboss.da.communication.pnc.endpoints.BuildConfigurationSetEndpoint.BuildConfigurationSetSingleton;
 import org.jboss.da.communication.pnc.endpoints.ProductVersionEndpoint;
 import org.jboss.da.communication.pnc.endpoints.ProductVersionEndpoint.ProductVersionPage;
 import org.jboss.da.communication.pnc.endpoints.ProductVersionEndpoint.ProductVersionSingleton;
+import org.jboss.da.communication.pnc.endpoints.RepositoryConfigurationEndpoint;
+import org.jboss.da.communication.pnc.endpoints.RepositoryConfigurationEndpoint.RepositoryConfigurationPage;
+import org.jboss.da.communication.pnc.model.BPMTask;
+import org.jboss.da.communication.pnc.model.BpmNotification;
+import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
+import org.jboss.da.communication.pnc.model.RepositoryConfiguration;
+import org.jboss.da.communication.pnc.model.RepositoryConfigurationConflict;
+import org.jboss.da.communication.pnc.model.RepositoryConfigurationBPMCreate;
+import static org.jboss.resteasy.util.HttpResponseCodes.SC_CONFLICT;
 import static org.jboss.resteasy.util.HttpResponseCodes.SC_OK;
 import static org.jboss.resteasy.util.HttpResponseCodes.SC_CREATED;
 import static org.jboss.resteasy.util.HttpResponseCodes.SC_UNAUTHORIZED;
@@ -29,6 +39,8 @@ import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 /**
@@ -61,6 +73,17 @@ public class PNCConnectorImpl implements PNCAuthConnector {
         return target.proxy(type);
     }
 
+    @Override
+    public List<RepositoryConfiguration> getRepositoryConfigurations(String url) throws CommunicationException, PNCRequestException {
+        String query = String.format("internalScmRepoUrl=='%s',externalScmRepoUrl=='%s')", url, url);
+        RepositoryConfigurationEndpoint endpoint = getEndpoint(RepositoryConfigurationEndpoint.class);
+
+        Response response = endpoint.getAll(0, 5000, "", query);
+        Optional<RepositoryConfigurationPage> wrapper = checkAndReturn(response, RepositoryConfigurationPage.class);
+
+        return wrapper.map(w -> w.getContent()).orElse(Collections.emptyList());
+    }
+
     private List<BuildConfiguration> getBuildConfigurations(String query) throws CommunicationException,
             PNCRequestException {
         BuildConfigurationEndpoint endpoint = getEndpoint(BuildConfigurationEndpoint.class);
@@ -72,12 +95,17 @@ public class PNCConnectorImpl implements PNCAuthConnector {
     }
 
     @Override
+    public List<BuildConfiguration> getBuildConfigurations(int repositoryId, String scmRevision)
+            throws CommunicationException, PNCRequestException {
+        String query = String.format("(repositoryConfiguration=='%d';scmRevision=='%s')",
+                repositoryId, scmRevision);
+        return getBuildConfigurations(query);
+    }
+
+    @Override
     public List<BuildConfiguration> getBuildConfigurations(String scmUrl, String scmRevision)
             throws CommunicationException, PNCRequestException {
-        String query = String.format("(scmRepoURL=='%s';scmRevision=='%s'),"
-                + "(scmExternalRepoURL=='%s';scmExternalRevision=='%s')", scmUrl, scmRevision,
-                scmUrl, scmRevision);
-        return getBuildConfigurations(query);
+        return Collections.emptyList();
     }
 
     @Override
@@ -88,10 +116,72 @@ public class PNCConnectorImpl implements PNCAuthConnector {
     }
 
     @Override
-    public void createBuildConfiguration(BuildConfigurationBPMCreate bc)
-            throws CommunicationException, PNCRequestException {
+    public Optional<BPMTask> getBPMTask(int taskId) throws PNCRequestException, CommunicationException {
         BpmEndpoint endpoint = getEndpoint(BpmEndpoint.class);
-        checkCode(endpoint.startBCCreationTask(getAccessToken(), bc));
+        Response response = endpoint.getBPMTaskById(taskId);
+        Optional<BPMTaskSingleton> wrapper = checkAndReturn(response, BPMTaskSingleton.class);
+        return wrapper.map(w -> w.getContent());
+    }
+
+    @Override
+    public Future<Integer> createRepositoryConfiguration(String url) {
+        return CompletableFuture.supplyAsync(() -> createRepositoryAsync(url));
+        
+    }
+
+    private Integer createRepositoryAsync(String url){
+        try {
+            BpmEndpoint endpoint = getEndpoint(BpmEndpoint.class);
+            final Response response = endpoint.startRCCreationTask(getAccessToken(), new RepositoryConfigurationBPMCreate(url));
+            if(response.getStatus() == SC_CONFLICT){
+                return response.readEntity(RepositoryConfigurationConflict.class)
+                        .getRepositoryConfigurationId();
+            }
+            Integer taskId = checkAndReturn(response,Integer.class)
+                    .orElseThrow(() -> new CommunicationException("Repository createtion didn't return task id."));
+
+            int tries = 13;
+            while (tries-- > 0) {
+                Optional<BPMTask> task = getBPMTask(taskId);
+                if (task.isPresent()) {
+                    BPMTask t = task.get();
+                    for (BpmNotification e : t.getEvents()) {
+                        switch (e.getEventType()) {
+                            case "RC_REPO_CREATION_ERROR":
+                            case "RC_REPO_CLONE_ERROR":
+                            case "RC_CREATION_ERROR":
+                                throw new PNCRequestException("Repository creation failed: "
+                                        + e.getEventType());
+                            case "RC_CREATION_SUCCESS": {
+                                return (Integer) e.getData().get("repositoryId");
+                            }
+                            default:
+                                break;
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(1000 * 30);
+                } catch (InterruptedException ex) {
+                    throw new CommunicationException("Waiting for buildconfiguration " + url
+                            + " was interrupted", ex);
+                }
+            }
+            throw new CommunicationException("Timeout while waiting for buildconfiguration " + url
+                    + ".");
+        } catch (CommunicationException | PNCRequestException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @Override
+    public BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
+            throws CommunicationException, PNCRequestException {
+        BuildConfigurationEndpoint endpoint = getEndpoint(BuildConfigurationEndpoint.class);
+        Response response = endpoint.createNew(getAccessToken(), bc);
+        return checkAndReturn(response, BuildConfigurationSingleton.class)
+                .map(s -> s.getContent())
+                .orElseThrow(() -> new PNCRequestException("PNC didn't return created object"));
     }
 
     @Override
