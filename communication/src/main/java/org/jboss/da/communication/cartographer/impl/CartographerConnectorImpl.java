@@ -10,8 +10,11 @@ import org.commonjava.maven.atlas.graph.rel.RelationshipType;
 import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
 import org.commonjava.maven.atlas.ident.ref.SimpleProjectVersionRef;
 import org.commonjava.propulsor.client.http.ClientHttpException;
+import org.commonjava.util.jhttpc.HttpFactory;
 import org.commonjava.util.jhttpc.auth.MemoryPasswordManager;
 import org.commonjava.util.jhttpc.auth.PasswordManager;
+import org.commonjava.util.jhttpc.model.SiteConfig;
+import org.commonjava.util.jhttpc.model.SiteConfigBuilder;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
@@ -48,8 +51,11 @@ public class CartographerConnectorImpl implements CartographerConnector {
     private void postConstruct() {
         try {
             PasswordManager emptyPasswordManager = new MemoryPasswordManager();
-            cartographer = new CartographerRESTClient(
-                    config.getConfig().getCartographerServerUrl(), emptyPasswordManager);
+            SiteConfig sc = new SiteConfigBuilder().withId("Carto")
+                    .withUri(config.getConfig().getCartographerServerUrl())
+                    .withRequestTimeoutSeconds(config.getConfig().getAproxRequestTimeout()).build();
+            HttpFactory httpFactory = new HttpFactory(emptyPasswordManager);
+            cartographer = new CartographerRESTClient(sc, httpFactory);
         } catch (ConfigurationParseException | ClientHttpException e) {
             throw new IllegalStateException("Could not initialize Cartographer Client.", e);
         }
