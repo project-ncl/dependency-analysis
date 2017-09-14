@@ -92,7 +92,8 @@
         <version.cli>1.0.0</version.cli>
         <version.reports.rest>1</version.reports.rest>
         <version.bc.rest>1</version.bc.rest>
-        <version.galley>0.13.2</version.galley>
+        <version.galley>0.13.4</version.galley>
+        <version.cartographer>0.12.2</version.cartographer>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <jboss.bom.version>7.0.0.GA</jboss.bom.version>
@@ -214,12 +215,33 @@
                 <version>1.9.8.Final-redhat-1</version>
             </dependency>
 
+            <!-- Commonjava -->
             <dependency>
                 <groupId>org.commonjava.cartographer</groupId>
                 <artifactId>cartographer-rest-client-java</artifactId>
-                <version>0.11.0-FIX</version>
+                <version>${version.cartographer}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.commonjava.maven.galley</groupId>
+                <artifactId>galley-cdi-embedder</artifactId>
+                <version>${version.galley}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.commonjava.maven.galley</groupId>
+                <artifactId>galley-cache-partyline</artifactId>
+                <version>${version.galley}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.commonjava.maven.ext</groupId>
+                <artifactId>pom-manipulation-core</artifactId>
+                <version>1.6</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -263,18 +285,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.commonjava.maven.galley</groupId>
-                <artifactId>galley-cdi-embedder</artifactId>
-                <version>${version.galley}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.commonjava.maven.galley</groupId>
-                <artifactId>galley-cache-partyline</artifactId>
-                <version>${version.galley}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.thetransactioncompany</groupId>
                 <artifactId>jsonrpc2-base</artifactId>
                 <version>1.38</version>
@@ -291,19 +301,6 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-servlets</artifactId>
                 <version>9.3.4.v20151007</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.commonjava.maven.ext</groupId>
-                <artifactId>pom-manipulation-core</artifactId>
-                <version>1.6</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>*</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!-- Test dependencies -->
@@ -349,19 +346,6 @@
             </releases>
             <snapshots>
                 <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <!-- TODO REMOVE this profile after cartographer 0.10.4 release -->
-        <repository>
-            <id>bintray-jsenko-snapshots</id>
-            <name>snapshots</name>
-            <url>http://dl.bintray.com/jsenko/snapshots</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>
