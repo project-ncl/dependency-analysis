@@ -485,7 +485,7 @@ def align_report():
             print(output['errorMessage'])
             exit()
         pretty_out = pretty.reportAlign(output)
-        subprocess.call("echo \"" + pretty_out + "\" | column -t -s '\t' ", shell=True)
+        print(pretty_out)
     else:
         print(json.dumps(output))
 
