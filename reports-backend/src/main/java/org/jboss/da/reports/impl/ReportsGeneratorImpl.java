@@ -438,14 +438,30 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         List<CompletableFuture<?>> futures = new ArrayList<>();
         List<LookupReport> reports = new ArrayList<>();
+        Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
+
+        HashSet<GA> uniqueGAs = new HashSet<>();
+        request.getGavs().forEach((gav) -> uniqueGAs.add(gav.getGA()));
+
+        /** Get all the ProductArtifacts for the requested GAs */
+        uniqueGAs.stream()
+                .forEach((ga) -> {
+                    CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(ga);
+                    artifacts = filterProductArtifacts(products, artifacts);
+
+                    // add the ga and its corresponding CompletableFuture for the artifacts in a map
+                    gaProductArtifactsMap.put(ga, artifacts);
+        });
+
+        /**  Use the mapping GA:Set<ProductArtifacts> and fill the LookupReports */
         request.getGavs().stream()
                 .distinct()
                 .forEach((gav) -> {
             LookupReport lr = new LookupReport(gav);
             reports.add(lr);
 
-            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
-            artifacts = filterProductArtifacts(products, artifacts);
+            // get the CompletableFuture for the ga
+            CompletableFuture<Set<ProductArtifacts>> artifacts = gaProductArtifactsMap.get(gav.getGA());
 
             futures.add(versionFinder.getVersionsFor(gav, artifacts).thenAccept(v -> {
                 lr.setAvailableVersions(v.getAvailableVersions());

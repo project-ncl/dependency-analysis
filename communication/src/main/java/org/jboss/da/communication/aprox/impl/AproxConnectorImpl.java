@@ -65,7 +65,7 @@ public class AproxConnectorImpl implements AproxConnector {
             return Collections.emptyList();
         } catch (IOException | ConfigurationParseException | CommunicationException e) {
             throw new CommunicationException("Failed to obtain versions for " + ga.toString()
-                    + " from approx server with url " + query.toString(), e);
+                    + " from Indy server with url " + query.toString(), e);
         }
     }
 
@@ -98,7 +98,7 @@ public class AproxConnectorImpl implements AproxConnector {
             return Optional.empty();
         } catch (IOException | ConfigurationParseException e) {
             throw new CommunicationException("Failed to obtain pom for " + gav.toString()
-                    + " from approx server with url " + query.toString(), e);
+                    + " from Indy server with url " + query.toString(), e);
         }
     }
 
@@ -136,7 +136,7 @@ public class AproxConnectorImpl implements AproxConnector {
             }
 
         } catch (IOException | ConfigurationParseException e) {
-            throw new CommunicationException("Failed to establish a connection with Aprox: "
+            throw new CommunicationException("Failed to establish a connection with Indy: "
                     + query.toString(), e);
         }
     }
