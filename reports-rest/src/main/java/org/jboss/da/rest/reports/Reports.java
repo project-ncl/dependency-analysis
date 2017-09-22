@@ -35,6 +35,7 @@ import io.swagger.annotations.ApiResponses;
 
 import org.jboss.da.validation.ValidationException;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -188,13 +189,19 @@ public class Reports {
             @ApiParam(
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest) {
         try {
-            return Response.status(Status.OK).entity(facade.gavsReport(gavRequest)).build();
+            log.info("Incoming request to /lookup/gavs. Payload: " + gavRequest.toString());
+            List<LookupReport> lookupReportList = facade.gavsReport(gavRequest);
+            log.info("Request to /lookup/gavs completed successfully. Payload: "
+                    + gavRequest.toString());
+            return Response.status(Status.OK).entity(lookupReportList).build();
         } catch (CommunicationException e) {
+            log.info("Request to /lookup/gavs failed! Reason: ", e);
             return Response
                     .status(502)
                     .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
                             "Communication with remote repository failed")).build();
         } catch (IllegalArgumentException e) {
+            log.info("Request to /lookup/gavs failed! Reason: ", e);
             return Response
                     .status(Status.INTERNAL_SERVER_ERROR)
                     .entity(new ErrorMessage(ErrorMessage.eType.ILLEGAL_ARGUMENTS,
