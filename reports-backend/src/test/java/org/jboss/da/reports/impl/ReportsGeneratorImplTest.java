@@ -27,6 +27,8 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.reports.backend.impl.DependencyTreeGeneratorImpl;
 import org.jboss.da.reports.model.rest.GAVRequest;
+import org.jboss.da.reports.model.rest.LookupGAVsRequest;
+import org.jboss.da.reports.model.rest.LookupReport;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -36,6 +38,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -244,6 +247,36 @@ public class ReportsGeneratorImplTest {
         assertFalse(report.isBlacklisted());
         assertTrue(report.getWhitelisted().isEmpty());
         assertMultipleDependencies(report.getDependencies());
+    }
+
+    /**
+     * Test the distinct on a stream in #getLookupReportsForGavs works correctly
+     */
+    @Test
+    public void testDistinctOnGavsStream() {
+        // Given
+        List<GAV> gavs = new ArrayList<>();
+        gavs.add(new GAV("org", "test", "1.0"));
+        gavs.add(new GAV("org", "test", "1.1"));
+        gavs.add(new GAV("org", "test", "1.0"));
+
+        gavs.add(new GAV("org2", "test2", "2.0"));
+        gavs.add(new GAV("org2", "test2", "2.2"));
+        gavs.add(new GAV("org2", "test2", "2.0"));
+        LookupGAVsRequest request = new LookupGAVsRequest(new HashSet<>(), new HashSet<>(), gavs);
+
+        // When
+        List<GAV> distinctedList = new ArrayList<>();
+        request.getGavs().stream()
+                .distinct()
+                .forEach((gav) -> {
+                    System.out.println("GAV: " + gav);
+                    distinctedList.add(gav);
+        });
+
+        //Then
+        assertEquals(new HashSet<>(gavs).size(), distinctedList.size());
+        assertTrue(new HashSet<>(gavs).containsAll(distinctedList));
     }
 
     private void assertMultipleDependencies(Set<ArtifactReport> deps) {
