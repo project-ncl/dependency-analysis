@@ -1,5 +1,6 @@
 package org.jboss.da.reports.model.rest;
 
+import lombok.ToString;
 import org.jboss.da.model.rest.GAV;
 
 import java.util.HashSet;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
+@ToString
 public class LookupGAVsRequest {
 
     @Getter
