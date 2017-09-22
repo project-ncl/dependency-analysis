@@ -59,6 +59,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -438,14 +439,33 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         List<CompletableFuture<?>> futures = new ArrayList<>();
         List<LookupReport> reports = new ArrayList<>();
+        Map<GA, Set<ProductArtifacts>> gaProductArtifactsMap = new ConcurrentHashMap<>();
+
+        HashSet<GA> uniqueGAs = new HashSet<>();
+        request.getGavs().forEach((gav) -> uniqueGAs.add(gav.getGA()));
+
+        /** Get all the ProductArtifacts for the requested GAs */
+        uniqueGAs.stream()
+                .forEach((ga) -> {
+                    CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(ga);
+                    artifacts = filterProductArtifacts(products, artifacts);
+
+                    //Needs to be re-worked
+                    artifacts.thenAccept((productArtifacts) -> gaProductArtifactsMap.put(ga, productArtifacts));
+        });
+
+        // Need to fill the map Map<GA, Set<ProductArtifacts>> gaProductArtifactsMap with data
+        // Should be executed in parallel
+
+
+        /**  Use the mapping GA:Set<ProductArtifacts> and fill the LookupReports */
         request.getGavs().stream()
                 .distinct()
                 .forEach((gav) -> {
             LookupReport lr = new LookupReport(gav);
             reports.add(lr);
-
-            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
-            artifacts = filterProductArtifacts(products, artifacts);
+            CompletableFuture<Set<ProductArtifacts>> artifacts = new CompletableFuture<>();
+            artifacts.supplyAsync(() -> gaProductArtifactsMap.get(gav.getGA())); //Need to check if it's correct
 
             futures.add(versionFinder.getVersionsFor(gav, artifacts).thenAccept(v -> {
                 lr.setAvailableVersions(v.getAvailableVersions());
