@@ -59,6 +59,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -436,30 +437,52 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         Set<Product> products = getProducts(request.getProductNames(),
                 request.getProductVersionIds());
 
-        List<CompletableFuture<?>> futures = new ArrayList<>();
+
+        /** Get set of GAs */
+        HashSet<GA> uniqueGAs = new HashSet<>();
+        request.getGavs().forEach((gav) -> uniqueGAs.add(gav.getGA()));
+
+        /** Get all the ProductArtifacts for the requested GAs */
         List<LookupReport> reports = new ArrayList<>();
+        Map<GA, Set<ProductArtifacts>> gaProductArtifactsMap = new ConcurrentHashMap<>();
+        List<CompletableFuture<?>> futuresFirst = new ArrayList<>();
+        uniqueGAs.stream()
+                .forEach((ga) -> {
+                    CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(ga);
+                    artifacts = filterProductArtifacts(products, artifacts);
+
+                    artifacts.thenAccept((productArtifacts) -> gaProductArtifactsMap.put(ga, productArtifacts));
+                    futuresFirst.add(artifacts);
+        });
+        try {
+            futuresFirst.stream().forEach(r -> r.join());
+        } catch(CompletionException ex){
+            throw new CommunicationException(ex);
+        }
+
+        /**  Use the mapping GA:Set<ProductArtifacts> and fill the LookupReports */
+        List<CompletableFuture<?>> futuresSecond = new ArrayList<>();
         request.getGavs().stream()
                 .distinct()
                 .forEach((gav) -> {
             LookupReport lr = new LookupReport(gav);
             reports.add(lr);
+            CompletableFuture<Set<ProductArtifacts>> artifacts = new CompletableFuture<>();
+            artifacts.supplyAsync(() -> gaProductArtifactsMap.get(gav.getGA()));
 
-            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
-            artifacts = filterProductArtifacts(products, artifacts);
-
-            futures.add(versionFinder.getVersionsFor(gav, artifacts).thenAccept(v -> {
+            futuresSecond.add(versionFinder.getVersionsFor(gav, artifacts).thenAccept(v -> {
                 lr.setAvailableVersions(v.getAvailableVersions());
                 lr.setBestMatchVersion(v.getBestMatchVersion().orElse(null));
             }));
 
-            futures.add(artifacts.thenAccept(pas -> {
+            futuresSecond.add(artifacts.thenAccept(pas -> {
                 lr.setWhitelisted(toWhitelisted(pas));
             }));
         });
 
-        try{
-            futures.stream().forEach(r -> r.join());
-        }catch(CompletionException ex){
+        try {
+            futuresSecond.stream().forEach(r -> r.join());
+        } catch(CompletionException ex){
             throw new CommunicationException(ex);
         }
         return reports;
