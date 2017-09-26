@@ -469,6 +469,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         return gaProductArtifactsMap;
     }
+
     private List<LookupReport> createLookupReports(LookupGAVsRequest request, Map<GA, Set<ProductArtifacts>> gaProductArtifactsMap) throws CommunicationException {
         List<CompletableFuture<?>> futures = new ArrayList<>();
         List<LookupReport> reports = new ArrayList<>();
@@ -495,10 +496,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         } catch(CompletionException ex){
             throw new CommunicationException(ex);
         }
-        
+
         return reports;
     }
-
 
     private Set<Product> getProducts(Set<String> productNames, Set<Long> productVersionIds) {
         Set<ProductVersion> productVersions = new HashSet<>();
