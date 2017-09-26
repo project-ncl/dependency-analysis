@@ -59,6 +59,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -433,9 +434,36 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
             throws CommunicationException{
+
+        /** Get set of GAs */
+        HashSet<GA> uniqueGAs = new HashSet<>();
+        request.getGavs().forEach((gav) -> uniqueGAs.add(gav.getGA()));
+
+        /** Get all the ProductArtifacts for the requested GAs */
+        Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = getProductArtifactsPerGA(request, uniqueGAs);
+
+        /**  Use the mapping GA:Set<ProductArtifacts> and fill the LookupReports */
+        return createLookupReports(request, gaProductArtifactsMap);
+        
+    }
+
+    private Map<GA, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsPerGA(LookupGAVsRequest request, HashSet<GA> uniqueGAs) throws CommunicationException {
         Set<Product> products = getProducts(request.getProductNames(),
                 request.getProductVersionIds());
 
+        Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
+        uniqueGAs.stream()
+                .forEach((ga) -> {
+                    CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(ga);
+                    artifacts = filterProductArtifacts(products, artifacts);
+
+                    gaProductArtifactsMap.put(ga, artifacts);
+                });
+
+        return gaProductArtifactsMap;
+    }
+
+    private List<LookupReport> createLookupReports(LookupGAVsRequest request, Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap) throws CommunicationException {
         List<CompletableFuture<?>> futures = new ArrayList<>();
         List<LookupReport> reports = new ArrayList<>();
         request.getGavs().stream()
@@ -444,8 +472,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             LookupReport lr = new LookupReport(gav);
             reports.add(lr);
 
-            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
-            artifacts = filterProductArtifacts(products, artifacts);
+            CompletableFuture<Set<ProductArtifacts>> artifacts = gaProductArtifactsMap.get(gav.getGA());
 
             futures.add(versionFinder.getVersionsFor(gav, artifacts).thenAccept(v -> {
                 lr.setAvailableVersions(v.getAvailableVersions());
@@ -457,13 +484,13 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             }));
         });
 
-        try{
+        try {
             futures.stream().forEach(r -> r.join());
-        }catch(CompletionException ex){
+        } catch(CompletionException ex){
             throw new CommunicationException(ex);
         }
+
         return reports;
-        
     }
 
     private Set<Product> getProducts(Set<String> productNames, Set<Long> productVersionIds) {
