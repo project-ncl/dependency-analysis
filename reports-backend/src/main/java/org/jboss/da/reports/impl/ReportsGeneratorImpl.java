@@ -436,29 +436,26 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             throws CommunicationException{
 
         /** Get set of GAs */
-        HashSet<GA> uniqueGAs = new HashSet<>();
-        request.getGavs().forEach((gav) -> uniqueGAs.add(gav.getGA()));
+        Set<GA> uniqueGAs = request.getGavs().stream().map(GAV::getGA).collect(Collectors.toSet());
 
-        /** Get all the ProductArtifacts for the requested GAs */
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = getProductArtifactsPerGA(request, uniqueGAs);
 
-        /**  Use the mapping GA:Set<ProductArtifacts> and fill the LookupReports */
         return createLookupReports(request, gaProductArtifactsMap);
         
     }
 
-    private Map<GA, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsPerGA(LookupGAVsRequest request, HashSet<GA> uniqueGAs) throws CommunicationException {
+    private Map<GA, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsPerGA(
+            LookupGAVsRequest request, Set<GA> uniqueGAs) throws CommunicationException {
         Set<Product> products = getProducts(request.getProductNames(),
                 request.getProductVersionIds());
 
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
-        uniqueGAs.stream()
-                .forEach((ga) -> {
-                    CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(ga);
-                    artifacts = filterProductArtifacts(products, artifacts);
+        for (GA ga : uniqueGAs) {
+            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(ga);
+            artifacts = filterProductArtifacts(products, artifacts);
 
-                    gaProductArtifactsMap.put(ga, artifacts);
-                });
+            gaProductArtifactsMap.put(ga, artifacts);
+        }
 
         return gaProductArtifactsMap;
     }

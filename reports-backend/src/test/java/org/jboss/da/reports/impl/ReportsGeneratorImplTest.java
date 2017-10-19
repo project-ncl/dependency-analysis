@@ -266,17 +266,17 @@ public class ReportsGeneratorImplTest {
         LookupGAVsRequest request = new LookupGAVsRequest(new HashSet<>(), new HashSet<>(), gavs);
 
         // When
-        List<GAV> distinctedList = new ArrayList<>();
-        request.getGavs().stream()
-                .distinct()
-                .forEach((gav) -> {
-                    System.out.println("GAV: " + gav);
-                    distinctedList.add(gav);
-        });
+        List<GAV> uniqueGAVs = new ArrayList<>();
+        uniqueGAVs.add(new GAV("org", "test", "1.0"));
+        uniqueGAVs.add(new GAV("org", "test", "1.1"));
+        uniqueGAVs.add(new GAV("org2", "test2", "2.0"));
+        uniqueGAVs.add(new GAV("org2", "test2", "2.2"));
+
+        List<GAV> distinctList = request.getGavs().stream().distinct().collect(Collectors.toList());
 
         //Then
-        assertEquals(new HashSet<>(gavs).size(), distinctedList.size());
-        assertTrue(new HashSet<>(gavs).containsAll(distinctedList));
+        assertEquals(uniqueGAVs.size(), distinctList.size());
+        assertTrue(uniqueGAVs.equals(distinctList));
     }
 
     private void assertMultipleDependencies(Set<ArtifactReport> deps) {
