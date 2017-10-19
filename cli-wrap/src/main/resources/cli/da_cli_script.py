@@ -61,7 +61,7 @@ def auth():
         MY_TOKEN = get_token(login, pswd)
         store_local_token(MY_TOKEN)
 
-    session.headers.update({'Authorization': " Bearer " + MY_TOKEN})
+    session.headers.update({'Authorization': "Bearer " + MY_TOKEN})
     return session
     
 def find_local_token():
