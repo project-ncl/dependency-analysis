@@ -1,0 +1,17 @@
+{
+  "id" : "1d19c81a-de5c-3202-8dd4-0ec271116421",
+  "request" : {
+    "url" : "/api/group/test-DA/com/ingres/jdbc/iijdbc/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-iijdbc-maven-metadata.xml-yydHd.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Wed, 15 Nov 2017 17:19:39 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=687184ea7cdac24fd53b65df06627953; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "1d19c81a-de5c-3202-8dd4-0ec271116421"
+}

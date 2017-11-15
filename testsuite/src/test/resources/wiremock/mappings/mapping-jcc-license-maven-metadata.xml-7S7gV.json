@@ -1,0 +1,17 @@
+{
+  "id" : "0e3673e0-d5d3-33ba-8ba9-823906b2e545",
+  "request" : {
+    "url" : "/api/group/test-DA/com/ibm/db2/jcc-license/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jcc-license-maven-metadata.xml-7S7gV.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Wed, 15 Nov 2017 17:19:39 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=687184ea7cdac24fd53b65df06627953; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "0e3673e0-d5d3-33ba-8ba9-823906b2e545"
+}
