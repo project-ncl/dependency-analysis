@@ -1,0 +1,17 @@
+{
+  "id" : "60f1d416-2d4a-3c22-93e1-198709691bb3",
+  "request" : {
+    "url" : "/api/group/test-DA/com/ibm/db2/jcc-driver/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-jcc-driver-maven-metadata.xml-qcSMV.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Wed, 15 Nov 2017 17:19:39 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=687184ea7cdac24fd53b65df06627953; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "60f1d416-2d4a-3c22-93e1-198709691bb3"
+}
