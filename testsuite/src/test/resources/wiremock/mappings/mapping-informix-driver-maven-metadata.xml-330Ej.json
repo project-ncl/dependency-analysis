@@ -1,0 +1,17 @@
+{
+  "id" : "edacca91-b26a-30da-8b7b-a3ea0328c405",
+  "request" : {
+    "url" : "/api/group/test-DA/com/informix/informix-driver/maven-metadata.xml",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 404,
+    "bodyFileName" : "body-informix-driver-maven-metadata.xml-330Ej.txt",
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Date" : "Wed, 15 Nov 2017 17:19:39 GMT",
+      "Set-Cookie" : "e4f0718cdfb85ac5757710f05a88bbab=687184ea7cdac24fd53b65df06627953; path=/; HttpOnly"
+    }
+  },
+  "uuid" : "edacca91-b26a-30da-8b7b-a3ea0328c405"
+}
