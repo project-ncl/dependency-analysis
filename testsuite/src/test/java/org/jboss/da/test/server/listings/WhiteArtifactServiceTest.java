@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Honza Brázdil <janinko.g@gmail.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RunWith(Arquillian.class)
 public class WhiteArtifactServiceTest extends AbstractServerTest {

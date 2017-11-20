@@ -8,7 +8,7 @@ import lombok.Data;
 
 /**
  *
- * @author Honza Brázdil <janinko.g@gmail.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)

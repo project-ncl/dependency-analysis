@@ -12,7 +12,7 @@ import lombok.Getter;
 
 /**
  *
- * @author Honza Brázdil <janinko.g@gmail.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Getter
 public class BpmNotification {

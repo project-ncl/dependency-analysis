@@ -12,7 +12,7 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 /**
  *
- * @author Honza Brázdil <jbrazdil@redhat.com>
+ * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class AbstractServerTest {
 

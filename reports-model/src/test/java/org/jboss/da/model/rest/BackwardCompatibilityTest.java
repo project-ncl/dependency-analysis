@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author Stanislav Knot <sknot@redhat.com>
+ * @author Stanislav Knot &lt;sknot@redhat.com&gt;
  */
 public class BackwardCompatibilityTest {
 
