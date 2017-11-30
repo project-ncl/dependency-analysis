@@ -35,9 +35,6 @@ import java.util.Optional;
 public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
 
     @Inject
-    private AproxConnector aproxConnector;
-
-    @Inject
     private CartographerConnector cartographerConnector;
 
     @Inject
