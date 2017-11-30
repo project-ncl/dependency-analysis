@@ -412,6 +412,9 @@
             <dt>Add an artifact to whitelist</dt>
             <dd>./da-cli-admin.py add white org.jboss.hibernate:hibernate-core:3.4.2.redhat-1 eap:7.0.0</dd>
 
+            <dt>Add several artifact to whitelist by reading G:A:Vs from standard input</dt>
+            <dd>./da-cli-admin.py add white eap:7.0.0 < gavfile.text</dd>
+
             <dt>Remove an artifact from blacklist</dt>
             <dd>./da-cli-admin.py delete black org.jboss.hibernate:hibernate-core:3.4.2</dd>
 

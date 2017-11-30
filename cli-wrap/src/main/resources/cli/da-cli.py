@@ -59,6 +59,8 @@ class CLITool(object):
         message += ("\n")
         message += ("    python " + sys.argv[0] + " add white GROUP_ID:ARTIFACT_ID:VERSION PRODUCT_NAME:VERSION\n")
         message += ("        Add artifact GROUP_ID:ARTIFACT_ID:VERSION to white list for a particular product\n")
+        message += ("    python " + sys.argv[0] + " add white PRODUCT_NAME:VERSION\n")
+        message += ("        Add artifact G:A:Vs from standard input to white list for a particular product\n")
         message += ("\n")
         message += ("    python " + sys.argv[0] + " add whitelist-product PRODUCT_NAME:VERSION STATUS\n")
         message += ("        Add whitelist-product and status\n")
@@ -292,9 +294,9 @@ class CLITool(object):
         if (len(sys.argv) == 5):
             self.listings.addWhite(sys.argv[3], sys.argv[4])
         elif (len(sys.argv) == 4):
-            print("Missing PRODUCT_NAME:VERSION")
+            self.listings.addWhite(None, sys.argv[3])
         elif (len(sys.argv) == 3):
-            print("Missing GROUP_ID:ARTIFACT_ID:VERSION")
+            print("Missing GROUP_ID:ARTIFACT_ID:VERSION and/or PRODUCT_NAME:VERSION")
         else:
             print("Bad arguments! For help use: ./da-cli.py --help")
     

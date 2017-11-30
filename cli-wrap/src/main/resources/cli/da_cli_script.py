@@ -174,17 +174,28 @@ def helper_print_white_artifacts_products(response, show_artifacts=True):
 
 
 def add_artifacts(gav, color, product=None, status=None):
-    if color == "white":
-        validate_gav_format(gav)
-        validate_product_version_format(product)
-        add_white_artifact(gav, product)
-    elif color == "black":
-        validate_gav_format(gav)
-        add_black_artifact(gav)
-    elif color == "whitelist-product":
+    if color == "whitelist-product":
         validate_product_version_format(product)
         validate_status_string(status)
         add_whitelist_product(product, status)
+    else:
+        rawGavs = []
+
+        if gav == None:
+            rawGavs = sys.stdin.readlines()
+        else:
+            rawGavs = [gav]
+
+        for gav in rawGavs:
+            gav = gav.rstrip('\n')
+            print ("Adding " + gav)
+            if color == "white":
+                validate_gav_format(gav)
+                validate_product_version_format(product)
+                add_white_artifact(gav, product)
+            elif color == "black":
+                validate_gav_format(gav)
+                add_black_artifact(gav)
 
 def delete_artifacts(color, gav=None, product = None):
     if color == "white":
