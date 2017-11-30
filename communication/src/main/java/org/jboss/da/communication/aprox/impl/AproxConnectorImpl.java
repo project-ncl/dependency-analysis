@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.xml.bind.JAXBException;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,12 +40,22 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public List<String> getVersionsOfGA(GA ga) throws CommunicationException {
+        try {
+            return this.getVersionsOfGA(ga, config.getConfig().getAproxGroup());
+        } catch (ConfigurationParseException ex) {
+            throw new CommunicationException(
+                    "Configuration failure, can't parse default repository group", ex);
+        }
+    }
+
+    @Override
+    public List<String> getVersionsOfGA(GA ga, String repository) throws CommunicationException {
         StringBuilder query = new StringBuilder();
         try {
             DAConfig config = this.config.getConfig();
             query.append(config.getAproxServer());
             query.append("/api/group/");
-            query.append(config.getAproxGroup()).append('/');
+            query.append(repository).append('/');
             query.append(ga.getGroupId().replace(".", "/")).append("/");
             query.append(ga.getArtifactId()).append('/');
             query.append("maven-metadata.xml");

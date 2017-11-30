@@ -28,6 +28,9 @@ public class LookupGAVsRequest {
     private Set<Long> productVersionIds = new HashSet<>();
 
     @Getter
+    private String repositoryGroup;
+
+    @Getter
     @NonNull
     private List<GAV> gavs;
 
