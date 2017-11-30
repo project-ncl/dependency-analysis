@@ -263,7 +263,7 @@ public class ReportsGeneratorImplTest {
         gavs.add(new GAV("org2", "test2", "2.0"));
         gavs.add(new GAV("org2", "test2", "2.2"));
         gavs.add(new GAV("org2", "test2", "2.0"));
-        LookupGAVsRequest request = new LookupGAVsRequest(new HashSet<>(), new HashSet<>(), gavs);
+        LookupGAVsRequest request = new LookupGAVsRequest(gavs);
 
         // When
         List<GAV> uniqueGAVs = new ArrayList<>();

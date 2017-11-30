@@ -43,6 +43,7 @@ import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import java.io.File;
@@ -59,7 +60,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -70,6 +70,7 @@ import java.util.stream.Collectors;
  * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@ApplicationScoped
 public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Inject
@@ -448,10 +449,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             LookupGAVsRequest request, Set<GA> uniqueGAs) throws CommunicationException {
         Set<Product> products = getProducts(request.getProductNames(),
                 request.getProductVersionIds());
+        final String repositoryGroup = request.getRepositoryGroup();
 
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
         for (GA ga : uniqueGAs) {
-            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(ga);
+            CompletableFuture<Set<ProductArtifacts>> artifacts;
+            if (repositoryGroup == null) {
+                artifacts = productProvider.getArtifacts(ga);
+            } else {
+                artifacts = productProvider.getArtifactsFromRepository(ga, repositoryGroup);
+            }
             artifacts = filterProductArtifacts(products, artifacts);
 
             gaProductArtifactsMap.put(ga, artifacts);

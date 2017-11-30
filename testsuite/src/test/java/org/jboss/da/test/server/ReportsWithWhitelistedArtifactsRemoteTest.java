@@ -382,15 +382,12 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     }
 
     private LookupGAVsRequest getDefaultLookupRequest() {
-        Set<String> productNames = new HashSet<>();
-        Set<Long> productVersionIds = new HashSet<>();
-
         List<GAV> gavs = new ArrayList<>();
         gavs.add(hibernateGav);
         gavs.add(daGav);
         gavs.add(jacksonGav);
 
-        LookupGAVsRequest req = new LookupGAVsRequest(productNames, productVersionIds, gavs);
+        LookupGAVsRequest req = new LookupGAVsRequest(gavs);
 
         return req;
     }

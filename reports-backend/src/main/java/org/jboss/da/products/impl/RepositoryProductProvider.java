@@ -78,6 +78,13 @@ public class RepositoryProductProvider implements ProductProvider {
 
     @Override
     @Asynchronous
+    public CompletableFuture<Set<ProductArtifacts>> getArtifactsFromRepository(GA ga,
+            String repository) {
+        return CompletableFuture.completedFuture(getArtifacts0(ga, repository));
+    }
+
+    @Override
+    @Asynchronous
     public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status) {
         if (status != UNKNOWN) {
             return CompletableFuture.completedFuture(Collections.emptySet());
@@ -98,7 +105,20 @@ public class RepositoryProductProvider implements ProductProvider {
                 .map(x -> new GAV(ga, x))
                 .map(Artifact::new)
                 .collect(Collectors.toSet());
-        if(allArtifacts.isEmpty()) return Collections.emptySet();
+        if (allArtifacts.isEmpty()) {
+            return Collections.emptySet();
+        }
+        return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, allArtifacts));
+    }
+
+    private Set<ProductArtifacts> getArtifacts0(GA ga, String repository) {
+        Set<Artifact> allArtifacts = getVersionsStream(ga, repository)
+                .map(x -> new GAV(ga, x))
+                .map(Artifact::new)
+                .collect(Collectors.toSet());
+        if (allArtifacts.isEmpty()) {
+            return Collections.emptySet();
+        }
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, allArtifacts));
     }
 
@@ -109,6 +129,20 @@ public class RepositoryProductProvider implements ProductProvider {
         }
         try {
             return aproxConnector.getVersionsOfGA(ga).stream()
+                    .filter(VersionParser::isRedhatVersion)
+                    .distinct();
+        } catch (CommunicationException ex) {
+            throw new ProductException(ex);
+        }
+    }
+
+    private Stream<String> getVersionsStream(GA ga, String repository) {
+        if (!ga.isValid()) {
+            log.warn("Received nonvalid GA: " + ga);
+            return Stream.empty();
+        }
+        try {
+            return aproxConnector.getVersionsOfGA(ga, repository).stream()
                     .filter(VersionParser::isRedhatVersion)
                     .distinct();
         } catch (CommunicationException ex) {
