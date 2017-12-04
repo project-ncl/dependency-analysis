@@ -1,0 +1,12 @@
+{
+    "productNames": [],
+    "productVersionIds": [],
+    "repositoryGroup": "DA-temporary",
+    "gavs": [
+        {
+            "groupId": "com.google.guava",
+            "artifactId": "guava",
+            "version": "13.0.1"
+        }
+    ]
+}

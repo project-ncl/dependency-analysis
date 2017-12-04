@@ -57,6 +57,12 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
     }
 
     @Test
+    public void testGavLookupSingleTemporary() throws Exception {
+        Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13Temp");
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
     public void testGavLookupList() throws Exception {
         Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13List");
         assertEquals(200, response.getStatus());
