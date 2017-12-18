@@ -71,8 +71,11 @@ public class AproxConnectorImpl implements AproxConnector {
                 retry++;
             }
 
-            return parseMetadataFile(connection).getVersioning().getVersions().getVersion();
+            final List<String> versions = parseMetadataFile(connection).getVersioning().getVersions().getVersion();
+            log.debug("Metadata for {} found. Response: {}. Versions: {}", ga, connection.getResponseCode(), versions);
+            return versions;
         } catch (FileNotFoundException ex) {
+            log.debug("Metadata for {} not found. Assuming empty version list.", ga);
             return Collections.emptyList();
         } catch (IOException | ConfigurationParseException | CommunicationException e) {
             throw new CommunicationException("Failed to obtain versions for " + ga.toString()
