@@ -223,7 +223,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     }
 
     @Override
-    public Optional<MavenProject> readPom(InputStream is) throws CommunicationException {
+    public Optional<MavenProject> readPom(InputStream is) {
         return pomReader.analyze(is);
     }
 

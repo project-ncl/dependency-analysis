@@ -42,7 +42,10 @@ public class BlackListImpl implements BlackList {
     public Response isBlackArtifactPresent(String groupId, String artifactId, String version) {
         if (groupId == null || artifactId == null || version == null) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(new ErrorMessage(ErrorMessage.eType.PARAMS_REQUIRED, "All parameters are required")).build();
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.PARAMS_REQUIRED,
+                            "All parameters are required",
+                            "Parameters groupID, artifactID and version must be specified."))
+                    .build();
         }
         ContainsResponse response = new ContainsResponse();
 
@@ -80,8 +83,9 @@ public class BlackListImpl implements BlackList {
             default:
                 return Response
                         .status(Response.Status.INTERNAL_SERVER_ERROR)
-                        .entity(new ErrorMessage(ErrorMessage.eType.UNEXPECTED_SERVER_ERR,
-                                "Unexpected server error occurred.")).build();
+                        .entity(new ErrorMessage(ErrorMessage.ErrorType.UNEXPECTED_SERVER_ERR,
+                                "Unexpected server error occurred.", "Result was " + result))
+                        .build();
         }
     }
 

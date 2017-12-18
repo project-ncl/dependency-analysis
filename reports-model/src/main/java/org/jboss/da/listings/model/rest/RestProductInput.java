@@ -1,7 +1,7 @@
 package org.jboss.da.listings.model.rest;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import org.jboss.da.listings.model.ProductSupportStatus;
 
 import lombok.AllArgsConstructor;

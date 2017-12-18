@@ -131,21 +131,18 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return createReport(dt, products).get();
     }
 
-    private Optional<ArtifactReport> createReport(GAVDependencyTree dt,
-            Set<Product> products) throws CommunicationException {
+    private Optional<ArtifactReport> createReport(GAVDependencyTree dt, Set<Product> products)
+            throws CommunicationException {
         ArtifactReport report = new ArtifactReport(dt.getGav());
 
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
         nodesVisited.add(dt);
         addDependencyReports(report, dt.getDependencies(), nodesVisited);
-        
+
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         traverseAndFill(report, products, futures);
-        try{
-            futures.stream().forEach(CompletableFuture::join);
-        }catch(CompletionException ex){
-            throw new CommunicationException(ex);
-        }
+
+        joinFutures(futures);
 
         return Optional.of(report);
     }
@@ -322,11 +319,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                     .thenAccept(x -> fillNotBuilt(blacklisted, internallyBuilt,
                             differentVersion, notBuilt)));
         }
-        try{
-            futures.stream().forEach(f -> f.join());
-        }catch(CompletionException ex){
-            throw new CommunicationException(ex);
-        }
+        joinFutures(futures);
         return ret;
     }
 
@@ -416,13 +409,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                         .thenApply(v -> toBuiltReportModule(gav, v)));
             }
         }
-        try {
-            return builtSet.stream()
-                    .map(CompletableFuture::join)
-                    .collect(Collectors.toSet());
-        } catch (CompletionException ex) {
-            throw new CommunicationException(ex);
-        }
+        return joinFutures(builtSet);
     }
 
     private BuiltReportModule toBuiltReportModule(GAV gav, VersionLookupResult vlr) {
@@ -468,7 +455,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private List<LookupReport> createLookupReports(LookupGAVsRequest request, Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap) throws CommunicationException {
-        List<CompletableFuture<?>> futures = new ArrayList<>();
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
         List<LookupReport> reports = new ArrayList<>();
         request.getGavs().stream()
                 .distinct()
@@ -488,13 +475,31 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             }));
         });
 
+        joinFutures(futures);
+
+        return reports;
+    }
+
+    private void joinFutures(List<CompletableFuture<Void>> futures) throws CommunicationException {
         try {
             futures.stream().forEach(r -> r.join());
         } catch(CompletionException ex){
-            throw new CommunicationException(ex);
+            if(ex.getCause() instanceof CommunicationException){
+                throw (CommunicationException) ex.getCause();
+            }
+            throw ex;
         }
+    }
 
-        return reports;
+    private <T> Set<T> joinFutures(Set<CompletableFuture<T>> futures) throws CommunicationException {
+        try {
+            return futures.stream().map(r -> r.join()).collect(Collectors.toSet());
+        } catch(CompletionException ex){
+            if(ex.getCause() instanceof CommunicationException){
+                throw (CommunicationException) ex.getCause();
+            }
+            throw ex;
+        }
     }
 
     private Set<Product> getProducts(Set<String> productNames, Set<Long> productVersionIds) {

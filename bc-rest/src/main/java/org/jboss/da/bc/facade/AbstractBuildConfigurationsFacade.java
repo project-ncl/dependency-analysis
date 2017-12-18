@@ -58,7 +58,7 @@ public abstract class AbstractBuildConfigurationsFacade<I extends InfoEntity> im
             response.setSuccess(id.isPresent());
             id.ifPresent(x -> response.setCreatedEntityId(id.get()));
             return response;
-        } catch (CommunicationException | PNCRequestException ex) {
+        } catch (CommunicationException ex) {
             log.warn("Could not finish: ", ex);
             response.setSuccess(false);
             response.setErrorType(ex.getClass().toString());

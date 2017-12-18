@@ -15,11 +15,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -38,14 +40,13 @@ public class AproxConnectorTest {
     @Mock
     private Logger log;
 
-    @Mock
-    private Configuration config;
+    private final Configuration config = initConfig();
 
     @Mock
     private PomAnalyzer pomAnalyzer;
 
     @InjectMocks
-    private final AproxConnectorImpl dependencyTreeGenerator = new AproxConnectorImpl();
+    private final AproxConnectorImpl dependencyTreeGenerator = new AproxConnectorImpl(config);
 
     private static final String REDHAT3 = "1.9.13.redhat-3";
 
@@ -71,14 +72,19 @@ public class AproxConnectorTest {
             + "  </versioning>\n"
             + "</metadata>";
 
-    @Before
-    public void mock() throws ConfigurationParseException {
+    private static Configuration initConfig() {
         DAConfig cfg = new DAConfig();
         cfg.setAproxServer("http://localhost:8082");
         cfg.setAproxGroup("DA-TEST-GROUP");
         cfg.setAproxGroupPublic("DA-PUBLIC-TEST-GROUP");
         cfg.setAproxRequestTimeout(10);
-        when(config.getConfig()).thenReturn(cfg);
+        Configuration config = Mockito.mock(Configuration.class);
+        try {
+            when(config.getConfig()).thenReturn(cfg);
+        } catch (ConfigurationParseException ex) {
+            throw new RuntimeException(ex);
+        }
+        return config;
     }
 
     @Test

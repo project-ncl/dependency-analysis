@@ -1,6 +1,5 @@
 package org.jboss.da.communication.pnc.impl;
 
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCAuthConnector;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.endpoints.BpmEndpoint;
@@ -62,9 +61,9 @@ public class PNCConnectorImpl implements PNCAuthConnector {
         this(target, null);
     }
 
-    private String getAccessToken() throws CommunicationException {
+    private String getAccessToken() {
         if (token == null) {
-            throw new CommunicationException("Current user not authenticated.");
+            throw new IllegalStateException("Current user not authenticated.");
         }
         return "Bearer " + token;
     }
@@ -74,7 +73,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
     }
 
     @Override
-    public List<RepositoryConfiguration> getRepositoryConfigurations(String url) throws CommunicationException, PNCRequestException {
+    public List<RepositoryConfiguration> getRepositoryConfigurations(String url) throws PNCRequestException {
         String query = String.format("internalScmRepoUrl=='%s',externalScmRepoUrl=='%s')", url, url);
         RepositoryConfigurationEndpoint endpoint = getEndpoint(RepositoryConfigurationEndpoint.class);
 
@@ -84,8 +83,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
         return wrapper.map(w -> w.getContent()).orElse(Collections.emptyList());
     }
 
-    private List<BuildConfiguration> getBuildConfigurations(String query) throws CommunicationException,
-            PNCRequestException {
+    private List<BuildConfiguration> getBuildConfigurations(String query) throws PNCRequestException {
         BuildConfigurationEndpoint endpoint = getEndpoint(BuildConfigurationEndpoint.class);
 
         Response response = endpoint.getAll(0, 5000, "", query);
@@ -96,7 +94,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
 
     @Override
     public List<BuildConfiguration> getBuildConfigurations(int repositoryId, String scmRevision)
-            throws CommunicationException, PNCRequestException {
+            throws PNCRequestException {
         String query = String.format("(repositoryConfiguration=='%d';scmRevision=='%s')",
                 repositoryId, scmRevision);
         return getBuildConfigurations(query);
@@ -104,19 +102,19 @@ public class PNCConnectorImpl implements PNCAuthConnector {
 
     @Override
     public List<BuildConfiguration> getBuildConfigurations(String scmUrl, String scmRevision)
-            throws CommunicationException, PNCRequestException {
+            throws PNCRequestException {
         return Collections.emptyList();
     }
 
     @Override
     public Optional<BuildConfiguration> getBuildConfiguration(String name)
-            throws CommunicationException, PNCRequestException {
+            throws PNCRequestException {
         String query = String.format("name=='%s'", name);
         return single(getBuildConfigurations(query), "build configuration for name %s", name);
     }
 
     @Override
-    public Optional<BPMTask> getBPMTask(int taskId) throws PNCRequestException, CommunicationException {
+    public Optional<BPMTask> getBPMTask(int taskId) throws PNCRequestException {
         BpmEndpoint endpoint = getEndpoint(BpmEndpoint.class);
         Response response = endpoint.getBPMTaskById(taskId);
         Optional<BPMTaskSingleton> wrapper = checkAndReturn(response, BPMTaskSingleton.class);
@@ -125,11 +123,11 @@ public class PNCConnectorImpl implements PNCAuthConnector {
 
     @Override
     public Future<Integer> createRepositoryConfiguration(String url) {
-        return CompletableFuture.supplyAsync(() -> createRepositoryAsync(url));
+        return CompletableFuture.supplyAsync(() -> createRepository(url));
         
     }
 
-    private Integer createRepositoryAsync(String url){
+    private Integer createRepository(String url){
         try {
             BpmEndpoint endpoint = getEndpoint(BpmEndpoint.class);
             final Response response = endpoint.startRCCreationTask(getAccessToken(), new RepositoryConfigurationBPMCreate(url));
@@ -138,7 +136,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
                         .getRepositoryConfigurationId();
             }
             Integer taskId = checkAndReturn(response,Integer.class)
-                    .orElseThrow(() -> new CommunicationException("Repository createtion didn't return task id."));
+                    .orElseThrow(() -> new PNCRequestException("Repository creation didn't return task id."));
 
             int tries = 13;
             while (tries-- > 0) {
@@ -163,20 +161,19 @@ public class PNCConnectorImpl implements PNCAuthConnector {
                 try {
                     Thread.sleep(1000 * 30);
                 } catch (InterruptedException ex) {
-                    throw new CommunicationException("Waiting for buildconfiguration " + url
+                    throw new PNCRequestException("Waiting for buildconfiguration " + url
                             + " was interrupted", ex);
                 }
             }
-            throw new CommunicationException("Timeout while waiting for buildconfiguration " + url
-                    + ".");
-        } catch (CommunicationException | PNCRequestException ex) {
+            throw new PNCRequestException("Timeout while waiting for buildconfiguration " + url);
+        } catch (PNCRequestException ex) {
             throw new RuntimeException(ex);
         }
     }
 
     @Override
     public BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
-            throws CommunicationException, PNCRequestException {
+            throws PNCRequestException {
         BuildConfigurationEndpoint endpoint = getEndpoint(BuildConfigurationEndpoint.class);
         Response response = endpoint.createNew(getAccessToken(), bc);
         return checkAndReturn(response, BuildConfigurationSingleton.class)
@@ -185,28 +182,25 @@ public class PNCConnectorImpl implements PNCAuthConnector {
     }
 
     @Override
-    public void updateBuildConfiguration(BuildConfiguration bc) throws CommunicationException,
-            PNCRequestException {
+    public void updateBuildConfiguration(BuildConfiguration bc) throws PNCRequestException {
         BuildConfigurationEndpoint endpoint = getEndpoint(BuildConfigurationEndpoint.class);
         checkCode(endpoint.update(getAccessToken(), bc.getId(), bc));
     }
 
     @Override
-    public void deleteBuildConfiguration(BuildConfiguration bc) throws CommunicationException,
-            PNCRequestException {
+    public void deleteBuildConfiguration(BuildConfiguration bc) throws PNCRequestException {
         deleteBuildConfiguration(bc.getId());
     }
 
     @Override
-    public void deleteBuildConfiguration(int bcId) throws CommunicationException,
-            PNCRequestException {
+    public void deleteBuildConfiguration(int bcId) throws PNCRequestException {
         BuildConfigurationEndpoint endpoint = getEndpoint(BuildConfigurationEndpoint.class);
         checkCode(endpoint.deleteSpecific(getAccessToken(), bcId));
     }
 
     @Override
     public BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs)
-            throws CommunicationException, PNCRequestException {
+            throws PNCRequestException {
         BuildConfigurationSetEndpoint endpoint = getEndpoint(BuildConfigurationSetEndpoint.class);
         Response response = endpoint.createNew(getAccessToken(), bcs);
         return checkAndReturn(response, BuildConfigurationSetSingleton.class)
@@ -216,7 +210,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
 
     @Override
     public Optional<BuildConfigurationSet> findBuildConfigurationSet(int productVersionId,
-            List<Integer> buildConfigurationIds) throws CommunicationException, PNCRequestException {
+            List<Integer> buildConfigurationIds) throws PNCRequestException {
         String commaDelimitedIds = buildConfigurationIds.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(","));
@@ -234,7 +228,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
 
     @Override
     public Optional<ProductVersion> findProductVersion(int productId, String version)
-            throws CommunicationException, PNCRequestException {
+            throws PNCRequestException {
         String query = String.format("product.id==%s;version=='%s'", productId, version);
 
         ProductVersionEndpoint endpoint = getEndpoint(ProductVersionEndpoint.class);
@@ -247,9 +241,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
     }
 
     @Override
-    public ProductVersion createProductVersion(ProductVersion pv) throws CommunicationException,
-            PNCRequestException {
-
+    public ProductVersion createProductVersion(ProductVersion pv) throws PNCRequestException {
         ProductVersionEndpoint endpoint = getEndpoint(ProductVersionEndpoint.class);
         Response response = endpoint.createNew(getAccessToken(), pv);
         return checkAndReturn(response, ProductVersionSingleton.class)
@@ -258,7 +250,7 @@ public class PNCConnectorImpl implements PNCAuthConnector {
     }
 
     private <T> Optional<T> checkAndReturn(Response response, Class<T> type)
-            throws PNCRequestException, CommunicationException {
+            throws PNCRequestException {
         try {
             switch (response.getStatus()) {
                 case SC_OK:
@@ -268,17 +260,17 @@ public class PNCConnectorImpl implements PNCAuthConnector {
                     return Optional.empty();
                 case SC_UNAUTHORIZED:
                 case SC_FORBIDDEN:
-                    throw new CommunicationException("Current user not authenticated.");
+                    throw new IllegalStateException("Current user not authenticated.");
                 default:
-                    throw new PNCRequestException(response.getStatusInfo() + " "
-                            + response.readEntity(String.class));
+                    throw new PNCRequestException("Error when communicating with PNC, got reply "
+                            + response.getStatusInfo() + " " + response.readEntity(String.class));
             }
         } finally {
             response.close();
         }
     }
 
-    private void checkCode(Response response) throws PNCRequestException, CommunicationException {
+    private void checkCode(Response response) throws PNCRequestException {
         try {
             switch (response.getStatus()) {
                 case SC_OK:
@@ -287,10 +279,10 @@ public class PNCConnectorImpl implements PNCAuthConnector {
                     return;
                 case SC_UNAUTHORIZED:
                 case SC_FORBIDDEN:
-                    throw new CommunicationException("Current user not authenticated.");
+                    throw new IllegalStateException("Current user not authenticated.");
                 default:
-                    throw new PNCRequestException(response.getStatus() + " "
-                            + response.readEntity(String.class));
+                    throw new PNCRequestException("Error when communicating with PNC, got reply "
+                            + response.getStatusInfo() + " " + response.readEntity(String.class));
             }
         } finally {
             response.close();

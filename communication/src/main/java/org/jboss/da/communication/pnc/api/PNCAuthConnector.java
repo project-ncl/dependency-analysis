@@ -1,6 +1,5 @@
 package org.jboss.da.communication.pnc.api;
 
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationCreate;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
@@ -19,11 +18,10 @@ public interface PNCAuthConnector extends PNCConnector {
      *
      * @param bc The build configuration to be created.
      * @return Created Build Configuration
-     * @throws CommunicationException Thrown if communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if communication with PNC failed
      */
     BuildConfiguration createBuildConfiguration(BuildConfigurationCreate bc)
-            throws CommunicationException, PNCRequestException;
+            throws PNCRequestException;
 
     /**
      * Starts creation of repository configuration. The repository configuration is created
@@ -38,34 +36,28 @@ public interface PNCAuthConnector extends PNCConnector {
      * Updates existing Build Configuration.
      *
      * @param bc The build configuration to be updated.
-     * @throws CommunicationException Thrown if communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if communication with PNC failed
      */
-    void updateBuildConfiguration(BuildConfiguration bc) throws CommunicationException,
-            PNCRequestException;
+    void updateBuildConfiguration(BuildConfiguration bc) throws PNCRequestException;
 
     /**
      * Deletes BuildConfiguration from PNC by ID of the BC
      * 
      * @param bc BC to be deleted
-     * @throws CommunicationException Thrown if the communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if the communication with PNC failed
      */
-    void deleteBuildConfiguration(BuildConfiguration bc) throws CommunicationException,
-            PNCRequestException;
+    void deleteBuildConfiguration(BuildConfiguration bc) throws PNCRequestException;
 
     /**
      * Deletes BuildConfiguration from PNC by ID of the BC
      * 
      * @param bcId ID of BC to be deleted
-     * @throws CommunicationException Thrown if the communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if the communication with PNC failed
      */
-    void deleteBuildConfiguration(int bcId) throws CommunicationException, PNCRequestException;
+    void deleteBuildConfiguration(int bcId) throws PNCRequestException;
 
     BuildConfigurationSet createBuildConfigurationSet(BuildConfigurationSet bcs)
-            throws CommunicationException, PNCRequestException;
+            throws PNCRequestException;
 
-    ProductVersion createProductVersion(ProductVersion pv) throws CommunicationException,
-            PNCRequestException;
+    ProductVersion createProductVersion(ProductVersion pv) throws PNCRequestException;
 }

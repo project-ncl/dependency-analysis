@@ -21,14 +21,14 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
 
     @Override
     public BuildConfigurationSet createBCSet(String name, Integer productVersionId,
-            List<Integer> bcIds, String token) throws CommunicationException, PNCRequestException {
+            List<Integer> bcIds, String token) throws PNCRequestException, IllegalArgumentException {
 
         Optional<BuildConfigurationSet> existingBcSet = pnc.getConnector()
                 .findBuildConfigurationSet(productVersionId, bcIds);
 
         if (existingBcSet.isPresent()) {
             // bcSet already exists, this should not happen. return an error
-            throw new PNCRequestException("Build Configuration Set already exists!");
+            throw new IllegalArgumentException("Build Configuration Set already exists!");
         }
 
         BuildConfigurationSet bcSet = new BuildConfigurationSet();
@@ -41,7 +41,7 @@ public class BCSetGeneratorImpl implements BCSetGenerator {
 
     @Override
     public Integer createProductVersion(int productId, String productVersion, String token)
-            throws CommunicationException, PNCRequestException {
+            throws PNCRequestException {
 
         Optional<ProductVersion> potentialPV = pnc.getConnector().findProductVersion(productId,
                 productVersion);

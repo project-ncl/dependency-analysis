@@ -254,7 +254,7 @@ public class ProjectHiearchyCreator {
             project.setExistingBCs(existingBcIds);
             project.setBcId(null);
 
-        } catch (CommunicationException | PNCRequestException ex) {
+        } catch (PNCRequestException ex) {
             log.warn("Failed to lookup existing BC for " + project.getGav(), ex);
         }
     }

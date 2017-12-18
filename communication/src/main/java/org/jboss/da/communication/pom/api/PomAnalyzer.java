@@ -26,7 +26,7 @@ public interface PomAnalyzer {
 
     Optional<MavenProject> readPom(File pomPath);
 
-    Optional<MavenProject> readPom(InputStream is) throws CommunicationException;
+    Optional<MavenProject> readPom(InputStream is);
 
     /**
      * Given the directory of a project, and the directory of the project which

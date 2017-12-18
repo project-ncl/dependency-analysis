@@ -22,6 +22,7 @@ import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.cartographer.api.CartographerConnector;
+import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 
@@ -96,8 +97,7 @@ public class CartographerConnectorImpl implements CartographerConnector {
                 return generateGAVDependencyTree(export, gav);
 
         } catch (ClientHttpException | ConfigurationParseException | CartoClientException e) {
-            throw new CommunicationException("Error while trying to communicate with Cartographer",
-                    e);
+            throw new RepositoryException("Error while trying to communicate with Cartographer", e);
         }
     }
 

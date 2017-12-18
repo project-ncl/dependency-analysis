@@ -4,17 +4,17 @@ package org.jboss.da.common;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-public class CommunicationException extends Exception {
+public abstract class CommunicationException extends Exception {
 
-    public CommunicationException(String message) {
+    protected CommunicationException(String message) {
         super(message);
     }
 
-    public CommunicationException(String message, Throwable cause) {
+    protected CommunicationException(String message, Throwable cause) {
         super(message + ": " + cause.getMessage(), cause);
     }
 
-    public CommunicationException(Throwable cause) {
+    protected CommunicationException(Throwable cause) {
         super(cause);
     }
 

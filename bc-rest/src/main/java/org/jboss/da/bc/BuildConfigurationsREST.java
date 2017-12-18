@@ -51,19 +51,19 @@ public abstract class BuildConfigurationsREST<I extends InfoEntity> {
             log.error("Error during SCM analysis occured", ex);
             return Response
                     .serverError()
-                    .entity(new ErrorMessage(ErrorMessage.eType.SCM_ANALYSIS,
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.SCM_ANALYSIS,
                             "Error during SCM analysis occured", ex.getMessage())).build();
         } catch (PomAnalysisException ex) {
             log.error("Error during POM analysis occured", ex);
             return Response
                     .serverError()
-                    .entity(new ErrorMessage(ErrorMessage.eType.POM_ANALYSIS,
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.POM_ANALYSIS,
                             "Error during POM analysis occured.", ex.getMessage())).build();
         } catch (CommunicationException ex) {
             log.error("Error during communication occured", ex);
             return Response
                     .serverError()
-                    .entity(new ErrorMessage(ErrorMessage.eType.COMMUNICATION_FAIL,
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.COMMUNICATION_FAIL,
                             "Error during communication occured", ex.getMessage())).build();
         } catch (ValidationException e) {
             return e.getResponse();
