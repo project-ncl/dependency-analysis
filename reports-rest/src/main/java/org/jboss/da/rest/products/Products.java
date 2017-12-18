@@ -55,12 +55,12 @@ public class Products {
         Optional<ProductVersion> left = productService.getProductVersion(leftProduct);
         if(!left.isPresent()){
             return Response.status(NOT_FOUND)
-                    .entity(new ErrorMessage(ErrorMessage.eType.PRODUCT_NOT_FOUND, "Product "+leftProduct+" doesn't exist.")).build();
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.PRODUCT_NOT_FOUND, "Product "+leftProduct+" doesn't exist.", null)).build();
         }
         Optional<ProductVersion> right = productService.getProductVersion(rightProduct);
         if(!right.isPresent()){
             return Response.status(NOT_FOUND)
-                    .entity(new ErrorMessage(ErrorMessage.eType.PRODUCT_NOT_FOUND, "Product "+rightProduct+" doesn't exist.")).build();
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.PRODUCT_NOT_FOUND, "Product "+rightProduct+" doesn't exist.", null)).build();
         }
         Set<ArtifactDiff> diff = products.difference(leftProduct, rightProduct);
 

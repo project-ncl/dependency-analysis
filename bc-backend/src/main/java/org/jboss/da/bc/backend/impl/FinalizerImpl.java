@@ -14,7 +14,6 @@ import org.jboss.da.bc.backend.api.BCSetGenerator;
 import org.jboss.da.bc.backend.api.Finalizer;
 import org.jboss.da.bc.model.backend.ProjectDetail;
 import org.jboss.da.bc.model.backend.ProjectHiearchy;
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCConnectorProvider;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
@@ -52,7 +51,7 @@ public class FinalizerImpl implements Finalizer {
 
     @Override
     public Integer createBCs(int productId, String productVersion, ProjectHiearchy toplevelBc,
-            String bcSetName, String authToken) throws CommunicationException, PNCRequestException {
+            String bcSetName, String authToken) throws PNCRequestException {
         this.token = authToken;
         Set<Integer> ids = new HashSet<>();
         HashMap<String, Future<Integer>> repos = new HashMap<>();
@@ -63,21 +62,15 @@ public class FinalizerImpl implements Finalizer {
                     token);
             bcSetGenerator.createBCSet(bcSetName, productVersionId, new ArrayList<>(ids), token);
             return productVersionId;
-        } catch (CommunicationException | PNCRequestException | RuntimeException ex) {
-            for (Integer id : ids) {
-                try {
-                    pnc.getAuthConnector(token).deleteBuildConfiguration(id);
-                } catch (CommunicationException | PNCRequestException | RuntimeException e) {
-                    log.error("Rollback: Failed to delete configuration " + id, e);
-                }
-            }
+        } catch (PNCRequestException | RuntimeException ex) {
+            rollbackBCs(ids);
             throw new RuntimeException("Fail while finishing import process. Rolled back.", ex);
         }
     }
 
     @Override
     public Integer createBCs(ProjectHiearchy toplevelBc, String authToken)
-            throws CommunicationException, PNCRequestException {
+            throws PNCRequestException {
         this.token = authToken;
         Set<Integer> ids = new HashSet<>();
         HashMap<String, Future<Integer>> repos = new HashMap<>();
@@ -85,15 +78,22 @@ public class FinalizerImpl implements Finalizer {
             createRepositories(toplevelBc, repos);
             Set<Integer> toplevelId = createDeps(toplevelBc, ids, repos);
             return toplevelId.iterator().next(); // get single integer
-        } catch (CommunicationException | PNCRequestException | RuntimeException ex) {
-            for (Integer id : ids) {
-                try {
-                    pnc.getAuthConnector(token).deleteBuildConfiguration(id);
-                } catch (CommunicationException | PNCRequestException | RuntimeException e) {
-                    log.error("Rollback: Failed to delete configuration " + id, e);
-                }
-            }
+        } catch (PNCRequestException ex) {
+            rollbackBCs(ids);
+            throw new PNCRequestException("Fail while finishing import process. Rolled back.", ex);
+        } catch (RuntimeException ex) {
+            rollbackBCs(ids);
             throw new RuntimeException("Fail while finishing import process. Rolled back.", ex);
+        }
+    }
+
+    private void rollbackBCs(Set<Integer> ids) {
+        for (Integer id : ids) {
+            try {
+                pnc.getAuthConnector(token).deleteBuildConfiguration(id);
+            } catch (PNCRequestException | RuntimeException e) {
+                log.error("Rollback: Failed to delete configuration " + id, e);
+            }
         }
     }
 
@@ -104,7 +104,7 @@ public class FinalizerImpl implements Finalizer {
      *      b) multiple integers, when the hiearchy object is not selected AND it has selected dependencies
      *      c) NO integer, when the hiearchy object is not selected AND it has NO selected dependencies
      */
-    Set<Integer> createDeps(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds, Map<String, Future<Integer>> repos) throws CommunicationException, PNCRequestException {
+    Set<Integer> createDeps(ProjectHiearchy hiearchy, Set<Integer> allDependencyIds, Map<String, Future<Integer>> repos) throws PNCRequestException {
         Set<Integer> nextLevelDependencyIds = new HashSet<>();
 
         for (ProjectHiearchy dep : hiearchy.getDependencies()) {
@@ -145,7 +145,7 @@ public class FinalizerImpl implements Finalizer {
         }
     }
 
-    private BuildConfigurationCreate toBC(ProjectDetail project, Map<String, Future<Integer>> repos) throws CommunicationException {
+    private BuildConfigurationCreate toBC(ProjectDetail project, Map<String, Future<Integer>> repos) throws PNCRequestException {
         BuildConfigurationCreate bc = new BuildConfigurationCreate();
         bc.setBuildScript(project.getBuildScript());
         bc.setDescription(project.getDescription());
@@ -160,14 +160,14 @@ public class FinalizerImpl implements Finalizer {
         try {
             bc.setRepositoryId(repo.get());
         } catch (InterruptedException | ExecutionException ex) {
-            throw new CommunicationException("Failed to wait for repository creation", ex);
+            throw new PNCRequestException("Failed to wait for repository creation", ex);
         }
         bc.setScmRevision(scmInfo.getRevision());
 
         return bc;
     }
 
-    private void createRepositories(ProjectHiearchy toplevelBc, HashMap<String, Future<Integer>> repos) throws CommunicationException {
+    private void createRepositories(ProjectHiearchy toplevelBc, HashMap<String, Future<Integer>> repos) {
         for(ProjectHiearchy d: toplevelBc.getDependencies()){
             createRepositories(d, repos);
         }

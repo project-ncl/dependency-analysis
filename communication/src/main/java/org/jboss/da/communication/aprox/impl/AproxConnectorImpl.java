@@ -8,6 +8,7 @@ import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
+import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
@@ -32,27 +33,30 @@ public class AproxConnectorImpl implements AproxConnector {
     @Inject
     private Logger log;
 
-    @Inject
-    private Configuration config;
+    private DAConfig config;
 
     @Inject
     private PomAnalyzer pomAnalyzer;
 
-    @Override
-    public List<String> getVersionsOfGA(GA ga) throws CommunicationException {
+    @Inject
+    public AproxConnectorImpl(Configuration configuration) {
         try {
-            return this.getVersionsOfGA(ga, config.getConfig().getAproxGroup());
+            this.config = configuration.getConfig();
         } catch (ConfigurationParseException ex) {
-            throw new CommunicationException(
+            throw new IllegalStateException(
                     "Configuration failure, can't parse default repository group", ex);
         }
     }
 
     @Override
-    public List<String> getVersionsOfGA(GA ga, String repository) throws CommunicationException {
+    public List<String> getVersionsOfGA(GA ga) throws RepositoryException {
+        return this.getVersionsOfGA(ga, config.getAproxGroup());
+    }
+
+    @Override
+    public List<String> getVersionsOfGA(GA ga, String repository) throws RepositoryException {
         StringBuilder query = new StringBuilder();
         try {
-            DAConfig config = this.config.getConfig();
             query.append(config.getAproxServer());
             query.append("/api/group/");
             query.append(repository).append('/');
@@ -71,36 +75,32 @@ public class AproxConnectorImpl implements AproxConnector {
                 retry++;
             }
 
-            final List<String> versions = parseMetadataFile(connection).getVersioning().getVersions().getVersion();
-            log.debug("Metadata for {} found. Response: {}. Versions: {}", ga, connection.getResponseCode(), versions);
+            final List<String> versions = parseMetadataFile(connection).getVersioning()
+                    .getVersions().getVersion();
+            log.debug("Metadata for {} found. Response: {}. Versions: {}", ga,
+                    connection.getResponseCode(), versions);
             return versions;
         } catch (FileNotFoundException ex) {
             log.debug("Metadata for {} not found. Assuming empty version list.", ga);
             return Collections.emptyList();
-        } catch (IOException | ConfigurationParseException | CommunicationException e) {
-            throw new CommunicationException("Failed to obtain versions for " + ga.toString()
-                    + " from Indy server with url " + query.toString(), e);
+        } catch (IOException | CommunicationException e) {
+            throw new RepositoryException("Failed to obtain versions for " + ga
+                    + " from repository on url " + query, e);
         }
     }
 
     @Override
-    public Optional<MavenProject> getPom(GAV gav) throws CommunicationException {
-        Optional<InputStream> is = getPomStream(gav);
-        if (is.isPresent()) {
-            return pomAnalyzer.readPom(getPomStream(gav).get());
-        } else {
-            return Optional.empty();
-        }
+    public Optional<MavenProject> getPom(GAV gav) throws RepositoryException {
+        return getPomStream(gav).flatMap(pomAnalyzer::readPom);
     }
 
     @Override
-    public Optional<InputStream> getPomStream(GAV gav) throws CommunicationException {
+    public Optional<InputStream> getPomStream(GAV gav) throws RepositoryException {
         StringBuilder query = new StringBuilder();
         try {
-            DAConfig cfg = this.config.getConfig();
-            query.append(cfg.getAproxServer());
+            query.append(config.getAproxServer());
             query.append("/api/group/");
-            query.append(cfg.getAproxGroupPublic()).append('/');
+            query.append(config.getAproxGroupPublic()).append('/');
             query.append(gav.getGroupId().replace(".", "/")).append("/");
             query.append(gav.getArtifactId()).append('/');
             query.append(gav.getVersion()).append('/');
@@ -110,9 +110,9 @@ public class AproxConnectorImpl implements AproxConnector {
             return Optional.of(connection.getInputStream());
         } catch (FileNotFoundException ex) {
             return Optional.empty();
-        } catch (IOException | ConfigurationParseException e) {
-            throw new CommunicationException("Failed to obtain pom for " + gav.toString()
-                    + " from Indy server with url " + query.toString(), e);
+        } catch (IOException e) {
+            throw new RepositoryException("Failed to obtain pom for " + gav
+                    + " from repository on url " + query, e);
         }
     }
 
@@ -126,11 +126,10 @@ public class AproxConnectorImpl implements AproxConnector {
      *
      * No dcheung doesn't usually talks about himself in the third person..
      */
-    public boolean doesGAVExistInPublicRepo(GAV gav) throws CommunicationException {
+    public boolean doesGAVExistInPublicRepo(GAV gav) throws RepositoryException {
         StringBuilder query = new StringBuilder();
 
         try {
-            DAConfig config = this.config.getConfig();
             query.append(config.getAproxServer());
             query.append("/api/group/");
             query.append(config.getAproxGroupPublic()).append('/');
@@ -148,10 +147,9 @@ public class AproxConnectorImpl implements AproxConnector {
                 // if we've reached here, the resource is not available
                 return false;
             }
-
-        } catch (IOException | ConfigurationParseException e) {
-            throw new CommunicationException("Failed to establish a connection with Indy: "
-                    + query.toString(), e);
+        } catch (IOException e) {
+            throw new RepositoryException("Failed to check existence of pom for " + gav
+                    + " in repository on url " + query, e);
         }
     }
 
@@ -160,7 +158,7 @@ public class AproxConnectorImpl implements AproxConnector {
         try (InputStream in = connection.getInputStream()) {
             return MetadataFileParser.parseMetadataFile(in);
         } catch (JAXBException e) {
-            throw new CommunicationException("Failed to parse metadataFile", e);
+            throw new RepositoryException("Failed to parse metadata file", e);
         }
     }
 }

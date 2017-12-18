@@ -1,6 +1,5 @@
 package org.jboss.da.communication.pnc.api;
 
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.model.BPMTask;
 import org.jboss.da.communication.pnc.model.BuildConfiguration;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
@@ -22,11 +21,10 @@ public interface PNCConnector {
      * @param productVersionId
      * @param buildConfigurationIds
      * @return Optional.empty() if buildConfigurationSet not found, else the BuildConfigurationSet
-     * @throws CommunicationException Thrown if the communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if the communication with PNC failed
      */
     Optional<BuildConfigurationSet> findBuildConfigurationSet(int productVersionId,
-            List<Integer> buildConfigurationIds) throws CommunicationException, PNCRequestException;
+            List<Integer> buildConfigurationIds) throws PNCRequestException;
 
     /**
      * Find ProductVersion assigned to a particular product and having a specific
@@ -35,33 +33,29 @@ public interface PNCConnector {
      * @param productId the product id
      * @param version version to find
      * @return Optional.empty() if productVersion not found, else the productVersion
-     * @throws CommunicationException Thrown if the communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if the communication with PNC failed
      */
     Optional<ProductVersion> findProductVersion(int productId, String version)
-            throws CommunicationException, PNCRequestException;
+            throws PNCRequestException;
 
     /**
      * Gets BuildConfiguration from PNC with the specific name
      *
      * @param name name of the BC
      * @return BC with specified name or empty optional if no such BC was found
-     * @throws CommunicationException Thrown if communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if communication with PNC failed
      */
-    Optional<BuildConfiguration> getBuildConfiguration(String name) throws CommunicationException,
-            PNCRequestException;
+    Optional<BuildConfiguration> getBuildConfiguration(String name) throws PNCRequestException;
 
     /**
      * Finds Repository Configuration with specific product version id and build configurations ids from pnc
      *
      * @param url Internal or external url of the repository
      * @return List of Repository configurat if buildConfigurationSet not found, else the BuildConfigurationSet
-     * @throws CommunicationException Thrown if the communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if the communication with PNC failed
      */
     List<RepositoryConfiguration> getRepositoryConfigurations(String url)
-            throws CommunicationException, PNCRequestException;
+            throws PNCRequestException;
 
     /**
      * Gets all BuildConfigurations from PNC with the specific SCM URL and SCM Revision
@@ -69,11 +63,10 @@ public interface PNCConnector {
      * @param repositoryId ID of the Repository Configuration
      * @param scmRevision SCM revision expected in BC
      * @return List of BCs with specified SCM URL and SCM revision or empty list if no BC was found
-     * @throws CommunicationException Thrown if communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if communication with PNC failed
      */
     List<BuildConfiguration> getBuildConfigurations(int repositoryId, String scmRevision)
-            throws CommunicationException, PNCRequestException;
+            throws PNCRequestException;
 
     /**
      * Gets all BuildConfigurations from PNC with the specific SCM URL and SCM Revision
@@ -81,21 +74,18 @@ public interface PNCConnector {
      * @param scmUrl SCM URL expected in BC
      * @param scmRevision SCM revision expected in BC
      * @return List of BCs with specified SCM URL and SCM revision or empty list if no BC was found
-     * @throws CommunicationException Thrown if communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if communication with PNC failed
      */
     List<BuildConfiguration> getBuildConfigurations(String scmUrl, String scmRevision)
-            throws CommunicationException, PNCRequestException;
+            throws PNCRequestException;
 
     /**
      * Gets BPM Task from PNC with the specific id
      *
      * @param taskId id of the task
      * @return BPM Task with specified id or empty optional if no such task exists
-     * @throws CommunicationException Thrown if communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if communication with PNC failed
      */
-    public Optional<BPMTask> getBPMTask(int taskId) throws CommunicationException,
-            PNCRequestException;
+    public Optional<BPMTask> getBPMTask(int taskId) throws PNCRequestException;
 
 }

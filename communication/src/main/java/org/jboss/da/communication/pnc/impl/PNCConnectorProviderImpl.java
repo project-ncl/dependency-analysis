@@ -43,10 +43,10 @@ public class PNCConnectorProviderImpl implements PNCConnectorProvider {
     }
 
     @Override
-    public PNCAuthConnector getAuthConnector(String token) throws CommunicationException {
+    public PNCAuthConnector getAuthConnector(String token) {
         if (token == null) {
             return new PNCConnectorImpl(target, auth.accessToken()
-                    .orElseThrow(() -> new CommunicationException("Current user not authenticated.")));
+                    .orElseThrow(() -> new IllegalStateException("Current user not authenticated.")));
         }
         return new PNCConnectorImpl(target, token);
     }

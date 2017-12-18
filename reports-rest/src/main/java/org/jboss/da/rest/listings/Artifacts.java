@@ -111,8 +111,10 @@ public class Artifacts {
         } catch (ValidationException e) {
             return e.getResponse();
         }
-        switch (filler.fillWhitelistFromPom(wlFill.getScmUrl(), wlFill.getRevision(),
-                wlFill.getPomPath(), wlFill.getRepositories(), wlFill.getProductId())) {
+        WLFiller.WLStatus result = filler.fillWhitelistFromPom(wlFill.getScmUrl(),
+                wlFill.getRevision(), wlFill.getPomPath(), wlFill.getRepositories(),
+                wlFill.getProductId());
+        switch (result) {
             case PRODUCT_NOT_FOUND:
                 response.setSuccess(false);
                 response.setMessage("Product with this id not found");
@@ -127,8 +129,9 @@ public class Artifacts {
             default:
                 return Response
                         .status(Status.INTERNAL_SERVER_ERROR)
-                        .entity(new ErrorMessage(ErrorMessage.eType.UNEXPECTED_SERVER_ERR,
-                                "Unexpected server error occurred")).build();
+                        .entity(new ErrorMessage(ErrorMessage.ErrorType.UNEXPECTED_SERVER_ERR,
+                                "Unexpected server error occurred", "Result was " + result))
+                        .build();
         }
     }
 
@@ -142,8 +145,9 @@ public class Artifacts {
             @ApiParam(
                     value = "JSON object with keys 'groupId', 'artifactId', 'version' and 'productId'") RestProductArtifact a) {
         SuccessResponse response = new SuccessResponse();
-        switch (filler.fillWhitelistFromGAV(a.getGroupId(), a.getArtifactId(), a.getVersion(),
-                a.getProductId())) {
+        WLFiller.WLStatus result = filler.fillWhitelistFromGAV(a.getGroupId(), a.getArtifactId(),
+                a.getVersion(), a.getProductId());
+        switch (result) {
             case PRODUCT_NOT_FOUND:
                 response.setSuccess(false);
                 response.setMessage("Product with this id not found");
@@ -165,8 +169,9 @@ public class Artifacts {
             default:
                 return Response
                         .status(Status.INTERNAL_SERVER_ERROR)
-                        .entity(new ErrorMessage(ErrorMessage.eType.UNEXPECTED_SERVER_ERR,
-                                "Unexpected server error occurred")).build();
+                        .entity(new ErrorMessage(ErrorMessage.ErrorType.UNEXPECTED_SERVER_ERR,
+                                "Unexpected server error occurred", "Result was " + result))
+                        .build();
         }
     }
 
@@ -192,9 +197,9 @@ public class Artifacts {
                 case IS_BLACKLISTED:
                     return Response
                             .status(Response.Status.CONFLICT)
-                            .entity(new ErrorMessage(ErrorMessage.eType.BLACKLIST,
-                                    "Can't add artifact to whitelist, artifact is blacklisted"))
-                            .build();
+                            .entity(new ErrorMessage(ErrorMessage.ErrorType.BLACKLIST,
+                                    "Can't add artifact to whitelist, artifact is blacklisted",
+                                    null)).build();
                 case NOT_MODIFIED:
                 case GA_EXISTS:
                     response.setSuccess(false);
@@ -202,8 +207,9 @@ public class Artifacts {
                 default:
                     return Response
                             .status(Response.Status.INTERNAL_SERVER_ERROR)
-                            .entity(new ErrorMessage(ErrorMessage.eType.UNEXPECTED_SERVER_ERR,
-                                    "Unexpected server error occurred.")).build();
+                            .entity(new ErrorMessage(ErrorMessage.ErrorType.UNEXPECTED_SERVER_ERR,
+                                    "Unexpected server error occurred.", "Result was " + result))
+                            .build();
             }
         } catch (IllegalArgumentException ex) {
             return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
@@ -252,8 +258,8 @@ public class Artifacts {
         if (product.getName().isEmpty() || product.getVersion().isEmpty()) {
             return Response
                     .status(Response.Status.BAD_REQUEST)
-                    .entity(new ErrorMessage(ErrorMessage.eType.PARAMS_REQUIRED,
-                            "Name and version parameters are required")).build();
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.PARAMS_REQUIRED,
+                            "Name and version parameters are required", null)).build();
         }
         if (product.getSupportStatus() == null) {
             product.setSupportStatus(ProductSupportStatus.SUPPORTED);
@@ -282,7 +288,7 @@ public class Artifacts {
         } catch (EntityNotFoundException e) {
             return Response
                     .status(Response.Status.NOT_FOUND)
-                    .entity(new ErrorMessage(ErrorMessage.eType.PRODUCT_NOT_FOUND,
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.PRODUCT_NOT_FOUND,
                             "Product not found", e.getMessage())).build();
         }
         return Response.ok(response).build();
@@ -304,15 +310,16 @@ public class Artifacts {
         if (product.getSupportStatus() == null) {
             return Response
                     .status(Response.Status.BAD_REQUEST)
-                    .entity(new ErrorMessage(ErrorMessage.eType.PARAMS_REQUIRED,
-                            "All parameters are required")).build();
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.PARAMS_REQUIRED,
+                            "All parameters are required", "Parameter support status is required"))
+                    .build();
         }
         if (!productService.changeProductStatus(product.getName(), product.getVersion(),
                 product.getSupportStatus())) {
             return Response
                     .status(Response.Status.NOT_FOUND)
-                    .entity(new ErrorMessage(ErrorMessage.eType.PRODUCT_NOT_FOUND,
-                            "Product not found")).build();
+                    .entity(new ErrorMessage(ErrorMessage.ErrorType.PRODUCT_NOT_FOUND,
+                            "Product not found", null)).build();
         }
         response.setSuccess(true);
         return Response.ok(response).build();
@@ -356,8 +363,8 @@ public class Artifacts {
         }
         return Response
                 .status(Response.Status.NOT_FOUND)
-                .entity(new ErrorMessage(ErrorMessage.eType.PRODUCT_NOT_FOUND, "Product not found"))
-                .build();
+                .entity(new ErrorMessage(ErrorMessage.ErrorType.PRODUCT_NOT_FOUND,
+                        "Product not found", null)).build();
 
     }
 

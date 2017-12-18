@@ -1,6 +1,5 @@
 package org.jboss.da.bc.backend.api;
 
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.api.PNCRequestException;
 import org.jboss.da.communication.pnc.model.BuildConfigurationSet;
 
@@ -20,12 +19,11 @@ public interface BCSetGenerator {
      * @param bcIds
      * @param authToken authentication token for PNC authentication
      * @return BuildConfigurationSet
-     * @throws CommunicationException Thrown if communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error, or if the
-     *         BuildConfigurationSet already exists
+     * @throws PNCRequestException Thrown if communication with PNC failed
+     * @throws IllegalArgumentException Thrown if the BuildConfigurationSet already exists
      */
     BuildConfigurationSet createBCSet(String name, Integer productVersionId, List<Integer> bcIds,
-            String authToken) throws CommunicationException, PNCRequestException;
+            String authToken) throws PNCRequestException, IllegalArgumentException;
 
     /**
      * Find the Product on PNC and create the product version for that product.
@@ -38,9 +36,8 @@ public interface BCSetGenerator {
      * @param productVersion version of product to create
      * @param authToken authentication token for PNC authentication
      * @return The id of the product version created, or found
-     * @throws CommunicationException Thrown if communication with PNC failed
-     * @throws PNCRequestException Thrown if PNC returns an error
+     * @throws PNCRequestException Thrown if communication with PNC failed
      */
     Integer createProductVersion(int productId, String productVersion, String authToken)
-            throws CommunicationException, PNCRequestException;
+            throws PNCRequestException;
 }
