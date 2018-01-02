@@ -1,5 +1,6 @@
 package org.jboss.da.reports.model.rest;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.ToString;
 import org.jboss.da.model.rest.GAV;
 
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LookupGAVsRequest {
 
     @Getter
