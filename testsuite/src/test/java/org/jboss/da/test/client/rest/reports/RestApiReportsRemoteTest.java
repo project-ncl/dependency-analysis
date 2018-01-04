@@ -15,6 +15,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 import java.io.File;
+import static org.apache.commons.io.FileUtils.readFileToString;
 
 public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
@@ -87,7 +88,11 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
         Response response = createClientRequest(PATH_SCM).post(
                 Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
 
+        final String actual = response.readEntity(String.class);
+        final String expected = readFileToString(jsonRequestFile);
+
         assertEquals(200, response.getStatus());
+        assertEqualsJson(expected, actual);
     }
 
     @Test
