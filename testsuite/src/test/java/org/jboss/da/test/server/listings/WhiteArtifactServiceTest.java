@@ -41,7 +41,7 @@ public class WhiteArtifactServiceTest extends AbstractServerTest {
         ArtifactStatus ret2 = was.addArtifact("foo", "bar", "1.0.0", pv.getId());
         assertEquals(ArtifactStatus.NOT_MODIFIED, ret2);
         ArtifactStatus ret3 = was.addArtifact("foo", "bar", "2.0.0", pv.getId());
-        assertEquals(ArtifactStatus.GA_EXISTS, ret3);
+        assertEquals(ArtifactStatus.ADDED, ret3);
     }
 
 }

@@ -163,9 +163,6 @@ public class Artifacts {
                 response.setSuccess(false);
                 response.setMessage("Could not found pom file in repository");
                 return Response.status(Status.NOT_FOUND).entity(response).build();
-            case GA_EXISTS:
-                response.setSuccess(false);
-                return Response.ok(response).build();
             default:
                 return Response
                         .status(Status.INTERNAL_SERVER_ERROR)
@@ -201,7 +198,6 @@ public class Artifacts {
                                     "Can't add artifact to whitelist, artifact is blacklisted",
                                     null)).build();
                 case NOT_MODIFIED:
-                case GA_EXISTS:
                     response.setSuccess(false);
                     return Response.ok(response).build();
                 default:

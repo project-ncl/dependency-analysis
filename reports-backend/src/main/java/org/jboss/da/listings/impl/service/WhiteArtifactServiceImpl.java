@@ -16,7 +16,6 @@ import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
 import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.WhiteArtifact;
-import static org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus.GA_EXISTS;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.model.rest.GAV;
@@ -65,10 +64,6 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
             return ArtifactStatus.NOT_MODIFIED;
         }
         final GA ga = artifact.getGa();
-
-        if (p.getWhiteArtifacts().stream().map(a -> a.getGa()).anyMatch(ga2 -> ga.equals(ga2))) {
-            return GA_EXISTS;
-        }
 
         p.addArtifact(artifact);
         productVersionDAO.update(p);

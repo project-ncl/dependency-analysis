@@ -17,7 +17,7 @@ public interface ArtifactService<T extends Artifact> {
     };
 
     public enum ArtifactStatus {
-        ADDED, NOT_MODIFIED, IS_BLACKLISTED, WAS_WHITELISTED, GA_EXISTS
+        ADDED, NOT_MODIFIED, IS_BLACKLISTED, WAS_WHITELISTED
     };
 
     /**

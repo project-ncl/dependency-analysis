@@ -61,9 +61,6 @@ public class WLFillerImpl implements WLFiller {
         } catch (ScmException | GalleyMavenException | PomAnalysisException e) {
             log.error(e.getMessage());
             return WLStatus.ANALYSER_ERROR;
-        } catch (GAExistsException ex) {
-            log.error("GA is already in product - " + ex.getGA());
-            return WLStatus.ANALYSER_ERROR;
         }
         return WLStatus.FILLED;
     }
@@ -87,9 +84,6 @@ public class WLFillerImpl implements WLFiller {
         } catch (CommunicationException | ConfigurationParseException | GalleyMavenException e) {
             log.error(e.getMessage());
             return WLStatus.ANALYSER_ERROR;
-        } catch (GAExistsException ex) {
-            log.error("GA is already in product - " + ex.getGA());
-            return WLStatus.GA_EXISTS;
         }
         return WLStatus.FILLED;
     }
@@ -109,8 +103,7 @@ public class WLFillerImpl implements WLFiller {
         return pom;
     }
 
-    private void fillWLFromPom(MavenPomView v, long productId) throws GalleyMavenException,
-            GAExistsException {
+    private void fillWLFromPom(MavenPomView v, long productId) throws GalleyMavenException {
         List<DependencyView> dependencies = v.getAllManagedDependencies();
         for (DependencyView d : dependencies) {
             GA ga = new GA(d.getGroupId(), d.getArtifactId());
@@ -122,7 +115,7 @@ public class WLFillerImpl implements WLFiller {
                 case NOT_MODIFIED:
                     break; //ok
                 default:
-                    throw new GAExistsException(ga.getGroupId() + "." + ga.getArtifactId());
+                    throw new IllegalStateException("Adition of artifact to product list failed. This shouldn't happen and is probably programming bug.");
             }
         }
     }
