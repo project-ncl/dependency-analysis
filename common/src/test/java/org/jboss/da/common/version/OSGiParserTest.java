@@ -26,18 +26,19 @@ public class OSGiParserTest {
 
     @Test
     public void testRedhatVersion() {
-        assertFalse(VersionParser.isRedhatVersion("1.1.Final"));
-        assertFalse(VersionParser.isRedhatVersion("1.1"));
-        assertTrue(VersionParser.isRedhatVersion("1.1.redhat-1"));
-        assertTrue(VersionParser.isRedhatVersion("1.1-redhat-1"));
-        assertFalse(VersionParser.isRedhatVersion("1.1"));
-        assertFalse(VersionParser.isRedhatVersion("1.1Final"));
-        assertFalse(VersionParser.isRedhatVersion("1.1.5CR4"));
-        assertFalse(VersionParser.isRedhatVersion("1.1."));
-        assertFalse(VersionParser.isRedhatVersion("1.1.CR4"));
-        assertFalse(VersionParser.isRedhatVersion("1.1-final"));
-        assertTrue(VersionParser.isRedhatVersion("1.1.0.final-redhat-1"));
-        assertTrue(VersionParser.isRedhatVersion("1.1-redhat-001"));
+        VersionParser versionParser = new VersionParser("redhat");
+        assertFalse(versionParser.isSuffixedVersion("1.1.Final"));
+        assertFalse(versionParser.isSuffixedVersion("1.1"));
+        assertTrue(versionParser.isSuffixedVersion("1.1.redhat-1"));
+        assertTrue(versionParser.isSuffixedVersion("1.1-redhat-1"));
+        assertFalse(versionParser.isSuffixedVersion("1.1"));
+        assertFalse(versionParser.isSuffixedVersion("1.1Final"));
+        assertFalse(versionParser.isSuffixedVersion("1.1.5CR4"));
+        assertFalse(versionParser.isSuffixedVersion("1.1."));
+        assertFalse(versionParser.isSuffixedVersion("1.1.CR4"));
+        assertFalse(versionParser.isSuffixedVersion("1.1-final"));
+        assertTrue(versionParser.isSuffixedVersion("1.1.0.final-redhat-1"));
+        assertTrue(versionParser.isSuffixedVersion("1.1-redhat-001"));
     }
 
 }

@@ -9,10 +9,23 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class VersionParser {
 
-    private static final String PATTERN_SUFFIX_BUILT_VERSION = "[.-]redhat-(\\d+)";
+    private static final String DEFAULT_SUFFIX = "redhat";
 
-    private static final Pattern redhatSuffixPattern = Pattern.compile(PATTERN_SUFFIX_BUILT_VERSION
-            + "$");
+    private final String suffix;
+
+    private final String suffixVersionPattern;
+
+    private final Pattern suffixPattern;
+
+    public VersionParser() {
+        this(DEFAULT_SUFFIX);
+    }
+
+    public VersionParser(String suffix) {
+        this.suffix = suffix;
+        this.suffixVersionPattern = "[.-]" + suffix + "-(\\d+)";
+        this.suffixPattern = Pattern.compile(suffixVersionPattern + "$");
+    }
 
     /**
      * Converts version to osgi compliant
@@ -21,14 +34,14 @@ public class VersionParser {
      * @return
      */
     public String getOSGiVersion(String version) {
-        if (isRedhatVersion(version)) {
+        if (isSuffixedVersion(version)) {
             return toOsgi(version);
         } else {
-            String osgiS = toOsgi(version + ".redhat");
-            if (osgiS.endsWith(".redhat"))
-                return osgiS.replace(".redhat", "");
+            String osgiS = toOsgi(version + "." + suffix);
+            if (osgiS.endsWith("." + suffix))
+                return osgiS.replace("." + suffix, "");
             else
-                return osgiS.replace("-redhat", "");
+                return osgiS.replace("-" + suffix, "");
         }
     }
 
@@ -43,17 +56,16 @@ public class VersionParser {
     }
 
     public String removeRedhatSuffix(String version) {
-        return redhatSuffixPattern.matcher(version).replaceFirst("");
+        return suffixPattern.matcher(version).replaceFirst("");
     }
 
     public Matcher getVersionMatcher(String version) {
         String nonRedhatVersion = removeRedhatSuffix(version);
-        return Pattern.compile(Pattern.quote(nonRedhatVersion) + PATTERN_SUFFIX_BUILT_VERSION)
-                .matcher("");
+        return Pattern.compile(Pattern.quote(nonRedhatVersion) + suffixVersionPattern).matcher("");
     }
 
-    public static boolean isRedhatVersion(String version) {
-        return redhatSuffixPattern.matcher(version).find();
+    public boolean isSuffixedVersion(String version) {
+        return suffixPattern.matcher(version).find();
     }
 
     private String toOsgi(String version) {
