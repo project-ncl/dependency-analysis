@@ -50,6 +50,8 @@ public class RepositoryProductProvider implements ProductProvider {
     @Inject
     private AproxConnector aproxConnector;
 
+    private VersionParser versionParser = new VersionParser();
+
     @Override
     public CompletableFuture<Set<Product>> getAllProducts() {
         return CompletableFuture.completedFuture(Collections.emptySet());
@@ -129,7 +131,7 @@ public class RepositoryProductProvider implements ProductProvider {
         }
         try {
             return aproxConnector.getVersionsOfGA(ga).stream()
-                    .filter(VersionParser::isRedhatVersion)
+                    .filter(versionParser::isSuffixedVersion)
                     .distinct();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
@@ -143,7 +145,7 @@ public class RepositoryProductProvider implements ProductProvider {
         }
         try {
             return aproxConnector.getVersionsOfGA(ga, repository).stream()
-                    .filter(VersionParser::isRedhatVersion)
+                    .filter(versionParser::isSuffixedVersion)
                     .distinct();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);

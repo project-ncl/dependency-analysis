@@ -71,7 +71,7 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     }
 
     private WhiteArtifact createArtifact(String groupId, String artifactId, String version) {
-        final boolean is3rdParty = !VersionParser.isRedhatVersion(version);
+        final boolean is3rdParty = !versionParser.isSuffixedVersion(version);
         final String osgiVersion = versionParser.getOSGiVersion(version);
 
         GA ga = gaDAO.findOrCreate(groupId, artifactId);
@@ -107,7 +107,7 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     	String osgi = versionParser.getOSGiVersion(version);
 
         List<WhiteArtifact> whites = new ArrayList<>();
-        if (VersionParser.isRedhatVersion(version)) {
+        if (versionParser.isSuffixedVersion(version)) {
             Optional<WhiteArtifact> origArtifact = whiteArtifactDAO
                     .findArtifact(groupId, artifactId, version);
             Optional<WhiteArtifact> osgiArtifact = whiteArtifactDAO.findArtifact(groupId,

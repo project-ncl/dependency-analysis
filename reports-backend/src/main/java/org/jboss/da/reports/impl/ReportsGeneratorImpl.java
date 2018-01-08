@@ -225,6 +225,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private void populateAdvancedArtifactReportFields(AdvancedArtifactReport advancedReport,
             ArtifactReport report, Set<GAV> modulesAnalyzed, File repoFolder) {
+        VersionParser parser = new VersionParser();
+
         for (ArtifactReport dep : report.getDependencies()) {
             final GAV gav = dep.getGav();
             if (modulesAnalyzed.contains(gav)) {
@@ -237,7 +239,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                         repoFolder);
             } else {
                 // only generate populate advanced report with community GAVs
-                if (VersionParser.isRedhatVersion(dep.getVersion()))
+                if (parser.isSuffixedVersion(dep.getVersion()))
                     continue;
 
                 // we have a top-level module dependency

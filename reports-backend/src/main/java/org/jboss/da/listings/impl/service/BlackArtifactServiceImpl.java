@@ -84,7 +84,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
         String osgiVersion = versionParser.getNonRedhatOSGiVersion(version);
         Optional<BlackArtifact> maybeArtifact = blackArtifactDAO.findArtifact(groupId, artifactId,
                 osgiVersion);
-        if (VersionParser.isRedhatVersion(version) && !maybeArtifact.isPresent()) {
+        if (versionParser.isSuffixedVersion(version) && !maybeArtifact.isPresent()) {
             maybeArtifact = blackArtifactDAO.findArtifact(groupId, artifactId, version);
         }
         return maybeArtifact;
@@ -120,13 +120,13 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     public Set<BlackArtifact> getArtifacts(String groupId, String artifactId) {
         List<BlackArtifact> artifacts = blackArtifactDAO.findArtifacts(groupId, artifactId);
         Set<GA> communityGAs = artifacts.stream()
-                .filter(a -> !VersionParser.isRedhatVersion(a.getVersion()))
+                .filter(a -> !versionParser.isSuffixedVersion(a.getVersion()))
                 .map(BlackArtifact::getGa)
                 .collect(Collectors.toSet());
 
         Comparator<BlackArtifact> baComparator = (a, b) -> VersionComparator.compareVersions(a.getVersion(), b.getVersion());
         return artifacts.stream()
-                .filter(a -> !(communityGAs.contains(a.getGa()) && VersionParser.isRedhatVersion(a.getVersion())))
+                .filter(a -> !(communityGAs.contains(a.getGa()) && versionParser.isSuffixedVersion(a.getVersion())))
                 .collect(Collectors.toCollection(() -> new TreeSet<>(baComparator)));
     }
 }
