@@ -424,6 +424,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
             throws CommunicationException{
+        final String versionSuffix = request.getVersionSuffix();
+        if(versionSuffix != null && !versionSuffix.isEmpty()){
+            productProvider.setVersionSuffix(versionSuffix);
+        }
 
         /** Get set of GAs */
         Set<GA> uniqueGAs = request.getGavs().stream().map(GAV::getGA).collect(Collectors.toSet());
