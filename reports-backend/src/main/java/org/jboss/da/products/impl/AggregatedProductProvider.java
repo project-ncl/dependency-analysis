@@ -6,10 +6,10 @@ import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
+import org.jboss.da.products.impl.DatabaseProductProvider.Database;
+import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Any;
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@ApplicationScoped
+//@RequestScoped // Should be Request scoped, but is Dependent until websockets support scopes
 public class AggregatedProductProvider implements ProductProvider {
 
     public static Set<ProductArtifacts> filterArtifacts(Set<ProductArtifacts> artifacts,
@@ -61,8 +61,12 @@ public class AggregatedProductProvider implements ProductProvider {
     // known product, it's removed from the unknown
 
     @Inject
-    @Any
-    private Instance<ProductProvider> productProviders;
+    @Database
+    ProductProvider databaseProductProvider;
+
+    @Inject
+    @Repository
+    RepositoryProductProvider repositoryProductProvider;
 
     @Override
     public CompletableFuture<Set<Product>> getAllProducts() {
@@ -106,13 +110,10 @@ public class AggregatedProductProvider implements ProductProvider {
 
     private <R> CompletableFuture<R> aggregate(Function<ProductProvider, Future<R>> getter, Collector<? super R, ?, R> collector){
         final List<Future<R>> results = new ArrayList<>();
-        for (ProductProvider productProvider : productProviders) {
-            if (productProvider instanceof AggregatedProductProvider)
-                continue;
-            results.add(getter.apply(productProvider));
-        }
 
-        
+        results.add(getter.apply(databaseProductProvider));
+        results.add(getter.apply(repositoryProductProvider));
+
         CompletableFuture<R> ret = new CompletableFuture<>();
         // After all are completed, accumulate the results together
         CompletableFuture.runAsync(() -> {

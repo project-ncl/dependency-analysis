@@ -14,8 +14,6 @@ import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.slf4j.Logger;
 
-import javax.ejb.Asynchronous;
-import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
@@ -39,7 +37,6 @@ import java.util.stream.Stream;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@Stateless
 @Repository
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class RepositoryProductProvider implements ProductProvider {
@@ -73,33 +70,29 @@ public class RepositoryProductProvider implements ProductProvider {
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga) {
-        return CompletableFuture.completedFuture(getArtifacts0(ga));
+        return CompletableFuture.supplyAsync(() -> getArtifacts0(ga));
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<ProductArtifacts>> getArtifactsFromRepository(GA ga,
             String repository) {
-        return CompletableFuture.completedFuture(getArtifacts0(ga, repository));
+        return CompletableFuture.supplyAsync(() -> getArtifacts0(ga, repository));
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status) {
         if (status != UNKNOWN) {
             return CompletableFuture.completedFuture(Collections.emptySet());
         }
-        return CompletableFuture.completedFuture(getArtifacts0(ga));
+        return CompletableFuture.supplyAsync(() -> getArtifacts0(ga));
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Map<Product, Set<String>>> getVersions(GA ga) {
-        Set<String> redhatVersions = getVersionsStream(ga).collect(Collectors.toSet());
-        return CompletableFuture.completedFuture(Collections.singletonMap(Product.UNKNOWN,
-                redhatVersions));
+        CompletableFuture<Set<String>> versions = CompletableFuture
+                .supplyAsync(() -> getVersionsStream(ga).collect(Collectors.toSet()));
+        return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN,rv));
     }
 
     private Set<ProductArtifacts> getArtifacts0(GA ga) {

@@ -13,8 +13,6 @@ import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.DatabaseProductProvider.Database;
 
-import javax.ejb.Asynchronous;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Qualifier;
 
@@ -31,13 +29,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@Stateless
 @Database
 public class DatabaseProductProvider implements ProductProvider {
 
@@ -45,71 +43,58 @@ public class DatabaseProductProvider implements ProductProvider {
     private ProductVersionDAO productVersionDAO;
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<Product>> getAllProducts() {
-        return toProducts(productVersionDAO.findAll());
+        return getProductsAsync(() -> productVersionDAO.findAll());
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<Product>> getProductsByName(String name) {
-        return toProducts(productVersionDAO.findProductVersionsWithProduct(name));
+        return getProductsAsync(() -> productVersionDAO.findProductVersionsWithProduct(name));
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<Product>> getProductsByStatus(ProductSupportStatus status) {
-        return toProducts(productVersionDAO.findProductVersionsWithArtifactsByStatus(status));
+        return getProductsAsync(() -> productVersionDAO.findProductVersionsWithArtifactsByStatus(status));
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<Artifact>> getArtifacts(Product product) {
-        Set<Artifact> ret = productVersionDAO.findProductVersion(product.getName(), product.getVersion())
+        return CompletableFuture.supplyAsync(() -> _getArtifacts(product));
+    }
+
+    private Set<Artifact> _getArtifacts(Product product) {
+        return productVersionDAO.findProductVersion(product.getName(), product.getVersion())
                 .map(ProductVersion::getWhiteArtifacts)
                 .orElseGet(Collections::emptySet).stream()
                 .map(DatabaseProductProvider::toArtifact)
                 .collect(Collectors.toSet());
-
-        return CompletableFuture.completedFuture(ret);
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga) {
-        Set<ProductArtifacts> ret = getArtifacts(ga.getGroupId(), ga.getArtifactId(),
-                Optional.empty());
-
-        return CompletableFuture.completedFuture(ret);
+        return CompletableFuture.supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(),
+                Optional.empty()));
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<ProductArtifacts>> getArtifactsFromRepository(GA ga,
             String repository) {
         return getArtifacts(ga);
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status) {
-        Set<ProductArtifacts> ret = getArtifacts(ga.getGroupId(), ga.getArtifactId(),
-                Optional.of(status));
-
-        return CompletableFuture.completedFuture(ret);
+        return CompletableFuture.supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(),
+                Optional.of(status)));
     }
 
     @Override
-    @Asynchronous
     public CompletableFuture<Map<Product, Set<String>>> getVersions(GA ga) {
-        Map<Product, Set<String>> ret = getArtifacts(ga.getGroupId(), ga.getArtifactId(), Optional.empty())
-                .stream()
+        return CompletableFuture.supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(), Optional.empty()).stream()
                 .collect(Collectors.toMap(ProductArtifacts::getProduct,
-                        x -> x.getArtifacts().stream()
+                                x -> x.getArtifacts().stream()
                                 .map(y -> y.getGav().getVersion())
-                                .collect(Collectors.toSet())));
-        
-        return CompletableFuture.completedFuture(ret);
+                                .collect(Collectors.toSet()))));
     }
 
     private Set<ProductArtifacts> getArtifacts(final String groupId, final String artifactId, final Optional<ProductSupportStatus> st) {
@@ -118,8 +103,8 @@ public class DatabaseProductProvider implements ProductProvider {
                 .collect(Collectors.toSet());
     }
 
-    private CompletableFuture<Set<Product>> toProducts(final Collection<ProductVersion> products) {
-        return CompletableFuture.completedFuture(products.stream()
+    private CompletableFuture<Set<Product>> getProductsAsync(final Supplier<Collection<ProductVersion>> productsSupplier) {
+        return CompletableFuture.supplyAsync(productsSupplier).thenApply(pvs -> pvs.stream()
                 .map(DatabaseProductProvider::toProduct)
                 .collect(Collectors.toSet()));
     }
