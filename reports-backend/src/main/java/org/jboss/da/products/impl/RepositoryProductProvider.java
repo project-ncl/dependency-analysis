@@ -49,6 +49,10 @@ public class RepositoryProductProvider implements ProductProvider {
 
     private VersionParser versionParser = new VersionParser();
 
+    public void setVersionSuffix(String suffix) {
+        this.versionParser = new VersionParser(suffix);
+    }
+
     @Override
     public CompletableFuture<Set<Product>> getAllProducts() {
         return CompletableFuture.completedFuture(Collections.emptySet());

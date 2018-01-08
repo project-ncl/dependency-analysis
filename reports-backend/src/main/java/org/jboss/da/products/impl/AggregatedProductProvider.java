@@ -108,6 +108,10 @@ public class AggregatedProductProvider implements ProductProvider {
         return aggregate(x -> x.getVersions(ga), new MapCol<>(AggregatedProductProvider::combineSets));
     }
 
+    public void setVersionSuffix(String suffix) {
+        repositoryProductProvider.setVersionSuffix(suffix);
+    }
+
     private <R> CompletableFuture<R> aggregate(Function<ProductProvider, Future<R>> getter, Collector<? super R, ?, R> collector){
         final List<Future<R>> results = new ArrayList<>();
 

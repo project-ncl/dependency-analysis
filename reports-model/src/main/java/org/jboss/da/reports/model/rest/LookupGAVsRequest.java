@@ -33,6 +33,9 @@ public class LookupGAVsRequest {
     private String repositoryGroup;
 
     @Getter
+    private String versionSuffix;
+
+    @Getter
     @NonNull
     private List<GAV> gavs;
 
