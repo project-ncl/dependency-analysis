@@ -115,7 +115,8 @@ public class WLFillerImpl implements WLFiller {
                 case NOT_MODIFIED:
                     break; //ok
                 default:
-                    throw new IllegalStateException("Adition of artifact to product list failed. This shouldn't happen and is probably programming bug.");
+                    throw new IllegalStateException(
+                            "Adition of artifact to product list failed. This shouldn't happen and is probably programming bug.");
             }
         }
     }
