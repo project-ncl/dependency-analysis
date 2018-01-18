@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
 import org.json.JSONException;
 import static org.junit.Assert.fail;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -82,10 +83,13 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
     @Test
     public void testScmOptionalRepository() throws Exception {
+        final String repo = System.getenv("DA_hosted_repo");
+        Assume.assumeTrue(repo != null);
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, "keycloak-1.6.0.Final");
+        String json = FileUtils.readFileToString(jsonRequestFile, ENCODING);
+        json = json.replace("${DA-hosted-repo}", repo);
 
-        Response response = createClientRequest(PATH_SCM).post(
-                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
+        Response response = createClientRequest(PATH_SCM).post(Entity.json(json));
 
         assertEquals(200, response.getStatus());
     }
