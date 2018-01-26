@@ -70,9 +70,23 @@ public class AproxConnectorImpl implements AproxConnector {
             connection.setConnectTimeout(config.getAproxRequestTimeout());
 
             int retry = 0;
-            while (connection.getResponseCode() == 504 && retry < 5) {
-                connection = (HttpURLConnection) new URL(query.toString()).openConnection();
+            while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
+                    && retry < 2) {
+
+                log.warn("Connection to: {} failed with status: {}. retrying...", query.toString(),
+                        connection.getResponseCode());
+
                 retry++;
+
+                try {
+                    // Wait before retrying using Exponential back-off: 200ms, 400ms
+                    Thread.sleep((long) Math.pow(2, retry) * 100L);
+                } catch (InterruptedException e) {
+                    log.error(e.getMessage());
+                }
+
+                connection = (HttpURLConnection) new URL(query.toString()).openConnection();
+                connection.setConnectTimeout(config.getAproxRequestTimeout());
             }
 
             final List<String> versions = parseMetadataFile(connection).getVersioning()
