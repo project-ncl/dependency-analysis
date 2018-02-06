@@ -68,6 +68,7 @@ public class AproxConnectorImpl implements AproxConnector {
             HttpURLConnection connection = (HttpURLConnection) new URL(query.toString())
                     .openConnection();
             connection.setConnectTimeout(config.getAproxRequestTimeout());
+            connection.setReadTimeout(config.getAproxRequestTimeout());
 
             int retry = 0;
             while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
@@ -87,6 +88,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
                 connection = (HttpURLConnection) new URL(query.toString()).openConnection();
                 connection.setConnectTimeout(config.getAproxRequestTimeout());
+                connection.setReadTimeout(config.getAproxRequestTimeout());
             }
 
             final List<String> versions = parseMetadataFile(connection).getVersioning()
