@@ -279,6 +279,20 @@ public class ReportsGeneratorImplTest {
         assertTrue(uniqueGAVs.equals(distinctList));
     }
 
+    @Test
+    public void testBlacklistedLookupReport() throws CommunicationException,
+            FindGAVDependencyException {
+        prepare(Collections.emptyList(), true, daCoreVersionsBest, null, daCoreNoDT);
+        LookupGAVsRequest lgr = new LookupGAVsRequest(Collections.singletonList(daCoreGAV));
+
+        List<LookupReport> lookupReportsForGavs = generator.getLookupReportsForGavs(lgr);
+
+        assertNotNull(lookupReportsForGavs);
+        assertEquals(1, lookupReportsForGavs.size());
+        LookupReport lookupReport = lookupReportsForGavs.get(0);
+        assertTrue(lookupReport.isBlacklisted());
+    }
+
     private void assertMultipleDependencies(Set<ArtifactReport> deps) {
         assertEquals(2, deps.size());
 

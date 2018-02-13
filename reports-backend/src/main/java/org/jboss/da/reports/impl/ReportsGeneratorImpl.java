@@ -479,6 +479,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             futures.add(artifacts.thenAccept(pas -> {
                 lr.setWhitelisted(toWhitelisted(pas));
             }));
+            lr.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
         });
 
         joinFutures(futures);
