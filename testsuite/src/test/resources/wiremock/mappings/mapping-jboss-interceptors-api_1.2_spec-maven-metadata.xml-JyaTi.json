@@ -1,7 +1,7 @@
 {
   "id" : "d764a004-c8f6-3d74-b215-68c04462c7dc",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/spec/javax/interceptor/jboss-interceptors-api_1.2_spec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/spec/javax/interceptor/jboss-interceptors-api_1.2_spec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

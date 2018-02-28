@@ -1,7 +1,7 @@
 {
   "id" : "b9058d42-3036-3b03-8f7e-c7f4ed6f59bf",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/remoting3/jboss-remoting/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/remoting3/jboss-remoting/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "be14dd98-fa6e-392b-8167-75c300027f6f",
   "request" : {
-    "url" : "/api/group/test-DA/org/kie/remote/kie-remote-client/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/kie/remote/kie-remote-client/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

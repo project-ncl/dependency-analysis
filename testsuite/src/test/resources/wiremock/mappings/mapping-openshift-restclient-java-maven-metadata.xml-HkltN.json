@@ -1,7 +1,7 @@
 {
   "id" : "30928a15-b31f-34ba-95e5-ff72c8ca5c03",
   "request" : {
-    "url" : "/api/group/test-DA/com/openshift/openshift-restclient-java/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/openshift/openshift-restclient-java/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

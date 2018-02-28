@@ -1,7 +1,7 @@
 {
   "id" : "c7f518b2-0b93-39e5-a181-ae49c07b3ec4",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/marshalling/jboss-marshalling-serial/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/marshalling/jboss-marshalling-serial/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

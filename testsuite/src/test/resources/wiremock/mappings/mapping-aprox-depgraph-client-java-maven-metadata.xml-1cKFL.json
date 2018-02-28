@@ -1,7 +1,7 @@
 {
   "id" : "0264a5af-fdf2-3758-875d-52fb6f678984",
   "request" : {
-    "url" : "/api/group/test-DA/org/commonjava/aprox/aprox-depgraph-client-java/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/commonjava/aprox/aprox-depgraph-client-java/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

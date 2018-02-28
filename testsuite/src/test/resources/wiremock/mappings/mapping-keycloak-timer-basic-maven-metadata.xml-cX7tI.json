@@ -1,7 +1,7 @@
 {
   "id" : "1258becf-751b-3680-8300-079fd62e7bd1",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-timer-basic/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-timer-basic/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

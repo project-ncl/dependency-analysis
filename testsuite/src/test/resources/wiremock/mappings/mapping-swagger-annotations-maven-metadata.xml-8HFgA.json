@@ -1,7 +1,7 @@
 {
   "id" : "87e8693d-4d33-396a-894a-4b02093051aa",
   "request" : {
-    "url" : "/api/group/test-DA/io/swagger/swagger-annotations/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/io/swagger/swagger-annotations/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

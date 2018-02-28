@@ -1,7 +1,7 @@
 {
   "id" : "433cf396-dccc-34a7-84f3-1b0df4ff7238",
   "request" : {
-    "url" : "/api/group/test-DA/com/vividsolutions/jts/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/vividsolutions/jts/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

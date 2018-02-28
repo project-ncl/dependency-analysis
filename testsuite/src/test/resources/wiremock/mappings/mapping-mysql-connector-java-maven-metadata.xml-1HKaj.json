@@ -1,7 +1,7 @@
 {
   "id" : "621fc965-9f4b-3fbd-a173-759dbd76d0ad",
   "request" : {
-    "url" : "/api/group/test-DA/mysql/mysql-connector-java/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/mysql/mysql-connector-java/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

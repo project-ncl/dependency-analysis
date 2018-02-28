@@ -1,7 +1,7 @@
 {
   "id" : "53e3062e-c86d-3489-850d-e3bf4ee962df",
   "request" : {
-    "url" : "/api/group/test-DA/com/sun/xml/fastinfoset/FastInfoset/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/sun/xml/fastinfoset/FastInfoset/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

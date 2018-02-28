@@ -1,7 +1,7 @@
 {
   "id" : "7d0985e9-a1b7-34d7-a2b2-aef934187e56",
   "request" : {
-    "url" : "/api/group/test-DA/org/slf4j/jcl-over-slf4j/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/slf4j/jcl-over-slf4j/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

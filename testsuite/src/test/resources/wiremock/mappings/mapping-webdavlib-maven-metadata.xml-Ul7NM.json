@@ -1,7 +1,7 @@
 {
   "id" : "1d6f5335-d7c0-35f4-bcfd-2979e75e1db6",
   "request" : {
-    "url" : "/api/group/test-DA/slide/webdavlib/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/slide/webdavlib/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

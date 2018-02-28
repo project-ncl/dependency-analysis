@@ -1,7 +1,7 @@
 {
   "id" : "7d8efb1c-df77-316c-8f32-c54668d0317d",
   "request" : {
-    "url" : "/api/group/test-DA/org/hibernate/hibernate-commons-annotations/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hibernate/hibernate-commons-annotations/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

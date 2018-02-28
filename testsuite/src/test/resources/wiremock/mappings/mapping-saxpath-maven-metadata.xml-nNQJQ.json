@@ -1,7 +1,7 @@
 {
   "id" : "9b610cfd-7b98-369c-b5c1-d41021862a04",
   "request" : {
-    "url" : "/api/group/test-DA/org/jdom/saxpath/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jdom/saxpath/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

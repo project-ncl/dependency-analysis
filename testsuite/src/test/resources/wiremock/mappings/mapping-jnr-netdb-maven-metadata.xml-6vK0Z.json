@@ -1,7 +1,7 @@
 {
   "id" : "80ced3a0-537d-3005-ab1b-284d6630ee86",
   "request" : {
-    "url" : "/api/group/test-DA/com/github/jnr/jnr-netdb/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/github/jnr/jnr-netdb/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

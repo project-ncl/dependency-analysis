@@ -1,7 +1,7 @@
 {
   "id" : "5ce1325d-4656-333a-b49c-e0cbceda62c7",
   "request" : {
-    "url" : "/api/group/test-DA/org/xerial/sqlite-jdbc/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/xerial/sqlite-jdbc/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

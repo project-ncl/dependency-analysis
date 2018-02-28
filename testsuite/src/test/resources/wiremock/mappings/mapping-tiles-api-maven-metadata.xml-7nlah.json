@@ -1,7 +1,7 @@
 {
   "id" : "b69a94ac-1532-3935-aabb-91f2f9d2624b",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/tiles/tiles-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/tiles/tiles-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

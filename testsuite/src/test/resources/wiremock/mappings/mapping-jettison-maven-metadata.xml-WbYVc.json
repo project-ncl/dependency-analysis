@@ -1,7 +1,7 @@
 {
   "id" : "644667f6-82ce-3a43-9a97-f964e18aed63",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/jettison/jettison/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/jettison/jettison/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

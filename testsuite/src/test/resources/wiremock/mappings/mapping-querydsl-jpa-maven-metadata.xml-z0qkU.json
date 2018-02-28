@@ -1,7 +1,7 @@
 {
   "id" : "94bafb9c-74e6-3dd0-a805-d451bc4c0c0d",
   "request" : {
-    "url" : "/api/group/test-DA/com/mysema/querydsl/querydsl-jpa/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/mysema/querydsl/querydsl-jpa/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

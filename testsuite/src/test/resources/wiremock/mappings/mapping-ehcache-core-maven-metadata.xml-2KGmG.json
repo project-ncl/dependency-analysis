@@ -1,7 +1,7 @@
 {
   "id" : "5a286e2f-b749-3b74-9703-ebb3cd35268a",
   "request" : {
-    "url" : "/api/group/test-DA/net/sf/ehcache/ehcache-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sf/ehcache/ehcache-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

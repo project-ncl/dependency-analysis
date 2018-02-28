@@ -1,7 +1,7 @@
 {
   "id" : "c2df456e-4047-3225-8c64-bf833392e0de",
   "request" : {
-    "url" : "/api/group/test-DA/org/twitter4j/twitter4j-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/twitter4j/twitter4j-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

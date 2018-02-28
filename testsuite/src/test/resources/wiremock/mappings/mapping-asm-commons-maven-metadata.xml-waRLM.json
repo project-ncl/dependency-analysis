@@ -1,7 +1,7 @@
 {
   "id" : "911e59c0-b898-3e7e-a0d6-906050983b50",
   "request" : {
-    "url" : "/api/group/test-DA/org/ow2/asm/asm-commons/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/ow2/asm/asm-commons/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

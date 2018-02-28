@@ -1,7 +1,7 @@
 {
   "id" : "c473063e-23ae-3c83-b693-840ff391de14",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/ws/xmlschema/xmlschema-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/ws/xmlschema/xmlschema-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

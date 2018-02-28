@@ -1,7 +1,7 @@
 {
   "id" : "afc90f28-ca33-3e3d-b966-88c94c45ebd4",
   "request" : {
-    "url" : "/api/group/test-DA/com/sun/jersey/jersey-servlet/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/sun/jersey/jersey-servlet/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

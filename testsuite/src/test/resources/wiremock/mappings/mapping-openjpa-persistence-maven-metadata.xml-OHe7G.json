@@ -1,7 +1,7 @@
 {
   "id" : "f8c22a75-190e-3929-92ae-8db63f9002e8",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/openjpa/openjpa-persistence/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/openjpa/openjpa-persistence/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

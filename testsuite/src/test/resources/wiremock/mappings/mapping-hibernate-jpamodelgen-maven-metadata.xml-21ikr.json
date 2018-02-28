@@ -1,7 +1,7 @@
 {
   "id" : "fd44c389-be16-31bf-8961-7422356a57de",
   "request" : {
-    "url" : "/api/group/test-DA/org/hibernate/hibernate-jpamodelgen/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hibernate/hibernate-jpamodelgen/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

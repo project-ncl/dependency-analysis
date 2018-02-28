@@ -1,7 +1,7 @@
 {
   "id" : "0139a3e1-28fd-369f-81f1-d9b9b58d5398",
   "request" : {
-    "url" : "/api/group/test-DA/org/mockito/mockito-all/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/mockito/mockito-all/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

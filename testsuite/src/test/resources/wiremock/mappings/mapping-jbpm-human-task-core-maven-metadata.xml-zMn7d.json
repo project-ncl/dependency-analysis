@@ -1,7 +1,7 @@
 {
   "id" : "408b87b8-6711-35d8-87dc-5b9a60f8e7b4",
   "request" : {
-    "url" : "/api/group/test-DA/org/jbpm/jbpm-human-task-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jbpm/jbpm-human-task-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

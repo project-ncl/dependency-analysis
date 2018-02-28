@@ -1,7 +1,7 @@
 {
   "id" : "1cbfbb92-8933-349f-9200-e8d3742762b5",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/tiles/tiles-ognl/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/tiles/tiles-ognl/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

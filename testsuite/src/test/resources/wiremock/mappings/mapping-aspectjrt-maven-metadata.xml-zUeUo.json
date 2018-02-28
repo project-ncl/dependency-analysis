@@ -1,7 +1,7 @@
 {
   "id" : "eeb058f8-56c3-3961-b153-b2661a0eac70",
   "request" : {
-    "url" : "/api/group/test-DA/org/aspectj/aspectjrt/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/aspectj/aspectjrt/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

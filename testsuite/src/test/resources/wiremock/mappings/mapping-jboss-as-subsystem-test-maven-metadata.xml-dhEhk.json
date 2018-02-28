@@ -1,7 +1,7 @@
 {
   "id" : "33f1d7d3-3c5a-38d0-834d-855991cd41ed",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-subsystem-test/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/as/jboss-as-subsystem-test/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

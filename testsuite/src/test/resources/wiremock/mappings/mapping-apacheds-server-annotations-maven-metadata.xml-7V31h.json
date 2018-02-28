@@ -1,7 +1,7 @@
 {
   "id" : "9de29602-81d6-3faf-a392-031761974eb5",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/directory/server/apacheds-server-annotations/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/directory/server/apacheds-server-annotations/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

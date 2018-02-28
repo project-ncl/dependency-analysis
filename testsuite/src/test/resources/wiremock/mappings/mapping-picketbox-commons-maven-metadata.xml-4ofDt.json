@@ -1,7 +1,7 @@
 {
   "id" : "d561690e-65e8-31e6-84d6-df55c01ca8b7",
   "request" : {
-    "url" : "/api/group/test-DA/org/picketbox/picketbox-commons/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/picketbox/picketbox-commons/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "838f3793-f96c-3305-8304-0442abc53cce",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/pnc/ui/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/pnc/ui/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

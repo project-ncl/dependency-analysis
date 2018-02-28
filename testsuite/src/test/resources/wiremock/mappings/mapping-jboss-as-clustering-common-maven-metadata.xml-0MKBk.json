@@ -1,7 +1,7 @@
 {
   "id" : "800c06b0-5e80-38e4-8a80-46473fa05ef7",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-clustering-common/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/as/jboss-as-clustering-common/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

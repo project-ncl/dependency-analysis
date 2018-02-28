@@ -1,7 +1,7 @@
 {
   "id" : "7737040f-e6f0-366a-bce8-558d0991546f",
   "request" : {
-    "url" : "/api/group/test-DA/org/jacorb/jacorb/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jacorb/jacorb/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

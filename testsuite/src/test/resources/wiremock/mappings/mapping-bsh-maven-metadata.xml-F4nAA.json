@@ -1,7 +1,7 @@
 {
   "id" : "073ca5ed-ba16-395d-9f20-c4cccca3a538",
   "request" : {
-    "url" : "/api/group/test-DA/org/beanshell/bsh/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/beanshell/bsh/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

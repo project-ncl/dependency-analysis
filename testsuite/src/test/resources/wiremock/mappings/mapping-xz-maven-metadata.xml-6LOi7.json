@@ -1,7 +1,7 @@
 {
   "id" : "8bb62ea7-3790-3d37-817a-ea8c4e1bfb87",
   "request" : {
-    "url" : "/api/group/test-DA/org/tukaani/xz/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/tukaani/xz/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

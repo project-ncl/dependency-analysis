@@ -1,7 +1,7 @@
 {
   "id" : "2dc8b894-359c-3a9a-a098-148b0bf5d047",
   "request" : {
-    "url" : "/api/group/test-DA/biz/aQute/bnd/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/biz/aQute/bnd/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

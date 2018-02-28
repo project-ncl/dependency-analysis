@@ -1,7 +1,7 @@
 {
   "id" : "44640e72-d402-314b-8a4c-1bbc2adb21df",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/geronimo/modules/geronimo-transaction/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/geronimo/modules/geronimo-transaction/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

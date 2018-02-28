@@ -1,7 +1,7 @@
 {
   "id" : "6ee7e486-2df4-3e9a-988f-6687d17a9535",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/woodstox/stax2-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/woodstox/stax2-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

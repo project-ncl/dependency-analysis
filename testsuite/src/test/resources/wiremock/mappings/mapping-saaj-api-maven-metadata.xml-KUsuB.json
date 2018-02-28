@@ -1,7 +1,7 @@
 {
   "id" : "f655c994-0c85-39cd-b410-a9142b7ba1eb",
   "request" : {
-    "url" : "/api/group/test-DA/javax/xml/soap/saaj-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/xml/soap/saaj-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "99137d77-ca98-3b19-9944-3d8095a55b04",
   "request" : {
-    "url" : "/api/group/test-DA/javax/enterprise/cdi-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/enterprise/cdi-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

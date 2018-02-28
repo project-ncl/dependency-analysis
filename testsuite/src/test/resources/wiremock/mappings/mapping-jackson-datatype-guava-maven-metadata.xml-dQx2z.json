@@ -1,7 +1,7 @@
 {
   "id" : "367390ff-f62b-37b2-b28b-578bb0555b44",
   "request" : {
-    "url" : "/api/group/test-DA/com/fasterxml/jackson/datatype/jackson-datatype-guava/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/fasterxml/jackson/datatype/jackson-datatype-guava/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "b00e5d03-b4fb-3dc1-a8f7-d7634b630f77",
   "request" : {
-    "url" : "/api/group/test-DA/xalan/xalan/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/xalan/xalan/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "68e63216-73d2-3580-b72f-7e88ec0a491b",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-clustering-infinispan/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/as/jboss-as-clustering-infinispan/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

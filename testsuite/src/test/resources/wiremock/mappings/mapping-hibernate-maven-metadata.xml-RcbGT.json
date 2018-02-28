@@ -1,7 +1,7 @@
 {
   "id" : "bb3f8ca8-535b-3cb2-a9c6-f7512bd389b8",
   "request" : {
-    "url" : "/api/group/test-DA/net/sf/hibernate/hibernate/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sf/hibernate/hibernate/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

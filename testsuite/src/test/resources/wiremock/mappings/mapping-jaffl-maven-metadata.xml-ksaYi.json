@@ -1,7 +1,7 @@
 {
   "id" : "ff741105-bb31-370e-93ca-34f5440ca13e",
   "request" : {
-    "url" : "/api/group/test-DA/org/jruby/extras/jaffl/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jruby/extras/jaffl/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

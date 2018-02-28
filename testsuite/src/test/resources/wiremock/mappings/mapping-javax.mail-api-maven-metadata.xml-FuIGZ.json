@@ -1,7 +1,7 @@
 {
   "id" : "b7fe7657-b1ec-3332-8a23-5bb5db7fc240",
   "request" : {
-    "url" : "/api/group/test-DA/javax/mail/javax.mail-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/mail/javax.mail-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

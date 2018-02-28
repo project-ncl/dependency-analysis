@@ -1,7 +1,7 @@
 {
   "id" : "13bf290e-0e2e-3975-86e0-801c9ea98681",
   "request" : {
-    "url" : "/api/group/test-DA/javax/transaction/javax.transaction-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/transaction/javax.transaction-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

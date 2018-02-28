@@ -1,7 +1,7 @@
 {
   "id" : "aca60b37-2e3d-34bb-b7fd-0c6fa6484ecd",
   "request" : {
-    "url" : "/api/group/test-DA/commons-vfs/commons-vfs/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/commons-vfs/commons-vfs/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

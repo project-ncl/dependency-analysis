@@ -1,7 +1,7 @@
 {
   "id" : "81747daa-6bd4-3216-b6cc-0fcd5b68b797",
   "request" : {
-    "url" : "/api/group/test-DA/org/ops4j/pax/url/pax-url-aether/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/ops4j/pax/url/pax-url-aether/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

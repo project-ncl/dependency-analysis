@@ -1,7 +1,7 @@
 {
   "id" : "cbee5c12-d52f-3c1f-8898-da7e1d55781b",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-wildfly-extensions/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-wildfly-extensions/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

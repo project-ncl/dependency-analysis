@@ -1,7 +1,7 @@
 {
   "id" : "6532aae9-57bd-349c-b009-3936eee93770",
   "request" : {
-    "url" : "/api/group/test-DA/org/jvnet/hudson/xstream/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jvnet/hudson/xstream/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

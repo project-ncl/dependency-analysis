@@ -1,7 +1,7 @@
 {
   "id" : "201021bf-ecdd-38e5-b01c-8094373291bf",
   "request" : {
-    "url" : "/api/group/test-DA/rome/rome/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/rome/rome/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

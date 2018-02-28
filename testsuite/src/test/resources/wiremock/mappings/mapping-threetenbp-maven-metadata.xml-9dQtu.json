@@ -1,7 +1,7 @@
 {
   "id" : "5e1cfaf7-f864-3ca1-a31b-9d1d579eea37",
   "request" : {
-    "url" : "/api/group/test-DA/org/threeten/threetenbp/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/threeten/threetenbp/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

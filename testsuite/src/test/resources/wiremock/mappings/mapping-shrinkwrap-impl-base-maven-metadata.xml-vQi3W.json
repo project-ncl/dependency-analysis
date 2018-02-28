@@ -1,7 +1,7 @@
 {
   "id" : "9716b468-c7a7-303f-a78c-b0e1edb2faf2",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/shrinkwrap/shrinkwrap-impl-base/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/shrinkwrap/shrinkwrap-impl-base/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

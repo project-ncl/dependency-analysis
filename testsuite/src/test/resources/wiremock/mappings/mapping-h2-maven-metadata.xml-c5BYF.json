@@ -1,7 +1,7 @@
 {
   "id" : "523c2ddd-2d49-3756-85b3-1d7dc280271a",
   "request" : {
-    "url" : "/api/group/test-DA/com/h2database/h2/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/h2database/h2/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

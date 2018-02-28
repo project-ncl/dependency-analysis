@@ -1,7 +1,7 @@
 {
   "id" : "9af9d82e-4365-301c-84a5-75e285e6f786",
   "request" : {
-    "url" : "/api/group/test-DA/org/fusesource/jansi/jansi/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/fusesource/jansi/jansi/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "0ed0528f-6a76-3c38-ae42-c31309a37e62",
   "request" : {
-    "url" : "/api/group/test-DA/concurrent/concurrent/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/concurrent/concurrent/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

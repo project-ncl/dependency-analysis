@@ -1,7 +1,7 @@
 {
   "id" : "0f40a37d-1900-38a3-8fd6-f33550e2e776",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-events-email/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-events-email/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

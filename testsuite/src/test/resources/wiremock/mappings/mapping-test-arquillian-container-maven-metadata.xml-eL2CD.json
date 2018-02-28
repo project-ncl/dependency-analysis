@@ -1,7 +1,7 @@
 {
   "id" : "4d99a96d-26c4-3d7d-a16b-8b7986716cf3",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/pnc/test-arquillian-container/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/pnc/test-arquillian-container/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

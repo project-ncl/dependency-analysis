@@ -1,7 +1,7 @@
 {
   "id" : "36acb363-93c5-3a34-84c4-1a5a2c9083ac",
   "request" : {
-    "url" : "/api/group/test-DA/javax/enterprise/concurrent/javax.enterprise.concurrent-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/enterprise/concurrent/javax.enterprise.concurrent-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

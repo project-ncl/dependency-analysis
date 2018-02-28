@@ -1,7 +1,7 @@
 {
   "id" : "13891167-7de0-3446-b7c3-16cc6a435643",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/ws/commons/axiom/axiom-dom/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/ws/commons/axiom/axiom-dom/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "fb8f387d-07d2-3efc-aae8-31c3cedaaaf2",
   "request" : {
-    "url" : "/api/group/test-DA/bouncycastle/bcmail-jdk14/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/bouncycastle/bcmail-jdk14/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

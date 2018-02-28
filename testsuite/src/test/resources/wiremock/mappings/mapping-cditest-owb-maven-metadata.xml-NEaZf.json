@@ -1,7 +1,7 @@
 {
   "id" : "7fef3ecc-4e4f-332a-a2b5-eefe8c504ed0",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/openwebbeans/test/cditest-owb/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/openwebbeans/test/cditest-owb/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

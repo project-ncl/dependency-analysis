@@ -1,7 +1,7 @@
 {
   "id" : "214c9bd3-d60a-37a4-877a-8058458a4e55",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/directory/studio/org.apache.commons.collections/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/directory/studio/org.apache.commons.collections/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

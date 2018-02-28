@@ -1,7 +1,7 @@
 {
   "id" : "de713dec-2285-3ee2-8f1f-761ea76b9b6f",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/geronimo/specs/geronimo-javamail_1.4_spec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/geronimo/specs/geronimo-javamail_1.4_spec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

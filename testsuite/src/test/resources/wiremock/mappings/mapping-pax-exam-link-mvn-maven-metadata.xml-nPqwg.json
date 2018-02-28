@@ -1,7 +1,7 @@
 {
   "id" : "56bc2382-e3ef-3621-93c6-28d723fd1e09",
   "request" : {
-    "url" : "/api/group/test-DA/org/ops4j/pax/exam/pax-exam-link-mvn/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/ops4j/pax/exam/pax-exam-link-mvn/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

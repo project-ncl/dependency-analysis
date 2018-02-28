@@ -1,7 +1,7 @@
 {
   "id" : "c81a154e-9964-3a60-bcb6-42045292cf7f",
   "request" : {
-    "url" : "/api/group/test-DA/com/megginson/sax/xml-writer/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/megginson/sax/xml-writer/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

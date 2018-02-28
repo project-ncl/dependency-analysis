@@ -1,7 +1,7 @@
 {
   "id" : "ae894732-4c03-3d15-9904-a0103dc9b70e",
   "request" : {
-    "url" : "/api/group/test-DA/org/springframework/roo/org.springframework.roo.annotations/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/springframework/roo/org.springframework.roo.annotations/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

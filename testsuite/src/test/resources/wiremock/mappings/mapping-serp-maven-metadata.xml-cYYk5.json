@@ -1,7 +1,7 @@
 {
   "id" : "f6dac394-eafb-3ce5-b9d3-2978eff782a1",
   "request" : {
-    "url" : "/api/group/test-DA/net/sourceforge/serp/serp/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sourceforge/serp/serp/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

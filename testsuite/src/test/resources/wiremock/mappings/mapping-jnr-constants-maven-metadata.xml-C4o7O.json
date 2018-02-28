@@ -1,7 +1,7 @@
 {
   "id" : "27d0a04c-1547-3a98-a1c2-e7a8103ceb54",
   "request" : {
-    "url" : "/api/group/test-DA/com/github/jnr/jnr-constants/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/github/jnr/jnr-constants/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "977f0717-cd26-3979-b5de-dbb2385cb2ce",
   "request" : {
-    "url" : "/api/group/test-DA/javax/ws/rs/jsr311-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/ws/rs/jsr311-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

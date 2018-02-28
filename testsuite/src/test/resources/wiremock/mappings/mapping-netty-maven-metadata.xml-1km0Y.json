@@ -1,7 +1,7 @@
 {
   "id" : "e8a06aa7-1d11-3493-b2f8-31d54596f1eb",
   "request" : {
-    "url" : "/api/group/test-DA/io/netty/netty/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/io/netty/netty/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

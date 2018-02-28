@@ -1,7 +1,7 @@
 {
   "id" : "baffbfec-6338-3e64-9ad5-7d93a2b27cbc",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/geronimo/specs/geronimo-osgi-locator/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/geronimo/specs/geronimo-osgi-locator/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

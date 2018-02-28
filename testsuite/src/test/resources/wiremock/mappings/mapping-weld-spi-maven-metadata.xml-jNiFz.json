@@ -1,7 +1,7 @@
 {
   "id" : "0675cbe0-ba5f-3564-b21d-7c6903957e25",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/weld/weld-spi/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/weld/weld-spi/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

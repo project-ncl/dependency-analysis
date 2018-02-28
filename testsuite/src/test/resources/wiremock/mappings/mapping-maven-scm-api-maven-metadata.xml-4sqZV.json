@@ -1,7 +1,7 @@
 {
   "id" : "7a8e9072-d58f-303f-8513-a37e136ae11a",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/maven/scm/maven-scm-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/maven/scm/maven-scm-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

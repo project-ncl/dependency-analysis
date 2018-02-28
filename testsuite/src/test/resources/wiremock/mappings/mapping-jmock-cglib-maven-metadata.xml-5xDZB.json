@@ -1,7 +1,7 @@
 {
   "id" : "80cef751-6e3e-3b81-ad48-c6be10601ed5",
   "request" : {
-    "url" : "/api/group/test-DA/jmock/jmock-cglib/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/jmock/jmock-cglib/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

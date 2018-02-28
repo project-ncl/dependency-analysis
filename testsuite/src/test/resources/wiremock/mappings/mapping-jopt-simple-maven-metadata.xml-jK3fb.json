@@ -1,7 +1,7 @@
 {
   "id" : "03bb0f95-0047-3b27-a27b-918c19ef2b28",
   "request" : {
-    "url" : "/api/group/test-DA/net/sf/jopt-simple/jopt-simple/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sf/jopt-simple/jopt-simple/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

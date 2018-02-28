@@ -1,7 +1,7 @@
 {
   "id" : "7f78b1ba-a8d4-3b7a-a1ae-98affe039b8a",
   "request" : {
-    "url" : "/api/group/test-DA/org/assertj/assertj-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/assertj/assertj-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

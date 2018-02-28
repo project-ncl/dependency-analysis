@@ -1,7 +1,7 @@
 {
   "id" : "0e845e64-e82b-3cbd-b2c6-10ec9a28cea1",
   "request" : {
-    "url" : "/api/group/test-DA/org/commonjava/aprox/aprox-folo-client-java/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/commonjava/aprox/aprox-folo-client-java/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "c3f6bdf7-bb3c-3772-a335-27830e57d012",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/arquillian/junit/arquillian-junit-container/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/arquillian/junit/arquillian-junit-container/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

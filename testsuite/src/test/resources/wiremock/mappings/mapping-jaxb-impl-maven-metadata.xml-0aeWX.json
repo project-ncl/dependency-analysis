@@ -1,7 +1,7 @@
 {
   "id" : "158d343a-c560-356b-b05e-96a7dcfb88ca",
   "request" : {
-    "url" : "/api/group/test-DA/com/sun/xml/bind/jaxb-impl/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/sun/xml/bind/jaxb-impl/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

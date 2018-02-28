@@ -1,7 +1,7 @@
 {
   "id" : "71b96182-0f58-321b-b36d-5e80dbd507fc",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-social-facebook/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-social-facebook/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

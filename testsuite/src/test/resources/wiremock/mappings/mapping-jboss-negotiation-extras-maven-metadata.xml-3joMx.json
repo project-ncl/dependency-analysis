@@ -1,7 +1,7 @@
 {
   "id" : "0281b8b4-9bd8-3253-9879-b05737a056f8",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/security/jboss-negotiation-extras/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/security/jboss-negotiation-extras/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

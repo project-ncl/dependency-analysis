@@ -1,7 +1,7 @@
 {
   "id" : "708fdb4b-f2ae-3821-b085-8cf17ff5ddf7",
   "request" : {
-    "url" : "/api/group/test-DA/org/objenesis/objenesis/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/objenesis/objenesis/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

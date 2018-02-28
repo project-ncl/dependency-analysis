@@ -1,7 +1,7 @@
 {
   "id" : "d4a1ef07-582b-3b65-8226-92055038b7fd",
   "request" : {
-    "url" : "/api/group/test-DA/org/jsoup/jsoup/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jsoup/jsoup/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

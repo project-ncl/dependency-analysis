@@ -1,7 +1,7 @@
 {
   "id" : "c022dd2d-7671-322c-8713-0dc2ea5f5eb6",
   "request" : {
-    "url" : "/api/group/test-DA/com/mchange/mchange-commons-java/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/mchange/mchange-commons-java/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

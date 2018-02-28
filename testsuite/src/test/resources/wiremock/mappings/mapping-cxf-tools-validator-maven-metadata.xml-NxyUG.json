@@ -1,7 +1,7 @@
 {
   "id" : "24108c0f-8013-3396-8e51-9531f89b73d3",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/cxf/cxf-tools-validator/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/cxf/cxf-tools-validator/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

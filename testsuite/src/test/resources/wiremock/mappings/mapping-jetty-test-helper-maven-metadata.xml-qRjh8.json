@@ -1,7 +1,7 @@
 {
   "id" : "d840026d-6594-3588-9e3a-d3d60927b2eb",
   "request" : {
-    "url" : "/api/group/test-DA/org/eclipse/jetty/toolchain/jetty-test-helper/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/eclipse/jetty/toolchain/jetty-test-helper/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

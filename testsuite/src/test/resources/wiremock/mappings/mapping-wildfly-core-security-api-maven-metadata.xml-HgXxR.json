@@ -1,7 +1,7 @@
 {
   "id" : "dfe037d0-c9a8-3072-884c-a2b192e08d50",
   "request" : {
-    "url" : "/api/group/test-DA/org/wildfly/wildfly-core-security-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/wildfly/wildfly-core-security-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

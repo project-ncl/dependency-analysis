@@ -1,7 +1,7 @@
 {
   "id" : "caac2c04-077a-3fbc-9e48-45cd914b5087",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/cxf/cxf-rt-bindings-xml/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/cxf/cxf-rt-bindings-xml/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

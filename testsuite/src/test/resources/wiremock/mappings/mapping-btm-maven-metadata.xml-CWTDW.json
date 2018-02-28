@@ -1,7 +1,7 @@
 {
   "id" : "ec47efb8-76ab-359e-a644-032470840b89",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/btm/btm/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/btm/btm/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

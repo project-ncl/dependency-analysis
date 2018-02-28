@@ -1,7 +1,7 @@
 {
   "id" : "db356caf-b22c-355d-b5f1-e7240c06a1bf",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/resteasy/resteasy-client/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/resteasy/resteasy-client/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {
