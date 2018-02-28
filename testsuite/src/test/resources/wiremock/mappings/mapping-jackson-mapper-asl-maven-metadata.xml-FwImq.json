@@ -1,7 +1,7 @@
 {
   "id" : "7b4d4332-5359-3964-8564-7c2f4668c84e",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/jackson/jackson-mapper-asl/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/jackson/jackson-mapper-asl/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

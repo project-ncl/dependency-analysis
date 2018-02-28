@@ -1,7 +1,7 @@
 {
   "id" : "8b55e284-3281-366c-8e44-051eed07131e",
   "request" : {
-    "url" : "/api/group/test-DA/org/firebirdsql/jdbc/jaybird-jdk16/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/firebirdsql/jdbc/jaybird-jdk16/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

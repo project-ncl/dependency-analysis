@@ -1,7 +1,7 @@
 {
   "id" : "77bb4a78-6860-3f8e-b02d-246c0f58dc82",
   "request" : {
-    "url" : "/api/group/test-DA/com/jcraft/jzlib/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/jcraft/jzlib/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

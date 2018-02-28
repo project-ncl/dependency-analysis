@@ -1,7 +1,7 @@
 {
   "id" : "d79b2993-4831-3660-90fe-5b44466074f0",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/directory/server/apacheds-core-annotations/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/directory/server/apacheds-core-annotations/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

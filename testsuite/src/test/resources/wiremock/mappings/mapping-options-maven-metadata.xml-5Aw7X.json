@@ -1,7 +1,7 @@
 {
   "id" : "39559c4e-aa67-32bb-9e34-c1b885a7ae8e",
   "request" : {
-    "url" : "/api/group/test-DA/com/headius/options/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/headius/options/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

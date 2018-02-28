@@ -1,7 +1,7 @@
 {
   "id" : "c9c27923-6048-30d9-bad0-e2789086a9e6",
   "request" : {
-    "url" : "/api/group/test-DA/org/jdom/jaxen-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jdom/jaxen-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

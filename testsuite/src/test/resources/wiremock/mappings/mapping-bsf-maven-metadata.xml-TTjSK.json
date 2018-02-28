@@ -1,7 +1,7 @@
 {
   "id" : "fe505b76-fc93-32df-980c-3f6f6519e4c9",
   "request" : {
-    "url" : "/api/group/test-DA/bsf/bsf/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/bsf/bsf/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "69908ab1-a169-3063-bb09-e0c2869784b1",
   "request" : {
-    "url" : "/api/group/test-DA/com/icegreen/greenmail/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/icegreen/greenmail/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

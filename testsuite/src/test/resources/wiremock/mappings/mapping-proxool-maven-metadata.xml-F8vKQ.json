@@ -1,7 +1,7 @@
 {
   "id" : "4dd35abc-49d8-339c-b9ff-bbd5b01164b9",
   "request" : {
-    "url" : "/api/group/test-DA/proxool/proxool/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/proxool/proxool/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

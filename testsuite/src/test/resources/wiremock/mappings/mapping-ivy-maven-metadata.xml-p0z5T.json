@@ -1,7 +1,7 @@
 {
   "id" : "3f417cef-b28e-3464-a414-de039a7f0fcc",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/ivy/ivy/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/ivy/ivy/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

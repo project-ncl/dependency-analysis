@@ -1,7 +1,7 @@
 {
   "id" : "79fa69d4-ca1d-3608-8544-3610d87b28ea",
   "request" : {
-    "url" : "/api/group/test-DA/portlet-api/portlet-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/portlet-api/portlet-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "ab32a787-d493-3237-96aa-2ba502b50102",
   "request" : {
-    "url" : "/api/group/test-DA/com/ibm/icu/icu4j/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/ibm/icu/icu4j/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "179e8c52-ecf7-3f5c-a26f-6614691da4fc",
   "request" : {
-    "url" : "/api/group/test-DA/org/jacoco/org.jacoco.core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jacoco/org.jacoco.core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

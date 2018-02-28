@@ -1,7 +1,7 @@
 {
   "id" : "c475358b-6225-34e9-b7ec-cebe29707201",
   "request" : {
-    "url" : "/api/group/test-DA/ognl/ognl/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/ognl/ognl/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

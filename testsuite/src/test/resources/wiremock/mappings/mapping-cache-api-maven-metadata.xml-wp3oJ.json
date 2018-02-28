@@ -1,7 +1,7 @@
 {
   "id" : "035b803f-ef37-30c5-8f84-9ad442898237",
   "request" : {
-    "url" : "/api/group/test-DA/javax/cache/cache-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/cache/cache-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

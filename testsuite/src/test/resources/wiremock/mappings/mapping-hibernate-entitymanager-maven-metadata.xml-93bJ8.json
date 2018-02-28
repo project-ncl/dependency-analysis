@@ -1,7 +1,7 @@
 {
   "id" : "f8630d00-1e7e-31a3-bff1-0ec70709090e",
   "request" : {
-    "url" : "/api/group/test-DA/org/hibernate/hibernate-entitymanager/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hibernate/hibernate-entitymanager/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

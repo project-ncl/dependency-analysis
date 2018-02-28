@@ -1,7 +1,7 @@
 {
   "id" : "d19385f0-52ce-3ece-9d63-7d9f21912d75",
   "request" : {
-    "url" : "/api/group/test-DA/org/postgis/postgis-stubs/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/postgis/postgis-stubs/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

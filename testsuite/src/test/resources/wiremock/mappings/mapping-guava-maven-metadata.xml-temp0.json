@@ -1,7 +1,7 @@
 {
   "id" : "5bf21aa4-d8f4-11e7-9296-cec278b6b50a",
   "request" : {
-    "url" : "/api/group/DA-temporary/com/google/guava/guava/maven-metadata.xml",
+    "url" : "/api/content/maven/group/DA-temporary/com/google/guava/guava/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

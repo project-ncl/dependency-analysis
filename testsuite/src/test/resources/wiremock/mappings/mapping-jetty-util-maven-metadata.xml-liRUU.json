@@ -1,7 +1,7 @@
 {
   "id" : "f408b161-e839-383f-a3f0-81ff507e56e4",
   "request" : {
-    "url" : "/api/group/test-DA/org/mortbay/jetty/jetty-util/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/mortbay/jetty/jetty-util/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

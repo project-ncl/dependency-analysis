@@ -1,7 +1,7 @@
 {
   "id" : "def7cd94-1884-389a-afca-d841f021ad1e",
   "request" : {
-    "url" : "/api/group/test-DA/org/ccil/cowan/tagsoup/tagsoup/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/ccil/cowan/tagsoup/tagsoup/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

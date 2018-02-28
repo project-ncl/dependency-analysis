@@ -1,7 +1,7 @@
 {
   "id" : "9ffd28e5-c5db-3b6c-a514-2121be2cdc43",
   "request" : {
-    "url" : "/api/group/test-DA/commons-fileupload/commons-fileupload/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/commons-fileupload/commons-fileupload/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

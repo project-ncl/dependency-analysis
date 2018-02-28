@@ -1,7 +1,7 @@
 {
   "id" : "08cc2b0a-4e39-3e14-bc78-43a8d36fc74a",
   "request" : {
-    "url" : "/api/group/test-DA/oracle/sdoapi/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/oracle/sdoapi/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

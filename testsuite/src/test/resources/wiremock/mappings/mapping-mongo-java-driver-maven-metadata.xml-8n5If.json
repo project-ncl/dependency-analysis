@@ -1,7 +1,7 @@
 {
   "id" : "1b2b2d78-07ac-3400-8b4e-a54daa018a32",
   "request" : {
-    "url" : "/api/group/test-DA/org/mongodb/mongo-java-driver/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/mongodb/mongo-java-driver/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

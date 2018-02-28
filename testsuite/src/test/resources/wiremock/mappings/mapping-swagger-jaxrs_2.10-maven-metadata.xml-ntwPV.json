@@ -1,7 +1,7 @@
 {
   "id" : "3414901a-7748-3508-89d1-9bf2603a7081",
   "request" : {
-    "url" : "/api/group/test-DA/com/wordnik/swagger-jaxrs_2.10/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/wordnik/swagger-jaxrs_2.10/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

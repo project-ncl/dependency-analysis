@@ -1,7 +1,7 @@
 {
   "id" : "ca5ce381-d8ac-360e-b99e-8f02fc70d9b4",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

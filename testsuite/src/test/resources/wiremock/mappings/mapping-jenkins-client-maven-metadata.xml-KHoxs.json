@@ -1,7 +1,7 @@
 {
   "id" : "c88c3348-a99e-3e73-9784-98f5981de37a",
   "request" : {
-    "url" : "/api/group/test-DA/com/offbytwo/jenkins/jenkins-client/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/offbytwo/jenkins/jenkins-client/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

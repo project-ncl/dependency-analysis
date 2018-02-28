@@ -1,7 +1,7 @@
 {
   "id" : "f1344059-3cbf-39fd-9fa0-556db2fc6096",
   "request" : {
-    "url" : "/api/group/test-DA/opensymphony/oscache/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/opensymphony/oscache/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

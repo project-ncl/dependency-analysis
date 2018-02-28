@@ -1,7 +1,7 @@
 {
   "id" : "dda7712b-1b8c-3051-bb2a-9bea162275a5",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/jbossts/jts/orbportability/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/jbossts/jts/orbportability/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

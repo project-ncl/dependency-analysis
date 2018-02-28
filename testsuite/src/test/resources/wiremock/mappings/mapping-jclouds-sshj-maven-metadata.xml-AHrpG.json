@@ -1,7 +1,7 @@
 {
   "id" : "7dc02e77-4cc3-332f-b750-0aa4ff20a060",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/jclouds/driver/jclouds-sshj/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/jclouds/driver/jclouds-sshj/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

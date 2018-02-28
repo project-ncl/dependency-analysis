@@ -1,7 +1,7 @@
 {
   "id" : "bbd22070-17d3-3a46-97c3-97c379e94287",
   "request" : {
-    "url" : "/api/group/test-DA/org/easymock/easymock/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/easymock/easymock/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

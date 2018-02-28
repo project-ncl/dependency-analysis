@@ -1,7 +1,7 @@
 {
   "id" : "61c7d71e-f3a1-3cb5-8640-3ae0ddb1d486",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/directory/server/apacheds-protocol-ldap/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/directory/server/apacheds-protocol-ldap/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

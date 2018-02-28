@@ -1,7 +1,7 @@
 {
   "id" : "10797988-9c06-3d4a-b9bc-0e476f404243",
   "request" : {
-    "url" : "/api/group/test-DA/com/oracle/ojdbc14/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/oracle/ojdbc14/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

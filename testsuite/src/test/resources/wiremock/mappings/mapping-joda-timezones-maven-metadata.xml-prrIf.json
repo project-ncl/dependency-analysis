@@ -1,7 +1,7 @@
 {
   "id" : "e3c07b81-02c3-3548-a0d3-70823a713011",
   "request" : {
-    "url" : "/api/group/test-DA/org/jruby/joda-timezones/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jruby/joda-timezones/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

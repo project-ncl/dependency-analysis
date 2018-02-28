@@ -1,7 +1,7 @@
 {
   "id" : "42f62a61-dde4-3bcc-b741-006f5ad5c94f",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/jcsp/jcsp/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/jcsp/jcsp/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

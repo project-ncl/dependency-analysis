@@ -1,7 +1,7 @@
 {
   "id" : "6b258ae2-faf6-3d2c-bbe5-d78b8e165777",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/xnio/xnio-nio/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/xnio/xnio-nio/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "d1ee6149-7648-35ac-83fb-6590f78fe39f",
   "request" : {
-    "url" : "/api/group/test-DA/javax/ejb/ejb-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/ejb/ejb-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

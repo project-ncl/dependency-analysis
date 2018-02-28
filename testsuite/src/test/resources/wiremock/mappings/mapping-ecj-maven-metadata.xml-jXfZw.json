@@ -1,7 +1,7 @@
 {
   "id" : "3980392d-d7df-3981-9243-ebb0050212c0",
   "request" : {
-    "url" : "/api/group/test-DA/org/eclipse/jdt/core/compiler/ecj/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/eclipse/jdt/core/compiler/ecj/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

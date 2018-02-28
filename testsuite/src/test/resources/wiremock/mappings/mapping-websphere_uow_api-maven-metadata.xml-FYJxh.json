@@ -1,7 +1,7 @@
 {
   "id" : "32951ad1-f34a-3648-9642-af189d188a40",
   "request" : {
-    "url" : "/api/group/test-DA/com/ibm/websphere/websphere_uow_api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/ibm/websphere/websphere_uow_api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

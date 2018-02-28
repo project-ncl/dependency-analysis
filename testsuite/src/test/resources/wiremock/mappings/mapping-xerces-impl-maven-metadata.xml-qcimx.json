@@ -1,7 +1,7 @@
 {
   "id" : "c9591355-60e0-373b-b22a-67ce14d4f5c4",
   "request" : {
-    "url" : "/api/group/test-DA/xerces/xerces-impl/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/xerces/xerces-impl/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

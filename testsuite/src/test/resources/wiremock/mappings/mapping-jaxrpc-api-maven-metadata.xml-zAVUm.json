@@ -1,7 +1,7 @@
 {
   "id" : "28d91f15-1ca4-3758-8121-5b9f98672cb1",
   "request" : {
-    "url" : "/api/group/test-DA/javax/xml/jaxrpc-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/xml/jaxrpc-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

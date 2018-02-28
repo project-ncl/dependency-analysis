@@ -1,7 +1,7 @@
 {
   "id" : "4cdbc667-a97f-335f-84d4-7f1924bd364e",
   "request" : {
-    "url" : "/api/group/test-DA/org/jruby/openssl/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jruby/openssl/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

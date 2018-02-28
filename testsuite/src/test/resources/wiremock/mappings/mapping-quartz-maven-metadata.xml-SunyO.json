@@ -1,7 +1,7 @@
 {
   "id" : "fa39bb7e-c0d3-3f9b-af24-231ef1ac368c",
   "request" : {
-    "url" : "/api/group/test-DA/org/quartz-scheduler/quartz/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/quartz-scheduler/quartz/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

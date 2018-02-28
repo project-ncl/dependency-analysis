@@ -1,7 +1,7 @@
 {
   "id" : "a279626d-b36f-367c-bba5-00556d8f326a",
   "request" : {
-    "url" : "/api/group/test-DA/ch/qos/logback/logback-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/ch/qos/logback/logback-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

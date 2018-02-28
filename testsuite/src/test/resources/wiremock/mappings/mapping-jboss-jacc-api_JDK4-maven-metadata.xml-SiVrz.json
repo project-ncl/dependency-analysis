@@ -1,7 +1,7 @@
 {
   "id" : "8928001c-4503-39ee-bc2e-510d88a75b8a",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/javaee/jboss-jacc-api_JDK4/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/javaee/jboss-jacc-api_JDK4/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

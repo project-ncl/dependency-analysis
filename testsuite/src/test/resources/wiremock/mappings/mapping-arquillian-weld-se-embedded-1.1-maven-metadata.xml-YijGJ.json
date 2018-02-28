@@ -1,7 +1,7 @@
 {
   "id" : "e92c3f7b-399d-3b28-92e1-a0bd97d32636",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/arquillian/container/arquillian-weld-se-embedded-1.1/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/arquillian/container/arquillian-weld-se-embedded-1.1/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

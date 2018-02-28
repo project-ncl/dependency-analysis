@@ -1,7 +1,7 @@
 {
   "id" : "466f74f7-fc75-38f2-822d-704c0a89e0da",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/xbean/xbean-asm4-shaded/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/xbean/xbean-asm4-shaded/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

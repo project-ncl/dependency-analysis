@@ -1,7 +1,7 @@
 {
   "id" : "b5b83c3b-2f98-3481-9418-57ac8415b34f",
   "request" : {
-    "url" : "/api/group/test-DA/org/spockframework/spock-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/spockframework/spock-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

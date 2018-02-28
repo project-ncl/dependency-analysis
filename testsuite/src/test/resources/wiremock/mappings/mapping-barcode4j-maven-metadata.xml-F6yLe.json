@@ -1,7 +1,7 @@
 {
   "id" : "bce5aa72-8d81-3eb0-a855-383725ac9087",
   "request" : {
-    "url" : "/api/group/test-DA/net/sf/barcode4j/barcode4j/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sf/barcode4j/barcode4j/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

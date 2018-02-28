@@ -1,7 +1,7 @@
 {
   "id" : "b5cf2830-e88c-3f1d-8976-226d550194e1",
   "request" : {
-    "url" : "/api/group/test-DA/javax/xml/ws/jaxws-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/xml/ws/jaxws-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

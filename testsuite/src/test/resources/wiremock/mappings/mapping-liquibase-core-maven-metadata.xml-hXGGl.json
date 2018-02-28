@@ -1,7 +1,7 @@
 {
   "id" : "82ef1759-4646-34f1-b2de-6b57c2b5e0a9",
   "request" : {
-    "url" : "/api/group/test-DA/org/liquibase/liquibase-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/liquibase/liquibase-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

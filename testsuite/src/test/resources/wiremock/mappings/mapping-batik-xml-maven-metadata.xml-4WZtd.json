@@ -1,7 +1,7 @@
 {
   "id" : "95d292d1-00b5-3b92-bd35-67d29c081023",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/xmlgraphics/batik-xml/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/xmlgraphics/batik-xml/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

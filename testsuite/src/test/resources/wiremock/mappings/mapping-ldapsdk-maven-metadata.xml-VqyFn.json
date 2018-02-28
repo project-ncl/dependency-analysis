@@ -1,7 +1,7 @@
 {
   "id" : "bb3612e1-c070-3f12-982d-d16bb80430aa",
   "request" : {
-    "url" : "/api/group/test-DA/ldapsdk/ldapsdk/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/ldapsdk/ldapsdk/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

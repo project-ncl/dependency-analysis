@@ -1,7 +1,7 @@
 {
   "id" : "28120547-6960-3ec4-84f0-22b1944f6f9d",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/poi/poi-ooxml-schemas/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/poi/poi-ooxml-schemas/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

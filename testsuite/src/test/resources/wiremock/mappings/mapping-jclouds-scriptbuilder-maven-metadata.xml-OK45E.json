@@ -1,7 +1,7 @@
 {
   "id" : "16c6e299-cef3-3ac5-b241-cabb18e263b2",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/jclouds/jclouds-scriptbuilder/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/jclouds/jclouds-scriptbuilder/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

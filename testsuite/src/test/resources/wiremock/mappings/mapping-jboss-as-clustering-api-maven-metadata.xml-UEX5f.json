@@ -1,7 +1,7 @@
 {
   "id" : "3b4f2cec-ffb9-3181-a865-d99f02490aa2",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-clustering-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/as/jboss-as-clustering-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "16b16f36-8020-3a87-9ce2-8b7109c60aa7",
   "request" : {
-    "url" : "/api/group/test-DA/com/jolbox/bonecp/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/jolbox/bonecp/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

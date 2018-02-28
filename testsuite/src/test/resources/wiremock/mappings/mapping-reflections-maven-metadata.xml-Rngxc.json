@@ -1,7 +1,7 @@
 {
   "id" : "8c69cbe8-8fc7-3382-ac23-eca0dc96d16e",
   "request" : {
-    "url" : "/api/group/test-DA/org/reflections/reflections/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/reflections/reflections/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

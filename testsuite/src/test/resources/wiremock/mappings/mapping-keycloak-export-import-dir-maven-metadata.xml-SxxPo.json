@@ -1,7 +1,7 @@
 {
   "id" : "fcefd5f9-05d8-30ef-a3c7-26bb67f23993",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-export-import-dir/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-export-import-dir/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

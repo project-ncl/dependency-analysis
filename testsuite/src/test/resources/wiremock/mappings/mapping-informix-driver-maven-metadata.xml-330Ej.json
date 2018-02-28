@@ -1,7 +1,7 @@
 {
   "id" : "edacca91-b26a-30da-8b7b-a3ea0328c405",
   "request" : {
-    "url" : "/api/group/test-DA/com/informix/informix-driver/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/informix/informix-driver/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "47ce0496-0ba0-3cc0-a8eb-5d14235082fa",
   "request" : {
-    "url" : "/api/group/test-DA/jmock/jmock/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/jmock/jmock/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

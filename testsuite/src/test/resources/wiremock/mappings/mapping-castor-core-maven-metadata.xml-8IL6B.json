@@ -1,7 +1,7 @@
 {
   "id" : "587f67cc-3901-367e-842b-ef8a4a62e1da",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/castor/castor-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/castor/castor-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

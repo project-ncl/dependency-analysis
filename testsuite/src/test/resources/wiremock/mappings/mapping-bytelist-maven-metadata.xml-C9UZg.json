@@ -1,7 +1,7 @@
 {
   "id" : "226424c7-5c52-351d-bb47-7dd0651bccbb",
   "request" : {
-    "url" : "/api/group/test-DA/org/jruby/extras/bytelist/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jruby/extras/bytelist/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

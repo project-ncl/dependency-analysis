@@ -1,7 +1,7 @@
 {
   "id" : "b1de2186-823f-3a3a-a0ee-cbac064f48ca",
   "request" : {
-    "url" : "/api/group/test-DA/org/multiverse/multiverse-beta/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/multiverse/multiverse-beta/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

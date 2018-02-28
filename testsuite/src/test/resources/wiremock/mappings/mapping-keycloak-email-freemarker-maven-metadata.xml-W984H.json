@@ -1,7 +1,7 @@
 {
   "id" : "16439918-848e-39dc-9f4f-4a680b044122",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-email-freemarker/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-email-freemarker/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

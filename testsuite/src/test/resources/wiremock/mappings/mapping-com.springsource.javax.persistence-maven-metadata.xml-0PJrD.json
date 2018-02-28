@@ -1,7 +1,7 @@
 {
   "id" : "7799618a-7ed7-3291-9022-d89875cd0159",
   "request" : {
-    "url" : "/api/group/test-DA/javax/persistence/com.springsource.javax.persistence/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/persistence/com.springsource.javax.persistence/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "90465b56-88b6-3f59-85fa-ebd5ed1b298f",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-ldap-federation/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-ldap-federation/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

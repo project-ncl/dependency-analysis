@@ -1,7 +1,7 @@
 {
   "id" : "0cd11d65-1b8e-3339-9bd2-c1eaee3d7e04",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-connections-jpa-liquibase/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-connections-jpa-liquibase/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

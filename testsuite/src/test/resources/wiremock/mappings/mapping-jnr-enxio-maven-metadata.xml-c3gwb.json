@@ -1,7 +1,7 @@
 {
   "id" : "02d22c67-47dc-3309-a643-760510507023",
   "request" : {
-    "url" : "/api/group/test-DA/com/github/jnr/jnr-enxio/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/github/jnr/jnr-enxio/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

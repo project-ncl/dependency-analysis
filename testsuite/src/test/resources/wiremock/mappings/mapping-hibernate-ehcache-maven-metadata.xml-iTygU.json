@@ -1,7 +1,7 @@
 {
   "id" : "0bf9730a-4a4f-3c88-9a88-c60afcb473df",
   "request" : {
-    "url" : "/api/group/test-DA/org/hibernate/hibernate-ehcache/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hibernate/hibernate-ehcache/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "68726ddf-0d06-3a62-9f83-2b461c518dbc",
   "request" : {
-    "url" : "/api/group/test-DA/org/json4s/json4s-ast_2.10/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/json4s/json4s-ast_2.10/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "6b7b5ca7-87db-30fe-9304-d31d4ed39765",
   "request" : {
-    "url" : "/api/group/test-DA/com/keypoint/png-encoder/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/keypoint/png-encoder/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

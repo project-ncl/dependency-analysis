@@ -1,7 +1,7 @@
 {
   "id" : "6454515a-710c-3c2e-b42a-06e1e76b1a4f",
   "request" : {
-    "url" : "/api/group/test-DA/commons-io/commons-io/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/commons-io/commons-io/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

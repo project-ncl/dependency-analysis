@@ -1,7 +1,7 @@
 {
   "id" : "22ac33c8-3bbc-3e66-b813-343752608823",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/janino/commons-compiler/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/janino/commons-compiler/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

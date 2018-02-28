@@ -1,7 +1,7 @@
 {
   "id" : "f0a8314f-0ae4-3bcf-bbfd-e9ce446cd6d7",
   "request" : {
-    "url" : "/api/group/test-DA/woodstox/wstx-asl/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/woodstox/wstx-asl/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "b21c91da-ba7f-3299-82bd-e4ab0552e7c9",
   "request" : {
-    "url" : "/api/group/test-DA/oro/oro/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/oro/oro/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "1d19c81a-de5c-3202-8dd4-0ec271116421",
   "request" : {
-    "url" : "/api/group/test-DA/com/ingres/jdbc/iijdbc/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/ingres/jdbc/iijdbc/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

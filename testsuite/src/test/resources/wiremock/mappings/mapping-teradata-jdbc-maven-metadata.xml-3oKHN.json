@@ -1,7 +1,7 @@
 {
   "id" : "064808f5-0c8d-3aa8-b286-adfd0a0f6a52",
   "request" : {
-    "url" : "/api/group/test-DA/com/teradata/teradata-jdbc/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/teradata/teradata-jdbc/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "35165fb4-f506-3ca4-b131-4cf6aa556e7e",
   "request" : {
-    "url" : "/api/group/test-DA/commons-digester/commons-digester/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/commons-digester/commons-digester/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

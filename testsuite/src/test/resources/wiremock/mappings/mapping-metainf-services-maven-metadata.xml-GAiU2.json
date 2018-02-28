@@ -1,7 +1,7 @@
 {
   "id" : "c0f2e867-e66a-3296-823d-ecb34a145609",
   "request" : {
-    "url" : "/api/group/test-DA/org/kohsuke/metainf-services/metainf-services/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/kohsuke/metainf-services/metainf-services/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

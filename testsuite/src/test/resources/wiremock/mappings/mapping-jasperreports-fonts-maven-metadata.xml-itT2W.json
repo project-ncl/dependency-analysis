@@ -1,7 +1,7 @@
 {
   "id" : "988e6202-3b68-3a1a-9be6-0b409f2adca6",
   "request" : {
-    "url" : "/api/group/test-DA/net/sf/jasperreports/jasperreports-fonts/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sf/jasperreports/jasperreports-fonts/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "7b29e594-5c6b-321d-b9da-0a2b1a841162",
   "request" : {
-    "url" : "/api/group/test-DA/org/springframework/data/spring-data-jpa/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/springframework/data/spring-data-jpa/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

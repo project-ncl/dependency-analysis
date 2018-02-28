@@ -1,7 +1,7 @@
 {
   "id" : "a0d122ca-c7b5-37a0-a042-05adf623a86b",
   "request" : {
-    "url" : "/api/group/test-DA/xom/xom/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/xom/xom/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "ac902837-e7d6-3de6-b9da-9b97644b6540",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/da/bc-backend/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/da/bc-backend/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "4826fd3d-ccb3-35da-b6c0-01945f2f389c",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/felix/org.apache.felix.framework/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/felix/org.apache.felix.framework/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

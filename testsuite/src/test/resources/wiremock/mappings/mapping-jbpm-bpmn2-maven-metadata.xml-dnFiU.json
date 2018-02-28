@@ -1,7 +1,7 @@
 {
   "id" : "1c3148c3-f41e-384c-a70d-743661e6e326",
   "request" : {
-    "url" : "/api/group/test-DA/org/jbpm/jbpm-bpmn2/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jbpm/jbpm-bpmn2/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {
