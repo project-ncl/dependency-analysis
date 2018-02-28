@@ -1,7 +1,7 @@
 {
   "id" : "54ba89f6-3377-32f6-9e27-8acbccfd05dc",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/ant/ant-antlr/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/ant/ant-antlr/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

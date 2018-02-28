@@ -1,7 +1,7 @@
 {
   "id" : "4b42d78f-f6bd-3a37-81e7-afb2cc11fb2e",
   "request" : {
-    "url" : "/api/group/test-DA/org/eclipse/jetty/jetty-servlets/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/eclipse/jetty/jetty-servlets/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

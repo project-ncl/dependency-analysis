@@ -1,7 +1,7 @@
 {
   "id" : "384ccf8f-418a-3876-b800-37820a2fa645",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/pnc/build-coordinator/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/pnc/build-coordinator/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

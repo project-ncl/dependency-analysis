@@ -1,7 +1,7 @@
 {
   "id" : "9046762a-f7a7-3bd7-aaaa-579d0f0480f5",
   "request" : {
-    "url" : "/api/group/test-DA/net/sourceforge/f2j/arpack_combined_all/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sourceforge/f2j/arpack_combined_all/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

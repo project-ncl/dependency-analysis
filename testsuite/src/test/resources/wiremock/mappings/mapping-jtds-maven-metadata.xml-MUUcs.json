@@ -1,7 +1,7 @@
 {
   "id" : "59dee471-484c-3e12-8a88-bf2728d57d74",
   "request" : {
-    "url" : "/api/group/test-DA/net/sourceforge/jtds/jtds/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sourceforge/jtds/jtds/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

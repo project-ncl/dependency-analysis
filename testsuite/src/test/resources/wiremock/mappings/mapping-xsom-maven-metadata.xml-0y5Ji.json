@@ -1,7 +1,7 @@
 {
   "id" : "978f67a1-f891-3156-b744-d21d5a795dbc",
   "request" : {
-    "url" : "/api/group/test-DA/com/sun/xsom/xsom/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/sun/xsom/xsom/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

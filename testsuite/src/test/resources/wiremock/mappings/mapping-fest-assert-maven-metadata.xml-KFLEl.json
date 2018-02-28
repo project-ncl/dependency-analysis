@@ -1,7 +1,7 @@
 {
   "id" : "5264e08a-c0ce-3e21-be27-d81546e4ce48",
   "request" : {
-    "url" : "/api/group/test-DA/org/easytesting/fest-assert/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/easytesting/fest-assert/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

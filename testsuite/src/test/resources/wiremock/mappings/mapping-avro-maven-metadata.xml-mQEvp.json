@@ -1,7 +1,7 @@
 {
   "id" : "4f4f80ea-7ae7-3c6e-8443-80d103e04b2e",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/hadoop/avro/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/hadoop/avro/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

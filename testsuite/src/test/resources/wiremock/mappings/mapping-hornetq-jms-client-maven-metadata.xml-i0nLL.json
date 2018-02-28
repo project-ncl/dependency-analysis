@@ -1,7 +1,7 @@
 {
   "id" : "dba03bcc-a076-3ca4-a5e1-e39fc11a8aa6",
   "request" : {
-    "url" : "/api/group/test-DA/org/hornetq/hornetq-jms-client/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hornetq/hornetq-jms-client/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

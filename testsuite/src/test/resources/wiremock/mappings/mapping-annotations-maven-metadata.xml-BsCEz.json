@@ -1,7 +1,7 @@
 {
   "id" : "b816de9f-7116-3904-92fa-fab210f01a67",
   "request" : {
-    "url" : "/api/group/test-DA/com/google/code/findbugs/annotations/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/google/code/findbugs/annotations/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "84759211-45ed-3b14-9d33-3eae25bd16dd",
   "request" : {
-    "url" : "/api/group/test-DA/bouncycastle/bctsp-jdk14/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/bouncycastle/bctsp-jdk14/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

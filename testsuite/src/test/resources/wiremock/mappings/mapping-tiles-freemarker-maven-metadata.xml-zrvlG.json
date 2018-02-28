@@ -1,7 +1,7 @@
 {
   "id" : "8fbf9e6d-8357-32df-a9a9-8df636b30200",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/tiles/tiles-freemarker/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/tiles/tiles-freemarker/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

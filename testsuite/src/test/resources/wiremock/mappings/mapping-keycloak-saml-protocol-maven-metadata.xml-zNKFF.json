@@ -1,7 +1,7 @@
 {
   "id" : "403e40ac-c5e3-3609-93a3-214782a10dde",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-saml-protocol/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-saml-protocol/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

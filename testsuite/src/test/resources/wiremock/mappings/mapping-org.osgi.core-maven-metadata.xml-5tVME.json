@@ -1,7 +1,7 @@
 {
   "id" : "138f22e2-3b0f-31bd-bc97-147f02ffa8d8",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/felix/org.osgi.core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/felix/org.osgi.core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "0494fbc6-824b-3485-839d-6ebfd11e94ee",
   "request" : {
-    "url" : "/api/group/test-DA/net/sf/kxml/kxml2-min/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sf/kxml/kxml2-min/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

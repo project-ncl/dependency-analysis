@@ -1,7 +1,7 @@
 {
   "id" : "fd21b9a4-079a-3650-8b42-f2c17b879d7f",
   "request" : {
-    "url" : "/api/group/test-DA/cubrid/cubrid-jdbc/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/cubrid/cubrid-jdbc/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

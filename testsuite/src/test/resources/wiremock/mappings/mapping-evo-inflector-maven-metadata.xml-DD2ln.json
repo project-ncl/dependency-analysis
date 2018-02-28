@@ -1,7 +1,7 @@
 {
   "id" : "cab57886-267c-3147-a41f-a60a85be7445",
   "request" : {
-    "url" : "/api/group/test-DA/org/atteo/evo-inflector/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/atteo/evo-inflector/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

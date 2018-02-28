@@ -1,7 +1,7 @@
 {
   "id" : "48b6f45f-c730-3ef8-a287-6b79106c2635",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/weld/weld-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/weld/weld-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

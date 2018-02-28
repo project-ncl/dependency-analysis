@@ -1,7 +1,7 @@
 {
   "id" : "83f70ca9-96d1-33f4-97c8-7db9e178d4e1",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/geronimo/genesis/config/logging-config/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/geronimo/genesis/config/logging-config/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

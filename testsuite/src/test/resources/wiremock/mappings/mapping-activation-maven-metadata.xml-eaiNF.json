@@ -1,7 +1,7 @@
 {
   "id" : "935b4122-9d94-3143-98b0-c1245fc40de8",
   "request" : {
-    "url" : "/api/group/test-DA/activation/activation/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/activation/activation/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

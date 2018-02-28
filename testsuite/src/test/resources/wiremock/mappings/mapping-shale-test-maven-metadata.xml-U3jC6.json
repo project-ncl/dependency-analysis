@@ -1,7 +1,7 @@
 {
   "id" : "f8713b3e-c2c4-37a5-8cdf-7f76c2d70e0d",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/shale/shale-test/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/shale/shale-test/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

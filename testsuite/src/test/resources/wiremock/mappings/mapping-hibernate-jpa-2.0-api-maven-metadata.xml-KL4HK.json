@@ -1,7 +1,7 @@
 {
   "id" : "ad195229-bee0-3dec-af67-1e76000d7907",
   "request" : {
-    "url" : "/api/group/test-DA/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

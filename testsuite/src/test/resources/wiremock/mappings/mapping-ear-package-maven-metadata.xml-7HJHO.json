@@ -1,7 +1,7 @@
 {
   "id" : "aba45b32-b521-3091-a655-7691a69c776f",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/pnc/ear-package/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/pnc/ear-package/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

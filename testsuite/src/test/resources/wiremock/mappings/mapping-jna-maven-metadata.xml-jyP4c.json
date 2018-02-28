@@ -1,7 +1,7 @@
 {
   "id" : "29fecc59-ceef-312c-a1e1-956a66a7e10c",
   "request" : {
-    "url" : "/api/group/test-DA/net/java/dev/jna/jna/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/java/dev/jna/jna/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

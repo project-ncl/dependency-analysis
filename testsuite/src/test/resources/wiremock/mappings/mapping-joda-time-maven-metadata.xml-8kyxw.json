@@ -1,7 +1,7 @@
 {
   "id" : "e0b63064-db48-3559-89a3-1f7b3a34742b",
   "request" : {
-    "url" : "/api/group/test-DA/joda-time/joda-time/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/joda-time/joda-time/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

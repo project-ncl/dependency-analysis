@@ -1,7 +1,7 @@
 {
   "id" : "f0b04180-ad93-3eea-9c98-deb22b98ef77",
   "request" : {
-    "url" : "/api/group/test-DA/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

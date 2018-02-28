@@ -1,7 +1,7 @@
 {
   "id" : "caf3acd3-d907-37e4-9966-1816d867cabd",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/maven/scm/maven-scm-provider-jgit/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/maven/scm/maven-scm-provider-jgit/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

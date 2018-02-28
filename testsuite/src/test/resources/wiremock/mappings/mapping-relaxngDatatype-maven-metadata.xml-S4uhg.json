@@ -1,7 +1,7 @@
 {
   "id" : "86600a4f-0155-3df7-8dbb-154fff675287",
   "request" : {
-    "url" : "/api/group/test-DA/msv/relaxngDatatype/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/msv/relaxngDatatype/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "8a0db67c-a451-3ad1-b554-210fcde901dd",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/directory/server/apacheds-interceptors-hash/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/directory/server/apacheds-interceptors-hash/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

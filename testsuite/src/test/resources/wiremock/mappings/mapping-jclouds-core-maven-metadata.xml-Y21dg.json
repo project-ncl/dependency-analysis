@@ -1,7 +1,7 @@
 {
   "id" : "04818103-f253-3893-9bae-b57cbf988341",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/jclouds/jclouds-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/jclouds/jclouds-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

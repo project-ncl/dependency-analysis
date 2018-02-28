@@ -1,7 +1,7 @@
 {
   "id" : "b61b30b6-397d-387e-8f07-a666d317131c",
   "request" : {
-    "url" : "/api/group/test-DA/org/projectlombok/lombok/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/projectlombok/lombok/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

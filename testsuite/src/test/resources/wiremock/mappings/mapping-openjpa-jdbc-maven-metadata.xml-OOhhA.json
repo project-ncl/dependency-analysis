@@ -1,7 +1,7 @@
 {
   "id" : "b03b279e-0e84-3e93-a596-ebdd8c1c4c4e",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/openjpa/openjpa-jdbc/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/openjpa/openjpa-jdbc/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

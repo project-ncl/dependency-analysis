@@ -1,7 +1,7 @@
 {
   "id" : "e6e08c8d-4d11-3ca6-b362-70d62d2fce39",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/security/jboss-negotiation-spnego/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/security/jboss-negotiation-spnego/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

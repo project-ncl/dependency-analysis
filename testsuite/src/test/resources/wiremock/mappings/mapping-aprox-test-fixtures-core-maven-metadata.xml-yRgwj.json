@@ -1,7 +1,7 @@
 {
   "id" : "2e1ac911-d099-3853-998d-4a9ee214fe42",
   "request" : {
-    "url" : "/api/group/test-DA/org/commonjava/aprox/aprox-test-fixtures-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/commonjava/aprox/aprox-test-fixtures-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

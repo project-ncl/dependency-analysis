@@ -1,7 +1,7 @@
 {
   "id" : "e23bca7a-2ba3-3830-a477-75011dde5a0d",
   "request" : {
-    "url" : "/api/group/test-DA/org/mockejb/mockejb/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/mockejb/mockejb/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

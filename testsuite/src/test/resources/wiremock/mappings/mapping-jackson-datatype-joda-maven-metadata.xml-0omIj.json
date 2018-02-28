@@ -1,7 +1,7 @@
 {
   "id" : "426d5fee-73bc-365e-a616-78281966e942",
   "request" : {
-    "url" : "/api/group/test-DA/com/fasterxml/jackson/datatype/jackson-datatype-joda/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/fasterxml/jackson/datatype/jackson-datatype-joda/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

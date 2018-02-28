@@ -1,7 +1,7 @@
 {
   "id" : "0312d7c2-5303-3f93-ab93-c583b07b1699",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/derby/derby/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/derby/derby/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "b5aedabf-f1da-3378-a7f2-765a999fffbe",
   "request" : {
-    "url" : "/api/group/test-DA/org/slf4j/slf4j-log4j12/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/slf4j/slf4j-log4j12/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

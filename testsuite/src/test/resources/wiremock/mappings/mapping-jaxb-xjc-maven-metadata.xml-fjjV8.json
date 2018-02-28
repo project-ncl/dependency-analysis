@@ -1,7 +1,7 @@
 {
   "id" : "0b157e5f-d289-3ff1-a9c2-e87e6ff892d4",
   "request" : {
-    "url" : "/api/group/test-DA/com/sun/xml/bind/jaxb-xjc/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/sun/xml/bind/jaxb-xjc/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

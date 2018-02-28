@@ -1,7 +1,7 @@
 {
   "id" : "675eaee0-3afd-309b-b9f2-c4e55738bc79",
   "request" : {
-    "url" : "/api/group/test-DA/com/headius/jsr292-mock/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/headius/jsr292-mock/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

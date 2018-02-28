@@ -1,7 +1,7 @@
 {
   "id" : "4e33d1bb-0426-3dca-8141-33a3c8318028",
   "request" : {
-    "url" : "/api/group/test-DA/io/undertow/undertow-servlet/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/io/undertow/undertow-servlet/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

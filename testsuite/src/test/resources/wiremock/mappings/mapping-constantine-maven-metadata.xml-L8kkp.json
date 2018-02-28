@@ -1,7 +1,7 @@
 {
   "id" : "fb2cfa7f-15e5-3b71-84c2-286a8868cf5b",
   "request" : {
-    "url" : "/api/group/test-DA/org/jruby/extras/constantine/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jruby/extras/constantine/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

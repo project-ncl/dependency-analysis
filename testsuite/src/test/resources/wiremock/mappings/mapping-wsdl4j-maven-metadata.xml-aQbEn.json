@@ -1,7 +1,7 @@
 {
   "id" : "8f8b9063-e330-34bd-a6e3-62b543e8a490",
   "request" : {
-    "url" : "/api/group/test-DA/wsdl4j/wsdl4j/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/wsdl4j/wsdl4j/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

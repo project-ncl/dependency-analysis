@@ -1,7 +1,7 @@
 {
   "id" : "aadcf9ff-246b-303c-b0c4-34d02e988f8b",
   "request" : {
-    "url" : "/api/group/test-DA/io/swagger/swagger-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/io/swagger/swagger-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

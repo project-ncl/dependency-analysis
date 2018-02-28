@@ -1,7 +1,7 @@
 {
   "id" : "567b5424-8e9a-39e3-8e68-a926e7b2c2c8",
   "request" : {
-    "url" : "/api/group/test-DA/org/hibernate/com.springsource.org.hibernate.validator/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hibernate/com.springsource.org.hibernate.validator/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

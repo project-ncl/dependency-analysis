@@ -1,7 +1,7 @@
 {
   "id" : "d35dcf5d-8426-3bea-bd1b-ddc66b9e061c",
   "request" : {
-    "url" : "/api/group/test-DA/org/jruby/jruby/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jruby/jruby/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

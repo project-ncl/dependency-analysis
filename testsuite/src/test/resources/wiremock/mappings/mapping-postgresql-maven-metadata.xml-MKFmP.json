@@ -1,7 +1,7 @@
 {
   "id" : "c284ad16-44a0-368b-9560-eb37949ea945",
   "request" : {
-    "url" : "/api/group/test-DA/postgresql/postgresql/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/postgresql/postgresql/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

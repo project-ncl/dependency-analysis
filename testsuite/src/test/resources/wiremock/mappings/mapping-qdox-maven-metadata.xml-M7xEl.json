@@ -1,7 +1,7 @@
 {
   "id" : "bd1f3f3d-70bc-3670-9c98-7029ee10b241",
   "request" : {
-    "url" : "/api/group/test-DA/com/thoughtworks/qdox/qdox/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/thoughtworks/qdox/qdox/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "ce826587-f104-38dd-8164-918df3776382",
   "request" : {
-    "url" : "/api/group/test-DA/org/batoo/jpa/batoo-jpa/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/batoo/jpa/batoo-jpa/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

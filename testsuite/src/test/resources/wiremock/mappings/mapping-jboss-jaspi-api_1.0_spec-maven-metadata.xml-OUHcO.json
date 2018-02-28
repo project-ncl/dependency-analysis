@@ -1,7 +1,7 @@
 {
   "id" : "7d5c45f5-a952-31a2-a07a-35d8133b1be1",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/spec/javax/security/auth/message/jboss-jaspi-api_1.0_spec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/spec/javax/security/auth/message/jboss-jaspi-api_1.0_spec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "64e331f7-971f-36e3-b2b4-37f03b10af38",
   "request" : {
-    "url" : "/api/group/test-DA/jfree/jfreechart/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/jfree/jfreechart/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "fd7e3612-ad0b-3474-b458-9f69c4d4697f",
   "request" : {
-    "url" : "/api/group/test-DA/org/hibernate/hibernate-cglib-repack/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hibernate/hibernate-cglib-repack/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

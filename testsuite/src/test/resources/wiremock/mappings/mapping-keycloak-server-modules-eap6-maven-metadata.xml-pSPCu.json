@@ -1,7 +1,7 @@
 {
   "id" : "7447b61f-3a4b-3447-adf5-14884e97082a",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-server-modules-eap6/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-server-modules-eap6/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

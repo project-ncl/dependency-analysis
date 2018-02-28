@@ -1,7 +1,7 @@
 {
   "id" : "c397a199-5e8b-3f9b-bfed-90d07a7254f4",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-model-sessions-infinispan/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-model-sessions-infinispan/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

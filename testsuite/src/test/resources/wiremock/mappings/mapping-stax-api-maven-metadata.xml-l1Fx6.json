@@ -1,7 +1,7 @@
 {
   "id" : "4765f444-2a38-3828-b4cc-4fe763a2334e",
   "request" : {
-    "url" : "/api/group/test-DA/javax/xml/stream/stax-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/xml/stream/stax-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

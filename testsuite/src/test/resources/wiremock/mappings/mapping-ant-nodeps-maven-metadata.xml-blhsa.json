@@ -1,7 +1,7 @@
 {
   "id" : "acb00a49-ba1f-3335-8003-c712d58384cd",
   "request" : {
-    "url" : "/api/group/test-DA/ant/ant-nodeps/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/ant/ant-nodeps/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

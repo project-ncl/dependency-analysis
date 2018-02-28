@@ -1,7 +1,7 @@
 {
   "id" : "859c8082-3bf3-3f80-b979-1f51fc3202e6",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/tomcat/jasper-el/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/tomcat/jasper-el/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

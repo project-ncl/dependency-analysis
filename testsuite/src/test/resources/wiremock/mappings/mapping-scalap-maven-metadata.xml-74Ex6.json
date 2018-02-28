@@ -1,7 +1,7 @@
 {
   "id" : "1f60675a-bf36-3386-a5c5-74f4f0370825",
   "request" : {
-    "url" : "/api/group/test-DA/org/scala-lang/scalap/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/scala-lang/scalap/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

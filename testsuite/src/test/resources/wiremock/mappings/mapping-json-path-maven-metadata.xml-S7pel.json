@@ -1,7 +1,7 @@
 {
   "id" : "64a25e21-7b48-356f-8cd1-9b266b607408",
   "request" : {
-    "url" : "/api/group/test-DA/com/jayway/jsonpath/json-path/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/jayway/jsonpath/json-path/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "6fc09e4c-b648-3157-822c-4e041b330f4b",
   "request" : {
-    "url" : "/api/group/test-DA/net/jadler/jadler-all/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/jadler/jadler-all/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

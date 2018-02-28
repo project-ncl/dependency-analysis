@@ -1,7 +1,7 @@
 {
   "id" : "be2d1387-4a72-3d6f-af47-b56dc2d6a403",
   "request" : {
-    "url" : "/api/group/test-DA/mockobjects/mockobjects-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/mockobjects/mockobjects-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

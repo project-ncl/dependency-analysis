@@ -1,7 +1,7 @@
 {
   "id" : "3f6818e1-442e-3a09-bca8-066bbac5951b",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/pnc/termd-build-driver/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/pnc/termd-build-driver/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

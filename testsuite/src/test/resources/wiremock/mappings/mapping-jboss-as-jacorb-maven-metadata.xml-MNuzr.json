@@ -1,7 +1,7 @@
 {
   "id" : "7904d317-ec28-3f70-8092-5e76ceb146ed",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-jacorb/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/as/jboss-as-jacorb/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

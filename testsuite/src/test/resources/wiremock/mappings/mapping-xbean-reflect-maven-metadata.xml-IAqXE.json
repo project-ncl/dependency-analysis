@@ -1,7 +1,7 @@
 {
   "id" : "62f582b4-8931-3faf-a1dc-3ae4e8049016",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/xbean/xbean-reflect/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/xbean/xbean-reflect/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "ea0f789a-a1bc-39cd-90f5-62fe63090595",
   "request" : {
-    "url" : "/api/group/test-DA/org/eclipse/persistence/org.eclipse.persistence.core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/eclipse/persistence/org.eclipse.persistence.core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

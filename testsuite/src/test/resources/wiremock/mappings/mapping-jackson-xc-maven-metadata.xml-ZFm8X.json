@@ -1,7 +1,7 @@
 {
   "id" : "ab60801f-ea10-39c8-9552-83fef826457b",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/jackson/jackson-xc/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/jackson/jackson-xc/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

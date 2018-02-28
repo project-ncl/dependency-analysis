@@ -1,7 +1,7 @@
 {
   "id" : "4ca709e7-26c5-3675-8206-24fae4571109",
   "request" : {
-    "url" : "/api/group/test-DA/net/jcip/jcip-annotations/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/jcip/jcip-annotations/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "765f12e8-44a4-364f-a76b-4801f56a92b0",
   "request" : {
-    "url" : "/api/group/test-DA/org/jbpm/jbpm-persistence-jpa/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jbpm/jbpm-persistence-jpa/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

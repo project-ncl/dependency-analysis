@@ -1,7 +1,7 @@
 {
   "id" : "e870d6ec-74a7-3761-af69-461237763508",
   "request" : {
-    "url" : "/api/group/test-DA/org/clojure/core.incubator/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/clojure/core.incubator/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

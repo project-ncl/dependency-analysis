@@ -1,7 +1,7 @@
 {
   "id" : "bc8f6c65-e683-3cba-8276-61c86de93d29",
   "request" : {
-    "url" : "/api/group/test-DA/jakarta-regexp/jakarta-regexp/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/jakarta-regexp/jakarta-regexp/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

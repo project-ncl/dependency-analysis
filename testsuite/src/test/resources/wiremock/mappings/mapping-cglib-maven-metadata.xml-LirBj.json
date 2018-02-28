@@ -1,7 +1,7 @@
 {
   "id" : "3d7e983d-1e8a-3ecd-8ea9-c694b5651e94",
   "request" : {
-    "url" : "/api/group/test-DA/org/sonatype/sisu/inject/cglib/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/sonatype/sisu/inject/cglib/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

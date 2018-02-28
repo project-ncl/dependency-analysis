@@ -1,7 +1,7 @@
 {
   "id" : "fda09014-b18a-374b-9e5f-dee48b72a197",
   "request" : {
-    "url" : "/api/group/test-DA/org/eclipse/jetty/orbit/javax.servlet/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/eclipse/jetty/orbit/javax.servlet/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

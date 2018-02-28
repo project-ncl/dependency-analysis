@@ -1,7 +1,7 @@
 {
   "id" : "7090940a-ce34-3475-9586-0951bb4f553a",
   "request" : {
-    "url" : "/api/group/test-DA/mondrian/mondrian/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/mondrian/mondrian/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

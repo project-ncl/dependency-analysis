@@ -1,7 +1,7 @@
 {
   "id" : "7b765a61-f189-3b5f-9861-2abc5805cbcc",
   "request" : {
-    "url" : "/api/group/test-DA/javax/jmdns/jmdns/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/jmdns/jmdns/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

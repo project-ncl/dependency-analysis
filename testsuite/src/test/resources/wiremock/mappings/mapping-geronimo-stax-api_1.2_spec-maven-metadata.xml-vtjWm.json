@@ -1,7 +1,7 @@
 {
   "id" : "b4a89466-7ba5-3b6f-b758-d1cca8949ff5",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/geronimo/specs/geronimo-stax-api_1.2_spec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/geronimo/specs/geronimo-stax-api_1.2_spec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

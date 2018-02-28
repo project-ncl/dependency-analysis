@@ -1,7 +1,7 @@
 {
   "id" : "76a49f30-13bf-3b16-9aa5-5e43131e53e7",
   "request" : {
-    "url" : "/api/group/test-DA/gnu-getopt/getopt/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/gnu-getopt/getopt/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "b61e7b3e-72de-3b38-bc94-0e059d17be9a",
   "request" : {
-    "url" : "/api/group/test-DA/org/commonjava/maven/atlas/atlas-bindings-jackson-identities/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/commonjava/maven/atlas/atlas-bindings-jackson-identities/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

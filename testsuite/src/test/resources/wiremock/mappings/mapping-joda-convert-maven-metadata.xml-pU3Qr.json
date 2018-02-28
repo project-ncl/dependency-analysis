@@ -1,7 +1,7 @@
 {
   "id" : "cfcf5eb7-7a56-3427-85ad-af5a7328f9c2",
   "request" : {
-    "url" : "/api/group/test-DA/org/joda/joda-convert/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/joda/joda-convert/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "e2959229-6e6a-363b-878f-cde72b983c51",
   "request" : {
-    "url" : "/api/group/test-DA/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

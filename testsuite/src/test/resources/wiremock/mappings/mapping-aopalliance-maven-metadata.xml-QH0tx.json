@@ -1,7 +1,7 @@
 {
   "id" : "b1e100eb-a104-3615-85ec-7ac8f9728683",
   "request" : {
-    "url" : "/api/group/test-DA/aopalliance/aopalliance/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/aopalliance/aopalliance/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

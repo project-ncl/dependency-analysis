@@ -1,7 +1,7 @@
 {
   "id" : "54610e02-c479-36c1-8e3f-ba61d6cd4ef3",
   "request" : {
-    "url" : "/api/group/test-DA/com/github/jnr/jnr-posix/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/github/jnr/jnr-posix/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

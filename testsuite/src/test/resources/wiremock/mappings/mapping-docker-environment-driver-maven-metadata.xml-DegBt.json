@@ -1,7 +1,7 @@
 {
   "id" : "4547556d-ee2b-30a9-9fc2-e47913c0117b",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/pnc/docker-environment-driver/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/pnc/docker-environment-driver/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

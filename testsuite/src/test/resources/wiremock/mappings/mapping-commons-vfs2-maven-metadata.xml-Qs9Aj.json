@@ -1,7 +1,7 @@
 {
   "id" : "bbd6e0ab-840f-32c0-b265-b9382a77d7a1",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/commons/commons-vfs2/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/commons/commons-vfs2/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

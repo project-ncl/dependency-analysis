@@ -1,7 +1,7 @@
 {
   "id" : "f0d397cb-b66c-3c8b-8c22-3bf7061de297",
   "request" : {
-    "url" : "/api/group/test-DA/com/headius/coro-mock/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/headius/coro-mock/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

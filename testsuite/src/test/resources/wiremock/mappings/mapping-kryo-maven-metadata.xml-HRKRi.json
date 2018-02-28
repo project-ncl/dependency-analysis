@@ -1,7 +1,7 @@
 {
   "id" : "508b7d4c-39fa-3eda-a9af-0bd70f3539c3",
   "request" : {
-    "url" : "/api/group/test-DA/com/googlecode/kryo/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/googlecode/kryo/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

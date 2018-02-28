@@ -1,7 +1,7 @@
 {
   "id" : "c25e5d46-58a3-3490-8b3e-c68ee03a68de",
   "request" : {
-    "url" : "/api/group/test-DA/commons-javaflow/commons-javaflow/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/commons-javaflow/commons-javaflow/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {
