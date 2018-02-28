@@ -63,8 +63,8 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public List<String> getVersionsOfGA(GA ga, String repository) throws RepositoryException {
-
-        StringBuilder query = new StringBuilder();
+        String query = repositoryLink("maven", repository, ga.getGroupId().replace(".", "/") + "/"
+                + ga.getArtifactId());
 
         MetricRegistry registry = metricsConfiguration.getMetricRegistry();
         Timer.Context context = null;
@@ -75,39 +75,8 @@ public class AproxConnectorImpl implements AproxConnector {
         }
 
         try {
-            query.append(config.getAproxServer());
-            query.append("/api/group/");
-            query.append(repository).append('/');
-            query.append(ga.getGroupId().replace(".", "/")).append("/");
-            query.append(ga.getArtifactId()).append('/');
-            query.append("maven-metadata.xml");
-
-            log.info("Retrieving metadata for " + ga + " from " + query.toString());
-            HttpURLConnection connection = (HttpURLConnection) new URL(query.toString())
-                    .openConnection();
-            connection.setConnectTimeout(config.getAproxRequestTimeout());
-            connection.setReadTimeout(config.getAproxRequestTimeout());
-
-            int retry = 0;
-            while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
-                    && retry < 2) {
-
-                log.warn("Connection to: {} failed with status: {}. retrying...", query.toString(),
-                        connection.getResponseCode());
-
-                retry++;
-
-                try {
-                    // Wait before retrying using Exponential back-off: 200ms, 400ms
-                    Thread.sleep((long) Math.pow(2, retry) * 100L);
-                } catch (InterruptedException e) {
-                    log.error(e.getMessage());
-                }
-
-                connection = (HttpURLConnection) new URL(query.toString()).openConnection();
-                connection.setConnectTimeout(config.getAproxRequestTimeout());
-                connection.setReadTimeout(config.getAproxRequestTimeout());
-            }
+            log.info("Retrieving maven metadata for " + ga + " from " + query);
+            HttpURLConnection connection = getResponse(query);
 
             final List<String> versions = parseMetadataFile(connection).getVersioning()
                     .getVersions().getVersion();
@@ -125,6 +94,51 @@ public class AproxConnectorImpl implements AproxConnector {
                 context.stop();
             }
         }
+    }
+
+    private String repositoryLink(String type, String repository, String path) {
+        StringBuilder query = new StringBuilder();
+        query.append(config.getAproxServer());
+        query.append("/api/content/");
+        query.append(type);
+        query.append("/group/");
+        query.append(repository).append('/');
+        query.append(path).append('/');
+        switch (type) {
+            case "maven": {
+                query.append("maven-metadata.xml");
+                break;
+            }
+        }
+
+        return query.toString();
+    }
+
+    private HttpURLConnection getResponse(String query) throws IOException {
+        HttpURLConnection connection = (HttpURLConnection) new URL(query).openConnection();
+        connection.setConnectTimeout(config.getAproxRequestTimeout());
+        connection.setReadTimeout(config.getAproxRequestTimeout());
+        int retry = 0;
+        while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
+                && retry < 2) {
+
+            log.warn("Connection to: {} failed with status: {}. retrying...", query,
+                    connection.getResponseCode());
+
+            retry++;
+
+            try {
+                // Wait before retrying using Exponential back-off: 200ms, 400ms
+                Thread.sleep((long) Math.pow(2, retry) * 100L);
+            } catch (InterruptedException e) {
+                log.error(e.getMessage());
+            }
+
+            connection = (HttpURLConnection) new URL(query).openConnection();
+            connection.setConnectTimeout(config.getAproxRequestTimeout());
+            connection.setReadTimeout(config.getAproxRequestTimeout());
+        }
+        return connection;
     }
 
     @Override
