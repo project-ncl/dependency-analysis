@@ -10,7 +10,6 @@ import org.jboss.da.metrics.MetricsConfiguration;
 import org.jboss.da.model.rest.GA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +21,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.logging.Level;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -50,7 +48,7 @@ public class AproxConnectorTest {
     private MetricsConfiguration metricsConfiguration;
 
     @InjectMocks
-    private final AproxConnectorImpl dependencyTreeGenerator = new AproxConnectorImpl(config);
+    private final AproxConnectorImpl aproxConnector = new AproxConnectorImpl(config);
 
     private static final String REDHAT3 = "1.9.13.redhat-3";
 
@@ -93,12 +91,13 @@ public class AproxConnectorTest {
 
     @Test
     public void testGetVersionsOfGA() throws ConfigurationParseException, CommunicationException {
-        stubFor(get(urlEqualTo("/api/group/DA-TEST-GROUP/foo/bar/baz/maven-metadata.xml"))
+        stubFor(get(
+                urlEqualTo("/api/content/maven/group/DA-TEST-GROUP/foo/bar/baz/maven-metadata.xml"))
                 .willReturn(
                         aResponse().withStatus(200).withHeader("Content-Type", "text/xml")
                                 .withBody(FOOBAR_MAVEN_METADATA)));
 
-        List<String> versionsOfGA = dependencyTreeGenerator.getVersionsOfGA(GA);
+        List<String> versionsOfGA = aproxConnector.getVersionsOfGA(GA);
 
         //verify
         assertTrue("Unmatched requests: " + WireMock.findUnmatchedRequests(), WireMock
@@ -112,12 +111,13 @@ public class AproxConnectorTest {
     @Test
     public void testGetVersionsOfGASpecificRepository() throws ConfigurationParseException,
             CommunicationException {
-        stubFor(get(urlEqualTo("/api/group/DA-TEST-GROUP2/foo/bar/baz/maven-metadata.xml"))
+        stubFor(get(
+                urlEqualTo("/api/content/maven/group/DA-TEST-GROUP2/foo/bar/baz/maven-metadata.xml"))
                 .willReturn(
                         aResponse().withStatus(200).withHeader("Content-Type", "text/xml")
                                 .withBody(FOOBAR_MAVEN_METADATA)));
 
-        List<String> versionsOfGA = dependencyTreeGenerator.getVersionsOfGA(GA, "DA-TEST-GROUP2");
+        List<String> versionsOfGA = aproxConnector.getVersionsOfGA(GA, "DA-TEST-GROUP2");
 
         //verify
         assertTrue("Unmatched requests: " + WireMock.findUnmatchedRequests(), WireMock
@@ -128,4 +128,27 @@ public class AproxConnectorTest {
         assertTrue(versionsOfGA.contains(REDHAT3));
     }
 
+    @Test
+    public void testGetVersionsOfNpm() throws ConfigurationParseException, CommunicationException {
+        stubFor(get(urlEqualTo("/api/content/npm/group/DA-TEST-GROUP/jquery/package.json"))
+                .willReturn(
+                        aResponse().withStatus(200).withHeader("Content-Type", "application/json")
+                                .withBodyFile("jquery-package.json")));
+
+        List<String> versionsOfGA = aproxConnector.getVersionsOfNpm("jquery");
+
+        //verify
+        assertTrue("Unmatched requests: " + WireMock.findUnmatchedRequests(), WireMock
+                .findUnmatchedRequests().isEmpty());
+        assertEquals(9, versionsOfGA.size());
+        assertTrue(versionsOfGA.contains("1.12.1"));
+        assertTrue(versionsOfGA.contains("1.5.1"));
+        assertTrue(versionsOfGA.contains("1.6.2"));
+        assertTrue(versionsOfGA.contains("2.2.3"));
+        assertTrue(versionsOfGA.contains("3.0.0"));
+        assertTrue(versionsOfGA.contains("3.0.0-alpha1"));
+        assertTrue(versionsOfGA.contains("3.0.0-beta1"));
+        assertTrue(versionsOfGA.contains("3.0.0-rc1"));
+        assertTrue(versionsOfGA.contains("3.1.0"));
+    }
 }
