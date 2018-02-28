@@ -77,7 +77,7 @@ public class AproxConnectorTest {
         cfg.setAproxServer("http://localhost:8082");
         cfg.setAproxGroup("DA-TEST-GROUP");
         cfg.setAproxGroupPublic("DA-PUBLIC-TEST-GROUP");
-        cfg.setAproxRequestTimeout(10);
+        cfg.setAproxRequestTimeout(30000);
         Configuration config = Mockito.mock(Configuration.class);
         try {
             when(config.getConfig()).thenReturn(cfg);
