@@ -1,0 +1,21 @@
+{
+  "id" : "8f4af808-7b1a-33b0-b015-881f2364fe67",
+  "request" : {
+    "url" : "/api/content/npm/group/test-DA/jquery/package.json",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-jquery-package.json-vDrxC.json",
+    "headers" : {
+      "Last-Modified" : "Wed, 28 Feb 2018 10:00:19 GMT",
+      "Indy-Origin" : "npm:group:test-DA",
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json",
+      "Date" : "Wed, 28 Feb 2018 10:06:05 GMT",
+      "Set-Cookie" : "4ecb4d880a677546aa0bf51e08ef0d3f=28a6d2fb32071ef8899d0a36ebef784e; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "8f4af808-7b1a-33b0-b015-881f2364fe67"
+}
