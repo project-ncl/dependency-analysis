@@ -26,9 +26,11 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {
@@ -42,6 +44,8 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Inject
     private PomAnalyzer pomAnalyzer;
+
+    private MetadataFileParser parser = new MetadataFileParser();
 
     @Inject
     private MetricsConfiguration metricsConfiguration;
@@ -80,11 +84,11 @@ public class AproxConnectorImpl implements AproxConnector {
 
             final List<String> versions = parseMetadataFile(connection).getVersioning()
                     .getVersions().getVersion();
-            log.debug("Metadata for {} found. Response: {}. Versions: {}", ga,
+            log.debug("Maven metadata for {} found. Response: {}. Versions: {}", ga,
                     connection.getResponseCode(), versions);
             return versions;
         } catch (FileNotFoundException ex) {
-            log.debug("Metadata for {} not found. Assuming empty version list.", ga);
+            log.debug("Maven metadata for {} not found. Assuming empty version list.", ga);
             return Collections.emptyList();
         } catch (IOException | CommunicationException e) {
             throw new RepositoryException("Failed to obtain versions for " + ga
@@ -93,6 +97,32 @@ public class AproxConnectorImpl implements AproxConnector {
             if (context != null) {
                 context.stop();
             }
+        }
+    }
+
+    @Override
+    public List<String> getVersionsOfNpm(String packageName) throws RepositoryException {
+        return this.getVersionsOfNpm(packageName, config.getAproxGroup());
+    }
+
+    @Override
+    public List<String> getVersionsOfNpm(String packageName, String repository)
+            throws RepositoryException {
+        String query = repositoryLink("npm", repository, packageName);
+        try {
+            log.info("Retrieving npm metadata for " + packageName + " from " + query);
+            HttpURLConnection connection = getResponse(query);
+
+            final Set<String> versions = parser.parseNpmMetadata(connection).getVersions().keySet();
+            log.debug("Npm metadata for {} found. Response: {}. Versions: {}", packageName,
+                    connection.getResponseCode(), versions);
+            return new ArrayList(versions);
+        } catch (FileNotFoundException ex) {
+            log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
+            return Collections.emptyList();
+        } catch (IOException | CommunicationException e) {
+            throw new RepositoryException("Failed to obtain versions for " + packageName
+                    + " from repository on url " + query, e);
         }
     }
 
@@ -107,6 +137,10 @@ public class AproxConnectorImpl implements AproxConnector {
         switch (type) {
             case "maven": {
                 query.append("maven-metadata.xml");
+                break;
+            }
+            case "npm": {
+                query.append("package.json");
                 break;
             }
         }
@@ -208,7 +242,7 @@ public class AproxConnectorImpl implements AproxConnector {
     private VersionResponse parseMetadataFile(URLConnection connection) throws IOException,
             CommunicationException {
         try (InputStream in = connection.getInputStream()) {
-            return MetadataFileParser.parseMetadataFile(in);
+            return MetadataFileParser.parseMavenMetadata(in);
         } catch (JAXBException e) {
             throw new RepositoryException("Failed to parse metadata file", e);
         }
