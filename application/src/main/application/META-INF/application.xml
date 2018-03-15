@@ -28,20 +28,6 @@
             <context-root>da</context-root>
         </web>
     </module>
-    <module>
-        <ejb>bc-model.jar</ejb>
-    </module>
-    <module>
-        <ejb>bc-backend.jar</ejb>
-    </module>
-    <module>
-        <web>
-            <web-uri>bc-rest.war</web-uri>
-            <context-root>da-bcg</context-root>
-        </web>
-    </module>
-
-
 
     <library-directory>lib</library-directory>
 </application>

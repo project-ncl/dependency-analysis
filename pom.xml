@@ -33,9 +33,6 @@
         <module>reports-model</module>
         <module>reports-backend</module>
         <module>reports-rest</module>
-        <module>bc-model</module>
-        <module>bc-backend</module>
-        <module>bc-rest</module>
         <module>application</module>
         <module>cli-wrap</module>
     </modules>
@@ -126,24 +123,6 @@
                 <artifactId>reports-model</artifactId>
 		<version>${project.version}</version>
                 <type>ejb</type>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>bc-model</artifactId>
-		<version>${project.version}</version>
-                <type>ejb</type>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>bc-backend</artifactId>
-		<version>${project.version}</version>
-                <type>ejb</type>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>bc-rest</artifactId>
-		<version>${project.version}</version>
-                <type>war</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.da</groupId>
