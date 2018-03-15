@@ -24,7 +24,7 @@ import java.util.zip.ZipFile;
 public class ArquillianDeploymentFactory {
 
     public enum DepType {
-        BC, REPORTS
+        REPORTS
     }
 
     public enum TestSide {
@@ -67,17 +67,10 @@ public class ArquillianDeploymentFactory {
         JavaArchive communicationJar = ear.getAsType(JavaArchive.class, "communication.jar");
         JavaArchive reportsBackendJar = ear.getAsType(JavaArchive.class, "reports-backend.jar");
         WebArchive reportsRestWar;
-        WebArchive bcRestWar;
         switch (type) {
             case REPORTS: {
                 reportsRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class,
                         "reports-rest.war"));
-                bcRestWar = ear.getAsType(WebArchive.class, "bc-rest.war");
-                break;
-            }
-            case BC: {
-                reportsRestWar = ear.getAsType(WebArchive.class, "reports-rest.war");
-                bcRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class, "bc-rest.war"));
                 break;
             }
             default:
@@ -86,7 +79,6 @@ public class ArquillianDeploymentFactory {
         updateArchiveWithReplacements(communicationJar, "communication");
         updateArchiveWithReplacements(reportsBackendJar, "reports-backend");
         updateArchiveWithReplacements(reportsRestWar, "reports-rest");
-        updateArchiveWithReplacements(bcRestWar, "bc-rest");
         ear.addAsModule(createTestsuiteJar());
     }
 

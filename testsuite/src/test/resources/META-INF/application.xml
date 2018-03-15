@@ -29,18 +29,6 @@
         </web>
     </module>
     <module>
-        <ejb>bc-model.jar</ejb>
-    </module>
-    <module>
-        <ejb>bc-backend.jar</ejb>
-    </module>
-    <module>
-        <web>
-            <web-uri>bc-rest.war</web-uri>
-            <context-root>testsuite-bc</context-root>
-        </web>
-    </module>
-    <module>
         <ejb>testsuite.jar</ejb>
     </module>
     <library-directory>lib</library-directory>
