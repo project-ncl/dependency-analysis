@@ -2,11 +2,6 @@
 <jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
     <deployment>
     </deployment>
-    <sub-deployment name="bc-rest.war">
-        <dependencies>
-            <module name="deployment.testsuite.ear.bc-backend.jar"/>
-        </dependencies>
-    </sub-deployment>
     <sub-deployment name="reports-rest.war">
         <dependencies>
             <module name="deployment.testsuite.ear.reports-backend.jar" export="true"/>
@@ -23,18 +18,6 @@
             <module name="deployment.testsuite.ear.reports-model.jar" export="true"/>
         </dependencies>
     </sub-deployment>
-    <sub-deployment name="bc-model.jar">
-        <dependencies>
-            <module name="deployment.testsuite.ear.communication.jar" export="true"/>
-        </dependencies>
-    </sub-deployment>
-    <sub-deployment name="bc-backend.jar">
-        <dependencies>
-            <module name="deployment.testsuite.ear.communication.jar" export="true"/>
-            <module name="deployment.testsuite.ear.reports-backend.jar" export="true"/>
-            <module name="deployment.testsuite.ear.bc-model.jar" export="true"/>
-        </dependencies>
-    </sub-deployment>
     <sub-deployment name="communication.jar">
         <dependencies>
             <module name="deployment.testsuite.ear.common.jar" export="true"/>
@@ -44,7 +27,6 @@
     </sub-deployment>
     <sub-deployment name="testsuite.jar">
         <dependencies>
-            <module name="deployment.testsuite.ear.bc-rest.war"/>
             <module name="deployment.testsuite.ear.reports-rest.war"/>
         </dependencies>
     </sub-deployment>
