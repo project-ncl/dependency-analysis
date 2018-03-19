@@ -11,10 +11,6 @@ public class DAConfig extends AbstractModuleConfig {
 
     @Getter
     @Setter
-    private String pncServer;
-
-    @Getter
-    @Setter
     private String aproxServer;
 
     @Getter

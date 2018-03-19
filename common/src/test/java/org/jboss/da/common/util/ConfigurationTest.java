@@ -67,7 +67,6 @@ public class ConfigurationTest {
     private void checkRequiredFields(DAConfig config, String pncServer, String aproxServer,
             String aproxGroup, String aproxGroupPublic, String backupScmUrl,
             String cartographerServerUrl) {
-        assertEquals(pncServer, config.getPncServer());
         assertEquals(aproxServer, config.getAproxServer());
         assertEquals(aproxGroup, config.getAproxGroup());
         assertEquals(aproxGroupPublic, config.getAproxGroupPublic());
