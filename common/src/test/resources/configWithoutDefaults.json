@@ -15,7 +15,6 @@
       "configs": [
         {
           "@module-config": "da-config",
-          "pncServer": "pnc-server",
           "aproxServer": "aprox-server",
           "aproxGroup": "aprox-group",
           "aproxGroupPublic": "aprox-group-public",
