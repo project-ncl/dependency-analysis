@@ -21,7 +21,7 @@
             the users about alternatives instead of the artifacts used in their projects, produces
             dependency reports of artifacts and resolves dependency tree.</p>
 
-        <p>The Dependency Analyzer also maintains a database of whitelisted and blacklisted
+        <p>Dependency Analyzer also maintains a database of product-artifacts mapping and blacklisted
             artifacts, which should help the user to decide, which artifacts to use in their
             projects.</p>
         <p>
@@ -32,13 +32,13 @@
         </p>
 
         <h3>Blacklist / Whitelist</h3>
-        <p>The service maintains the database of the whitelisted and blacklisted artifacts. This
-            data in the database can be change ony by authenticated users. In future authorization
+        <p>The service maintains the database of the product-artifacts mapping and blacklisted artifacts. This
+            data in the database can be changed ony by authenticated users. In future authorization
             may be added.</p>
         <p>The meaning of the this lists is:</p>
         <ul>
             <li>
-                <span class="strong">Whitelist</span>
+                <span class="strong">Product-artifact mapping (Whitelist)</span>
                 - contains artifacts, which are the best option to be used in the projects. Each
                 artifact is associated to a particular product. These
                 artifacts are used in the latest versions of the most important products and
@@ -49,8 +49,10 @@
                 <span class="strong">Blacklist</span>
                 - contains artifacts, which should not be used in the projects. There are typically
                 artifacts, which cannot be built, has unacceptable license, contains
-                vulnerabilities, etc. The inserted artifacts are restricted to community versions of
-                artifacts (e.g. 4.2.18.Final).
+                vulnerabilities, etc. The inserted artifacts can be of community versions of
+                artifacts (e.g. 4.2.18.Final) which will blacklist all redhat builds of that version
+		or of redhat version (e.g. 4.2.18.Final-redhat-1) which will blacklist the specific
+		version.
             </li>
         </ul>
 
@@ -59,8 +61,8 @@
             manually.</p>
 
         <h3>Lookup of built artifacts</h3>
-        <p>The Dependency Analyzer can lookup the Red Hat built artifacts and tell the user if
-            an artifact was built or not and provide him alternative versions of the artifact. The
+        <p>Dependency Analyzer can lookup the Red Hat built artifacts and tell the user if
+            an artifact was built or not and provide them alternative versions of the artifact. The
             user gets the information about:</p>
         <ul>
             <li>The latest built version of the artifact</li>
@@ -92,19 +94,19 @@
 
         <h2>Interfaces</h2>
         <p>
-            The Dependency Analyzer is a server side application and there are three ways how to use
-            it. The <span class="strong">REST API</span>,
+            Dependency Analyzer is a server side application and there are three ways how to use
+            it. A <span class="strong">REST API</span>,
             which provides the main logic of the system and provides an easy way to use it in
             other applications.
-            The <span class="strong">CLI tool</span>,
+            A <span class="strong">CLI tool</span>,
             which is more handy for the manual usage. The CLI tool is mainly a thin client,
             which gets all data from the service using the REST API.
-            And the <span class="strong">PNC UI</span>, which contains some of the functionality.
+            And a <span class="strong">PNC UI</span>, which contains some of the functionality.
         </p>
 
         <h3>REST API</h3>
         <p>
-            The REST API is based on the Swagger documentation, which provides an easy way to have
+            The REST API is based on a Swagger documentation, which provides an easy way to have
             an up to date documentation and also a simple way to try the REST API from the browser.
             The path to the Swagger documentation is <span class="strong">/da/doc</span>.
             From this endpoint there is also link to the latest API version.
