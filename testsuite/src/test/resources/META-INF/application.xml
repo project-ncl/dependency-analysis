@@ -23,6 +23,9 @@
         <ejb>reports-backend.jar</ejb>
     </module>
     <module>
+        <ejb>metrics.jar</ejb>
+    </module>
+    <module>
         <web>
             <web-uri>reports-rest.war</web-uri>
             <context-root>testsuite</context-root>

@@ -5,6 +5,7 @@
     <sub-deployment name="reports-rest.war">
         <dependencies>
             <module name="deployment.dependency-analysis.ear.reports-backend.jar"/>
+            <module name="deployment.dependency-analysis.ear.metrics.jar"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="reports-model.jar">
