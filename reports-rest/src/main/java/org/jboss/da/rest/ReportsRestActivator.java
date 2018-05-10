@@ -1,6 +1,9 @@
 package org.jboss.da.rest;
 
 import org.jboss.da.rest.listings.Artifacts;
+import org.jboss.da.rest.metrics.GeneralRestMetricsFilter;
+import org.jboss.da.rest.metrics.TimedMetric;
+import org.jboss.da.rest.metrics.TimedMetricFilter;
 import org.jboss.da.rest.reports.Reports;
 
 import javax.ws.rs.ApplicationPath;
@@ -26,6 +29,7 @@ public class ReportsRestActivator extends Application {
         Set<Class<?>> resources = new HashSet<>();
         addSwaggerResources(resources);
         addProjectResources(resources);
+        addMetricsResources(resources);
         return resources;
     }
 
@@ -49,5 +53,11 @@ public class ReportsRestActivator extends Application {
         resources.add(Reports.class);
         resources.add(Products.class);
         resources.add(BlackListImpl.class);
+    }
+
+    public void addMetricsResources(Set<Class<?>> resources) {
+        resources.add(GeneralRestMetricsFilter.class);
+        resources.add(TimedMetric.class);
+        resources.add(TimedMetricFilter.class);
     }
 }
