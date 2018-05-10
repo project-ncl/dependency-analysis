@@ -18,6 +18,10 @@
             <module name="deployment.dependency-analysis.ear.reports-model.jar"/>
         </dependencies>
     </sub-deployment>
+    <sub-deployment name="metrics.jar">
+        <dependencies>
+        </dependencies>
+    </sub-deployment>
     <sub-deployment name="communication.jar">
         <dependencies>
             <module name="deployment.dependency-analysis.ear.common.jar"/>
