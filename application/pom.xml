@@ -33,6 +33,11 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.da</groupId>
+            <artifactId>metrics</artifactId>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.da</groupId>
             <artifactId>reports-rest</artifactId>
             <type>war</type>
         </dependency>
@@ -78,6 +83,10 @@
                         <ejbModule>
                             <groupId>org.jboss.da</groupId>
                             <artifactId>reports-backend</artifactId>
+                        </ejbModule>
+                        <ejbModule>
+                            <groupId>org.jboss.da</groupId>
+                            <artifactId>metrics</artifactId>
                         </ejbModule>
                         <webModule>
                             <groupId>org.jboss.da</groupId>
