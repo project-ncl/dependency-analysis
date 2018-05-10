@@ -1,5 +1,7 @@
 package org.jboss.da.communication.aprox.impl;
 
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
@@ -9,6 +11,7 @@ import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.repository.api.RepositoryException;
+import org.jboss.da.metrics.MetricsConfiguration;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
@@ -30,6 +33,8 @@ import java.util.Optional;
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {
 
+    private static final String METRICS_KEY = "da.client.indy.timer";
+
     @Inject
     private Logger log;
 
@@ -37,6 +42,9 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Inject
     private PomAnalyzer pomAnalyzer;
+
+    @Inject
+    private MetricsConfiguration metricsConfiguration;
 
     @Inject
     public AproxConnectorImpl(Configuration configuration) {
@@ -55,7 +63,17 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public List<String> getVersionsOfGA(GA ga, String repository) throws RepositoryException {
+
         StringBuilder query = new StringBuilder();
+
+        MetricRegistry registry = metricsConfiguration.getMetricRegistry();
+        Timer.Context context = null;
+
+        if (registry != null) {
+            Timer timer = registry.timer(METRICS_KEY);
+            context = timer.time();
+        }
+
         try {
             query.append(config.getAproxServer());
             query.append("/api/group/");
@@ -102,6 +120,10 @@ public class AproxConnectorImpl implements AproxConnector {
         } catch (IOException | CommunicationException e) {
             throw new RepositoryException("Failed to obtain versions for " + ga
                     + " from repository on url " + query, e);
+        } finally {
+            if (context != null) {
+                context.stop();
+            }
         }
     }
 
