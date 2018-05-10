@@ -6,6 +6,7 @@ import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.impl.AproxConnectorImpl;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
+import org.jboss.da.metrics.MetricsConfiguration;
 import org.jboss.da.model.rest.GA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -44,6 +45,9 @@ public class AproxConnectorTest {
 
     @Mock
     private PomAnalyzer pomAnalyzer;
+
+    @Mock
+    private MetricsConfiguration metricsConfiguration;
 
     @InjectMocks
     private final AproxConnectorImpl dependencyTreeGenerator = new AproxConnectorImpl(config);
