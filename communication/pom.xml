@@ -31,14 +31,6 @@
             <type>ejb</type>
         </dependency>
         <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <scope>provided</scope>
@@ -72,11 +64,6 @@
             <artifactId>jboss-javaee-7.0</artifactId>
             <type>pom</type>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-              <groupId>org.hibernate</groupId>
-              <artifactId>hibernate-validator</artifactId>
-              <scope>provided</scope>
         </dependency>
 
         <!-- Used for pom.xml analysis -->
