@@ -19,7 +19,6 @@ import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.model.rest.VersionComparator;
 import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
 import static org.jboss.da.products.api.Product.UNKNOWN;
@@ -31,9 +30,7 @@ import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.BuiltReportModule;
 import org.jboss.da.reports.api.ProductArtifact;
 import org.jboss.da.reports.api.ReportsGenerator;
-import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
-import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
@@ -62,6 +59,11 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import org.jboss.da.common.version.VersionAnalyzer;
+import org.jboss.da.common.version.VersionAnalyzer.VersionAnalysisResult;
+import org.jboss.da.common.version.VersionComparator;
+import org.jboss.da.products.impl.RepositoryProductProvider;
+import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 
 /**
  * The implementation of reports, which provides information about
@@ -75,9 +77,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Inject
     private Logger log;
-
-    @Inject
-    private VersionFinder versionFinder;
 
     @Inject
     private BlackArtifactService blackArtifactService;
@@ -105,6 +104,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Inject
     private AggregatedProductProvider productProvider;
+
+    @Inject
+    @Repository
+    private RepositoryProductProvider repositoryProductProvider;
 
     @Override
     public Optional<ArtifactReport> getReportFromSCM(SCMReportRequest scml) throws ScmException,
@@ -178,8 +181,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         artifacts = filterProductArtifacts(products, artifacts);
         
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
+        VersionParser parser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
 
-        CompletableFuture<Void> fillVersions = versionFinder.getVersionsFor(gav, artifacts)
+        CompletableFuture<Void> fillVersions = analyzeVersions(parser,
+                gav.getVersion(), artifacts)
                 .thenAccept(v -> {
                     report.setAvailableVersions(v.getAvailableVersions());
                     report.setBestMatchVersion(v.getBestMatchVersion());
@@ -194,6 +199,18 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         });
 
         return CompletableFuture.allOf(fillVersions, fillWhitelist);
+    }
+
+    private CompletableFuture<VersionAnalysisResult> analyzeVersions(VersionParser versionParser, String version, CompletableFuture<Set<ProductArtifacts>> availableArtifacts) {
+        VersionAnalyzer va = new VersionAnalyzer(versionParser);
+        return availableArtifacts.thenApply(pas-> {
+            List<String> versions = pas.stream()
+                .flatMap(as -> as.getArtifacts().stream())
+                .map(a -> a.getGav().getVersion())
+                    .collect(Collectors.toList());
+
+            return va.analyseVersions(version, versions);
+        });
     }
 
     @Override
@@ -225,7 +242,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private void populateAdvancedArtifactReportFields(AdvancedArtifactReport advancedReport,
             ArtifactReport report, Set<GAV> modulesAnalyzed, File repoFolder) {
-        VersionParser parser = new VersionParser();
+        VersionParser parser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
 
         for (ArtifactReport dep : report.getDependencies()) {
             final GAV gav = dep.getGav();
@@ -239,7 +256,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                         repoFolder);
             } else {
                 // only generate populate advanced report with community GAVs
-                if (parser.isSuffixedVersion(dep.getVersion()))
+                if (parser.parse(dep.getVersion()).isSuffixed())
                     continue;
 
                 // we have a top-level module dependency
@@ -253,8 +270,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                             .getBestMatchVersion().get());
                 } else {
                     if (!dep.getAvailableVersions().isEmpty()) {
-                        Set<String> versions = new TreeSet<>(
-                                new VersionComparator(gav.getVersion()));
+                        Set<String> versions = new TreeSet<>(new VersionComparator(
+                                gav.getVersion(), parser));
                         versions.addAll(dep.getAvailableVersions());
                         advancedReport.addCommunityGavWithBuiltVersion(dep.getGav(), versions);
                     } else {
@@ -273,6 +290,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     public Set<AlignmentReportModule> getAligmentReport(SCMLocator scml,
             boolean useUnknownProduct, Set<Long> productIds) throws ScmException,
             PomAnalysisException, CommunicationException {
+        VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
         Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
                 scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
         Set<Product> products = getProducts(Collections.emptySet(), productIds);
@@ -302,15 +320,15 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
                 CompletableFuture<Set<ProductArtifacts>> artifacts = filterProducts(
                         useUnknownProduct, products, productProvider.getArtifacts(gav.getGA()));
-                CompletableFuture<VersionLookupResult> versions = versionFinder.getVersionsFor(gav,
-                        artifacts);
+                CompletableFuture<VersionAnalysisResult> versions = analyzeVersions(
+                        versionParser, gav.getVersion(), artifacts);
 
                 CompletableFuture<Set<ProductArtifact>> built = artifacts
-                        .thenCombine(versions, (a, v) -> mapProducts(getBuilt(a,v), gav));
+                        .thenCombine(versions, (a, v) -> mapProducts(getBuilt(a,v), gav, versionParser));
                 intr.put(gav, built);
 
                 CompletableFuture<Set<ProductArtifact>> different = artifacts
-                        .thenCombine(versions, (a, v) -> mapProducts(getBuiltDifferent(a,v), gav));
+                        .thenCombine(versions, (a, v) -> mapProducts(getBuiltDifferent(a,v), gav, versionParser));
                 diff.put(gav, different);
             }
 
@@ -326,7 +344,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private static Set<ProductArtifacts> getBuiltDifferent(Set<ProductArtifacts> a,
-            VersionLookupResult v) {
+            VersionAnalysisResult v) {
         Optional<String> bmv = v.getBestMatchVersion();
         if (bmv.isPresent()) {
             return Collections.emptySet();
@@ -335,7 +353,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         }
     }
 
-    private static Set<ProductArtifacts> getBuilt(Set<ProductArtifacts> a, VersionLookupResult v) {
+    private static Set<ProductArtifacts> getBuilt(Set<ProductArtifacts> a, VersionAnalysisResult v) {
         return v.getBestMatchVersion().map(b -> AggregatedProductProvider
                 .filterArtifacts(a, x -> b.equals(x.getGav().getVersion())))
                 .orElse(Collections.emptySet());
@@ -357,10 +375,11 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return artifacts;
     }
 
-    private static Set<ProductArtifact> mapProducts(Set<ProductArtifacts> products, GAV gav) {
+    private static Set<ProductArtifact> mapProducts(Set<ProductArtifacts> products, GAV gav, VersionParser versionParser) {
+        VersionComparator comparator = new VersionComparator(versionParser);
         return products.stream()
                 .flatMap(e -> e.getArtifacts().stream()
-                        .map(x -> toProductArtifact(e.getProduct(), x, gav.getVersion())))
+                        .map(x -> toProductArtifact(e.getProduct(), x, gav.getVersion(), comparator)))
                 .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(ProductArtifact::getArtifact))));
     }
 
@@ -401,20 +420,22 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public Set<BuiltReportModule> getBuiltReport(SCMLocator scml) throws ScmException,
             PomAnalysisException, CommunicationException {
+        VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
         Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
                 scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
         Set<CompletableFuture<BuiltReportModule>> builtSet = new HashSet<>();
         for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
             for (GAV gav : e.getValue()) {
                 CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
-                builtSet.add(versionFinder.getVersionsFor(gav, artifacts)
+                artifacts = filterBuiltArtifacts(artifacts);
+                builtSet.add(analyzeVersions(versionParser, gav.getVersion(), artifacts)
                         .thenApply(v -> toBuiltReportModule(gav, v)));
             }
         }
         return joinFutures(builtSet);
     }
 
-    private BuiltReportModule toBuiltReportModule(GAV gav, VersionLookupResult vlr) {
+    private BuiltReportModule toBuiltReportModule(GAV gav, VersionAnalysisResult vlr) {
         BuiltReportModule report = new BuiltReportModule(gav);
         report.setAvailableVersions(vlr.getAvailableVersions());
         vlr.getBestMatchVersion().ifPresent(bmv -> report.setBuiltVersion(bmv));
@@ -425,8 +446,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
             throws CommunicationException{
         final String versionSuffix = request.getVersionSuffix();
-        if(versionSuffix != null && !versionSuffix.isEmpty()){
-            productProvider.setVersionSuffix(versionSuffix);
+        if (versionSuffix != null && !versionSuffix.isEmpty()) {
+            repositoryProductProvider.setVersionSuffix(versionSuffix);
         }
 
         /** Get set of GAs */
@@ -463,6 +484,15 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private List<LookupReport> createLookupReports(LookupGAVsRequest request, Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap) throws CommunicationException {
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         List<LookupReport> reports = new ArrayList<>();
+
+        String suffix = request.getVersionSuffix();
+        VersionParser versionParser;
+        if (suffix == null || suffix.isEmpty()) {
+            versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
+        }else{
+            versionParser = new VersionParser(suffix);
+        }
+
         request.getGavs().stream()
                 .distinct()
                 .forEach((gav) -> {
@@ -471,7 +501,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
             CompletableFuture<Set<ProductArtifacts>> artifacts = gaProductArtifactsMap.get(gav.getGA());
 
-            futures.add(versionFinder.getVersionsFor(gav, artifacts).thenAccept(v -> {
+            futures.add(analyzeVersions(versionParser, gav.getVersion(), artifacts).thenAccept(v -> {
                 lr.setAvailableVersions(v.getAvailableVersions());
                 lr.setBestMatchVersion(v.getBestMatchVersion().orElse(null));
             }));
@@ -561,13 +591,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return new Product(pv.getProduct().getName(), pv.getProductVersion());
     }
 
-    private static ProductArtifact toProductArtifact(Product p, Artifact a, String origVersion) {
+    private static ProductArtifact toProductArtifact(Product p, Artifact a, String origVersion,
+            VersionComparator comparator) {
         ProductArtifact ret = new ProductArtifact();
         ret.setArtifact(a.getGav());
         ret.setProductName(p.getName());
         ret.setProductVersion(p.getVersion());
         ret.setSupportStatus(p.getStatus());
-        ret.setDifferenceType(VersionComparator.difference(origVersion, a.getGav().getVersion())
+        ret.setDifferenceType(comparator.difference(origVersion, a.getGav().getVersion())
                 .toString());
         return ret;
     }

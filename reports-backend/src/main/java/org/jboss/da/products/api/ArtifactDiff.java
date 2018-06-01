@@ -1,5 +1,6 @@
 package org.jboss.da.products.api;
 
+import org.jboss.da.common.version.VersionComparator.VersionDifference;
 import org.jboss.da.model.rest.GA;
 
 import lombok.Getter;
@@ -21,21 +22,25 @@ public class ArtifactDiff {
     @Getter
     private final String rightVersion;
 
-    public ArtifactDiff(String leftVersion, GA ga, String rightVersion) {
+    @Getter
+    private final VersionDifference difference;
+
+    public ArtifactDiff(String leftVersion, GA ga, String rightVersion, VersionDifference difference) {
         if (leftVersion == null && rightVersion == null)
             throw new IllegalArgumentException("Both left and right version can't be null.");
 
         this.ga = ga;
         this.leftVersion = leftVersion;
         this.rightVersion = rightVersion;
+        this.difference = difference;
     }
 
     public ArtifactDiff(GA ga, String rightVersion) {
-        this(null, ga, rightVersion);
+        this(null, ga, rightVersion, null);
     }
 
     public ArtifactDiff(String leftVersion, GA ga) {
-        this(leftVersion, ga, null);
+        this(leftVersion, ga, null, null);
     }
 
     public boolean isAdded() {

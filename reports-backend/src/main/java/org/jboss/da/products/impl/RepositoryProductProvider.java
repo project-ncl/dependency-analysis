@@ -14,8 +14,10 @@ import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.slf4j.Logger;
 
+import javax.annotation.Resource;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.inject.Inject;
 import javax.inject.Qualifier;
 
@@ -30,8 +32,10 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
@@ -39,6 +43,7 @@ import java.util.stream.Stream;
  */
 @Repository
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+@RequestScoped
 public class RepositoryProductProvider implements ProductProvider {
 
     @Inject
@@ -47,10 +52,21 @@ public class RepositoryProductProvider implements ProductProvider {
     @Inject
     private AproxConnector aproxConnector;
 
-    private VersionParser versionParser = new VersionParser();
+    @Resource
+    private ManagedExecutorService executorService;
 
+    private VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
+
+    /**
+     * Sets the suffix that distinguish product artifacts in the repository.
+     * @param suffix Suffix of the product artifacts.
+     */
     public void setVersionSuffix(String suffix) {
-        this.versionParser = new VersionParser(suffix);
+        versionParser = new VersionParser(suffix);
+    }
+
+    private <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier) {
+        return CompletableFuture.supplyAsync(supplier, executorService);
     }
 
     @Override
@@ -75,13 +91,13 @@ public class RepositoryProductProvider implements ProductProvider {
 
     @Override
     public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga) {
-        return CompletableFuture.supplyAsync(() -> getArtifacts0(ga));
+        return supplyAsync(() -> getArtifacts0(ga));
     }
 
     @Override
     public CompletableFuture<Set<ProductArtifacts>> getArtifactsFromRepository(GA ga,
             String repository) {
-        return CompletableFuture.supplyAsync(() -> getArtifacts0(ga, repository));
+        return supplyAsync(() -> getArtifacts0(ga, repository));
     }
 
     @Override
@@ -89,13 +105,13 @@ public class RepositoryProductProvider implements ProductProvider {
         if (status != UNKNOWN) {
             return CompletableFuture.completedFuture(Collections.emptySet());
         }
-        return CompletableFuture.supplyAsync(() -> getArtifacts0(ga));
+        return supplyAsync(() -> getArtifacts0(ga));
     }
 
     @Override
     public CompletableFuture<Map<Product, Set<String>>> getVersions(GA ga) {
-        CompletableFuture<Set<String>> versions = CompletableFuture
-                .supplyAsync(() -> getVersionsStream(ga).collect(Collectors.toSet()));
+        CompletableFuture<Set<String>> versions = supplyAsync(
+                () -> getVersionsStream(ga).collect(Collectors.toSet()));
         return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN,rv));
     }
 
@@ -128,7 +144,7 @@ public class RepositoryProductProvider implements ProductProvider {
         }
         try {
             return aproxConnector.getVersionsOfGA(ga).stream()
-                    .filter(versionParser::isSuffixedVersion)
+                    .filter(v -> versionParser.parse(v).isSuffixed())
                     .distinct();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
@@ -142,7 +158,7 @@ public class RepositoryProductProvider implements ProductProvider {
         }
         try {
             return aproxConnector.getVersionsOfGA(ga, repository).stream()
-                    .filter(versionParser::isSuffixedVersion)
+                    .filter(v -> versionParser.parse(v).isSuffixed())
                     .distinct();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);

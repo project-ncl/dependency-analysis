@@ -1,47 +1,23 @@
-package org.jboss.da.reports.backend.impl;
+package org.jboss.da.common.version;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
-import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.model.rest.GA;
-import org.jboss.da.model.rest.GAV;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import org.jboss.da.listings.api.service.BlackArtifactService;
-
 /**
  * 
  * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
  */
-@RunWith(MockitoJUnitRunner.class)
-public class VersionFinderTest {
+public class VersionAnalyzerTest {
 
-    @Mock
-    private AproxConnector aproxConnector;
-
-    @Spy
-    private final VersionParser osgiParser = new VersionParser();
-
-    @Mock
-    private BlackArtifactService blackArtifactService;
-
-    @InjectMocks
-    @Spy
-    private VersionFinderImpl versionFinder;
+    private VersionAnalyzer versionFinder = new VersionAnalyzer(new VersionParser("redhat"));
 
     private static final String NO_BUILT_VERSION = "1.1.3";
 
@@ -79,22 +55,6 @@ public class VersionFinderTest {
 
     private static final String NON_OSGI_VERSION_2_RHT = "1.3.0.Final-redhat-7";
 
-    private static final GA REQUESTED_GA = new GA("org.hibernate", "hibernate-core");
-
-    private static final GAV SOME_GAV = new GAV(REQUESTED_GA, "0.0.1");
-
-    private static final GAV NO_BUILT_GAV = new GAV(REQUESTED_GA, NO_BUILT_VERSION);
-
-    private static final GAV BUILT_GAV = new GAV(REQUESTED_GA, BUILT_VERSION);
-
-    private static final GAV BUILT_GAV_2 = new GAV(REQUESTED_GA, BUILT_VERSION_2);
-
-    private static final GAV MULTI_BUILT_GAV = new GAV(REQUESTED_GA, MULTI_BUILT_VERSION);
-
-    private static final GAV NON_OSGI_GAV = new GAV(REQUESTED_GA, NON_OSGI_VERSION);
-
-    private static final GAV NON_OSGI_GAV_2 = new GAV(REQUESTED_GA, NON_OSGI_VERSION_2);
-
     private static final List<String> All_VERSIONS = Arrays.asList(OTHER_RH_VERSION_1,
             OTHER_RH_VERSION_2, NO_BUILT_VERSION_2, NO_BUILT_VERSION, OTHER_RH_VERSION_3,
             MULTI_BUILT_VERSION_RH2, BUILT_VERSION_RH, MULTI_BUILT_VERSION_RH1, BUILT_VERSION_2_RH,
@@ -108,36 +68,39 @@ public class VersionFinderTest {
 
     @Test
     public void getBestMatchVersionForNonExistingGAV() throws CommunicationException {
-        Optional<String> bmv = versionFinder.getBestMatchVersionFor(SOME_GAV,
+        VersionAnalyzer.VersionAnalysisResult result = versionFinder.analyseVersions("0.0.1",
                 Collections.EMPTY_LIST);
+        Optional<String> bmv = result.getBestMatchVersion();
         assertFalse("Best match version expected to not be present", bmv.isPresent());
     }
 
     @Test
     public void getBestMatchVersionForNotBuiltGAV() throws CommunicationException {
-        Optional<String> bmv = versionFinder.getBestMatchVersionFor(NO_BUILT_GAV, All_VERSIONS);
+        VersionAnalyzer.VersionAnalysisResult result = versionFinder.analyseVersions(
+                NO_BUILT_VERSION, All_VERSIONS);
+        Optional<String> bmv = result.getBestMatchVersion();
         assertFalse("Best match version expected to not be present", bmv.isPresent());
     }
 
     @Test
     public void getBestMatchVersionForBuiltGAV() throws CommunicationException {
-        checkBMV(BUILT_VERSION_RH, BUILT_GAV.getVersion(),
+        checkBMV(BUILT_VERSION_RH, BUILT_VERSION,
                 All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
-        checkBMV(BUILT_VERSION_2_RH, BUILT_GAV_2.getVersion(),
+        checkBMV(BUILT_VERSION_2_RH, BUILT_VERSION_2,
                 All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
     }
 
     @Test
     public void getBestMatchVersionForMultipleBuiltGAV() throws CommunicationException {
-        checkBMV(MULTI_BUILT_VERSION_RH_BEST, MULTI_BUILT_GAV.getVersion(),
+        checkBMV(MULTI_BUILT_VERSION_RH_BEST, MULTI_BUILT_VERSION,
                 All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
     }
 
     @Test
     public void getBestMatchVersionForNoOSGIGAV() throws CommunicationException {
-        checkBMV(NON_OSGI_VERSION_RHT, NON_OSGI_GAV.getVersion(),
+        checkBMV(NON_OSGI_VERSION_RHT, NON_OSGI_VERSION,
                 All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
-        checkBMV(NON_OSGI_VERSION_2_RHT, NON_OSGI_GAV_2.getVersion(),
+        checkBMV(NON_OSGI_VERSION_2_RHT, NON_OSGI_VERSION_2,
                 All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
     }
 
@@ -192,8 +155,10 @@ public class VersionFinderTest {
     }
 
     private void checkBMV(String expectedVersion, String version, String[] versions) {
-        GAV gav = new GAV(REQUESTED_GA, version);
-        Optional<String> bmv = versionFinder.getBestMatchVersionFor(gav, Arrays.asList(versions));
+        VersionAnalyzer.VersionAnalysisResult result = versionFinder.analyseVersions(version,
+                Arrays.asList(versions));
+
+        Optional<String> bmv = result.getBestMatchVersion();
         assertTrue("Best match version expected to be present", bmv.isPresent());
         assertEquals(expectedVersion, bmv.get());
     }

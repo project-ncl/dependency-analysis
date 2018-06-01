@@ -30,6 +30,7 @@ import static org.junit.Assert.fail;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -143,7 +144,7 @@ public class BackwardCompatibilityTest {
 
     @Test
     public void testGADiff() throws IOException {
-        GADiff gadiff = new GADiff(new GA("g", "a"), "1.0.0", "1.0.1");
+        GADiff gadiff = new GADiff(new GA("g", "a"), "1.0.0", "1.0.1", "MICRO");
 
         compare(gadiff, "GADiff");
     }
