@@ -1,9 +1,6 @@
-package org.jboss.da.reports.model.rest;
+package org.jboss.da.reports.model.response;
 
-import org.jboss.da.model.rest.GAV;
-
-import java.util.Set;
-import java.util.TreeSet;
+import org.jboss.da.listings.model.rest.RestProductInput;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,20 +14,15 @@ import lombok.Setter;
  */
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RestGA2GAVs {
+public class RestVersionProduct {
 
     @Getter
     @Setter
     @NonNull
-    private String groupId;
+    private String version;
 
     @Getter
     @Setter
     @NonNull
-    private String artifactId;
-
-    @Getter
-    @Setter
-    @NonNull
-    private Set<GAV> gavs = new TreeSet<>();
+    private RestProductInput product;
 }

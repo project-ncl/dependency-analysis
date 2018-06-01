@@ -1,4 +1,4 @@
-package org.jboss.da.reports.model.rest;
+package org.jboss.da.reports.model.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.ToString;

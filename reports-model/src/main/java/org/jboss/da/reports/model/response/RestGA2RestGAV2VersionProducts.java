@@ -1,6 +1,6 @@
-package org.jboss.da.reports.model.rest;
+package org.jboss.da.reports.model.response;
 
-import org.jboss.da.listings.model.rest.RestProductInput;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,20 +14,20 @@ import lombok.Setter;
  */
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RestVersionProductWithDifference {
+public class RestGA2RestGAV2VersionProducts {
 
     @Getter
     @Setter
     @NonNull
-    private String version;
+    private String groupId;
 
     @Getter
     @Setter
     @NonNull
-    private String differenceType;
+    private String artifactId;
 
     @Getter
     @Setter
     @NonNull
-    private RestProductInput product;
+    private List<RestGAV2VersionProducts> gavProducts;
 }
