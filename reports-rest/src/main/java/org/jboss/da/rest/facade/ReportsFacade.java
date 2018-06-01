@@ -8,10 +8,10 @@ import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.BuiltReportModule;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.model.api.SCMLocator;
-import org.jboss.da.reports.model.rest.AlignReport;
-import org.jboss.da.reports.model.rest.AlignReportRequest;
-import org.jboss.da.reports.model.rest.BuiltReport;
-import org.jboss.da.reports.model.rest.BuiltReportRequest;
+import org.jboss.da.reports.model.response.AlignReport;
+import org.jboss.da.reports.model.request.AlignReportRequest;
+import org.jboss.da.reports.model.response.BuiltReport;
+import org.jboss.da.reports.model.request.BuiltReportRequest;
 
 import javax.inject.Inject;
 
@@ -19,12 +19,12 @@ import java.util.Set;
 
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.ArtifactReport;
-import org.jboss.da.reports.model.rest.AdvancedReport;
-import org.jboss.da.reports.model.rest.GAVRequest;
-import org.jboss.da.reports.model.rest.LookupGAVsRequest;
-import org.jboss.da.reports.model.rest.LookupReport;
-import org.jboss.da.reports.model.rest.Report;
-import org.jboss.da.reports.model.rest.SCMReportRequest;
+import org.jboss.da.reports.model.response.AdvancedReport;
+import org.jboss.da.reports.model.request.GAVRequest;
+import org.jboss.da.reports.model.request.LookupGAVsRequest;
+import org.jboss.da.reports.model.response.LookupReport;
+import org.jboss.da.reports.model.response.Report;
+import org.jboss.da.reports.model.request.SCMReportRequest;
 import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
 

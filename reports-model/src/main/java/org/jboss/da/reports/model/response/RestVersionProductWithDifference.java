@@ -1,4 +1,4 @@
-package org.jboss.da.reports.model.rest;
+package org.jboss.da.reports.model.response;
 
 import org.jboss.da.listings.model.rest.RestProductInput;
 
@@ -14,12 +14,17 @@ import lombok.Setter;
  */
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RestVersionProduct {
+public class RestVersionProductWithDifference {
 
     @Getter
     @Setter
     @NonNull
     private String version;
+
+    @Getter
+    @Setter
+    @NonNull
+    private String differenceType;
 
     @Getter
     @Setter

@@ -1,4 +1,4 @@
-package org.jboss.da.reports.model.rest;
+package org.jboss.da.reports.model.response;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 

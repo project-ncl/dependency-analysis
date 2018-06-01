@@ -23,10 +23,9 @@ import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.listings.model.rest.SuccessResponse;
 import org.jboss.da.listings.model.rest.WLFill;
 import org.jboss.da.products.model.rest.GADiff;
-import org.jboss.da.reports.model.rest.GAVRequest;
-import org.jboss.da.reports.model.rest.LookupReport;
-import org.jboss.da.reports.model.rest.Product;
-import org.jboss.da.reports.model.rest.Report;
+import org.jboss.da.reports.model.request.GAVRequest;
+import org.jboss.da.reports.model.response.LookupReport;
+import org.jboss.da.reports.model.response.Report;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Files;
@@ -162,13 +161,6 @@ public class BackwardCompatibilityTest {
                 new ArrayList<>(), true, new ArrayList<>());
 
         compare(lookupReport, "LookupReport");
-    }
-
-    @Test
-    public void testProduct() throws IOException {
-        Product prod = new Product("EAP", "4.2");
-
-        compare(prod, "Product");
     }
 
     @Test

@@ -5,10 +5,10 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.model.api.SCMLocator;
-import org.jboss.da.reports.model.rest.GAVRequest;
-import org.jboss.da.reports.model.rest.LookupGAVsRequest;
-import org.jboss.da.reports.model.rest.LookupReport;
-import org.jboss.da.reports.model.rest.SCMReportRequest;
+import org.jboss.da.reports.model.request.GAVRequest;
+import org.jboss.da.reports.model.request.LookupGAVsRequest;
+import org.jboss.da.reports.model.request.SCMReportRequest;
+import org.jboss.da.reports.model.response.LookupReport;
 
 import java.util.List;
 import java.util.Optional;
