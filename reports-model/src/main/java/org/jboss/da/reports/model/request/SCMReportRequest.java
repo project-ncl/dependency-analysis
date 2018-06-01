@@ -1,4 +1,4 @@
-package org.jboss.da.reports.model.rest;
+package org.jboss.da.reports.model.request;
 
 import org.jboss.da.reports.model.api.SCMLocator;
 

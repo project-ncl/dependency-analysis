@@ -1,4 +1,4 @@
-package org.jboss.da.reports.model.rest;
+package org.jboss.da.reports.model.response;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import lombok.Setter;
  */
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RestGAV2VersionProducts {
+public class RestGA2RestGAV2VersionProductsWithDiff {
 
     @Getter
     @Setter
@@ -29,10 +29,6 @@ public class RestGAV2VersionProducts {
     @Getter
     @Setter
     @NonNull
-    private String version;
+    private List<RestGAV2VersionProductsWithDiff> gavProducts;
 
-    @Getter
-    @Setter
-    @NonNull
-    private List<RestVersionProduct> gavProducts;
 }

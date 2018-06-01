@@ -1,4 +1,4 @@
-package org.jboss.da.reports.model.rest;
+package org.jboss.da.reports.model.request;
 
 import java.util.ArrayList;
 import java.util.HashSet;
