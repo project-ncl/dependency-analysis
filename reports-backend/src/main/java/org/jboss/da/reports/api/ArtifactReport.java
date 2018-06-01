@@ -2,7 +2,6 @@ package org.jboss.da.reports.api;
 
 import org.jboss.da.model.rest.GAV;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +32,7 @@ public class ArtifactReport implements Comparable<ArtifactReport> {
 
     @NonNull
     @Setter
-    private List<String> availableVersions = new ArrayList<>();
+    private List<String> availableVersions = Collections.emptyList();
 
     @Getter
     @NonNull

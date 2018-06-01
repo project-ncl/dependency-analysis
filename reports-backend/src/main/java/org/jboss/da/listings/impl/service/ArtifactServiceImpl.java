@@ -20,8 +20,7 @@ import java.util.List;
  */
 public abstract class ArtifactServiceImpl<T extends Artifact> implements ArtifactService<T> {
 
-    @Inject
-    protected VersionParser versionParser;
+    protected VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
 
     @Inject
     AuthenticatorService auth;

@@ -53,7 +53,7 @@ public class GAV implements Comparable<GAV> {
     public int compareTo(GAV o) {
         int gaCmp = this.ga.compareTo(o.ga);
         if (gaCmp == 0) {
-            return VersionComparator.compareVersions(this.version, o.version);
+            return DummyVersionComparator.compareVersions(this.version, o.version);
         } else {
             return gaCmp;
         }
