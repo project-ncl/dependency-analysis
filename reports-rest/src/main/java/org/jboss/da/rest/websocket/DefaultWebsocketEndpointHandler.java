@@ -1,5 +1,6 @@
 package org.jboss.da.rest.websocket;
 
+import org.jboss.weld.context.activator.ActivateRequestContext;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -33,6 +34,7 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
     }
 
     @Override
+    @ActivateRequestContext
     public void onMessage(Session session, String msg) {
         Basic basic = session.getBasicRemote();
         try {
