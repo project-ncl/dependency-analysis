@@ -1,4 +1,4 @@
-package org.jboss.da.common.websocket;
+package org.jboss.da.rest.websocket;
 
 import org.slf4j.Logger;
 
@@ -81,13 +81,17 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
                 return;
             }
 
+            System.err.println("Object response: " + resp);
             Object objResp = mapper.convertValue(resp, method.getJsonOutputClass());
+            System.err.println("Mapped Object response: " + resp);
             JSONRPC2Response response = new JSONRPC2Response(objResp, request.getID());
             if (!session.isOpen()) {
                 log.warn("Session closed before response sent.");
                 return;
             }
-            basic.sendText(response.toJSONString());
+            final String responseText = response.toJSONString();
+            System.err.println("Response text: " + resp);
+            basic.sendText(responseText);
         } catch (IOException ex) {
             log.error("Failed to process websocket request", ex);
         }

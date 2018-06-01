@@ -1,4 +1,4 @@
-package org.jboss.da.common.websocket;
+package org.jboss.da.rest.websocket;
 
 import javax.websocket.Session;
 

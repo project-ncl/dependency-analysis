@@ -1,7 +1,7 @@
 package org.jboss.da.rest.ws;
 
-import org.jboss.da.common.websocket.Methods;
-import org.jboss.da.common.websocket.WebsocketEndpointHandler;
+import org.jboss.da.rest.websocket.Methods;
+import org.jboss.da.rest.websocket.WebsocketEndpointHandler;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;

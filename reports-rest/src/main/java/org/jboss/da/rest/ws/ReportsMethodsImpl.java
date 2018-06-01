@@ -1,8 +1,8 @@
 package org.jboss.da.rest.ws;
 
-import org.jboss.da.common.websocket.DefaultMethod;
-import org.jboss.da.common.websocket.Method;
-import org.jboss.da.common.websocket.Methods;
+import org.jboss.da.rest.websocket.DefaultMethod;
+import org.jboss.da.rest.websocket.Method;
+import org.jboss.da.rest.websocket.Methods;
 import org.jboss.da.reports.model.response.AdvancedReport;
 import org.jboss.da.reports.model.response.AlignReport;
 import org.jboss.da.reports.model.request.AlignReportRequest;
