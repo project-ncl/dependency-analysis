@@ -72,7 +72,7 @@ public class Products {
         ret.setRemoved(diff.stream().filter(ArtifactDiff::isRemoved)
                 .map(d -> new GAV(d.getGa(), d.getLeftVersion())).collect(Collectors.toCollection(TreeSet::new)));
         ret.setChanged(diff.stream().filter(ArtifactDiff::isChanged)
-                .map(d -> new GADiff(d.getGa(), d.getLeftVersion(), d.getRightVersion()))
+                .map(d -> new GADiff(d.getGa(), d.getLeftVersion(), d.getRightVersion(), d.getDifference().toString()))
                 .collect(Collectors.toCollection(TreeSet::new)));
         ret.setUnchanged(diff.stream().filter(ArtifactDiff::isUnchanged)
                 .map(d -> new GAV(d.getGa(), d.getLeftVersion())).collect(Collectors.toCollection(TreeSet::new)));

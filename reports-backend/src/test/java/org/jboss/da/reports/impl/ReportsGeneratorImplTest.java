@@ -22,9 +22,7 @@ import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.impl.AggregatedProductProvider;
 import org.jboss.da.reports.api.ArtifactReport;
-import org.jboss.da.reports.api.VersionLookupResult;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
-import org.jboss.da.reports.backend.api.VersionFinder;
 import org.jboss.da.reports.backend.impl.DependencyTreeGeneratorImpl;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
@@ -32,8 +30,6 @@ import org.jboss.da.reports.model.response.LookupReport;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -43,10 +39,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+import org.jboss.da.model.rest.GA;
+import static org.mockito.Matchers.eq;
 
 /**
  *
@@ -60,9 +57,6 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private CartographerConnector cartographerClient;
-
-    @Mock
-    private VersionFinder versionFinderImpl;
 
     @Mock
     private BlackArtifactService blackArtifactService;
@@ -127,14 +121,18 @@ public class ReportsGeneratorImplTest {
                 .thenReturn(CompletableFuture.completedFuture(prodArts));
     }
 
+    private Set<ProductArtifacts> toProductArtifacts(GA ga, List<String> versions){
+        Set<Artifact> artifacts = versions.stream()
+                .map(v -> new Artifact(new GAV(ga, v)))
+                .collect(Collectors.toSet());
+        return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, artifacts));
+    }
+
     private void prepare(List<Product> whitelisted, boolean blacklisted, List<String> versions,
-            String best, GAVDependencyTree dependencyTree) throws CommunicationException,
+            GAVDependencyTree dependencyTree) throws CommunicationException,
             FindGAVDependencyException {
-        when(versionFinderImpl.getBestMatchVersionFor(eq(daCoreGAV), any(List.class))).thenReturn(
-                Optional.ofNullable(best));
-        when(versionFinderImpl.getVersionsFor(eq(daCoreGAV), any())).thenReturn(
-                CompletableFuture.completedFuture(new VersionLookupResult(
-                        Optional.ofNullable(best), versions)));
+        when(productProvider.getArtifacts(eq(daCoreGAV.getGA()))).thenReturn(
+                CompletableFuture.completedFuture(toProductArtifacts(daCoreGAV.getGA(), versions)));
 
         prepareProductProvider(versions, whitelisted, daCoreGAV);
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
@@ -142,22 +140,17 @@ public class ReportsGeneratorImplTest {
     }
 
     private void prepareMulti() throws CommunicationException, FindGAVDependencyException {
-        prepare(Collections.emptyList(), false, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
+        prepare(Collections.emptyList(), false, daCoreVersionsBest, daCoreNoDT);
         when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
-        when(versionFinderImpl.getBestMatchVersionFor(eq(daUtilGAV), any(List.class))).thenReturn(
-                Optional.ofNullable(bestMatchVersion));
-        when(versionFinderImpl.getVersionsFor(eq(daUtilGAV), any())).thenReturn(
-                CompletableFuture.completedFuture(new VersionLookupResult(Optional
-                        .ofNullable(bestMatchVersion), daCoreVersionsBest)));
-        prepareProductProvider(daCoreVersionsBest, Collections.emptyList(), daUtilGAV);
+        when(productProvider.getArtifacts(eq(daUtilGAV.getGA()))).thenReturn(
+                CompletableFuture.completedFuture(toProductArtifacts(daUtilGAV.getGA(),
+                        daCoreVersionsBest)));
 
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
 
-        when(versionFinderImpl.getBestMatchVersionFor(eq(daCommonGAV), any(List.class)))
-                .thenReturn(Optional.empty());
-        when(versionFinderImpl.getVersionsFor(eq(daCommonGAV), any())).thenReturn(
-                CompletableFuture.completedFuture(new VersionLookupResult(Optional.empty(),
+        when(productProvider.getArtifacts(eq(daCommonGAV.getGA()))).thenReturn(
+                CompletableFuture.completedFuture(toProductArtifacts(daCommonGAV.getGA(),
                         daCoreVersionsNoBest)));
         prepareProductProvider(daCoreVersionsNoBest, Collections.emptyList(), daCommonGAV);
         when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
@@ -179,7 +172,7 @@ public class ReportsGeneratorImplTest {
     @Test
     public void testNonListedNoBestMatchGAV() throws CommunicationException,
             FindGAVDependencyException {
-        prepare(Collections.emptyList(), false, daCoreVersionsNoBest, null, daCoreNoDT);
+        prepare(Collections.emptyList(), false, daCoreVersionsNoBest, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
 
@@ -196,7 +189,7 @@ public class ReportsGeneratorImplTest {
     public void testWhiteListedNoBestMatchGAV() throws CommunicationException,
             FindGAVDependencyException {
         List<Product> whitelisted = Arrays.asList(productEAP);
-        prepare(whitelisted, false, daCoreVersionsNoBest, null, daCoreNoDT);
+        prepare(whitelisted, false, daCoreVersionsNoBest, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
 
@@ -212,7 +205,7 @@ public class ReportsGeneratorImplTest {
     @Test
     public void testBlackListedBestMatchGAV() throws CommunicationException,
             FindGAVDependencyException {
-        prepare(Collections.emptyList(), true, daCoreVersionsBest, bestMatchVersion, daCoreNoDT);
+        prepare(Collections.emptyList(), true, daCoreVersionsBest, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
 
@@ -227,7 +220,7 @@ public class ReportsGeneratorImplTest {
     @Test
     public void testArtifactReportShouldNotHaveNullValuesInAvailableVersionsWhenBestMatchVersionIsNull()
             throws CommunicationException, FindGAVDependencyException {
-        prepare(Collections.emptyList(), false, daCoreVersionsBest, null, daCoreNoDT);
+        prepare(Collections.emptyList(), false, daCoreVersionsNoBest, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
 
@@ -282,7 +275,7 @@ public class ReportsGeneratorImplTest {
     @Test
     public void testBlacklistedLookupReport() throws CommunicationException,
             FindGAVDependencyException {
-        prepare(Collections.emptyList(), true, daCoreVersionsBest, null, daCoreNoDT);
+        prepare(Collections.emptyList(), true, daCoreVersionsBest, daCoreNoDT);
         LookupGAVsRequest lgr = new LookupGAVsRequest(Collections.singletonList(daCoreGAV));
 
         List<LookupReport> lookupReportsForGavs = generator.getLookupReportsForGavs(lgr);

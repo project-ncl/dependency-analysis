@@ -1,5 +1,8 @@
 package org.jboss.da.products.impl;
 
+import org.jboss.da.common.version.VersionComparator;
+import org.jboss.da.common.version.VersionComparator.VersionDifference;
+import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.ProductVersion;
@@ -41,12 +44,19 @@ public class ProductsServiceImpl implements ProductsService {
                 .peek(o -> allGAs.add(o.getGa()))
                 .collect(Collectors.toMap(WhiteArtifact::getGa, WhiteArtifact::getOsgiVersion));
         Set<ArtifactDiff> ret = new HashSet<>();
+
+        VersionComparator comparator = new VersionComparator(new VersionParser(VersionParser.DEFAULT_SUFFIX));
         for(GA ga : allGAs){
             String leftVersion = leftGAs.get(ga);
             String rightVersion = rightGAs.get(ga);
+            VersionDifference difference = null;
+            if(leftVersion != null && rightVersion != null){
+                difference = comparator.difference(leftVersion, rightVersion);
+            }
             ArtifactDiff ad = new ArtifactDiff(leftVersion,
                     new org.jboss.da.model.rest.GA(ga.getGroupId(), ga.getArtifactId()),
-                    rightVersion);
+                    rightVersion,
+                    difference);
             ret.add(ad);
         }
         return ret;

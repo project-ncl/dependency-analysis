@@ -1,9 +1,7 @@
 package org.jboss.da.products.model.rest;
 
 import org.jboss.da.model.rest.GA;
-import org.jboss.da.model.rest.VersionComparator;
-
-import javax.xml.bind.annotation.XmlTransient;
+import org.jboss.da.model.rest.DummyVersionComparator;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,14 +42,14 @@ public class GADiff implements Comparable<GADiff> {
         this.ga = new GA(groupId, artifactId);
         this.leftVersion = leftVersion;
         this.rightVersion = rightVersion;
-        this.differenceType = VersionComparator.difference(leftVersion, rightVersion).toString();
+        this.differenceType = differenceType;
     }
 
-    public GADiff(GA ga, String leftVersion, String rightVersion) {
+    public GADiff(GA ga, String leftVersion, String rightVersion, String differenceType) {
         this.ga = ga;
         this.leftVersion = leftVersion;
         this.rightVersion = rightVersion;
-        this.differenceType = VersionComparator.difference(leftVersion, rightVersion).toString();
+        this.differenceType = differenceType;
     }
 
     @JsonIgnore
@@ -73,11 +71,11 @@ public class GADiff implements Comparable<GADiff> {
         if (gaCmp != 0) {
             return gaCmp;
         }
-        gaCmp = VersionComparator.compareVersions(this.leftVersion, o.leftVersion);
+        gaCmp = DummyVersionComparator.compareVersions(this.leftVersion, o.leftVersion);
         if (gaCmp != 0) {
             return gaCmp;
         }
-        return VersionComparator.compareVersions(this.rightVersion, o.rightVersion);
+        return DummyVersionComparator.compareVersions(this.rightVersion, o.rightVersion);
     }
 
 }

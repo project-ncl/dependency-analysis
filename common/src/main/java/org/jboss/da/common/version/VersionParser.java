@@ -2,29 +2,59 @@ package org.jboss.da.common.version;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.commonjava.maven.ext.manip.impl.Version;
 
-import javax.enterprise.context.ApplicationScoped;
-
-@ApplicationScoped
 public class VersionParser {
 
-    private static final String DEFAULT_SUFFIX = "redhat";
+    public static final String DEFAULT_SUFFIX = "redhat";
 
     private final String suffix;
 
-    private final String suffixVersionPattern;
+    private final Pattern versionPattern;
 
-    private final Pattern suffixPattern;
+    // major.minor.micro.qualifier-suffix-X
+    // numbers limited to max 9 digits, beacuse of integer limitatations
+    static final String RE_MMM = "((?<major>[0-9]{1,9})?(\\.(?<minor>[0-9]{1,9})(\\.(?<micro>[0-9]{1,9}))?)?)";
 
-    public VersionParser() {
-        this(DEFAULT_SUFFIX);
-    }
+    static final String RE_QUALIFIER = "([.-]?(?<qualifier>.+?))";
+
+    private static final String RE_SUFFIX_S = "([.-]";
+
+    private static final String RE_SUFFIX_E = "-(?<suffixversion>[0-9]{1,9}))?";
 
     public VersionParser(String suffix) {
         this.suffix = suffix;
-        this.suffixVersionPattern = "[.-]" + suffix + "-(\\d+)";
-        this.suffixPattern = Pattern.compile(suffixVersionPattern + "$");
+        this.versionPattern = Pattern.compile("^" + RE_MMM + RE_QUALIFIER + "??" + RE_SUFFIX_S
+                + suffix + RE_SUFFIX_E + "$");
+    }
+
+    public SuffixedVersion parse(String version) {
+        Matcher versionMatcher = versionPattern.matcher(version);
+        if (!versionMatcher.matches()) {
+            throw new IllegalArgumentException("Version " + version + "is unparsable");
+        }
+        String majorString = versionMatcher.group("major");
+        String minorString = versionMatcher.group("minor");
+        String microString = versionMatcher.group("micro");
+        String qualifierString = versionMatcher.group("qualifier");
+        String suffixVersionString = versionMatcher.group("suffixversion");
+
+        int major = parseNumberString(majorString);
+        int minor = parseNumberString(minorString);
+        int micro = parseNumberString(microString);
+        String qualifier = qualifierString == null ? "" : qualifierString;
+        if (suffixVersionString == null) {
+            return new SuffixedVersion(major, minor, micro, qualifier, version);
+        } else {
+            int suffixVersion = Integer.parseInt(suffixVersionString);
+            return new SuffixedVersion(major, minor, micro, qualifier, suffix, suffixVersion,
+                    version);
+        }
+    }
+
+    private int parseNumberString(String segmentString) {
+        return segmentString == null ? 0 : Integer.parseInt(segmentString);
     }
 
     /**
@@ -33,42 +63,10 @@ public class VersionParser {
      * @param version
      * @return
      */
-    public String getOSGiVersion(String version) {
-        if (isSuffixedVersion(version)) {
-            return toOsgi(version);
-        } else {
-            String osgiS = toOsgi(version + "." + suffix);
-            if (osgiS.endsWith("." + suffix))
-                return osgiS.replace("." + suffix, "");
-            else
-                return osgiS.replace("-" + suffix, "");
-        }
+    public static String getOSGiVersion(String version) {
+        String osgiS = (new Version(version + ".foo")).getOSGiVersionString();
+        int len = osgiS.length();
+        return osgiS.substring(0, len - 4);
     }
 
-    /**
-     * Removes redhat suffix if present and converts version to osgi compliant.
-     *
-     * @param version
-     * @return
-     */
-    public String getNonRedhatOSGiVersion(String version) {
-        return removeRedhatSuffix(getOSGiVersion(version));
-    }
-
-    public String removeRedhatSuffix(String version) {
-        return suffixPattern.matcher(version).replaceFirst("");
-    }
-
-    public Matcher getVersionMatcher(String version) {
-        String nonRedhatVersion = removeRedhatSuffix(version);
-        return Pattern.compile(Pattern.quote(nonRedhatVersion) + suffixVersionPattern).matcher("");
-    }
-
-    public boolean isSuffixedVersion(String version) {
-        return suffixPattern.matcher(version).find();
-    }
-
-    private String toOsgi(String version) {
-        return (new Version(version)).getOSGiVersionString();
-    }
 }

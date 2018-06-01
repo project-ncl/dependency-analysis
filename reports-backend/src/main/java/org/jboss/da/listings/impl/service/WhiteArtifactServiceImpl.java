@@ -7,8 +7,9 @@ import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-
+import org.jboss.da.common.version.SuffixedVersion;
 import org.jboss.da.common.version.VersionParser;
+
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.GADAO;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
@@ -71,8 +72,9 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     }
 
     private WhiteArtifact createArtifact(String groupId, String artifactId, String version) {
-        final boolean is3rdParty = !versionParser.isSuffixedVersion(version);
-        final String osgiVersion = versionParser.getOSGiVersion(version);
+        SuffixedVersion parsedVersion = versionParser.parse(version);
+        final boolean is3rdParty = !parsedVersion.isSuffixed();
+        final String osgiVersion = VersionParser.getOSGiVersion(version);
 
         GA ga = gaDAO.findOrCreate(groupId, artifactId);
         WhiteArtifact a = new WhiteArtifact(ga, version, currentUser(), osgiVersion, is3rdParty);
@@ -98,32 +100,19 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
 
     @Override
     public List<WhiteArtifact> getArtifacts(String groupId, String artifactId, String version) {
-        
-    	// Black listed artifacts can't be queried
-	    if (blackArtifactService.isArtifactPresent(groupId, artifactId, version)) {
-	    	return new ArrayList<>();
-	    }
-    	
-    	String osgi = versionParser.getOSGiVersion(version);
+
+        // Black listed artifacts can't be queried
+        if (blackArtifactService.isArtifactPresent(groupId, artifactId, version)) {
+            return new ArrayList<>();
+        }
+        String osgi = VersionParser.getOSGiVersion(version);
 
         List<WhiteArtifact> whites = new ArrayList<>();
-        if (versionParser.isSuffixedVersion(version)) {
-            Optional<WhiteArtifact> origArtifact = whiteArtifactDAO
-                    .findArtifact(groupId, artifactId, version);
-            Optional<WhiteArtifact> osgiArtifact = whiteArtifactDAO.findArtifact(groupId,
-                    artifactId, osgi);
-            if (origArtifact.isPresent()) {
-                whites.add(origArtifact.get());
-            }
-            if (osgiArtifact.isPresent() && !osgiArtifact.equals(origArtifact)) {
-                whites.add(osgiArtifact.get());
-            }
-        } else {
-            Optional<WhiteArtifact> rhA = whiteArtifactDAO.findArtifact(groupId, artifactId,
-                    osgi);
-            rhA.ifPresent(x -> whites.add(rhA.get()));
-            Optional<WhiteArtifact> a = whiteArtifactDAO.findArtifact(groupId, artifactId, version);
-            a.ifPresent(x -> whites.add(a.get()));
+        Optional<WhiteArtifact> origArtifact = whiteArtifactDAO.findArtifact(groupId, artifactId, version);
+        Optional<WhiteArtifact> normArtifact = whiteArtifactDAO.findArtifact(groupId, artifactId, osgi);
+        origArtifact.ifPresent(x -> whites.add(x));
+        if (!normArtifact.equals(origArtifact)) {
+            normArtifact.ifPresent(x -> whites.add(x));
         }
         List<WhiteArtifact> nonDupWhites = new ArrayList<>(new LinkedHashSet<>(whites));
         return nonDupWhites;

@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-//@RequestScoped // Should be Request scoped, but is Dependent until websockets support scopes
+@ApplicationScoped
 public class AggregatedProductProvider implements ProductProvider {
 
     public static Set<ProductArtifacts> filterArtifacts(Set<ProductArtifacts> artifacts,
@@ -106,10 +106,6 @@ public class AggregatedProductProvider implements ProductProvider {
     @Override
     public CompletableFuture<Map<Product, Set<String>>> getVersions(GA ga) {
         return aggregate(x -> x.getVersions(ga), new MapCol<>(AggregatedProductProvider::combineSets));
-    }
-
-    public void setVersionSuffix(String suffix) {
-        repositoryProductProvider.setVersionSuffix(suffix);
     }
 
     private <R> CompletableFuture<R> aggregate(Function<ProductProvider, Future<R>> getter, Collector<? super R, ?, R> collector){

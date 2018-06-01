@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.jboss.da.model.rest.VersionComparator;
+import org.jboss.da.model.rest.DummyVersionComparator;
 
 import java.io.Serializable;
 
@@ -178,7 +178,7 @@ public class DependencyTreeBuilder {
                 ret = target1.getArtifactId().compareTo(target2.getArtifactId());
             }
             if (ret == 0) {
-                ret = VersionComparator.compareVersions(target1.getVersionString(),
+                ret = DummyVersionComparator.compareVersions(target1.getVersionString(),
                         target2.getVersionString());
 
             }

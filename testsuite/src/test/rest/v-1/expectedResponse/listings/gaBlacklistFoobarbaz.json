@@ -2,4 +2,8 @@
 	"groupId": "foo",
 	"artifactId": "bar-baz",
 	"version": "1.0.0"
+},{
+	"groupId": "foo",
+	"artifactId": "bar-baz",
+	"version": "1.0.0.redhat-4"
 }]

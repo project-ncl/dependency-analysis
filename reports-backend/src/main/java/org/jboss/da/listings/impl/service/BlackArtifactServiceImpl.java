@@ -7,8 +7,6 @@ import java.util.Set;
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Inject;
 
-import org.jboss.da.common.version.VersionParser;
-
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
 import org.jboss.da.listings.api.dao.GADAO;
@@ -18,12 +16,14 @@ import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.model.rest.VersionComparator;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import org.jboss.da.common.version.SuffixedVersion;
+import org.jboss.da.common.version.VersionParser;
 
 /**
  * 
@@ -52,7 +52,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(
             String groupId, String artifactId, String version) {
 
-        String osgiVersion = versionParser.getOSGiVersion(version);
+        String osgiVersion = VersionParser.getOSGiVersion(version);
 
         GA ga = gaDAO.findOrCreate(groupId, artifactId);
 
@@ -81,13 +81,13 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
 
     @Override
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version) {
-        String osgiVersion = versionParser.getNonRedhatOSGiVersion(version);
-        Optional<BlackArtifact> maybeArtifact = blackArtifactDAO.findArtifact(groupId, artifactId,
-                osgiVersion);
-        if (versionParser.isSuffixedVersion(version) && !maybeArtifact.isPresent()) {
-            maybeArtifact = blackArtifactDAO.findArtifact(groupId, artifactId, version);
+        SuffixedVersion parsedVersion = versionParser.parse(version);
+        Optional<BlackArtifact> artifact = blackArtifactDAO.findArtifact(groupId, artifactId,
+                parsedVersion.unsuffixedVesion());
+        if (parsedVersion.isSuffixed() && !artifact.isPresent()) {
+            artifact = blackArtifactDAO.findArtifact(groupId, artifactId, version);
         }
-        return maybeArtifact;
+        return artifact;
     }
 
     @Override
@@ -117,16 +117,11 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     }
 
     @Override
-    public Set<BlackArtifact> getArtifacts(String groupId, String artifactId) {
-        List<BlackArtifact> artifacts = blackArtifactDAO.findArtifacts(groupId, artifactId);
-        Set<GA> communityGAs = artifacts.stream()
-                .filter(a -> !versionParser.isSuffixedVersion(a.getVersion()))
-                .map(BlackArtifact::getGa)
-                .collect(Collectors.toSet());
-
-        Comparator<BlackArtifact> baComparator = (a, b) -> VersionComparator.compareVersions(a.getVersion(), b.getVersion());
-        return artifacts.stream()
-                .filter(a -> !(communityGAs.contains(a.getGa()) && versionParser.isSuffixedVersion(a.getVersion())))
-                .collect(Collectors.toCollection(() -> new TreeSet<>(baComparator)));
+    public SortedSet<BlackArtifact> getArtifacts(String groupId, String artifactId) {
+        Comparator<BlackArtifact> baComparator = Comparator
+                .comparing((BlackArtifact a) -> versionParser.parse(a.getVersion()));
+        SortedSet<BlackArtifact> ret = new TreeSet<>(baComparator);
+        ret.addAll(blackArtifactDAO.findArtifacts(groupId, artifactId));
+        return ret;
     }
 }
