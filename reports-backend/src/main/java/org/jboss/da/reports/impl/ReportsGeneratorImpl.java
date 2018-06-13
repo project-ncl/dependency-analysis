@@ -19,7 +19,6 @@ import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
-import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
 import static org.jboss.da.products.api.Product.UNKNOWN;
 import org.jboss.da.products.api.ProductArtifacts;
@@ -59,9 +58,11 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
 import org.jboss.da.common.version.VersionAnalyzer;
 import org.jboss.da.common.version.VersionAnalyzer.VersionAnalysisResult;
 import org.jboss.da.common.version.VersionComparator;
+import org.jboss.da.products.api.MavenArtifact;
 import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 
@@ -176,8 +177,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private CompletableFuture<Void> fillArtifactReport(ArtifactReport report, Set<Product> products) {
         GAV gav = report.getGav();
 
-        CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav
-                .getGA());
+        CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(new MavenArtifact(gav));
         artifacts = filterProductArtifacts(products, artifacts);
         
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
@@ -203,10 +203,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private CompletableFuture<VersionAnalysisResult> analyzeVersions(VersionParser versionParser, String version, CompletableFuture<Set<ProductArtifacts>> availableArtifacts) {
         VersionAnalyzer va = new VersionAnalyzer(versionParser);
-        return availableArtifacts.thenApply(pas-> {
+        return availableArtifacts.thenApply(pas -> {
             List<String> versions = pas.stream()
-                .flatMap(as -> as.getArtifacts().stream())
-                .map(a -> a.getGav().getVersion())
+                    .flatMap(as -> as.getArtifacts().stream())
+                    .map(a -> a.getVersion())
                     .collect(Collectors.toList());
 
             return va.analyseVersions(version, versions);
@@ -319,7 +319,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 }
 
                 CompletableFuture<Set<ProductArtifacts>> artifacts = filterProducts(
-                        useUnknownProduct, products, productProvider.getArtifacts(gav.getGA()));
+                        useUnknownProduct, products, productProvider.getArtifacts(new MavenArtifact(gav)));
                 CompletableFuture<VersionAnalysisResult> versions = analyzeVersions(
                         versionParser, gav.getVersion(), artifacts);
 
@@ -355,7 +355,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private static Set<ProductArtifacts> getBuilt(Set<ProductArtifacts> a, VersionAnalysisResult v) {
         return v.getBestMatchVersion().map(b -> AggregatedProductProvider
-                .filterArtifacts(a, x -> b.equals(x.getGav().getVersion())))
+                .filterArtifacts(a, x -> b.equals(x.getVersion())))
                 .orElse(Collections.emptySet());
     }
 
@@ -379,7 +379,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         VersionComparator comparator = new VersionComparator(versionParser);
         return products.stream()
                 .flatMap(e -> e.getArtifacts().stream()
-                        .map(x -> toProductArtifact(e.getProduct(), x, gav.getVersion(), comparator)))
+                .map(x -> toProductArtifact(e.getProduct(), (MavenArtifact) x, gav.getVersion(), comparator)))
                 .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(ProductArtifact::getArtifact))));
     }
 
@@ -426,7 +426,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         Set<CompletableFuture<BuiltReportModule>> builtSet = new HashSet<>();
         for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
             for (GAV gav : e.getValue()) {
-                CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(gav.getGA());
+                CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(new MavenArtifact(gav));
                 artifacts = filterBuiltArtifacts(artifacts);
                 builtSet.add(analyzeVersions(versionParser, gav.getVersion(), artifacts)
                         .thenApply(v -> toBuiltReportModule(gav, v)));
@@ -470,7 +470,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
         for (GA ga : uniqueGAs) {
-            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(ga);
+            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider
+                    .getArtifacts(new MavenArtifact(new GAV(ga, "0.0.0")));
             artifacts = filterProductArtifacts(products, artifacts);
 
             gaProductArtifactsMap.put(ga, artifacts);
@@ -589,8 +590,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return new Product(pv.getProduct().getName(), pv.getProductVersion());
     }
 
-    private static ProductArtifact toProductArtifact(Product p, Artifact a, String origVersion,
-            VersionComparator comparator) {
+    private static ProductArtifact toProductArtifact(Product p, MavenArtifact a,
+            String origVersion, VersionComparator comparator) {
         ProductArtifact ret = new ProductArtifact();
         ret.setArtifact(a.getGav());
         ret.setProductName(p.getName());
@@ -618,7 +619,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private CompletableFuture<Set<ProductArtifacts>> filterBuiltArtifacts(CompletableFuture<Set<ProductArtifacts>> artifacts) {
         return artifacts.thenApply(as -> AggregatedProductProvider.filterArtifacts(as,
-                a -> !blackArtifactService.isArtifactPresent(a.getGav())));
+                a -> !blackArtifactService.isArtifactPresent(((MavenArtifact) a).getGav())));
     }
 
     private static List<RestProductInput> toWhitelisted(Set<ProductArtifacts> whitelisted) {
