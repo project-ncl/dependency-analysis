@@ -100,11 +100,6 @@ public class AggregatedProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifactsFromRepository(GA ga, String repository) {
-        return aggregate(x -> x.getArtifactsFromRepository(ga, repository), new ProductArtifactsCollector());
-    }
-
-    @Override
     public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status) {
         return aggregate(x -> x.getArtifacts(ga, status), new ProductArtifactsCollector());
     }

@@ -37,6 +37,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.enterprise.context.RequestScoped;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
@@ -56,6 +59,17 @@ public class RepositoryProductProvider implements ProductProvider {
     private ManagedExecutorService executorService;
 
     private VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
+
+    private Optional<String> repository = Optional.empty();
+
+    /**
+     * Sets given repository to be used instead of the default one.
+     *
+     * @param repository The repository to use insteady of the default one.
+     */
+    public void setRepository(String repository) {
+        this.repository = Optional.ofNullable(repository);
+    }
 
     /**
      * Sets the suffix that distinguish product artifacts in the repository.
@@ -95,12 +109,6 @@ public class RepositoryProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifactsFromRepository(GA ga,
-            String repository) {
-        return supplyAsync(() -> getArtifacts0(ga, repository));
-    }
-
-    @Override
     public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status) {
         if (status != UNKNOWN) {
             return CompletableFuture.completedFuture(Collections.emptySet());
@@ -126,38 +134,19 @@ public class RepositoryProductProvider implements ProductProvider {
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, allArtifacts));
     }
 
-    private Set<ProductArtifacts> getArtifacts0(GA ga, String repository) {
-        Set<Artifact> allArtifacts = getVersionsStream(ga, repository)
-                .map(x -> new GAV(ga, x))
-                .map(Artifact::new)
-                .collect(Collectors.toSet());
-        if (allArtifacts.isEmpty()) {
-            return Collections.emptySet();
-        }
-        return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, allArtifacts));
-    }
-
     private Stream<String> getVersionsStream(GA ga) {
         if (!ga.isValid()) {
             log.warn("Received nonvalid GA: " + ga);
             return Stream.empty();
         }
         try {
-            return aproxConnector.getVersionsOfGA(ga).stream()
-                    .filter(v -> versionParser.parse(v).isSuffixed())
-                    .distinct();
-        } catch (CommunicationException ex) {
-            throw new ProductException(ex);
-        }
-    }
-
-    private Stream<String> getVersionsStream(GA ga, String repository) {
-        if (!ga.isValid()) {
-            log.warn("Received nonvalid GA: " + ga);
-            return Stream.empty();
-        }
-        try {
-            return aproxConnector.getVersionsOfGA(ga, repository).stream()
+            List<String> versionsOfGA;
+            if (repository.isPresent()) {
+                versionsOfGA = aproxConnector.getVersionsOfGA(ga, repository.get());
+            } else {
+                versionsOfGA = aproxConnector.getVersionsOfGA(ga);
+            }
+            return versionsOfGA.stream()
                     .filter(v -> versionParser.parse(v).isSuffixed())
                     .distinct();
         } catch (CommunicationException ex) {
