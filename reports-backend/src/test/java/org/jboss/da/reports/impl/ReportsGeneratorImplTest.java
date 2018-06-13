@@ -46,6 +46,7 @@ import java.util.stream.Collectors;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.products.api.ArtifactType;
 import org.jboss.da.products.api.MavenArtifact;
+import org.jboss.da.reports.backend.impl.ProductAdapter;
 import org.mockito.ArgumentMatcher;
 import static org.mockito.Matchers.argThat;
 
@@ -75,6 +76,10 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private AggregatedProductProvider productProvider;
+
+    @InjectMocks
+    @Spy
+    private final ProductAdapter productAdapter = new ProductAdapter();
 
     @InjectMocks
     @Spy
