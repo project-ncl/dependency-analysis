@@ -1,5 +1,6 @@
 package org.jboss.da.reports.impl;
 
+import org.jboss.da.reports.backend.impl.ProductAdapter;
 import static org.jboss.da.listings.model.ProductSupportStatus.SUPERSEDED;
 import static org.jboss.da.listings.model.ProductSupportStatus.SUPPORTED;
 
@@ -11,11 +12,7 @@ import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.scm.api.SCMConnector;
-import org.jboss.da.listings.api.dao.ProductDAO;
-import org.jboss.da.listings.api.dao.ProductVersionDAO;
-import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
@@ -44,7 +41,6 @@ import javax.inject.Inject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -92,15 +88,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private PomAnalyzer pomAnalyzer;
 
     @Inject
-    private ProductVersionDAO productVersionDao;
-
-    @Inject
-    private ProductDAO productDao;
-
-    @Inject
-    private ProductVersionService productVersionService;
-
-    @Inject
     private SCMConnector scmConnector;
 
     @Inject
@@ -110,13 +97,17 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Repository
     private RepositoryProductProvider repositoryProductProvider;
 
+    @Inject
+    private ProductAdapter productAdapter;
+
     @Override
     public Optional<ArtifactReport> getReportFromSCM(SCMReportRequest scml) throws ScmException,
             PomAnalysisException, CommunicationException {
         if (scml == null)
             throw new IllegalArgumentException("SCM information can't be null");
 
-        Set<Product> products = getProducts(scml.getProductNames(), scml.getProductVersionIds());
+        Set<Product> products = productAdapter.toProducts(scml.getProductNames(),
+                scml.getProductVersionIds());
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml.getScml());
 
         return createReport(dt, products);
@@ -128,7 +119,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (gavRequest == null)
             throw new IllegalArgumentException("GAV can't be null");
 
-        Set<Product> products = getProducts(gavRequest.getProductNames(),
+        Set<Product> products = productAdapter.toProducts(gavRequest.getProductNames(),
                 gavRequest.getProductVersionIds());
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gavRequest.asGavObject());
 
@@ -218,7 +209,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             throws ScmException, PomAnalysisException, CommunicationException {
 
         SCMLocator scml = request.getScml();
-        Set<Product> products = getProducts(request.getProductNames(), request.getProductVersionIds());
+        Set<Product> products = productAdapter.toProducts(request.getProductNames(), request.getProductVersionIds());
 
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml);
         Optional<ArtifactReport> artifactReport = createReport(dt, products);
@@ -293,7 +284,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
         Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
                 scml.getScmUrl(), scml.getRevision(), scml.getPomPath(), scml.getRepositories());
-        Set<Product> products = getProducts(Collections.emptySet(), productIds);
+        Set<Product> products = productAdapter.toProducts(Collections.emptySet(), productIds);
 
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         Set<AlignmentReportModule> ret = new TreeSet<>(Comparator.comparing(x -> x.getModule()));
@@ -465,7 +456,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private Map<GA, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsPerGA(
             LookupGAVsRequest request, Set<GA> uniqueGAs) throws CommunicationException {
-        Set<Product> products = getProducts(request.getProductNames(),
+        Set<Product> products = productAdapter.toProducts(request.getProductNames(),
                 request.getProductVersionIds());
 
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
@@ -536,58 +527,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             }
             throw ex;
         }
-    }
-
-    private Set<Product> getProducts(Set<String> productNames, Set<Long> productVersionIds) {
-        Set<ProductVersion> productVersions = new HashSet<>();
-        StringBuilder errorMsg = new StringBuilder();
-
-        if(productNames != null && !productNames.isEmpty()){
-            List<org.jboss.da.listings.api.model.Product> productsByName = productDao.findAllWithNames(new ArrayList<>(productNames));
-            if(productNames.size() == productsByName.size()){
-                for(String productName : productNames){
-                    List<ProductVersion> prodVers = productVersionService.getAllForProduct(productName);
-                    productVersions.addAll(prodVers);
-                }
-            } else {
-                // Error
-                Set<String> unexistingProductNames = new HashSet<>(productNames);
-                productsByName.stream().forEach(x -> unexistingProductNames.remove(x.getName()));
-                errorMsg.append("Product names do not exist: ");
-                errorMsg.append(joinMissing(unexistingProductNames));
-            }
-        }
-
-        if(productVersionIds != null && !productVersionIds.isEmpty()){
-            List<ProductVersion> prodVersionsById = productVersionDao.findAllWithIds(new ArrayList<>(productVersionIds));
-            if(productVersionIds.size() == prodVersionsById.size()){
-                productVersions.addAll(prodVersionsById);
-            } else {
-                // Error
-                Set<Long> unexistingProductVersionIds = new HashSet<>(productVersionIds);
-                prodVersionsById.stream().forEach(x -> unexistingProductVersionIds.remove(x.getId()));
-                errorMsg.append("Product Versions do not exist: ");
-                errorMsg.append(joinMissing(unexistingProductVersionIds));
-            }
-        }
-
-        if(errorMsg.length() > 0){
-            throw new IllegalArgumentException(errorMsg.toString());
-        }
-
-        return productVersions.stream()
-                .map(ReportsGeneratorImpl::toProduct)
-                .collect(Collectors.toSet());
-    }
-
-    private <T> String joinMissing(Collection<T> invalidItems) {
-        return invalidItems.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining(",", "[", "];"));
-    }
-
-    private static Product toProduct(ProductVersion pv) {
-        return new Product(pv.getProduct().getName(), pv.getProductVersion());
     }
 
     private static ProductArtifact toProductArtifact(Product p, MavenArtifact a,
