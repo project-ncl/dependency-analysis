@@ -77,12 +77,6 @@ public class DatabaseProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifactsFromRepository(GA ga,
-            String repository) {
-        return getArtifacts(ga);
-    }
-
-    @Override
     public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status) {
         return CompletableFuture.supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(),
                 Optional.of(status)));

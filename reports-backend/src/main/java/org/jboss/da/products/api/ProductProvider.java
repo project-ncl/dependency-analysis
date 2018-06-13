@@ -52,15 +52,6 @@ public interface ProductProvider {
     Future<Set<ProductArtifacts>> getArtifacts(GA ga);
 
     /**
-     * Get all artifacts with given GroupId and ArtifactId and their products. Use given
-     * repository instead of the default one (apply only for Repository Providers).
-     * @param ga GroupID and ArtifactId of the artifacts.
-     * @param repository The repository to use insteady of the default one.
-     * @return Set of products and their artifacts versions.
-     */
-    Future<Set<ProductArtifacts>> getArtifactsFromRepository(GA ga, String repository);
-
-    /**
      * Get all artifacts with given GroupId and ArtifactId and their products, limited to products
      * with given support status..
      * @param ga GroupID and ArtifactId of the artifacts.
