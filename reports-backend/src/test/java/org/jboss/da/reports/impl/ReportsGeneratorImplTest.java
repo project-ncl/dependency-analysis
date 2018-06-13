@@ -42,8 +42,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+
 import org.jboss.da.model.rest.GA;
-import static org.mockito.Matchers.eq;
+import org.jboss.da.products.api.ArtifactType;
+import org.jboss.da.products.api.MavenArtifact;
+import org.mockito.ArgumentMatcher;
+import static org.mockito.Matchers.argThat;
+
+import java.util.Objects;
 
 /**
  *
@@ -108,7 +114,7 @@ public class ReportsGeneratorImplTest {
 
     private void prepareProductProvider(List<String> versions, List<Product> whitelisted, GAV gav){
         final Set<Artifact> artifacts = versions.stream()
-                .map(v -> new Artifact(new GAV(gav.getGA(),v)))
+                .map(v -> new MavenArtifact(new GAV(gav.getGA(), v)))
                 .collect(Collectors.toSet());
 
         Set<ProductArtifacts> prodArts = new HashSet<>();
@@ -117,13 +123,13 @@ public class ReportsGeneratorImplTest {
             prodArts.add(new ProductArtifacts(w, artifacts));
         }
 
-        when(productProvider.getArtifacts(gav.getGA()))
+        when(productProvider.getArtifacts(matchingGAV(gav)))
                 .thenReturn(CompletableFuture.completedFuture(prodArts));
     }
 
     private Set<ProductArtifacts> toProductArtifacts(GA ga, List<String> versions){
         Set<Artifact> artifacts = versions.stream()
-                .map(v -> new Artifact(new GAV(ga, v)))
+                .map(v -> new MavenArtifact(new GAV(ga, v)))
                 .collect(Collectors.toSet());
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, artifacts));
     }
@@ -131,7 +137,7 @@ public class ReportsGeneratorImplTest {
     private void prepare(List<Product> whitelisted, boolean blacklisted, List<String> versions,
             GAVDependencyTree dependencyTree) throws CommunicationException,
             FindGAVDependencyException {
-        when(productProvider.getArtifacts(eq(daCoreGAV.getGA()))).thenReturn(
+        when(productProvider.getArtifacts(matchingGAV(daCoreGAV))).thenReturn(
                 CompletableFuture.completedFuture(toProductArtifacts(daCoreGAV.getGA(), versions)));
 
         prepareProductProvider(versions, whitelisted, daCoreGAV);
@@ -143,13 +149,13 @@ public class ReportsGeneratorImplTest {
         prepare(Collections.emptyList(), false, daCoreVersionsBest, daCoreNoDT);
         when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
-        when(productProvider.getArtifacts(eq(daUtilGAV.getGA()))).thenReturn(
+        when(productProvider.getArtifacts(matchingGAV(daUtilGAV))).thenReturn(
                 CompletableFuture.completedFuture(toProductArtifacts(daUtilGAV.getGA(),
                         daCoreVersionsBest)));
 
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
 
-        when(productProvider.getArtifacts(eq(daCommonGAV.getGA()))).thenReturn(
+        when(productProvider.getArtifacts(matchingGAV(daCommonGAV))).thenReturn(
                 CompletableFuture.completedFuture(toProductArtifacts(daCommonGAV.getGA(),
                         daCoreVersionsNoBest)));
         prepareProductProvider(daCoreVersionsNoBest, Collections.emptyList(), daCommonGAV);
@@ -322,6 +328,32 @@ public class ReportsGeneratorImplTest {
     private GAVRequest gavToRequest(GAV g) {
         return new GAVRequest(g.getGroupId(), g.getArtifactId(), g.getVersion(), new HashSet<>(),
                 new HashSet<>());
+
+    }
+
+    private static Artifact matchingGAV(GAV gav) {
+        return argThat(new IsArtifactWithSameNameAndTypeAs(new MavenArtifact(gav)));
+    }
+
+    private static class IsArtifactWithSameNameAndTypeAs extends ArgumentMatcher<Artifact> {
+
+        private final String name;
+
+        private final ArtifactType type;
+
+        public IsArtifactWithSameNameAndTypeAs(Artifact artifact) {
+            this.name = Objects.requireNonNull(artifact.getName());
+            this.type = Objects.requireNonNull(artifact.getType());
+        }
+
+        @Override
+        public boolean matches(Object argument) {
+            if (argument instanceof Artifact) {
+                Artifact artifact = (Artifact) argument;
+                return name.equals(artifact.getName()) && type == artifact.getType();
+            }
+            return false;
+        }
 
     }
 }

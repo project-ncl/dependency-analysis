@@ -8,6 +8,8 @@ import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.products.api.Artifact;
+import org.jboss.da.products.api.ArtifactType;
+import org.jboss.da.products.api.MavenArtifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
@@ -71,23 +73,35 @@ public class DatabaseProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga) {
+    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact) {
+        if (artifact.getType() != ArtifactType.MAVEN) {
+            return CompletableFuture.completedFuture(Collections.emptySet());
+        }
+        GA ga = ((MavenArtifact) artifact).getGav().getGA();
         return CompletableFuture.supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(),
                 Optional.empty()));
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status) {
+    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact, ProductSupportStatus status) {
+        if (artifact.getType() != ArtifactType.MAVEN) {
+            return CompletableFuture.completedFuture(Collections.emptySet());
+        }
+        GA ga = ((MavenArtifact) artifact).getGav().getGA();
         return CompletableFuture.supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(),
                 Optional.of(status)));
     }
 
     @Override
-    public CompletableFuture<Map<Product, Set<String>>> getVersions(GA ga) {
+    public CompletableFuture<Map<Product, Set<String>>> getVersions(Artifact artifact) {
+        if (artifact.getType() != ArtifactType.MAVEN) {
+            return CompletableFuture.completedFuture(Collections.emptyMap());
+        }
+        GA ga = ((MavenArtifact) artifact).getGav().getGA();
         return CompletableFuture.supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(), Optional.empty()).stream()
                 .collect(Collectors.toMap(ProductArtifacts::getProduct,
-                                x -> x.getArtifacts().stream()
-                                .map(y -> y.getGav().getVersion())
+                        x -> x.getArtifacts().stream()
+                                .map(Artifact::getVersion)
                                 .collect(Collectors.toSet()))));
     }
 
@@ -114,7 +128,8 @@ public class DatabaseProductProvider implements ProductProvider {
 
     private static Artifact toArtifact(WhiteArtifact a) {
         final org.jboss.da.listings.api.model.GA ga = a.getGa();
-        return new Artifact(new GAV(a.getGa().getGroupId(), ga.getArtifactId(), a.getVersion()));
+        return new MavenArtifact(
+                new GAV(a.getGa().getGroupId(), ga.getArtifactId(), a.getVersion()));
     }
 
     @Qualifier

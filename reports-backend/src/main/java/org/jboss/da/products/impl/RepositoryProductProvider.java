@@ -8,6 +8,7 @@ import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.products.api.Artifact;
+import org.jboss.da.products.api.MavenArtifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
@@ -35,6 +36,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import javax.enterprise.context.RequestScoped;
 
 import java.util.List;
@@ -104,29 +106,50 @@ public class RepositoryProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga) {
-        return supplyAsync(() -> getArtifacts0(ga));
+    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact) {
+        return getArtifacts0(artifact);
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status) {
+    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact,
+            ProductSupportStatus status) {
         if (status != UNKNOWN) {
             return CompletableFuture.completedFuture(Collections.emptySet());
         }
-        return supplyAsync(() -> getArtifacts0(ga));
+        return getArtifacts0(artifact);
     }
 
     @Override
-    public CompletableFuture<Map<Product, Set<String>>> getVersions(GA ga) {
-        CompletableFuture<Set<String>> versions = supplyAsync(
-                () -> getVersionsStream(ga).collect(Collectors.toSet()));
-        return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN,rv));
+    public CompletableFuture<Map<Product, Set<String>>> getVersions(Artifact artifact) {
+        switch (artifact.getType()) {
+            case MAVEN: {
+                GA ga = ((MavenArtifact) artifact).getGav().getGA();
+                CompletableFuture<Set<String>> versions = supplyAsync(
+                        () -> getVersionsStream(ga).collect(Collectors.toSet()));
+                return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN, rv));
+            }
+            default: {
+                return CompletableFuture.completedFuture(Collections.emptyMap());
+            }
+        }
+    }
+
+    private CompletableFuture<Set<ProductArtifacts>> getArtifacts0(Artifact artifact) {
+        switch (artifact.getType()) {
+            case MAVEN: {
+                GA ga = ((MavenArtifact) artifact).getGav().getGA();
+                return supplyAsync(() -> getArtifacts0(ga));
+            }
+            default: {
+                return CompletableFuture.completedFuture(Collections.emptySet());
+            }
+        }
     }
 
     private Set<ProductArtifacts> getArtifacts0(GA ga) {
         Set<Artifact> allArtifacts = getVersionsStream(ga)
                 .map(x -> new GAV(ga, x))
-                .map(Artifact::new)
+                .map(MavenArtifact::new)
                 .collect(Collectors.toSet());
         if (allArtifacts.isEmpty()) {
             return Collections.emptySet();
