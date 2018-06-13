@@ -19,33 +19,8 @@ package org.jboss.da.products.api;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-public interface Artifact {
+public enum ArtifactType {
 
-    /**
-     * Artifact identifier that identifies specific artifact version. Artifiact identifier consists
-     * of artifact name and version.
-     *
-     * @return artifact identifier
-     */
-    String getIdentifier();
+    MAVEN;
 
-    /**
-     * Name of the artifact. It's usually identifier without version.
-     *
-     * @return artifact name.
-     */
-    String getName();
-
-    /**
-     * Version of the artifact.
-     *
-     * @return artifact version.
-     */
-    String getVersion();
-
-    /**
-     * Type of the artifact.
-     * @return artifact type.
-     */
-    ArtifactType getType();
 }
