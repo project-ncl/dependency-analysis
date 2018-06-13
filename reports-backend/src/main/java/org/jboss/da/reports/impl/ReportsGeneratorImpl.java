@@ -446,8 +446,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
             throws CommunicationException{
         final String versionSuffix = request.getVersionSuffix();
+        final String repositoryGroup = request.getRepositoryGroup();
         if (versionSuffix != null && !versionSuffix.isEmpty()) {
             repositoryProductProvider.setVersionSuffix(versionSuffix);
+        }
+        if (repositoryGroup != null && !repositoryGroup.isEmpty()) {
+            repositoryProductProvider.setRepository(repositoryGroup);
         }
 
         /** Get set of GAs */
@@ -463,16 +467,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             LookupGAVsRequest request, Set<GA> uniqueGAs) throws CommunicationException {
         Set<Product> products = getProducts(request.getProductNames(),
                 request.getProductVersionIds());
-        final String repositoryGroup = request.getRepositoryGroup();
 
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
         for (GA ga : uniqueGAs) {
-            CompletableFuture<Set<ProductArtifacts>> artifacts;
-            if (repositoryGroup == null) {
-                artifacts = productProvider.getArtifacts(ga);
-            } else {
-                artifacts = productProvider.getArtifactsFromRepository(ga, repositoryGroup);
-            }
+            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(ga);
             artifacts = filterProductArtifacts(products, artifacts);
 
             gaProductArtifactsMap.put(ga, artifacts);
