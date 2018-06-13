@@ -1,7 +1,6 @@
 package org.jboss.da.products.impl;
 
 import org.jboss.da.listings.model.ProductSupportStatus;
-import org.jboss.da.model.rest.GA;
 import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
@@ -95,18 +94,18 @@ public class AggregatedProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga) {
-        return aggregate(x -> x.getArtifacts(ga), new ProductArtifactsCollector());
+    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact) {
+        return aggregate(x -> x.getArtifacts(artifact), new ProductArtifactsCollector());
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status) {
-        return aggregate(x -> x.getArtifacts(ga, status), new ProductArtifactsCollector());
+    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact, ProductSupportStatus status) {
+        return aggregate(x -> x.getArtifacts(artifact, status), new ProductArtifactsCollector());
     }
 
     @Override
-    public CompletableFuture<Map<Product, Set<String>>> getVersions(GA ga) {
-        return aggregate(x -> x.getVersions(ga), new MapCol<>(AggregatedProductProvider::combineSets));
+    public CompletableFuture<Map<Product, Set<String>>> getVersions(Artifact artifact) {
+        return aggregate(x -> x.getVersions(artifact), new MapCol<>(AggregatedProductProvider::combineSets));
     }
 
     private <R> CompletableFuture<R> aggregate(Function<ProductProvider, Future<R>> getter, Collector<? super R, ?, R> collector){

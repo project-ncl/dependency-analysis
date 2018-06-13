@@ -1,7 +1,6 @@
 package org.jboss.da.products.api;
 
 import org.jboss.da.listings.model.ProductSupportStatus;
-import org.jboss.da.model.rest.GA;
 
 import java.util.Map;
 import java.util.Set;
@@ -45,27 +44,30 @@ public interface ProductProvider {
     Future<Set<Artifact>> getArtifacts(Product product);
 
     /**
-     * Get all artifacts with given GroupId and ArtifactId and their products.
-     * @param ga GroupID and ArtifactId of the artifacts.
+     * Get all artifacts with the same name and type as given artifact and their products.
+     *
+     * @param artifact artifact which name and type will be used for searching.
      * @return Set of products and their artifacts.
      */
-    Future<Set<ProductArtifacts>> getArtifacts(GA ga);
+    Future<Set<ProductArtifacts>> getArtifacts(Artifact artifact);
 
     /**
-     * Get all artifacts with given GroupId and ArtifactId and their products, limited to products
-     * with given support status..
-     * @param ga GroupID and ArtifactId of the artifacts.
+     * Get all artifacts with the same name and type as given artifact and their products, limited
+     * to     * products with given support status..
+     *
+     * @param artifact artifact which name and type will be used for searching.
      * @param status Support status of the products.
      * @return Set of products and their artifacts.
      */
-    Future<Set<ProductArtifacts>> getArtifacts(GA ga, ProductSupportStatus status);
+    Future<Set<ProductArtifacts>> getArtifacts(Artifact artifact, ProductSupportStatus status);
 
     // Versions getters
     /**
-     * Get all artifacts versions with given GroupId and ArtifactId and their products.
-     * @param ga GroupID and ArtifactId of the artifacts.
+     * Get all artifacts versions with the same name and type as given artifact and their products.
+     *
+     * @param artifact artifact which name and type will be used for searching.
      * @return Set of products and their artifacts versions.
      */
-    Future<Map<Product, Set<String>>> getVersions(GA ga);
+    Future<Map<Product, Set<String>>> getVersions(Artifact artifact);
 
 }
