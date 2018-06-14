@@ -58,9 +58,13 @@ import java.util.stream.Collectors;
 import org.jboss.da.common.version.VersionAnalyzer;
 import org.jboss.da.common.version.VersionAnalyzer.VersionAnalysisResult;
 import org.jboss.da.common.version.VersionComparator;
+import org.jboss.da.model.rest.NPMPackage;
 import org.jboss.da.products.api.MavenArtifact;
+import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
+import org.jboss.da.reports.model.request.LookupNPMRequest;
+import org.jboss.da.reports.model.response.NPMLookupReport;
 
 /**
  * The implementation of reports, which provides information about
@@ -434,6 +438,69 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
+    public List<NPMLookupReport> getLookupReports(LookupNPMRequest request)
+            throws CommunicationException{
+        final String versionSuffix = request.getVersionSuffix();
+        final String repositoryGroup = request.getRepositoryGroup();
+        if (versionSuffix != null && !versionSuffix.isEmpty()) {
+            repositoryProductProvider.setVersionSuffix(versionSuffix);
+        }
+        if (repositoryGroup != null && !repositoryGroup.isEmpty()) {
+            repositoryProductProvider.setRepository(repositoryGroup);
+        }
+
+        Set<String> uniqueNames = request.getPackages().stream()
+                .map(x -> x.getName())
+                .collect(Collectors.toSet());
+
+        Map<String, CompletableFuture<Set<ProductArtifacts>>> artifactsMap = getProductArtifactsNPM(uniqueNames);
+
+        return createLookupReports(request.getPackages(), versionSuffix, artifactsMap);
+    }
+
+    private Map<String, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsNPM(
+            Set<String> packageNames) {
+        Map<String, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
+        for (String name : packageNames) {
+            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider
+                    .getArtifacts(new NPMArtifact(name, "0.0.0"));
+
+            gaProductArtifactsMap.put(name, artifacts);
+        }
+
+        return gaProductArtifactsMap;
+    }
+
+    private List<NPMLookupReport> createLookupReports(List<NPMPackage> packages,
+            String suffix,
+            Map<String, CompletableFuture<Set<ProductArtifacts>>> artifactsMap)
+            throws CommunicationException {
+        VersionParser versionParser;
+        if (suffix == null || suffix.isEmpty()) {
+            versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
+        } else {
+            versionParser = new VersionParser(suffix);
+        }
+
+        List<CompletableFuture<NPMLookupReport>> futures = packages.stream()
+                .distinct()
+                .map((a) -> {
+
+                    CompletableFuture<Set<ProductArtifacts>> artifacts = artifactsMap.get(a.getName());
+                    CompletableFuture<VersionAnalysisResult> analyzedVersions = analyzeVersions(versionParser, a.getVersion(), artifacts);
+
+                    return analyzedVersions.thenApply((v) -> NPMLookupReport.builder()
+                            .npmPackage(a)
+                            .availableVersions(v.getAvailableVersions())
+                            .bestMatchVersion(v.getBestMatchVersion().orElse(null))
+                            .build());
+                })
+                .collect(Collectors.toList());
+
+        return joinFutures(futures);
+    }
+
+    @Override
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
             throws CommunicationException{
         final String versionSuffix = request.getVersionSuffix();
@@ -507,9 +574,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return reports;
     }
 
-    private void joinFutures(List<CompletableFuture<Void>> futures) throws CommunicationException {
+    private <T> List<T> joinFutures(List<CompletableFuture<T>> futures) throws CommunicationException {
         try {
-            futures.stream().forEach(r -> r.join());
+            return futures.stream().map(r -> r.join()).collect(Collectors.toList());
         } catch(CompletionException ex){
             if(ex.getCause() instanceof CommunicationException){
                 throw (CommunicationException) ex.getCause();
