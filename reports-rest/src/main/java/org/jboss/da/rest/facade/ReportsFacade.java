@@ -22,9 +22,11 @@ import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.model.response.AdvancedReport;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
+import org.jboss.da.reports.model.request.LookupNPMRequest;
 import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.reports.model.request.SCMReportRequest;
+import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
 
@@ -122,6 +124,11 @@ public class ReportsFacade {
     public List<LookupReport> gavsReport(LookupGAVsRequest gavRequest)
             throws CommunicationException {
         return reportsGenerator.getLookupReportsForGavs(gavRequest);
+    }
+
+    public List<NPMLookupReport> lookupReport(LookupNPMRequest request)
+            throws CommunicationException {
+        return reportsGenerator.getLookupReports(request);
     }
 
     private static String getPomPath(String requestPomPath) {
