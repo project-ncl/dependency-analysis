@@ -14,9 +14,11 @@ import org.jboss.da.reports.model.response.BuiltReport;
 import org.jboss.da.reports.model.request.BuiltReportRequest;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
+import org.jboss.da.reports.model.request.LookupNPMRequest;
 import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.reports.model.request.SCMReportRequest;
+import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.rest.facade.ReportsFacade;
 import org.slf4j.Logger;
 
@@ -133,6 +135,30 @@ public class Reports {
             List<LookupReport> lookupReportList = facade.gavsReport(gavRequest);
             log.info("Request to /lookup/gavs completed successfully. Payload: "
                     + gavRequest.toString());
+            return Response.status(Status.OK).entity(lookupReportList).build();
+        } catch (RepositoryException e) {
+            return handleException("Communication with remote repository failed",
+                    ErrorType.COMMUNICATION_FAIL, Status.BAD_GATEWAY, e);
+        } catch (Exception e) {
+            return handleException(e);
+        }
+    }
+
+    @POST
+    @Path("/lookup/npm")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Lookup built versions for the list of provided NPM artifacts",
+            responseContainer = "List", response = NPMLookupReport.class)
+    @ApiResponses(value = { @ApiResponse(code = 502,
+            message = "Communication with remote repository failed") })
+    public Response lookupNPM(
+            @ApiParam(value = "JSON object with list of package names") LookupNPMRequest request) {
+        try {
+            log.info("Incoming request to /lookup/npm. Payload: " + request.toString());
+            List<NPMLookupReport> lookupReportList = facade.lookupReport(request);
+            log.info("Request to /lookup/npm completed successfully. Payload: "
+                    + request.toString());
             return Response.status(Status.OK).entity(lookupReportList).build();
         } catch (RepositoryException e) {
             return handleException("Communication with remote repository failed",

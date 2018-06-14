@@ -7,8 +7,10 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
+import org.jboss.da.reports.model.request.LookupNPMRequest;
 import org.jboss.da.reports.model.request.SCMReportRequest;
 import org.jboss.da.reports.model.response.LookupReport;
+import org.jboss.da.reports.model.response.NPMLookupReport;
 
 import java.util.List;
 import java.util.Optional;
@@ -74,6 +76,9 @@ public interface ReportsGenerator {
             PomAnalysisException, CommunicationException;
 
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
+            throws CommunicationException;
+
+    public List<NPMLookupReport> getLookupReports(LookupNPMRequest request)
             throws CommunicationException;
 
 }
