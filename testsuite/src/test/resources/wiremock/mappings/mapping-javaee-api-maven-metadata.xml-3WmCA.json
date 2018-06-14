@@ -1,7 +1,7 @@
 {
   "id" : "7767ae9d-c77a-30d2-b97f-2cff0fc9bb8a",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/openejb/javaee-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/openejb/javaee-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

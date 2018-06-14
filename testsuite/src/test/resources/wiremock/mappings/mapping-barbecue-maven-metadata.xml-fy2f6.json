@@ -1,7 +1,7 @@
 {
   "id" : "1333ac7f-f57e-3a10-9d17-2b4fd459c8d5",
   "request" : {
-    "url" : "/api/group/test-DA/net/sourceforge/barbecue/barbecue/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/net/sourceforge/barbecue/barbecue/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

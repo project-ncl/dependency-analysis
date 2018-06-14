@@ -1,7 +1,7 @@
 {
   "id" : "8352c57b-3617-30be-835a-c04f12ff7f21",
   "request" : {
-    "url" : "/api/group/test-DA/org/picketbox/picketbox-infinispan/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/picketbox/picketbox-infinispan/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "90cd8de5-c099-3fd9-8d70-04fd79e0da62",
   "request" : {
-    "url" : "/api/group/test-DA/com/sun/tools/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/sun/tools/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

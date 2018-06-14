@@ -1,7 +1,7 @@
 {
   "id" : "8e273854-fab0-3abf-b96f-6136bace6cc3",
   "request" : {
-    "url" : "/api/group/test-DA/org/jvnet/hudson/annotation-indexer/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jvnet/hudson/annotation-indexer/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

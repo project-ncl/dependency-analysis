@@ -1,7 +1,7 @@
 {
   "id" : "f6de0d95-655a-335e-9a0d-da9e93ed10af",
   "request" : {
-    "url" : "/api/group/test-DA/com/infradna/tool/bridge-method-annotation/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/infradna/tool/bridge-method-annotation/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

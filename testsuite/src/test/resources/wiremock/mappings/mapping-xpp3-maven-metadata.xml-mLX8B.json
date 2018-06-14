@@ -1,7 +1,7 @@
 {
   "id" : "5d9ed5d2-104e-3307-aec4-f3d5d2012bb6",
   "request" : {
-    "url" : "/api/group/test-DA/xpp3/xpp3/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/xpp3/xpp3/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

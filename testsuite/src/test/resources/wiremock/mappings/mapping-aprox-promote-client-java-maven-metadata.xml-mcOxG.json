@@ -1,7 +1,7 @@
 {
   "id" : "c20cd1af-d88c-320f-b534-b0b5eacad2c8",
   "request" : {
-    "url" : "/api/group/test-DA/org/commonjava/aprox/aprox-promote-client-java/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/commonjava/aprox/aprox-promote-client-java/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

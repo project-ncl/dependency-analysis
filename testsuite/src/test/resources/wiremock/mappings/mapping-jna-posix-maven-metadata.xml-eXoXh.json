@@ -1,7 +1,7 @@
 {
   "id" : "6b450111-b95d-395d-94c5-64e65998ad83",
   "request" : {
-    "url" : "/api/group/test-DA/org/jruby/ext/posix/jna-posix/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jruby/ext/posix/jna-posix/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

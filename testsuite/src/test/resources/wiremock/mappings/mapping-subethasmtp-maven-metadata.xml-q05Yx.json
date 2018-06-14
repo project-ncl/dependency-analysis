@@ -1,7 +1,7 @@
 {
   "id" : "7c091f2f-3674-3267-ad82-532d98e375de",
   "request" : {
-    "url" : "/api/group/test-DA/org/subethamail/subethasmtp/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/subethamail/subethasmtp/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

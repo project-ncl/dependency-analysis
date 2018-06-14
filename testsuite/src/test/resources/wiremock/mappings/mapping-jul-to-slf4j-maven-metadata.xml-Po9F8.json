@@ -1,7 +1,7 @@
 {
   "id" : "3f82b25a-dba1-3bc0-8852-10cc3eaa9b19",
   "request" : {
-    "url" : "/api/group/test-DA/org/slf4j/jul-to-slf4j/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/slf4j/jul-to-slf4j/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

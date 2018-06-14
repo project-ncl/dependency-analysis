@@ -1,7 +1,7 @@
 {
   "id" : "ded93936-8677-3e20-a711-ad4da0452657",
   "request" : {
-    "url" : "/api/group/test-DA/org/atinject/inject-tck/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/atinject/inject-tck/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

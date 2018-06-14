@@ -1,7 +1,7 @@
 {
   "id" : "1c9d3968-3f95-3cc4-be13-df07544d357a",
   "request" : {
-    "url" : "/api/group/test-DA/org/opengeo/geodb/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/opengeo/geodb/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

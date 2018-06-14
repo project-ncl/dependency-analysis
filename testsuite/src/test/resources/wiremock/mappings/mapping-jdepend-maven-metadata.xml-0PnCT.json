@@ -1,7 +1,7 @@
 {
   "id" : "7d2674ed-d4a6-3633-abbf-cbc576bc714b",
   "request" : {
-    "url" : "/api/group/test-DA/jdepend/jdepend/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/jdepend/jdepend/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

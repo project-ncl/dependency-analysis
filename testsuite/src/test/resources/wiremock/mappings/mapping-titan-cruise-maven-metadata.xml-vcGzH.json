@@ -1,7 +1,7 @@
 {
   "id" : "19f4d05a-fef9-36d5-a4ec-0640d5f98e27",
   "request" : {
-    "url" : "/api/group/test-DA/org/resteasy/titan-cruise/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/resteasy/titan-cruise/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

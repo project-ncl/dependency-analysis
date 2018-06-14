@@ -1,7 +1,7 @@
 {
   "id" : "1cec3e7e-508f-3ab7-ac4e-d714fa9a6602",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/neethi/neethi/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/neethi/neethi/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

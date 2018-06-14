@@ -1,7 +1,7 @@
 {
   "id" : "dcc2274b-9dfb-3d6a-9b53-fcb6a588c727",
   "request" : {
-    "url" : "/api/group/test-DA/org/mongodb/morphia/morphia/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/mongodb/morphia/morphia/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "f83a7c07-1bfa-3af1-ae1d-541cfa7d2eae",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/spec/javax/xml/ws/jboss-jaxws-api_2.2_spec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/spec/javax/xml/ws/jboss-jaxws-api_2.2_spec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

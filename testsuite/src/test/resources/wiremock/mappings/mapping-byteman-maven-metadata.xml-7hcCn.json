@@ -1,7 +1,7 @@
 {
   "id" : "f2b30b84-8be8-32d9-ba50-8f255b73e968",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/byteman/byteman/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/byteman/byteman/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

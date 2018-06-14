@@ -1,7 +1,7 @@
 {
   "id" : "d49caddc-3de0-38fb-9b20-f395a6edbdbe",
   "request" : {
-    "url" : "/api/group/test-DA/org/bouncycastle/bcprov-jdk14/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/bouncycastle/bcprov-jdk14/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

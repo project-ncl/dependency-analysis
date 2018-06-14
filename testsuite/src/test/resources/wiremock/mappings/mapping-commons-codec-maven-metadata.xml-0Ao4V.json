@@ -1,7 +1,7 @@
 {
   "id" : "9c06b1fb-7ed6-395f-8e0a-c0a63e06fc29",
   "request" : {
-    "url" : "/api/group/test-DA/commons-codec/commons-codec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/commons-codec/commons-codec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

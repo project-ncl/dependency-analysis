@@ -1,7 +1,7 @@
 {
   "id" : "be7d33fc-d868-3d5b-8a0b-3db30681d97e",
   "request" : {
-    "url" : "/api/group/test-DA/com/fasterxml/jackson/module/jackson-module-jsonSchema/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/fasterxml/jackson/module/jackson-module-jsonSchema/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

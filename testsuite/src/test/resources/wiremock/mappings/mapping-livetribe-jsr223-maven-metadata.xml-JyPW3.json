@@ -1,7 +1,7 @@
 {
   "id" : "fdf89cdd-62ae-38ee-91bb-3b2a46f4232d",
   "request" : {
-    "url" : "/api/group/test-DA/org/livetribe/livetribe-jsr223/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/livetribe/livetribe-jsr223/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

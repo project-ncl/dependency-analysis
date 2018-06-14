@@ -1,7 +1,7 @@
 {
   "id" : "21f6c54c-b8fc-357b-922a-0a4409130862",
   "request" : {
-    "url" : "/api/group/test-DA/org/jruby/yecht/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jruby/yecht/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "51798ce4-464c-3b4d-a784-365452e697d9",
   "request" : {
-    "url" : "/api/group/test-DA/com/squareup/okhttp/mockwebserver/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/squareup/okhttp/mockwebserver/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

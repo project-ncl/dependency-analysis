@@ -1,7 +1,7 @@
 {
   "id" : "58fd9648-f97e-3210-ab67-fd9d97566985",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/velocity/velocity/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/velocity/velocity/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

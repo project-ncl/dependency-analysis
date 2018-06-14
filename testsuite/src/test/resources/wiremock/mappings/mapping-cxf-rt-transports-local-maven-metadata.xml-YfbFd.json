@@ -1,7 +1,7 @@
 {
   "id" : "34cf0172-b157-371e-b789-0e958d7b5b25",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/cxf/cxf-rt-transports-local/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/cxf/cxf-rt-transports-local/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

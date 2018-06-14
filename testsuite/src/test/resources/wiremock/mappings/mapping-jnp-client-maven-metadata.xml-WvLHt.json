@@ -1,7 +1,7 @@
 {
   "id" : "e998d1df-f982-3113-8cc7-fe897c892744",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/naming/jnp-client/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/naming/jnp-client/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

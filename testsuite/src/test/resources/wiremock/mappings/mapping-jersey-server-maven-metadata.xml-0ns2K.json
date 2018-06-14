@@ -1,7 +1,7 @@
 {
   "id" : "a52dc4e8-3f83-3227-8ad7-74398e9f2225",
   "request" : {
-    "url" : "/api/group/test-DA/com/sun/jersey/jersey-server/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/sun/jersey/jersey-server/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

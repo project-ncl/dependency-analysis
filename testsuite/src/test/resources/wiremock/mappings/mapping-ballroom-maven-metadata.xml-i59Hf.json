@@ -1,7 +1,7 @@
 {
   "id" : "e45b2343-66bd-3ae2-8f2c-b8958afc74ce",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/ballroom/ballroom/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/ballroom/ballroom/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

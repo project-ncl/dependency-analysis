@@ -1,7 +1,7 @@
 {
   "id" : "2d216752-0cf0-3709-b00f-c6bf5d18721e",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/directory/api/api-ldap-codec-standalone/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/directory/api/api-ldap-codec-standalone/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

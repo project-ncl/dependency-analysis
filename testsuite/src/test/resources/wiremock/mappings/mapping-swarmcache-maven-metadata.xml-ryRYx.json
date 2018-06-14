@@ -1,7 +1,7 @@
 {
   "id" : "aed40361-a64b-3e92-96f2-f1287d0bfbb0",
   "request" : {
-    "url" : "/api/group/test-DA/swarmcache/swarmcache/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/swarmcache/swarmcache/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

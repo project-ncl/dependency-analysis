@@ -1,7 +1,7 @@
 {
   "id" : "5e724d53-1164-334c-bde1-76a7129d7326",
   "request" : {
-    "url" : "/api/group/test-DA/com/github/jnr/jffi/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/github/jnr/jffi/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

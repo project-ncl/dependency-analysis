@@ -1,7 +1,7 @@
 {
   "id" : "f9b26c5a-34d0-3eeb-9ffe-a3f893323503",
   "request" : {
-    "url" : "/api/group/test-DA/org/joda/joda-money/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/joda/joda-money/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

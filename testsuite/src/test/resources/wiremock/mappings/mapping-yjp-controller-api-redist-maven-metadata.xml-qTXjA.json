@@ -1,7 +1,7 @@
 {
   "id" : "3b65481a-4ac3-387e-902b-906460d58d78",
   "request" : {
-    "url" : "/api/group/test-DA/com/yourkit/yjp-controller-api-redist/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/yourkit/yjp-controller-api-redist/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

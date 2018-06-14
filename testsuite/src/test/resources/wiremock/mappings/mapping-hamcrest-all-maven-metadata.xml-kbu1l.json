@@ -1,7 +1,7 @@
 {
   "id" : "1214babb-abd8-3a86-b8b9-25661d4013d7",
   "request" : {
-    "url" : "/api/group/test-DA/org/hamcrest/hamcrest-all/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hamcrest/hamcrest-all/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

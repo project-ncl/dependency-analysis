@@ -1,7 +1,7 @@
 {
   "id" : "d60253ee-b610-3f4a-86eb-b4074f540de9",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-arquillian-container-managed/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/as/jboss-as-arquillian-container-managed/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

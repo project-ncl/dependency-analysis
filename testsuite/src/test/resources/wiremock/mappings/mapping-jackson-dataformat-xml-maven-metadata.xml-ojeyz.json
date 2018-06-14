@@ -1,7 +1,7 @@
 {
   "id" : "9c1f61ba-8929-3dd4-95ef-d8be036f41d4",
   "request" : {
-    "url" : "/api/group/test-DA/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "8d71466e-e74f-36b8-82fb-0ce9e2e0c075",
   "request" : {
-    "url" : "/api/group/test-DA/com/microsoft/sqlserver/sqljdbc/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/microsoft/sqlserver/sqljdbc/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

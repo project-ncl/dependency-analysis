@@ -1,7 +1,7 @@
 {
   "id" : "5b094399-9745-3e50-92e5-b27ed862f72a",
   "request" : {
-    "url" : "/api/group/test-DA/org/keycloak/keycloak-broker-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/keycloak/keycloak-broker-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

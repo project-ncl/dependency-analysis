@@ -1,7 +1,7 @@
 {
   "id" : "eaffe178-66af-3e06-89c3-47b1f065d278",
   "request" : {
-    "url" : "/api/group/test-DA/javax/faces/javax.faces-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/faces/javax.faces-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

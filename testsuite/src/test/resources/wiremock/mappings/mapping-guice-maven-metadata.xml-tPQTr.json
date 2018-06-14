@@ -1,7 +1,7 @@
 {
   "id" : "2f8f7014-ff9c-3cde-9325-84c150510f15",
   "request" : {
-    "url" : "/api/group/test-DA/com/google/inject/guice/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/google/inject/guice/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

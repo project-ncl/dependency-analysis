@@ -1,7 +1,7 @@
 {
   "id" : "115a7f38-f5e1-3d25-9e4b-dd91dec2b603",
   "request" : {
-    "url" : "/api/group/test-DA/javax/annotation/jsr250-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/javax/annotation/jsr250-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

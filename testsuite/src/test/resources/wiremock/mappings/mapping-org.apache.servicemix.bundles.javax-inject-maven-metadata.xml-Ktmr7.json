@@ -1,7 +1,7 @@
 {
   "id" : "99914904-dfac-3f20-844d-af6b724a2a3d",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/servicemix/bundles/org.apache.servicemix.bundles.javax-inject/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/servicemix/bundles/org.apache.servicemix.bundles.javax-inject/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

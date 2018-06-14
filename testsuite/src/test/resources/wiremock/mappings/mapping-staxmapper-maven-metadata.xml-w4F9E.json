@@ -1,7 +1,7 @@
 {
   "id" : "0ec664cd-b8d3-3841-b35c-28f095aad57b",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/staxmapper/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/staxmapper/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

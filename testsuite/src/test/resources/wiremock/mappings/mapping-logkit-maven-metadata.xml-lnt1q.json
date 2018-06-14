@@ -1,7 +1,7 @@
 {
   "id" : "5811c2fc-6c80-391a-9f69-1a549806953a",
   "request" : {
-    "url" : "/api/group/test-DA/logkit/logkit/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/logkit/logkit/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

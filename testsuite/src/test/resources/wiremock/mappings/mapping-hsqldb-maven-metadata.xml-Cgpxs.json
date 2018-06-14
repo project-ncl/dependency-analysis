@@ -1,7 +1,7 @@
 {
   "id" : "2566cf9f-1c29-3925-a9dc-4edbcf455c33",
   "request" : {
-    "url" : "/api/group/test-DA/org/hsqldb/hsqldb/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hsqldb/hsqldb/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

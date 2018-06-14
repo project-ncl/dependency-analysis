@@ -1,7 +1,7 @@
 {
   "id" : "c869fb59-ae3e-38b3-a139-7cb867801968",
   "request" : {
-    "url" : "/api/group/test-DA/org/testng/testng/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/testng/testng/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

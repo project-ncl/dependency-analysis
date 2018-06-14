@@ -1,7 +1,7 @@
 {
   "id" : "89f999b5-8076-3a2f-bf54-80503956ed2a",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/directory/server/apacheds-interceptor-kerberos/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/directory/server/apacheds-interceptor-kerberos/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

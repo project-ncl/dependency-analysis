@@ -1,7 +1,7 @@
 {
   "id" : "7d6127d0-d4f7-34e0-882a-7723691c7e31",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/httpcomponents/httpasyncclient/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/httpcomponents/httpasyncclient/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

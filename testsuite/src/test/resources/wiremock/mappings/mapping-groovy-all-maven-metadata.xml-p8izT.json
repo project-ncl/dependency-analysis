@@ -1,7 +1,7 @@
 {
   "id" : "522d65fd-ee30-314b-a09b-a70ceebcf815",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/groovy/groovy-all/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/groovy/groovy-all/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

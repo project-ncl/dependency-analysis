@@ -1,7 +1,7 @@
 {
   "id" : "c83ce549-9727-33f6-bb5f-a39be10423bd",
   "request" : {
-    "url" : "/api/group/test-DA/org/javassist/javassist/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/javassist/javassist/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

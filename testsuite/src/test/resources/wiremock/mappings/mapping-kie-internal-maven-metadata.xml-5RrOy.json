@@ -1,7 +1,7 @@
 {
   "id" : "450173de-6c5c-34b4-84af-d430c76fd181",
   "request" : {
-    "url" : "/api/group/test-DA/org/kie/kie-internal/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/kie/kie-internal/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

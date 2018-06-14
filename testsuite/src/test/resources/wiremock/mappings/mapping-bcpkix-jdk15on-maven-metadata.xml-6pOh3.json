@@ -1,7 +1,7 @@
 {
   "id" : "c6a1a461-74ab-3a9f-ab54-81bde7a5b636",
   "request" : {
-    "url" : "/api/group/test-DA/org/bouncycastle/bcpkix-jdk15on/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/bouncycastle/bcpkix-jdk15on/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

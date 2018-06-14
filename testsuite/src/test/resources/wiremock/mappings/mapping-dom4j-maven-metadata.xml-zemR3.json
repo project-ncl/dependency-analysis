@@ -1,7 +1,7 @@
 {
   "id" : "07a30eab-8f1c-36c4-9594-89958c411ff7",
   "request" : {
-    "url" : "/api/group/test-DA/dom4j/dom4j/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/dom4j/dom4j/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

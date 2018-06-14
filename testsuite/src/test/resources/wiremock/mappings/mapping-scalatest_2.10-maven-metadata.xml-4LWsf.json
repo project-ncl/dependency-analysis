@@ -1,7 +1,7 @@
 {
   "id" : "8c35cf58-1dce-39a1-b5b8-6e80b6acb2a8",
   "request" : {
-    "url" : "/api/group/test-DA/org/scalatest/scalatest_2.10/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/scalatest/scalatest_2.10/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

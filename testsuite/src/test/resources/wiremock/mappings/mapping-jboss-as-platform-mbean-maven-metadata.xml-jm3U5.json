@@ -1,7 +1,7 @@
 {
   "id" : "4e20cdb3-4a8b-31d4-8709-3b1f4c1625e7",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/as/jboss-as-platform-mbean/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/as/jboss-as-platform-mbean/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

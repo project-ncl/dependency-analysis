@@ -1,7 +1,7 @@
 {
   "id" : "8681216d-ebd8-3253-8ca6-777ebe5dc4c9",
   "request" : {
-    "url" : "/api/group/test-DA/org/infinispan/infinispan-client-hotrod/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/infinispan/infinispan-client-hotrod/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

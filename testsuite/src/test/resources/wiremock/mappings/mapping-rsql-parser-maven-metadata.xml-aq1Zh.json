@@ -1,7 +1,7 @@
 {
   "id" : "4aee25c4-a85c-3c54-88c3-afeaa4e708e2",
   "request" : {
-    "url" : "/api/group/test-DA/cz/jirutka/rsql/rsql-parser/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/cz/jirutka/rsql/rsql-parser/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

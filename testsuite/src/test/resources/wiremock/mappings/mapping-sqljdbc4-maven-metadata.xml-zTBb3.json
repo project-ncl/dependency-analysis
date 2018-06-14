@@ -1,7 +1,7 @@
 {
   "id" : "bacc0757-02f1-3c54-9dfd-04a3f2ea1a5a",
   "request" : {
-    "url" : "/api/group/test-DA/com/microsoft/sqlserver/sqljdbc4/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/microsoft/sqlserver/sqljdbc4/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

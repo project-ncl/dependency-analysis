@@ -1,7 +1,7 @@
 {
   "id" : "f57ad367-8ba9-3e89-8eeb-1193284200ba",
   "request" : {
-    "url" : "/api/group/test-DA/com/ibm/db2jcc/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/ibm/db2jcc/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "7d2614a2-eb5c-30b8-8379-90ea012a76e7",
   "request" : {
-    "url" : "/api/group/test-DA/org/jbpm/jbpm-kie-services/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jbpm/jbpm-kie-services/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

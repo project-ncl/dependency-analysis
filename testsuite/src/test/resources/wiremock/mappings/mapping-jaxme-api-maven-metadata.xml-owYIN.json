@@ -1,7 +1,7 @@
 {
   "id" : "d15621f2-1740-380f-a4d9-d886d54646e5",
   "request" : {
-    "url" : "/api/group/test-DA/jaxme/jaxme-api/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/jaxme/jaxme-api/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "a1b9d82e-4580-3366-b5dc-f9180a17d57f",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/resteasy/resteasy-test-tjws/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/resteasy/resteasy-test-tjws/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

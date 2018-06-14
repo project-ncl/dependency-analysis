@@ -1,7 +1,7 @@
 {
   "id" : "fe449142-cf15-32d7-8fec-4b048a3b6e87",
   "request" : {
-    "url" : "/api/group/test-DA/msv/xsdlib/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/msv/xsdlib/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "965f1168-3733-3993-9d20-017118735973",
   "request" : {
-    "url" : "/api/group/test-DA/werken-xpath/werken-xpath/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/werken-xpath/werken-xpath/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

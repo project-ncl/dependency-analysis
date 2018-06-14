@@ -1,7 +1,7 @@
 {
   "id" : "559266af-0058-3773-8c42-ca5d959aab45",
   "request" : {
-    "url" : "/api/group/test-DA/openjpa/customdriver1/openjpa.customdriver1/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/openjpa/customdriver1/openjpa.customdriver1/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

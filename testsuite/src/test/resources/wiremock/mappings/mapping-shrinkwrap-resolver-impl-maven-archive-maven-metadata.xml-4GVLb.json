@@ -1,7 +1,7 @@
 {
   "id" : "c5079356-1f2e-3da7-b1bb-aba8a561d0ce",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/shrinkwrap/resolver/shrinkwrap-resolver-impl-maven-archive/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/shrinkwrap/resolver/shrinkwrap-resolver-impl-maven-archive/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

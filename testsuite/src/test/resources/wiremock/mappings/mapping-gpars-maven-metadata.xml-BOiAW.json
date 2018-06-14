@@ -1,7 +1,7 @@
 {
   "id" : "cb2a15e3-e45f-3c0e-825a-db776b7302fb",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/gpars/gpars/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/gpars/gpars/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

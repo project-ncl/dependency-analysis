@@ -1,7 +1,7 @@
 {
   "id" : "aa79b380-4d17-3999-85d0-2ccb27f088a7",
   "request" : {
-    "url" : "/api/group/test-DA/org/hibernate/hibernate-validator/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/hibernate/hibernate-validator/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

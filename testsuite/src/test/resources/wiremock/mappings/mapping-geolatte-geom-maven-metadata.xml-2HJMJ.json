@@ -1,7 +1,7 @@
 {
   "id" : "799058ab-ffd1-3a58-b386-9ac12c0de317",
   "request" : {
-    "url" : "/api/group/test-DA/org/geolatte/geolatte-geom/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/geolatte/geolatte-geom/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

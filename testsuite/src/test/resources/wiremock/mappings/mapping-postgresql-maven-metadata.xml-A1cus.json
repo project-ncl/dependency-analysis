@@ -1,7 +1,7 @@
 {
   "id" : "b30f398d-671d-35da-b383-2e24c1d620e3",
   "request" : {
-    "url" : "/api/group/test-DA/org/postgresql/postgresql/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/postgresql/postgresql/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

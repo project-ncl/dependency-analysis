@@ -1,7 +1,7 @@
 {
   "id" : "d4a34125-8301-3896-85d9-52e947d71509",
   "request" : {
-    "url" : "/api/group/test-DA/org/powermock/powermock-api-mockito/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/powermock/powermock-api-mockito/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

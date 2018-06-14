@@ -1,7 +1,7 @@
 {
   "id" : "47d22f35-499d-37be-b97d-47ac6db8b9ec",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/pnc/openshift-environment-driver/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/pnc/openshift-environment-driver/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

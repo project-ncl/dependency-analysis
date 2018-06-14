@@ -1,7 +1,7 @@
 {
   "id" : "22b70fed-65d4-316f-a175-98f436a364af",
   "request" : {
-    "url" : "/api/group/test-DA/org/infinitest/continuous-testing-toolkit/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/infinitest/continuous-testing-toolkit/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

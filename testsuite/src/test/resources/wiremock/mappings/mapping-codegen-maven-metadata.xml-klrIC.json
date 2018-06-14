@@ -1,7 +1,7 @@
 {
   "id" : "1cf96bfc-587f-37d6-b6c9-b5d09772fcba",
   "request" : {
-    "url" : "/api/group/test-DA/com/mysema/codegen/codegen/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/mysema/codegen/codegen/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "b5ad9f53-2eb3-3936-8c09-f7f195245865",
   "request" : {
-    "url" : "/api/group/test-DA/org/eclipse/persistence/commonj.sdo/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/eclipse/persistence/commonj.sdo/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "1fbb951f-7beb-3131-824f-34576caa4f05",
   "request" : {
-    "url" : "/api/group/test-DA/cglib/cglib/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/cglib/cglib/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

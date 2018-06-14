@@ -1,7 +1,7 @@
 {
   "id" : "f6fa6484-fa4f-315a-80d1-f653633218c6",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/cxf/cxf-rt-transports-http-jetty/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/cxf/cxf-rt-transports-http-jetty/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

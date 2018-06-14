@@ -1,7 +1,7 @@
 {
   "id" : "2c3cff6e-3055-3440-96f2-90fa6f8abe40",
   "request" : {
-    "url" : "/api/group/test-DA/org/yaml/snakeyaml/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/yaml/snakeyaml/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

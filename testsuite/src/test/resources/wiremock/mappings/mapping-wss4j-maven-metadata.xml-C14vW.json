@@ -1,7 +1,7 @@
 {
   "id" : "91082c37-17e8-3663-b677-ee33cd2f1042",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/ws/security/wss4j/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/ws/security/wss4j/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

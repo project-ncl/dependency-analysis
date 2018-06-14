@@ -1,7 +1,7 @@
 {
   "id" : "82404622-91dd-324f-a416-a69ddff6223d",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/spec/jboss-javaee-6.0/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/spec/jboss-javaee-6.0/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

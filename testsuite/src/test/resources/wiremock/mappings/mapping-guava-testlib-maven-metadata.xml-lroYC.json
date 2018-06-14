@@ -1,7 +1,7 @@
 {
   "id" : "23e30762-f1ba-3315-8cb5-55ae65ead028",
   "request" : {
-    "url" : "/api/group/test-DA/com/google/guava/guava-testlib/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/google/guava/guava-testlib/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

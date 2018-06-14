@@ -1,7 +1,7 @@
 {
   "id" : "2428e4d1-e0bb-3b53-9787-d4a631239b63",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/spec/javax/rmi/jboss-rmi-api_1.0_spec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/spec/javax/rmi/jboss-rmi-api_1.0_spec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

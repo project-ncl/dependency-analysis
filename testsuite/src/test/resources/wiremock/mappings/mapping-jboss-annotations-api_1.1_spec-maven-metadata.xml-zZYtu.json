@@ -1,7 +1,7 @@
 {
   "id" : "e8ec633e-81b8-3742-803a-9b03e567b77f",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/spec/javax/annotation/jboss-annotations-api_1.1_spec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/spec/javax/annotation/jboss-annotations-api_1.1_spec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

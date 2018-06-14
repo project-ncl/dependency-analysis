@@ -1,7 +1,7 @@
 {
   "id" : "51dedec7-f05c-3c43-a732-8afa98956634",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/maven/scm/maven-scm-provider-svnexe/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/maven/scm/maven-scm-provider-svnexe/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

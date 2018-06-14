@@ -1,7 +1,7 @@
 {
   "id" : "0e0018c6-bcdb-37d0-bdc2-13304bb06178",
   "request" : {
-    "url" : "/api/group/test-DA/com/mysema/commons/mysema-commons-lang/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/mysema/commons/mysema-commons-lang/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

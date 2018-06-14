@@ -1,7 +1,7 @@
 {
   "id" : "fa54d1e8-c343-3bed-a686-7cc8046ac2eb",
   "request" : {
-    "url" : "/api/group/test-DA/c3p0/c3p0/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/c3p0/c3p0/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

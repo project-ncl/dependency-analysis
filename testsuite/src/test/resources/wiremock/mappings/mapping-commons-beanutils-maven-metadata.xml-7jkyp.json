@@ -1,7 +1,7 @@
 {
   "id" : "0e157d01-ae64-3b27-b71d-9f624ef80023",
   "request" : {
-    "url" : "/api/group/test-DA/commons-beanutils/commons-beanutils/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/commons-beanutils/commons-beanutils/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

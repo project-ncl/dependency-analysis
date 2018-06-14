@@ -1,7 +1,7 @@
 {
   "id" : "01226363-13b4-362a-8842-dfc44fbf7cfb",
   "request" : {
-    "url" : "/api/group/test-DA/org/codehaus/jsr166-mirror/jsr166y/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/codehaus/jsr166-mirror/jsr166y/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

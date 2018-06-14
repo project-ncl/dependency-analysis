@@ -1,7 +1,7 @@
 {
   "id" : "72f910d8-f1f2-313f-ad84-7aef5fa269a6",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/lucene/lucene-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/lucene/lucene-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

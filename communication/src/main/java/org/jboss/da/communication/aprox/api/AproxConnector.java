@@ -32,6 +32,27 @@ public interface AproxConnector {
      */
     List<String> getVersionsOfGA(GA ga, String repository) throws RepositoryException;
 
+    /**
+     * Finds available versions of specific npm package.
+     * If the provided package name is not found in repository, returns empty list.
+     *
+     * @param packageName Name of the npm package
+     * @return list of versions for package in repository.
+     * @throws RepositoryException When there is problem with communication.
+     */
+    List<String> getVersionsOfNpm(String packageName) throws RepositoryException;
+
+    /**
+     * Finds available versions of specific npm package.
+     * If the provided package name is not found in repository, returns empty list.
+     *
+     * @param packageName Name of the npm package
+     * @param repository Search versions in provided repository instead of default one.
+     * @return list of versions for package in repository.
+     * @throws RepositoryException When there is problem with communication.
+     */
+    List<String> getVersionsOfNpm(String packageName, String repository) throws RepositoryException;
+
     Optional<MavenProject> getPom(GAV gav) throws RepositoryException;
 
     Optional<InputStream> getPomStream(GAV gav) throws RepositoryException;

@@ -1,7 +1,7 @@
 {
   "id" : "e12f60af-65d7-346f-a1d2-e97c5338a0e1",
   "request" : {
-    "url" : "/api/group/test-DA/org/infinispan/infinispan-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/infinispan/infinispan-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

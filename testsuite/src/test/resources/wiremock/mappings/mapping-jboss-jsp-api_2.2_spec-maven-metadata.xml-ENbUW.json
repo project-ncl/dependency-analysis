@@ -1,7 +1,7 @@
 {
   "id" : "804cfeec-28ae-3b09-bdcc-86b43c02824d",
   "request" : {
-    "url" : "/api/group/test-DA/org/jboss/spec/javax/servlet/jsp/jboss-jsp-api_2.2_spec/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/jboss/spec/javax/servlet/jsp/jboss-jsp-api_2.2_spec/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

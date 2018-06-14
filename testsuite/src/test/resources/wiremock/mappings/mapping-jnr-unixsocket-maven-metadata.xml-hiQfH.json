@@ -1,7 +1,7 @@
 {
   "id" : "062a0de1-9306-321e-bb39-8a4d6a66a127",
   "request" : {
-    "url" : "/api/group/test-DA/com/github/jnr/jnr-unixsocket/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/github/jnr/jnr-unixsocket/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

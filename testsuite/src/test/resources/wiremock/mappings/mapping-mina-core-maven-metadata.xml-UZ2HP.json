@@ -1,7 +1,7 @@
 {
   "id" : "c4f20a66-f719-33ad-813f-51737d07d054",
   "request" : {
-    "url" : "/api/group/test-DA/org/apache/mina/mina-core/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/apache/mina/mina-core/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

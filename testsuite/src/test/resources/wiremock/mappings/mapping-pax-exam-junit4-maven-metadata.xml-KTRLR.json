@@ -1,7 +1,7 @@
 {
   "id" : "d1c01d8b-1142-3c92-9af7-ead44d6ce20e",
   "request" : {
-    "url" : "/api/group/test-DA/org/ops4j/pax/exam/pax-exam-junit4/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/ops4j/pax/exam/pax-exam-junit4/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

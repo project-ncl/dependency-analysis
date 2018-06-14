@@ -1,7 +1,7 @@
 {
   "id" : "0e6d2a6a-9775-395a-8b92-ba3a5dd51870",
   "request" : {
-    "url" : "/api/group/test-DA/com/thoughtworks/xstream/xstream/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/com/thoughtworks/xstream/xstream/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "ee31435e-80b1-302f-8b5e-603ef5041662",
   "request" : {
-    "url" : "/api/group/test-DA/org/commonjava/maven/atlas/atlas-identities/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/commonjava/maven/atlas/atlas-identities/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

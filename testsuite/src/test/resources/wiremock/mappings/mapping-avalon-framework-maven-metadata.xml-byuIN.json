@@ -1,7 +1,7 @@
 {
   "id" : "88345cc7-8ced-3fad-a00f-460a25363113",
   "request" : {
-    "url" : "/api/group/test-DA/avalon-framework/avalon-framework/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/avalon-framework/avalon-framework/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

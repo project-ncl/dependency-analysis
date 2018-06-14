@@ -1,7 +1,7 @@
 {
   "id" : "6c6ec096-7e97-3c02-be91-f13c434a526e",
   "request" : {
-    "url" : "/api/group/test-DA/commons-dbcp/commons-dbcp/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/commons-dbcp/commons-dbcp/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

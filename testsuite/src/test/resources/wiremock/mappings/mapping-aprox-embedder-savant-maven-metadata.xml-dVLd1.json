@@ -1,7 +1,7 @@
 {
   "id" : "30ee6e71-e401-3550-a65c-1c4217603c3e",
   "request" : {
-    "url" : "/api/group/test-DA/org/commonjava/aprox/embed/aprox-embedder-savant/maven-metadata.xml",
+    "url" : "/api/content/maven/group/test-DA/org/commonjava/aprox/embed/aprox-embedder-savant/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {
