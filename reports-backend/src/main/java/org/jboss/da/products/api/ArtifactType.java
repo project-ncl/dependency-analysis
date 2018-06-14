@@ -21,6 +21,6 @@ package org.jboss.da.products.api;
  */
 public enum ArtifactType {
 
-    MAVEN;
+    MAVEN, NPM;
 
 }
