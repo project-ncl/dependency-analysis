@@ -9,6 +9,7 @@ import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.MavenArtifact;
+import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
@@ -125,7 +126,12 @@ public class RepositoryProductProvider implements ProductProvider {
             case MAVEN: {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
                 CompletableFuture<Set<String>> versions = supplyAsync(
-                        () -> getVersionsStream(ga).collect(Collectors.toSet()));
+                        () -> getVersionsStreamMaven(ga).collect(Collectors.toSet()));
+                return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN, rv));
+            }
+            case NPM: {
+                CompletableFuture<Set<String>> versions = supplyAsync(
+                        () -> getVersionsStreamNPM(artifact.getName()).collect(Collectors.toSet()));
                 return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN, rv));
             }
             default: {
@@ -138,7 +144,10 @@ public class RepositoryProductProvider implements ProductProvider {
         switch (artifact.getType()) {
             case MAVEN: {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
-                return supplyAsync(() -> getArtifacts0(ga));
+                return supplyAsync(() -> getArtifactsMaven(ga));
+            }
+            case NPM: {
+                return supplyAsync(() -> getArtifactsNPM(artifact.getName()));
             }
             default: {
                 return CompletableFuture.completedFuture(Collections.emptySet());
@@ -146,8 +155,8 @@ public class RepositoryProductProvider implements ProductProvider {
         }
     }
 
-    private Set<ProductArtifacts> getArtifacts0(GA ga) {
-        Set<Artifact> allArtifacts = getVersionsStream(ga)
+    private Set<ProductArtifacts> getArtifactsMaven(GA ga) {
+        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga)
                 .map(x -> new GAV(ga, x))
                 .map(MavenArtifact::new)
                 .collect(Collectors.toSet());
@@ -157,7 +166,17 @@ public class RepositoryProductProvider implements ProductProvider {
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, allArtifacts));
     }
 
-    private Stream<String> getVersionsStream(GA ga) {
+    private Set<ProductArtifacts> getArtifactsNPM(String name) {
+        Set<Artifact> allArtifacts = getVersionsStreamNPM(name)
+                .map(v -> new NPMArtifact(name, v))
+                .collect(Collectors.toSet());
+        if (allArtifacts.isEmpty()) {
+            return Collections.emptySet();
+        }
+        return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, allArtifacts));
+    }
+
+    private Stream<String> getVersionsStreamMaven(GA ga) {
         if (!ga.isValid()) {
             log.warn("Received nonvalid GA: " + ga);
             return Stream.empty();
@@ -168,6 +187,22 @@ public class RepositoryProductProvider implements ProductProvider {
                 versionsOfGA = aproxConnector.getVersionsOfGA(ga, repository.get());
             } else {
                 versionsOfGA = aproxConnector.getVersionsOfGA(ga);
+            }
+            return versionsOfGA.stream()
+                    .filter(v -> versionParser.parse(v).isSuffixed())
+                    .distinct();
+        } catch (CommunicationException ex) {
+            throw new ProductException(ex);
+        }
+    }
+
+    private Stream<String> getVersionsStreamNPM(String name) {
+        try {
+            List<String> versionsOfGA;
+            if (repository.isPresent()) {
+                versionsOfGA = aproxConnector.getVersionsOfNpm(name, repository.get());
+            } else {
+                versionsOfGA = aproxConnector.getVersionsOfNpm(name);
             }
             return versionsOfGA.stream()
                     .filter(v -> versionParser.parse(v).isSuffixed())
