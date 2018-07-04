@@ -26,6 +26,9 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
     @Inject
     private Logger log;
 
+    @Inject
+    private ObjectMapper mapper;
+
     private Methods methods;
 
     @Override
@@ -50,7 +53,6 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
                 return;
             }
 
-            ObjectMapper mapper = new ObjectMapper();
             JsonNode params = mapper.readTree(msg).get("params");
             if (params == null) {
                 log.warn("Failed to parse JSON RPC parameters. Parameters are null.");
