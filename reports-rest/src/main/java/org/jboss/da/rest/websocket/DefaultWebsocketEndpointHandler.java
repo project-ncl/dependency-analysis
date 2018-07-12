@@ -85,16 +85,17 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
                 return;
             }
 
-            System.err.println("Object response: " + resp);
-            Object objResp = mapper.convertValue(resp, method.getJsonOutputClass());
-            System.err.println("Mapped Object response: " + resp);
+            // Convert the response object to string and then to a Map (or Collection<Map>) that the
+            // JSONRPC2Response can actually serialize correctly back to json. (╯°□°）╯┻━┻
+            String stringMapped = mapper.writeValueAsString(resp);
+            Object objResp = mapper.readValue(stringMapped, method.getJsonOutputClass());
             JSONRPC2Response response = new JSONRPC2Response(objResp, request.getID());
+
             if (!session.isOpen()) {
                 log.warn("Session closed before response sent.");
                 return;
             }
             final String responseText = response.toJSONString();
-            System.err.println("Response text: " + resp);
             basic.sendText(responseText);
         } catch (IOException ex) {
             log.error("Failed to process websocket request", ex);
