@@ -41,12 +41,14 @@ public class VersionAnalyzer {
 
     public VersionAnalysisResult analyseVersions(String querry, Collection<String> versions){
         VersionComparator comparator = new VersionComparator(querry, versionParser);
-        List<String> sortedVersions = new ArrayList<>(versions);
-        Collections.sort(sortedVersions, comparator);
-        
-        List<SuffixedVersion> parsedVersions = sortedVersions.stream()
+        List<String> sortedVersions = new ArrayList<>();
+        List<SuffixedVersion> parsedVersions = versions.stream()
+                .sorted(comparator)
+                .distinct()
+                .peek(v -> sortedVersions.add(v))
                 .map(versionParser::parse)
                 .collect(Collectors.toList());
+
         SuffixedVersion version = versionParser.parse(querry);
         Optional<String> bmv = findBiggestMatchingVersion(version, parsedVersions);
 
