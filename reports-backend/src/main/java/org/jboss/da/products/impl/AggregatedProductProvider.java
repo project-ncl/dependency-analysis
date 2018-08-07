@@ -9,6 +9,8 @@ import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.DatabaseProductProvider.Database;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 
+import javax.annotation.Resource;
+import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -22,6 +24,7 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
@@ -67,6 +70,9 @@ public class AggregatedProductProvider implements ProductProvider {
     @Inject
     @Repository
     RepositoryProductProvider repositoryProductProvider;
+
+    @Resource
+    private ManagedScheduledExecutorService scheduler;
 
     @Override
     public CompletableFuture<Set<Product>> getAllProducts() {
@@ -115,8 +121,17 @@ public class AggregatedProductProvider implements ProductProvider {
         results.add(getter.apply(repositoryProductProvider));
 
         CompletableFuture<R> ret = new CompletableFuture<>();
-        // After all are completed, accumulate the results together
-        CompletableFuture.runAsync(() -> {
+        scheduler.schedule((Runnable) () -> tryToComplete(ret, results, collector), 1, TimeUnit.MILLISECONDS);
+
+        return ret;
+    }
+
+    /**
+     * After all futures are completed, accumulate the results together. If they are not completed,
+     * wait for a while and check again
+     */
+    private <R> void tryToComplete(CompletableFuture<R> ret, List<Future<R>> results, Collector<? super R, ?, R> collector) {
+        if (results.stream().allMatch(Future::isDone)) {
             try {
                 List<R> resultList = new ArrayList<>();
                 for (Future<R> r : results) {
@@ -129,9 +144,9 @@ public class AggregatedProductProvider implements ProductProvider {
                 ret.completeExceptionally(ex);
                 Thread.currentThread().interrupt();
             }
-        });
-
-        return ret;
+        } else {
+            scheduler.schedule((Runnable) () -> tryToComplete(ret, results, collector), 1, TimeUnit.MILLISECONDS);
+        }
     }
 
     private static <R> Set<R> combineSets(Set<R> x, Set<R> y) {
