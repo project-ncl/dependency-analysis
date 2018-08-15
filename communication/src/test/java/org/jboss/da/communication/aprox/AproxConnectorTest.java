@@ -6,10 +6,11 @@ import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.impl.AproxConnectorImpl;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
-import org.jboss.da.metrics.MetricsConfiguration;
 import org.jboss.da.model.rest.GA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+import org.jboss.pnc.pncmetrics.MetricsConfiguration;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

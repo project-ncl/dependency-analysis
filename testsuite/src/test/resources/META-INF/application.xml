@@ -23,7 +23,7 @@
         <ejb>reports-backend.jar</ejb>
     </module>
     <module>
-        <ejb>metrics.jar</ejb>
+        <ejb>pncmetrics.jar</ejb>
     </module>
     <module>
         <web>

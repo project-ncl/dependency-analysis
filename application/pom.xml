@@ -32,9 +32,8 @@
             <type>ejb</type>
         </dependency>
         <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>metrics</artifactId>
-            <type>ejb</type>
+            <groupId>org.jboss.pnc.metrics</groupId>
+            <artifactId>pncmetrics</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.da</groupId>
@@ -84,10 +83,10 @@
                             <groupId>org.jboss.da</groupId>
                             <artifactId>reports-backend</artifactId>
                         </ejbModule>
-                        <ejbModule>
-                            <groupId>org.jboss.da</groupId>
-                            <artifactId>metrics</artifactId>
-                        </ejbModule>
+                        <jarModule>
+                            <groupId>org.jboss.pnc.metrics</groupId>
+                            <artifactId>pncmetrics</artifactId>
+                        </jarModule>
                         <webModule>
                             <groupId>org.jboss.da</groupId>
                             <artifactId>reports-rest</artifactId>
