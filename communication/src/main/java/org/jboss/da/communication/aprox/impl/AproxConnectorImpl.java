@@ -45,7 +45,8 @@ public class AproxConnectorImpl implements AproxConnector {
     @Inject
     private PomAnalyzer pomAnalyzer;
 
-    private MetadataFileParser parser = new MetadataFileParser();
+    @Inject
+    private MetadataFileParser parser;
 
     @Inject
     private MetricsConfiguration metricsConfiguration;
@@ -120,7 +121,7 @@ public class AproxConnectorImpl implements AproxConnector {
         } catch (FileNotFoundException ex) {
             log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
             return Collections.emptyList();
-        } catch (IOException | CommunicationException e) {
+        } catch (IOException e) {
             throw new RepositoryException("Failed to obtain versions for " + packageName
                     + " from repository on url " + query, e);
         }
