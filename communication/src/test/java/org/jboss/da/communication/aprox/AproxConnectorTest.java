@@ -5,6 +5,7 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.impl.AproxConnectorImpl;
+import org.jboss.da.communication.aprox.impl.MetadataFileParser;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.metrics.MetricsConfiguration;
 import org.jboss.da.model.rest.GA;
@@ -17,11 +18,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
+import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -46,6 +49,13 @@ public class AproxConnectorTest {
 
     @Mock
     private MetricsConfiguration metricsConfiguration;
+
+    @Spy
+    private ObjectMapper mapper = new ObjectMapper();
+
+    @Spy
+    @InjectMocks
+    private MetadataFileParser parser = new MetadataFileParser();
 
     @InjectMocks
     private final AproxConnectorImpl aproxConnector = new AproxConnectorImpl(config);
