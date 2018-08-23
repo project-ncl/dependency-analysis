@@ -34,6 +34,75 @@
       "_nodeVersion" : "v0.4.2",
       "_defaultsLoaded" : true
     },
+    "1.5.1-redhat-1" : {
+      "name" : "jquery",
+      "description" : "jQuery: The Write Less, Do More, JavaScript Library",
+      "main" : "./dist/node-jquery.js",
+      "version" : "1.5.1-redhat-1",
+      "url" : "jquery.com",
+      "keywords" : [ "util", "dom", "jquery" ],
+      "author" : {
+        "name" : "John Resig",
+        "email" : "jeresig@gmail.com"
+      },
+      "dependencies" : {
+        "jsdom" : "=0.1.20",
+        "htmlparser" : ">= 1.7.3"
+      },
+      "dist" : {
+        "shasum" : "b00b00b00b00b00b00b00b00b00b00b00b00b00b",
+        "tarball" : "http://mwnodereg-devel.hosts.mwqe.eng.bos.redhat.com:49153/jquery/-/jquery-1.5.1-redhat-1.tgz"
+      },
+      "directories" : {
+        "lib" : "./lib"
+      },
+      "engines" : {
+        "node" : "*"
+      },
+      "files" : [ "" ],
+      "deprecated" : "Versions of the jquery npm package older than 1.9.0 are patched versions that don't work in web browsers. Please upgrade to >=1.11.0.",
+      "lib" : "lib",
+      "_engineSupported" : true,
+      "_npmVersion" : "0.3.15",
+      "_nodeVersion" : "v0.4.2",
+      "_defaultsLoaded" : true
+    },
+    "1.6.2-redhat-1" : {
+      "name" : "jquery",
+      "description" : "jQuery: The Write Less, Do More, JavaScript Library",
+      "main" : "./dist/node-jquery.js",
+      "version" : "1.6.2-redhat-1",
+      "url" : "jquery.com",
+      "keywords" : [ "util", "dom", "jquery" ],
+      "author" : {
+        "name" : "John Resig",
+        "email" : "jeresig@gmail.com"
+      },
+      "dependencies" : {
+        "jsdom" : ">=0.2.0",
+        "htmlparser" : ">= 1.7.3"
+      },
+      "dist" : {
+        "shasum" : "123456789abcdef0123456789abcdef012345678",
+        "tarball" : "http://mwnodereg-devel.hosts.mwqe.eng.bos.redhat.com:49153/jquery/-/jquery-1.6.2-redhat-1.tgz"
+      },
+      "directories" : { },
+      "engines" : {
+        "node" : "*"
+      },
+      "deprecated" : "Versions of the jquery npm package older than 1.9.0 are patched versions that don't work in web browsers. Please upgrade to >=1.11.0.",
+      "lib" : "lib",
+      "_engineSupported" : true,
+      "_npmVersion" : "1.0.15",
+      "_nodeVersion" : "v0.4.8",
+      "_npmJsonOpts" : {
+        "file" : "/Users/coolaj86/.npm/jquery/1.6.2-redhat-1/package/package.json",
+        "wscript" : false,
+        "contributors" : false,
+        "serverjs" : false
+      },
+      "_defaultsLoaded" : true
+    },
     "1.6.2" : {
       "name" : "jquery",
       "description" : "jQuery: The Write Less, Do More, JavaScript Library",
