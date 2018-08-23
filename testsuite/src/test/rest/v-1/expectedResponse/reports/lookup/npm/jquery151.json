@@ -1,0 +1,8 @@
+[
+  {
+    "name": "jquery",
+    "version": "1.5.1",
+    "bestMatchVersion": "1.5.1-redhat-1",
+    "availableVersions": ["1.5.1-redhat-1", "1.6.2-redhat-1"]
+  }
+]
