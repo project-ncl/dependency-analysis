@@ -3,7 +3,6 @@ package org.jboss.da.communication.aprox.impl;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.aprox.model.npm.NpmMetadata;
-import org.jboss.da.communication.repository.api.RepositoryException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,13 +13,17 @@ import java.io.InputStream;
 import java.net.URLConnection;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 /**
  * @author <a href="mailto:matejonnet@gmail.com">Matej Lazar</a>
  */
+@ApplicationScoped
 public class MetadataFileParser {
 
-    private ObjectMapper om = new ObjectMapper();
+    @Inject
+    private ObjectMapper om;
 
     public static VersionResponse parseMavenMetadata(InputStream in) throws IOException,
             CommunicationException, JAXBException {
@@ -29,11 +32,9 @@ public class MetadataFileParser {
         return (VersionResponse) jaxbUnmarshaller.unmarshal(in);
     }
 
-    public NpmMetadata parseNpmMetadata(URLConnection connection) throws CommunicationException {
+    public NpmMetadata parseNpmMetadata(URLConnection connection) throws IOException {
         try (InputStream in = connection.getInputStream()) {
             return om.readValue(in, NpmMetadata.class);
-        } catch (IOException e) {
-            throw new RepositoryException("Failed to parse metadata file", e);
         }
     }
 }
