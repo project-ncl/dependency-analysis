@@ -27,6 +27,8 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
     private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 
+    private static final String PATH_LOOKUP_NPM = "/reports/lookup/npm";
+
     private static final String PATH_SCM = "/reports/scm";
 
     @Before
@@ -49,6 +51,12 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
                 Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
 
         assertEquals(404, response.getStatus());
+    }
+
+    @Test
+    public void testNPMLookupSingle() throws Exception {
+        Response response = assertResponseForRequest(PATH_LOOKUP_NPM, "jquery151");
+        assertEquals(200, response.getStatus());
     }
 
     @Test
