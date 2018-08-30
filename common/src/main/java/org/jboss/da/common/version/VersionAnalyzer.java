@@ -17,10 +17,8 @@ package org.jboss.da.common.version;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -59,10 +57,20 @@ public class VersionAnalyzer {
             Collection<SuffixedVersion> versions) {
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
+        
+        boolean onlyDefaultSuffixPresent = versions.stream()
+                .filter(SuffixedVersion::isSuffixed)
+                .map(v -> v.getSuffix().get())
+                .allMatch(VersionAnalyzer::isDefaultSuffix);
+        
+        List<SuffixedVersion> versionsToSearch = versions.stream()
+                .filter(SuffixedVersion::isSuffixed)
+                .filter(v -> onlyDefaultSuffixPresent || !isDefaultSuffix(v.getSuffix().get()))
+                .collect(Collectors.toList());
 
         String unsuffixedVesion = version.unsuffixedVesion();
-        for (SuffixedVersion ver : versions) {
-            if (ver.isSuffixed() && unsuffixedVesion.equals(ver.unsuffixedVesion())) {
+        for (SuffixedVersion ver : versionsToSearch) {
+            if (unsuffixedVesion.equals(ver.unsuffixedVesion())) {
                 int foundBuildNumber = ver.getSuffixVersion().get();
                 if (bestMatchVersion == null || foundBuildNumber > biggestBuildNumber) {
                     bestMatchVersion = ver.getOriginalVersion();
@@ -75,6 +83,10 @@ public class VersionAnalyzer {
         }
 
         return Optional.ofNullable(bestMatchVersion);
+    }
+
+    private static boolean isDefaultSuffix(String suffix) {
+        return VersionParser.DEFAULT_SUFFIX.equals(suffix);
     }
 
     /**
