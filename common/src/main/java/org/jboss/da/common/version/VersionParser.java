@@ -11,6 +11,9 @@ public class VersionParser {
 
     private final String suffix;
 
+    private final Pattern defaultPattern = Pattern.compile("^" + RE_MMM + RE_QUALIFIER + "??"
+            + RE_SUFFIX_S + DEFAULT_SUFFIX + RE_SUFFIX_E + "$");
+
     private final Pattern versionPattern;
 
     // major.minor.micro.qualifier-suffix-X
@@ -30,7 +33,17 @@ public class VersionParser {
     }
 
     public SuffixedVersion parse(String version) {
-        Matcher versionMatcher = versionPattern.matcher(version);
+        SuffixedVersion suffixedVersion = parseVersion(versionPattern.matcher(version), version,
+                suffix);
+        if (!suffixedVersion.isSuffixed()) {
+            suffixedVersion = parseVersion(defaultPattern.matcher(version), version, DEFAULT_SUFFIX);
+        }
+
+        return suffixedVersion;
+    }
+
+    private SuffixedVersion parseVersion(Matcher versionMatcher, String version, String parseSuffix)
+            throws NumberFormatException, IllegalArgumentException {
         if (!versionMatcher.matches()) {
             throw new IllegalArgumentException("Version " + version + "is unparsable");
         }
@@ -48,7 +61,7 @@ public class VersionParser {
             return new SuffixedVersion(major, minor, micro, qualifier, version);
         } else {
             int suffixVersion = Integer.parseInt(suffixVersionString);
-            return new SuffixedVersion(major, minor, micro, qualifier, suffix, suffixVersion,
+            return new SuffixedVersion(major, minor, micro, qualifier, parseSuffix, suffixVersion,
                     version);
         }
     }

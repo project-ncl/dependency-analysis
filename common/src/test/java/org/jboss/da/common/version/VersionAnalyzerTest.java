@@ -155,12 +155,51 @@ public class VersionAnalyzerTest {
     }
 
     private void checkBMV(String expectedVersion, String version, String[] versions) {
-        VersionAnalyzer.VersionAnalysisResult result = versionFinder.analyseVersions(version,
+        checkBMV(versionFinder, expectedVersion, version, versions);
+    }
+
+    private void checkBMV(VersionAnalyzer versionAnalyzer, String expectedVersion, String version,
+            String[] versions) {
+        VersionAnalyzer.VersionAnalysisResult result = versionAnalyzer.analyseVersions(version,
                 Arrays.asList(versions));
 
         Optional<String> bmv = result.getBestMatchVersion();
         assertTrue("Best match version expected to be present", bmv.isPresent());
         assertEquals(expectedVersion, bmv.get());
+    }
+
+    @Test
+    public void testDifferentSuffix() {
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(new VersionParser("temporary-redhat"));
+        String version = "1.4.0";
+        String expectedVersion = "1.4.0.temporary-redhat-1";
+
+        String[] avaliableVersionsOrder1 = { "1.4.0.redhat-1", "1.4.0.temporary-redhat-1" };
+        checkBMV(versionAnalyzer, expectedVersion, version, avaliableVersionsOrder1);
+
+        String[] avaliableVersionsOrder2 = { "1.4.0.temporary-redhat-1", "1.4.0.redhat-1" };
+        checkBMV(versionAnalyzer, expectedVersion, version, avaliableVersionsOrder2);
+
+        String[] avaliableVersionsMultiple = { "1.4.0.redhat-4", "1.4.0.redhat-3",
+                "1.4.0.redhat-2", "1.4.0.redhat-1", "1.4.0.temporary-redhat-1", };
+        checkBMV(versionAnalyzer, expectedVersion, version, avaliableVersionsMultiple);
+    }
+
+    @Test
+    public void testDifferentSuffixWithOnlyDefaultVersions() {
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(new VersionParser(
+                "t20180522-115319-991-redhat"));
+        String version = "1.4.0";
+
+        String[] avaliableVersionsOrder1 = { "1.4.0.redhat-1", "1.4.0.temporary-redhat-1" };
+        checkBMV(versionAnalyzer, "1.4.0.redhat-1", version, avaliableVersionsOrder1);
+
+        String[] avaliableVersionsOrder2 = { "1.4.0.temporary-redhat-1", "1.4.0.redhat-1" };
+        checkBMV(versionAnalyzer, "1.4.0.redhat-1", version, avaliableVersionsOrder2);
+
+        String[] avaliableVersionsMultiple = { "1.4.0.redhat-4", "1.4.0.redhat-3",
+                "1.4.0.redhat-2", "1.4.0.redhat-1", "1.4.0.temporary-redhat-1", };
+        checkBMV(versionAnalyzer, "1.4.0.redhat-4", version, avaliableVersionsMultiple);
     }
 
 }
