@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Support for NPM (new /reports/lookup/npm endpoint)
+
 ### Changed
 - [NCL-4236] Allow any authenticated user to do stuff
 
