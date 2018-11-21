@@ -53,32 +53,33 @@ public class VersionAnalyzer {
         return new VersionAnalysisResult(bmv, sortedVersions);
     }
 
-    private Optional<String> findBiggestMatchingVersion(SuffixedVersion version,
+    private Optional<String> findBiggestMatchingVersion(SuffixedVersion queryVersion,
             Collection<SuffixedVersion> versions) {
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
-        
-        boolean onlyDefaultSuffixPresent = versions.stream()
+        String unsuffixedVesion = queryVersion.unsuffixedVesion();
+
+        List<SuffixedVersion> candidateVersions = versions.stream()
                 .filter(SuffixedVersion::isSuffixed)
+                .filter(v-> unsuffixedVesion.equals(v.unsuffixedVesion()))
+                .collect(Collectors.toList());
+
+        boolean onlyDefaultSuffixPresent = candidateVersions.stream()
                 .map(v -> v.getSuffix().get())
                 .allMatch(VersionAnalyzer::isDefaultSuffix);
         
-        List<SuffixedVersion> versionsToSearch = versions.stream()
-                .filter(SuffixedVersion::isSuffixed)
+        List<SuffixedVersion> versionsToSearch = candidateVersions.stream()
                 .filter(v -> onlyDefaultSuffixPresent || !isDefaultSuffix(v.getSuffix().get()))
                 .collect(Collectors.toList());
 
-        String unsuffixedVesion = version.unsuffixedVesion();
         for (SuffixedVersion ver : versionsToSearch) {
-            if (unsuffixedVesion.equals(ver.unsuffixedVesion())) {
-                int foundBuildNumber = ver.getSuffixVersion().get();
-                if (bestMatchVersion == null || foundBuildNumber > biggestBuildNumber) {
-                    bestMatchVersion = ver.getOriginalVersion();
-                    biggestBuildNumber = foundBuildNumber;
-                } else if (foundBuildNumber == biggestBuildNumber) {
-                    bestMatchVersion = getMoreSpecificVersion(bestMatchVersion,
-                            ver.getOriginalVersion());
-                }
+            int foundBuildNumber = ver.getSuffixVersion().get();
+            if (bestMatchVersion == null || foundBuildNumber > biggestBuildNumber) {
+                bestMatchVersion = ver.getOriginalVersion();
+                biggestBuildNumber = foundBuildNumber;
+            } else if (foundBuildNumber == biggestBuildNumber) {
+                bestMatchVersion = getMoreSpecificVersion(bestMatchVersion,
+                        ver.getOriginalVersion());
             }
         }
 
