@@ -154,6 +154,15 @@ public class VersionAnalyzerTest {
         checkBMV("1.0.0.redhat-3", "1", avaliableVersions100);
     }
 
+    @Test
+    public void NCL4266ReproducerTest() {
+        String[] avaliableVersions1 = { "2.2.3.redhat-00001", "2.2.0.temporary-redhat-00001",
+                "2.2.0.redhat-00001", "2.1.16.redhat-00001", "2.1.9.redhat-1", "2.1.9.redhat-001",
+                "2.1.3.redhat-001" };
+        checkBMV(new VersionAnalyzer(new VersionParser("temporary-redhat")), "2.2.3.redhat-00001",
+                "2.2.3", avaliableVersions1);
+    }
+
     private void checkBMV(String expectedVersion, String version, String[] versions) {
         checkBMV(versionFinder, expectedVersion, version, versions);
     }

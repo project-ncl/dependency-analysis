@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - [NCL-4236] Allow any authenticated user to do stuff
 
+### Fixed
+- [NCL-4266] Fix sometimes not finding best match version when alternate suffix is used
+
 # Template
 
 ## [<version>] - <yyyy>-<mm>-<dd>
