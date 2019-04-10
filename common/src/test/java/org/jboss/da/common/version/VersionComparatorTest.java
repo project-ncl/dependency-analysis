@@ -1,5 +1,7 @@
 package org.jboss.da.common.version;
 
+import org.junit.Test;
+
 import static org.jboss.da.common.version.VersionComparator.VersionDifference.EQUAL;
 import static org.jboss.da.common.version.VersionComparator.VersionDifference.MAJOR;
 import static org.jboss.da.common.version.VersionComparator.VersionDifference.MICRO;
@@ -9,7 +11,6 @@ import static org.jboss.da.common.version.VersionComparator.VersionDifference.RH
 import static org.jboss.da.common.version.VersionComparator.VersionDifference.SUFFIX;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
 /**
  *
@@ -49,6 +50,13 @@ public class VersionComparatorTest {
 
         assertTrue(vc.compare("3.4.2.Final-redhat-1", "3.4.2.Final-redhat-2") < 0);
         assertTrue(vc.compare("3.4.2.redhat-1", "3.4.2.redhat-2") < 0);
+
+        //These are equivalent, but OSGI version is preferred (NCL-4532)
+        assertTrue(vc.compare("3-redhat-2", "3.0.0.redhat-2") < 0);
+        assertTrue(vc.compare("3.redhat-2", "3.0.0.redhat-2") < 0);
+        assertTrue(vc.compare("3.0-redhat-2", "3.0.0.redhat-2") < 0);
+        assertTrue(vc.compare("3.0.redhat-2", "3.0.0.redhat-2") < 0);
+        assertTrue(vc.compare("3.0.0-redhat-2", "3.0.0.redhat-2") < 0);
     }
 
     @Test

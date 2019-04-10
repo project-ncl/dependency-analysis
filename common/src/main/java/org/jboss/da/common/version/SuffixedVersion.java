@@ -15,10 +15,12 @@
  */
 package org.jboss.da.common.version;
 
-import java.util.Objects;
-import java.util.Optional;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import org.commonjava.maven.ext.manip.impl.Version;
+
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  *
@@ -110,7 +112,20 @@ public class SuffixedVersion implements Comparable<SuffixedVersion> {
             return r;
         }
         r = Integer.compare(this.suffixVersion, other.suffixVersion);
-        return r;
+        if (r != 0) {
+            return r;
+        }
+        if (this.isOsgiVersion() && !other.isOsgiVersion()) {
+            return 1;
+        } else if (!this.isOsgiVersion() && other.isOsgiVersion()) {
+            return -1;
+        }
+        return 0;
+    }
+
+    private boolean isOsgiVersion() {
+        Version osgi = new Version(originalVersion);
+        return originalVersion.equals(osgi.getOSGiVersionString());
     }
 
     public final String normalizedVesion() {

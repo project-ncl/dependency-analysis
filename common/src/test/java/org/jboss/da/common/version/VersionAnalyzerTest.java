@@ -1,7 +1,5 @@
 package org.jboss.da.common.version;
 
-import static org.junit.Assert.*;
-
 import org.jboss.da.common.CommunicationException;
 import org.junit.Test;
 
@@ -9,6 +7,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * 
@@ -161,6 +163,15 @@ public class VersionAnalyzerTest {
                 "2.1.3.redhat-001" };
         checkBMV(new VersionAnalyzer(new VersionParser("temporary-redhat")), "2.2.3.redhat-00001",
                 "2.2.3", avaliableVersions1);
+    }
+
+    @Test
+    public void preferOSGiVersionFormatTest() {
+        // as 3.0.0-redhat-2 and 3.0.0.redhat-2 are the same version then ordering in the array matters
+        // (if they were in opposite direction test would pass even without OSGi preference)
+        String[] availableVersions = { "3-redhat-2", "3.0.0-redhat-2", "3.0.0.redhat-2",
+                "3.0.0.redhat-1", "2.1.1.redhat-3", "2.1.16-redhat-9", "2.9.9-redhat-00001" };
+        checkBMV("3.0.0.redhat-2", "3", availableVersions);
     }
 
     private void checkBMV(String expectedVersion, String version, String[] versions) {
