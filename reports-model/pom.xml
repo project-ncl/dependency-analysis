@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jboss.da</groupId>
         <artifactId>parent</artifactId>
-        <version>1.4.2-SNAPSHOT</version>
+        <version>1.5.0</version>
     </parent>
     <artifactId>reports-model</artifactId>
     <packaging>ejb</packaging>
