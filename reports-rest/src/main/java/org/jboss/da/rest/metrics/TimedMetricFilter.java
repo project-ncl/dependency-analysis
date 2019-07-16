@@ -48,6 +48,8 @@ public class TimedMetricFilter implements ContainerRequestFilter, ContainerRespo
 
     private static final String METRICS_TIMER_KEY = ".timer";
 
+    private static final String METRICS_ERROR_KEY = ".errors";
+
     @Context
     private ResourceInfo resourceInfo;
 
@@ -85,6 +87,13 @@ public class TimedMetricFilter implements ContainerRequestFilter, ContainerRespo
         if (tc != null) {
             tc.stop();
             servletRequest.removeAttribute("timer.context.method");
+        }
+
+        if (responseContext.getStatus() > 499) {
+            MetricRegistry registry = metricsConfiguration.getMetricRegistry();
+
+            Meter errors = registry.meter(METRICS_ERROR_KEY);
+            errors.mark();
         }
     }
 }
