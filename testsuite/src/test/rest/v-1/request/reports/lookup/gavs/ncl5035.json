@@ -1,0 +1,11 @@
+{
+  "productNames": [],
+  "productVersionIds": [],
+  "gavs": [
+    {
+	"groupId": "org.jboss",
+	"artifactId": "jboss-parent",
+	"version": "6"
+    }
+  ]
+}

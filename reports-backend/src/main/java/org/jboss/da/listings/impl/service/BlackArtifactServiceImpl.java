@@ -18,10 +18,9 @@ import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.model.rest.GAV;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
+
 import org.jboss.da.common.version.SuffixedVersion;
 import org.jboss.da.common.version.VersionParser;
 
@@ -85,7 +84,8 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
         Optional<BlackArtifact> artifact = blackArtifactDAO.findArtifact(groupId, artifactId,
                 parsedVersion.unsuffixedVesion());
         if (parsedVersion.isSuffixed() && !artifact.isPresent()) {
-            artifact = blackArtifactDAO.findArtifact(groupId, artifactId, version);
+            artifact = blackArtifactDAO.findArtifact(groupId, artifactId,
+                    VersionParser.getOSGiVersion(version));
         }
         return artifact;
     }
