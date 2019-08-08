@@ -1,0 +1,11 @@
+[
+    {
+        "bestMatchVersion": null,
+        "availableVersions": ["7-redhat-1", "14.0.0.redhat-1"],
+        "blacklisted": false,
+        "whitelisted": [],
+        "groupId": "org.jboss",
+        "artifactId": "jboss-parent",
+        "version": "6"
+    }
+]
