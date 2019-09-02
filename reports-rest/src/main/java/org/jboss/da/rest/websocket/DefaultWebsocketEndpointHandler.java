@@ -1,5 +1,6 @@
 package org.jboss.da.rest.websocket;
 
+import org.jboss.pnc.pncmetrics.MetricsConfiguration;
 import org.jboss.weld.context.activator.ActivateRequestContext;
 import org.slf4j.Logger;
 
@@ -9,6 +10,9 @@ import javax.websocket.Session;
 
 import java.io.IOException;
 
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,17 +21,36 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2ParseException;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 
+import static com.codahale.metrics.MetricRegistry.name;
+
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler {
 
+    private static final String METRICS_ALL_RATE_KEY = "ws.all.rate";
+
+    private static final String METRICS_ALL_TIMER_KEY = "ws.all.timer";
+
+    private static final String METRICS_ALL_ERROR_KEY = "ws.all.errors";
+
+    private static final String METRICS_KEY = "ws";
+
+    private static final String METRICS_RATE_KEY = ".rate";
+
+    private static final String METRICS_TIMER_KEY = ".timer";
+
+    private static final String METRICS_ERROR_KEY = ".errors";
+
     @Inject
     private Logger log;
 
     @Inject
     private ObjectMapper mapper;
+
+    @Inject
+    private MetricsConfiguration metricsConfiguration;
 
     private Methods methods;
 
@@ -40,16 +63,38 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
     @ActivateRequestContext
     public void onMessage(Session session, String msg) {
         Basic basic = session.getBasicRemote();
+        MetricRegistry registry = metricsConfiguration.getMetricRegistry();
+
+        Timer allTimer = registry.timer(METRICS_ALL_TIMER_KEY);
+        Meter allMeter = registry.meter(METRICS_ALL_RATE_KEY);
+        Meter allErrors = registry.meter(METRICS_ALL_ERROR_KEY);
+
+        Timer.Context allTimingContext = allTimer.time();
+        allMeter.mark();
+
         try {
             JSONRPC2Request request = getRequest(basic, msg);
-            if (request == null)
+            if (request == null) {
+                allErrors.mark();
                 return;
+            }
+
             String methodName = request.getMethod();
+            String metricsName = METRICS_KEY + name(request.getClass().getSimpleName(), methodName);
+
+            Timer timer = registry.timer(metricsName + METRICS_TIMER_KEY);
+            Meter meter = registry.meter(metricsName + METRICS_RATE_KEY);
+            Meter errors = registry.meter(metricsName + METRICS_ERROR_KEY);
+
+            Timer.Context timingContext = timer.time();
+            meter.mark();
 
             if (!methods.contains(methodName)) {
                 log.warn("Failed to find JSON RPC method " + methodName + ".");
                 basic.sendText(new JSONRPC2Response(JSONRPC2Error.METHOD_NOT_FOUND, request.getID())
                         .toString());
+                allErrors.mark();
+                errors.mark();
                 return;
             }
 
@@ -59,6 +104,8 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
                 JSONRPC2Error error = JSONRPC2Error.INVALID_PARAMS;
                 error = error.setData("Parameter can't be null");
                 basic.sendText(new JSONRPC2Response(error, request.getID()).toString());
+                allErrors.mark();
+                errors.mark();
                 return;
             }
 
@@ -71,6 +118,8 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
                 JSONRPC2Error error = JSONRPC2Error.INVALID_PARAMS;
                 error = error.setData(ex.getMessage());
                 basic.sendText(new JSONRPC2Response(error, request.getID()).toString());
+                allErrors.mark();
+                errors.mark();
                 return;
             }
 
@@ -82,6 +131,8 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
                 JSONRPC2Error error = JSONRPC2Error.INTERNAL_ERROR;
                 error = error.setData(ex.getMessage());
                 basic.sendText(new JSONRPC2Response(error, request.getID()).toString());
+                allErrors.mark();
+                errors.mark();
                 return;
             }
 
@@ -93,12 +144,18 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
 
             if (!session.isOpen()) {
                 log.warn("Session closed before response sent.");
+                allErrors.mark();
+                errors.mark();
                 return;
             }
             final String responseText = response.toJSONString();
             basic.sendText(responseText);
+
+            allTimingContext.stop();
+            timingContext.stop();
         } catch (IOException ex) {
             log.error("Failed to process websocket request", ex);
+            allErrors.mark();
         }
     }
 

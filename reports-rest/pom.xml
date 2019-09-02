@@ -17,12 +17,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>metrics</artifactId>
-            <type>ejb</type>
+            <groupId>org.jboss.pnc.metrics</groupId>
+            <artifactId>pncmetrics</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

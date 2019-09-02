@@ -7,8 +7,9 @@ import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.impl.AproxConnectorImpl;
 import org.jboss.da.communication.aprox.impl.MetadataFileParser;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
-import org.jboss.da.metrics.MetricsConfiguration;
 import org.jboss.da.model.rest.GA;
+import org.jboss.pnc.pncmetrics.MetricsConfiguration;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Rule;
