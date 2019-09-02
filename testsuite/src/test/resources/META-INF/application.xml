@@ -6,7 +6,7 @@
 
     <application-name>Dependency-Analysis testsuite</application-name>
     <display-name>Dependency-Analysis testsuite</display-name>
-
+  
     <module>
         <ejb>common.jar</ejb>
     </module>
@@ -23,7 +23,7 @@
         <ejb>reports-backend.jar</ejb>
     </module>
     <module>
-        <ejb>metrics.jar</ejb>
+        <ejb>pncmetrics.jar</ejb>
     </module>
     <module>
         <web>

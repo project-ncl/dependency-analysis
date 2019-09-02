@@ -1,20 +1,20 @@
 package org.jboss.da.rest;
 
-import org.jboss.da.rest.listings.Artifacts;
-import org.jboss.da.rest.metrics.GeneralRestMetricsFilter;
-import org.jboss.da.rest.metrics.TimedMetric;
-import org.jboss.da.rest.metrics.TimedMetricFilter;
-import org.jboss.da.rest.reports.Reports;
-
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
-import org.jboss.da.rest.products.Products;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
+import org.jboss.da.rest.listings.Artifacts;
 import org.jboss.da.rest.listings.BlackListImpl;
+import org.jboss.da.rest.products.Products;
+import org.jboss.da.rest.reports.Reports;
+import org.jboss.pnc.pncmetrics.rest.GeneralRestMetricsFilter;
+import org.jboss.pnc.pncmetrics.rest.TimedMetric;
+import org.jboss.pnc.pncmetrics.rest.TimedMetricFilter;
 
 /**
  *
