@@ -29,6 +29,7 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.ext.Provider;
+
 import java.io.IOException;
 
 @Provider
@@ -37,6 +38,8 @@ public class GeneralRestMetricsFilter implements ContainerRequestFilter, Contain
     private static final String METRICS_RATE_KEY = "da.rest.all.rate";
 
     private static final String METRICS_TIMER_KEY = "da.rest.all.timer";
+
+    private static final String METRICS_ERRORS_KEY = "da.rest.all.errors";
 
     @Inject
     private MetricsConfiguration metricsConfiguration;
@@ -67,6 +70,13 @@ public class GeneralRestMetricsFilter implements ContainerRequestFilter, Contain
         if (tc != null) {
             tc.stop();
             servletRequest.removeAttribute("timer.context");
+        }
+
+        if (responseContext.getStatus() > 499) {
+            MetricRegistry registry = metricsConfiguration.getMetricRegistry();
+
+            Meter errors = registry.meter(METRICS_ERRORS_KEY);
+            errors.mark();
         }
     }
 }
