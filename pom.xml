@@ -35,7 +35,6 @@
         <module>reports-rest</module>
         <module>application</module>
         <module>cli-wrap</module>
-        <module>metrics</module>
     </modules>
 
     <developers>
@@ -95,7 +94,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <jboss.bom.version>7.1.2.GA</jboss.bom.version>
         <mvn-scm.version>1.9.5</mvn-scm.version>
-        <dropwizard.version>4.0.2</dropwizard.version>
+        <pncmetrics.version>1.1.3</pncmetrics.version>
         <corsUrlPattern>/*</corsUrlPattern>
         <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
     </properties>
@@ -130,12 +129,6 @@
             <dependency>
                 <groupId>org.jboss.da</groupId>
                 <artifactId>reports-backend</artifactId>
-                <version>${project.version}</version>
-                <type>ejb</type>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>metrics</artifactId>
                 <version>${project.version}</version>
                 <type>ejb</type>
             </dependency>
@@ -273,21 +266,9 @@
 
             <!-- Metrics dependencies -->
             <dependency>
-                <groupId>io.dropwizard.metrics</groupId>
-                <artifactId>metrics-core</artifactId>
-                <version>${dropwizard.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.dropwizard.metrics</groupId>
-                <artifactId>metrics-jvm</artifactId>
-                <version>${dropwizard.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.dropwizard.metrics</groupId>
-                <artifactId>metrics-graphite</artifactId>
-                <version>${dropwizard.version}</version>
+                <groupId>org.jboss.pnc.metrics</groupId>
+                <artifactId>pncmetrics</artifactId>
+                <version>${pncmetrics.version}</version>
             </dependency>
             <!-- Metrics dependencies -->
         </dependencies>

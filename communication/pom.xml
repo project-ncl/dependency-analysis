@@ -26,9 +26,9 @@
             <type>ejb</type>
         </dependency>
         <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>metrics</artifactId>
-            <type>ejb</type>
+            <groupId>org.jboss.pnc.metrics</groupId>
+            <artifactId>pncmetrics</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

@@ -36,6 +36,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.jboss.da.validation.ValidationException;
+import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -63,6 +64,7 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
             response = Report.class)
+    @TimedMetric
     public Response scmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
         try {
             return Response.ok().entity(facade.scmReport(request)).build();
@@ -80,6 +82,7 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a project specified in a repository URL",
             response = AdvancedReport.class)
+    @TimedMetric
     public Response advancedScmGenerator(
             @ApiParam(value = "scm information") SCMReportRequest request) {
         try {
@@ -102,6 +105,7 @@ public class Reports {
             @ApiResponse(code = 404, message = "Requested GAV was not found in repository",
                     response = ErrorMessage.class),
             @ApiResponse(code = 502, message = "Communication with remote repository failed") })
+    @TimedMetric
     public Response gavGenerator(
             @ApiParam(value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAVRequest gavRequest) {
         try {
@@ -125,6 +129,7 @@ public class Reports {
             responseContainer = "List", response = LookupReport.class)
     @ApiResponses(value = { @ApiResponse(code = 502,
             message = "Communication with remote repository failed") })
+    @TimedMetric
     public Response lookupGav(
             @ApiParam(
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest) {
@@ -148,6 +153,7 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get alignment report for project specified in a repository URL.",
             response = AlignReport.class)
+    @TimedMetric
     public Response alignReport(AlignReportRequest request) {
         try {
             return Response.status(Status.OK).entity(facade.alignReport(request)).build();
@@ -162,6 +168,7 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get builded artifacts for project specified in a repository URL.",
             response = BuiltReport.class)
+    @TimedMetric
     public Response builtReport(BuiltReportRequest request) {
         try {
             return Response.status(Status.OK).entity(facade.builtReport(request)).build();

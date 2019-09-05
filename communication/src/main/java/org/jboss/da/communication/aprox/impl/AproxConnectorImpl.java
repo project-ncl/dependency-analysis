@@ -11,9 +11,9 @@ import org.jboss.da.communication.aprox.model.VersionResponse;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.repository.api.RepositoryException;
-import org.jboss.da.metrics.MetricsConfiguration;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.pnc.pncmetrics.MetricsConfiguration;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
