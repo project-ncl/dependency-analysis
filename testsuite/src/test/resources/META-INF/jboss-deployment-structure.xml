@@ -5,7 +5,7 @@
     <sub-deployment name="reports-rest.war">
         <dependencies>
             <module name="deployment.testsuite.ear.reports-backend.jar" export="true"/>
-            <module name="deployment.testsuite.ear.metrics.jar" export="true"/>
+            <module name="deployment.testsuite.ear.pncmetrics.jar"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="reports-model.jar">
@@ -19,7 +19,7 @@
             <module name="deployment.testsuite.ear.reports-model.jar" export="true"/>
         </dependencies>
     </sub-deployment>
-    <sub-deployment name="metrics.jar">
+    <sub-deployment name="pncmetrics.jar">
         <dependencies>
         </dependencies>
     </sub-deployment>
@@ -27,7 +27,7 @@
         <dependencies>
             <module name="deployment.testsuite.ear.common.jar" export="true"/>
             <module name="deployment.testsuite.ear.source-code-manager.jar" export="true"/>
-            <module name="deployment.testsuite.ear.metrics.jar" export="true"/>
+            <module name="deployment.testsuite.ear.pncmetrics.jar"/>
             <module name="org.keycloak.keycloak-core"/>
         </dependencies>
     </sub-deployment>
