@@ -70,7 +70,6 @@ public class ConfigurationTest {
         assertEquals(aproxServer, config.getAproxServer());
         assertEquals(aproxGroup, config.getAproxGroup());
         assertEquals(aproxGroupPublic, config.getAproxGroupPublic());
-        assertEquals(backupScmUrl, config.getBackupScmUrl());
         assertEquals(cartographerServerUrl, config.getCartographerServerUrl());
     }
 }
