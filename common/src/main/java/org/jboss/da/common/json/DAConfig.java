@@ -23,14 +23,6 @@ public class DAConfig extends AbstractModuleConfig {
 
     @Getter
     @Setter
-    private String backupScmUrl;
-
-    @Getter
-    @Setter
-    private String backupScmBranch;
-
-    @Getter
-    @Setter
     private String cartographerServerUrl;
 
     @Getter

@@ -18,7 +18,6 @@
           "aproxServer": "aprox-server",
           "aproxGroup": "aprox-group",
           "aproxGroupPublic": "aprox-group-public",
-          "backupScmUrl": "backup-scm-url",
           "cartographerServerUrl": "cartographer-server-url",
           "aproxRequestTimeout": 100000
         }
