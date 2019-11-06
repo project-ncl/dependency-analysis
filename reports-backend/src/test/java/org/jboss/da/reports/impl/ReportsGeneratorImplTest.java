@@ -8,6 +8,7 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.util.UserLog;
 import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
 import org.jboss.da.communication.aprox.model.GAVDependencyTree;
@@ -47,7 +48,12 @@ import org.jboss.da.model.rest.GA;
 import org.jboss.da.products.api.ArtifactType;
 import org.jboss.da.products.api.MavenArtifact;
 import org.jboss.da.reports.backend.impl.ProductAdapter;
+import org.junit.Before;
 import org.mockito.ArgumentMatcher;
+import org.slf4j.Logger;
+
+import java.lang.reflect.Field;
+
 import static org.mockito.Matchers.argThat;
 
 import java.util.Objects;
@@ -77,6 +83,10 @@ public class ReportsGeneratorImplTest {
     @Mock
     private AggregatedProductProvider productProvider;
 
+    @Mock
+    @UserLog
+    private Logger userLog;
+
     @InjectMocks
     @Spy
     private final ProductAdapter productAdapter = new ProductAdapter();
@@ -86,7 +96,7 @@ public class ReportsGeneratorImplTest {
     private final DependencyTreeGenerator dependencyTreeGenerator = new DependencyTreeGeneratorImpl();
 
     @InjectMocks
-    private ReportsGeneratorImpl generator;
+    private ReportsGeneratorImpl generator = new ReportsGeneratorImpl();
 
     private final GAV daGAV = new GAV("org.jboss", "dependency-analysis", "1.0.1");
 
@@ -116,6 +126,18 @@ public class ReportsGeneratorImplTest {
             Arrays.asList(daUtilDT, daCommonDT)));
 
     private final Product productEAP = new Product("EAP", "7.0", ProductSupportStatus.UNKNOWN);
+
+    @Before
+    public void initMock() throws ReflectiveOperationException {
+        injectMethod("userLog", generator, userLog, ReportsGeneratorImpl.class);
+    }
+
+    private void injectMethod(String fieldName, Object to, Object what, Class clazz)
+            throws NoSuchFieldException, IllegalAccessException {
+        Field f = clazz.getDeclaredField(fieldName);
+        f.setAccessible(true);
+        f.set(to, what);
+    }
 
     private void prepareProductProvider(List<String> versions, List<Product> whitelisted, GAV gav){
         final Set<Artifact> artifacts = versions.stream()

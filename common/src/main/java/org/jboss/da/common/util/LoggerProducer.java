@@ -16,4 +16,11 @@ public class LoggerProducer {
     public Logger produceLogger(InjectionPoint ip) {
         return LoggerFactory.getLogger(ip.getMember().getDeclaringClass());
     }
+
+    @Produces
+    @UserLog
+    public Logger produceUserLogger() {
+        return LoggerFactory.getLogger("org.jboss.pnc._userlog_.da");
+    }
+
 }

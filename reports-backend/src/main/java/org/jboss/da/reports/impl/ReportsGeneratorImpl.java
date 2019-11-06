@@ -54,6 +54,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import org.jboss.da.common.util.UserLog;
 
 import org.jboss.da.common.version.VersionAnalyzer;
 import org.jboss.da.common.version.VersionAnalyzer.VersionAnalysisResult;
@@ -78,6 +79,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Inject
     private Logger log;
+
+    @Inject
+    @UserLog
+    private Logger userLog;
 
     @Inject
     private BlackArtifactService blackArtifactService;
@@ -174,7 +179,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(new MavenArtifact(gav));
         artifacts = filterProductArtifacts(products, artifacts);
-        
+
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
         VersionParser parser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
 
@@ -503,6 +508,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request)
             throws CommunicationException{
+        userLog.info("Starting lookup report for: " + request);
         final String versionSuffix = request.getVersionSuffix();
         final String repositoryGroup = request.getRepositoryGroup();
         if (versionSuffix != null && !versionSuffix.isEmpty()) {
@@ -518,7 +524,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = getProductArtifactsPerGA(request, uniqueGAs);
 
         return createLookupReports(request, gaProductArtifactsMap);
-        
+
     }
 
     private Map<GA, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsPerGA(

@@ -14,12 +14,9 @@ import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.pnc.pncmetrics.MetricsConfiguration;
-import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Any;
 import javax.inject.Inject;
 import javax.xml.bind.JAXBException;
 
@@ -34,6 +31,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import org.jboss.da.common.util.UserLog;
 
 @ApplicationScoped
 public class AproxConnectorImpl implements AproxConnector {
@@ -42,6 +40,10 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Inject
     private Logger log;
+
+    @Inject
+    @UserLog
+    private Logger userLog;
 
     private DAConfig config;
 
@@ -83,7 +85,7 @@ public class AproxConnectorImpl implements AproxConnector {
         }
 
         try {
-            log.info("Retrieving maven metadata for " + ga + " from " + query);
+            userLog.info("Retrieving versions for maven artifacts " + ga + " from " + query);
             HttpURLConnection connection = getResponse(query);
 
             final List<String> versions = parseMetadataFile(connection).getVersioning()
@@ -114,6 +116,7 @@ public class AproxConnectorImpl implements AproxConnector {
             throws RepositoryException {
         String query = repositoryLink("npm", repository, packageName);
         try {
+            userLog.info("Retrieving versions for npm artifacts " + packageName + " from " + query);
             log.info("Retrieving npm metadata for " + packageName + " from " + query);
             HttpURLConnection connection = getResponse(query);
 
@@ -160,6 +163,8 @@ public class AproxConnectorImpl implements AproxConnector {
         while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
                 && retry < 2) {
 
+            userLog.warn("Connection to: {} failed with status: {}. retrying...", query,
+                    connection.getResponseCode());
             log.warn("Connection to: {} failed with status: {}. retrying...", query,
                     connection.getResponseCode());
 
