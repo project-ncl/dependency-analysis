@@ -42,6 +42,7 @@ import javax.enterprise.context.RequestScoped;
 
 import java.util.List;
 import java.util.Optional;
+import org.jboss.da.common.util.UserLog;
 
 /**
  *
@@ -54,6 +55,10 @@ public class RepositoryProductProvider implements ProductProvider {
 
     @Inject
     private Logger log;
+
+    @Inject
+    @UserLog
+    private Logger userLog;
 
     @Inject
     private AproxConnector aproxConnector;
@@ -178,6 +183,7 @@ public class RepositoryProductProvider implements ProductProvider {
 
     private Stream<String> getVersionsStreamMaven(GA ga) {
         if (!ga.isValid()) {
+            userLog.warn("Received nonvalid GA " + ga + ", using empty list of versions.");
             log.warn("Received nonvalid GA: " + ga);
             return Stream.empty();
         }
