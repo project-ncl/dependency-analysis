@@ -2,10 +2,6 @@ package org.jboss.da.reports.model.request;
 
 import org.jboss.da.model.rest.GAV;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
