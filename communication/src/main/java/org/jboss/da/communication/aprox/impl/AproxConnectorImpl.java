@@ -20,12 +20,15 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.xml.bind.JAXBException;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandler;
+import java.net.http.HttpResponse.BodyHandlers;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -56,10 +59,18 @@ public class AproxConnectorImpl implements AproxConnector {
     @Inject
     private MetricsConfiguration metricsConfiguration;
 
+    private HttpClient client;
+
+    private HttpRequest.Builder requestBuilder;
+
     @Inject
     public AproxConnectorImpl(Configuration configuration) {
         try {
             this.config = configuration.getConfig();
+            client = HttpClient.newBuilder()
+                    .connectTimeout(Duration.ofMillis(config.getAproxRequestTimeout())).build();
+            requestBuilder = HttpRequest.newBuilder().timeout(
+                    Duration.ofMillis(config.getAproxRequestTimeout()));
         } catch (ConfigurationParseException ex) {
             throw new IllegalStateException(
                     "Configuration failure, can't parse default repository group", ex);
@@ -86,17 +97,18 @@ public class AproxConnectorImpl implements AproxConnector {
 
         try {
             userLog.info("Retrieving versions for maven artifacts " + ga + " from " + query);
-            HttpURLConnection connection = getResponse(query);
+            HttpResponse<InputStream> connection = getResponse(query);
+            if (connection.statusCode() == 404) {
+                log.debug("Maven metadata for {} not found. Assuming empty version list.", ga);
+                return Collections.emptyList();
+            }
 
-            final List<String> versions = parseMetadataFile(connection).getVersioning()
+            final List<String> versions = parseMetadataFile(connection.body()).getVersioning()
                     .getVersions().getVersion();
             log.debug("Maven metadata for {} found. Response: {}. Versions: {}", ga,
-                    connection.getResponseCode(), versions);
+                    connection.statusCode(), versions);
             return versions;
-        } catch (FileNotFoundException ex) {
-            log.debug("Maven metadata for {} not found. Assuming empty version list.", ga);
-            return Collections.emptyList();
-        } catch (IOException | CommunicationException e) {
+        } catch (IOException | CommunicationException | InterruptedException e) {
             throw new RepositoryException("Failed to obtain versions for " + ga
                     + " from repository on url " + query, e);
         } finally {
@@ -118,16 +130,19 @@ public class AproxConnectorImpl implements AproxConnector {
         try {
             userLog.info("Retrieving versions for npm artifacts " + packageName + " from " + query);
             log.info("Retrieving npm metadata for " + packageName + " from " + query);
-            HttpURLConnection connection = getResponse(query);
+            HttpResponse<InputStream> connection = getResponse(query);
+            if (connection.statusCode() == 404) {
+                log.debug("Npm metadata for {} not found. Assuming empty version list.",
+                        packageName);
+                return Collections.emptyList();
+            }
 
-            final Set<String> versions = parser.parseNpmMetadata(connection).getVersions().keySet();
+            final Set<String> versions = parser.parseNpmMetadata(connection.body()).getVersions()
+                    .keySet();
             log.debug("Npm metadata for {} found. Response: {}. Versions: {}", packageName,
-                    connection.getResponseCode(), versions);
+                    connection.statusCode(), versions);
             return new ArrayList(versions);
-        } catch (FileNotFoundException ex) {
-            log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
-            return Collections.emptyList();
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RepositoryException("Failed to obtain versions for " + packageName
                     + " from repository on url " + query, e);
         }
@@ -155,33 +170,29 @@ public class AproxConnectorImpl implements AproxConnector {
         return query.toString();
     }
 
-    private HttpURLConnection getResponse(String query) throws IOException {
-        HttpURLConnection connection = (HttpURLConnection) new URL(query).openConnection();
-        connection.setConnectTimeout(config.getAproxRequestTimeout());
-        connection.setReadTimeout(config.getAproxRequestTimeout());
+    private java.net.http.HttpResponse<InputStream> getResponse(String query)
+            throws java.io.IOException, java.lang.InterruptedException {
+        return getResponse(query, BodyHandlers.ofInputStream());
+    }
+
+    private <T> HttpResponse<T> getResponse(String query, BodyHandler<T> bodyHandler)
+            throws IOException, InterruptedException {
+        HttpRequest request = requestBuilder.copy().uri(URI.create(query)).build();
+        HttpResponse<T> response = client.send(request, bodyHandler);
         int retry = 0;
-        while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
-                && retry < 2) {
-
+        while ((response.statusCode() == 504 || response.statusCode() == 500) && retry < 2) {
             userLog.warn("Connection to: {} failed with status: {}. retrying...", query,
-                    connection.getResponseCode());
-            log.warn("Connection to: {} failed with status: {}. retrying...", query,
-                    connection.getResponseCode());
-
+                    response.statusCode());
             retry++;
-
             try {
                 // Wait before retrying using Exponential back-off: 200ms, 400ms
                 Thread.sleep((long) Math.pow(2, retry) * 100L);
             } catch (InterruptedException e) {
                 log.error(e.getMessage());
             }
-
-            connection = (HttpURLConnection) new URL(query).openConnection();
-            connection.setConnectTimeout(config.getAproxRequestTimeout());
-            connection.setReadTimeout(config.getAproxRequestTimeout());
+            response = client.send(request, bodyHandler);
         }
-        return connection;
+        return response;
     }
 
     @Override
@@ -192,20 +203,20 @@ public class AproxConnectorImpl implements AproxConnector {
     @Override
     public Optional<InputStream> getPomStream(GAV gav) throws RepositoryException {
         StringBuilder query = new StringBuilder();
+        query.append(config.getAproxServer());
+        query.append("/api/group/");
+        query.append(config.getAproxGroupPublic()).append('/');
+        query.append(gav.getGroupId().replace(".", "/")).append("/");
+        query.append(gav.getArtifactId()).append('/');
+        query.append(gav.getVersion()).append('/');
+        query.append(gav.getArtifactId()).append('-').append(gav.getVersion()).append(".pom");
         try {
-            query.append(config.getAproxServer());
-            query.append("/api/group/");
-            query.append(config.getAproxGroupPublic()).append('/');
-            query.append(gav.getGroupId().replace(".", "/")).append("/");
-            query.append(gav.getArtifactId()).append('/');
-            query.append(gav.getVersion()).append('/');
-            query.append(gav.getArtifactId()).append('-').append(gav.getVersion()).append(".pom");
-
-            URLConnection connection = new URL(query.toString()).openConnection();
-            return Optional.of(connection.getInputStream());
-        } catch (FileNotFoundException ex) {
-            return Optional.empty();
-        } catch (IOException e) {
+            HttpResponse<InputStream> response = getResponse(query.toString());
+            if (response.statusCode() == 404) {
+                return Optional.empty();
+            }
+            return Optional.of(response.body());
+        } catch (IOException | InterruptedException e) {
             throw new RepositoryException("Failed to obtain pom for " + gav
                     + " from repository on url " + query, e);
         }
@@ -213,47 +224,40 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     /**
-     * Implementation note: dcheung tried to initially use HttpURLConnection
-     * and send a 'HEAD' request to the resource. Even though that worked,
-     * for some reason this completely makes Arquillian fail to deploy the testsuite.
-     * For that reason, dcheung switched to using a simple URL object instead with the
-     * try-catch logic.
+     * Implementation note: dcheung tried to initially use HttpURLConnection and send a 'HEAD'
+     * request to the resource. Even though that worked, for some reason this completely makes
+     * Arquillian fail to deploy the testsuite. For that reason, dcheung switched to using a simple
+     * URL object instead with the try-catch logic.
      *
      * No dcheung doesn't usually talks about himself in the third person..
      */
     public boolean doesGAVExistInPublicRepo(GAV gav) throws RepositoryException {
         StringBuilder query = new StringBuilder();
+        query.append(config.getAproxServer());
+        query.append("/api/group/");
+        query.append(config.getAproxGroupPublic()).append('/');
+        query.append(gav.getGroupId().replace(".", "/")).append("/");
+        query.append(gav.getArtifactId()).append('/');
+        query.append(gav.getVersion()).append('/');
+        query.append(gav.getArtifactId()).append("-").append(gav.getVersion()).append(".pom");
 
         try {
-            query.append(config.getAproxServer());
-            query.append("/api/group/");
-            query.append(config.getAproxGroupPublic()).append('/');
-            query.append(gav.getGroupId().replace(".", "/")).append("/");
-            query.append(gav.getArtifactId()).append('/');
-            query.append(gav.getVersion()).append('/');
-            query.append(gav.getArtifactId()).append("-").append(gav.getVersion()).append(".pom");
-
-            URLConnection connection = new URL(query.toString()).openConnection();
-            try {
-                connection.getInputStream().close();
-                // if we've reached here, then it means the pom exists
-                return true;
-            } catch (FileNotFoundException e) {
-                // if we've reached here, the resource is not available
-                return false;
-            }
-        } catch (IOException e) {
+            HttpResponse<Void> response = getResponse(query.toString(), BodyHandlers.discarding());
+            return response.statusCode() < 300;
+        } catch (IOException | InterruptedException e) {
             throw new RepositoryException("Failed to check existence of pom for " + gav
                     + " in repository on url " + query, e);
         }
     }
 
-    private VersionResponse parseMetadataFile(URLConnection connection) throws IOException,
+    private VersionResponse parseMetadataFile(InputStream in) throws IOException,
             CommunicationException {
-        try (InputStream in = connection.getInputStream()) {
+        try {
             return MetadataFileParser.parseMavenMetadata(in);
         } catch (JAXBException e) {
             throw new RepositoryException("Failed to parse metadata file", e);
+        } finally {
+            in.close();
         }
     }
 }

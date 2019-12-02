@@ -32,9 +32,11 @@ public class MetadataFileParser {
         return (VersionResponse) jaxbUnmarshaller.unmarshal(in);
     }
 
-    public NpmMetadata parseNpmMetadata(URLConnection connection) throws IOException {
-        try (InputStream in = connection.getInputStream()) {
+    public NpmMetadata parseNpmMetadata(InputStream in) throws IOException {
+        try {
             return om.readValue(in, NpmMetadata.class);
+        } finally {
+            in.close();
         }
     }
 }
