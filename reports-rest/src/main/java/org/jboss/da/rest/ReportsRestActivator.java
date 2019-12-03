@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import org.jboss.da.rest.filter.MDCLoggingFilter;
 
 import org.jboss.da.rest.listings.Artifacts;
 import org.jboss.da.rest.listings.BlackListImpl;
@@ -59,5 +60,6 @@ public class ReportsRestActivator extends Application {
         resources.add(GeneralRestMetricsFilter.class);
         resources.add(TimedMetric.class);
         resources.add(TimedMetricFilter.class);
+        resources.add(MDCLoggingFilter.class);
     }
 }

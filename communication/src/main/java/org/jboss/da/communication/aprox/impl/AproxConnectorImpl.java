@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import org.jboss.da.common.logging.MDCUtils;
 import org.jboss.da.common.util.UserLog;
 
 @ApplicationScoped
@@ -177,7 +178,9 @@ public class AproxConnectorImpl implements AproxConnector {
 
     private <T> HttpResponse<T> getResponse(String query, BodyHandler<T> bodyHandler)
             throws IOException, InterruptedException {
-        HttpRequest request = requestBuilder.copy().uri(URI.create(query)).build();
+        HttpRequest.Builder requestBuild = requestBuilder.copy().uri(URI.create(query));
+        MDCUtils.headersFromContext().forEach(requestBuild::header);
+        HttpRequest request = requestBuild.build();
         HttpResponse<T> response = client.send(request, bodyHandler);
         int retry = 0;
         while ((response.statusCode() == 504 || response.statusCode() == 500) && retry < 2) {
