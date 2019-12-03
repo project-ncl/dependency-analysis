@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import org.jboss.da.common.logging.MDCUtils;
 import org.jboss.da.common.util.UserLog;
 
 @ApplicationScoped
@@ -157,6 +158,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
     private HttpURLConnection getResponse(String query) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL(query).openConnection();
+        MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
         connection.setConnectTimeout(config.getAproxRequestTimeout());
         connection.setReadTimeout(config.getAproxRequestTimeout());
         int retry = 0;
@@ -178,6 +180,7 @@ public class AproxConnectorImpl implements AproxConnector {
             }
 
             connection = (HttpURLConnection) new URL(query).openConnection();
+            MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
             connection.setConnectTimeout(config.getAproxRequestTimeout());
             connection.setReadTimeout(config.getAproxRequestTimeout());
         }
@@ -202,6 +205,7 @@ public class AproxConnectorImpl implements AproxConnector {
             query.append(gav.getArtifactId()).append('-').append(gav.getVersion()).append(".pom");
 
             URLConnection connection = new URL(query.toString()).openConnection();
+            MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
             return Optional.of(connection.getInputStream());
         } catch (FileNotFoundException ex) {
             return Optional.empty();
@@ -234,6 +238,7 @@ public class AproxConnectorImpl implements AproxConnector {
             query.append(gav.getArtifactId()).append("-").append(gav.getVersion()).append(".pom");
 
             URLConnection connection = new URL(query.toString()).openConnection();
+            MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
             try {
                 connection.getInputStream().close();
                 // if we've reached here, then it means the pom exists
