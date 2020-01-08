@@ -233,6 +233,8 @@ def lookup():
 
     parser.add_argument("--products")
     parser.add_argument("--productIDs")
+    parser.add_argument("--suffix")
+    parser.add_argument("--group")
     parser.add_argument("gav", nargs='?')
     args = parser.parse_args()
     
@@ -263,6 +265,10 @@ def lookup():
         
     query = "{\"jsonrpc\": \"2.0\",  \"method\":\"reports.lookup.gav\", \"id\": \"request_0\" ,  \"params\":"   
     query += "{"
+    if(args.suffix != None):
+        query += '"versionSuffix": "' + args.suffix + '",'
+    if(args.group != None):
+        query += '"repositoryGroup": "' + args.group + '",'
     query += "\"productNames\":" + products 
     
     if (args.productIDs != None):
