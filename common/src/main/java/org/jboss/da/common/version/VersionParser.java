@@ -56,7 +56,8 @@ public class VersionParser {
         int major = parseNumberString(majorString);
         int minor = parseNumberString(minorString);
         int micro = parseNumberString(microString);
-        String qualifier = qualifierString == null ? "" : qualifierString;
+        String qualifier = qualifierString == null ? "" : qualifierString.replace('.', '-')
+                .replace(',', '-');
         if (suffixVersionString == null) {
             return new SuffixedVersion(major, minor, micro, qualifier, version);
         } else {
