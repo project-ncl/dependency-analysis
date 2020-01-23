@@ -1,0 +1,10 @@
+{
+  "versionSuffix": "temporary-redhat",
+  "gavs": [
+    {
+      "groupId": "org.fusesource.jansi",
+      "artifactId": "jansi",
+      "version": "3.3.5.fuse.jdk11-800013"
+    }
+  ]
+}

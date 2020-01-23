@@ -45,4 +45,15 @@ public class BugReporoducerRemoteTest extends AbstractRestReportsTest {
 
         assertEquals(200, response.getStatus());
     }
+
+    @Test
+    public void testNCL5377() throws Exception {
+        String nonOSGiDependency = "NCL5377";
+        File jsonRequestFile = getJsonRequestFile(PATH_SCM, nonOSGiDependency);
+
+        Response response = createClientRequest(PATH_SCM).post(
+                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
+
+        assertEquals(200, response.getStatus());
+    }
 }
