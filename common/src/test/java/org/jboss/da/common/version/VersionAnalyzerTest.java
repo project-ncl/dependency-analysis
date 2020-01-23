@@ -55,16 +55,26 @@ public class VersionAnalyzerTest {
 
     private static final String NON_OSGI_VERSION_2_RHT = "1.3.0.Final-redhat-7";
 
+    private static final String NON_OSGI_VERSION_3 = "1.2.3.foo.bar.baz";
+
+    private static final String NON_OSGI_VERSION_3_RHT = "1.2.3.foo-bar-baz-redhat-5";
+
+    private static final String NON_OSGI_VERSION_4 = "1.5.9.foo,bar,baz";
+
+    private static final String NON_OSGI_VERSION_4_RHT = "1.5.9.foo-bar-baz-redhat-8";
+
     private static final List<String> All_VERSIONS = Arrays.asList(OTHER_RH_VERSION_1,
             OTHER_RH_VERSION_2, NO_BUILT_VERSION_2, NO_BUILT_VERSION, OTHER_RH_VERSION_3,
             MULTI_BUILT_VERSION_RH2, BUILT_VERSION_RH, MULTI_BUILT_VERSION_RH1, BUILT_VERSION_2_RH,
             MULTI_BUILT_VERSION_RH_BEST, MULTI_BUILT_VERSION_RH4, NON_OSGI_VERSION,
-            NON_OSGI_VERSION_RHT, BUILT_VERSION_2, NON_OSGI_VERSION_2, NON_OSGI_VERSION_2_RHT);
+            NON_OSGI_VERSION_RHT, BUILT_VERSION_2, NON_OSGI_VERSION_2, NON_OSGI_VERSION_2_RHT,
+            NON_OSGI_VERSION_3, NON_OSGI_VERSION_3_RHT, NON_OSGI_VERSION_4, NON_OSGI_VERSION_4_RHT);
 
     private static final List<String> BUILT_VERSIONS = Arrays.asList(OTHER_RH_VERSION_1,
             OTHER_RH_VERSION_2, OTHER_RH_VERSION_3, MULTI_BUILT_VERSION_RH2, BUILT_VERSION_RH,
             MULTI_BUILT_VERSION_RH1, BUILT_VERSION_2_RH, MULTI_BUILT_VERSION_RH_BEST,
-            MULTI_BUILT_VERSION_RH4, NON_OSGI_VERSION_RHT, NON_OSGI_VERSION_2_RHT);
+            MULTI_BUILT_VERSION_RH4, NON_OSGI_VERSION_RHT, NON_OSGI_VERSION_2_RHT,
+            NON_OSGI_VERSION_3_RHT, NON_OSGI_VERSION_4_RHT);
 
     @Test
     public void getBestMatchVersionForNonExistingGAV() throws CommunicationException {
@@ -101,6 +111,10 @@ public class VersionAnalyzerTest {
         checkBMV(NON_OSGI_VERSION_RHT, NON_OSGI_VERSION,
                 All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
         checkBMV(NON_OSGI_VERSION_2_RHT, NON_OSGI_VERSION_2,
+                All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
+        checkBMV(NON_OSGI_VERSION_3_RHT, NON_OSGI_VERSION_3,
+                All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
+        checkBMV(NON_OSGI_VERSION_4_RHT, NON_OSGI_VERSION_4,
                 All_VERSIONS.toArray(new String[All_VERSIONS.size()]));
     }
 
