@@ -45,9 +45,8 @@ public class ScmFacade {
     }
 
     /**
-     * Tries to do a shallow clone (clone only the requested revision) of the remote repository
-     * to the local directory.
-     * If it is not possible to do that, then it does the full clone.
+     * Tries to do a shallow clone (clone only the requested revision) of the remote repository to the local directory. If it is
+     * not possible to do that, then it does the full clone.
      * 
      * @param scmType Type of the repository
      * @param scmUrl URL to the repository
@@ -55,8 +54,7 @@ public class ScmFacade {
      * @param cloneTo Directory, where the repository should be cloned
      * @throws ScmException Thrown if the clone of the repository fails
      */
-    public void shallowCloneRepository(SCMType scmType, String scmUrl, String revision, File cloneTo)
-            throws ScmException {
+    public void shallowCloneRepository(SCMType scmType, String scmUrl, String revision, File cloneTo) throws ScmException {
         if (!cloneTo.exists()) {
             cloneTo.mkdir();
         }
@@ -77,12 +75,10 @@ public class ScmFacade {
      * @param cloneTo Directory, where the repository should be cloned
      * @throws ScmException Thrown if the clone of the repository fails
      */
-    public void cloneRepository(SCMType scmType, String scmUrl, String revision, File cloneTo)
-            throws ScmException {
+    public void cloneRepository(SCMType scmType, String scmUrl, String revision, File cloneTo) throws ScmException {
         // if we can't shallow clone, then do the full git clone
         ScmRepository repo = getScmRepository(scmType.getSCMUrl(scmUrl), scmManager);
-        CheckOutScmResult checkOut = scmManager.checkOut(repo, new ScmFileSet(cloneTo), new ScmTag(
-                revision));
+        CheckOutScmResult checkOut = scmManager.checkOut(repo, new ScmFileSet(cloneTo), new ScmTag(revision));
         if (!checkOut.isSuccess()) {
             throw new ScmException("Repository was not clonned: " + checkOut.getProviderMessage());
         }
@@ -98,25 +94,24 @@ public class ScmFacade {
      * @param commitMessage Commit message
      * @throws ScmException Thrown if the operation with the repository fails
      */
-    public void commitAndPush(SCMType scmType, String scmUrl, File baseDir, List<File> files,
-            String commitMessage) throws ScmException {
+    public void commitAndPush(SCMType scmType, String scmUrl, File baseDir, List<File> files, String commitMessage)
+            throws ScmException {
         ScmRepository repo = getScmRepository(scmType.getSCMUrl(scmUrl), scmManager);
         ScmFileSet scmFileSet = new ScmFileSet(baseDir, files);
         AddScmResult addResult = scmManager.add(repo, scmFileSet);
 
         if (!addResult.isSuccess())
-            throw new ScmException("The manager wasn't able to ADD these files "
-                    + scmFileSet.toString() + " to the repository " + repo);
+            throw new ScmException(
+                    "The manager wasn't able to ADD these files " + scmFileSet.toString() + " to the repository " + repo);
 
         CheckInScmResult pushResult = scmManager.checkIn(repo, scmFileSet, commitMessage);
 
         if (!pushResult.isSuccess())
-            throw new ScmException("The manager wasn't able to PUSH these files "
-                    + scmFileSet.toString() + " to the repository " + repo);
+            throw new ScmException(
+                    "The manager wasn't able to PUSH these files " + scmFileSet.toString() + " to the repository " + repo);
     }
 
-    private ScmRepository getScmRepository(String scmUrl, ScmManager scmManager)
-            throws ScmException {
+    private ScmRepository getScmRepository(String scmUrl, ScmManager scmManager) throws ScmException {
         try {
             return scmManager.makeScmRepository(scmUrl);
         } catch (NoSuchScmProviderException ex) {
@@ -127,8 +122,7 @@ public class ScmFacade {
     }
 
     /**
-     * If we were able to shallow clone, this function will return true.
-     * false otherwise
+     * If we were able to shallow clone, this function will return true. false otherwise
      *
      * @param scmType type of scmUrl
      * @param scmUrl link of repo to clone
@@ -147,8 +141,7 @@ public class ScmFacade {
             if (revision == null || revision.isEmpty()) {
                 pb = new ProcessBuilder("git", "clone", "--depth", "1", scmUrl, ".");
             } else {
-                pb = new ProcessBuilder("git", "clone", "--depth", "1", "--branch", revision,
-                        scmUrl, ".");
+                pb = new ProcessBuilder("git", "clone", "--depth", "1", "--branch", revision, scmUrl, ".");
             }
             pb.directory(cloneTo);
 

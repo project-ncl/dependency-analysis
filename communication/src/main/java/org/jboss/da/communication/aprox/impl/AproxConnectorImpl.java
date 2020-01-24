@@ -62,8 +62,7 @@ public class AproxConnectorImpl implements AproxConnector {
         try {
             this.config = configuration.getConfig();
         } catch (ConfigurationParseException ex) {
-            throw new IllegalStateException(
-                    "Configuration failure, can't parse default repository group", ex);
+            throw new IllegalStateException("Configuration failure, can't parse default repository group", ex);
         }
     }
 
@@ -74,8 +73,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public List<String> getVersionsOfGA(GA ga, String repository) throws RepositoryException {
-        String query = repositoryLink("maven", repository, ga.getGroupId().replace(".", "/") + "/"
-                + ga.getArtifactId());
+        String query = repositoryLink("maven", repository, ga.getGroupId().replace(".", "/") + "/" + ga.getArtifactId());
 
         MetricRegistry registry = metricsConfiguration.getMetricRegistry();
         Timer.Context context = null;
@@ -89,17 +87,14 @@ public class AproxConnectorImpl implements AproxConnector {
             userLog.info("Retrieving versions for maven artifacts " + ga + " from " + query);
             HttpURLConnection connection = getResponse(query);
 
-            final List<String> versions = parseMetadataFile(connection).getVersioning()
-                    .getVersions().getVersion();
-            log.debug("Maven metadata for {} found. Response: {}. Versions: {}", ga,
-                    connection.getResponseCode(), versions);
+            final List<String> versions = parseMetadataFile(connection).getVersioning().getVersions().getVersion();
+            log.debug("Maven metadata for {} found. Response: {}. Versions: {}", ga, connection.getResponseCode(), versions);
             return versions;
         } catch (FileNotFoundException ex) {
             log.debug("Maven metadata for {} not found. Assuming empty version list.", ga);
             return Collections.emptyList();
         } catch (IOException | CommunicationException e) {
-            throw new RepositoryException("Failed to obtain versions for " + ga
-                    + " from repository on url " + query, e);
+            throw new RepositoryException("Failed to obtain versions for " + ga + " from repository on url " + query, e);
         } finally {
             if (context != null) {
                 context.stop();
@@ -113,8 +108,7 @@ public class AproxConnectorImpl implements AproxConnector {
     }
 
     @Override
-    public List<String> getVersionsOfNpm(String packageName, String repository)
-            throws RepositoryException {
+    public List<String> getVersionsOfNpm(String packageName, String repository) throws RepositoryException {
         String query = repositoryLink("npm", repository, packageName);
         try {
             userLog.info("Retrieving versions for npm artifacts " + packageName + " from " + query);
@@ -122,15 +116,15 @@ public class AproxConnectorImpl implements AproxConnector {
             HttpURLConnection connection = getResponse(query);
 
             final Set<String> versions = parser.parseNpmMetadata(connection).getVersions().keySet();
-            log.debug("Npm metadata for {} found. Response: {}. Versions: {}", packageName,
-                    connection.getResponseCode(), versions);
+            log.debug("Npm metadata for {} found. Response: {}. Versions: {}", packageName, connection.getResponseCode(),
+                    versions);
             return new ArrayList(versions);
         } catch (FileNotFoundException ex) {
             log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
             return Collections.emptyList();
         } catch (IOException e) {
-            throw new RepositoryException("Failed to obtain versions for " + packageName
-                    + " from repository on url " + query, e);
+            throw new RepositoryException("Failed to obtain versions for " + packageName + " from repository on url " + query,
+                    e);
         }
     }
 
@@ -162,13 +156,10 @@ public class AproxConnectorImpl implements AproxConnector {
         connection.setConnectTimeout(config.getAproxRequestTimeout());
         connection.setReadTimeout(config.getAproxRequestTimeout());
         int retry = 0;
-        while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
-                && retry < 2) {
+        while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500) && retry < 2) {
 
-            userLog.warn("Connection to: {} failed with status: {}. retrying...", query,
-                    connection.getResponseCode());
-            log.warn("Connection to: {} failed with status: {}. retrying...", query,
-                    connection.getResponseCode());
+            userLog.warn("Connection to: {} failed with status: {}. retrying...", query, connection.getResponseCode());
+            log.warn("Connection to: {} failed with status: {}. retrying...", query, connection.getResponseCode());
 
             retry++;
 
@@ -210,18 +201,15 @@ public class AproxConnectorImpl implements AproxConnector {
         } catch (FileNotFoundException ex) {
             return Optional.empty();
         } catch (IOException e) {
-            throw new RepositoryException("Failed to obtain pom for " + gav
-                    + " from repository on url " + query, e);
+            throw new RepositoryException("Failed to obtain pom for " + gav + " from repository on url " + query, e);
         }
     }
 
     @Override
     /**
-     * Implementation note: dcheung tried to initially use HttpURLConnection
-     * and send a 'HEAD' request to the resource. Even though that worked,
-     * for some reason this completely makes Arquillian fail to deploy the testsuite.
-     * For that reason, dcheung switched to using a simple URL object instead with the
-     * try-catch logic.
+     * Implementation note: dcheung tried to initially use HttpURLConnection and send a 'HEAD' request to the resource. Even
+     * though that worked, for some reason this completely makes Arquillian fail to deploy the testsuite. For that reason,
+     * dcheung switched to using a simple URL object instead with the try-catch logic.
      *
      * No dcheung doesn't usually talks about himself in the third person..
      */
@@ -248,13 +236,11 @@ public class AproxConnectorImpl implements AproxConnector {
                 return false;
             }
         } catch (IOException e) {
-            throw new RepositoryException("Failed to check existence of pom for " + gav
-                    + " in repository on url " + query, e);
+            throw new RepositoryException("Failed to check existence of pom for " + gav + " in repository on url " + query, e);
         }
     }
 
-    private VersionResponse parseMetadataFile(URLConnection connection) throws IOException,
-            CommunicationException {
+    private VersionResponse parseMetadataFile(URLConnection connection) throws IOException, CommunicationException {
         try (InputStream in = connection.getInputStream()) {
             return MetadataFileParser.parseMavenMetadata(in);
         } catch (JAXBException e) {

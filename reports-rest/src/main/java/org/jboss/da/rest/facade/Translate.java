@@ -34,40 +34,27 @@ import java.util.List;
 class Translate {
 
     static Report toReport(ArtifactReport report) {
-        List<Report> dependencies = report.getDependencies().stream()
-                .map(Translate::toReport)
-                .collect(Collectors.toList());
-        return new Report(report.getGav(),
-                new ArrayList<>(report.getAvailableVersions()),
-                report.getBestMatchVersion().orElse(null),
-                report.isDependencyVersionSatisfied(),
-                dependencies,
-                report.isBlacklisted(),
-                toWhitelisted(report.getWhitelisted()),
-                report.getNotBuiltDependencies());
+        List<Report> dependencies = report.getDependencies().stream().map(Translate::toReport).collect(Collectors.toList());
+        return new Report(report.getGav(), new ArrayList<>(report.getAvailableVersions()),
+                report.getBestMatchVersion().orElse(null), report.isDependencyVersionSatisfied(), dependencies,
+                report.isBlacklisted(), toWhitelisted(report.getWhitelisted()), report.getNotBuiltDependencies());
     }
 
     private static Set<GAVBestMatchVersion> toGAVBestMatchVersions(Map<GAV, String> bestMatchVersions) {
-        return bestMatchVersions.entrySet().stream()
-                .map(e -> new GAVBestMatchVersion(e.getKey(), e.getValue()))
+        return bestMatchVersions.entrySet().stream().map(e -> new GAVBestMatchVersion(e.getKey(), e.getValue()))
                 .collect(Collectors.toSet());
     }
 
     private static List<RestVersionProductWithDifference> toRestVersionProductsWithDiff(Set<ProductArtifact> productArtifacts) {
-        return productArtifacts.stream()
-                .map(Translate::toRestVersionProductWithDifference)
-                .collect(Collectors.toList());
+        return productArtifacts.stream().map(Translate::toRestVersionProductWithDifference).collect(Collectors.toList());
     }
 
     private static List<RestGAV2VersionProducts> toRestGAV2VersionProducts(Map<GAV, Set<ProductArtifact>> ib) {
-        return ib.entrySet().stream()
-                .filter(e -> !e.getValue().isEmpty())
-                .map(e -> toRestGAV2VersionProducts(e.getKey(), e.getValue()))
-                .collect(Collectors.toList());
+        return ib.entrySet().stream().filter(e -> !e.getValue().isEmpty())
+                .map(e -> toRestGAV2VersionProducts(e.getKey(), e.getValue())).collect(Collectors.toList());
     }
 
-    private static RestGAV2VersionProducts toRestGAV2VersionProducts(GAV gav,
-            Set<ProductArtifact> productArtifacts) {
+    private static RestGAV2VersionProducts toRestGAV2VersionProducts(GAV gav, Set<ProductArtifact> productArtifacts) {
         RestGAV2VersionProducts ret = new RestGAV2VersionProducts();
         ret.setGroupId(gav.getGroupId());
         ret.setArtifactId(gav.getArtifactId());
@@ -77,26 +64,24 @@ class Translate {
     }
 
     private static Set<GAVAvailableVersions> toGAVAvailableVersions(Map<GAV, Set<String>> buildVersions) {
-        return buildVersions.entrySet().stream()
-                .map(e -> new GAVAvailableVersions(e.getKey(), e.getValue()))
+        return buildVersions.entrySet().stream().map(e -> new GAVAvailableVersions(e.getKey(), e.getValue()))
                 .collect(Collectors.toSet());
     }
 
     private static RestVersionProduct toRestVersionProduct(ProductArtifact productArtifact) {
         RestVersionProduct ret = new RestVersionProduct();
         ret.setVersion(productArtifact.getArtifact().getVersion());
-        RestProductInput rpi = new RestProductInput(productArtifact.getProductName(),
-                productArtifact.getProductVersion(), productArtifact.getSupportStatus());
+        RestProductInput rpi = new RestProductInput(productArtifact.getProductName(), productArtifact.getProductVersion(),
+                productArtifact.getSupportStatus());
         ret.setProduct(rpi);
         return ret;
     }
 
-    private static RestVersionProductWithDifference toRestVersionProductWithDifference(
-            ProductArtifact productArtifact) {
+    private static RestVersionProductWithDifference toRestVersionProductWithDifference(ProductArtifact productArtifact) {
         RestVersionProductWithDifference ret = new RestVersionProductWithDifference();
         ret.setVersion(productArtifact.getArtifact().getVersion());
-        RestProductInput rpi = new RestProductInput(productArtifact.getProductName(),
-                productArtifact.getProductVersion(), productArtifact.getSupportStatus());
+        RestProductInput rpi = new RestProductInput(productArtifact.getProductName(), productArtifact.getProductVersion(),
+                productArtifact.getSupportStatus());
         ret.setProduct(rpi);
         ret.setDifferenceType(productArtifact.getDifferenceType());
         return ret;
@@ -114,30 +99,25 @@ class Translate {
         Report report = toReport(advancedArtifactReport.getArtifactReport());
         return new AdvancedReport(report, advancedArtifactReport.getBlacklistedArtifacts(),
                 toRestGAVProducts(advancedArtifactReport.getWhitelistedArtifacts()),
-                toGAVBestMatchVersions(advancedArtifactReport
-                        .getCommunityGavsWithBestMatchVersions()),
+                toGAVBestMatchVersions(advancedArtifactReport.getCommunityGavsWithBestMatchVersions()),
                 toGAVAvailableVersions(advancedArtifactReport.getCommunityGavsWithBuiltVersions()),
                 advancedArtifactReport.getCommunityGavs());
     }
 
     private static List<RestProductInput> toWhitelisted(List<Product> whitelisted) {
-        return whitelisted.stream()
-                .map(pv -> new RestProductInput(pv.getName(), pv.getVersion(), pv.getStatus()))
+        return whitelisted.stream().map(pv -> new RestProductInput(pv.getName(), pv.getVersion(), pv.getStatus()))
                 .collect(Collectors.toList());
     }
 
     static AlignReport toAlignReport(Set<AlignmentReportModule> aligmentReport) {
         AlignReport ret = new AlignReport();
         List<RestGA2RestGAV2VersionProducts> internallyBuilt = ret.getInternallyBuilt();
-        List<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = ret
-                .getBuiltInDifferentVersion();
+        List<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = ret.getBuiltInDifferentVersion();
         List<RestGA2GAVs> notBuilt = ret.getNotBuilt();
         List<RestGA2GAVs> blacklisted = ret.getBlacklisted();
         for (AlignmentReportModule module : aligmentReport) {
-            List<RestGAV2VersionProducts> ib = toRestGAV2VersionProducts(module
-                    .getInternallyBuilt());
-            List<RestGAV2VersionProductsWithDiff> dv = toRestGAV2VersionProductsWithDiff(module
-                    .getDifferentVersion());
+            List<RestGAV2VersionProducts> ib = toRestGAV2VersionProducts(module.getInternallyBuilt());
+            List<RestGAV2VersionProductsWithDiff> dv = toRestGAV2VersionProductsWithDiff(module.getDifferentVersion());
             Set<GAV> nb = module.getNotBuilt();
             Set<GAV> bl = module.getBlacklisted();
             if (!ib.isEmpty()) {
@@ -173,10 +153,8 @@ class Translate {
     }
 
     private static List<RestGAV2VersionProductsWithDiff> toRestGAV2VersionProductsWithDiff(Map<GAV, Set<ProductArtifact>> ib) {
-        return ib.entrySet().stream()
-                .filter(e -> !e.getValue().isEmpty())
-                .map(e -> toRestGAV2VersionProductsWithDiff(e.getKey(), e.getValue()))
-                .collect(Collectors.toList());
+        return ib.entrySet().stream().filter(e -> !e.getValue().isEmpty())
+                .map(e -> toRestGAV2VersionProductsWithDiff(e.getKey(), e.getValue())).collect(Collectors.toList());
     }
 
     private static RestGAV2VersionProductsWithDiff toRestGAV2VersionProductsWithDiff(GAV gav,
@@ -190,9 +168,7 @@ class Translate {
     }
 
     static Set<BuiltReport> toBuiltReport(Set<BuiltReportModule> builtReport) {
-        return builtReport.stream()
-                .map(Translate::toBuiltReport)
-                .collect(Collectors.toSet());
+        return builtReport.stream().map(Translate::toBuiltReport).collect(Collectors.toSet());
     }
 
     private static BuiltReport toBuiltReport(BuiltReportModule b) {
@@ -206,20 +182,15 @@ class Translate {
     }
 
     private static List<RestVersionProduct> toRestVersionProducts(Set<ProductArtifact> productArtifacts) {
-        return productArtifacts.stream()
-                .map(Translate::toRestVersionProduct)
-                .collect(Collectors.toList());
+        return productArtifacts.stream().map(Translate::toRestVersionProduct).collect(Collectors.toList());
     }
 
     private static Set<RestProductInput> toRestProductInputs(Set<Product> product) {
-        return product.stream()
-                .map(Translate::toRestProductInput)
-                .collect(Collectors.toSet());
+        return product.stream().map(Translate::toRestProductInput).collect(Collectors.toSet());
     }
 
     private static Set<RestGavProducts> toRestGAVProducts(Map<GAV, Set<Product>> whitelistedArtifacts) {
         return whitelistedArtifacts.entrySet().stream()
-                .map(e -> new RestGavProducts(e.getKey(), toRestProductInputs(e.getValue())))
-                .collect(Collectors.toSet());
+                .map(e -> new RestGavProducts(e.getKey(), toRestProductInputs(e.getValue()))).collect(Collectors.toSet());
     }
 }

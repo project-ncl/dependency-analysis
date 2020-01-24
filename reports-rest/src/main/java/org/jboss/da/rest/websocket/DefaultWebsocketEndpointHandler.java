@@ -91,8 +91,7 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
 
             if (!methods.contains(methodName)) {
                 log.warn("Failed to find JSON RPC method " + methodName + ".");
-                basic.sendText(new JSONRPC2Response(JSONRPC2Error.METHOD_NOT_FOUND, request.getID())
-                        .toString());
+                basic.sendText(new JSONRPC2Response(JSONRPC2Error.METHOD_NOT_FOUND, request.getID()).toString());
                 allErrors.mark();
                 errors.mark();
                 return;

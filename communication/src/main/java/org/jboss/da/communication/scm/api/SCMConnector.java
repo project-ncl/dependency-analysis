@@ -30,8 +30,8 @@ public interface SCMConnector {
      * @throws PomAnalysisException When there is problem with the pom analysis
      * @throws ScmException When checking out the repository failed
      */
-    GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String pomPath,
-            List<String> repositories) throws ScmException, PomAnalysisException;
+    GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String pomPath, List<String> repositories)
+            throws ScmException, PomAnalysisException;
 
     /**
      * Finds first level dependencies for each (transitive) module of given pom.
@@ -44,8 +44,8 @@ public interface SCMConnector {
      * @throws PomAnalysisException When there is problem with the pom analysis
      * @throws ScmException When checking out the repository failed
      */
-    Map<GA, Set<GAV>> getDependenciesOfModules(String scmUrl, String revision, String pomPath,
-            List<String> repositories) throws ScmException, PomAnalysisException;
+    Map<GA, Set<GAV>> getDependenciesOfModules(String scmUrl, String revision, String pomPath, List<String> repositories)
+            throws ScmException, PomAnalysisException;
 
     /**
      * Finds dependency trees of specific revision on scm url
@@ -61,7 +61,7 @@ public interface SCMConnector {
             throws ScmException, PomAnalysisException;
 
     /**
-     *  Finds toplevel dependency of specific revision on scm url
+     * Finds toplevel dependency of specific revision on scm url
      *
      * @param scmUrl
      * @param revision
@@ -71,8 +71,8 @@ public interface SCMConnector {
      * @throws PomAnalysisException When there is problem with the pom analysis
      * @throws ScmException When checking out the repository failed
      */
-    Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, String pomPath,
-            List<String> repositories) throws ScmException, PomAnalysisException;
+    Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, String pomPath, List<String> repositories)
+            throws ScmException, PomAnalysisException;
 
     /**
      * Finds toplevel dependency of specific revision on scm url
@@ -84,8 +84,7 @@ public interface SCMConnector {
      * @throws PomAnalysisException When there is problem with the pom analysis
      * @throws ScmException When checking out the repository failed
      */
-    Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, GAV gav)
-            throws ScmException, PomAnalysisException;
+    Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, GAV gav) throws ScmException, PomAnalysisException;
 
     /**
      * Returns true when GAV is in given repository.
@@ -98,9 +97,7 @@ public interface SCMConnector {
      */
     boolean isGAVInRepository(String scmUrl, String revision, GAV gav) throws ScmException;
 
-    Optional<MavenProject> getPom(String scmUrl, String revision, String pomPath)
-            throws ScmException;
+    Optional<MavenProject> getPom(String scmUrl, String revision, String pomPath) throws ScmException;
 
-    public Optional<MavenProject> getPom(String scmUrl, String scmRevision, GAV gav)
-            throws ScmException;
+    public Optional<MavenProject> getPom(String scmUrl, String scmRevision, GAV gav) throws ScmException;
 }

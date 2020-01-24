@@ -26,6 +26,7 @@ import java.util.stream.Stream;
 
 /**
  * Class holding local maven-like repository of pom files.
+ * 
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class LocalRepo {
@@ -62,8 +63,7 @@ public class LocalRepo {
             }
 
             try {
-                String artifactPath = ArtifactPathUtils.formatArtifactPath(key.asPomArtifact(),
-                        galley.getTypeMapper());
+                String artifactPath = ArtifactPathUtils.formatArtifactPath(key.asPomArtifact(), galley.getTypeMapper());
 
                 Path p = path.resolve(artifactPath);
                 Files.createDirectories(p.getParent());
@@ -76,22 +76,19 @@ public class LocalRepo {
                 log.warn("Could not parse " + pomFile.toAbsolutePath(), ex);
             } catch (FileAlreadyExistsException ex) {
                 log.error("File already exists. This is because there are multiple file with same "
-                        + "GAV. This ususaly happens when there are pom files in tests and is "
-                        + "harmless in this case.", ex);
+                        + "GAV. This ususaly happens when there are pom files in tests and is " + "harmless in this case.", ex);
             }
         }
     }
 
     public static Set<Path> getAllPoms(Path scmDir) throws IOException {
-        return Files.walk(scmDir)
-                .filter(p -> !Files.isDirectory(p)) // is file
+        return Files.walk(scmDir).filter(p -> !Files.isDirectory(p)) // is file
                 .filter(p -> p.endsWith("pom.xml")) // named pom.xml
                 .collect(Collectors.toSet());
     }
 
     public synchronized Set<Path> getAllPoms() throws IOException {
-        return Files.walk(path)
-                .filter(p -> !Files.isDirectory(p)) // is file
+        return Files.walk(path).filter(p -> !Files.isDirectory(p)) // is file
                 .filter(p -> p.toString().endsWith(".pom")) // name ends with .pom
                 .collect(Collectors.toSet());
     }
@@ -106,23 +103,24 @@ public class LocalRepo {
     }
 
     /**
-     * This method will generate maven-metadata for 
+     * This method will generate maven-metadata for
+     * 
      * @param key
      * @param pomFile
      * @param p
-     * @throws IOException 
+     * @throws IOException
      */
     private void initSnapshot(ProjectVersionRef key, Path pomFile, Path p) throws IOException {
         Path dir = p.getParent();
         Path metadata = dir.resolve("maven-metadata.xml");
-        if(Files.exists(metadata)){
-            throw new UnsupportedOperationException("Merging of metadata is not supported yet. Conflicting metadata: " + metadata);
+        if (Files.exists(metadata)) {
+            throw new UnsupportedOperationException(
+                    "Merging of metadata is not supported yet. Conflicting metadata: " + metadata);
         }
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                LocalRepo.class.getResourceAsStream("/template/maven-metadata.xml")))) {
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(LocalRepo.class.getResourceAsStream("/template/maven-metadata.xml")))) {
 
-            Stream<String> lines = reader.lines()
-                    .map(l -> l.replace("${groupId}", key.getGroupId()))
+            Stream<String> lines = reader.lines().map(l -> l.replace("${groupId}", key.getGroupId()))
                     .map(l -> l.replace("${artifactId}", key.getGroupId()))
                     .map(l -> l.replace("${version}", key.getVersionString().replace("-SNAPSHOT", "")));
 

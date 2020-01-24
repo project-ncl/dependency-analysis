@@ -27,8 +27,7 @@ public class NamespaceFilter extends XMLFilterImpl {
     }
 
     @Override
-    public void startElement(String uri, String arg1, String arg2, Attributes arg3)
-            throws SAXException {
+    public void startElement(String uri, String arg1, String arg2, Attributes arg3) throws SAXException {
         super.startElement(this.usedNamespaceUri, arg1, arg2, arg3);
     }
 

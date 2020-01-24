@@ -48,8 +48,7 @@ public interface ProductVersionService {
      * @param version
      * @return List of products
      */
-    List<ProductVersion> getProductVersionsOfArtifact(String groupId, String artifactId,
-            String version);
+    List<ProductVersion> getProductVersionsOfArtifact(String groupId, String artifactId, String version);
 
     /**
      * Finds ProductVersion with specific product id, product name, version or support status. All parameters are optional.
@@ -60,8 +59,7 @@ public interface ProductVersionService {
      * @param status optional
      * @return List of productVersions with specified parameters
      */
-    List<ProductVersion> getProductVersions(Long id, String name, String version,
-            ProductSupportStatus status);
+    List<ProductVersion> getProductVersions(Long id, String name, String version, ProductSupportStatus status);
 
     /**
      * Finds Artifacts of ProductVersions with specific support status
@@ -73,34 +71,33 @@ public interface ProductVersionService {
 
     /**
      * Find ProductVersions that contains Artifact with specific groupId, artifactId and version
-     *  
+     * 
      * @param groupId
      * @param artifactId
      * @param version
      * @return List of productVersions with artifacts
      */
-    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactByGAV(String groupId,
-            String artifactId, String version);
+    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactByGAV(String groupId, String artifactId,
+            String version);
 
     /**
-     *  Find ProductVersions with specific status that contains Artifact with specific groupId, artifactId
+     * Find ProductVersions with specific status that contains Artifact with specific groupId, artifactId
      *
      * @param groupId
      * @param artifactId
      * @param status
      * @return
      */
-    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(
-            String groupId, String artifactId, ProductSupportStatus status);
+    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(String groupId, String artifactId,
+            ProductSupportStatus status);
 
     /**
-     *  Find ProductVersions with any status that contains Artifact with specific groupId, artifactId
+     * Find ProductVersions with any status that contains Artifact with specific groupId, artifactId
      *
      * @param groupId
      * @param artifactId
      * @return
      */
-    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGA(String groupId,
-            String artifactId);
+    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGA(String groupId, String artifactId);
 
 }

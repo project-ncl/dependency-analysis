@@ -38,8 +38,8 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
     }
 
     private String readRestApiUrl() {
-        return readConfigurationValue("testsuite.restApiUrl", "http://" + hostUrl + "/"
-                + getContextRoot() + "/rest" + (restApiVersion == null ? "" : "/" + restApiVersion));
+        return readConfigurationValue("testsuite.restApiUrl",
+                "http://" + hostUrl + "/" + getContextRoot() + "/rest" + (restApiVersion == null ? "" : "/" + restApiVersion));
     }
 
     protected WebTarget createWebTarget(String relativePath) {
@@ -51,8 +51,7 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
         return target.request(MediaType.APPLICATION_JSON_TYPE);
     }
 
-    protected Response assertResponseForRequest(String endpoint, String requestFile)
-            throws IOException, Exception {
+    protected Response assertResponseForRequest(String endpoint, String requestFile) throws IOException, Exception {
         File jsonRequestFile = getJsonRequestFile(endpoint, requestFile);
         final String entity = FileUtils.readFileToString(jsonRequestFile, ENCODING);
         Response response = createClientRequest(endpoint).post(Entity.json(entity));

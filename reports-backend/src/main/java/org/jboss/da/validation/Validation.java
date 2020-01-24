@@ -25,8 +25,7 @@ public class Validation {
         if (!validate.isEmpty()) {
             Validations validations = new Validations();
             for (ConstraintViolation<T> cv : validate) {
-                ValidationField validation = new ValidationField(cv.getPropertyPath().toString(),
-                        cv.getMessage());
+                ValidationField validation = new ValidationField(cv.getPropertyPath().toString(), cv.getMessage());
                 validation.setValue(cv.getInvalidValue().toString());
                 validations.addValidationField(validation);
             }

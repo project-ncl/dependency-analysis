@@ -42,30 +42,25 @@ public interface BlackList {
 
     @GET
     @Produces(value = MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get all artifacts in the blacklist", responseContainer = "List",
-            response = RestArtifact.class)
+    @ApiOperation(value = "Get all artifacts in the blacklist", responseContainer = "List", response = RestArtifact.class)
     Collection<RestArtifact> getAllBlackArtifacts();
 
     @GET
     @Path(value = "/ga")
     @Produces(value = MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get artifacts in the blacklist with given groupid and artifactid",
-            responseContainer = "List", response = RestArtifact.class)
+    @ApiOperation(value = "Get artifacts in the blacklist with given groupid and artifactid", responseContainer = "List", response = RestArtifact.class)
     Collection<RestArtifact> getBlackArtifacts(@QueryParam(value = "groupid") String groupId,
             @QueryParam(value = "artifactid") String artifactId);
 
     @GET
     @Path(value = "/gav")
     @Produces(value = MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Check if an artifact is in the blacklist",
-            response = ContainsResponse.class)
+    @ApiOperation(value = "Check if an artifact is in the blacklist", response = ContainsResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Artifact is not in the blacklist",
-                    response = ContainsResponse.class),
-            @ApiResponse(code = 400, message = "All parameters are required",
-                    response = ErrorMessage.class) })
-    Response isBlackArtifactPresent(@QueryParam(value = "groupid") String groupId, @QueryParam(
-            value = "artifactid") String artifactId, @QueryParam(value = "version") String version);
+            @ApiResponse(code = 404, message = "Artifact is not in the blacklist", response = ContainsResponse.class),
+            @ApiResponse(code = 400, message = "All parameters are required", response = ErrorMessage.class) })
+    Response isBlackArtifactPresent(@QueryParam(value = "groupid") String groupId,
+            @QueryParam(value = "artifactid") String artifactId, @QueryParam(value = "version") String version);
 
     @DELETE
     @Path(value = "/gav")

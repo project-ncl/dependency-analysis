@@ -81,6 +81,7 @@ public class RepositoryProductProvider implements ProductProvider {
 
     /**
      * Sets the suffix that distinguish product artifacts in the repository.
+     * 
      * @param suffix Suffix of the product artifacts.
      */
     public void setVersionSuffix(String suffix) {
@@ -117,8 +118,7 @@ public class RepositoryProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact,
-            ProductSupportStatus status) {
+    public CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact, ProductSupportStatus status) {
         if (status != UNKNOWN) {
             return CompletableFuture.completedFuture(Collections.emptySet());
         }
@@ -161,9 +161,7 @@ public class RepositoryProductProvider implements ProductProvider {
     }
 
     private Set<ProductArtifacts> getArtifactsMaven(GA ga) {
-        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga)
-                .map(x -> new GAV(ga, x))
-                .map(MavenArtifact::new)
+        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga).map(x -> new GAV(ga, x)).map(MavenArtifact::new)
                 .collect(Collectors.toSet());
         if (allArtifacts.isEmpty()) {
             return Collections.emptySet();
@@ -172,9 +170,7 @@ public class RepositoryProductProvider implements ProductProvider {
     }
 
     private Set<ProductArtifacts> getArtifactsNPM(String name) {
-        Set<Artifact> allArtifacts = getVersionsStreamNPM(name)
-                .map(v -> new NPMArtifact(name, v))
-                .collect(Collectors.toSet());
+        Set<Artifact> allArtifacts = getVersionsStreamNPM(name).map(v -> new NPMArtifact(name, v)).collect(Collectors.toSet());
         if (allArtifacts.isEmpty()) {
             return Collections.emptySet();
         }
@@ -194,9 +190,7 @@ public class RepositoryProductProvider implements ProductProvider {
             } else {
                 versionsOfGA = aproxConnector.getVersionsOfGA(ga);
             }
-            return versionsOfGA.stream()
-                    .filter(v -> versionParser.parse(v).isSuffixed())
-                    .distinct();
+            return versionsOfGA.stream().filter(v -> versionParser.parse(v).isSuffixed()).distinct();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
         }
@@ -210,9 +204,7 @@ public class RepositoryProductProvider implements ProductProvider {
             } else {
                 versionsOfGA = aproxConnector.getVersionsOfNpm(name);
             }
-            return versionsOfGA.stream()
-                    .filter(v -> versionParser.parse(v).isSuffixed())
-                    .distinct();
+            return versionsOfGA.stream().filter(v -> versionParser.parse(v).isSuffixed()).distinct();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
         }

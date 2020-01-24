@@ -52,8 +52,7 @@ public class CartographerConnectorImpl implements CartographerConnector {
     private void postConstruct() {
         try {
             PasswordManager emptyPasswordManager = new MemoryPasswordManager();
-            SiteConfig sc = new SiteConfigBuilder().withId("Carto")
-                    .withUri(config.getConfig().getCartographerServerUrl())
+            SiteConfig sc = new SiteConfigBuilder().withId("Carto").withUri(config.getConfig().getCartographerServerUrl())
                     .withRequestTimeoutSeconds(config.getConfig().getAproxRequestTimeout()).build();
             HttpFactory httpFactory = new HttpFactory(emptyPasswordManager);
             cartographer = new CartographerRESTClient(sc, httpFactory);
@@ -63,26 +62,23 @@ public class CartographerConnectorImpl implements CartographerConnector {
     }
 
     @Override
-    public GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException,
-            FindGAVDependencyException {
+    public GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException, FindGAVDependencyException {
 
         if (!aproxConnector.doesGAVExistInPublicRepo(gav)) {
-            throw new FindGAVDependencyException("Could not find: " + gav
-                    + " in public repo of Aprox");
+            throw new FindGAVDependencyException("Could not find: " + gav + " in public repo of Aprox");
         }
 
         try {
 
-            SimpleProjectVersionRef rootRef = new SimpleProjectVersionRef(gav.getGroupId(),
-                    gav.getArtifactId(), gav.getVersion());
+            SimpleProjectVersionRef rootRef = new SimpleProjectVersionRef(gav.getGroupId(), gav.getArtifactId(),
+                    gav.getVersion());
 
             SingleGraphRequest r = new SingleGraphRequest();
             r.setWorkspaceId("export-" + rootRef.toString());
             r.setSource("group:" + config.getConfig().getAproxGroupPublic());
             r.setPatcherIds(DepgraphPatcherConstants.ALL_PATCHERS);
             r.setResolve(true);
-            r.setGraph(cartographer.newGraphDescription().withRoots(rootRef).withPreset("requires")
-                    .build());
+            r.setGraph(cartographer.newGraphDescription().withRoots(rootRef).withPreset("requires").build());
 
             GraphExport export = cartographer.graph(r);
 
@@ -119,10 +115,8 @@ public class CartographerConnectorImpl implements CartographerConnector {
                 GAV declaringGAV = generateGAV(declaring);
                 GAV dependencyGAV = generateGAV(dependencyArtifact);
 
-                GAVDependencyTree declaringDT = addGAVDependencyTreeToGAVMapper(gavMapper,
-                        declaringGAV);
-                GAVDependencyTree dependencyDT = addGAVDependencyTreeToGAVMapper(gavMapper,
-                        dependencyGAV);
+                GAVDependencyTree declaringDT = addGAVDependencyTreeToGAVMapper(gavMapper, declaringGAV);
+                GAVDependencyTree dependencyDT = addGAVDependencyTreeToGAVMapper(gavMapper, dependencyGAV);
 
                 // set the dependency relationship between GAVDependencyTree here
                 declaringDT.addDependency(dependencyDT);
@@ -131,8 +125,7 @@ public class CartographerConnectorImpl implements CartographerConnector {
         return root;
     }
 
-    private GAVDependencyTree addGAVDependencyTreeToGAVMapper(
-            Map<GAV, GAVDependencyTree> gavMapper, GAV gav) {
+    private GAVDependencyTree addGAVDependencyTreeToGAVMapper(Map<GAV, GAVDependencyTree> gavMapper, GAV gav) {
         return gavMapper.computeIfAbsent(gav, k -> new GAVDependencyTree(k));
     }
 

@@ -47,8 +47,7 @@ public class SuffixedVersionTest {
         SuffixedVersion v2 = new SuffixedVersion(1, 2, 3, "", "suffix", 1, "1.2.3.suffix-1");
         SuffixedVersion v3a = new SuffixedVersion(1, 2, 3, "", "suffix", 2, "1.2.3.suffix-2");
         SuffixedVersion v3b = new SuffixedVersion(1, 2, 3, "", "xiffus", 1, "1.2.3.xiffus-1");
-        SuffixedVersion v4 = new SuffixedVersion(2, 3, 4, "foobar", "suffix", 1,
-                "2.3.4.foobar-suffix-1");
+        SuffixedVersion v4 = new SuffixedVersion(2, 3, 4, "foobar", "suffix", 1, "2.3.4.foobar-suffix-1");
         Assert.assertEquals("suffix", v1.getSuffix().get());
         Assert.assertEquals(Integer.valueOf(1), v1.getSuffixVersion().get());
         Assert.assertEquals(Integer.valueOf(2), v3a.getSuffixVersion().get());

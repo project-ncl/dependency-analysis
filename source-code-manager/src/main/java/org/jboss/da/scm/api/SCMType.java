@@ -1,8 +1,8 @@
 package org.jboss.da.scm.api;
 
 /**
- * Enum to represent the SCM types supported by SCM. If a new type is added
- * here, please also provide a provide in the SCM class.
+ * Enum to represent the SCM types supported by SCM. If a new type is added here, please also provide a provide in the SCM
+ * class.
  */
 public enum SCMType {
     GIT("GIT"), SVN("SVN");
@@ -15,6 +15,7 @@ public enum SCMType {
 
     /**
      * Returns provided url in Maven SCM format.
+     * 
      * @param url
      * @return
      */

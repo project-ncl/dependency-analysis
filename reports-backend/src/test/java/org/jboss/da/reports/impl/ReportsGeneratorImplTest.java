@@ -104,13 +104,13 @@ public class ReportsGeneratorImplTest {
 
     private final GAV daCoreGAV = new GAV("org.jboss.da", "core", version);
 
-    private final List<String> daCoreVersionsNoBest = Arrays.asList("1.1.1.redhat-2",
-            "1.2.3.redhat-1", "1.3.4.redhat-3", "1.3.5.redhat-1");
+    private final List<String> daCoreVersionsNoBest = Arrays.asList("1.1.1.redhat-2", "1.2.3.redhat-1", "1.3.4.redhat-3",
+            "1.3.5.redhat-1");
 
     private final String bestMatchVersion = version + ".redhat-1";
 
-    private final List<String> daCoreVersionsBest = Arrays.asList("1.1.1.redhat-2",
-            "1.2.3.redhat-1", "1.3.4.redhat-3", "1.3.5.redhat-1", bestMatchVersion);
+    private final List<String> daCoreVersionsBest = Arrays.asList("1.1.1.redhat-2", "1.2.3.redhat-1", "1.3.4.redhat-3",
+            "1.3.5.redhat-1", bestMatchVersion);
 
     private final GAVDependencyTree daCoreNoDT = new GAVDependencyTree(daCoreGAV, new HashSet<>());
 
@@ -122,8 +122,8 @@ public class ReportsGeneratorImplTest {
 
     private final GAVDependencyTree daCommonDT = new GAVDependencyTree(daCommonGAV, new HashSet<>());
 
-    private final GAVDependencyTree daCoreDT = new GAVDependencyTree(daCoreGAV, new HashSet<>(
-            Arrays.asList(daUtilDT, daCommonDT)));
+    private final GAVDependencyTree daCoreDT = new GAVDependencyTree(daCoreGAV,
+            new HashSet<>(Arrays.asList(daUtilDT, daCommonDT)));
 
     private final Product productEAP = new Product("EAP", "7.0", ProductSupportStatus.UNKNOWN);
 
@@ -139,33 +139,28 @@ public class ReportsGeneratorImplTest {
         f.set(to, what);
     }
 
-    private void prepareProductProvider(List<String> versions, List<Product> whitelisted, GAV gav){
-        final Set<Artifact> artifacts = versions.stream()
-                .map(v -> new MavenArtifact(new GAV(gav.getGA(), v)))
+    private void prepareProductProvider(List<String> versions, List<Product> whitelisted, GAV gav) {
+        final Set<Artifact> artifacts = versions.stream().map(v -> new MavenArtifact(new GAV(gav.getGA(), v)))
                 .collect(Collectors.toSet());
 
         Set<ProductArtifacts> prodArts = new HashSet<>();
         prodArts.add(new ProductArtifacts(Product.UNKNOWN, artifacts));
-        for(Product w : whitelisted){
+        for (Product w : whitelisted) {
             prodArts.add(new ProductArtifacts(w, artifacts));
         }
 
-        when(productProvider.getArtifacts(matchingGAV(gav)))
-                .thenReturn(CompletableFuture.completedFuture(prodArts));
+        when(productProvider.getArtifacts(matchingGAV(gav))).thenReturn(CompletableFuture.completedFuture(prodArts));
     }
 
-    private Set<ProductArtifacts> toProductArtifacts(GA ga, List<String> versions){
-        Set<Artifact> artifacts = versions.stream()
-                .map(v -> new MavenArtifact(new GAV(ga, v)))
-                .collect(Collectors.toSet());
+    private Set<ProductArtifacts> toProductArtifacts(GA ga, List<String> versions) {
+        Set<Artifact> artifacts = versions.stream().map(v -> new MavenArtifact(new GAV(ga, v))).collect(Collectors.toSet());
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, artifacts));
     }
 
     private void prepare(List<Product> whitelisted, boolean blacklisted, List<String> versions,
-            GAVDependencyTree dependencyTree) throws CommunicationException,
-            FindGAVDependencyException {
-        when(productProvider.getArtifacts(matchingGAV(daCoreGAV))).thenReturn(
-                CompletableFuture.completedFuture(toProductArtifacts(daCoreGAV.getGA(), versions)));
+            GAVDependencyTree dependencyTree) throws CommunicationException, FindGAVDependencyException {
+        when(productProvider.getArtifacts(matchingGAV(daCoreGAV)))
+                .thenReturn(CompletableFuture.completedFuture(toProductArtifacts(daCoreGAV.getGA(), versions)));
 
         prepareProductProvider(versions, whitelisted, daCoreGAV);
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
@@ -176,15 +171,13 @@ public class ReportsGeneratorImplTest {
         prepare(Collections.emptyList(), false, daCoreVersionsBest, daCoreNoDT);
         when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
-        when(productProvider.getArtifacts(matchingGAV(daUtilGAV))).thenReturn(
-                CompletableFuture.completedFuture(toProductArtifacts(daUtilGAV.getGA(),
-                        daCoreVersionsBest)));
+        when(productProvider.getArtifacts(matchingGAV(daUtilGAV)))
+                .thenReturn(CompletableFuture.completedFuture(toProductArtifacts(daUtilGAV.getGA(), daCoreVersionsBest)));
 
         when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
 
-        when(productProvider.getArtifacts(matchingGAV(daCommonGAV))).thenReturn(
-                CompletableFuture.completedFuture(toProductArtifacts(daCommonGAV.getGA(),
-                        daCoreVersionsNoBest)));
+        when(productProvider.getArtifacts(matchingGAV(daCommonGAV)))
+                .thenReturn(CompletableFuture.completedFuture(toProductArtifacts(daCommonGAV.getGA(), daCoreVersionsNoBest)));
         prepareProductProvider(daCoreVersionsNoBest, Collections.emptyList(), daCommonGAV);
         when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
     }
@@ -196,15 +189,13 @@ public class ReportsGeneratorImplTest {
 
     @Test(expected = FindGAVDependencyException.class)
     public void testNonExistingGAV() throws CommunicationException, FindGAVDependencyException {
-        when(cartographerClient.getDependencyTreeOfGAV(daGAV)).thenThrow(
-                FindGAVDependencyException.class);
+        when(cartographerClient.getDependencyTreeOfGAV(daGAV)).thenThrow(FindGAVDependencyException.class);
 
         generator.getReport(gavToRequest(daGAV));
     }
 
     @Test
-    public void testNonListedNoBestMatchGAV() throws CommunicationException,
-            FindGAVDependencyException {
+    public void testNonListedNoBestMatchGAV() throws CommunicationException, FindGAVDependencyException {
         prepare(Collections.emptyList(), false, daCoreVersionsNoBest, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
@@ -219,8 +210,7 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testWhiteListedNoBestMatchGAV() throws CommunicationException,
-            FindGAVDependencyException {
+    public void testWhiteListedNoBestMatchGAV() throws CommunicationException, FindGAVDependencyException {
         List<Product> whitelisted = Arrays.asList(productEAP);
         prepare(whitelisted, false, daCoreVersionsNoBest, daCoreNoDT);
 
@@ -236,8 +226,7 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testBlackListedBestMatchGAV() throws CommunicationException,
-            FindGAVDependencyException {
+    public void testBlackListedBestMatchGAV() throws CommunicationException, FindGAVDependencyException {
         prepare(Collections.emptyList(), true, daCoreVersionsBest, daCoreNoDT);
 
         ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
@@ -300,14 +289,13 @@ public class ReportsGeneratorImplTest {
 
         List<GAV> distinctList = request.getGavs().stream().distinct().collect(Collectors.toList());
 
-        //Then
+        // Then
         assertEquals(uniqueGAVs.size(), distinctList.size());
         assertTrue(uniqueGAVs.equals(distinctList));
     }
 
     @Test
-    public void testBlacklistedLookupReport() throws CommunicationException,
-            FindGAVDependencyException {
+    public void testBlacklistedLookupReport() throws CommunicationException, FindGAVDependencyException {
         prepare(Collections.emptyList(), true, daCoreVersionsBest, daCoreNoDT);
         LookupGAVsRequest lgr = new LookupGAVsRequest(Collections.singletonList(daCoreGAV));
 
@@ -353,8 +341,7 @@ public class ReportsGeneratorImplTest {
     }
 
     private GAVRequest gavToRequest(GAV g) {
-        return new GAVRequest(g.getGroupId(), g.getArtifactId(), g.getVersion(), new HashSet<>(),
-                new HashSet<>());
+        return new GAVRequest(g.getGroupId(), g.getArtifactId(), g.getVersion(), new HashSet<>(), new HashSet<>());
 
     }
 

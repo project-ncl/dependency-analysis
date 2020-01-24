@@ -68,8 +68,7 @@ public class RestConvert {
         return rp;
     }
 
-    public List<RestProductGAV> fromRelationshipToRestProductGAVList(
-            List<ProductVersionArtifactRelationship> rl) {
+    public List<RestProductGAV> fromRelationshipToRestProductGAVList(List<ProductVersionArtifactRelationship> rl) {
         List<RestProductGAV> rpgList = new ArrayList<>();
         for (ProductVersionArtifactRelationship r : rl) {
             RestProductGAV rpg = new RestProductGAV();

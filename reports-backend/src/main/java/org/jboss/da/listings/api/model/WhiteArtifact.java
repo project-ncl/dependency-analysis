@@ -30,8 +30,7 @@ public class WhiteArtifact extends Artifact {
     @NonNull
     private String osgiVersion;
 
-    public WhiteArtifact(GA ga, String version, User insertedBy, String osgiVersion,
-            boolean is3rdParty) {
+    public WhiteArtifact(GA ga, String version, User insertedBy, String osgiVersion, boolean is3rdParty) {
         super(ga, version, insertedBy);
         this.is3rdParty = is3rdParty;
         this.osgiVersion = osgiVersion;

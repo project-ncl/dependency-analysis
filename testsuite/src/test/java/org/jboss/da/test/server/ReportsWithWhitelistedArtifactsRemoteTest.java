@@ -36,9 +36,9 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
-*
-* @author fkujikis
-*/
+ *
+ * @author fkujikis
+ */
 @RunWith(Arquillian.class)
 public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTest {
 
@@ -114,19 +114,15 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         productService.addProduct("Product1", "2.0.0", ProductSupportStatus.UNKNOWN);
         prodVer1_2 = productVersionDao.findProductVersion("Product1", "2.0.0").get();
 
-        whiteService.addArtifact(whiteArtifact1_1_1.getGroupId(),
-                whiteArtifact1_1_1.getArtifactId(), whiteArtifact1_1_1.getVersion(),
-                prodVer1_1.getId());
-        whiteService.addArtifact(whiteArtifact1_1_2.getGroupId(),
-                whiteArtifact1_1_2.getArtifactId(), whiteArtifact1_1_2.getVersion(),
-                prodVer1_1.getId());
+        whiteService.addArtifact(whiteArtifact1_1_1.getGroupId(), whiteArtifact1_1_1.getArtifactId(),
+                whiteArtifact1_1_1.getVersion(), prodVer1_1.getId());
+        whiteService.addArtifact(whiteArtifact1_1_2.getGroupId(), whiteArtifact1_1_2.getArtifactId(),
+                whiteArtifact1_1_2.getVersion(), prodVer1_1.getId());
 
-        whiteService.addArtifact(whiteArtifact1_2_1.getGroupId(),
-                whiteArtifact1_2_1.getArtifactId(), whiteArtifact1_2_1.getVersion(),
-                prodVer1_2.getId());
-        whiteService.addArtifact(whiteArtifact1_2_2.getGroupId(),
-                whiteArtifact1_2_2.getArtifactId(), whiteArtifact1_2_2.getVersion(),
-                prodVer1_2.getId());
+        whiteService.addArtifact(whiteArtifact1_2_1.getGroupId(), whiteArtifact1_2_1.getArtifactId(),
+                whiteArtifact1_2_1.getVersion(), prodVer1_2.getId());
+        whiteService.addArtifact(whiteArtifact1_2_2.getGroupId(), whiteArtifact1_2_2.getArtifactId(),
+                whiteArtifact1_2_2.getVersion(), prodVer1_2.getId());
 
         whiteArtifact2_1_a = new RestProductArtifact();
         whiteArtifact2_1_a.setGroupId("org.jboss.da");
@@ -146,15 +142,12 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         productService.addProduct("Product2", "1.0.0", ProductSupportStatus.UNKNOWN);
         prodVer2_1 = productVersionDao.findProductVersion("Product2", "1.0.0").get();
 
-        whiteService.addArtifact(whiteArtifact2_1_a.getGroupId(),
-                whiteArtifact2_1_a.getArtifactId(), whiteArtifact2_1_a.getVersion(),
-                prodVer2_1.getId());
-        whiteService.addArtifact(whiteArtifact2_1_b.getGroupId(),
-                whiteArtifact2_1_b.getArtifactId(), whiteArtifact2_1_b.getVersion(),
-                prodVer2_1.getId());
-        whiteService.addArtifact(whiteArtifact2_1_c.getGroupId(),
-                whiteArtifact2_1_c.getArtifactId(), whiteArtifact2_1_c.getVersion(),
-                prodVer2_1.getId());
+        whiteService.addArtifact(whiteArtifact2_1_a.getGroupId(), whiteArtifact2_1_a.getArtifactId(),
+                whiteArtifact2_1_a.getVersion(), prodVer2_1.getId());
+        whiteService.addArtifact(whiteArtifact2_1_b.getGroupId(), whiteArtifact2_1_b.getArtifactId(),
+                whiteArtifact2_1_b.getVersion(), prodVer2_1.getId());
+        whiteService.addArtifact(whiteArtifact2_1_c.getGroupId(), whiteArtifact2_1_c.getArtifactId(),
+                whiteArtifact2_1_c.getVersion(), prodVer2_1.getId());
 
         hibernateGav = artifactToGAV(whiteArtifact1_1_2);
         daGav = artifactToGAV(whiteArtifact1_1_1);
@@ -165,21 +158,21 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     public void tearDown() {
 
         // Remove artifacts
-        whiteService.removeArtifact(whiteArtifact1_1_1.getGroupId(),
-                whiteArtifact1_1_1.getArtifactId(), whiteArtifact1_1_1.getVersion());
-        whiteService.removeArtifact(whiteArtifact1_1_2.getGroupId(),
-                whiteArtifact1_1_2.getArtifactId(), whiteArtifact1_1_2.getVersion());
-        whiteService.removeArtifact(whiteArtifact1_2_1.getGroupId(),
-                whiteArtifact1_2_1.getArtifactId(), whiteArtifact1_2_1.getVersion());
-        whiteService.removeArtifact(whiteArtifact1_2_2.getGroupId(),
-                whiteArtifact1_2_2.getArtifactId(), whiteArtifact1_2_2.getVersion());
+        whiteService.removeArtifact(whiteArtifact1_1_1.getGroupId(), whiteArtifact1_1_1.getArtifactId(),
+                whiteArtifact1_1_1.getVersion());
+        whiteService.removeArtifact(whiteArtifact1_1_2.getGroupId(), whiteArtifact1_1_2.getArtifactId(),
+                whiteArtifact1_1_2.getVersion());
+        whiteService.removeArtifact(whiteArtifact1_2_1.getGroupId(), whiteArtifact1_2_1.getArtifactId(),
+                whiteArtifact1_2_1.getVersion());
+        whiteService.removeArtifact(whiteArtifact1_2_2.getGroupId(), whiteArtifact1_2_2.getArtifactId(),
+                whiteArtifact1_2_2.getVersion());
 
-        whiteService.removeArtifact(whiteArtifact2_1_a.getGroupId(),
-                whiteArtifact2_1_a.getArtifactId(), whiteArtifact2_1_a.getVersion());
-        whiteService.removeArtifact(whiteArtifact2_1_b.getGroupId(),
-                whiteArtifact2_1_b.getArtifactId(), whiteArtifact2_1_b.getVersion());
-        whiteService.removeArtifact(whiteArtifact2_1_c.getGroupId(),
-                whiteArtifact2_1_c.getArtifactId(), whiteArtifact2_1_c.getVersion());
+        whiteService.removeArtifact(whiteArtifact2_1_a.getGroupId(), whiteArtifact2_1_a.getArtifactId(),
+                whiteArtifact2_1_a.getVersion());
+        whiteService.removeArtifact(whiteArtifact2_1_b.getGroupId(), whiteArtifact2_1_b.getArtifactId(),
+                whiteArtifact2_1_b.getVersion());
+        whiteService.removeArtifact(whiteArtifact2_1_c.getGroupId(), whiteArtifact2_1_c.getArtifactId(),
+                whiteArtifact2_1_c.getVersion());
 
         // Remove products
         productService.removeProduct("Product1", "1.0.0");
@@ -197,8 +190,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     // - whitelist addition to top-1 level
 
     private SCMReportRequest getDefaultSCMRequest() {
-        SCMLocator locator = SCMLocator.generic(
-                "https://github.com/project-ncl/dependency-analysis.git", "05a878", "common");
+        SCMLocator locator = SCMLocator.generic("https://github.com/project-ncl/dependency-analysis.git", "05a878", "common");
 
         SCMReportRequest request = new SCMReportRequest();
         request.setScml(locator);
@@ -207,48 +199,48 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     }
 
     @Test
-    public void testScmAllWhiteArtifactsPresent() throws ScmException, PomAnalysisException, CommunicationException{
+    public void testScmAllWhiteArtifactsPresent() throws ScmException, PomAnalysisException, CommunicationException {
 
         SCMReportRequest request = getDefaultSCMRequest();
 
         Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(request);
-        
-        // Ensure we got an artifact report back 
+
+        // Ensure we got an artifact report back
         assertTrue(ar.isPresent());
         ArtifactReport artifactReport = ar.get();
-    
+
         // Ensure all dependencies from whitelist are present
         assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact1_1_1.getVersion()));
         assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact1_2_1.getVersion()));
         assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_a.getVersion()));
-        
+
         // These have different GA so shouldn't be there
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact1_1_2.getVersion()));
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact1_2_2.getVersion()));
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_b.getVersion()));
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_c.getVersion()));
-        
+
         // Find jackson artifactReport and check it contains the jackson version
         Optional<ArtifactReport> dependencyJacksonDatabind = artifactReport.getDependencies().stream()
-            .filter(x -> 
-                        x.getArtifactId().equals(whiteArtifact2_1_b.getArtifactId())
-                        &&
-                        x.getGroupId().equals(whiteArtifact2_1_b.getGroupId())
-                   )
-            .findFirst();
-            
+                .filter(x -> x.getArtifactId().equals(whiteArtifact2_1_b.getArtifactId())
+                        && x.getGroupId().equals(whiteArtifact2_1_b.getGroupId()))
+                .findFirst();
+
         assertTrue(dependencyJacksonDatabind.isPresent());
         assertTrue(dependencyJacksonDatabind.get().getAvailableVersions().contains(whiteArtifact2_1_b.getVersion()));
-    }    @Test
-    public void testScmWhiteArtifactsPresentForDependenciesWithSingleProduct() throws ScmException, PomAnalysisException, CommunicationException{
+    }
+
+    @Test
+    public void testScmWhiteArtifactsPresentForDependenciesWithSingleProduct()
+            throws ScmException, PomAnalysisException, CommunicationException {
 
         SCMReportRequest request = getDefaultSCMRequest();
 
         // Only use artifacts from the single product Product2 : version "1.0.0"
-        request.getProductNames().add(prodVer2_1.getProduct().getName());     
-                
+        request.getProductNames().add(prodVer2_1.getProduct().getName());
+
         Optional<ArtifactReport> ar = reportGenerator.getReportFromSCM(request);
-        
+
         assertTrue(ar.isPresent());
         ArtifactReport artifactReport = ar.get();
 
@@ -256,25 +248,22 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact1_1_1.getVersion()));
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact1_2_1.getVersion()));
         assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_a.getVersion()));
-        assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_b.getVersion()));  
-    
+        assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_b.getVersion()));
+
         // Find jackson artifactReport and check it contains the jackson version
         Optional<ArtifactReport> dependencyJacksonDatabind = artifactReport.getDependencies().stream()
-            .filter(x -> 
-                        x.getArtifactId().equals(whiteArtifact2_1_b.getArtifactId())
-                        &&
-                        x.getGroupId().equals(whiteArtifact2_1_b.getGroupId())
-                   )
-            .findFirst();
-            
+                .filter(x -> x.getArtifactId().equals(whiteArtifact2_1_b.getArtifactId())
+                        && x.getGroupId().equals(whiteArtifact2_1_b.getGroupId()))
+                .findFirst();
+
         assertTrue(dependencyJacksonDatabind.isPresent());
         assertTrue(dependencyJacksonDatabind.get().getAvailableVersions().contains(whiteArtifact2_1_b.getVersion()));
-    
+
     }
 
     @Test
-    public void testScmWhiteArtifactsPresentForSingleProduct() throws ScmException,
-            PomAnalysisException, CommunicationException {
+    public void testScmWhiteArtifactsPresentForSingleProduct()
+            throws ScmException, PomAnalysisException, CommunicationException {
 
         SCMReportRequest request = getDefaultSCMRequest();
         // Only use artifacts from the single product Product1 : versions "1.0.0" and "2.0.0" should be included
@@ -285,7 +274,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         assertTrue(ar.isPresent());
         ArtifactReport artifactReport = ar.get();
 
-        // Artifacts from Product1 (product versions  "1.0.0", "2.0.0" expected)
+        // Artifacts from Product1 (product versions "1.0.0", "2.0.0" expected)
         assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact1_1_1.getVersion()));
         assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact1_2_1.getVersion()));
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_a.getVersion()));
@@ -293,8 +282,8 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     }
 
     @Test
-    public void testScmWhiteArtifactsPresentForSingleProductVersion() throws ScmException,
-            PomAnalysisException, CommunicationException {
+    public void testScmWhiteArtifactsPresentForSingleProductVersion()
+            throws ScmException, PomAnalysisException, CommunicationException {
 
         SCMReportRequest request = getDefaultSCMRequest();
         // Only use artifacts from the single product version : "Product1", "1.0.0"
@@ -315,21 +304,20 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     private GAVRequest getDefaultGAVRequest() {
         Set<String> productNames = new HashSet<>();
         Set<Long> productVersionIds = new HashSet<>();
-        GAVRequest gavRequest = new GAVRequest("org.hibernate", "hibernate-core", "4.2.21.Final",
-                productNames, productVersionIds);
+        GAVRequest gavRequest = new GAVRequest("org.hibernate", "hibernate-core", "4.2.21.Final", productNames,
+                productVersionIds);
         return gavRequest;
     }
 
     @Test
-    public void testGavAllWhiteArtifactsPresent() throws CommunicationException,
-            FindGAVDependencyException {
+    public void testGavAllWhiteArtifactsPresent() throws CommunicationException, FindGAVDependencyException {
 
         // Query all white artifacts from all products
         GAVRequest gavRequest = getDefaultGAVRequest();
 
         ArtifactReport artifactReport = reportGenerator.getReport(gavRequest);
 
-        // Ensure we got an artifact report back 
+        // Ensure we got an artifact report back
         assertTrue(artifactReport != null);
 
         // Ensure all dependencies from whitelist are present matching the query GA
@@ -339,8 +327,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     }
 
     @Test
-    public void testGavWhiteArtifactsPresentForSingleProduct() throws CommunicationException,
-            FindGAVDependencyException {
+    public void testGavWhiteArtifactsPresentForSingleProduct() throws CommunicationException, FindGAVDependencyException {
 
         GAVRequest gavRequest = getDefaultGAVRequest();
 
@@ -348,7 +335,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         gavRequest.getProductNames().add(prodVer1_1.getProduct().getName());
         ArtifactReport artifactReport = reportGenerator.getReport(gavRequest);
 
-        // Ensure we got an artifact report back 
+        // Ensure we got an artifact report back
         assertTrue(artifactReport != null);
 
         // Dependencies from Product 1 expected
@@ -368,7 +355,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
 
         ArtifactReport artifactReport = reportGenerator.getReport(gavRequest);
 
-        // Ensure we got an artifact report back 
+        // Ensure we got an artifact report back
         assertTrue(artifactReport != null);
 
         // Dependencies from Product 1 version 2 expected
@@ -393,8 +380,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     }
 
     @Test
-    public void testGavsLookupAllWhiteArtifactsPresent() throws CommunicationException,
-            FindGAVDependencyException {
+    public void testGavsLookupAllWhiteArtifactsPresent() throws CommunicationException, FindGAVDependencyException {
 
         LookupGAVsRequest req = getDefaultLookupRequest();
 
@@ -489,8 +475,7 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     }
 
     @Test
-    public void testGavsLookupAllWhiteArtifactsErroneousInput() throws CommunicationException,
-            FindGAVDependencyException {
+    public void testGavsLookupAllWhiteArtifactsErroneousInput() throws CommunicationException, FindGAVDependencyException {
 
         LookupGAVsRequest productsNamesReq = getDefaultLookupRequest();
 

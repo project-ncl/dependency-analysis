@@ -11,6 +11,7 @@ import java.util.Optional;
 
 /**
  * Authenticator service used for testing purposes.
+ * 
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RequestScoped
@@ -50,6 +51,7 @@ public class JAASAuthenticatorService implements AuthenticatorService {
 
     /**
      * Force logged in user.
+     * 
      * @param username
      */
     public static void setUser(String username) {

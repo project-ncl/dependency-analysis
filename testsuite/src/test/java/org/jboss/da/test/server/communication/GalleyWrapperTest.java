@@ -76,8 +76,7 @@ public class GalleyWrapperTest extends AbstractServerTest {
 
     @Before
     public void cloneRepo() throws ScmException {
-        clonedRepository = scm.cloneRepository(SCMType.GIT,
-                "https://github.com/project-ncl/dependency-analysis.git", VERSION);
+        clonedRepository = scm.cloneRepository(SCMType.GIT, "https://github.com/project-ncl/dependency-analysis.git", VERSION);
     }
 
     private void printDeptree(GAVDependencyTree tree, String prefix) {
@@ -89,11 +88,10 @@ public class GalleyWrapperTest extends AbstractServerTest {
     }
 
     @Test
-    public void testReadRelationships() throws IOException, PomAnalysisException,
-            GalleyMavenException, CartoDataException {
+    public void testReadRelationships() throws IOException, PomAnalysisException, GalleyMavenException, CartoDataException {
         long start = System.nanoTime();
-        GAVDependencyTree readRelationships = pomAnalyzer.readRelationships(clonedRepository,
-                "application/pom.xml", Collections.emptyList());
+        GAVDependencyTree readRelationships = pomAnalyzer.readRelationships(clonedRepository, "application/pom.xml",
+                Collections.emptyList());
         float time = (System.nanoTime() - start) / 1000000.0f;
 
         System.out.println("Dependency tree:");
@@ -103,8 +101,7 @@ public class GalleyWrapperTest extends AbstractServerTest {
 
     @Test
     public void testGetPom() throws IOException, PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf,
-                processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf, processor)) {
             GalleyWrapper.Artifact parent = gw.getPom("pom.xml");
 
             assertEquals(PARENT_GAV, parent.getGAV());
@@ -117,8 +114,7 @@ public class GalleyWrapperTest extends AbstractServerTest {
 
     @Test
     public void testGetModules() throws IOException, PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf,
-                processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf, processor)) {
             GalleyWrapper.Artifact parent = gw.getPom("pom.xml");
 
             Set<GalleyWrapper.Artifact> modules = gw.getModules(parent);
@@ -151,8 +147,7 @@ public class GalleyWrapperTest extends AbstractServerTest {
 
     @Test
     public void testGetDependencies() throws IOException, PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf,
-                processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf, processor)) {
             gw.addDefaultLocations(config);
             gw.addLocationsFromPoms(pomReader);
 
@@ -161,10 +156,8 @@ public class GalleyWrapperTest extends AbstractServerTest {
             Set<GAV> dependencies = gw.getDependencies(common);
             assertEquals(8, dependencies.size());
 
-            assertTrue(dependencies.contains(new GAV("org.jboss.resteasy", "resteasy-jaxrs",
-                    "2.3.10.Final")));
-            assertTrue(dependencies.contains(new GAV("org.codehaus.jackson", "jackson-mapper-asl",
-                    "1.9.9")));
+            assertTrue(dependencies.contains(new GAV("org.jboss.resteasy", "resteasy-jaxrs", "2.3.10.Final")));
+            assertTrue(dependencies.contains(new GAV("org.codehaus.jackson", "jackson-mapper-asl", "1.9.9")));
             assertTrue(dependencies.contains(new GAV("org.projectlombok", "lombok", "1.16.4")));
             assertTrue(dependencies.contains(new GAV("junit", "junit", "4.11")));
         }

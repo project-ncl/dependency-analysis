@@ -33,8 +33,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * This bean is used to translate products identified by the DB identifiers to abstract product
- * objects used by Product Providers.
+ * This bean is used to translate products identified by the DB identifiers to abstract product objects used by Product
+ * Providers.
  *
  * @see Product
  * @see ProductProvider
@@ -57,7 +57,8 @@ public class ProductAdapter {
         StringBuilder errorMsg = new StringBuilder();
 
         if (productNames != null && !productNames.isEmpty()) {
-            List<org.jboss.da.listings.api.model.Product> productsByName = productDao.findAllWithNames(new ArrayList<>(productNames));
+            List<org.jboss.da.listings.api.model.Product> productsByName = productDao
+                    .findAllWithNames(new ArrayList<>(productNames));
             if (productNames.size() == productsByName.size()) {
                 for (String productName : productNames) {
                     List<ProductVersion> prodVers = productVersionService.getAllForProduct(productName);
@@ -89,15 +90,11 @@ public class ProductAdapter {
             throw new IllegalArgumentException(errorMsg.toString());
         }
 
-        return productVersions.stream()
-                .map(ProductAdapter::toProduct)
-                .collect(Collectors.toSet());
+        return productVersions.stream().map(ProductAdapter::toProduct).collect(Collectors.toSet());
     }
 
     private <T> String joinMissing(Collection<T> invalidItems) {
-        return invalidItems.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining(",", "[", "];"));
+        return invalidItems.stream().map(Object::toString).collect(Collectors.joining(",", "[", "];"));
     }
 
     private static Product toProduct(ProductVersion pv) {

@@ -31,8 +31,7 @@ public class SCMImpl implements SCM {
     SCMCache cache;
 
     @Override
-    public File cloneRepository(SCMType scmType, String scmUrl, String revision)
-            throws ScmException {
+    public File cloneRepository(SCMType scmType, String scmUrl, String revision) throws ScmException {
         SCMSpecifier spec = new SCMSpecifier(scmType, scmUrl, revision);
 
         FutureReference fref = cache.get(spec);
@@ -51,19 +50,19 @@ public class SCMImpl implements SCM {
                     try {
                         FileUtils.deleteDirectory(tempDir);
                     } catch (IOException ioex) {
-                        
+
                         log.warn("Temporary directory could not be deleted", ioex);
                     }
                     throw ex;
                 }
             } catch (IOException ex) {
-                throw new ScmException(
-                        "Could not create temp directory for cloning the repository", ex);
+                throw new ScmException("Could not create temp directory for cloning the repository", ex);
             }
 
         } else {
             try {
-                File dir = fref.get(30, TimeUnit.MINUTES).get().orElseThrow(()->new IllegalStateException("Now completed reference has empty file."));
+                File dir = fref.get(30, TimeUnit.MINUTES).get()
+                        .orElseThrow(() -> new IllegalStateException("Now completed reference has empty file."));
                 log.info("Cached repository for {} found in {}.", spec, dir);
                 return dir;
             } catch (InterruptedException | ExecutionException | TimeoutException ex) {

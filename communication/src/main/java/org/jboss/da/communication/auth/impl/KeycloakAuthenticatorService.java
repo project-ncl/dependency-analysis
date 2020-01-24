@@ -21,8 +21,7 @@ public class KeycloakAuthenticatorService implements AuthenticatorService {
     private HttpServletRequest sr;
 
     private Optional<AccessToken> token() {
-        KeycloakSecurityContext ksc = (KeycloakSecurityContext) sr
-                .getAttribute(KeycloakSecurityContext.class.getName());
+        KeycloakSecurityContext ksc = (KeycloakSecurityContext) sr.getAttribute(KeycloakSecurityContext.class.getName());
 
         if (ksc == null) {
             return Optional.empty();
@@ -43,8 +42,7 @@ public class KeycloakAuthenticatorService implements AuthenticatorService {
 
     @Override
     public Optional<String> accessToken() {
-        KeycloakSecurityContext ksc = (KeycloakSecurityContext) sr
-                .getAttribute(KeycloakSecurityContext.class.getName());
+        KeycloakSecurityContext ksc = (KeycloakSecurityContext) sr.getAttribute(KeycloakSecurityContext.class.getName());
         if (ksc == null) {
             return Optional.empty();
         }

@@ -34,15 +34,12 @@ public class ProductVersionServiceImpl implements ProductVersionService {
     }
 
     @Override
-    public List<ProductVersion> getProductVersionsOfArtifact(String groupId, String artifactId,
-            String version) {
-        return productVersionDAO.findProductVersionsWithArtifact(groupId, artifactId, version,
-                false);
+    public List<ProductVersion> getProductVersionsOfArtifact(String groupId, String artifactId, String version) {
+        return productVersionDAO.findProductVersionsWithArtifact(groupId, artifactId, version, false);
     }
 
     @Override
-    public List<ProductVersion> getProductVersions(Long id, String name, String version,
-            ProductSupportStatus status) {
+    public List<ProductVersion> getProductVersions(Long id, String name, String version, ProductSupportStatus status) {
         return productVersionDAO.findProductVersions(id, name, version, status);
     }
 
@@ -52,23 +49,20 @@ public class ProductVersionServiceImpl implements ProductVersionService {
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactByGAV(
-            String groupId, String artifactId, String version) {
+    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactByGAV(String groupId, String artifactId,
+            String version) {
         return productVersionDAO.findProductVersionsWithArtifactByGAV(groupId, artifactId, version);
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(
-            String groupId, String artifactId, ProductSupportStatus status) {
-        return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId,
-                Optional.of(status));
+    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(String groupId, String artifactId,
+            ProductSupportStatus status) {
+        return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId, Optional.of(status));
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGA(
-            String groupId, String artifactId) {
-        return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId,
-                Optional.empty());
+    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGA(String groupId, String artifactId) {
+        return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId, Optional.empty());
     }
 
     @Override

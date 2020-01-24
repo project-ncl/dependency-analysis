@@ -37,16 +37,18 @@ public class DependencyTreeBuilder {
     /**
      * Transforms DependencyRelationships into GAVDependencyTree.
      */
-    public GAVDependencyTree getDependencyTree(Set<DependencyRelationship> rels, GAV origin, boolean testDeps, boolean providedDeps){
+    public GAVDependencyTree getDependencyTree(Set<DependencyRelationship> rels, GAV origin, boolean testDeps,
+            boolean providedDeps) {
         PathNode pathRoot = new PathNode(origin);
         Map<GAV, Set<DependencyRelationship>> byGav = new TreeMap<>();
 
-        for(DependencyRelationship rel : rels){
+        for (DependencyRelationship rel : rels) {
             GAV gav = GalleyWrapper.generateGAV(rel.getDeclaring());
-            Set<DependencyRelationship> deps = byGav.computeIfAbsent(gav, (k) -> new TreeSet<>(new DependencyRelationshipComparator()));
+            Set<DependencyRelationship> deps = byGav.computeIfAbsent(gav,
+                    (k) -> new TreeSet<>(new DependencyRelationshipComparator()));
             deps.add(rel);
         }
-        
+
         walkDependencies(pathRoot, byGav, testDeps, providedDeps);
 
         GAVDependencyTree depRoot = new GAVDependencyTree(pathRoot.gav);
@@ -63,8 +65,8 @@ public class DependencyTreeBuilder {
         }
     }
 
-    private void walkDependencies(PathNode root, Map<GAV, Set<DependencyRelationship>> byGav,
-            boolean testDeps, boolean providedDeps) {
+    private void walkDependencies(PathNode root, Map<GAV, Set<DependencyRelationship>> byGav, boolean testDeps,
+            boolean providedDeps) {
         Set<DependencyRelationship> rels = byGav.get(root.gav);
 
         if (rels == null)
@@ -130,7 +132,7 @@ public class DependencyTreeBuilder {
             this.excludes.addAll(excludes);
         }
 
-        public boolean exclude(ProjectRef ref){
+        public boolean exclude(ProjectRef ref) {
             return excludes.stream().anyMatch(ex -> ex.matches(ref));
         }
 
@@ -165,8 +167,7 @@ public class DependencyTreeBuilder {
         }
     }
 
-    private static class DependencyRelationshipComparator implements
-            Comparator<DependencyRelationship>, Serializable {
+    private static class DependencyRelationshipComparator implements Comparator<DependencyRelationship>, Serializable {
 
         @Override
         public int compare(DependencyRelationship o1, DependencyRelationship o2) {
@@ -178,8 +179,7 @@ public class DependencyTreeBuilder {
                 ret = target1.getArtifactId().compareTo(target2.getArtifactId());
             }
             if (ret == 0) {
-                ret = DummyVersionComparator.compareVersions(target1.getVersionString(),
-                        target2.getVersionString());
+                ret = DummyVersionComparator.compareVersions(target1.getVersionString(), target2.getVersionString());
 
             }
             if (ret == 0) {

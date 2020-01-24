@@ -21,8 +21,7 @@ public class NpmMetadata {
     private final Map<String, NpmPackage> versions;
 
     @JsonCreator
-    public NpmMetadata(@JsonProperty("name") String name,
-            @JsonProperty("versions") Map<String, NpmPackage> versions) {
+    public NpmMetadata(@JsonProperty("name") String name, @JsonProperty("versions") Map<String, NpmPackage> versions) {
         this.name = name;
         this.versions = versions;
     }

@@ -17,8 +17,8 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 public class AbstractServerTest {
 
     @Rule
-    public WireMockRule wireMockRule = new WireMockRule(options().port(8081)
-            .usingFilesUnderDirectory("src/test/resources/wiremock"));
+    public WireMockRule wireMockRule = new WireMockRule(
+            options().port(8081).usingFilesUnderDirectory("src/test/resources/wiremock"));
 
     @Deployment
     public static EnterpriseArchive createDeployment() {

@@ -51,7 +51,7 @@ public class VersionComparatorTest {
         assertTrue(vc.compare("3.4.2.Final-redhat-1", "3.4.2.Final-redhat-2") < 0);
         assertTrue(vc.compare("3.4.2.redhat-1", "3.4.2.redhat-2") < 0);
 
-        //These are equivalent, but OSGI version is preferred (NCL-4532)
+        // These are equivalent, but OSGI version is preferred (NCL-4532)
         assertTrue(vc.compare("3-redhat-2", "3.0.0.redhat-2") < 0);
         assertTrue(vc.compare("3.redhat-2", "3.0.0.redhat-2") < 0);
         assertTrue(vc.compare("3.0-redhat-2", "3.0.0.redhat-2") < 0);
@@ -111,7 +111,8 @@ public class VersionComparatorTest {
 
         assertTrue(vc.compare("2.2.0.b21", "2.2.0.b10") < 0);
         assertTrue(vc.compare("2.2.0.SP4", "2.2.0.b21") < 0);
-        assertTrue(vc.compare("2.2.0.Final", "2.2.0.SP4") > 0); // Too difficult to implement correctly - the list of special qualifiers (like Final, GA, ...) would be needed
+        assertTrue(vc.compare("2.2.0.Final", "2.2.0.SP4") > 0); // Too difficult to implement correctly - the list of special
+                                                                // qualifiers (like Final, GA, ...) would be needed
         assertTrue(vc.compare("2.2.0.Final", "2.2.0.CR1") < 0);
         assertTrue(vc.compare("2.2.0.GA", "2.2.0.SP4") > 0); // Too difficult to implement correctly
         assertTrue(vc.compare("2.2.0.GA", "2.2.0.CR1") < 0);

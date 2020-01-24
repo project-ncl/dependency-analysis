@@ -69,13 +69,11 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
     }
 
     private String readWebsocketApiUrl() {
-        return readConfigurationValue("testsuite.websocketApiUrl", "ws://" + hostUrl + "/"
-                + getContextRoot() + "/ws");
+        return readConfigurationValue("testsuite.websocketApiUrl", "ws://" + hostUrl + "/" + getContextRoot() + "/ws");
     }
 
-    protected JSONRPC2Response assertResponseForRequest(String path, String requestFile,
-            String method) throws IOException, InterruptedException, ExecutionException,
-            TimeoutException {
+    protected JSONRPC2Response assertResponseForRequest(String path, String requestFile, String method)
+            throws IOException, InterruptedException, ExecutionException, TimeoutException {
         File jsonRequestFile = getJsonRequestFile(path, requestFile);
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> parameters = mapper.readValue(jsonRequestFile, Map.class);
@@ -86,8 +84,7 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
 
         assertTrue(response.indicatesSuccess());
         File expectedResponseFile = getJsonResponseFile(path, requestFile);
-        assertEqualsJson(FileUtils.readFileToString(expectedResponseFile).trim(),
-                responseString.trim());
+        assertEqualsJson(FileUtils.readFileToString(expectedResponseFile).trim(), responseString.trim());
         return response;
     }
 
@@ -111,7 +108,8 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
                     JSONRPC2Response parse = JSONRPC2Response.parse(message);
                     responses.put(parse.getID(), parse);
                 } catch (JSONRPC2ParseException ex) {
-                    Logger.getLogger(AbstractWebsocketApiTest.class.getName()).log(Level.SEVERE, "Unknown message: " + message, ex);
+                    Logger.getLogger(AbstractWebsocketApiTest.class.getName()).log(Level.SEVERE, "Unknown message: " + message,
+                            ex);
                 }
             });
 
@@ -130,8 +128,8 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
             this.closeLatch.countDown(); // trigger latch
         }
 
-        public JSONRPC2Response sendRequest(JSONRPC2Request request) throws InterruptedException,
-                ExecutionException, TimeoutException, IOException {
+        public JSONRPC2Response sendRequest(JSONRPC2Request request)
+                throws InterruptedException, ExecutionException, TimeoutException, IOException {
             System.out.println("Sending message");
             Long id = sequence.incrementAndGet();
             request.setID(id);

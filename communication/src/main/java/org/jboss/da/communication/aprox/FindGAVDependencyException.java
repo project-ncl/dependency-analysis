@@ -1,8 +1,7 @@
 package org.jboss.da.communication.aprox;
 
 /**
- * This exception is thrown when the GAV we want to analyze for dependencies
- * cannot be found on the Aprox server
+ * This exception is thrown when the GAV we want to analyze for dependencies cannot be found on the Aprox server
  */
 public class FindGAVDependencyException extends Exception {
 

@@ -89,37 +89,31 @@ public class ArtifactBlackWhitelistTransitionsTest extends AbstractServerTest {
         JAASAuthenticatorService.setUser("user");
 
         // Add whiteArtifact1 and whiteToBlackArtifact to Product1
-        whiteService.addArtifact(whiteArtifact1.getGroupId(), whiteArtifact1.getArtifactId(),
-                whiteArtifact1.getVersion(), product1.getId());
-        whiteService.addArtifact(whiteToBlackArtifact.getGroupId(),
-                whiteToBlackArtifact.getArtifactId(), whiteToBlackArtifact.getVersion(),
+        whiteService.addArtifact(whiteArtifact1.getGroupId(), whiteArtifact1.getArtifactId(), whiteArtifact1.getVersion(),
                 product1.getId());
+        whiteService.addArtifact(whiteToBlackArtifact.getGroupId(), whiteToBlackArtifact.getArtifactId(),
+                whiteToBlackArtifact.getVersion(), product1.getId());
 
         // Add whiteArtifact2 and whiteToBlackArtifact to Product2
-        whiteService.addArtifact(whiteArtifact2.getGroupId(), whiteArtifact2.getArtifactId(),
-                whiteArtifact2.getVersion(), product2.getId());
-        whiteService.addArtifact(whiteToBlackArtifact.getGroupId(),
-                whiteToBlackArtifact.getArtifactId(), whiteToBlackArtifact.getVersion(),
+        whiteService.addArtifact(whiteArtifact2.getGroupId(), whiteArtifact2.getArtifactId(), whiteArtifact2.getVersion(),
                 product2.getId());
+        whiteService.addArtifact(whiteToBlackArtifact.getGroupId(), whiteToBlackArtifact.getArtifactId(),
+                whiteToBlackArtifact.getVersion(), product2.getId());
 
-        blackService.addArtifact(blackArtifact1.getGroupId(), blackArtifact1.getArtifactId(),
-                blackArtifact1.getVersion());
+        blackService.addArtifact(blackArtifact1.getGroupId(), blackArtifact1.getArtifactId(), blackArtifact1.getVersion());
 
     }
 
     @After
     public void tearDown() {
         // Remove all artifacts
-        whiteService.removeArtifact(whiteArtifact1.getGroupId(), whiteArtifact1.getArtifactId(),
-                whiteArtifact1.getVersion());
-        whiteService.removeArtifact(whiteArtifact2.getGroupId(), whiteArtifact2.getArtifactId(),
-                whiteArtifact2.getVersion());
-        whiteService.removeArtifact(whiteToBlackArtifact.getGroupId(),
-                whiteToBlackArtifact.getArtifactId(), whiteToBlackArtifact.getVersion());
-        blackService.removeArtifact(whiteToBlackArtifact.getGroupId(),
-                whiteToBlackArtifact.getArtifactId(), whiteToBlackArtifact.getVersion());
-        blackService.removeArtifact(blackArtifact1.getGroupId(), blackArtifact1.getArtifactId(),
-                blackArtifact1.getVersion());
+        whiteService.removeArtifact(whiteArtifact1.getGroupId(), whiteArtifact1.getArtifactId(), whiteArtifact1.getVersion());
+        whiteService.removeArtifact(whiteArtifact2.getGroupId(), whiteArtifact2.getArtifactId(), whiteArtifact2.getVersion());
+        whiteService.removeArtifact(whiteToBlackArtifact.getGroupId(), whiteToBlackArtifact.getArtifactId(),
+                whiteToBlackArtifact.getVersion());
+        blackService.removeArtifact(whiteToBlackArtifact.getGroupId(), whiteToBlackArtifact.getArtifactId(),
+                whiteToBlackArtifact.getVersion());
+        blackService.removeArtifact(blackArtifact1.getGroupId(), blackArtifact1.getArtifactId(), blackArtifact1.getVersion());
 
         // Remove all products
         productService.removeProduct("Product1", "1.0.0");
@@ -142,20 +136,18 @@ public class ArtifactBlackWhitelistTransitionsTest extends AbstractServerTest {
         assertEquals(2, product2.getWhiteArtifacts().size());
 
         // Check artifact was previously white listed
-        ArtifactStatus as = blackService.addArtifact(whiteToBlackArtifact.getGroupId(),
-                whiteToBlackArtifact.getArtifactId(), whiteToBlackArtifact.getVersion());
+        ArtifactStatus as = blackService.addArtifact(whiteToBlackArtifact.getGroupId(), whiteToBlackArtifact.getArtifactId(),
+                whiteToBlackArtifact.getVersion());
         assertEquals(ArtifactStatus.WAS_WHITELISTED, as);
 
         // Check the artifact was blacklisted
-        Optional<BlackArtifact> artifact = blackService.getArtifact(
-                whiteToBlackArtifact.getGroupId(), whiteToBlackArtifact.getArtifactId(),
-                whiteToBlackArtifact.getVersion());
+        Optional<BlackArtifact> artifact = blackService.getArtifact(whiteToBlackArtifact.getGroupId(),
+                whiteToBlackArtifact.getArtifactId(), whiteToBlackArtifact.getVersion());
         assertTrue(artifact.isPresent());
 
         // Check artifact is no longer in whitelist DB
-        List<WhiteArtifact> whiteArtifactsMatchingGav = whiteService.getArtifacts(
-                whiteToBlackArtifact.getGroupId(), whiteToBlackArtifact.getArtifactId(),
-                whiteToBlackArtifact.getVersion());
+        List<WhiteArtifact> whiteArtifactsMatchingGav = whiteService.getArtifacts(whiteToBlackArtifact.getGroupId(),
+                whiteToBlackArtifact.getArtifactId(), whiteToBlackArtifact.getVersion());
         assertTrue(whiteArtifactsMatchingGav.isEmpty());
 
         // Check artifact is still on product white lists
@@ -175,8 +167,8 @@ public class ArtifactBlackWhitelistTransitionsTest extends AbstractServerTest {
         assertEquals(2, product1.getWhiteArtifacts().size());
 
         // Add the blacklisted artifact to a product
-        ArtifactStatus as = whiteService.addArtifact(blackArtifact1.getGroupId(),
-                blackArtifact1.getArtifactId(), blackArtifact1.getVersion(), product1.getId());
+        ArtifactStatus as = whiteService.addArtifact(blackArtifact1.getGroupId(), blackArtifact1.getArtifactId(),
+                blackArtifact1.getVersion(), product1.getId());
         assertEquals(as, ArtifactStatus.ADDED);
 
         // Check blackArtifact1 artifact has been added to product 1
@@ -194,9 +186,8 @@ public class ArtifactBlackWhitelistTransitionsTest extends AbstractServerTest {
         assertTrue(whiteArtifacts.isEmpty());
 
         // Check artifact can be removed as before
-        boolean artifactRemovedFromProduct = whiteService.removeArtifractFromProductVersion(
-                blackArtifact1.getGroupId(), blackArtifact1.getArtifactId(),
-                blackArtifact1.getVersion(), product1.getId());
+        boolean artifactRemovedFromProduct = whiteService.removeArtifractFromProductVersion(blackArtifact1.getGroupId(),
+                blackArtifact1.getArtifactId(), blackArtifact1.getVersion(), product1.getId());
         assertTrue(artifactRemovedFromProduct);
 
         // Check blackArtifact1 artifact has been removed from product 1

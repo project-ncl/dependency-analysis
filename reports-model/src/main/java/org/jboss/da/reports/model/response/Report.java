@@ -54,12 +54,10 @@ public class Report {
     @Getter
     private final int notBuiltDependencies;
 
-    public Report(GAV gav, List<String> availableVersions, String bestMatchVersion,
-            boolean dependencyVersionsSatisfied, List<Report> dependencies, boolean blacklisted,
-            List<RestProductInput> whitelisted, int notBuiltDependencies) {
-        this(gav.getGroupId(), gav.getArtifactId(), gav.getVersion(), availableVersions,
-                bestMatchVersion, dependencyVersionsSatisfied, dependencies, blacklisted,
-                whitelisted, notBuiltDependencies);
+    public Report(GAV gav, List<String> availableVersions, String bestMatchVersion, boolean dependencyVersionsSatisfied,
+            List<Report> dependencies, boolean blacklisted, List<RestProductInput> whitelisted, int notBuiltDependencies) {
+        this(gav.getGroupId(), gav.getArtifactId(), gav.getVersion(), availableVersions, bestMatchVersion,
+                dependencyVersionsSatisfied, dependencies, blacklisted, whitelisted, notBuiltDependencies);
     }
 
 }

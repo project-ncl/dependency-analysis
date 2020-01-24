@@ -12,8 +12,8 @@ import org.jboss.da.model.rest.GAV;
 public interface AproxConnector {
 
     /**
-     * Finds available versions of specific groupId artifactId.
-     * If the provided groupId artifactId is not found in repository, returns empty list.
+     * Finds available versions of specific groupId artifactId. If the provided groupId artifactId is not found in repository,
+     * returns empty list.
      * 
      * @param ga
      * @return list of versions for given groupId artifactId in repository.
@@ -22,8 +22,8 @@ public interface AproxConnector {
     List<String> getVersionsOfGA(GA ga) throws RepositoryException;
 
     /**
-     * Finds available versions of specific groupId artifactId.
-     * If the provided groupId artifactId is not found in repository, returns empty list.
+     * Finds available versions of specific groupId artifactId. If the provided groupId artifactId is not found in repository,
+     * returns empty list.
      *
      * @param ga
      * @param repository Search versions in provided repository instead of default one.
@@ -33,8 +33,8 @@ public interface AproxConnector {
     List<String> getVersionsOfGA(GA ga, String repository) throws RepositoryException;
 
     /**
-     * Finds available versions of specific npm package.
-     * If the provided package name is not found in repository, returns empty list.
+     * Finds available versions of specific npm package. If the provided package name is not found in repository, returns empty
+     * list.
      *
      * @param packageName Name of the npm package
      * @return list of versions for package in repository.
@@ -43,8 +43,8 @@ public interface AproxConnector {
     List<String> getVersionsOfNpm(String packageName) throws RepositoryException;
 
     /**
-     * Finds available versions of specific npm package.
-     * If the provided package name is not found in repository, returns empty list.
+     * Finds available versions of specific npm package. If the provided package name is not found in repository, returns empty
+     * list.
      *
      * @param packageName Name of the npm package
      * @param repository Search versions in provided repository instead of default one.
@@ -58,8 +58,8 @@ public interface AproxConnector {
     Optional<InputStream> getPomStream(GAV gav) throws RepositoryException;
 
     /**
-     * Finds out if a particular gav is present in the public repository listed
-     * by Aprox
+     * Finds out if a particular gav is present in the public repository listed by Aprox
+     * 
      * @param gav
      * @return boolean
      * @throws RepositoryException if we can't connect to the aprox server
