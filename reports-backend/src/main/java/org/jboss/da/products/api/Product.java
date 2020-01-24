@@ -15,8 +15,7 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 public class Product {
 
-    public static final Product UNKNOWN = new Product("Unknown", "Unknown",
-            ProductSupportStatus.UNKNOWN);
+    public static final Product UNKNOWN = new Product("Unknown", "Unknown", ProductSupportStatus.UNKNOWN);
 
     private final String name;
 

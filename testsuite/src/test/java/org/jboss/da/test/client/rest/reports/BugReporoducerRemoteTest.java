@@ -40,8 +40,8 @@ public class BugReporoducerRemoteTest extends AbstractRestReportsTest {
         String gavNonexisting = "pnc-3de7ed5";
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, gavNonexisting);
 
-        Response response = createClientRequest(PATH_SCM).post(
-                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
+        Response response = createClientRequest(PATH_SCM)
+                .post(Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
 
         assertEquals(200, response.getStatus());
     }
@@ -51,8 +51,8 @@ public class BugReporoducerRemoteTest extends AbstractRestReportsTest {
         String nonOSGiDependency = "NCL5377";
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, nonOSGiDependency);
 
-        Response response = createClientRequest(PATH_SCM).post(
-                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
+        Response response = createClientRequest(PATH_SCM)
+                .post(Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
 
         assertEquals(200, response.getStatus());
     }

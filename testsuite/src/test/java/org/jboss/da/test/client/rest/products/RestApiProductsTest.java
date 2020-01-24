@@ -56,8 +56,7 @@ public class RestApiProductsTest extends AbstractRestApiListingTest {
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
 
         // Get diff
-        Response response = createClientRequest(
-                PATH_PRODUCTS_DIFF + "?leftProduct=" + p1 + "&rightProduct=" + p2).get();
+        Response response = createClientRequest(PATH_PRODUCTS_DIFF + "?leftProduct=" + p1 + "&rightProduct=" + p2).get();
         assertEquals(200, response.getStatus());
 
         checkExpectedResponse(response, "diff");

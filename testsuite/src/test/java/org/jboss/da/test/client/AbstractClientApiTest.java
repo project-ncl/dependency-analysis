@@ -24,8 +24,8 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 public abstract class AbstractClientApiTest {
 
     @Rule
-    public WireMockRule wireMockRule = new WireMockRule(options().port(8081)
-            .usingFilesUnderDirectory("src/test/resources/wiremock"));
+    public WireMockRule wireMockRule = new WireMockRule(
+            options().port(8081).usingFilesUnderDirectory("src/test/resources/wiremock"));
 
     protected static final String ENCODING = "utf-8";
 
@@ -43,15 +43,14 @@ public abstract class AbstractClientApiTest {
 
     private Path readRestApiRequestFolder() {
         String versionFolder = convertRestApiVersionToFolderName();
-        return Paths.get(readConfigurationValue("testsuite.restApiRequestFolder", "src/test/rest"
-                + (versionFolder == null ? "" : "/" + versionFolder) + "/request"));
+        return Paths.get(readConfigurationValue("testsuite.restApiRequestFolder",
+                "src/test/rest" + (versionFolder == null ? "" : "/" + versionFolder) + "/request"));
     }
 
     private Path readRestApiExpectedResponseFolder() {
         String versionFolder = convertRestApiVersionToFolderName();
         return Paths.get(readConfigurationValue("testsuite.restApiExpectedResponseFolder",
-                "src/test/rest" + (versionFolder == null ? "" : "/" + versionFolder)
-                        + "/expectedResponse/"));
+                "src/test/rest" + (versionFolder == null ? "" : "/" + versionFolder) + "/expectedResponse/"));
     }
 
     protected String readConfigurationValue(String name, String defaultValue) {
@@ -85,8 +84,7 @@ public abstract class AbstractClientApiTest {
             this(folder, path, contentType, DEFAULT_VARIANT);
         }
 
-        public ExpectedResponseFilenameBuilder(Path folder, String path, ContentType contentType,
-                String variant) {
+        public ExpectedResponseFilenameBuilder(Path folder, String path, ContentType contentType, String variant) {
             this.folder = folder;
             this.path = path;
             this.contentType = contentType;
@@ -98,8 +96,7 @@ public abstract class AbstractClientApiTest {
         }
 
         public Path getPath() {
-            return folder.resolve(convertPath(path) + convertVariant(variant)
-                    + convertContentType(contentType));
+            return folder.resolve(convertPath(path) + convertVariant(variant) + convertContentType(contentType));
         }
 
         private String convertVariant(String path) {
@@ -107,8 +104,7 @@ public abstract class AbstractClientApiTest {
         }
 
         private String convertPath(String path) {
-            String convertedPath = path.endsWith("/") ? path.substring(0, path.length() - 1)
-                    + "index" : path;
+            String convertedPath = path.endsWith("/") ? path.substring(0, path.length() - 1) + "index" : path;
             return convertedPath.startsWith("/") ? convertedPath.substring(1) : convertedPath;
         }
 
@@ -142,8 +138,7 @@ public abstract class AbstractClientApiTest {
             this(folder, path, contentType, DEFAULT_VARIANT);
         }
 
-        public RequestFilenameBuilder(Path folder, String path, ContentType contentType,
-                String variant) {
+        public RequestFilenameBuilder(Path folder, String path, ContentType contentType, String variant) {
             this.folder = folder;
             this.path = path;
             this.contentType = contentType;
@@ -155,8 +150,7 @@ public abstract class AbstractClientApiTest {
         }
 
         public Path getPath() {
-            return folder.resolve(convertPath(path) + convertVariant(variant)
-                    + convertContentType(contentType));
+            return folder.resolve(convertPath(path) + convertVariant(variant) + convertContentType(contentType));
         }
 
         private String convertVariant(String path) {
@@ -164,8 +158,7 @@ public abstract class AbstractClientApiTest {
         }
 
         private String convertPath(String path) {
-            String convertedPath = path.endsWith("/") ? path.substring(0, path.length() - 1)
-                    + "index" : path;
+            String convertedPath = path.endsWith("/") ? path.substring(0, path.length() - 1) + "index" : path;
             return convertedPath.startsWith("/") ? convertedPath.substring(1) : convertedPath;
         }
 
@@ -196,13 +189,12 @@ public abstract class AbstractClientApiTest {
     }
 
     protected File getJsonRequestFile(String path, String variant) {
-        return new RequestFilenameBuilder(restApiRequestFolder, path, ContentType.APPLICATION_JSON,
-                variant).getFile();
+        return new RequestFilenameBuilder(restApiRequestFolder, path, ContentType.APPLICATION_JSON, variant).getFile();
     }
 
     protected File getJsonResponseFile(String path, String variant) {
-        return new ExpectedResponseFilenameBuilder(restApiExpectedResponseFolder, path,
-                ContentType.APPLICATION_JSON, variant).getFile();
+        return new ExpectedResponseFilenameBuilder(restApiExpectedResponseFolder, path, ContentType.APPLICATION_JSON, variant)
+                .getFile();
     }
 
     protected void assertEqualsJson(String expected, String actual) {

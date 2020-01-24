@@ -18,14 +18,14 @@ public interface AuthenticatorService {
     /**
      * Returns unique user id of connected user.
      * 
-     * @return 
+     * @return
      */
     Optional<String> userId();
 
     /**
      * Returns username of connected user.
      * 
-     * @return 
+     * @return
      */
     Optional<String> username();
 }

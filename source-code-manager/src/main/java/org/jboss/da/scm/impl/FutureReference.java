@@ -40,8 +40,7 @@ class FutureReference {
 
     public void complete(DirectoryReference ref) {
         if (!shouldIComplete)
-            throw new IllegalStateException(
-                    "Completing when this instance shouldn't complete the future.");
+            throw new IllegalStateException("Completing when this instance shouldn't complete the future.");
 
         if (!futureReference.complete(ref))
             throw new IllegalStateException("Already completed.");
@@ -49,13 +48,12 @@ class FutureReference {
 
     public void completeExceptionally(Exception ex) {
         if (!shouldIComplete)
-            throw new IllegalStateException(
-                    "Completing when this instance shouldn't complete the future.");
+            throw new IllegalStateException("Completing when this instance shouldn't complete the future.");
         futureReference.completeExceptionally(ex);
     }
 
-    public DirectoryReference get(long timeout, TimeUnit unit) throws InterruptedException,
-            ExecutionException, TimeoutException {
+    public DirectoryReference get(long timeout, TimeUnit unit)
+            throws InterruptedException, ExecutionException, TimeoutException {
         return futureReference.get(timeout, unit);
     }
 }

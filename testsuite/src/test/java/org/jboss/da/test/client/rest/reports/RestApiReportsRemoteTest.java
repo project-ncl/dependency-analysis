@@ -47,8 +47,8 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
         String gavNonexisting = "gavNonexisting";
         File jsonRequestFile = getJsonRequestFile(PATH_REPORTS_GAV, gavNonexisting);
 
-        Response response = createClientRequest(PATH_REPORTS_GAV).post(
-                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
+        Response response = createClientRequest(PATH_REPORTS_GAV)
+                .post(Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
 
         assertEquals(404, response.getStatus());
     }

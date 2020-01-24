@@ -15,8 +15,8 @@ import java.util.Set;
 public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
 
     /**
-     * Checks if list contains artifact with specific groupId, artifactId and version.
-     * All restrictions and conversions are applied like using getArtifact method of specific list.
+     * Checks if list contains artifact with specific groupId, artifactId and version. All restrictions and conversions are
+     * applied like using getArtifact method of specific list.
      *
      * @param groupId
      * @param artifactId
@@ -26,41 +26,38 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
     boolean isArtifactPresent(String groupId, String artifactId, String version);
 
     /**
-     * Checks if list contains artifact with specific GAV.
-     * All restrictions and conversions are applied like using getArtifact method of specific list.
+     * Checks if list contains artifact with specific GAV. All restrictions and conversions are applied like using getArtifact
+     * method of specific list.
+     * 
      * @param gav
      * @return True if list contains the artifact otherwise false.
      */
     boolean isArtifactPresent(GAV gav);
 
     /**
-     * Add artifact to blacklist.
-     * If the version contains redhat suffix it is removed. Then the version is converted to OSGi
-     * version. It also removes all redhat suffixed artifacts (with given groupId, artifactId and
-     * OSGi verison) from whitelist.
+     * Add artifact to blacklist. If the version contains redhat suffix it is removed. Then the version is converted to OSGi
+     * version. It also removes all redhat suffixed artifacts (with given groupId, artifactId and OSGi verison) from whitelist.
      */
     public ArtifactStatus addArtifact(String groupId, String artifactId, String version);
 
     /**
-     * Checks if blacklist contains artifact with specific groupId, artifactId and version.
-     * If the version have redhat suffix it is removed. Then the version is converted to OSGi
-     * version and finds this version in blacklist;
+     * Checks if blacklist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix it
+     * is removed. Then the version is converted to OSGi version and finds this version in blacklist;
+     * 
      * @return found artifact
      */
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version);
 
     /**
-     * Checks if blacklist contains artifact with specific groupId, artifactId and version.
-     * If the version have redhat suffix it is removed. Then the version is converted to OSGi
-     * version and finds this version in blacklist;
+     * Checks if blacklist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix it
+     * is removed. Then the version is converted to OSGi version and finds this version in blacklist;
      *
      * @return found artifact
      */
     public Optional<BlackArtifact> getArtifact(GAV gav);
 
     /**
-     * Remove artifact from list.
-     * Removes only exact match of artifact.
+     * Remove artifact from list. Removes only exact match of artifact.
      * 
      * @param groupId
      * @param artifactId

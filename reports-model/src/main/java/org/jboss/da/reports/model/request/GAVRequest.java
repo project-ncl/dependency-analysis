@@ -23,9 +23,8 @@ import lombok.NonNull;
 public class GAVRequest {
 
     @JsonCreator
-    public GAVRequest(@JsonProperty("groupId") String groupId,
-            @JsonProperty("artifactId") String artifactId, @JsonProperty("version") String version,
-            @JsonProperty("productNames") Set<String> productNames,
+    public GAVRequest(@JsonProperty("groupId") String groupId, @JsonProperty("artifactId") String artifactId,
+            @JsonProperty("version") String version, @JsonProperty("productNames") Set<String> productNames,
             @JsonProperty("productVersionIds") Set<Long> productVersionIds) {
         this.groupId = groupId;
         this.artifactId = artifactId;

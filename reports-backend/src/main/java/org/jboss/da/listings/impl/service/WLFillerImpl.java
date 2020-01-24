@@ -51,8 +51,8 @@ public class WLFillerImpl implements WLFiller {
     private SCM scmManager;
 
     @Override
-    public WLStatus fillWhitelistFromPom(String scmUrl, String revision, String pomPath,
-            List<String> repositories, long productId) {
+    public WLStatus fillWhitelistFromPom(String scmUrl, String revision, String pomPath, List<String> repositories,
+            long productId) {
         if (!checkProduct(productId)) {
             return WLStatus.PRODUCT_NOT_FOUND;
         }
@@ -66,8 +66,7 @@ public class WLFillerImpl implements WLFiller {
     }
 
     @Override
-    public WLStatus fillWhitelistFromGAV(String groupId, String artifactId, String version,
-            long productId) {
+    public WLStatus fillWhitelistFromGAV(String groupId, String artifactId, String version, long productId) {
         if (!checkProduct(productId)) {
             return WLStatus.PRODUCT_NOT_FOUND;
         }
@@ -88,9 +87,8 @@ public class WLFillerImpl implements WLFiller {
         return WLStatus.FILLED;
     }
 
-    private MavenPomView getPomListFromGit(String scmUrl, String revision, String pomPath,
-            List<String> repositories) throws GalleyMavenException, PomAnalysisException,
-            ScmException {
+    private MavenPomView getPomListFromGit(String scmUrl, String revision, String pomPath, List<String> repositories)
+            throws GalleyMavenException, PomAnalysisException, ScmException {
 
         if (repositories == null) {
             repositories = new ArrayList<>();
@@ -108,12 +106,12 @@ public class WLFillerImpl implements WLFiller {
         for (DependencyView d : dependencies) {
             GA ga = new GA(d.getGroupId(), d.getArtifactId());
             Artifact a = new Artifact(ga, d.getVersion(), whiteService.currentUser());
-            ArtifactStatus status = whiteService.addArtifact(a.getGa().getGroupId(), a.getGa()
-                    .getArtifactId(), a.getVersion(), productId);
+            ArtifactStatus status = whiteService.addArtifact(a.getGa().getGroupId(), a.getGa().getArtifactId(), a.getVersion(),
+                    productId);
             switch (status) {
                 case ADDED:
                 case NOT_MODIFIED:
-                    break; //ok
+                    break; // ok
                 default:
                     throw new IllegalStateException(
                             "Adition of artifact to product list failed. This shouldn't happen and is probably programming bug.");

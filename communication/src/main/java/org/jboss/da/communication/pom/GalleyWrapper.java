@@ -49,8 +49,8 @@ public class GalleyWrapper implements AutoCloseable {
 
     private MavenModelProcessor processor;
 
-    public GalleyWrapper(GalleyMaven galley, File scmDir, ModelProcessorConfig disConf,
-            MavenModelProcessor processor) throws IOException {
+    public GalleyWrapper(GalleyMaven galley, File scmDir, ModelProcessorConfig disConf, MavenModelProcessor processor)
+            throws IOException {
         this.disConf = disConf;
         this.processor = processor;
         this.mvnPomReader = galley.getPomReader();
@@ -61,9 +61,10 @@ public class GalleyWrapper implements AutoCloseable {
 
     /**
      * Return GalleyWrapper pointer to artifact specified in given pom.
+     * 
      * @param pomPath Path to the pom file relative to the scm repostiory root.
      * @return GalleyWrapper "pointer" to an artifact.
-     * @throws PomAnalysisException 
+     * @throws PomAnalysisException
      */
     public Artifact getPom(String pomPath) throws PomAnalysisException {
         Artifact a = new Artifact(scm, pomPath);
@@ -75,6 +76,7 @@ public class GalleyWrapper implements AutoCloseable {
 
     /**
      * Returns GalleyWrapper pointer to artifact representing given GAV.
+     * 
      * @param gav GAV of the artifact.
      * @return GalleyWrapper "pointer" to an artifact.
      * @throws org.jboss.da.communication.pom.PomAnalysisException
@@ -96,22 +98,20 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Return modules of artifact, including the artifact itselve.
-     * Module poms that couldn't be parsed are ommited.
+     * Return modules of artifact, including the artifact itselve. Module poms that couldn't be parsed are ommited.
+     * 
      * @param artifact root artifact.
      * @return Set of all modules.
      */
     public Set<Artifact> getModules(Artifact artifact) {
-        return artifact.pp.getModules().stream()
-                .map(m -> artifact.path.resolve(m))
-                .map(Artifact::new)
-                .filter(a -> a.ref != null)
-                .collect(Collectors.toSet());
+        return artifact.pp.getModules().stream().map(m -> artifact.path.resolve(m)).map(Artifact::new)
+                .filter(a -> a.ref != null).collect(Collectors.toSet());
     }
 
     /**
-     * Return all (transitive) modules of artifact, including the artifact itselve.
-     * Module poms that couldn't be parsed are ommited.
+     * Return all (transitive) modules of artifact, including the artifact itselve. Module poms that couldn't be parsed are
+     * ommited.
+     * 
      * @param artifact root artifact.
      * @return Set of all modules.
      */
@@ -129,8 +129,9 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Returns {@link MavenPomView} for given artifact.
-     * You need to set locations so the galley know where to look for dependencies.
+     * Returns {@link MavenPomView} for given artifact. You need to set locations so the galley know where to look for
+     * dependencies.
+     * 
      * @param artifact
      * @return MavenPomView of the artifact
      * @throws org.jboss.da.communication.pom.PomAnalysisException
@@ -147,8 +148,9 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Returns first level dependencies of an artifact.
-     * You need to set locations so the galley know where to look for dependencies.
+     * Returns first level dependencies of an artifact. You need to set locations so the galley know where to look for
+     * dependencies.
+     * 
      * @param artifact Dependencies of this artifact will be returned
      * @return First level dependencies.
      * @throws org.jboss.da.communication.pom.PomAnalysisException
@@ -166,48 +168,41 @@ public class GalleyWrapper implements AutoCloseable {
             throw new PomAnalysisException(ex);
         }
 
-        return allDirectDependencies.stream()
-                .map(GalleyWrapper::generateGAV)
-                .filter(x -> x != null)
+        return allDirectDependencies.stream().map(GalleyWrapper::generateGAV).filter(x -> x != null)
                 .collect(Collectors.toSet());
     }
 
     /**
      * Add repositories Galley should use when resolving dependencies.
+     * 
      * @param repositories List of repository URLs.
      */
     public void addLocations(List<String> repositories) {
-        repositories.stream()
-                .map(repository -> new SimpleLocation(repository, repository))
-                .forEachOrdered(locations::add);
+        repositories.stream().map(repository -> new SimpleLocation(repository, repository)).forEachOrdered(locations::add);
     }
 
     /**
-     * Add repositories Gally should use when resolving dependencies by
-     * analysing pom files in SCM repository.
+     * Add repositories Gally should use when resolving dependencies by analysing pom files in SCM repository.
+     * 
      * @param pomReader instance of {@link PomReader} used for parsing pom files
-     * @throws IOException 
+     * @throws IOException
      */
     public void addLocationsFromPoms(PomReader pomReader) throws IOException {
         Set<Path> allPoms = localRepo.getAllPoms();
-        allPoms.stream()
-                .map(Path::toFile)
-                .map(pomReader::analyze) // parse pom file
+        allPoms.stream().map(Path::toFile).map(pomReader::analyze) // parse pom file
                 .filter(Optional::isPresent).map(Optional::get) // filter sucessfuly parsed
                 .map(p -> p.getMavenRepositories()).filter(r -> r != null) // get <repositories>
                 .flatMap(r -> r.stream()) // stream of <repository>
-                .map(r -> new SimpleLocation(r.getId(), r.getUrl()))
-                .forEach(l -> locations.add(l));
+                .map(r -> new SimpleLocation(r.getId(), r.getUrl())).forEach(l -> locations.add(l));
     }
 
     /**
-     * Add maven central and group from indy repositories among repositories Gally should use when
-     * resolving dependencies.
+     * Add maven central and group from indy repositories among repositories Gally should use when resolving dependencies.
      */
     public void addDefaultLocations(Configuration config) {
         try {
-            locations.add(new SimpleLocation("indy", config.getConfig().getAproxServer()
-                    + "/api/group/" + config.getConfig().getAproxGroupPublic() + "/"));
+            locations.add(new SimpleLocation("indy",
+                    config.getConfig().getAproxServer() + "/api/group/" + config.getConfig().getAproxGroupPublic() + "/"));
         } catch (ConfigurationParseException e) {
             log.error("Failed to add indy group to locations" + e);
         }
@@ -219,39 +214,37 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Return all transitive dependencies of given artifact.
-     * Dependencies of test-scope and provided-scope dependencies are ommited.
-     * You need to set locations so the galley know where to look for dependencies.
+     * Return all transitive dependencies of given artifact. Dependencies of test-scope and provided-scope dependencies are
+     * ommited. You need to set locations so the galley know where to look for dependencies.
+     * 
      * @param artifact Dependencies of this artifact will be returned
      * @return Set of dependency relationships describing the dependency graph.
      * @throws GalleyMavenException
-     * @throws CartoDataException 
+     * @throws CartoDataException
      * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
      * @see #addLocations(java.util.List)
      * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
      */
-    public Set<DependencyRelationship> getAllDependencies(Artifact artifact)
-            throws GalleyMavenException, CartoDataException {
+    public Set<DependencyRelationship> getAllDependencies(Artifact artifact) throws GalleyMavenException, CartoDataException {
         return getAllDependencies(artifact, false, false);
     }
 
     /**
-     * Return all transitive dependencies of given artifact.
-     * You need to set locations so the galley know where to look for dependencies.
+     * Return all transitive dependencies of given artifact. You need to set locations so the galley know where to look for
+     * dependencies.
+     * 
      * @param artifact Dependencies of this artifact will be returned
-     * @param testDeps true if should dependencies of test-scope dependency be
-     * resolved.
-     * @param providedDeps true if should dependencies of provided-scope
-     * dependency be resolved.
-     * @return Set of dependency relationships describing the dependency graph. 
+     * @param testDeps true if should dependencies of test-scope dependency be resolved.
+     * @param providedDeps true if should dependencies of provided-scope dependency be resolved.
+     * @return Set of dependency relationships describing the dependency graph.
      * @throws GalleyMavenException
-     * @throws CartoDataException 
+     * @throws CartoDataException
      * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
      * @see #addLocations(java.util.List)
      * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
      */
-    public Set<DependencyRelationship> getAllDependencies(Artifact artifact, boolean testDeps,
-            boolean providedDeps) throws GalleyMavenException, CartoDataException {
+    public Set<DependencyRelationship> getAllDependencies(Artifact artifact, boolean testDeps, boolean providedDeps)
+            throws GalleyMavenException, CartoDataException {
         Set<DependencyRelationship> deps = new HashSet<>();
 
         URI src = localRepo.getUri();
@@ -278,27 +271,24 @@ public class GalleyWrapper implements AutoCloseable {
         return deps;
     }
 
-    private Set<DependencyRelationship> getDeps(ProjectVersionRef ref,
-                                                MavenModelProcessor processor, URI src, ModelProcessorConfig disConf)
-            throws GalleyMavenException, CartoDataException {
+    private Set<DependencyRelationship> getDeps(ProjectVersionRef ref, MavenModelProcessor processor, URI src,
+            ModelProcessorConfig disConf) throws GalleyMavenException, CartoDataException {
         MavenPomView pomView = mvnPomReader.read(ref, locations);
         EProjectDirectRelationships relationships = processor.readRelationships(pomView, src, disConf);
-        return relationships.getAllRelationships().stream()
-                .filter(r -> r.getType() == RelationshipType.DEPENDENCY)
-                .map(r -> (DependencyRelationship) r)
-                .collect(Collectors.toSet());
+        return relationships.getAllRelationships().stream().filter(r -> r.getType() == RelationshipType.DEPENDENCY)
+                .map(r -> (DependencyRelationship) r).collect(Collectors.toSet());
     }
 
     /**
-     * Return true if scope is compile, runtime, test (when {@code testDeps} is
-     * true) or provided (when {@code providedDeps} is true).
+     * Return true if scope is compile, runtime, test (when {@code testDeps} is true) or provided (when {@code providedDeps} is
+     * true).
+     * 
      * @param dr Dependency relationship which scope we compare.
      * @param testDeps
      * @param providedDeps
-     * @return 
+     * @return
      */
-    public static boolean shouldAnalyzeDependencies(DependencyRelationship dr, boolean testDeps,
-            boolean providedDeps) {
+    public static boolean shouldAnalyzeDependencies(DependencyRelationship dr, boolean testDeps, boolean providedDeps) {
         switch (dr.getScope()) {
             case _import:
             case embedded:
@@ -319,8 +309,7 @@ public class GalleyWrapper implements AutoCloseable {
     private static GAV generateGAV(MavenGAVView dep) {
         try {
             if (dep.getGroupId() == null || dep.getArtifactId() == null || dep.getVersion() == null) {
-                log.warn("Failed to get gav of dependency because of null field. Dependency: "
-                        + dep);
+                log.warn("Failed to get gav of dependency because of null field. Dependency: " + dep);
                 return null;
             }
             return new GAV(dep.getGroupId(), dep.getArtifactId(), dep.getVersion());

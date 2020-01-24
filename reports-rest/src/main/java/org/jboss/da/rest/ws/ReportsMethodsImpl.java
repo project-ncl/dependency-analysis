@@ -42,36 +42,22 @@ public class ReportsMethodsImpl implements Methods {
     private final HashMap<String, Method<?, ?, ?>> methods = new HashMap<>();
 
     @Inject
-    public ReportsMethodsImpl(ReportsFacade facade){
+    public ReportsMethodsImpl(ReportsFacade facade) {
 
-        SCM = put(new DefaultMethod<>("reports.scm",
-                SCMReportRequest.class,
-                Map.class,
-                params -> facade.scmReport(params)));
+        SCM = put(new DefaultMethod<>("reports.scm", SCMReportRequest.class, Map.class, params -> facade.scmReport(params)));
 
-        SCM_ADVANCED = put(new DefaultMethod<>("reports.scmAdvanced",
-                SCMReportRequest.class,
-                Map.class,
+        SCM_ADVANCED = put(new DefaultMethod<>("reports.scmAdvanced", SCMReportRequest.class, Map.class,
                 params -> facade.advancedScmReport(params)));
 
-        GAV = put(new DefaultMethod<>("reports.gav",
-                GAVRequest.class,
-                Map.class,
-                params -> facade.gavReport(params)));
+        GAV = put(new DefaultMethod<>("reports.gav", GAVRequest.class, Map.class, params -> facade.gavReport(params)));
 
-        BUILT = put(new DefaultMethod<>("reports.built",
-                BuiltReportRequest.class,
-                Set.class,
+        BUILT = put(new DefaultMethod<>("reports.built", BuiltReportRequest.class, Set.class,
                 params -> facade.builtReport(params)));
 
-        ALIGN = put(new DefaultMethod<>("reports.align",
-                AlignReportRequest.class,
-                Map.class,
+        ALIGN = put(new DefaultMethod<>("reports.align", AlignReportRequest.class, Map.class,
                 params -> facade.alignReport(params)));
 
-        LOOKUP_GAV = put(new DefaultMethod<>("reports.lookup.gav",
-                LookupGAVsRequest.class,
-                List.class,
+        LOOKUP_GAV = put(new DefaultMethod<>("reports.lookup.gav", LookupGAVsRequest.class, List.class,
                 params -> facade.gavsReport(params)));
     }
 

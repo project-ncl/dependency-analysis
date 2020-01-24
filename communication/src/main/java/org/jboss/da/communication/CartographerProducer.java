@@ -71,8 +71,8 @@ public class CartographerProducer {
         // tempFile is not really used, but just needed to be passed to the constructor
         File tempFile = new File("random");
 
-        return new CartographerCoreBuilder(tempFile, new FileNeo4jConnectionFactory(null, true))
-                .withDefaultTransports().withCache(getPartyLineCacheProvider()).build();
+        return new CartographerCoreBuilder(tempFile, new FileNeo4jConnectionFactory(null, true)).withDefaultTransports()
+                .withCache(getPartyLineCacheProvider()).build();
     }
 
     @Produces
@@ -121,10 +121,9 @@ public class CartographerProducer {
     }
 
     @Produces
-    public ProjectRelationshipDiscoverer getProjectRelationshipDiscoverer() throws IOException,
-            CartoDataException {
-        return new DiscovererImpl(getMavenModelProcessor(), mavenPomReader, getGalleyMaven()
-                .getArtifactManager(), getPatcherSupport(), metadataScannerSupport);
+    public ProjectRelationshipDiscoverer getProjectRelationshipDiscoverer() throws IOException, CartoDataException {
+        return new DiscovererImpl(getMavenModelProcessor(), mavenPomReader, getGalleyMaven().getArtifactManager(),
+                getPatcherSupport(), metadataScannerSupport);
     }
 
     @Produces
@@ -172,14 +171,13 @@ public class CartographerProducer {
     }
 
     @Produces
-    public PartyLineCacheProvider getPartyLineCacheProvider() throws IOException,
-            CartoDataException {
+    public PartyLineCacheProvider getPartyLineCacheProvider() throws IOException, CartoDataException {
 
         // tempFile is not really used, but just needed to be passed to the constructor
         File tempFile = new File("random");
 
-        return new PartyLineCacheProvider(tempFile, new HashedLocationPathGenerator(),
-                getFileEventManager(), getTransferDecorator());
+        return new PartyLineCacheProvider(tempFile, new HashedLocationPathGenerator(), getFileEventManager(),
+                getTransferDecorator());
     }
 
     @Produces

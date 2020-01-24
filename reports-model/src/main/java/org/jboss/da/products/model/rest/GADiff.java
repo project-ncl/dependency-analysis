@@ -34,10 +34,8 @@ public class GADiff implements Comparable<GADiff> {
     private final String differenceType;
 
     @JsonCreator
-    public GADiff(@JsonProperty("groupId") String groupId,
-            @JsonProperty("artifactId") String artifactId,
-            @JsonProperty("leftVersion") String leftVersion,
-            @JsonProperty("rightVersion") String rightVersion,
+    public GADiff(@JsonProperty("groupId") String groupId, @JsonProperty("artifactId") String artifactId,
+            @JsonProperty("leftVersion") String leftVersion, @JsonProperty("rightVersion") String rightVersion,
             @JsonProperty("differenceType") String differenceType) {
         this.ga = new GA(groupId, artifactId);
         this.leftVersion = leftVersion;

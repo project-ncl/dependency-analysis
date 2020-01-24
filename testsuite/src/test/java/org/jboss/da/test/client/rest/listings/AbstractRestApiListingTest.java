@@ -72,8 +72,7 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
 
     private void removeProductFromList(String url, RestProduct product) {
         try {
-            createClientRequest(url).method("DELETE", Entity.json(toRestProductRequest(product)),
-                    String.class);
+            createClientRequest(url).method("DELETE", Entity.json(toRestProductRequest(product)), String.class);
         } catch (Exception e) {
             fail("Failed to remove product from the list using URL " + url);
         }
@@ -81,20 +80,22 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
     }
 
     private String toRestProductRequest(RestProduct p) {
-        return "{" + "\"name\":" + "\"" + p.getName() + "\"," + "\"version\":" + "\""
-                + p.getVersion() + "\"" + "}";
+        return "{" + "\"name\":" + "\"" + p.getName() + "\"," + "\"version\":" + "\"" + p.getVersion() + "\"" + "}";
     }
 
     protected List<RestArtifact> getAllArtifactsFromList(String listUrl) throws Exception {
-        return processGetRequest(new GenericType<List<RestArtifact>>() {}, listUrl);
+        return processGetRequest(new GenericType<List<RestArtifact>>() {
+        }, listUrl);
     }
 
     private List<RestWhiteArtifact> getAllWhiteArtifactsFromList(String listUrl) throws Exception {
-        return processGetRequest(new GenericType<List<RestWhiteArtifact>>() {}, listUrl);
+        return processGetRequest(new GenericType<List<RestWhiteArtifact>>() {
+        }, listUrl);
     }
 
     private List<RestProduct> getAllProductsFromList(String listUrl) throws Exception {
-        return processGetRequest(new GenericType<List<RestProduct>>() {}, listUrl);
+        return processGetRequest(new GenericType<List<RestProduct>>() {
+        }, listUrl);
     }
 
     private <T> T processGetRequest(GenericType<T> type, String url) throws Exception {
@@ -113,13 +114,13 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
         return FileUtils.readFileToString(jsonRequestFile, ENCODING);
     }
 
-    protected Response manipulateEntityFile(ListEntityType entity, OperationType operation,
-            String file, Boolean checkSuccess) throws Exception {
+    protected Response manipulateEntityFile(ListEntityType entity, OperationType operation, String file, Boolean checkSuccess)
+            throws Exception {
         return manipulateEntityString(entity, operation, readJsonFile(file), checkSuccess);
     }
 
-    protected Response manipulateEntityString(ListEntityType entity, OperationType operation,
-            String requestString, Boolean checkSuccess) throws Exception {
+    protected Response manipulateEntityString(ListEntityType entity, OperationType operation, String requestString,
+            Boolean checkSuccess) throws Exception {
         String path = null;
         switch (entity) {
             case WHITE:
@@ -167,7 +168,6 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
     }
 
     protected long getIdOfProduct(String name, String version) throws Exception {
-        return createClientRequest(PATH_PRODUCT + "?name=" + name + "&version=" + version).get(
-                RestProduct[].class)[0].getId();
+        return createClientRequest(PATH_PRODUCT + "?name=" + name + "&version=" + version).get(RestProduct[].class)[0].getId();
     }
 }

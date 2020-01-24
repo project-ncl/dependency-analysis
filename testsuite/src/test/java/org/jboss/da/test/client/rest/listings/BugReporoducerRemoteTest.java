@@ -23,10 +23,10 @@ public class BugReporoducerRemoteTest extends AbstractRestApiListingTest {
         manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavParent", true);
 
         Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "ncl5035");
-        //        File jsonRequestFile = getJsonRequestFile(PATH_LOOKUP_GAVS, "parent");
-        //        Response response = createClientRequest(PATH_LOOKUP_GAVS).post(
-        //                Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
-        //        System.out.println("Response: " + response.readEntity(String.class));
+        // File jsonRequestFile = getJsonRequestFile(PATH_LOOKUP_GAVS, "parent");
+        // Response response = createClientRequest(PATH_LOOKUP_GAVS).post(
+        // Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
+        // System.out.println("Response: " + response.readEntity(String.class));
 
         assertEquals(200, response.getStatus());
     }

@@ -85,6 +85,7 @@ public class ArtifactReport implements Comparable<ArtifactReport> {
 
     /**
      * Returns true if all the dependencies of this artifact have a GAV already in PNC/Brew.
+     * 
      * @return true if all the dependencies of this artifact have a GAV already in PNC/Brew.
      */
     public boolean isDependencyVersionSatisfied() {
@@ -94,8 +95,8 @@ public class ArtifactReport implements Comparable<ArtifactReport> {
     public int getNotBuiltDependencies() {
         return dependencies.stream().mapToInt((dependency) -> {
             int number = dependency.getNotBuiltDependencies();
-            if(!dependency.bestMatchVersion.isPresent()){
-                number ++;
+            if (!dependency.bestMatchVersion.isPresent()) {
+                number++;
             }
             return number;
         }).sum();

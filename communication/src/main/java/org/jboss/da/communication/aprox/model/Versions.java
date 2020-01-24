@@ -8,6 +8,7 @@ import lombok.ToString;
 
 /**
  * This entity is deserialized from XML file
+ * 
  * @author sknot
  */
 @ToString

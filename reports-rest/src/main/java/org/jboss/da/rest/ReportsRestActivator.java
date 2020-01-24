@@ -36,6 +36,7 @@ public class ReportsRestActivator extends Application {
 
     /**
      * Swagger classes required to generate the API JSON generation
+     * 
      * @param resources
      */
     public void addSwaggerResources(Set<Class<?>> resources) {
@@ -46,6 +47,7 @@ public class ReportsRestActivator extends Application {
 
     /**
      * Add all JAX-RS classes here to get activated!
+     * 
      * @param resources
      */
     public void addProjectResources(Set<Class<?>> resources) {

@@ -23,8 +23,7 @@ public class RequestGenerator {
         return b.toString();
     }
 
-    public String returnWhiteArtifactString(String groupId, String artifactId, String version,
-            long id) {
+    public String returnWhiteArtifactString(String groupId, String artifactId, String version, long id) {
         StringBuilder b = new StringBuilder("{\"groupId\":\"");
         b.append(groupId);
         b.append("\",\"artifactId\":\"");

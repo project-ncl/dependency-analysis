@@ -11,8 +11,8 @@ public class VersionParser {
 
     private final String suffix;
 
-    private final Pattern defaultPattern = Pattern.compile("^" + RE_MMM + RE_QUALIFIER + "??"
-            + RE_SUFFIX_S + DEFAULT_SUFFIX + RE_SUFFIX_E + "$");
+    private final Pattern defaultPattern = Pattern
+            .compile("^" + RE_MMM + RE_QUALIFIER + "??" + RE_SUFFIX_S + DEFAULT_SUFFIX + RE_SUFFIX_E + "$");
 
     private final Pattern versionPattern;
 
@@ -28,13 +28,11 @@ public class VersionParser {
 
     public VersionParser(String suffix) {
         this.suffix = suffix;
-        this.versionPattern = Pattern.compile("^" + RE_MMM + RE_QUALIFIER + "??" + RE_SUFFIX_S
-                + suffix + RE_SUFFIX_E + "$");
+        this.versionPattern = Pattern.compile("^" + RE_MMM + RE_QUALIFIER + "??" + RE_SUFFIX_S + suffix + RE_SUFFIX_E + "$");
     }
 
     public SuffixedVersion parse(String version) {
-        SuffixedVersion suffixedVersion = parseVersion(versionPattern.matcher(version), version,
-                suffix);
+        SuffixedVersion suffixedVersion = parseVersion(versionPattern.matcher(version), version, suffix);
         if (!suffixedVersion.isSuffixed()) {
             suffixedVersion = parseVersion(defaultPattern.matcher(version), version, DEFAULT_SUFFIX);
         }
@@ -56,14 +54,12 @@ public class VersionParser {
         int major = parseNumberString(majorString);
         int minor = parseNumberString(minorString);
         int micro = parseNumberString(microString);
-        String qualifier = qualifierString == null ? "" : qualifierString.replace('.', '-')
-                .replace(',', '-');
+        String qualifier = qualifierString == null ? "" : qualifierString.replace('.', '-').replace(',', '-');
         if (suffixVersionString == null) {
             return new SuffixedVersion(major, minor, micro, qualifier, version);
         } else {
             int suffixVersion = Integer.parseInt(suffixVersionString);
-            return new SuffixedVersion(major, minor, micro, qualifier, parseSuffix, suffixVersion,
-                    version);
+            return new SuffixedVersion(major, minor, micro, qualifier, parseSuffix, suffixVersion, version);
         }
     }
 

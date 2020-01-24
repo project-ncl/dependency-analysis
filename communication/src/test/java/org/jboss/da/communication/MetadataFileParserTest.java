@@ -37,8 +37,7 @@ public class MetadataFileParserTest {
         Assert.assertTrue("Missing version.", availableVersions.contains("1.4.1.Final-redhat-2"));
         Assert.assertTrue("Missing version.", availableVersions.contains("1.4.2.Final"));
         Assert.assertTrue("Missing version.", availableVersions.contains("1.5.1.Final-redhat-4"));
-        Assert.assertFalse("Version should not be present.",
-                availableVersions.contains("1.5.1.Final-redhat-10"));
+        Assert.assertFalse("Version should not be present.", availableVersions.contains("1.5.1.Final-redhat-10"));
     }
 
     @Test

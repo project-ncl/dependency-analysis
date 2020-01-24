@@ -20,6 +20,7 @@ public class VersionComparator implements Comparator<String>, Serializable {
 
     /**
      * Returns classic comparator for versions.
+     * 
      * @param versionParser Parser that will be used to parse the version.
      */
     public VersionComparator(VersionParser versionParser) {
@@ -29,6 +30,7 @@ public class VersionComparator implements Comparator<String>, Serializable {
 
     /**
      * Returns comparator that compares versions by distance to the base version.
+     * 
      * @param base The base version.
      * @param versionParser Parser that will be used to parse the version.
      */
@@ -79,7 +81,7 @@ public class VersionComparator implements Comparator<String>, Serializable {
 
     // Assuming different versions
     // Return -1 - v1 is closer to the base version
-    // Return 1  - v2 is closer to the base version
+    // Return 1 - v2 is closer to the base version
     private int compareByDistance(SuffixedVersion v1, SuffixedVersion v2) {
         // If one of the versions is the same as base, it is closer.
         if (base.equals(v1)) {
@@ -112,8 +114,7 @@ public class VersionComparator implements Comparator<String>, Serializable {
             }
 
             // if differs only in qualifier, higher qualifier prefered
-            if (v1.getMajor() == v2.getMajor() && v1.getMinor() == v2.getMinor()
-                    && v1.getMicro() == v2.getMicro()) {
+            if (v1.getMajor() == v2.getMajor() && v1.getMinor() == v2.getMinor() && v1.getMicro() == v2.getMicro()) {
                 candidate *= -1;
             }
             return candidate;

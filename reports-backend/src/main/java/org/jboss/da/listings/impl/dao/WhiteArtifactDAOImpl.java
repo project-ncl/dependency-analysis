@@ -10,8 +10,7 @@ import org.jboss.da.listings.api.model.WhiteArtifact;
  *
  */
 @Stateless
-public class WhiteArtifactDAOImpl extends ArtifactDAOImpl<WhiteArtifact> implements
-        WhiteArtifactDAO {
+public class WhiteArtifactDAOImpl extends ArtifactDAOImpl<WhiteArtifact> implements WhiteArtifactDAO {
 
     public WhiteArtifactDAOImpl() {
         super(WhiteArtifact.class);

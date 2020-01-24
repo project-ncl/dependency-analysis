@@ -15,6 +15,5 @@ public interface CartographerConnector {
      * @throws CommunicationException When there is problem with communication.
      * @throws FindGAVDependencyException if the GAV cannot be analyzed
      */
-    GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException,
-            FindGAVDependencyException;
+    GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException, FindGAVDependencyException;
 }

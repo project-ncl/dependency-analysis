@@ -27,8 +27,7 @@ public class DummyVersionComparator implements Comparator<String>, Serializable 
         Matcher matcher1 = pattern.matcher(version1);
         Matcher matcher2 = pattern.matcher(version2);
         if (!matcher1.matches() || !matcher2.matches()) {
-            throw new IllegalArgumentException("Version " + version1 + " or " + version2
-                    + " is unparsable");
+            throw new IllegalArgumentException("Version " + version1 + " or " + version2 + " is unparsable");
         }
         int major1 = parseNumberString(matcher1.group("major"));
         int minor1 = parseNumberString(matcher1.group("minor"));

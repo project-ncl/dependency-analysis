@@ -26,9 +26,7 @@ public class GADAOImpl extends GenericDAOImpl<GA> implements GADAO {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<GA> cq = cb.createQuery(type);
             Root<GA> ga = cq.from(type);
-            cq.select(ga).where(
-                    cb.and(cb.equal(ga.get("groupId"), groupId),
-                            cb.equal(ga.get("artifactId"), artifactId)));
+            cq.select(ga).where(cb.and(cb.equal(ga.get("groupId"), groupId), cb.equal(ga.get("artifactId"), artifactId)));
             TypedQuery<GA> q = em.createQuery(cq);
             return Optional.of(q.getSingleResult());
         } catch (NoResultException e) {

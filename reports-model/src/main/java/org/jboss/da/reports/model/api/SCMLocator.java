@@ -50,8 +50,7 @@ public class SCMLocator {
         return internal(scmUrl, revision, pomPath, null);
     }
 
-    public static SCMLocator internal(String scmUrl, String revision, String pomPath,
-            List<String> repositories) {
+    public static SCMLocator internal(String scmUrl, String revision, String pomPath, List<String> repositories) {
         SCMLocator ret = new SCMLocator(scmUrl, revision, pomPath, repositories);
         return ret;
     }
@@ -60,8 +59,7 @@ public class SCMLocator {
         return generic(scmUrl, revision, pomPath, Collections.emptyList());
     }
 
-    public static SCMLocator generic(String scmUrl, String revision, String pomPath,
-            List<String> repositories) {
+    public static SCMLocator generic(String scmUrl, String revision, String pomPath, List<String> repositories) {
         SCMLocator ret = new SCMLocator(scmUrl, revision, pomPath, repositories);
         return ret;
     }

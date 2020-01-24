@@ -48,8 +48,8 @@ public class ConfigurationTest {
 
         DAConfig config = configuration.getConfig();
 
-        checkRequiredFields(config, "pnc-server", "aprox-server", "aprox-group",
-                "aprox-group-public", "backup-scm-url", "cartographer-server-url");
+        checkRequiredFields(config, "pnc-server", "aprox-server", "aprox-group", "aprox-group-public", "backup-scm-url",
+                "cartographer-server-url");
         assertEquals(100000, config.getAproxRequestTimeout().intValue());
     }
 
@@ -59,14 +59,13 @@ public class ConfigurationTest {
 
         DAConfig config = configuration.getConfig();
 
-        checkRequiredFields(config, "pnc-server", "aprox-server", "aprox-group",
-                "aprox-group-public", "backup-scm-url", "cartographer-server-url");
+        checkRequiredFields(config, "pnc-server", "aprox-server", "aprox-group", "aprox-group-public", "backup-scm-url",
+                "cartographer-server-url");
         assertEquals(600000, config.getAproxRequestTimeout().intValue());
     }
 
-    private void checkRequiredFields(DAConfig config, String pncServer, String aproxServer,
-            String aproxGroup, String aproxGroupPublic, String backupScmUrl,
-            String cartographerServerUrl) {
+    private void checkRequiredFields(DAConfig config, String pncServer, String aproxServer, String aproxGroup,
+            String aproxGroupPublic, String backupScmUrl, String cartographerServerUrl) {
         assertEquals(aproxServer, config.getAproxServer());
         assertEquals(aproxGroup, config.getAproxGroup());
         assertEquals(aproxGroupPublic, config.getAproxGroupPublic());

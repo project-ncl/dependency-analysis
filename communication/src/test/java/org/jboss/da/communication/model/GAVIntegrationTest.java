@@ -25,8 +25,8 @@ public class GAVIntegrationTest {
 
         String json = convertToJson(gav);
 
-        String expectedJson = "{\"groupId\":\"" + groupId + "\",\"artifactId\":\"" + artifactId
-                + "\",\"version\":\"" + version + "\"}";
+        String expectedJson = "{\"groupId\":\"" + groupId + "\",\"artifactId\":\"" + artifactId + "\",\"version\":\"" + version
+                + "\"}";
         assertEquals(expectedJson, json);
     }
 
@@ -43,8 +43,8 @@ public class GAVIntegrationTest {
         String artifactId = createRandomString();
         String version = createRandomString();
 
-        String json = "{\"groupId\":\"" + groupId + "\", \"artifactId\":\"" + artifactId
-                + "\", \"version\":\"" + version + "\"}";
+        String json = "{\"groupId\":\"" + groupId + "\", \"artifactId\":\"" + artifactId + "\", \"version\":\"" + version
+                + "\"}";
 
         GAV gav = convertFromJson(json, GAV.class);
 

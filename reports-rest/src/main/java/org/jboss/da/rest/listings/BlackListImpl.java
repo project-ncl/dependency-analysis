@@ -41,18 +41,15 @@ public class BlackListImpl implements BlackList {
     @Override
     public Response isBlackArtifactPresent(String groupId, String artifactId, String version) {
         if (groupId == null || artifactId == null || version == null) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(new ErrorMessage(ErrorMessage.ErrorType.PARAMS_REQUIRED,
-                            "All parameters are required",
-                            "Parameters groupID, artifactID and version must be specified."))
+            return Response
+                    .status(Response.Status.BAD_REQUEST).entity(new ErrorMessage(ErrorMessage.ErrorType.PARAMS_REQUIRED,
+                            "All parameters are required", "Parameters groupID, artifactID and version must be specified."))
                     .build();
         }
         ContainsResponse response = new ContainsResponse();
 
         Optional<BlackArtifact> artifact = blackService.getArtifact(groupId, artifactId, version);
-        List<BlackArtifact> artifacts = artifact
-                .map(Collections::singletonList)
-                .orElse(Collections.emptyList());
+        List<BlackArtifact> artifacts = artifact.map(Collections::singletonList).orElse(Collections.emptyList());
 
         response.setContains(artifact.isPresent());
         response.setFound(convert.toRestArtifacts(artifacts));
@@ -67,8 +64,8 @@ public class BlackListImpl implements BlackList {
     @Override
     public Response addBlackArtifact(RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
-        ArtifactService.ArtifactStatus result = blackService.addArtifact(artifact.getGroupId(),
-                artifact.getArtifactId(), artifact.getVersion());
+        ArtifactService.ArtifactStatus result = blackService.addArtifact(artifact.getGroupId(), artifact.getArtifactId(),
+                artifact.getVersion());
         switch (result) {
             case ADDED:
                 response.setSuccess(true);
@@ -81,8 +78,7 @@ public class BlackListImpl implements BlackList {
                 response.setSuccess(false);
                 return Response.ok(response).build();
             default:
-                return Response
-                        .status(Response.Status.INTERNAL_SERVER_ERROR)
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                         .entity(new ErrorMessage(ErrorMessage.ErrorType.UNEXPECTED_SERVER_ERR,
                                 "Unexpected server error occurred.", "Result was " + result))
                         .build();
@@ -92,8 +88,8 @@ public class BlackListImpl implements BlackList {
     @Override
     public SuccessResponse removeBlackArtifact(RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
-        response.setSuccess(blackService.removeArtifact(artifact.getGroupId(),
-                artifact.getArtifactId(), artifact.getVersion()));
+        response.setSuccess(
+                blackService.removeArtifact(artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion()));
         return response;
     }
 

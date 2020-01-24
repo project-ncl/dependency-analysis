@@ -30,33 +30,29 @@ public class ProductsServiceImpl implements ProductsService {
     public Set<ArtifactDiff> difference(long leftProduct, long rightProduct) {
         ProductVersion left = productVersionDAO.read(leftProduct);
         ProductVersion right = productVersionDAO.read(rightProduct);
-        if(left == null || right == null){
-            throw new IllegalArgumentException("One or both of the products (" + leftProduct + ", "
-                    + rightProduct + ") doesn't exists.");
+        if (left == null || right == null) {
+            throw new IllegalArgumentException(
+                    "One or both of the products (" + leftProduct + ", " + rightProduct + ") doesn't exists.");
         }
         Set<WhiteArtifact> leftArtifacts = left.getWhiteArtifacts();
         Set<WhiteArtifact> rightArtifacts = right.getWhiteArtifacts();
         Set<GA> allGAs = new HashSet<>();
-        Map<GA, String> leftGAs = leftArtifacts.stream()
-                .peek(o -> allGAs.add(o.getGa()))
+        Map<GA, String> leftGAs = leftArtifacts.stream().peek(o -> allGAs.add(o.getGa()))
                 .collect(Collectors.toMap(WhiteArtifact::getGa, WhiteArtifact::getOsgiVersion));
-        Map<GA, String> rightGAs = rightArtifacts.stream()
-                .peek(o -> allGAs.add(o.getGa()))
+        Map<GA, String> rightGAs = rightArtifacts.stream().peek(o -> allGAs.add(o.getGa()))
                 .collect(Collectors.toMap(WhiteArtifact::getGa, WhiteArtifact::getOsgiVersion));
         Set<ArtifactDiff> ret = new HashSet<>();
 
         VersionComparator comparator = new VersionComparator(new VersionParser(VersionParser.DEFAULT_SUFFIX));
-        for(GA ga : allGAs){
+        for (GA ga : allGAs) {
             String leftVersion = leftGAs.get(ga);
             String rightVersion = rightGAs.get(ga);
             VersionDifference difference = null;
-            if(leftVersion != null && rightVersion != null){
+            if (leftVersion != null && rightVersion != null) {
                 difference = comparator.difference(leftVersion, rightVersion);
             }
-            ArtifactDiff ad = new ArtifactDiff(leftVersion,
-                    new org.jboss.da.model.rest.GA(ga.getGroupId(), ga.getArtifactId()),
-                    rightVersion,
-                    difference);
+            ArtifactDiff ad = new ArtifactDiff(leftVersion, new org.jboss.da.model.rest.GA(ga.getGroupId(), ga.getArtifactId()),
+                    rightVersion, difference);
             ret.add(ad);
         }
         return ret;

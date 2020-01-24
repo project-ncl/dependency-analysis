@@ -9,6 +9,7 @@ public interface GADAO extends GenericDAO<GA> {
 
     /**
      * Finds GA with specific groupId and artifactId if doesn't exist creates it
+     * 
      * @param groupId
      * @param artifactId
      * @return GA
@@ -17,6 +18,7 @@ public interface GADAO extends GenericDAO<GA> {
 
     /**
      * Finds GA with specific groupId and artifactId
+     * 
      * @param groupId
      * @param artifactId
      * @return Optional of GA
@@ -25,6 +27,7 @@ public interface GADAO extends GenericDAO<GA> {
 
     /**
      * Finds all GA
+     * 
      * @return list of GAs
      */
     List<GA> findAll();

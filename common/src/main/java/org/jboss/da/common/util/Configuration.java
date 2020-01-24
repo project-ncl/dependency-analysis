@@ -56,8 +56,7 @@ public class Configuration {
         }
 
         // Try to open stream using classloader
-        final InputStream inStream = getClass().getClassLoader()
-                .getResourceAsStream(configFileName);
+        final InputStream inStream = getClass().getClassLoader().getResourceAsStream(configFileName);
         if (inStream != null) {
             return inStream;
         }

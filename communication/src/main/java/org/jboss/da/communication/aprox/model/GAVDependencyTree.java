@@ -40,30 +40,28 @@ public class GAVDependencyTree implements Comparable<GAVDependencyTree> {
     /**
      * Prune duplicate subtrees leaving one instance for each duplicate.
      */
-    public void prune(){
+    public void prune() {
         Map<GAV, Set<GAVDependencyTree>> forest = new HashMap<>();
         fillForest(this, forest);
-        Map<GAV, Set<GAVDependencyTree>> candidates = forest.entrySet().stream()
-                .filter(e -> e.getValue().size() > 1)
+        Map<GAV, Set<GAVDependencyTree>> candidates = forest.entrySet().stream().filter(e -> e.getValue().size() > 1)
                 .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
-              
+
         int previous;
-        do{
+        do {
             previous = candidates.size();
             pruneLeaves(this, candidates);
-        }while(!candidates.isEmpty() && previous > candidates.size());
+        } while (!candidates.isEmpty() && previous > candidates.size());
     }
 
     private static void fillForest(GAVDependencyTree tree, Map<GAV, Set<GAVDependencyTree>> forest) {
         Set<GAVDependencyTree> trees = forest.computeIfAbsent(tree.getGav(), (k) -> new HashSet<>());
         trees.add(tree);
-        for(GAVDependencyTree t : tree.getDependencies()){
+        for (GAVDependencyTree t : tree.getDependencies()) {
             fillForest(t, forest);
         }
     }
 
-    private static void pruneLeaves(GAVDependencyTree tree,
-            Map<GAV, Set<GAVDependencyTree>> candidates) {
+    private static void pruneLeaves(GAVDependencyTree tree, Map<GAV, Set<GAVDependencyTree>> candidates) {
         Queue<GAVDependencyTree> bfsQueue = new LinkedList<>();
         Deque<GAVDependencyTree> reverseLevelOrder = new LinkedList<>();
         bfsQueue.add(tree);
@@ -80,8 +78,7 @@ public class GAVDependencyTree implements Comparable<GAVDependencyTree> {
         }
     }
 
-    private static void pruneLeaf(GAVDependencyTree tree,
-            Map<GAV, Set<GAVDependencyTree>> candidates) {
+    private static void pruneLeaf(GAVDependencyTree tree, Map<GAV, Set<GAVDependencyTree>> candidates) {
         Iterator<GAVDependencyTree> it = tree.getDependencies().iterator();
         while (it.hasNext()) {
             GAVDependencyTree d = it.next();

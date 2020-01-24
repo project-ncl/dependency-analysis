@@ -44,19 +44,13 @@ public class AggregatedProductProvider implements ProductProvider {
             Predicate<? super Artifact> predicate) {
         return artifacts.stream()
                 .map(a -> new ProductArtifacts(a.getProduct(),
-                                a.getArtifacts().stream()
-                                .filter(predicate)
-                                .collect(Collectors.toSet())))
-                .filter(a -> !a.getArtifacts().isEmpty())
-                .collect(Collectors.toSet());
+                        a.getArtifacts().stream().filter(predicate).collect(Collectors.toSet())))
+                .filter(a -> !a.getArtifacts().isEmpty()).collect(Collectors.toSet());
     }
 
-    public static CompletableFuture<Set<ProductArtifacts>> filterProducts(
-            CompletableFuture<Set<ProductArtifacts>> artifacts,
+    public static CompletableFuture<Set<ProductArtifacts>> filterProducts(CompletableFuture<Set<ProductArtifacts>> artifacts,
             Predicate<? super Product> predicate) {
-        return artifacts.thenApply(as -> as.stream()
-                .filter(a -> predicate.test(a.getProduct()))
-                .collect(Collectors.toSet()));
+        return artifacts.thenApply(as -> as.stream().filter(a -> predicate.test(a.getProduct())).collect(Collectors.toSet()));
     }
 
     // TODO: filter unknown products, so that when there is artifact both in unknown product and in
@@ -108,7 +102,8 @@ public class AggregatedProductProvider implements ProductProvider {
         return aggregate(x -> x.getVersions(artifact), new MapCol<>(AggregatedProductProvider::combineSets));
     }
 
-    private <R> CompletableFuture<R> aggregate(Function<ProductProvider, Future<R>> getter, Collector<? super R, ?, R> collector){
+    private <R> CompletableFuture<R> aggregate(Function<ProductProvider, Future<R>> getter,
+            Collector<? super R, ?, R> collector) {
         final List<Future<R>> results = new ArrayList<>();
 
         results.add(getter.apply(databaseProductProvider));
@@ -121,8 +116,8 @@ public class AggregatedProductProvider implements ProductProvider {
     }
 
     /**
-     * After all futures are completed, accumulate the results together. If they are not completed,
-     * wait for a while and check again
+     * After all futures are completed, accumulate the results together. If they are not completed, wait for a while and check
+     * again
      */
     private <R> void tryToComplete(CompletableFuture<R> ret, List<Future<R>> results, Collector<? super R, ?, R> collector) {
         if (results.stream().allMatch(Future::isDone)) {
@@ -150,8 +145,7 @@ public class AggregatedProductProvider implements ProductProvider {
     }
 
     private static class ProductArtifactsCollector
-            implements
-            Collector<Set<ProductArtifacts>, HashMap<Product, ProductArtifacts>, Set<ProductArtifacts>> {
+            implements Collector<Set<ProductArtifacts>, HashMap<Product, ProductArtifacts>, Set<ProductArtifacts>> {
 
         @Override
         public Supplier<HashMap<Product, ProductArtifacts>> supplier() {
@@ -161,8 +155,9 @@ public class AggregatedProductProvider implements ProductProvider {
         @Override
         public BiConsumer<HashMap<Product, ProductArtifacts>, Set<ProductArtifacts>> accumulator() {
             return (h, m) -> {
-                for(ProductArtifacts pa : m){
-                    h.merge(pa.getProduct(), pa, (a, b) -> new ProductArtifacts(pa.getProduct(), combineSets(a.getArtifacts(), b.getArtifacts())));
+                for (ProductArtifacts pa : m) {
+                    h.merge(pa.getProduct(), pa,
+                            (a, b) -> new ProductArtifacts(pa.getProduct(), combineSets(a.getArtifacts(), b.getArtifacts())));
                 }
             };
         }
@@ -170,8 +165,9 @@ public class AggregatedProductProvider implements ProductProvider {
         @Override
         public BinaryOperator<HashMap<Product, ProductArtifacts>> combiner() {
             return (h, m) -> {
-                for(Map.Entry<Product, ProductArtifacts> e : m.entrySet()){
-                    h.merge(e.getKey(), e.getValue(), (a, b) -> new ProductArtifacts(e.getKey(), combineSets(a.getArtifacts(), b.getArtifacts())));
+                for (Map.Entry<Product, ProductArtifacts> e : m.entrySet()) {
+                    h.merge(e.getKey(), e.getValue(),
+                            (a, b) -> new ProductArtifacts(e.getKey(), combineSets(a.getArtifacts(), b.getArtifacts())));
                 }
                 return h;
             };
@@ -192,7 +188,10 @@ public class AggregatedProductProvider implements ProductProvider {
 
         @Override
         public BinaryOperator<R> combiner() {
-            return (h, s) -> {accumulator().accept(h, s); return h;};
+            return (h, s) -> {
+                accumulator().accept(h, s);
+                return h;
+            };
         }
 
         @Override
@@ -202,8 +201,7 @@ public class AggregatedProductProvider implements ProductProvider {
 
         @Override
         public Set<Collector.Characteristics> characteristics() {
-            return EnumSet.of(Collector.Characteristics.IDENTITY_FINISH,
-                    Collector.Characteristics.UNORDERED);
+            return EnumSet.of(Collector.Characteristics.IDENTITY_FINISH, Collector.Characteristics.UNORDERED);
         }
 
     }

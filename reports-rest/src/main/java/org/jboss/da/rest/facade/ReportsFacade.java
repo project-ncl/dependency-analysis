@@ -43,34 +43,33 @@ public class ReportsFacade {
     @Inject
     private Validation validation;
 
-    public Set<BuiltReport> builtReport(BuiltReportRequest request) throws ScmException,
-            PomAnalysisException, CommunicationException, ValidationException {
-        validation.validation(request,
-                "Getting dependency report for a project specified in a repository URL failed");
+    public Set<BuiltReport> builtReport(BuiltReportRequest request)
+            throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
+        validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
         String pomPath = getPomPath(request.getPomPath());
-        SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(),
-                pomPath, request.getAdditionalRepos());
+        SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(), pomPath,
+                request.getAdditionalRepos());
 
         Set<BuiltReportModule> builtReport = reportsGenerator.getBuiltReport(locator);
         return Translate.toBuiltReport(builtReport);
     }
 
-    public AlignReport alignReport(AlignReportRequest request) throws ScmException,
-            PomAnalysisException, ValidationException, CommunicationException {
-        validation.validation(request,
-                "Getting allignment report for project specified in a repository URL failed");
+    public AlignReport alignReport(AlignReportRequest request)
+            throws ScmException, PomAnalysisException, ValidationException, CommunicationException {
+        validation.validation(request, "Getting allignment report for project specified in a repository URL failed");
         String pomPath = getPomPath(request.getPomPath());
-        SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(),
-                pomPath, request.getAdditionalRepos());
+        SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(), pomPath,
+                request.getAdditionalRepos());
 
         Set<AlignmentReportModule> aligmentReport = reportsGenerator.getAligmentReport(locator,
                 request.isSearchUnknownProducts(), request.getProducts());
         return Translate.toAlignReport(aligmentReport);
     }
 
-    public Report scmReport(SCMReportRequest request) throws ScmException, PomAnalysisException, CommunicationException, NoSuchElementException, ValidationException {
+    public Report scmReport(SCMReportRequest request)
+            throws ScmException, PomAnalysisException, CommunicationException, NoSuchElementException, ValidationException {
         validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
-        if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
+        if (request.getProductVersionIds().size() == 1) { // user inserted ID as empty string
             Iterator<Long> iterator = request.getProductVersionIds().iterator();
             if (iterator.next() == null) {
                 iterator.remove();
@@ -86,14 +85,13 @@ public class ReportsFacade {
 
         Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(request);
 
-        return artifactReport
-                .map(Translate::toReport)
-                .orElseThrow(() -> new NoSuchElementException());
+        return artifactReport.map(Translate::toReport).orElseThrow(() -> new NoSuchElementException());
     }
 
-    public AdvancedReport advancedScmReport(SCMReportRequest request) throws ValidationException, ScmException, PomAnalysisException, CommunicationException {
+    public AdvancedReport advancedScmReport(SCMReportRequest request)
+            throws ValidationException, ScmException, PomAnalysisException, CommunicationException {
         validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
-        if (request.getProductVersionIds().size() == 1) { //user inserted ID as empty string
+        if (request.getProductVersionIds().size() == 1) { // user inserted ID as empty string
             Iterator<Long> iterator = request.getProductVersionIds().iterator();
             if (iterator.next() == null) {
                 iterator.remove();
@@ -107,27 +105,21 @@ public class ReportsFacade {
             }
         }
 
-        Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator
-                .getAdvancedReportFromSCM(request);
+        Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator.getAdvancedReportFromSCM(request);
 
-        return advancedArtifactReport
-                .map(Translate::toAdvancedReport)
-                .orElseThrow(() -> new NoSuchElementException());
+        return advancedArtifactReport.map(Translate::toAdvancedReport).orElseThrow(() -> new NoSuchElementException());
     }
 
-    public Report gavReport(GAVRequest gavRequest) throws CommunicationException,
-            FindGAVDependencyException {
+    public Report gavReport(GAVRequest gavRequest) throws CommunicationException, FindGAVDependencyException {
         ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
         return Translate.toReport(artifactReport);
     }
 
-    public List<LookupReport> gavsReport(LookupGAVsRequest gavRequest)
-            throws CommunicationException {
+    public List<LookupReport> gavsReport(LookupGAVsRequest gavRequest) throws CommunicationException {
         return reportsGenerator.getLookupReportsForGavs(gavRequest);
     }
 
-    public List<NPMLookupReport> lookupReport(LookupNPMRequest request)
-            throws CommunicationException {
+    public List<NPMLookupReport> lookupReport(LookupNPMRequest request) throws CommunicationException {
         return reportsGenerator.getLookupReports(request);
     }
 

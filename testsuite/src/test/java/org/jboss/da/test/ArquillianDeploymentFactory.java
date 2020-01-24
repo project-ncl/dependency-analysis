@@ -38,8 +38,7 @@ public class ArquillianDeploymentFactory {
     private static final String TEST_EAR = DEPLOYMENT_NAME + ".ear";
 
     public EnterpriseArchive createDeployment(DepType type, TestSide testSide) {
-        File earProjectBuildDir = new File(new File(getProjectTopLevelDir(), "application"),
-                "target");
+        File earProjectBuildDir = new File(new File(getProjectTopLevelDir(), "application"), "target");
         File earFile = new File(earProjectBuildDir, "dependency-analysis.ear");
         EnterpriseArchive ear = createFromZipFile(EnterpriseArchive.class, earFile, TEST_EAR);
         updateEar(ear, type);
@@ -54,9 +53,8 @@ public class ArquillianDeploymentFactory {
     }
 
     private void updateEarServer(EnterpriseArchive ear) {
-        File wiremockJar = Maven.resolver().loadPomFromFile("pom.xml")
-                .resolve("com.github.tomakehurst:wiremock-standalone").withoutTransitivity()
-                .asSingleFile();
+        File wiremockJar = Maven.resolver().loadPomFromFile("pom.xml").resolve("com.github.tomakehurst:wiremock-standalone")
+                .withoutTransitivity().asSingleFile();
         ear.addAsLibraries(wiremockJar);
     }
 
@@ -69,8 +67,7 @@ public class ArquillianDeploymentFactory {
         WebArchive reportsRestWar;
         switch (type) {
             case REPORTS: {
-                reportsRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class,
-                        "reports-rest.war"));
+                reportsRestWar = Testable.archiveToTest(ear.getAsType(WebArchive.class, "reports-rest.war"));
                 break;
             }
             default:
@@ -90,12 +87,11 @@ public class ArquillianDeploymentFactory {
     private void updateArchiveWithReplacements(Archive archive, String name) {
         try {
             Path replacements = Paths.get("src/test/replacements", name).toAbsolutePath();
-            Files.find(replacements, Integer.MAX_VALUE, (p, a) -> a.isRegularFile())
-                    .forEach(p -> {
-                        String relpath = replacements.relativize(p).toString();
-                        archive.delete(relpath);
-                        archive.add(new FileAsset(p.toFile()), relpath);
-                    });
+            Files.find(replacements, Integer.MAX_VALUE, (p, a) -> a.isRegularFile()).forEach(p -> {
+                String relpath = replacements.relativize(p).toString();
+                archive.delete(relpath);
+                archive.add(new FileAsset(p.toFile()), relpath);
+            });
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -113,8 +109,8 @@ public class ArquillianDeploymentFactory {
         if (!isProjectTopLevelDir(projectTopLevelDir)) {
             projectTopLevelDir = projectTopLevelDir.getParentFile();
             if (!isProjectTopLevelDir(projectTopLevelDir)) {
-                throw new IllegalStateException("Can not find project top level directory from "
-                        + projectTopLevelDir.getAbsolutePath());
+                throw new IllegalStateException(
+                        "Can not find project top level directory from " + projectTopLevelDir.getAbsolutePath());
             }
         }
         return projectTopLevelDir;
@@ -136,25 +132,21 @@ public class ArquillianDeploymentFactory {
     // copied from org.jboss.shrinkwrap.api.ArchiveFactory.createFromZipFile(final Class<T> type, final File archiveFile) -
     // added parameter archiveName
     /**
-     * Creates a new archive of the specified type as imported from the specified {@link File}. The file is expected to
-     * be encoded as ZIP (ie. JAR/WAR/EAR). The name of the archive will be set to {@link File#getName()}. The archive
-     * will be be backed by the {@link org.jboss.shrinkwrap.api.Configuration} specific to this {@link org.jboss.shrinkwrap.api.ArchiveFactory}.
+     * Creates a new archive of the specified type as imported from the specified {@link File}. The file is expected to be
+     * encoded as ZIP (ie. JAR/WAR/EAR). The name of the archive will be set to {@link File#getName()}. The archive will be be
+     * backed by the {@link org.jboss.shrinkwrap.api.Configuration} specific to this
+     * {@link org.jboss.shrinkwrap.api.ArchiveFactory}.
      *
-     * @param type
-     *            The type of the archive e.g. {@link org.jboss.shrinkwrap.api.spec.WebArchive}
-     * @param archiveFile
-     *            the archiveFile to use
-     * @param archiveName
-     *            the name of created archive
+     * @param type The type of the archive e.g. {@link org.jboss.shrinkwrap.api.spec.WebArchive}
+     * @param archiveFile the archiveFile to use
+     * @param archiveName the name of created archive
      * @return An {@link Assignable} view
-     * @throws IllegalArgumentException
-     *             If either argument is not supplied, if the specified {@link File} does not exist, or is not a valid
-     *             ZIP file
-     * @throws org.jboss.shrinkwrap.api.importer.ArchiveImportException
-     *             If an error occurred during the import process
+     * @throws IllegalArgumentException If either argument is not supplied, if the specified {@link File} does not exist, or is
+     *         not a valid ZIP file
+     * @throws org.jboss.shrinkwrap.api.importer.ArchiveImportException If an error occurred during the import process
      */
-    public <T extends Assignable> T createFromZipFile(final Class<T> type, final File archiveFile,
-            String archiveName) throws IllegalArgumentException, ArchiveImportException {
+    public <T extends Assignable> T createFromZipFile(final Class<T> type, final File archiveFile, String archiveName)
+            throws IllegalArgumentException, ArchiveImportException {
         // Precondition checks
         if (type == null) {
             throw new IllegalArgumentException("Type must be specified");
@@ -163,12 +155,10 @@ public class ArquillianDeploymentFactory {
             throw new IllegalArgumentException("File must be specified");
         }
         if (!archiveFile.exists()) {
-            throw new IllegalArgumentException("File for import does not exist: "
-                    + archiveFile.getAbsolutePath());
+            throw new IllegalArgumentException("File for import does not exist: " + archiveFile.getAbsolutePath());
         }
         if (archiveFile.isDirectory()) {
-            throw new IllegalArgumentException("File for import must not be a directory: "
-                    + archiveFile.getAbsolutePath());
+            throw new IllegalArgumentException("File for import must not be a directory: " + archiveFile.getAbsolutePath());
         }
 
         // Construct ZipFile
@@ -176,16 +166,13 @@ public class ArquillianDeploymentFactory {
         try {
             zipFile = new ZipFile(archiveFile);
         } catch (final ZipException ze) {
-            throw new IllegalArgumentException("Does not appear to be a valid ZIP file: "
-                    + archiveFile.getAbsolutePath());
+            throw new IllegalArgumentException("Does not appear to be a valid ZIP file: " + archiveFile.getAbsolutePath());
         } catch (final IOException ioe) {
-            throw new RuntimeException("I/O Error in importing new archive from ZIP: "
-                    + archiveFile.getAbsolutePath(), ioe);
+            throw new RuntimeException("I/O Error in importing new archive from ZIP: " + archiveFile.getAbsolutePath(), ioe);
         }
 
         // Import
-        return ShrinkWrap.create(type, archiveName).as(ZipImporter.class).importFrom(zipFile)
-                .as(type);
+        return ShrinkWrap.create(type, archiveName).as(ZipImporter.class).importFrom(zipFile).as(type);
 
     }
 }

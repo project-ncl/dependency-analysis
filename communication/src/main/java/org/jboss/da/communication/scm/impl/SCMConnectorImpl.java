@@ -58,22 +58,21 @@ public class SCMConnectorImpl implements SCMConnector {
     }
 
     @Override
-    public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision,
-            String pomPath, List<String> repositories) throws ScmException, PomAnalysisException {
+    public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String pomPath,
+            List<String> repositories) throws ScmException, PomAnalysisException {
         // git clone
         // TODO: hardcoded to git right now
         // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
-        GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, pomPath,
-                repositories);
+        GAVDependencyTree gavDependencyTree = pomAnalyzer.readRelationships(tempDir, pomPath, repositories);
 
         return gavDependencyTree;
     }
 
     @Override
-    public Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, String pomPath,
-            List<String> repositories) throws ScmException, PomAnalysisException {
+    public Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, String pomPath, List<String> repositories)
+            throws ScmException, PomAnalysisException {
         // git clone
         // TODO: hardcoded to git right now
         // TODO: enable the svn test if svn support is added
@@ -83,8 +82,7 @@ public class SCMConnectorImpl implements SCMConnector {
     }
 
     @Override
-    public Optional<MavenProject> getPom(String scmUrl, String revision, String pomPath)
-            throws ScmException {
+    public Optional<MavenProject> getPom(String scmUrl, String revision, String pomPath) throws ScmException {
         if (!pomPath.endsWith("pom.xml")) {
             pomPath += "/pom.xml";
         }
@@ -111,13 +109,12 @@ public class SCMConnectorImpl implements SCMConnector {
         // TODO: hardcoded to git right now
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
-        return pomAnalyzer.getPOMFileForGAV(tempDir, gav)
-                .flatMap(file -> pomAnalyzer.readPom(file));
+        return pomAnalyzer.getPOMFileForGAV(tempDir, gav).flatMap(file -> pomAnalyzer.readPom(file));
     }
 
     @Override
-    public Map<GA, Set<GAV>> getDependenciesOfModules(String scmUrl, String revision,
-            String pomPath, List<String> repositories) throws ScmException, PomAnalysisException {
+    public Map<GA, Set<GAV>> getDependenciesOfModules(String scmUrl, String revision, String pomPath, List<String> repositories)
+            throws ScmException, PomAnalysisException {
         // git clone
         // TODO: hardcoded to git right now
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
