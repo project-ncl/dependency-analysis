@@ -73,7 +73,10 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public List<String> getVersionsOfGA(GA ga, String repository) throws RepositoryException {
-        String query = repositoryLink("maven", repository, ga.getGroupId().replace(".", "/") + "/" + ga.getArtifactId());
+        String query = repositoryLink(
+                "maven",
+                repository,
+                ga.getGroupId().replace(".", "/") + "/" + ga.getArtifactId());
 
         MetricRegistry registry = metricsConfiguration.getMetricRegistry();
         Timer.Context context = null;
@@ -88,13 +91,19 @@ public class AproxConnectorImpl implements AproxConnector {
             HttpURLConnection connection = getResponse(query);
 
             final List<String> versions = parseMetadataFile(connection).getVersioning().getVersions().getVersion();
-            log.debug("Maven metadata for {} found. Response: {}. Versions: {}", ga, connection.getResponseCode(), versions);
+            log.debug(
+                    "Maven metadata for {} found. Response: {}. Versions: {}",
+                    ga,
+                    connection.getResponseCode(),
+                    versions);
             return versions;
         } catch (FileNotFoundException ex) {
             log.debug("Maven metadata for {} not found. Assuming empty version list.", ga);
             return Collections.emptyList();
         } catch (IOException | CommunicationException e) {
-            throw new RepositoryException("Failed to obtain versions for " + ga + " from repository on url " + query, e);
+            throw new RepositoryException(
+                    "Failed to obtain versions for " + ga + " from repository on url " + query,
+                    e);
         } finally {
             if (context != null) {
                 context.stop();
@@ -116,14 +125,18 @@ public class AproxConnectorImpl implements AproxConnector {
             HttpURLConnection connection = getResponse(query);
 
             final Set<String> versions = parser.parseNpmMetadata(connection).getVersions().keySet();
-            log.debug("Npm metadata for {} found. Response: {}. Versions: {}", packageName, connection.getResponseCode(),
+            log.debug(
+                    "Npm metadata for {} found. Response: {}. Versions: {}",
+                    packageName,
+                    connection.getResponseCode(),
                     versions);
             return new ArrayList(versions);
         } catch (FileNotFoundException ex) {
             log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
             return Collections.emptyList();
         } catch (IOException e) {
-            throw new RepositoryException("Failed to obtain versions for " + packageName + " from repository on url " + query,
+            throw new RepositoryException(
+                    "Failed to obtain versions for " + packageName + " from repository on url " + query,
                     e);
         }
     }
@@ -207,9 +220,9 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     /**
-     * Implementation note: dcheung tried to initially use HttpURLConnection and send a 'HEAD' request to the resource. Even
-     * though that worked, for some reason this completely makes Arquillian fail to deploy the testsuite. For that reason,
-     * dcheung switched to using a simple URL object instead with the try-catch logic.
+     * Implementation note: dcheung tried to initially use HttpURLConnection and send a 'HEAD' request to the resource. Even though
+     * that worked, for some reason this completely makes Arquillian fail to deploy the testsuite. For that reason, dcheung switched
+     * to using a simple URL object instead with the try-catch logic.
      *
      * No dcheung doesn't usually talks about himself in the third person..
      */
@@ -236,7 +249,9 @@ public class AproxConnectorImpl implements AproxConnector {
                 return false;
             }
         } catch (IOException e) {
-            throw new RepositoryException("Failed to check existence of pom for " + gav + " in repository on url " + query, e);
+            throw new RepositoryException(
+                    "Failed to check existence of pom for " + gav + " in repository on url " + query,
+                    e);
         }
     }
 

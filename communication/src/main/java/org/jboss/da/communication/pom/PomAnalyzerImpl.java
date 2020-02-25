@@ -88,7 +88,8 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         }
     }
 
-    private GAVDependencyTree readRelationships(GalleyWrapper gw, GalleyWrapper.Artifact a) throws PomAnalysisException {
+    private GAVDependencyTree readRelationships(GalleyWrapper gw, GalleyWrapper.Artifact a)
+            throws PomAnalysisException {
         try {
             gw.addDefaultLocations(config);
             gw.addLocationsFromPoms(pomReader);
@@ -118,7 +119,8 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     }
 
     @Override
-    public Set<GAV> getToplevelDepency(File pomRepoDir, String pomPath, List<String> repositories) throws PomAnalysisException {
+    public Set<GAV> getToplevelDepency(File pomRepoDir, String pomPath, List<String> repositories)
+            throws PomAnalysisException {
         try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), pomRepoDir, disConf, processor)) {
             GalleyWrapper.Artifact artifact = gw.getPom(pomPath);
 
@@ -135,8 +137,11 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     @Override
     public Optional<File> getPOMFileForGAV(File pomRepoDir, GAV gav) {
         try {
-            return LocalRepo.getAllPoms(pomRepoDir.toPath()).stream().filter(p -> isProjectVersionRefSameAsGAV(p, gav))
-                    .map(Path::toFile).findAny();
+            return LocalRepo.getAllPoms(pomRepoDir.toPath())
+                    .stream()
+                    .filter(p -> isProjectVersionRefSameAsGAV(p, gav))
+                    .map(Path::toFile)
+                    .findAny();
         } catch (IOException ex) {
             log.warn("Failed to find pom for GAV", ex);
             return Optional.empty();
@@ -144,7 +149,8 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     }
 
     @Override
-    public MavenPomView getGitPomView(File repoDir, String pomPath, List<String> repositories) throws PomAnalysisException {
+    public MavenPomView getGitPomView(File repoDir, String pomPath, List<String> repositories)
+            throws PomAnalysisException {
         try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), repoDir, disConf, processor)) {
             GalleyWrapper.Artifact pom = gw.getPom(pomPath);
             gw.addDefaultLocations(config);
@@ -204,7 +210,9 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             }
             return ret;
         } catch (IOException | PomAnalysisException ex) {
-            throw new PomAnalysisException("Failted to get dependencies of modules for " + new File(scmDir, pomPath), ex);
+            throw new PomAnalysisException(
+                    "Failted to get dependencies of modules for " + new File(scmDir, pomPath),
+                    ex);
         }
     }
 

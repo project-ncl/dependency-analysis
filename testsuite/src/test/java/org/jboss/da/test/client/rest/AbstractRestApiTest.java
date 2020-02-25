@@ -38,8 +38,10 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
     }
 
     private String readRestApiUrl() {
-        return readConfigurationValue("testsuite.restApiUrl",
-                "http://" + hostUrl + "/" + getContextRoot() + "/rest" + (restApiVersion == null ? "" : "/" + restApiVersion));
+        return readConfigurationValue(
+                "testsuite.restApiUrl",
+                "http://" + hostUrl + "/" + getContextRoot() + "/rest"
+                        + (restApiVersion == null ? "" : "/" + restApiVersion));
     }
 
     protected WebTarget createWebTarget(String relativePath) {

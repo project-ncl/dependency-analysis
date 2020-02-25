@@ -42,7 +42,10 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
 
     @Override
     public GAVDependencyTree getDependencyTree(SCMLocator scml) throws ScmException, PomAnalysisException {
-        return scmConnector.getDependencyTreeOfRevision(scml.getScmUrl(), scml.getRevision(), scml.getPomPath(),
+        return scmConnector.getDependencyTreeOfRevision(
+                scml.getScmUrl(),
+                scml.getRevision(),
+                scml.getPomPath(),
                 scml.getRepositories());
     }
 
@@ -52,7 +55,8 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     }
 
     @Override
-    public GAVDependencyTree getDependencyTree(String url, String revision, GAV gav) throws ScmException, PomAnalysisException {
+    public GAVDependencyTree getDependencyTree(String url, String revision, GAV gav)
+            throws ScmException, PomAnalysisException {
         return scmConnector.getDependencyTreeOfRevision(url, revision, gav);
     }
 
@@ -61,7 +65,10 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
         Optional<MavenProject> pom = scmConnector.getPom(scml.getScmUrl(), scml.getRevision(), scml.getPomPath());
         GAV gav = pom.orElseThrow(() -> new ScmException("Failed to find specified pom: " + scml)).getGAV();
 
-        Set<GAV> deps = scmConnector.getToplevelDependencyOfRevision(scml.getScmUrl(), scml.getRevision(), scml.getPomPath(),
+        Set<GAV> deps = scmConnector.getToplevelDependencyOfRevision(
+                scml.getScmUrl(),
+                scml.getRevision(),
+                scml.getPomPath(),
                 scml.getRepositories());
         return new GAVToplevelDependencies(gav, deps);
     }
@@ -72,15 +79,22 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
         Optional<MavenProject> pom = scmConnector.getPom(scml.getScmUrl(), scml.getRevision(), scml.getPomPath());
         GAV gav = pom.orElseThrow(() -> new ScmException("Failed to find specified pom: " + scml)).getGAV();
 
-        Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(scml.getScmUrl(), scml.getRevision(),
-                scml.getPomPath(), scml.getRepositories());
-        Set<GAV> deps = dependenciesOfModules.values().stream().flatMap(Set::stream)
-                .filter(g -> !dependenciesOfModules.containsKey(g.getGA())).collect(Collectors.toCollection(HashSet::new));
+        Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
+                scml.getScmUrl(),
+                scml.getRevision(),
+                scml.getPomPath(),
+                scml.getRepositories());
+        Set<GAV> deps = dependenciesOfModules.values()
+                .stream()
+                .flatMap(Set::stream)
+                .filter(g -> !dependenciesOfModules.containsKey(g.getGA()))
+                .collect(Collectors.toCollection(HashSet::new));
         return new GAVToplevelDependencies(gav, deps);
     }
 
     @Override
-    public GAVToplevelDependencies getToplevelDependencies(GAV gav) throws CommunicationException, FindGAVDependencyException {
+    public GAVToplevelDependencies getToplevelDependencies(GAV gav)
+            throws CommunicationException, FindGAVDependencyException {
         return treeToToplevel(getDependencyTree(gav));
     }
 

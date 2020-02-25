@@ -75,20 +75,25 @@ public class LocalRepo {
             } catch (TransferException | RuntimeException ex) {
                 log.warn("Could not parse " + pomFile.toAbsolutePath(), ex);
             } catch (FileAlreadyExistsException ex) {
-                log.error("File already exists. This is because there are multiple file with same "
-                        + "GAV. This ususaly happens when there are pom files in tests and is " + "harmless in this case.", ex);
+                log.error(
+                        "File already exists. This is because there are multiple file with same "
+                                + "GAV. This ususaly happens when there are pom files in tests and is "
+                                + "harmless in this case.",
+                        ex);
             }
         }
     }
 
     public static Set<Path> getAllPoms(Path scmDir) throws IOException {
-        return Files.walk(scmDir).filter(p -> !Files.isDirectory(p)) // is file
+        return Files.walk(scmDir)
+                .filter(p -> !Files.isDirectory(p)) // is file
                 .filter(p -> p.endsWith("pom.xml")) // named pom.xml
                 .collect(Collectors.toSet());
     }
 
     public synchronized Set<Path> getAllPoms() throws IOException {
-        return Files.walk(path).filter(p -> !Files.isDirectory(p)) // is file
+        return Files.walk(path)
+                .filter(p -> !Files.isDirectory(p)) // is file
                 .filter(p -> p.toString().endsWith(".pom")) // name ends with .pom
                 .collect(Collectors.toSet());
     }
@@ -120,7 +125,8 @@ public class LocalRepo {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(LocalRepo.class.getResourceAsStream("/template/maven-metadata.xml")))) {
 
-            Stream<String> lines = reader.lines().map(l -> l.replace("${groupId}", key.getGroupId()))
+            Stream<String> lines = reader.lines()
+                    .map(l -> l.replace("${groupId}", key.getGroupId()))
                     .map(l -> l.replace("${artifactId}", key.getGroupId()))
                     .map(l -> l.replace("${version}", key.getVersionString().replace("-SNAPSHOT", "")));
 

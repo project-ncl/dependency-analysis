@@ -19,14 +19,16 @@ public interface DependencyTreeGenerator {
 
     public GAVDependencyTree getDependencyTree(GAV gav) throws CommunicationException, FindGAVDependencyException;
 
-    public GAVDependencyTree getDependencyTree(String url, String revision, GAV gav) throws ScmException, PomAnalysisException;
+    public GAVDependencyTree getDependencyTree(String url, String revision, GAV gav)
+            throws ScmException, PomAnalysisException;
 
     public GAVToplevelDependencies getToplevelDependencies(SCMLocator scml) throws ScmException, PomAnalysisException;
 
     public GAVToplevelDependencies getToplevelDependenciesFromModules(SCMLocator scml)
             throws ScmException, PomAnalysisException;
 
-    public GAVToplevelDependencies getToplevelDependencies(GAV gav) throws CommunicationException, FindGAVDependencyException;
+    public GAVToplevelDependencies getToplevelDependencies(GAV gav)
+            throws CommunicationException, FindGAVDependencyException;
 
     public GAVToplevelDependencies getToplevelDependencies(String url, String revision, GAV gav)
             throws ScmException, PomAnalysisException;

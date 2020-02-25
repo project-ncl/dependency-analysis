@@ -38,7 +38,8 @@ public interface PomAnalyzer {
      * @return The GAVDependencyTree of the root project
      * @throws PomAnalysisException
      */
-    GAVDependencyTree readRelationships(File pomRepoDir, String pomPath, List<String> repositories) throws PomAnalysisException;
+    GAVDependencyTree readRelationships(File pomRepoDir, String pomPath, List<String> repositories)
+            throws PomAnalysisException;
 
     /**
      * Given the directory of a project, and the gav of the project which we'll consider as the root project, return the
@@ -67,13 +68,14 @@ public interface PomAnalyzer {
     public Map<GA, Set<GAV>> getDependenciesOfModules(File scmDir, String pomPath, List<String> repositories)
             throws PomAnalysisException;
 
-    public MavenPomView getGitPomView(File repoDir, String pomPath, List<String> repositories) throws PomAnalysisException;
+    public MavenPomView getGitPomView(File repoDir, String pomPath, List<String> repositories)
+            throws PomAnalysisException;
 
     public MavenPomView getMavenPomView(InputStream is) throws ConfigurationParseException, GalleyMavenException;
 
     /**
-     * Given the directory of a project, and the path to pom of the project which we'll consider as the root project, return the
-     * set of toplevel dependencies of the root project.
+     * Given the directory of a project, and the path to pom of the project which we'll consider as the root project, return the set
+     * of toplevel dependencies of the root project.
      *
      * @param pomRepoDir Directory of the project to analyze
      * @param pomPath Directory of the root project to analyze

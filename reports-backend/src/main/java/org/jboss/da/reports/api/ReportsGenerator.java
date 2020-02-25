@@ -34,8 +34,8 @@ public interface ReportsGenerator {
 
     /**
      * Create an advanced report about artifacts given an scm-url The advanced report will also contain lists of the top-level
-     * module dependencies which are: - blacklisted - whitelisted, - community gavs with a best match version - community gavs
-     * with built versions - community gavs
+     * module dependencies which are: - blacklisted - whitelisted, - community gavs with a best match version - community gavs with
+     * built versions - community gavs
      *
      * @param scml
      * @return Created report
@@ -44,8 +44,8 @@ public interface ReportsGenerator {
             throws ScmException, PomAnalysisException, CommunicationException;
 
     /**
-     * Creates a report about built/not built/blacklisted artifacts. It performs searches in the whole available repository as
-     * well as artifact whitelists.
+     * Creates a report about built/not built/blacklisted artifacts. It performs searches in the whole available repository as well
+     * as artifact whitelists.
      * 
      * No restrictions on the artifacts belonging to the certain product are applied if the request contains no product/product
      * version IDs. Otherwise only provides info for white listed artifacts belonging to the specified product/product versions.
@@ -63,8 +63,10 @@ public interface ReportsGenerator {
      * @param productIds Optional list of product ids to filter the result.
      * @return
      */
-    public Set<AlignmentReportModule> getAligmentReport(SCMLocator scml, boolean useUnknownProducts, Set<Long> productIds)
-            throws ScmException, PomAnalysisException, CommunicationException;
+    public Set<AlignmentReportModule> getAligmentReport(
+            SCMLocator scml,
+            boolean useUnknownProducts,
+            Set<Long> productIds) throws ScmException, PomAnalysisException, CommunicationException;
 
     public Set<BuiltReportModule> getBuiltReport(SCMLocator scml)
             throws ScmException, PomAnalysisException, CommunicationException;

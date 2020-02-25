@@ -43,7 +43,9 @@ public class GAVDependencyTree implements Comparable<GAVDependencyTree> {
     public void prune() {
         Map<GAV, Set<GAVDependencyTree>> forest = new HashMap<>();
         fillForest(this, forest);
-        Map<GAV, Set<GAVDependencyTree>> candidates = forest.entrySet().stream().filter(e -> e.getValue().size() > 1)
+        Map<GAV, Set<GAVDependencyTree>> candidates = forest.entrySet()
+                .stream()
+                .filter(e -> e.getValue().size() > 1)
                 .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
 
         int previous;

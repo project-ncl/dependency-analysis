@@ -48,7 +48,8 @@ public class ScmUrlValidator implements ConstraintValidator<ScmUrl, String> {
 
     private static final Pattern USERNAME_PATTERN = Pattern.compile("[\\.\\-_%\\w]+", Pattern.UNICODE_CHARACTER_CLASS);
 
-    private static final UrlValidator validator = new UrlValidator(new String[] { "http", "https", "git", "ssh", "git+ssh" });
+    private static final UrlValidator validator = new UrlValidator(
+            new String[] { "http", "https", "git", "ssh", "git+ssh" });
 
     public static boolean isValid(String url) {
         if (url == null) {
@@ -86,8 +87,7 @@ public class ScmUrlValidator implements ConstraintValidator<ScmUrl, String> {
     }
 
     /**
-     * Returns a String with username. '@' character or whatever indicator of it being username is included in the returned
-     * value
+     * Returns a String with username. '@' character or whatever indicator of it being username is included in the returned value
      *
      * @param url url to extract username from
      * @return username if username is specified in the url, null otherwise

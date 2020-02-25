@@ -28,21 +28,25 @@ public interface WhiteArtifactService extends ArtifactService<WhiteArtifact> {
      * @param productVersionId
      * @return
      */
-    public boolean removeArtifractFromProductVersion(String groupId, String artifactId, String version, Long productVersionId);
+    public boolean removeArtifractFromProductVersion(
+            String groupId,
+            String artifactId,
+            String version,
+            Long productVersionId);
 
     /**
-     * Checks if whitelist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix,
-     * find exact match. If the version doesn't have redhat suffix, converts the version to OSGi version and finds any redhat
-     * suffixed versions in whitelist.
+     * Checks if whitelist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix, find
+     * exact match. If the version doesn't have redhat suffix, converts the version to OSGi version and finds any redhat suffixed
+     * versions in whitelist.
      * 
      * @return List of found artifacts.
      */
     public List<WhiteArtifact> getArtifacts(GAV gav);
 
     /**
-     * Checks if whitelist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix,
-     * find exact match. If the version doesn't have redhat suffix, converts the version to OSGi version and finds any redhat
-     * suffixed versions in whitelist.
+     * Checks if whitelist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix, find
+     * exact match. If the version doesn't have redhat suffix, converts the version to OSGi version and finds any redhat suffixed
+     * versions in whitelist.
      * 
      * @return List of found artifacts.
      */

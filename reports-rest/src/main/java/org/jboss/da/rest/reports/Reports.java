@@ -80,7 +80,9 @@ public class Reports {
     @Path("/scm-advanced")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get dependency report for a project specified in a repository URL", response = AdvancedReport.class)
+    @ApiOperation(
+            value = "Get dependency report for a project specified in a repository URL",
+            response = AdvancedReport.class)
     @TimedMetric
     public Response advancedScmGenerator(@ApiParam(value = "scm information") SCMReportRequest request) {
         try {
@@ -98,20 +100,30 @@ public class Reports {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get dependency report for a GAV ", response = Report.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 404, message = "Requested GAV was not found in repository", response = ErrorMessage.class),
-            @ApiResponse(code = 502, message = "Communication with remote repository failed") })
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            code = 404,
+                            message = "Requested GAV was not found in repository",
+                            response = ErrorMessage.class),
+                    @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     @TimedMetric
     public Response gavGenerator(
             @ApiParam(value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAVRequest gavRequest) {
         try {
             return Response.ok().entity(facade.gavReport(gavRequest)).build();
         } catch (RepositoryException e) {
-            return handleException("Communication with remote repository failed", ErrorType.COMMUNICATION_FAIL,
-                    Status.BAD_GATEWAY, e);
+            return handleException(
+                    "Communication with remote repository failed",
+                    ErrorType.COMMUNICATION_FAIL,
+                    Status.BAD_GATEWAY,
+                    e);
         } catch (FindGAVDependencyException e) {
-            return handleException("Requested GA was not found in artifact repository", ErrorType.GA_NOT_FOUND,
-                    Status.NOT_FOUND, e);
+            return handleException(
+                    "Requested GA was not found in artifact repository",
+                    ErrorType.GA_NOT_FOUND,
+                    Status.NOT_FOUND,
+                    e);
         } catch (Exception e) {
             return handleException(e);
         }
@@ -121,19 +133,26 @@ public class Reports {
     @Path("/lookup/gavs")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Lookup built versions for the list of provided GAVs", responseContainer = "List", response = LookupReport.class)
+    @ApiOperation(
+            value = "Lookup built versions for the list of provided GAVs",
+            responseContainer = "List",
+            response = LookupReport.class)
     @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     @TimedMetric
     public Response lookupGav(
-            @ApiParam(value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest) {
+            @ApiParam(
+                    value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest) {
         try {
             log.info("Incoming request to /lookup/gavs. Payload: " + gavRequest.toString());
             List<LookupReport> lookupReportList = facade.gavsReport(gavRequest);
             log.info("Request to /lookup/gavs completed successfully. Payload: " + gavRequest.toString());
             return Response.status(Status.OK).entity(lookupReportList).build();
         } catch (RepositoryException e) {
-            return handleException("Communication with remote repository failed", ErrorType.COMMUNICATION_FAIL,
-                    Status.BAD_GATEWAY, e);
+            return handleException(
+                    "Communication with remote repository failed",
+                    ErrorType.COMMUNICATION_FAIL,
+                    Status.BAD_GATEWAY,
+                    e);
         } catch (Exception e) {
             return handleException(e);
         }
@@ -143,7 +162,10 @@ public class Reports {
     @Path("/lookup/npm")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Lookup built versions for the list of provided NPM artifacts", responseContainer = "List", response = NPMLookupReport.class)
+    @ApiOperation(
+            value = "Lookup built versions for the list of provided NPM artifacts",
+            responseContainer = "List",
+            response = NPMLookupReport.class)
     @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     @TimedMetric
     public Response lookupNPM(@ApiParam(value = "JSON object with list of package names") LookupNPMRequest request) {
@@ -153,8 +175,11 @@ public class Reports {
             log.info("Request to /lookup/npm completed successfully. Payload: " + request.toString());
             return Response.status(Status.OK).entity(lookupReportList).build();
         } catch (RepositoryException e) {
-            return handleException("Communication with remote repository failed", ErrorType.COMMUNICATION_FAIL,
-                    Status.BAD_GATEWAY, e);
+            return handleException(
+                    "Communication with remote repository failed",
+                    ErrorType.COMMUNICATION_FAIL,
+                    Status.BAD_GATEWAY,
+                    e);
         } catch (Exception e) {
             return handleException(e);
         }
@@ -164,7 +189,9 @@ public class Reports {
     @Path("/align")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get alignment report for project specified in a repository URL.", response = AlignReport.class)
+    @ApiOperation(
+            value = "Get alignment report for project specified in a repository URL.",
+            response = AlignReport.class)
     @TimedMetric
     public Response alignReport(AlignReportRequest request) {
         try {
@@ -178,7 +205,9 @@ public class Reports {
     @Path("/built")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get builded artifacts for project specified in a repository URL.", response = BuiltReport.class)
+    @ApiOperation(
+            value = "Get builded artifacts for project specified in a repository URL.",
+            response = BuiltReport.class)
     @TimedMetric
     public Response builtReport(BuiltReportRequest request) {
         try {
@@ -194,7 +223,9 @@ public class Reports {
         } else if (e instanceof RepositoryException) {
             return handleException("Communication with remote repository failed", ErrorType.COMMUNICATION_FAIL, e);
         } else if (e instanceof CommunicationException) {
-            return handleException("Exception thrown when communicating with external service", ErrorType.COMMUNICATION_FAIL,
+            return handleException(
+                    "Exception thrown when communicating with external service",
+                    ErrorType.COMMUNICATION_FAIL,
                     e);
         } else if (e instanceof PomAnalysisException) {
             return handleException("Exception thrown in POM analysis", ErrorType.POM_ANALYSIS, e);

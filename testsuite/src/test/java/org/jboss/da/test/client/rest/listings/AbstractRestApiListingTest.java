@@ -114,12 +114,18 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
         return FileUtils.readFileToString(jsonRequestFile, ENCODING);
     }
 
-    protected Response manipulateEntityFile(ListEntityType entity, OperationType operation, String file, Boolean checkSuccess)
-            throws Exception {
+    protected Response manipulateEntityFile(
+            ListEntityType entity,
+            OperationType operation,
+            String file,
+            Boolean checkSuccess) throws Exception {
         return manipulateEntityString(entity, operation, readJsonFile(file), checkSuccess);
     }
 
-    protected Response manipulateEntityString(ListEntityType entity, OperationType operation, String requestString,
+    protected Response manipulateEntityString(
+            ListEntityType entity,
+            OperationType operation,
+            String requestString,
             Boolean checkSuccess) throws Exception {
         String path = null;
         switch (entity) {
@@ -168,6 +174,7 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
     }
 
     protected long getIdOfProduct(String name, String version) throws Exception {
-        return createClientRequest(PATH_PRODUCT + "?name=" + name + "&version=" + version).get(RestProduct[].class)[0].getId();
+        return createClientRequest(PATH_PRODUCT + "?name=" + name + "&version=" + version).get(RestProduct[].class)[0]
+                .getId();
     }
 }

@@ -85,7 +85,10 @@ public class SCMTest {
         ScmFacade scm = new ScmFacade();
 
         try {
-            scm.shallowCloneRepository(SCMType.GIT, "https://github.com/project-ncl/dependency-analysis.git", "0.4.2",
+            scm.shallowCloneRepository(
+                    SCMType.GIT,
+                    "https://github.com/project-ncl/dependency-analysis.git",
+                    "0.4.2",
                     tempDir.toFile());
 
             // make sure we shallow cloned
@@ -114,7 +117,10 @@ public class SCMTest {
 
         try {
             // revision makes no sense for SVN
-            scm.shallowCloneRepository(SCMType.SVN, "http://svn.apache.org/repos/asf/commons/proper/cli/tags/cli-1.3.1/", "",
+            scm.shallowCloneRepository(
+                    SCMType.SVN,
+                    "http://svn.apache.org/repos/asf/commons/proper/cli/tags/cli-1.3.1/",
+                    "",
                     tempDir.toFile());
 
             Path pomPath = Paths.get(tempDir.toString(), "pom.xml");

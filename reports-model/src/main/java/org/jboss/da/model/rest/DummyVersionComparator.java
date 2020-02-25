@@ -15,8 +15,8 @@ public class DummyVersionComparator implements Comparator<String>, Serializable 
 
     static final String RE_QUALIFIER = "";
 
-    private static final Pattern pattern = Pattern
-            .compile("^(?<major>[0-9]{1,9})?(\\.(?<minor>[0-9]{1,9})(\\.(?<micro>[0-9]{1,9}))?)?([.-]?(?<qualifier>.+?))?$");
+    private static final Pattern pattern = Pattern.compile(
+            "^(?<major>[0-9]{1,9})?(\\.(?<minor>[0-9]{1,9})(\\.(?<micro>[0-9]{1,9}))?)?([.-]?(?<qualifier>.+?))?$");
 
     @Override
     public int compare(String version1, String version2) {

@@ -47,8 +47,11 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     }
 
     @Override
-    public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(String groupId, String artifactId,
-            String version, Long productVersionId) {
+    public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(
+            String groupId,
+            String artifactId,
+            String version,
+            Long productVersionId) {
         Optional<WhiteArtifact> dbArtifact = whiteArtifactDAO.findArtifact(groupId, artifactId, version);
         WhiteArtifact artifact = dbArtifact.orElseGet(() -> createArtifact(groupId, artifactId, version));
 
@@ -80,7 +83,11 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     }
 
     @Override
-    public boolean removeArtifractFromProductVersion(String groupId, String artifactId, String version, Long productVersionId) {
+    public boolean removeArtifractFromProductVersion(
+            String groupId,
+            String artifactId,
+            String version,
+            Long productVersionId) {
         ProductVersion pv = productVersionDAO.read(productVersionId);
         if (pv == null) {
             return false;
@@ -123,8 +130,8 @@ public class WhiteArtifactServiceImpl extends ArtifactServiceImpl<WhiteArtifact>
     public boolean removeArtifact(String groupId, String artifactId, String version) {
         Optional<WhiteArtifact> artifact = whiteArtifactDAO.findArtifact(groupId, artifactId, version);
         if (artifact.isPresent()) {
-            List<ProductVersion> productVersions = productVersionDAO.findProductVersionsWithArtifact(groupId, artifactId,
-                    version, true);
+            List<ProductVersion> productVersions = productVersionDAO
+                    .findProductVersionsWithArtifact(groupId, artifactId, version, true);
             for (ProductVersion pv : productVersions) {
                 pv.removeArtifact(artifact.get());
                 productVersionDAO.update(pv);

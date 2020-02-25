@@ -77,7 +77,9 @@ public interface ProductVersionService {
      * @param version
      * @return List of productVersions with artifacts
      */
-    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactByGAV(String groupId, String artifactId,
+    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactByGAV(
+            String groupId,
+            String artifactId,
             String version);
 
     /**
@@ -88,7 +90,9 @@ public interface ProductVersionService {
      * @param status
      * @return
      */
-    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(String groupId, String artifactId,
+    List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(
+            String groupId,
+            String artifactId,
             ProductSupportStatus status);
 
     /**

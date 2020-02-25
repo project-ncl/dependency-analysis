@@ -58,7 +58,10 @@ public class SCMConnectorImpl implements SCMConnector {
     }
 
     @Override
-    public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, String pomPath,
+    public GAVDependencyTree getDependencyTreeOfRevision(
+            String scmUrl,
+            String revision,
+            String pomPath,
             List<String> repositories) throws ScmException, PomAnalysisException {
         // git clone
         // TODO: hardcoded to git right now
@@ -71,8 +74,11 @@ public class SCMConnectorImpl implements SCMConnector {
     }
 
     @Override
-    public Set<GAV> getToplevelDependencyOfRevision(String scmUrl, String revision, String pomPath, List<String> repositories)
-            throws ScmException, PomAnalysisException {
+    public Set<GAV> getToplevelDependencyOfRevision(
+            String scmUrl,
+            String revision,
+            String pomPath,
+            List<String> repositories) throws ScmException, PomAnalysisException {
         // git clone
         // TODO: hardcoded to git right now
         // TODO: enable the svn test if svn support is added
@@ -113,8 +119,11 @@ public class SCMConnectorImpl implements SCMConnector {
     }
 
     @Override
-    public Map<GA, Set<GAV>> getDependenciesOfModules(String scmUrl, String revision, String pomPath, List<String> repositories)
-            throws ScmException, PomAnalysisException {
+    public Map<GA, Set<GAV>> getDependenciesOfModules(
+            String scmUrl,
+            String revision,
+            String pomPath,
+            List<String> repositories) throws ScmException, PomAnalysisException {
         // git clone
         // TODO: hardcoded to git right now
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);

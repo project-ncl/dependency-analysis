@@ -25,7 +25,9 @@ public class GAV implements Comparable<GAV> {
     private final String version;
 
     @JsonCreator
-    public GAV(@JsonProperty("groupId") String groupId, @JsonProperty("artifactId") String artifactId,
+    public GAV(
+            @JsonProperty("groupId") String groupId,
+            @JsonProperty("artifactId") String artifactId,
             @JsonProperty("version") String version) {
         this.ga = new GA(groupId, artifactId);
         this.version = Objects.requireNonNull(version);

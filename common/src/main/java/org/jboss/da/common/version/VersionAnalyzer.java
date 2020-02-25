@@ -40,8 +40,12 @@ public class VersionAnalyzer {
     public VersionAnalysisResult analyseVersions(String querry, Collection<String> versions) {
         VersionComparator comparator = new VersionComparator(querry, versionParser);
         List<String> sortedVersions = new ArrayList<>();
-        List<SuffixedVersion> parsedVersions = versions.stream().sorted(comparator).distinct().peek(v -> sortedVersions.add(v))
-                .map(versionParser::parse).collect(Collectors.toList());
+        List<SuffixedVersion> parsedVersions = versions.stream()
+                .sorted(comparator)
+                .distinct()
+                .peek(v -> sortedVersions.add(v))
+                .map(versionParser::parse)
+                .collect(Collectors.toList());
 
         SuffixedVersion version = versionParser.parse(querry);
         Optional<String> bmv = findBiggestMatchingVersion(version, parsedVersions);
@@ -49,19 +53,25 @@ public class VersionAnalyzer {
         return new VersionAnalysisResult(bmv, sortedVersions);
     }
 
-    private Optional<String> findBiggestMatchingVersion(SuffixedVersion queryVersion, Collection<SuffixedVersion> versions) {
+    private Optional<String> findBiggestMatchingVersion(
+            SuffixedVersion queryVersion,
+            Collection<SuffixedVersion> versions) {
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
         String unsuffixedVesion = queryVersion.unsuffixedVesion();
 
-        List<SuffixedVersion> candidateVersions = versions.stream().filter(SuffixedVersion::isSuffixed)
-                .filter(v -> unsuffixedVesion.equals(v.unsuffixedVesion())).collect(Collectors.toList());
+        List<SuffixedVersion> candidateVersions = versions.stream()
+                .filter(SuffixedVersion::isSuffixed)
+                .filter(v -> unsuffixedVesion.equals(v.unsuffixedVesion()))
+                .collect(Collectors.toList());
 
-        boolean onlyDefaultSuffixPresent = candidateVersions.stream().map(v -> v.getSuffix().get())
+        boolean onlyDefaultSuffixPresent = candidateVersions.stream()
+                .map(v -> v.getSuffix().get())
                 .allMatch(VersionAnalyzer::isDefaultSuffix);
 
         List<SuffixedVersion> versionsToSearch = candidateVersions.stream()
-                .filter(v -> onlyDefaultSuffixPresent || !isDefaultSuffix(v.getSuffix().get())).collect(Collectors.toList());
+                .filter(v -> onlyDefaultSuffixPresent || !isDefaultSuffix(v.getSuffix().get()))
+                .collect(Collectors.toList());
 
         for (SuffixedVersion ver : versionsToSearch) {
             int foundBuildNumber = ver.getSuffixVersion().get();
@@ -81,8 +91,8 @@ public class VersionAnalyzer {
     }
 
     /**
-     * Assuming the two versions have the same OSGi representation, returns the more specific version. That means
-     * X.Y.Z.something is preffered to X.Y.something which is preffered to X.something.
+     * Assuming the two versions have the same OSGi representation, returns the more specific version. That means X.Y.Z.something is
+     * preffered to X.Y.something which is preffered to X.something.
      */
     private String getMoreSpecificVersion(String first, String second) {
         Pattern pattern = Pattern.compile("^" + VersionParser.RE_MMM + VersionParser.RE_QUALIFIER + "?");

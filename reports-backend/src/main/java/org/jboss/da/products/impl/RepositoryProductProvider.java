@@ -161,7 +161,8 @@ public class RepositoryProductProvider implements ProductProvider {
     }
 
     private Set<ProductArtifacts> getArtifactsMaven(GA ga) {
-        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga).map(x -> new GAV(ga, x)).map(MavenArtifact::new)
+        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga).map(x -> new GAV(ga, x))
+                .map(MavenArtifact::new)
                 .collect(Collectors.toSet());
         if (allArtifacts.isEmpty()) {
             return Collections.emptySet();
@@ -170,7 +171,8 @@ public class RepositoryProductProvider implements ProductProvider {
     }
 
     private Set<ProductArtifacts> getArtifactsNPM(String name) {
-        Set<Artifact> allArtifacts = getVersionsStreamNPM(name).map(v -> new NPMArtifact(name, v)).collect(Collectors.toSet());
+        Set<Artifact> allArtifacts = getVersionsStreamNPM(name).map(v -> new NPMArtifact(name, v))
+                .collect(Collectors.toSet());
         if (allArtifacts.isEmpty()) {
             return Collections.emptySet();
         }

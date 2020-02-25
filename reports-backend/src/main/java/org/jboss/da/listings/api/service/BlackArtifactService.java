@@ -15,8 +15,8 @@ import java.util.Set;
 public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
 
     /**
-     * Checks if list contains artifact with specific groupId, artifactId and version. All restrictions and conversions are
-     * applied like using getArtifact method of specific list.
+     * Checks if list contains artifact with specific groupId, artifactId and version. All restrictions and conversions are applied
+     * like using getArtifact method of specific list.
      *
      * @param groupId
      * @param artifactId
@@ -41,16 +41,16 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
     public ArtifactStatus addArtifact(String groupId, String artifactId, String version);
 
     /**
-     * Checks if blacklist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix it
-     * is removed. Then the version is converted to OSGi version and finds this version in blacklist;
+     * Checks if blacklist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix it is
+     * removed. Then the version is converted to OSGi version and finds this version in blacklist;
      * 
      * @return found artifact
      */
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version);
 
     /**
-     * Checks if blacklist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix it
-     * is removed. Then the version is converted to OSGi version and finds this version in blacklist;
+     * Checks if blacklist contains artifact with specific groupId, artifactId and version. If the version have redhat suffix it is
+     * removed. Then the version is converted to OSGi version and finds this version in blacklist;
      *
      * @return found artifact
      */

@@ -19,11 +19,21 @@ public class PomReaderTest {
         assertTrue(project.isPresent());
         assertFalse(project.get().getMavenRepositories().isEmpty());
 
-        assertTrue(project.get().getMavenRepositories().stream().anyMatch(repo -> repo.getId().equals("eap")
-                && repo.getUrl().equals("http://maven.repository.redhat.com/techpreview/all")));
+        assertTrue(
+                project.get()
+                        .getMavenRepositories()
+                        .stream()
+                        .anyMatch(
+                                repo -> repo.getId().equals("eap")
+                                        && repo.getUrl().equals("http://maven.repository.redhat.com/techpreview/all")));
 
-        assertTrue(project.get().getMavenRepositories().stream().anyMatch(repo -> repo.getId().equals("sonatype-snapshots")
-                && repo.getUrl().equals("http://oss.sonatype.org/content/repositories/snapshots")));
+        assertTrue(
+                project.get()
+                        .getMavenRepositories()
+                        .stream()
+                        .anyMatch(
+                                repo -> repo.getId().equals("sonatype-snapshots") && repo.getUrl()
+                                        .equals("http://oss.sonatype.org/content/repositories/snapshots")));
 
         assertEquals(2, project.get().getMavenRepositories().size());
 
