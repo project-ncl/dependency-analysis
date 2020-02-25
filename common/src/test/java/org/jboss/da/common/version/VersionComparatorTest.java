@@ -111,7 +111,8 @@ public class VersionComparatorTest {
 
         assertTrue(vc.compare("2.2.0.b21", "2.2.0.b10") < 0);
         assertTrue(vc.compare("2.2.0.SP4", "2.2.0.b21") < 0);
-        assertTrue(vc.compare("2.2.0.Final", "2.2.0.SP4") > 0); // Too difficult to implement correctly - the list of special
+        assertTrue(vc.compare("2.2.0.Final", "2.2.0.SP4") > 0); // Too difficult to implement correctly - the list of
+                                                                // special
                                                                 // qualifiers (like Final, GA, ...) would be needed
         assertTrue(vc.compare("2.2.0.Final", "2.2.0.CR1") < 0);
         assertTrue(vc.compare("2.2.0.GA", "2.2.0.SP4") > 0); // Too difficult to implement correctly

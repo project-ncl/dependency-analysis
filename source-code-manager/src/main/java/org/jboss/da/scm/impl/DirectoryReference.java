@@ -58,8 +58,8 @@ class DirectoryReference {
     }
 
     /**
-     * Check the status of the reference. If the reference is still active, return true. If the reference is not usable anymore,
-     * return false.
+     * Check the status of the reference. If the reference is still active, return true. If the reference is not usable
+     * anymore, return false.
      */
     synchronized boolean check() {
         if (deleted) {

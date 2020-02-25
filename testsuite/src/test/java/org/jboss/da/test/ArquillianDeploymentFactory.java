@@ -132,19 +132,21 @@ public class ArquillianDeploymentFactory {
         archive.as(ZipExporter.class).exportTo(file, true);
     }
 
-    // copied from org.jboss.shrinkwrap.api.ArchiveFactory.createFromZipFile(final Class<T> type, final File archiveFile) -
+    // copied from org.jboss.shrinkwrap.api.ArchiveFactory.createFromZipFile(final Class<T> type, final File
+    // archiveFile) -
     // added parameter archiveName
     /**
-     * Creates a new archive of the specified type as imported from the specified {@link File}. The file is expected to be encoded
-     * as ZIP (ie. JAR/WAR/EAR). The name of the archive will be set to {@link File#getName()}. The archive will be be backed by the
-     * {@link org.jboss.shrinkwrap.api.Configuration} specific to this {@link org.jboss.shrinkwrap.api.ArchiveFactory}.
+     * Creates a new archive of the specified type as imported from the specified {@link File}. The file is expected to
+     * be encoded as ZIP (ie. JAR/WAR/EAR). The name of the archive will be set to {@link File#getName()}. The archive
+     * will be be backed by the {@link org.jboss.shrinkwrap.api.Configuration} specific to this
+     * {@link org.jboss.shrinkwrap.api.ArchiveFactory}.
      *
      * @param type The type of the archive e.g. {@link org.jboss.shrinkwrap.api.spec.WebArchive}
      * @param archiveFile the archiveFile to use
      * @param archiveName the name of created archive
      * @return An {@link Assignable} view
-     * @throws IllegalArgumentException If either argument is not supplied, if the specified {@link File} does not exist, or is not
-     *         a valid ZIP file
+     * @throws IllegalArgumentException If either argument is not supplied, if the specified {@link File} does not
+     *         exist, or is not a valid ZIP file
      * @throws org.jboss.shrinkwrap.api.importer.ArchiveImportException If an error occurred during the import process
      */
     public <T extends Assignable> T createFromZipFile(final Class<T> type, final File archiveFile, String archiveName)

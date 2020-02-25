@@ -10,8 +10,8 @@ import org.jboss.da.listings.api.model.GenericEntity;
 public interface GenericDAO<T extends GenericEntity> {
 
     /**
-     * Create new entity in database. The provided entity MUST NOT be null, MUST have null ID and MUST NOT already exist in the
-     * database. Data MUST conform to the database constraints. When successful, the entity ID is set properly.
+     * Create new entity in database. The provided entity MUST NOT be null, MUST have null ID and MUST NOT already exist
+     * in the database. Data MUST conform to the database constraints. When successful, the entity ID is set properly.
      * 
      * @param entity Entity to be created.
      */
@@ -26,24 +26,24 @@ public interface GenericDAO<T extends GenericEntity> {
     T read(long id);
 
     /**
-     * Updates entity in database. The provided entity MUST NOT be null, MUST have non-null ID and MUST already exist in database.
-     * Data MUST conform to the database constraints.
+     * Updates entity in database. The provided entity MUST NOT be null, MUST have non-null ID and MUST already exist in
+     * database. Data MUST conform to the database constraints.
      * 
      * @param entity New state of the entity to be updated.
      */
     void update(T entity);
 
     /**
-     * Deletes given entity from the database. This entity MUST be present in the database. Deletion MUST NOT cause (referential)
-     * constraint violation.
+     * Deletes given entity from the database. This entity MUST be present in the database. Deletion MUST NOT cause
+     * (referential) constraint violation.
      * 
      * @param entity Entity to be deleted.
      */
     void delete(T entity);
 
     /**
-     * Deletes entity with the given ID from the database. This entity MUST be present in the database. Deletion MUST NOT cause
-     * (referential) constraint violation.
+     * Deletes entity with the given ID from the database. This entity MUST be present in the database. Deletion MUST
+     * NOT cause (referential) constraint violation.
      * 
      * @param id ID of the entity to be deleted.
      */

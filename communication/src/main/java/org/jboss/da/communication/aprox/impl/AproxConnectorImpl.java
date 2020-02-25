@@ -220,9 +220,9 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     /**
-     * Implementation note: dcheung tried to initially use HttpURLConnection and send a 'HEAD' request to the resource. Even though
-     * that worked, for some reason this completely makes Arquillian fail to deploy the testsuite. For that reason, dcheung switched
-     * to using a simple URL object instead with the try-catch logic.
+     * Implementation note: dcheung tried to initially use HttpURLConnection and send a 'HEAD' request to the resource.
+     * Even though that worked, for some reason this completely makes Arquillian fail to deploy the testsuite. For that
+     * reason, dcheung switched to using a simple URL object instead with the try-catch logic.
      *
      * No dcheung doesn't usually talks about himself in the third person..
      */

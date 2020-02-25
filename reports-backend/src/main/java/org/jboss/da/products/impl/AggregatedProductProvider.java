@@ -123,7 +123,8 @@ public class AggregatedProductProvider implements ProductProvider {
     }
 
     /**
-     * After all futures are completed, accumulate the results together. If they are not completed, wait for a while and check again
+     * After all futures are completed, accumulate the results together. If they are not completed, wait for a while and
+     * check again
      */
     private <R> void tryToComplete(
             CompletableFuture<R> ret,

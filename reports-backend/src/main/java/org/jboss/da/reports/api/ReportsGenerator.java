@@ -33,9 +33,9 @@ public interface ReportsGenerator {
             throws ScmException, PomAnalysisException, CommunicationException;
 
     /**
-     * Create an advanced report about artifacts given an scm-url The advanced report will also contain lists of the top-level
-     * module dependencies which are: - blacklisted - whitelisted, - community gavs with a best match version - community gavs with
-     * built versions - community gavs
+     * Create an advanced report about artifacts given an scm-url The advanced report will also contain lists of the
+     * top-level module dependencies which are: - blacklisted - whitelisted, - community gavs with a best match version
+     * - community gavs with built versions - community gavs
      *
      * @param scml
      * @return Created report
@@ -44,11 +44,12 @@ public interface ReportsGenerator {
             throws ScmException, PomAnalysisException, CommunicationException;
 
     /**
-     * Creates a report about built/not built/blacklisted artifacts. It performs searches in the whole available repository as well
-     * as artifact whitelists.
+     * Creates a report about built/not built/blacklisted artifacts. It performs searches in the whole available
+     * repository as well as artifact whitelists.
      * 
-     * No restrictions on the artifacts belonging to the certain product are applied if the request contains no product/product
-     * version IDs. Otherwise only provides info for white listed artifacts belonging to the specified product/product versions.
+     * No restrictions on the artifacts belonging to the certain product are applied if the request contains no
+     * product/product version IDs. Otherwise only provides info for white listed artifacts belonging to the specified
+     * product/product versions.
      *
      * @param gav Top-level GAV for which is the report generated
      * @return Created report or empty Optional if the requested GAV was not found in the repository

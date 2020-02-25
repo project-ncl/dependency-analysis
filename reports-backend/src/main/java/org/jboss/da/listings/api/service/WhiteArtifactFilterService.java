@@ -9,8 +9,8 @@ import org.jboss.da.listings.model.ProductSupportStatus;
 
 /**
  * 
- * Provides access to white artifacts by applying the required filtering - taking into consideration artifacts listed against
- * ProductVersions, white list and black list.
+ * Provides access to white artifacts by applying the required filtering - taking into consideration artifacts listed
+ * against ProductVersions, white list and black list.
  * 
  * @author fkujikis
  *
@@ -20,8 +20,8 @@ public interface WhiteArtifactFilterService {
     /**
      * Remove all blacklisted artifacts from the provided list of ProductVersion instances.
      * 
-     * @return List of ProductVersion instances such that for each instance, instance.getWhiteArtifacts() contains only whitelisted
-     *         artifacts, with the blacklisted artifacts filtered out.
+     * @return List of ProductVersion instances such that for each instance, instance.getWhiteArtifacts() contains only
+     *         whitelisted artifacts, with the blacklisted artifacts filtered out.
      */
     public List<ProductVersion> toProductsContainingOnlyWhiteArtifacts(List<ProductVersion> products);
 
@@ -29,8 +29,8 @@ public interface WhiteArtifactFilterService {
      * Remove all blacklisted artifacts from the provided list of ProductVersionArtifactRelationship instances.
      * 
      * @return List of ProductVersionArtifactRelationship instances such that for each instance,
-     *         instance.getProductVersion().getWhiteArtifacts() contains only whitelisted artifacts, with the blacklisted artifacts
-     *         filtered out.
+     *         instance.getProductVersion().getWhiteArtifacts() contains only whitelisted artifacts, with the
+     *         blacklisted artifacts filtered out.
      */
     public List<ProductVersionArtifactRelationship> toProductRelsContainingOnlyWhiteArtifacts(
             List<ProductVersionArtifactRelationship> products);
@@ -60,8 +60,8 @@ public interface WhiteArtifactFilterService {
     List<ProductVersion> getProductVersionsWithWhiteArtifactsByStatus(ProductSupportStatus status);
 
     /**
-     * Find ProductVersions that contains Artifact with specific groupId, artifactId and version such that it contains only white
-     * artifacts.
+     * Find ProductVersions that contains Artifact with specific groupId, artifactId and version such that it contains
+     * only white artifacts.
      * 
      * @param groupId
      * @param artifactId
@@ -74,8 +74,8 @@ public interface WhiteArtifactFilterService {
             String version);
 
     /**
-     * Find ProductVersions with specific status that contains Artifact with specific groupId, artifactId such that it contains only
-     * white artifacts.
+     * Find ProductVersions with specific status that contains Artifact with specific groupId, artifactId such that it
+     * contains only white artifacts.
      * 
      * @param groupId
      * @param artifactId
