@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.concurrent.Future;
 
 /**
- * Product Provider is used for providing information about products and their artifacts. Each product is defined by its name
- * and version and can have differen level of support.
+ * Product Provider is used for providing information about products and their artifacts. Each product is defined by its
+ * name and version and can have differen level of support.
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
@@ -56,8 +56,8 @@ public interface ProductProvider {
     Future<Set<ProductArtifacts>> getArtifacts(Artifact artifact);
 
     /**
-     * Get all artifacts with the same name and type as given artifact and their products, limited to * products with given support
-     * status..
+     * Get all artifacts with the same name and type as given artifact and their products, limited to * products with
+     * given support status..
      *
      * @param artifact artifact which name and type will be used for searching.
      * @param status Support status of the products.

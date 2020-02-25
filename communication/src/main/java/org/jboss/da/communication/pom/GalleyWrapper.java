@@ -113,7 +113,8 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Return all (transitive) modules of artifact, including the artifact itselve. Module poms that couldn't be parsed are ommited.
+     * Return all (transitive) modules of artifact, including the artifact itselve. Module poms that couldn't be parsed
+     * are ommited.
      * 
      * @param artifact root artifact.
      * @return Set of all modules.
@@ -132,7 +133,8 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Returns {@link MavenPomView} for given artifact. You need to set locations so the galley know where to look for dependencies.
+     * Returns {@link MavenPomView} for given artifact. You need to set locations so the galley know where to look for
+     * dependencies.
      * 
      * @param artifact
      * @return MavenPomView of the artifact
@@ -150,7 +152,8 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Returns first level dependencies of an artifact. You need to set locations so the galley know where to look for dependencies.
+     * Returns first level dependencies of an artifact. You need to set locations so the galley know where to look for
+     * dependencies.
      * 
      * @param artifact Dependencies of this artifact will be returned
      * @return First level dependencies.
@@ -207,7 +210,8 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Add maven central and group from indy repositories among repositories Gally should use when resolving dependencies.
+     * Add maven central and group from indy repositories among repositories Gally should use when resolving
+     * dependencies.
      */
     public void addDefaultLocations(Configuration config) {
         try {
@@ -227,8 +231,8 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Return all transitive dependencies of given artifact. Dependencies of test-scope and provided-scope dependencies are ommited.
-     * You need to set locations so the galley know where to look for dependencies.
+     * Return all transitive dependencies of given artifact. Dependencies of test-scope and provided-scope dependencies
+     * are ommited. You need to set locations so the galley know where to look for dependencies.
      * 
      * @param artifact Dependencies of this artifact will be returned
      * @return Set of dependency relationships describing the dependency graph.
@@ -244,8 +248,8 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Return all transitive dependencies of given artifact. You need to set locations so the galley know where to look for
-     * dependencies.
+     * Return all transitive dependencies of given artifact. You need to set locations so the galley know where to look
+     * for dependencies.
      * 
      * @param artifact Dependencies of this artifact will be returned
      * @param testDeps true if should dependencies of test-scope dependency be resolved.
@@ -300,8 +304,8 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Return true if scope is compile, runtime, test (when {@code testDeps} is true) or provided (when {@code providedDeps} is
-     * true).
+     * Return true if scope is compile, runtime, test (when {@code testDeps} is true) or provided (when
+     * {@code providedDeps} is true).
      * 
      * @param dr Dependency relationship which scope we compare.
      * @param testDeps

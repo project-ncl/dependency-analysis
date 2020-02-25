@@ -51,7 +51,8 @@ public interface ProductVersionService {
     List<ProductVersion> getProductVersionsOfArtifact(String groupId, String artifactId, String version);
 
     /**
-     * Finds ProductVersion with specific product id, product name, version or support status. All parameters are optional.
+     * Finds ProductVersion with specific product id, product name, version or support status. All parameters are
+     * optional.
      * 
      * @param id optional
      * @param name optional

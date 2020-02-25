@@ -87,7 +87,8 @@ public class ScmUrlValidator implements ConstraintValidator<ScmUrl, String> {
     }
 
     /**
-     * Returns a String with username. '@' character or whatever indicator of it being username is included in the returned value
+     * Returns a String with username. '@' character or whatever indicator of it being username is included in the
+     * returned value
      *
      * @param url url to extract username from
      * @return username if username is specified in the url, null otherwise

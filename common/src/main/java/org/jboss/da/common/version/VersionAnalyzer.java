@@ -91,8 +91,8 @@ public class VersionAnalyzer {
     }
 
     /**
-     * Assuming the two versions have the same OSGi representation, returns the more specific version. That means X.Y.Z.something is
-     * preffered to X.Y.something which is preffered to X.something.
+     * Assuming the two versions have the same OSGi representation, returns the more specific version. That means
+     * X.Y.Z.something is preffered to X.Y.something which is preffered to X.something.
      */
     private String getMoreSpecificVersion(String first, String second) {
         Pattern pattern = Pattern.compile("^" + VersionParser.RE_MMM + VersionParser.RE_QUALIFIER + "?");

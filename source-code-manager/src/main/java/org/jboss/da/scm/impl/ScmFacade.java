@@ -45,8 +45,8 @@ public class ScmFacade {
     }
 
     /**
-     * Tries to do a shallow clone (clone only the requested revision) of the remote repository to the local directory. If it is not
-     * possible to do that, then it does the full clone.
+     * Tries to do a shallow clone (clone only the requested revision) of the remote repository to the local directory.
+     * If it is not possible to do that, then it does the full clone.
      * 
      * @param scmType Type of the repository
      * @param scmUrl URL to the repository

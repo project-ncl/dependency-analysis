@@ -67,7 +67,8 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
             boolean preciseVersion);
 
     /**
-     * Finds ProductVersions with specific product id, product name, version or support status. All parameters are optional.
+     * Finds ProductVersions with specific product id, product name, version or support status. All parameters are
+     * optional.
      * 
      * @param id product id optional
      * @param name product name optional
