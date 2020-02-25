@@ -37,15 +37,18 @@ public class DependencyTreeBuilder {
     /**
      * Transforms DependencyRelationships into GAVDependencyTree.
      */
-    public GAVDependencyTree getDependencyTree(Set<DependencyRelationship> rels, GAV origin, boolean testDeps,
+    public GAVDependencyTree getDependencyTree(
+            Set<DependencyRelationship> rels,
+            GAV origin,
+            boolean testDeps,
             boolean providedDeps) {
         PathNode pathRoot = new PathNode(origin);
         Map<GAV, Set<DependencyRelationship>> byGav = new TreeMap<>();
 
         for (DependencyRelationship rel : rels) {
             GAV gav = GalleyWrapper.generateGAV(rel.getDeclaring());
-            Set<DependencyRelationship> deps = byGav.computeIfAbsent(gav,
-                    (k) -> new TreeSet<>(new DependencyRelationshipComparator()));
+            Set<DependencyRelationship> deps = byGav
+                    .computeIfAbsent(gav, (k) -> new TreeSet<>(new DependencyRelationshipComparator()));
             deps.add(rel);
         }
 
@@ -65,7 +68,10 @@ public class DependencyTreeBuilder {
         }
     }
 
-    private void walkDependencies(PathNode root, Map<GAV, Set<DependencyRelationship>> byGav, boolean testDeps,
+    private void walkDependencies(
+            PathNode root,
+            Map<GAV, Set<DependencyRelationship>> byGav,
+            boolean testDeps,
             boolean providedDeps) {
         Set<DependencyRelationship> rels = byGav.get(root.gav);
 

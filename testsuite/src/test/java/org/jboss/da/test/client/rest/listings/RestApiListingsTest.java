@@ -153,7 +153,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
         checkExpectedResponse(response, "success");
 
-        String artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+        String artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0",
                 getIdOfProduct("test", "1.0.0"));
 
         response = manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
@@ -167,7 +170,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
         checkExpectedResponse(response, "success");
 
-        String artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+        String artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0",
                 getIdOfProduct("test", "1.0.0"));
 
         response = manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
@@ -198,7 +204,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
         checkExpectedResponse(response, "success");
 
-        String artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+        String artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0",
                 getIdOfProduct("test", "1.0.0"));
 
         response = manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, false);
@@ -211,7 +220,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
         manipulateEntityFile(ListEntityType.PRODUCT, OperationType.POST, "productAdd", true);
 
         // Add artifact to whitelist
-        String artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+        String artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0",
                 getIdOfProduct("test", "1.0.0"));
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
@@ -231,12 +243,18 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
         // Add artifacts to whitelist
         String artifact;
-        artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+        artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0",
                 getIdOfProduct("test", "1.0.0"));
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
 
-        artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+        artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0",
                 getIdOfProduct("test", "2.0.0"));
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
@@ -250,7 +268,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     public void testAlreadyAddedWhiteArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.PRODUCT, OperationType.POST, "productAdd", true);
 
-        String artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+        String artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0",
                 getIdOfProduct("test", "1.0.0"));
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
@@ -269,12 +290,18 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
         // Add artifacts to whitelist
         String artifact;
-        artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+        artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0",
                 getIdOfProduct("test", "1.0.0"));
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
 
-        artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0",
+        artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0",
                 getIdOfProduct("test", "2.0.0"));
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
@@ -329,7 +356,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
 
     private Response getBlacklistedGAV(String groupId, String artifactId, String version) {
         Response response = createClientRequest(
-                PATH_BLACK_LISTINGS_GAV + "?groupid=" + groupId + "&artifactid=" + artifactId + "&version=" + version).get();
+                PATH_BLACK_LISTINGS_GAV + "?groupid=" + groupId + "&artifactid=" + artifactId + "&version=" + version)
+                        .get();
         return response;
     }
 
@@ -341,8 +369,8 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     }
 
     private Response getBlacklisted(String groupId, String artifactId) {
-        Response response = createClientRequest(PATH_BLACK_LISTINGS_GA + "?groupid=" + groupId + "&artifactid=" + artifactId)
-                .get();
+        Response response = createClientRequest(
+                PATH_BLACK_LISTINGS_GA + "?groupid=" + groupId + "&artifactid=" + artifactId).get();
         assertEquals(200, response.getStatus());
         return response;
     }
@@ -379,7 +407,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     public void testCheckRHWhiteArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.PRODUCT, OperationType.POST, "productAdd", true);
 
-        String artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0.redhat-1",
+        String artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0.redhat-1",
                 getIdOfProduct("test", "1.0.0"));
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);
@@ -400,7 +431,10 @@ public class RestApiListingsTest extends AbstractRestApiListingTest {
     public void testCheckNonRHWhiteArtifact() throws Exception {
         manipulateEntityFile(ListEntityType.PRODUCT, OperationType.POST, "productAdd", true);
 
-        String artifact = generator.returnWhiteArtifactString("org.jboss.da", "dependency-analyzer", "0.3.0.redhat-1",
+        String artifact = generator.returnWhiteArtifactString(
+                "org.jboss.da",
+                "dependency-analyzer",
+                "0.3.0.redhat-1",
                 getIdOfProduct("test", "1.0.0"));
 
         manipulateEntityString(ListEntityType.WHITE, OperationType.POST, artifact, true);

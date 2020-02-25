@@ -22,8 +22,7 @@ package org.jboss.da.products.api;
 public interface Artifact {
 
     /**
-     * Artifact identifier that identifies specific artifact version. Artifiact identifier consists of artifact name and
-     * version.
+     * Artifact identifier that identifies specific artifact version. Artifiact identifier consists of artifact name and version.
      *
      * @return artifact identifier
      */

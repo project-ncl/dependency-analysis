@@ -45,7 +45,8 @@ public class VersionParserTest {
 
     @Test
     public void testTemporarySuffix() {
-        List<String> versions = Arrays.asList("1.5.8", "1.5.8-patch-01", "1.6.1", "1.7.21.t20180522-115319-991-redhat-1");
+        List<String> versions = Arrays
+                .asList("1.5.8", "1.5.8-patch-01", "1.6.1", "1.7.21.t20180522-115319-991-redhat-1");
 
         VersionParser vp = new VersionParser("t20180522-115319-991-redhat");
         List<String> filtered = versions.stream().filter(v -> vp.parse(v).isSuffixed()).collect(Collectors.toList());
@@ -55,8 +56,15 @@ public class VersionParserTest {
 
     @Test
     public void testTemporaryAndRedhatSuffix() {
-        List<String> versions = Arrays.asList("1.5.8", "1.5.8-patch-01", "1.6.1", "1.6.1-redhat-1", "1.6.1-redhat-2",
-                "1.6.4.redhat-2", "1.7.21.t20180417-125043-536-redhat-1", "1.7.21.t20180425-112559-465-redhat-1",
+        List<String> versions = Arrays.asList(
+                "1.5.8",
+                "1.5.8-patch-01",
+                "1.6.1",
+                "1.6.1-redhat-1",
+                "1.6.1-redhat-2",
+                "1.6.4.redhat-2",
+                "1.7.21.t20180417-125043-536-redhat-1",
+                "1.7.21.t20180425-112559-465-redhat-1",
                 "1.7.21.temporary-redhat-1");
 
         VersionParser vp = new VersionParser("temporary-redhat");

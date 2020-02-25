@@ -125,13 +125,15 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (gavRequest == null)
             throw new IllegalArgumentException("GAV can't be null");
 
-        Set<Product> products = productAdapter.toProducts(gavRequest.getProductNames(), gavRequest.getProductVersionIds());
+        Set<Product> products = productAdapter
+                .toProducts(gavRequest.getProductNames(), gavRequest.getProductVersionIds());
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gavRequest.asGavObject());
 
         return createReport(dt, products).get();
     }
 
-    private Optional<ArtifactReport> createReport(GAVDependencyTree dt, Set<Product> products) throws CommunicationException {
+    private Optional<ArtifactReport> createReport(GAVDependencyTree dt, Set<Product> products)
+            throws CommunicationException {
         ArtifactReport report = new ArtifactReport(dt.getGav());
 
         Set<GAVDependencyTree> nodesVisited = new HashSet<>();
@@ -146,7 +148,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return Optional.of(report);
     }
 
-    private void addDependencyReports(ArtifactReport ar, Set<GAVDependencyTree> dependencyTree,
+    private void addDependencyReports(
+            ArtifactReport ar,
+            Set<GAVDependencyTree> dependencyTree,
             Set<GAVDependencyTree> nodesVisited) throws CommunicationException {
         for (GAVDependencyTree dt : dependencyTree) {
 
@@ -183,7 +187,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         });
 
         CompletableFuture<Void> fillWhitelist = artifacts.thenAccept(pas -> {
-            List<Product> whiteProducts = pas.stream().map(pa -> pa.getProduct()).filter(p -> !UNKNOWN.equals(p))
+            List<Product> whiteProducts = pas.stream()
+                    .map(pa -> pa.getProduct())
+                    .filter(p -> !UNKNOWN.equals(p))
                     .collect(Collectors.toList());
             report.setWhitelisted(whiteProducts);
         });
@@ -191,11 +197,15 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return CompletableFuture.allOf(fillVersions, fillWhitelist);
     }
 
-    private CompletableFuture<VersionAnalysisResult> analyzeVersions(VersionParser versionParser, String version,
+    private CompletableFuture<VersionAnalysisResult> analyzeVersions(
+            VersionParser versionParser,
+            String version,
             CompletableFuture<Set<ProductArtifacts>> availableArtifacts) {
         VersionAnalyzer va = new VersionAnalyzer(versionParser);
         return availableArtifacts.thenApply(pas -> {
-            List<String> versions = pas.stream().flatMap(as -> as.getArtifacts().stream()).map(a -> a.getVersion())
+            List<String> versions = pas.stream()
+                    .flatMap(as -> as.getArtifacts().stream())
+                    .map(a -> a.getVersion())
                     .collect(Collectors.toList());
 
             return va.analyseVersions(version, versions);
@@ -227,8 +237,11 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return advancedReport;
     }
 
-    private void populateAdvancedArtifactReportFields(AdvancedArtifactReport advancedReport, ArtifactReport report,
-            Set<GAV> modulesAnalyzed, File repoFolder) {
+    private void populateAdvancedArtifactReportFields(
+            AdvancedArtifactReport advancedReport,
+            ArtifactReport report,
+            Set<GAV> modulesAnalyzed,
+            File repoFolder) {
         VersionParser parser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
 
         for (ArtifactReport dep : report.getDependencies()) {
@@ -271,11 +284,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public Set<AlignmentReportModule> getAligmentReport(SCMLocator scml, boolean useUnknownProduct, Set<Long> productIds)
-            throws ScmException, PomAnalysisException, CommunicationException {
+    public Set<AlignmentReportModule> getAligmentReport(
+            SCMLocator scml,
+            boolean useUnknownProduct,
+            Set<Long> productIds) throws ScmException, PomAnalysisException, CommunicationException {
         VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
-        Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(scml.getScmUrl(), scml.getRevision(),
-                scml.getPomPath(), scml.getRepositories());
+        Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
+                scml.getScmUrl(),
+                scml.getRevision(),
+                scml.getPomPath(),
+                scml.getRepositories());
         Set<Product> products = productAdapter.toProducts(Collections.emptySet(), productIds);
 
         List<CompletableFuture<Void>> futures = new ArrayList<>();
@@ -301,24 +319,30 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                     continue;
                 }
 
-                CompletableFuture<Set<ProductArtifacts>> artifacts = filterProducts(useUnknownProduct, products,
+                CompletableFuture<Set<ProductArtifacts>> artifacts = filterProducts(
+                        useUnknownProduct,
+                        products,
                         productProvider.getArtifacts(new MavenArtifact(gav)));
-                CompletableFuture<VersionAnalysisResult> versions = analyzeVersions(versionParser, gav.getVersion(), artifacts);
+                CompletableFuture<VersionAnalysisResult> versions = analyzeVersions(
+                        versionParser,
+                        gav.getVersion(),
+                        artifacts);
 
-                CompletableFuture<Set<ProductArtifact>> built = artifacts.thenCombine(versions,
-                        (a, v) -> mapProducts(getBuilt(a, v), gav, versionParser));
+                CompletableFuture<Set<ProductArtifact>> built = artifacts
+                        .thenCombine(versions, (a, v) -> mapProducts(getBuilt(a, v), gav, versionParser));
                 intr.put(gav, built);
 
-                CompletableFuture<Set<ProductArtifact>> different = artifacts.thenCombine(versions,
-                        (a, v) -> mapProducts(getBuiltDifferent(a, v), gav, versionParser));
+                CompletableFuture<Set<ProductArtifact>> different = artifacts
+                        .thenCombine(versions, (a, v) -> mapProducts(getBuiltDifferent(a, v), gav, versionParser));
                 diff.put(gav, different);
             }
 
             CompletableFuture<Void> intrDone = copyCompletedMap(intr, internallyBuilt);
             CompletableFuture<Void> diffDone = copyCompletedMap(diff, differentVersion);
 
-            futures.add(CompletableFuture.allOf(intrDone, diffDone)
-                    .thenAccept(x -> fillNotBuilt(blacklisted, internallyBuilt, differentVersion, notBuilt)));
+            futures.add(
+                    CompletableFuture.allOf(intrDone, diffDone)
+                            .thenAccept(x -> fillNotBuilt(blacklisted, internallyBuilt, differentVersion, notBuilt)));
         }
         joinFutures(futures);
         return ret;
@@ -334,11 +358,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private static Set<ProductArtifacts> getBuilt(Set<ProductArtifacts> a, VersionAnalysisResult v) {
-        return v.getBestMatchVersion().map(b -> AggregatedProductProvider.filterArtifacts(a, x -> b.equals(x.getVersion())))
+        return v.getBestMatchVersion()
+                .map(b -> AggregatedProductProvider.filterArtifacts(a, x -> b.equals(x.getVersion())))
                 .orElse(Collections.emptySet());
     }
 
-    private CompletableFuture<Set<ProductArtifacts>> filterProducts(boolean useUnknownProduct, Set<Product> products,
+    private CompletableFuture<Set<ProductArtifacts>> filterProducts(
+            boolean useUnknownProduct,
+            Set<Product> products,
             CompletableFuture<Set<ProductArtifacts>> artifacts) {
 
         Predicate<Product> pred = (x) -> true;
@@ -354,19 +381,34 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return artifacts;
     }
 
-    private static Set<ProductArtifact> mapProducts(Set<ProductArtifacts> products, GAV gav, VersionParser versionParser) {
+    private static Set<ProductArtifact> mapProducts(
+            Set<ProductArtifacts> products,
+            GAV gav,
+            VersionParser versionParser) {
         VersionComparator comparator = new VersionComparator(versionParser);
         return products.stream()
-                .flatMap(e -> e.getArtifacts().stream()
-                        .map(x -> toProductArtifact(e.getProduct(), (MavenArtifact) x, gav.getVersion(), comparator)))
-                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(ProductArtifact::getArtifact))));
+                .flatMap(
+                        e -> e.getArtifacts()
+                                .stream()
+                                .map(
+                                        x -> toProductArtifact(
+                                                e.getProduct(),
+                                                (MavenArtifact) x,
+                                                gav.getVersion(),
+                                                comparator)))
+                .collect(
+                        Collectors
+                                .toCollection(() -> new TreeSet<>(Comparator.comparing(ProductArtifact::getArtifact))));
     }
 
     /**
      * Fills notBuilt set with GAVs that are neither blacklisted, internally built nor built in different version.
      */
-    private void fillNotBuilt(Set<GAV> blacklisted, Map<GAV, Set<ProductArtifact>> internallyBuilt,
-            Map<GAV, Set<ProductArtifact>> differentVersion, Set<GAV> notBuilt) {
+    private void fillNotBuilt(
+            Set<GAV> blacklisted,
+            Map<GAV, Set<ProductArtifact>> internallyBuilt,
+            Map<GAV, Set<ProductArtifact>> differentVersion,
+            Set<GAV> notBuilt) {
         for (Map.Entry<GAV, Set<ProductArtifact>> e : internallyBuilt.entrySet()) {
             GAV gav = e.getKey();
             Set<ProductArtifact> internally = e.getValue();
@@ -381,10 +423,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     /**
      * Returns future, that completes when all input futures are completed and copied to the result map.
      */
-    private CompletableFuture<Void> copyCompletedMap(Map<GAV, CompletableFuture<Set<ProductArtifact>>> futures,
+    private CompletableFuture<Void> copyCompletedMap(
+            Map<GAV, CompletableFuture<Set<ProductArtifact>>> futures,
             Map<GAV, Set<ProductArtifact>> result) {
         CompletableFuture<Void> diffDone = CompletableFuture
-                .allOf(futures.values().toArray(new CompletableFuture[futures.size()])).thenAccept(x -> {
+                .allOf(futures.values().toArray(new CompletableFuture[futures.size()]))
+                .thenAccept(x -> {
                     for (Map.Entry<GAV, CompletableFuture<Set<ProductArtifact>>> e : futures.entrySet()) {
                         result.put(e.getKey(), e.getValue().join());
                     }
@@ -396,15 +440,20 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     public Set<BuiltReportModule> getBuiltReport(SCMLocator scml)
             throws ScmException, PomAnalysisException, CommunicationException {
         VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
-        Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(scml.getScmUrl(), scml.getRevision(),
-                scml.getPomPath(), scml.getRepositories());
+        Map<GA, Set<GAV>> dependenciesOfModules = scmConnector.getDependenciesOfModules(
+                scml.getScmUrl(),
+                scml.getRevision(),
+                scml.getPomPath(),
+                scml.getRepositories());
         Set<CompletableFuture<BuiltReportModule>> builtSet = new HashSet<>();
         for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
             for (GAV gav : e.getValue()) {
-                CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(new MavenArtifact(gav));
+                CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider
+                        .getArtifacts(new MavenArtifact(gav));
                 artifacts = filterBuiltArtifacts(artifacts);
-                builtSet.add(analyzeVersions(versionParser, gav.getVersion(), artifacts)
-                        .thenApply(v -> toBuiltReportModule(gav, v)));
+                builtSet.add(
+                        analyzeVersions(versionParser, gav.getVersion(), artifacts)
+                                .thenApply(v -> toBuiltReportModule(gav, v)));
             }
         }
         return joinFutures(builtSet);
@@ -438,7 +487,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private Map<String, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsNPM(Set<String> packageNames) {
         Map<String, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
         for (String name : packageNames) {
-            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(new NPMArtifact(name, "0.0.0"));
+            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider
+                    .getArtifacts(new NPMArtifact(name, "0.0.0"));
 
             gaProductArtifactsMap.put(name, artifacts);
         }
@@ -446,7 +496,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return gaProductArtifactsMap;
     }
 
-    private List<NPMLookupReport> createLookupReports(List<NPMPackage> packages, String suffix,
+    private List<NPMLookupReport> createLookupReports(
+            List<NPMPackage> packages,
+            String suffix,
             Map<String, CompletableFuture<Set<ProductArtifacts>>> artifactsMap) throws CommunicationException {
         VersionParser versionParser;
         if (suffix == null || suffix.isEmpty()) {
@@ -458,12 +510,17 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         List<CompletableFuture<NPMLookupReport>> futures = packages.stream().distinct().map((a) -> {
 
             CompletableFuture<Set<ProductArtifacts>> artifacts = artifactsMap.get(a.getName());
-            CompletableFuture<VersionAnalysisResult> analyzedVersions = analyzeVersions(versionParser, a.getVersion(),
+            CompletableFuture<VersionAnalysisResult> analyzedVersions = analyzeVersions(
+                    versionParser,
+                    a.getVersion(),
                     artifacts);
 
-            return analyzedVersions
-                    .thenApply((v) -> NPMLookupReport.builder().npmPackage(a).availableVersions(v.getAvailableVersions())
-                            .bestMatchVersion(v.getBestMatchVersion().orElse(null)).build());
+            return analyzedVersions.thenApply(
+                    (v) -> NPMLookupReport.builder()
+                            .npmPackage(a)
+                            .availableVersions(v.getAvailableVersions())
+                            .bestMatchVersion(v.getBestMatchVersion().orElse(null))
+                            .build());
         }).collect(Collectors.toList());
 
         return joinFutures(futures);
@@ -484,13 +541,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         /** Get set of GAs */
         Set<GA> uniqueGAs = request.getGavs().stream().map(GAV::getGA).collect(Collectors.toSet());
 
-        Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = getProductArtifactsPerGA(request, uniqueGAs);
+        Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = getProductArtifactsPerGA(
+                request,
+                uniqueGAs);
 
         return createLookupReports(request, gaProductArtifactsMap);
 
     }
 
-    private Map<GA, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsPerGA(LookupGAVsRequest request,
+    private Map<GA, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsPerGA(
+            LookupGAVsRequest request,
             Set<GA> uniqueGAs) throws CommunicationException {
         Set<Product> products = productAdapter.toProducts(request.getProductNames(), request.getProductVersionIds());
 
@@ -506,7 +566,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return gaProductArtifactsMap;
     }
 
-    private List<LookupReport> createLookupReports(LookupGAVsRequest request,
+    private List<LookupReport> createLookupReports(
+            LookupGAVsRequest request,
             Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap) throws CommunicationException {
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         List<LookupReport> reports = new ArrayList<>();
@@ -563,7 +624,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         }
     }
 
-    private static ProductArtifact toProductArtifact(Product p, MavenArtifact a, String origVersion,
+    private static ProductArtifact toProductArtifact(
+            Product p,
+            MavenArtifact a,
+            String origVersion,
             VersionComparator comparator) {
         ProductArtifact ret = new ProductArtifact();
         ret.setArtifact(a.getGav());
@@ -574,13 +638,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return ret;
     }
 
-    private CompletableFuture<Set<ProductArtifacts>> filterProductArtifacts(Set<Product> products,
+    private CompletableFuture<Set<ProductArtifacts>> filterProductArtifacts(
+            Set<Product> products,
             CompletableFuture<Set<ProductArtifacts>> artifacts) {
         return filterProductArtifacts(products, artifacts, x -> true);
     }
 
-    private CompletableFuture<Set<ProductArtifacts>> filterProductArtifacts(Set<Product> products,
-            CompletableFuture<Set<ProductArtifacts>> artifacts, Predicate<Product> pred) {
+    private CompletableFuture<Set<ProductArtifacts>> filterProductArtifacts(
+            Set<Product> products,
+            CompletableFuture<Set<ProductArtifacts>> artifacts,
+            Predicate<Product> pred) {
         if (!products.isEmpty()) {
             pred = pred.and(p -> products.contains(p));
         }
@@ -589,13 +656,19 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return artifacts;
     }
 
-    private CompletableFuture<Set<ProductArtifacts>> filterBuiltArtifacts(CompletableFuture<Set<ProductArtifacts>> artifacts) {
-        return artifacts.thenApply(as -> AggregatedProductProvider.filterArtifacts(as,
-                a -> !blackArtifactService.isArtifactPresent(((MavenArtifact) a).getGav())));
+    private CompletableFuture<Set<ProductArtifacts>> filterBuiltArtifacts(
+            CompletableFuture<Set<ProductArtifacts>> artifacts) {
+        return artifacts.thenApply(
+                as -> AggregatedProductProvider.filterArtifacts(
+                        as,
+                        a -> !blackArtifactService.isArtifactPresent(((MavenArtifact) a).getGav())));
     }
 
     private static List<RestProductInput> toWhitelisted(Set<ProductArtifacts> whitelisted) {
-        return whitelisted.stream().map(pa -> pa.getProduct()).filter(p -> !UNKNOWN.equals(p))
-                .map(p -> new RestProductInput(p.getName(), p.getVersion(), p.getStatus())).collect(Collectors.toList());
+        return whitelisted.stream()
+                .map(pa -> pa.getProduct())
+                .filter(p -> !UNKNOWN.equals(p))
+                .map(p -> new RestProductInput(p.getName(), p.getVersion(), p.getStatus()))
+                .collect(Collectors.toList());
     }
 }

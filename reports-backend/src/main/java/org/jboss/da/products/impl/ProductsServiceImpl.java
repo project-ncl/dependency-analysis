@@ -37,9 +37,11 @@ public class ProductsServiceImpl implements ProductsService {
         Set<WhiteArtifact> leftArtifacts = left.getWhiteArtifacts();
         Set<WhiteArtifact> rightArtifacts = right.getWhiteArtifacts();
         Set<GA> allGAs = new HashSet<>();
-        Map<GA, String> leftGAs = leftArtifacts.stream().peek(o -> allGAs.add(o.getGa()))
+        Map<GA, String> leftGAs = leftArtifacts.stream()
+                .peek(o -> allGAs.add(o.getGa()))
                 .collect(Collectors.toMap(WhiteArtifact::getGa, WhiteArtifact::getOsgiVersion));
-        Map<GA, String> rightGAs = rightArtifacts.stream().peek(o -> allGAs.add(o.getGa()))
+        Map<GA, String> rightGAs = rightArtifacts.stream()
+                .peek(o -> allGAs.add(o.getGa()))
                 .collect(Collectors.toMap(WhiteArtifact::getGa, WhiteArtifact::getOsgiVersion));
         Set<ArtifactDiff> ret = new HashSet<>();
 
@@ -51,8 +53,11 @@ public class ProductsServiceImpl implements ProductsService {
             if (leftVersion != null && rightVersion != null) {
                 difference = comparator.difference(leftVersion, rightVersion);
             }
-            ArtifactDiff ad = new ArtifactDiff(leftVersion, new org.jboss.da.model.rest.GA(ga.getGroupId(), ga.getArtifactId()),
-                    rightVersion, difference);
+            ArtifactDiff ad = new ArtifactDiff(
+                    leftVersion,
+                    new org.jboss.da.model.rest.GA(ga.getGroupId(), ga.getArtifactId()),
+                    rightVersion,
+                    difference);
             ret.add(ad);
         }
         return ret;

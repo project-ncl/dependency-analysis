@@ -28,7 +28,8 @@ public class VersionParser {
 
     public VersionParser(String suffix) {
         this.suffix = suffix;
-        this.versionPattern = Pattern.compile("^" + RE_MMM + RE_QUALIFIER + "??" + RE_SUFFIX_S + suffix + RE_SUFFIX_E + "$");
+        this.versionPattern = Pattern
+                .compile("^" + RE_MMM + RE_QUALIFIER + "??" + RE_SUFFIX_S + suffix + RE_SUFFIX_E + "$");
     }
 
     public SuffixedVersion parse(String version) {

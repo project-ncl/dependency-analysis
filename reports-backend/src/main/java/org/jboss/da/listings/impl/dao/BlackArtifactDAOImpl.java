@@ -32,7 +32,8 @@ public class BlackArtifactDAOImpl extends ArtifactDAOImpl<BlackArtifact> impleme
         CriteriaQuery<BlackArtifact> cq = cb.createQuery(type);
         Root<BlackArtifact> artifact = cq.from(type);
         Join<BlackArtifact, GA> ga = artifact.join("ga");
-        cq.select(artifact).where(cb.and(cb.equal(ga.get("artifactId"), artifactId), cb.equal(ga.get("groupId"), groupId)));
+        cq.select(artifact)
+                .where(cb.and(cb.equal(ga.get("artifactId"), artifactId), cb.equal(ga.get("groupId"), groupId)));
         TypedQuery<BlackArtifact> q = em.createQuery(cq);
         return q.getResultList();
     }

@@ -43,14 +43,18 @@ public abstract class AbstractClientApiTest {
 
     private Path readRestApiRequestFolder() {
         String versionFolder = convertRestApiVersionToFolderName();
-        return Paths.get(readConfigurationValue("testsuite.restApiRequestFolder",
-                "src/test/rest" + (versionFolder == null ? "" : "/" + versionFolder) + "/request"));
+        return Paths.get(
+                readConfigurationValue(
+                        "testsuite.restApiRequestFolder",
+                        "src/test/rest" + (versionFolder == null ? "" : "/" + versionFolder) + "/request"));
     }
 
     private Path readRestApiExpectedResponseFolder() {
         String versionFolder = convertRestApiVersionToFolderName();
-        return Paths.get(readConfigurationValue("testsuite.restApiExpectedResponseFolder",
-                "src/test/rest" + (versionFolder == null ? "" : "/" + versionFolder) + "/expectedResponse/"));
+        return Paths.get(
+                readConfigurationValue(
+                        "testsuite.restApiExpectedResponseFolder",
+                        "src/test/rest" + (versionFolder == null ? "" : "/" + versionFolder) + "/expectedResponse/"));
     }
 
     protected String readConfigurationValue(String name, String defaultValue) {
@@ -193,8 +197,11 @@ public abstract class AbstractClientApiTest {
     }
 
     protected File getJsonResponseFile(String path, String variant) {
-        return new ExpectedResponseFilenameBuilder(restApiExpectedResponseFolder, path, ContentType.APPLICATION_JSON, variant)
-                .getFile();
+        return new ExpectedResponseFilenameBuilder(
+                restApiExpectedResponseFolder,
+                path,
+                ContentType.APPLICATION_JSON,
+                variant).getFile();
     }
 
     protected void assertEqualsJson(String expected, String actual) {

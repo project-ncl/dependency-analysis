@@ -45,8 +45,8 @@ public class ScmFacade {
     }
 
     /**
-     * Tries to do a shallow clone (clone only the requested revision) of the remote repository to the local directory. If it is
-     * not possible to do that, then it does the full clone.
+     * Tries to do a shallow clone (clone only the requested revision) of the remote repository to the local directory. If it is not
+     * possible to do that, then it does the full clone.
      * 
      * @param scmType Type of the repository
      * @param scmUrl URL to the repository
@@ -54,7 +54,8 @@ public class ScmFacade {
      * @param cloneTo Directory, where the repository should be cloned
      * @throws ScmException Thrown if the clone of the repository fails
      */
-    public void shallowCloneRepository(SCMType scmType, String scmUrl, String revision, File cloneTo) throws ScmException {
+    public void shallowCloneRepository(SCMType scmType, String scmUrl, String revision, File cloneTo)
+            throws ScmException {
         if (!cloneTo.exists()) {
             cloneTo.mkdir();
         }
@@ -102,13 +103,15 @@ public class ScmFacade {
 
         if (!addResult.isSuccess())
             throw new ScmException(
-                    "The manager wasn't able to ADD these files " + scmFileSet.toString() + " to the repository " + repo);
+                    "The manager wasn't able to ADD these files " + scmFileSet.toString() + " to the repository "
+                            + repo);
 
         CheckInScmResult pushResult = scmManager.checkIn(repo, scmFileSet, commitMessage);
 
         if (!pushResult.isSuccess())
             throw new ScmException(
-                    "The manager wasn't able to PUSH these files " + scmFileSet.toString() + " to the repository " + repo);
+                    "The manager wasn't able to PUSH these files " + scmFileSet.toString() + " to the repository "
+                            + repo);
     }
 
     private ScmRepository getScmRepository(String scmUrl, ScmManager scmManager) throws ScmException {

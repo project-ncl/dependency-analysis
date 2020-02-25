@@ -32,8 +32,12 @@ public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> imple
             CriteriaQuery<T> cq = cb.createQuery(type);
             Root<T> artifact = cq.from(type);
             Join<T, GA> ga = artifact.join("ga");
-            cq.select(artifact).where(cb.and(cb.equal(ga.get("artifactId"), artifactId), cb.equal(ga.get("groupId"), groupId),
-                    cb.equal(artifact.get("version"), version)));
+            cq.select(artifact)
+                    .where(
+                            cb.and(
+                                    cb.equal(ga.get("artifactId"), artifactId),
+                                    cb.equal(ga.get("groupId"), groupId),
+                                    cb.equal(artifact.get("version"), version)));
             TypedQuery<T> q = em.createQuery(cq);
             return Optional.of(q.getSingleResult());
         } catch (NoResultException e) {

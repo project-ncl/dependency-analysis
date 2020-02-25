@@ -48,8 +48,11 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
             CriteriaQuery<ProductVersion> cq = cb.createQuery(type);
             Root<ProductVersion> productVersion = cq.from(type);
             Join<ProductVersion, Product> product = productVersion.join("product");
-            cq.select(productVersion).where(
-                    cb.and(cb.equal(product.get("name"), name), cb.equal(productVersion.get("productVersion"), version)));
+            cq.select(productVersion)
+                    .where(
+                            cb.and(
+                                    cb.equal(product.get("name"), name),
+                                    cb.equal(productVersion.get("productVersion"), version)));
             TypedQuery<ProductVersion> q = em.createQuery(cq);
             return Optional.of(q.getSingleResult());
         } catch (NoResultException e) {
@@ -89,7 +92,10 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
     }
 
     @Override
-    public List<ProductVersion> findProductVersionsWithArtifact(String groupId, String artifactId, String version,
+    public List<ProductVersion> findProductVersionsWithArtifact(
+            String groupId,
+            String artifactId,
+            String version,
             boolean preciseVersion) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductVersion> cq = cb.createQuery(type);
@@ -98,8 +104,14 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
         Join<Artifact, GA> ga = artifact.join("ga");
         if (!preciseVersion)
             version += '%';
-        cq.select(productVersion).where(cb.and(cb.equal(ga.get("groupId"), groupId), cb.equal(ga.get("artifactId"), artifactId),
-                cb.or(cb.like(artifact.get("version"), version), cb.like(artifact.get("osgiVersion"), version))));
+        cq.select(productVersion)
+                .where(
+                        cb.and(
+                                cb.equal(ga.get("groupId"), groupId),
+                                cb.equal(ga.get("artifactId"), artifactId),
+                                cb.or(
+                                        cb.like(artifact.get("version"), version),
+                                        cb.like(artifact.get("osgiVersion"), version))));
         TypedQuery<ProductVersion> q = em.createQuery(cq);
         List<ProductVersion> list = q.getResultList();
         return list;
@@ -141,7 +153,9 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactByGAV(String groupId, String artifactId,
+    public List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactByGAV(
+            String groupId,
+            String artifactId,
             String version) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductVersionArtifactRelationship> cq = cb.createQuery(ProductVersionArtifactRelationship.class);
@@ -150,17 +164,24 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
         Join<WhiteArtifact, GA> ga = artifact.join("ga");
         Expression<Collection<WhiteArtifact>> artifacts = productVersion.get("whiteArtifacts");
         cq.multiselect(productVersion, artifact);
-        cq.where(cb.and(cb.isMember(artifact, artifacts), cb.equal(ga.get("artifactId"), artifactId),
-                cb.equal(ga.get("groupId"), groupId),
-                cb.or(cb.equal(artifact.get("version"), version), cb.equal(artifact.get("osgiVersion"), version))));
+        cq.where(
+                cb.and(
+                        cb.isMember(artifact, artifacts),
+                        cb.equal(ga.get("artifactId"), artifactId),
+                        cb.equal(ga.get("groupId"), groupId),
+                        cb.or(
+                                cb.equal(artifact.get("version"), version),
+                                cb.equal(artifact.get("osgiVersion"), version))));
         TypedQuery<ProductVersionArtifactRelationship> q = em.createQuery(cq);
         List<ProductVersionArtifactRelationship> l = q.getResultList();
         return l;
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactsByGAStatus(String groupId,
-            String artifactId, Optional<ProductSupportStatus> status) {
+    public List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactsByGAStatus(
+            String groupId,
+            String artifactId,
+            Optional<ProductSupportStatus> status) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductVersionArtifactRelationship> cq = cb.createQuery(ProductVersionArtifactRelationship.class);
         Root<ProductVersion> productVersion = cq.from(type);
@@ -169,7 +190,9 @@ public class ProductVersionDAOImpl extends GenericDAOImpl<ProductVersion> implem
         Expression<Collection<WhiteArtifact>> artifacts = productVersion.get("whiteArtifacts");
         cq.multiselect(productVersion, artifact);
 
-        final Predicate gaRestriction = cb.and(cb.isMember(artifact, artifacts), cb.equal(ga.get("artifactId"), artifactId),
+        final Predicate gaRestriction = cb.and(
+                cb.isMember(artifact, artifacts),
+                cb.equal(ga.get("artifactId"), artifactId),
                 cb.equal(ga.get("groupId"), groupId));
         Predicate restriction = status.map(x -> cb.and(gaRestriction, cb.equal(productVersion.get("support"), x)))
                 .orElse(gaRestriction);

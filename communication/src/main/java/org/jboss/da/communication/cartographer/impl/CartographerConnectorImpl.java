@@ -52,8 +52,10 @@ public class CartographerConnectorImpl implements CartographerConnector {
     private void postConstruct() {
         try {
             PasswordManager emptyPasswordManager = new MemoryPasswordManager();
-            SiteConfig sc = new SiteConfigBuilder().withId("Carto").withUri(config.getConfig().getCartographerServerUrl())
-                    .withRequestTimeoutSeconds(config.getConfig().getAproxRequestTimeout()).build();
+            SiteConfig sc = new SiteConfigBuilder().withId("Carto")
+                    .withUri(config.getConfig().getCartographerServerUrl())
+                    .withRequestTimeoutSeconds(config.getConfig().getAproxRequestTimeout())
+                    .build();
             HttpFactory httpFactory = new HttpFactory(emptyPasswordManager);
             cartographer = new CartographerRESTClient(sc, httpFactory);
         } catch (ConfigurationParseException | ClientHttpException e) {
@@ -70,7 +72,9 @@ public class CartographerConnectorImpl implements CartographerConnector {
 
         try {
 
-            SimpleProjectVersionRef rootRef = new SimpleProjectVersionRef(gav.getGroupId(), gav.getArtifactId(),
+            SimpleProjectVersionRef rootRef = new SimpleProjectVersionRef(
+                    gav.getGroupId(),
+                    gav.getArtifactId(),
                     gav.getVersion());
 
             SingleGraphRequest r = new SingleGraphRequest();

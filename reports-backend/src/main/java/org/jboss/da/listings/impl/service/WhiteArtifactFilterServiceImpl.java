@@ -33,7 +33,8 @@ public class WhiteArtifactFilterServiceImpl implements WhiteArtifactFilterServic
         // Remove every blacklisted artifact from a whitelist
         for (BlackArtifact ba : allBlackArtifacts) {
             for (ProductVersion pv : products) {
-                pv.getWhiteArtifacts().removeIf(x -> x.getGa().equals(ba.getGa()) && x.getVersion().equals(ba.getVersion()));
+                pv.getWhiteArtifacts()
+                        .removeIf(x -> x.getGa().equals(ba.getGa()) && x.getVersion().equals(ba.getVersion()));
             }
         }
         return products;
@@ -42,7 +43,8 @@ public class WhiteArtifactFilterServiceImpl implements WhiteArtifactFilterServic
     @Override
     public List<ProductVersionArtifactRelationship> toProductRelsContainingOnlyWhiteArtifacts(
             List<ProductVersionArtifactRelationship> products) {
-        List<ProductVersion> productVersions = products.stream().map(ProductVersionArtifactRelationship::getProductVersion)
+        List<ProductVersion> productVersions = products.stream()
+                .map(ProductVersionArtifactRelationship::getProductVersion)
                 .collect(Collectors.toList());
 
         toProductsContainingOnlyWhiteArtifacts(productVersions);
@@ -65,19 +67,24 @@ public class WhiteArtifactFilterServiceImpl implements WhiteArtifactFilterServic
 
     @Override
     public List<ProductVersion> getProductVersionsWithWhiteArtifactsByStatus(ProductSupportStatus status) {
-        return toProductsContainingOnlyWhiteArtifacts(productVersionService.getProductVersionsWithArtifactsByStatus(status));
+        return toProductsContainingOnlyWhiteArtifacts(
+                productVersionService.getProductVersionsWithArtifactsByStatus(status));
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> getProductVersionsWithWhiteArtifactsByGAV(String groupId, String artifactId,
+    public List<ProductVersionArtifactRelationship> getProductVersionsWithWhiteArtifactsByGAV(
+            String groupId,
+            String artifactId,
             String version) {
         return toProductRelsContainingOnlyWhiteArtifacts(
                 productVersionService.getProductVersionsWithArtifactByGAV(groupId, artifactId, version));
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> getProductVersionsWithWhiteArtifactsByGAStatus(String groupId,
-            String artifactId, ProductSupportStatus status) {
+    public List<ProductVersionArtifactRelationship> getProductVersionsWithWhiteArtifactsByGAStatus(
+            String groupId,
+            String artifactId,
+            ProductSupportStatus status) {
         return toProductRelsContainingOnlyWhiteArtifacts(
                 productVersionService.getProductVersionsWithArtifactsByGAStatus(groupId, artifactId, status));
     }

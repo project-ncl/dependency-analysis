@@ -66,8 +66,11 @@ public class DatabaseProductProvider implements ProductProvider {
 
     private Set<Artifact> _getArtifacts(Product product) {
         return productVersionDAO.findProductVersion(product.getName(), product.getVersion())
-                .map(ProductVersion::getWhiteArtifacts).orElseGet(Collections::emptySet).stream()
-                .map(DatabaseProductProvider::toArtifact).collect(Collectors.toSet());
+                .map(ProductVersion::getWhiteArtifacts)
+                .orElseGet(Collections::emptySet)
+                .stream()
+                .map(DatabaseProductProvider::toArtifact)
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -85,7 +88,8 @@ public class DatabaseProductProvider implements ProductProvider {
             return CompletableFuture.completedFuture(Collections.emptySet());
         }
         GA ga = ((MavenArtifact) artifact).getGav().getGA();
-        return CompletableFuture.supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(), Optional.of(status)));
+        return CompletableFuture
+                .supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(), Optional.of(status)));
     }
 
     @Override
@@ -94,18 +98,29 @@ public class DatabaseProductProvider implements ProductProvider {
             return CompletableFuture.completedFuture(Collections.emptyMap());
         }
         GA ga = ((MavenArtifact) artifact).getGav().getGA();
-        return CompletableFuture.supplyAsync(() -> getArtifacts(ga.getGroupId(), ga.getArtifactId(), Optional.empty()).stream()
-                .collect(Collectors.toMap(ProductArtifacts::getProduct,
-                        x -> x.getArtifacts().stream().map(Artifact::getVersion).collect(Collectors.toSet()))));
+        return CompletableFuture.supplyAsync(
+                () -> getArtifacts(ga.getGroupId(), ga.getArtifactId(), Optional.empty()).stream()
+                        .collect(
+                                Collectors.toMap(
+                                        ProductArtifacts::getProduct,
+                                        x -> x.getArtifacts()
+                                                .stream()
+                                                .map(Artifact::getVersion)
+                                                .collect(Collectors.toSet()))));
     }
 
-    private Set<ProductArtifacts> getArtifacts(final String groupId, final String artifactId,
+    private Set<ProductArtifacts> getArtifacts(
+            final String groupId,
+            final String artifactId,
             final Optional<ProductSupportStatus> st) {
-        return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId, st).stream()
-                .map(DatabaseProductProvider::toProductArtifacts).collect(Collectors.toSet());
+        return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId, st)
+                .stream()
+                .map(DatabaseProductProvider::toProductArtifacts)
+                .collect(Collectors.toSet());
     }
 
-    private CompletableFuture<Set<Product>> getProductsAsync(final Supplier<Collection<ProductVersion>> productsSupplier) {
+    private CompletableFuture<Set<Product>> getProductsAsync(
+            final Supplier<Collection<ProductVersion>> productsSupplier) {
         return CompletableFuture.supplyAsync(productsSupplier)
                 .thenApply(pvs -> pvs.stream().map(DatabaseProductProvider::toProduct).collect(Collectors.toSet()));
     }
@@ -115,7 +130,9 @@ public class DatabaseProductProvider implements ProductProvider {
     }
 
     private static ProductArtifacts toProductArtifacts(ProductVersionArtifactRelationship pvar) {
-        return new ProductArtifacts(toProduct(pvar.getProductVersion()), Collections.singleton(toArtifact(pvar.getArtifact())));
+        return new ProductArtifacts(
+                toProduct(pvar.getProductVersion()),
+                Collections.singleton(toArtifact(pvar.getArtifact())));
     }
 
     private static Artifact toArtifact(WhiteArtifact a) {

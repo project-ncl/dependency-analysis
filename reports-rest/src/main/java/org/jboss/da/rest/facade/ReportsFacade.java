@@ -47,8 +47,8 @@ public class ReportsFacade {
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
         validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
         String pomPath = getPomPath(request.getPomPath());
-        SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(), pomPath,
-                request.getAdditionalRepos());
+        SCMLocator locator = SCMLocator
+                .generic(request.getScmUrl(), request.getRevision(), pomPath, request.getAdditionalRepos());
 
         Set<BuiltReportModule> builtReport = reportsGenerator.getBuiltReport(locator);
         return Translate.toBuiltReport(builtReport);
@@ -58,16 +58,16 @@ public class ReportsFacade {
             throws ScmException, PomAnalysisException, ValidationException, CommunicationException {
         validation.validation(request, "Getting allignment report for project specified in a repository URL failed");
         String pomPath = getPomPath(request.getPomPath());
-        SCMLocator locator = SCMLocator.generic(request.getScmUrl(), request.getRevision(), pomPath,
-                request.getAdditionalRepos());
+        SCMLocator locator = SCMLocator
+                .generic(request.getScmUrl(), request.getRevision(), pomPath, request.getAdditionalRepos());
 
-        Set<AlignmentReportModule> aligmentReport = reportsGenerator.getAligmentReport(locator,
-                request.isSearchUnknownProducts(), request.getProducts());
+        Set<AlignmentReportModule> aligmentReport = reportsGenerator
+                .getAligmentReport(locator, request.isSearchUnknownProducts(), request.getProducts());
         return Translate.toAlignReport(aligmentReport);
     }
 
-    public Report scmReport(SCMReportRequest request)
-            throws ScmException, PomAnalysisException, CommunicationException, NoSuchElementException, ValidationException {
+    public Report scmReport(SCMReportRequest request) throws ScmException, PomAnalysisException, CommunicationException,
+            NoSuchElementException, ValidationException {
         validation.validation(request, "Getting dependency report for a project specified in a repository URL failed");
         if (request.getProductVersionIds().size() == 1) { // user inserted ID as empty string
             Iterator<Long> iterator = request.getProductVersionIds().iterator();

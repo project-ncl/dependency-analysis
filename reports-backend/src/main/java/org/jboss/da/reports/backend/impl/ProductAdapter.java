@@ -74,7 +74,8 @@ public class ProductAdapter {
         }
 
         if (productVersionIds != null && !productVersionIds.isEmpty()) {
-            List<ProductVersion> prodVersionsById = productVersionDao.findAllWithIds(new ArrayList<>(productVersionIds));
+            List<ProductVersion> prodVersionsById = productVersionDao
+                    .findAllWithIds(new ArrayList<>(productVersionIds));
             if (productVersionIds.size() == prodVersionsById.size()) {
                 productVersions.addAll(prodVersionsById);
             } else {

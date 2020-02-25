@@ -54,12 +54,14 @@ public class AproxRemoteTest extends AbstractServerTest {
 
     @Test
     public void testGetVersionsOfNpm() throws CommunicationException {
-        List<String> jqueryVersions = Arrays.asList(new String[] { "1.11.0", "1.11.0-beta3", "1.11.0-rc1", "1.11.1",
-                "1.11.1-beta1", "1.11.1-rc1", "1.11.1-rc2", "1.11.2", "1.11.3", "1.12.0", "1.12.1", "1.12.2", "1.12.3",
-                "1.12.4", "1.5.1", "1.5.1-redhat-1", "1.6.2-redhat-1", "1.6.2", "1.6.3", "1.7.2", "1.7.3", "1.8.2", "1.8.3",
-                "1.9.1", "2.1.0", "2.1.0-beta2", "2.1.0-beta3", "2.1.0-rc1", "2.1.1", "2.1.1-beta1", "2.1.1-rc1", "2.1.1-rc2",
-                "2.1.2", "2.1.3", "2.1.4", "2.2.0", "2.2.1", "2.2.2", "2.2.3", "2.2.4", "3.0.0", "3.0.0-alpha1", "3.0.0-beta1",
-                "3.0.0-rc1", "3.1.0", "3.1.1", "3.2.0", "3.2.1", "3.3.0", "3.3.1" });
+        List<String> jqueryVersions = Arrays.asList(
+                new String[] { "1.11.0", "1.11.0-beta3", "1.11.0-rc1", "1.11.1", "1.11.1-beta1", "1.11.1-rc1",
+                        "1.11.1-rc2", "1.11.2", "1.11.3", "1.12.0", "1.12.1", "1.12.2", "1.12.3", "1.12.4", "1.5.1",
+                        "1.5.1-redhat-1", "1.6.2-redhat-1", "1.6.2", "1.6.3", "1.7.2", "1.7.3", "1.8.2", "1.8.3",
+                        "1.9.1", "2.1.0", "2.1.0-beta2", "2.1.0-beta3", "2.1.0-rc1", "2.1.1", "2.1.1-beta1",
+                        "2.1.1-rc1", "2.1.1-rc2", "2.1.2", "2.1.3", "2.1.4", "2.2.0", "2.2.1", "2.2.2", "2.2.3",
+                        "2.2.4", "3.0.0", "3.0.0-alpha1", "3.0.0-beta1", "3.0.0-rc1", "3.1.0", "3.1.1", "3.2.0",
+                        "3.2.1", "3.3.0", "3.3.1" });
         List<String> result = aproxConnector.getVersionsOfNpm("jquery");
         assertEquals(jqueryVersions.size(), result.size());
         assertTrue(result.containsAll(jqueryVersions));
@@ -71,9 +73,12 @@ public class AproxRemoteTest extends AbstractServerTest {
         GAVDependencyTree tree = cartographerConnector.getDependencyTreeOfGAV(gav);
 
         Set<String> expectedDependencyGAV = new HashSet<>(
-                Arrays.asList(new String[] { "xalan:xalan:2.7.0", "xerces:xercesImpl:2.8.0", "xml-apis:xml-apis:1.3.03" }));
+                Arrays.asList(
+                        new String[] { "xalan:xalan:2.7.0", "xerces:xercesImpl:2.8.0", "xml-apis:xml-apis:1.3.03" }));
 
-        Set<String> receivedDependencyGAV = tree.getDependencies().stream().map(f -> f.getGav().toString())
+        Set<String> receivedDependencyGAV = tree.getDependencies()
+                .stream()
+                .map(f -> f.getGav().toString())
                 .collect(Collectors.toSet());
 
         assertEquals(expectedDependencyGAV, receivedDependencyGAV);

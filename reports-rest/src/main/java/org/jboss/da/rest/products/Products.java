@@ -50,31 +50,59 @@ public class Products {
     @Path("/diff")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get difference of two products", response = ProductDiff.class)
-    public Response getProduct(@QueryParam("leftProduct") Long leftProduct, @QueryParam("rightProduct") Long rightProduct) {
+    public Response getProduct(
+            @QueryParam("leftProduct") Long leftProduct,
+            @QueryParam("rightProduct") Long rightProduct) {
         Optional<ProductVersion> left = productService.getProductVersion(leftProduct);
         if (!left.isPresent()) {
-            return Response.status(NOT_FOUND).entity(new ErrorMessage(ErrorMessage.ErrorType.PRODUCT_NOT_FOUND,
-                    "Product " + leftProduct + " doesn't exist.", null)).build();
+            return Response.status(NOT_FOUND)
+                    .entity(
+                            new ErrorMessage(
+                                    ErrorMessage.ErrorType.PRODUCT_NOT_FOUND,
+                                    "Product " + leftProduct + " doesn't exist.",
+                                    null))
+                    .build();
         }
         Optional<ProductVersion> right = productService.getProductVersion(rightProduct);
         if (!right.isPresent()) {
-            return Response.status(NOT_FOUND).entity(new ErrorMessage(ErrorMessage.ErrorType.PRODUCT_NOT_FOUND,
-                    "Product " + rightProduct + " doesn't exist.", null)).build();
+            return Response.status(NOT_FOUND)
+                    .entity(
+                            new ErrorMessage(
+                                    ErrorMessage.ErrorType.PRODUCT_NOT_FOUND,
+                                    "Product " + rightProduct + " doesn't exist.",
+                                    null))
+                    .build();
         }
         Set<ArtifactDiff> diff = products.difference(leftProduct, rightProduct);
 
         ProductDiff ret = new ProductDiff();
         ret.setLeftProduct(convert.toRestProduct(left.get()));
         ret.setRightProduct(convert.toRestProduct(right.get()));
-        ret.setAdded(diff.stream().filter(ArtifactDiff::isAdded).map(d -> new GAV(d.getGa(), d.getRightVersion()))
-                .collect(Collectors.toCollection(TreeSet::new)));
-        ret.setRemoved(diff.stream().filter(ArtifactDiff::isRemoved).map(d -> new GAV(d.getGa(), d.getLeftVersion()))
-                .collect(Collectors.toCollection(TreeSet::new)));
-        ret.setChanged(diff.stream().filter(ArtifactDiff::isChanged)
-                .map(d -> new GADiff(d.getGa(), d.getLeftVersion(), d.getRightVersion(), d.getDifference().toString()))
-                .collect(Collectors.toCollection(TreeSet::new)));
-        ret.setUnchanged(diff.stream().filter(ArtifactDiff::isUnchanged).map(d -> new GAV(d.getGa(), d.getLeftVersion()))
-                .collect(Collectors.toCollection(TreeSet::new)));
+        ret.setAdded(
+                diff.stream()
+                        .filter(ArtifactDiff::isAdded)
+                        .map(d -> new GAV(d.getGa(), d.getRightVersion()))
+                        .collect(Collectors.toCollection(TreeSet::new)));
+        ret.setRemoved(
+                diff.stream()
+                        .filter(ArtifactDiff::isRemoved)
+                        .map(d -> new GAV(d.getGa(), d.getLeftVersion()))
+                        .collect(Collectors.toCollection(TreeSet::new)));
+        ret.setChanged(
+                diff.stream()
+                        .filter(ArtifactDiff::isChanged)
+                        .map(
+                                d -> new GADiff(
+                                        d.getGa(),
+                                        d.getLeftVersion(),
+                                        d.getRightVersion(),
+                                        d.getDifference().toString()))
+                        .collect(Collectors.toCollection(TreeSet::new)));
+        ret.setUnchanged(
+                diff.stream()
+                        .filter(ArtifactDiff::isUnchanged)
+                        .map(d -> new GAV(d.getGa(), d.getLeftVersion()))
+                        .collect(Collectors.toCollection(TreeSet::new)));
         return Response.ok().entity(ret).build();
     }
 }

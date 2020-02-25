@@ -158,15 +158,27 @@ public class BackwardCompatibilityTest {
 
     @Test
     public void testLookupReport() throws IOException {
-        LookupReport lookupReport = new LookupReport(new GAV("g", "a", "v"), "ver", new ArrayList<>(), true, new ArrayList<>());
+        LookupReport lookupReport = new LookupReport(
+                new GAV("g", "a", "v"),
+                "ver",
+                new ArrayList<>(),
+                true,
+                new ArrayList<>());
 
         compare(lookupReport, "LookupReport");
     }
 
     @Test
     public void testReport() throws IOException {
-        Report report = new Report(new GAV("g", "a", "v"), new ArrayList<>(), "4.3", true, new ArrayList<>(), true,
-                new ArrayList<>(), 0);
+        Report report = new Report(
+                new GAV("g", "a", "v"),
+                new ArrayList<>(),
+                "4.3",
+                true,
+                new ArrayList<>(),
+                true,
+                new ArrayList<>(),
+                0);
 
         compare(report, "Report");
     }

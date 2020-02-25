@@ -61,7 +61,8 @@ public class SCMImpl implements SCM {
 
         } else {
             try {
-                File dir = fref.get(30, TimeUnit.MINUTES).get()
+                File dir = fref.get(30, TimeUnit.MINUTES)
+                        .get()
                         .orElseThrow(() -> new IllegalStateException("Now completed reference has empty file."));
                 log.info("Cached repository for {} found in {}.", spec, dir);
                 return dir;

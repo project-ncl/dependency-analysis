@@ -76,7 +76,8 @@ public class GalleyWrapperTest extends AbstractServerTest {
 
     @Before
     public void cloneRepo() throws ScmException {
-        clonedRepository = scm.cloneRepository(SCMType.GIT, "https://github.com/project-ncl/dependency-analysis.git", VERSION);
+        clonedRepository = scm
+                .cloneRepository(SCMType.GIT, "https://github.com/project-ncl/dependency-analysis.git", VERSION);
     }
 
     private void printDeptree(GAVDependencyTree tree, String prefix) {
@@ -88,10 +89,11 @@ public class GalleyWrapperTest extends AbstractServerTest {
     }
 
     @Test
-    public void testReadRelationships() throws IOException, PomAnalysisException, GalleyMavenException, CartoDataException {
+    public void testReadRelationships()
+            throws IOException, PomAnalysisException, GalleyMavenException, CartoDataException {
         long start = System.nanoTime();
-        GAVDependencyTree readRelationships = pomAnalyzer.readRelationships(clonedRepository, "application/pom.xml",
-                Collections.emptyList());
+        GAVDependencyTree readRelationships = pomAnalyzer
+                .readRelationships(clonedRepository, "application/pom.xml", Collections.emptyList());
         float time = (System.nanoTime() - start) / 1000000.0f;
 
         System.out.println("Dependency tree:");

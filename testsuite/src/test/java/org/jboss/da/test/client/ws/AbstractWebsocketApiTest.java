@@ -108,8 +108,8 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
                     JSONRPC2Response parse = JSONRPC2Response.parse(message);
                     responses.put(parse.getID(), parse);
                 } catch (JSONRPC2ParseException ex) {
-                    Logger.getLogger(AbstractWebsocketApiTest.class.getName()).log(Level.SEVERE, "Unknown message: " + message,
-                            ex);
+                    Logger.getLogger(AbstractWebsocketApiTest.class.getName())
+                            .log(Level.SEVERE, "Unknown message: " + message, ex);
                 }
             });
 

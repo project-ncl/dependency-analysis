@@ -104,13 +104,16 @@ public class GalleyWrapper implements AutoCloseable {
      * @return Set of all modules.
      */
     public Set<Artifact> getModules(Artifact artifact) {
-        return artifact.pp.getModules().stream().map(m -> artifact.path.resolve(m)).map(Artifact::new)
-                .filter(a -> a.ref != null).collect(Collectors.toSet());
+        return artifact.pp.getModules()
+                .stream()
+                .map(m -> artifact.path.resolve(m))
+                .map(Artifact::new)
+                .filter(a -> a.ref != null)
+                .collect(Collectors.toSet());
     }
 
     /**
-     * Return all (transitive) modules of artifact, including the artifact itselve. Module poms that couldn't be parsed are
-     * ommited.
+     * Return all (transitive) modules of artifact, including the artifact itselve. Module poms that couldn't be parsed are ommited.
      * 
      * @param artifact root artifact.
      * @return Set of all modules.
@@ -129,8 +132,7 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Returns {@link MavenPomView} for given artifact. You need to set locations so the galley know where to look for
-     * dependencies.
+     * Returns {@link MavenPomView} for given artifact. You need to set locations so the galley know where to look for dependencies.
      * 
      * @param artifact
      * @return MavenPomView of the artifact
@@ -148,8 +150,7 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Returns first level dependencies of an artifact. You need to set locations so the galley know where to look for
-     * dependencies.
+     * Returns first level dependencies of an artifact. You need to set locations so the galley know where to look for dependencies.
      * 
      * @param artifact Dependencies of this artifact will be returned
      * @return First level dependencies.
@@ -168,7 +169,9 @@ public class GalleyWrapper implements AutoCloseable {
             throw new PomAnalysisException(ex);
         }
 
-        return allDirectDependencies.stream().map(GalleyWrapper::generateGAV).filter(x -> x != null)
+        return allDirectDependencies.stream()
+                .map(GalleyWrapper::generateGAV)
+                .filter(x -> x != null)
                 .collect(Collectors.toSet());
     }
 
@@ -178,7 +181,9 @@ public class GalleyWrapper implements AutoCloseable {
      * @param repositories List of repository URLs.
      */
     public void addLocations(List<String> repositories) {
-        repositories.stream().map(repository -> new SimpleLocation(repository, repository)).forEachOrdered(locations::add);
+        repositories.stream()
+                .map(repository -> new SimpleLocation(repository, repository))
+                .forEachOrdered(locations::add);
     }
 
     /**
@@ -189,11 +194,16 @@ public class GalleyWrapper implements AutoCloseable {
      */
     public void addLocationsFromPoms(PomReader pomReader) throws IOException {
         Set<Path> allPoms = localRepo.getAllPoms();
-        allPoms.stream().map(Path::toFile).map(pomReader::analyze) // parse pom file
-                .filter(Optional::isPresent).map(Optional::get) // filter sucessfuly parsed
-                .map(p -> p.getMavenRepositories()).filter(r -> r != null) // get <repositories>
+        allPoms.stream()
+                .map(Path::toFile)
+                .map(pomReader::analyze) // parse pom file
+                .filter(Optional::isPresent)
+                .map(Optional::get) // filter sucessfuly parsed
+                .map(p -> p.getMavenRepositories())
+                .filter(r -> r != null) // get <repositories>
                 .flatMap(r -> r.stream()) // stream of <repository>
-                .map(r -> new SimpleLocation(r.getId(), r.getUrl())).forEach(l -> locations.add(l));
+                .map(r -> new SimpleLocation(r.getId(), r.getUrl()))
+                .forEach(l -> locations.add(l));
     }
 
     /**
@@ -201,8 +211,11 @@ public class GalleyWrapper implements AutoCloseable {
      */
     public void addDefaultLocations(Configuration config) {
         try {
-            locations.add(new SimpleLocation("indy",
-                    config.getConfig().getAproxServer() + "/api/group/" + config.getConfig().getAproxGroupPublic() + "/"));
+            locations.add(
+                    new SimpleLocation(
+                            "indy",
+                            config.getConfig().getAproxServer() + "/api/group/"
+                                    + config.getConfig().getAproxGroupPublic() + "/"));
         } catch (ConfigurationParseException e) {
             log.error("Failed to add indy group to locations" + e);
         }
@@ -214,8 +227,8 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Return all transitive dependencies of given artifact. Dependencies of test-scope and provided-scope dependencies are
-     * ommited. You need to set locations so the galley know where to look for dependencies.
+     * Return all transitive dependencies of given artifact. Dependencies of test-scope and provided-scope dependencies are ommited.
+     * You need to set locations so the galley know where to look for dependencies.
      * 
      * @param artifact Dependencies of this artifact will be returned
      * @return Set of dependency relationships describing the dependency graph.
@@ -225,7 +238,8 @@ public class GalleyWrapper implements AutoCloseable {
      * @see #addLocations(java.util.List)
      * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
      */
-    public Set<DependencyRelationship> getAllDependencies(Artifact artifact) throws GalleyMavenException, CartoDataException {
+    public Set<DependencyRelationship> getAllDependencies(Artifact artifact)
+            throws GalleyMavenException, CartoDataException {
         return getAllDependencies(artifact, false, false);
     }
 
@@ -271,12 +285,18 @@ public class GalleyWrapper implements AutoCloseable {
         return deps;
     }
 
-    private Set<DependencyRelationship> getDeps(ProjectVersionRef ref, MavenModelProcessor processor, URI src,
+    private Set<DependencyRelationship> getDeps(
+            ProjectVersionRef ref,
+            MavenModelProcessor processor,
+            URI src,
             ModelProcessorConfig disConf) throws GalleyMavenException, CartoDataException {
         MavenPomView pomView = mvnPomReader.read(ref, locations);
         EProjectDirectRelationships relationships = processor.readRelationships(pomView, src, disConf);
-        return relationships.getAllRelationships().stream().filter(r -> r.getType() == RelationshipType.DEPENDENCY)
-                .map(r -> (DependencyRelationship) r).collect(Collectors.toSet());
+        return relationships.getAllRelationships()
+                .stream()
+                .filter(r -> r.getType() == RelationshipType.DEPENDENCY)
+                .map(r -> (DependencyRelationship) r)
+                .collect(Collectors.toSet());
     }
 
     /**

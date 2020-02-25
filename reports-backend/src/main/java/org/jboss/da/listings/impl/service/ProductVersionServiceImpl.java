@@ -49,19 +49,25 @@ public class ProductVersionServiceImpl implements ProductVersionService {
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactByGAV(String groupId, String artifactId,
+    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactByGAV(
+            String groupId,
+            String artifactId,
             String version) {
         return productVersionDAO.findProductVersionsWithArtifactByGAV(groupId, artifactId, version);
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(String groupId, String artifactId,
+    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGAStatus(
+            String groupId,
+            String artifactId,
             ProductSupportStatus status) {
         return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId, Optional.of(status));
     }
 
     @Override
-    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGA(String groupId, String artifactId) {
+    public List<ProductVersionArtifactRelationship> getProductVersionsWithArtifactsByGA(
+            String groupId,
+            String artifactId) {
         return productVersionDAO.findProductVersionsWithArtifactsByGAStatus(groupId, artifactId, Optional.empty());
     }
 

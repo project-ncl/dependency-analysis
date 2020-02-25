@@ -51,7 +51,11 @@ public class WLFillerImpl implements WLFiller {
     private SCM scmManager;
 
     @Override
-    public WLStatus fillWhitelistFromPom(String scmUrl, String revision, String pomPath, List<String> repositories,
+    public WLStatus fillWhitelistFromPom(
+            String scmUrl,
+            String revision,
+            String pomPath,
+            List<String> repositories,
             long productId) {
         if (!checkProduct(productId)) {
             return WLStatus.PRODUCT_NOT_FOUND;
@@ -106,8 +110,8 @@ public class WLFillerImpl implements WLFiller {
         for (DependencyView d : dependencies) {
             GA ga = new GA(d.getGroupId(), d.getArtifactId());
             Artifact a = new Artifact(ga, d.getVersion(), whiteService.currentUser());
-            ArtifactStatus status = whiteService.addArtifact(a.getGa().getGroupId(), a.getGa().getArtifactId(), a.getVersion(),
-                    productId);
+            ArtifactStatus status = whiteService
+                    .addArtifact(a.getGa().getGroupId(), a.getGa().getArtifactId(), a.getVersion(), productId);
             switch (status) {
                 case ADDED:
                 case NOT_MODIFIED:

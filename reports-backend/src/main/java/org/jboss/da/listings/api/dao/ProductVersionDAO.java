@@ -60,7 +60,10 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
      * @param version
      * @return List of productVersions
      */
-    List<ProductVersion> findProductVersionsWithArtifact(String groupId, String artifactId, String version,
+    List<ProductVersion> findProductVersionsWithArtifact(
+            String groupId,
+            String artifactId,
+            String version,
             boolean preciseVersion);
 
     /**
@@ -90,7 +93,9 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
      * @param version
      * @return List of products with artifacts
      */
-    List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactByGAV(String groupId, String artifactId,
+    List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactByGAV(
+            String groupId,
+            String artifactId,
             String version);
 
     /**
@@ -101,6 +106,8 @@ public interface ProductVersionDAO extends GenericDAO<ProductVersion> {
      * @param status
      * @return
      */
-    List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactsByGAStatus(String groupId, String artifactId,
+    List<ProductVersionArtifactRelationship> findProductVersionsWithArtifactsByGAStatus(
+            String groupId,
+            String artifactId,
             Optional<ProductSupportStatus> status);
 }

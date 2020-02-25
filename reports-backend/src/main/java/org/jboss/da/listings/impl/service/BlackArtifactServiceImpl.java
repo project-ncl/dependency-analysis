@@ -47,7 +47,9 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     }
 
     @Override
-    public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(String groupId, String artifactId,
+    public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(
+            String groupId,
+            String artifactId,
             String version) {
 
         String osgiVersion = VersionParser.getOSGiVersion(version);
@@ -79,7 +81,8 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Override
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version) {
         SuffixedVersion parsedVersion = versionParser.parse(version);
-        Optional<BlackArtifact> artifact = blackArtifactDAO.findArtifact(groupId, artifactId, parsedVersion.unsuffixedVesion());
+        Optional<BlackArtifact> artifact = blackArtifactDAO
+                .findArtifact(groupId, artifactId, parsedVersion.unsuffixedVesion());
         if (parsedVersion.isSuffixed() && !artifact.isPresent()) {
             artifact = blackArtifactDAO.findArtifact(groupId, artifactId, VersionParser.getOSGiVersion(version));
         }
@@ -113,7 +116,8 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
 
     @Override
     public SortedSet<BlackArtifact> getArtifacts(String groupId, String artifactId) {
-        Comparator<BlackArtifact> baComparator = Comparator.comparing((BlackArtifact a) -> versionParser.parse(a.getVersion()));
+        Comparator<BlackArtifact> baComparator = Comparator
+                .comparing((BlackArtifact a) -> versionParser.parse(a.getVersion()));
         SortedSet<BlackArtifact> ret = new TreeSet<>(baComparator);
         ret.addAll(blackArtifactDAO.findArtifacts(groupId, artifactId));
         return ret;

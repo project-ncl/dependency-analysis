@@ -54,7 +54,13 @@ public class SuffixedVersion implements Comparable<SuffixedVersion> {
         this.originalVersion = originalVersion;
     }
 
-    public SuffixedVersion(int major, int minor, int micro, String qualifier, String suffix, int suffixVersion,
+    public SuffixedVersion(
+            int major,
+            int minor,
+            int micro,
+            String qualifier,
+            String suffix,
+            int suffixVersion,
             String originalVersion) {
         if (suffix == null || suffix.isEmpty()) {
             throw new IllegalArgumentException("Suffix must be provided in this constructor.");

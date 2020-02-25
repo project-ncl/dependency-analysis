@@ -114,15 +114,27 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         productService.addProduct("Product1", "2.0.0", ProductSupportStatus.UNKNOWN);
         prodVer1_2 = productVersionDao.findProductVersion("Product1", "2.0.0").get();
 
-        whiteService.addArtifact(whiteArtifact1_1_1.getGroupId(), whiteArtifact1_1_1.getArtifactId(),
-                whiteArtifact1_1_1.getVersion(), prodVer1_1.getId());
-        whiteService.addArtifact(whiteArtifact1_1_2.getGroupId(), whiteArtifact1_1_2.getArtifactId(),
-                whiteArtifact1_1_2.getVersion(), prodVer1_1.getId());
+        whiteService.addArtifact(
+                whiteArtifact1_1_1.getGroupId(),
+                whiteArtifact1_1_1.getArtifactId(),
+                whiteArtifact1_1_1.getVersion(),
+                prodVer1_1.getId());
+        whiteService.addArtifact(
+                whiteArtifact1_1_2.getGroupId(),
+                whiteArtifact1_1_2.getArtifactId(),
+                whiteArtifact1_1_2.getVersion(),
+                prodVer1_1.getId());
 
-        whiteService.addArtifact(whiteArtifact1_2_1.getGroupId(), whiteArtifact1_2_1.getArtifactId(),
-                whiteArtifact1_2_1.getVersion(), prodVer1_2.getId());
-        whiteService.addArtifact(whiteArtifact1_2_2.getGroupId(), whiteArtifact1_2_2.getArtifactId(),
-                whiteArtifact1_2_2.getVersion(), prodVer1_2.getId());
+        whiteService.addArtifact(
+                whiteArtifact1_2_1.getGroupId(),
+                whiteArtifact1_2_1.getArtifactId(),
+                whiteArtifact1_2_1.getVersion(),
+                prodVer1_2.getId());
+        whiteService.addArtifact(
+                whiteArtifact1_2_2.getGroupId(),
+                whiteArtifact1_2_2.getArtifactId(),
+                whiteArtifact1_2_2.getVersion(),
+                prodVer1_2.getId());
 
         whiteArtifact2_1_a = new RestProductArtifact();
         whiteArtifact2_1_a.setGroupId("org.jboss.da");
@@ -142,12 +154,21 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         productService.addProduct("Product2", "1.0.0", ProductSupportStatus.UNKNOWN);
         prodVer2_1 = productVersionDao.findProductVersion("Product2", "1.0.0").get();
 
-        whiteService.addArtifact(whiteArtifact2_1_a.getGroupId(), whiteArtifact2_1_a.getArtifactId(),
-                whiteArtifact2_1_a.getVersion(), prodVer2_1.getId());
-        whiteService.addArtifact(whiteArtifact2_1_b.getGroupId(), whiteArtifact2_1_b.getArtifactId(),
-                whiteArtifact2_1_b.getVersion(), prodVer2_1.getId());
-        whiteService.addArtifact(whiteArtifact2_1_c.getGroupId(), whiteArtifact2_1_c.getArtifactId(),
-                whiteArtifact2_1_c.getVersion(), prodVer2_1.getId());
+        whiteService.addArtifact(
+                whiteArtifact2_1_a.getGroupId(),
+                whiteArtifact2_1_a.getArtifactId(),
+                whiteArtifact2_1_a.getVersion(),
+                prodVer2_1.getId());
+        whiteService.addArtifact(
+                whiteArtifact2_1_b.getGroupId(),
+                whiteArtifact2_1_b.getArtifactId(),
+                whiteArtifact2_1_b.getVersion(),
+                prodVer2_1.getId());
+        whiteService.addArtifact(
+                whiteArtifact2_1_c.getGroupId(),
+                whiteArtifact2_1_c.getArtifactId(),
+                whiteArtifact2_1_c.getVersion(),
+                prodVer2_1.getId());
 
         hibernateGav = artifactToGAV(whiteArtifact1_1_2);
         daGav = artifactToGAV(whiteArtifact1_1_1);
@@ -158,20 +179,34 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     public void tearDown() {
 
         // Remove artifacts
-        whiteService.removeArtifact(whiteArtifact1_1_1.getGroupId(), whiteArtifact1_1_1.getArtifactId(),
+        whiteService.removeArtifact(
+                whiteArtifact1_1_1.getGroupId(),
+                whiteArtifact1_1_1.getArtifactId(),
                 whiteArtifact1_1_1.getVersion());
-        whiteService.removeArtifact(whiteArtifact1_1_2.getGroupId(), whiteArtifact1_1_2.getArtifactId(),
+        whiteService.removeArtifact(
+                whiteArtifact1_1_2.getGroupId(),
+                whiteArtifact1_1_2.getArtifactId(),
                 whiteArtifact1_1_2.getVersion());
-        whiteService.removeArtifact(whiteArtifact1_2_1.getGroupId(), whiteArtifact1_2_1.getArtifactId(),
+        whiteService.removeArtifact(
+                whiteArtifact1_2_1.getGroupId(),
+                whiteArtifact1_2_1.getArtifactId(),
                 whiteArtifact1_2_1.getVersion());
-        whiteService.removeArtifact(whiteArtifact1_2_2.getGroupId(), whiteArtifact1_2_2.getArtifactId(),
+        whiteService.removeArtifact(
+                whiteArtifact1_2_2.getGroupId(),
+                whiteArtifact1_2_2.getArtifactId(),
                 whiteArtifact1_2_2.getVersion());
 
-        whiteService.removeArtifact(whiteArtifact2_1_a.getGroupId(), whiteArtifact2_1_a.getArtifactId(),
+        whiteService.removeArtifact(
+                whiteArtifact2_1_a.getGroupId(),
+                whiteArtifact2_1_a.getArtifactId(),
                 whiteArtifact2_1_a.getVersion());
-        whiteService.removeArtifact(whiteArtifact2_1_b.getGroupId(), whiteArtifact2_1_b.getArtifactId(),
+        whiteService.removeArtifact(
+                whiteArtifact2_1_b.getGroupId(),
+                whiteArtifact2_1_b.getArtifactId(),
                 whiteArtifact2_1_b.getVersion());
-        whiteService.removeArtifact(whiteArtifact2_1_c.getGroupId(), whiteArtifact2_1_c.getArtifactId(),
+        whiteService.removeArtifact(
+                whiteArtifact2_1_c.getGroupId(),
+                whiteArtifact2_1_c.getArtifactId(),
                 whiteArtifact2_1_c.getVersion());
 
         // Remove products
@@ -190,7 +225,8 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     // - whitelist addition to top-1 level
 
     private SCMReportRequest getDefaultSCMRequest() {
-        SCMLocator locator = SCMLocator.generic("https://github.com/project-ncl/dependency-analysis.git", "05a878", "common");
+        SCMLocator locator = SCMLocator
+                .generic("https://github.com/project-ncl/dependency-analysis.git", "05a878", "common");
 
         SCMReportRequest request = new SCMReportRequest();
         request.setScml(locator);
@@ -221,9 +257,11 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_c.getVersion()));
 
         // Find jackson artifactReport and check it contains the jackson version
-        Optional<ArtifactReport> dependencyJacksonDatabind = artifactReport.getDependencies().stream()
-                .filter(x -> x.getArtifactId().equals(whiteArtifact2_1_b.getArtifactId())
-                        && x.getGroupId().equals(whiteArtifact2_1_b.getGroupId()))
+        Optional<ArtifactReport> dependencyJacksonDatabind = artifactReport.getDependencies()
+                .stream()
+                .filter(
+                        x -> x.getArtifactId().equals(whiteArtifact2_1_b.getArtifactId())
+                                && x.getGroupId().equals(whiteArtifact2_1_b.getGroupId()))
                 .findFirst();
 
         assertTrue(dependencyJacksonDatabind.isPresent());
@@ -251,9 +289,11 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
         assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_b.getVersion()));
 
         // Find jackson artifactReport and check it contains the jackson version
-        Optional<ArtifactReport> dependencyJacksonDatabind = artifactReport.getDependencies().stream()
-                .filter(x -> x.getArtifactId().equals(whiteArtifact2_1_b.getArtifactId())
-                        && x.getGroupId().equals(whiteArtifact2_1_b.getGroupId()))
+        Optional<ArtifactReport> dependencyJacksonDatabind = artifactReport.getDependencies()
+                .stream()
+                .filter(
+                        x -> x.getArtifactId().equals(whiteArtifact2_1_b.getArtifactId())
+                                && x.getGroupId().equals(whiteArtifact2_1_b.getGroupId()))
                 .findFirst();
 
         assertTrue(dependencyJacksonDatabind.isPresent());
@@ -304,7 +344,11 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     private GAVRequest getDefaultGAVRequest() {
         Set<String> productNames = new HashSet<>();
         Set<Long> productVersionIds = new HashSet<>();
-        GAVRequest gavRequest = new GAVRequest("org.hibernate", "hibernate-core", "4.2.21.Final", productNames,
+        GAVRequest gavRequest = new GAVRequest(
+                "org.hibernate",
+                "hibernate-core",
+                "4.2.21.Final",
+                productNames,
                 productVersionIds);
         return gavRequest;
     }
@@ -327,7 +371,8 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     }
 
     @Test
-    public void testGavWhiteArtifactsPresentForSingleProduct() throws CommunicationException, FindGAVDependencyException {
+    public void testGavWhiteArtifactsPresentForSingleProduct()
+            throws CommunicationException, FindGAVDependencyException {
 
         GAVRequest gavRequest = getDefaultGAVRequest();
 
@@ -475,7 +520,8 @@ public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTes
     }
 
     @Test
-    public void testGavsLookupAllWhiteArtifactsErroneousInput() throws CommunicationException, FindGAVDependencyException {
+    public void testGavsLookupAllWhiteArtifactsErroneousInput()
+            throws CommunicationException, FindGAVDependencyException {
 
         LookupGAVsRequest productsNamesReq = getDefaultLookupRequest();
 
