@@ -271,6 +271,14 @@
 
     <repositories>
         <repository>
+            <id>Nexus Staging</id>
+            <url>https://oss.sonatype.org/content/groups/staging</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
             <id>MRRC GA</id>
             <url>http://maven.repository.redhat.com/ga</url>
             <releases>
