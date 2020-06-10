@@ -1,7 +1,7 @@
 {
   "id" : "f27f5fa1-9167-3508-a041-18c47fdbb345",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/jgit/org.eclipse.jgit/3.2.0.201312181205-r/org.eclipse.jgit-3.2.0.201312181205-r.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/jgit/org.eclipse.jgit/3.2.0.201312181205-r/org.eclipse.jgit-3.2.0.201312181205-r.pom",
     "method" : "GET"
   },
   "response" : {

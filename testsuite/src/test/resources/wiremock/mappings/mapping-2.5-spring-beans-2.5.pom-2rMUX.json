@@ -1,7 +1,7 @@
 {
   "id" : "e4cf3f23-dbb3-312e-a3b4-d846d66ab061",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-beans/2.5/spring-beans-2.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-beans/2.5/spring-beans-2.5.pom",
     "method" : "GET"
   },
   "response" : {

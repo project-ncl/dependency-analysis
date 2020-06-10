@@ -1,7 +1,7 @@
 {
   "id" : "bd2c5ba3-9ffb-32df-afa2-82657f53b0a3",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/poi/poi-ooxml-schemas/3.7/poi-ooxml-schemas-3.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/poi/poi-ooxml-schemas/3.7/poi-ooxml-schemas-3.7.pom",
     "method" : "GET"
   },
   "response" : {

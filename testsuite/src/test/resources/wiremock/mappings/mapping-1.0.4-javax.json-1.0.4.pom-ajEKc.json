@@ -1,7 +1,7 @@
 {
   "id" : "f44ef56b-7c93-30b8-9406-9a7e2c694527",
   "request" : {
-    "url" : "/api/group/DApublic/org/glassfish/javax.json/1.0.4/javax.json-1.0.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/glassfish/javax.json/1.0.4/javax.json-1.0.4.pom",
     "method" : "GET"
   },
   "response" : {

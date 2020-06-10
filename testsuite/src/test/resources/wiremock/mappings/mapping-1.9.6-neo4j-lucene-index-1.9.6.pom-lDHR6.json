@@ -1,7 +1,7 @@
 {
   "id" : "54d8ee32-a6d6-3ef1-901c-520324b2b0e9",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/neo4j-lucene-index/1.9.6/neo4j-lucene-index-1.9.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/neo4j-lucene-index/1.9.6/neo4j-lucene-index-1.9.6.pom",
     "method" : "GET"
   },
   "response" : {

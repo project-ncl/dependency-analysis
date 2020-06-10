@@ -1,7 +1,7 @@
 {
   "id" : "c97dfae5-535d-389a-a55c-34bf4f592b22",
   "request" : {
-    "url" : "/api/group/DApublic/nekohtml/nekohtml/1.9.6.2/nekohtml-1.9.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/nekohtml/nekohtml/1.9.6.2/nekohtml-1.9.6.2.pom",
     "method" : "GET"
   },
   "response" : {

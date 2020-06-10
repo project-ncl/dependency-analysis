@@ -1,7 +1,7 @@
 {
   "id" : "5cb86122-d68e-3eed-b79e-c49c29dfa6af",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/cxf/cxf-rt-databinding-jaxb/2.7.14/cxf-rt-databinding-jaxb-2.7.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/cxf/cxf-rt-databinding-jaxb/2.7.14/cxf-rt-databinding-jaxb-2.7.14.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "cea825af-94fa-39df-9026-c962d792f85e",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/cxf/cxf-rt-frontend-jaxws/2.7.14/cxf-rt-frontend-jaxws-2.7.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/cxf/cxf-rt-frontend-jaxws/2.7.14/cxf-rt-frontend-jaxws-2.7.14.pom",
     "method" : "GET"
   },
   "response" : {

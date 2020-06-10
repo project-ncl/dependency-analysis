@@ -1,7 +1,7 @@
 {
   "id" : "5988cd36-1bba-3dea-91e3-0b985753ca71",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-aspects/4.0.9.RELEASE/spring-aspects-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-aspects/4.0.9.RELEASE/spring-aspects-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

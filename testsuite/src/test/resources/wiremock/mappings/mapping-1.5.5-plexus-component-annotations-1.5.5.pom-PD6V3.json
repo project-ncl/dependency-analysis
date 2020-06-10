@@ -1,7 +1,7 @@
 {
   "id" : "32e432be-ab55-3c4e-8bda-56949c0ee317",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.pom",
     "method" : "GET"
   },
   "response" : {

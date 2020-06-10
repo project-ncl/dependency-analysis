@@ -1,7 +1,7 @@
 {
   "id" : "99554270-505c-33e9-994b-978de3a8cf9a",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/geronimo/specs/geronimo-jaxws_2.2_spec/1.1/geronimo-jaxws_2.2_spec-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/geronimo/specs/geronimo-jaxws_2.2_spec/1.1/geronimo-jaxws_2.2_spec-1.1.pom",
     "method" : "GET"
   },
   "response" : {

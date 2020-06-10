@@ -1,7 +1,7 @@
 {
   "id" : "d90090b3-687a-3136-becd-38e639aba20b",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/persistence/org.eclipse.persistence.antlr/2.5.1/org.eclipse.persistence.antlr-2.5.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/persistence/org.eclipse.persistence.antlr/2.5.1/org.eclipse.persistence.antlr-2.5.1.pom",
     "method" : "GET"
   },
   "response" : {

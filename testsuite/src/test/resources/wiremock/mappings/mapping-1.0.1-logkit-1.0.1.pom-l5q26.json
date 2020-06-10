@@ -1,7 +1,7 @@
 {
   "id" : "de0a7ed5-e88f-3a31-a6b4-3c8b38eba848",
   "request" : {
-    "url" : "/api/group/DApublic/logkit/logkit/1.0.1/logkit-1.0.1.pom",
+    "url" : "/api/content/maven/group/DApublic/logkit/logkit/1.0.1/logkit-1.0.1.pom",
     "method" : "GET"
   },
   "response" : {

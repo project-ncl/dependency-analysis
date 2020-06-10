@@ -1,7 +1,7 @@
 {
   "id" : "6877d697-7dc3-3832-bfd8-15121f55dbed",
   "request" : {
-    "url" : "/api/group/DApublic/net/sourceforge/serp/serp/1.14.1/serp-1.14.1.pom",
+    "url" : "/api/content/maven/group/DApublic/net/sourceforge/serp/serp/1.14.1/serp-1.14.1.pom",
     "method" : "GET"
   },
   "response" : {

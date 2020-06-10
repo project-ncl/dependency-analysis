@@ -1,7 +1,7 @@
 {
   "id" : "eaa1cea2-a7d1-388b-b228-d838ca95739a",
   "request" : {
-    "url" : "/api/group/DApublic/org/scala-lang/jline/2.10.0/jline-2.10.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/scala-lang/jline/2.10.0/jline-2.10.0.pom",
     "method" : "GET"
   },
   "response" : {

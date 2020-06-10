@@ -1,7 +1,7 @@
 {
   "id" : "612dc839-bfe6-3b13-a476-cd5500261534",
   "request" : {
-    "url" : "/api/group/DApublic/org/drools/drools-bom/6.2.0.Final/drools-bom-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/drools/drools-bom/6.2.0.Final/drools-bom-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

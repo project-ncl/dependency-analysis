@@ -1,7 +1,7 @@
 {
   "id" : "3179a33f-0c46-387e-a312-355cd34292fe",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "bad4bd03-e7e8-3777-9bc1-a306ff0abe50",
   "request" : {
-    "url" : "/api/group/DApublic/postgresql/postgresql/8.3-603.jdbc4/postgresql-8.3-603.jdbc4.pom",
+    "url" : "/api/content/maven/group/DApublic/postgresql/postgresql/8.3-603.jdbc4/postgresql-8.3-603.jdbc4.pom",
     "method" : "GET"
   },
   "response" : {

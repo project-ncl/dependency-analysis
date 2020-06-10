@@ -1,7 +1,7 @@
 {
   "id" : "3b03bc3a-f9c4-3f27-a5c1-b7086c14f84b",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-folo/0.25.0/aprox-folo-0.25.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/aprox/aprox-folo/0.25.0/aprox-folo-0.25.0.pom",
     "method" : "GET"
   },
   "response" : {

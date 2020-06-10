@@ -1,7 +1,7 @@
 {
   "id" : "b7b6f111-6b47-338c-9062-346a19662828",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/cxf/cxf-api/2.7.14/cxf-api-2.7.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/cxf/cxf-api/2.7.14/cxf-api-2.7.14.pom",
     "method" : "GET"
   },
   "response" : {

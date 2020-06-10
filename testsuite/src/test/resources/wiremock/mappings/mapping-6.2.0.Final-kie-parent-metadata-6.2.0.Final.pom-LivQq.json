@@ -1,7 +1,7 @@
 {
   "id" : "42ba0c65-42c0-3f7b-9a05-415738a8db37",
   "request" : {
-    "url" : "/api/group/DApublic/org/kie/kie-parent-metadata/6.2.0.Final/kie-parent-metadata-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/kie/kie-parent-metadata/6.2.0.Final/kie-parent-metadata-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

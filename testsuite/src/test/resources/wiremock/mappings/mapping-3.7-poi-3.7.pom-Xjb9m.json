@@ -1,7 +1,7 @@
 {
   "id" : "639b214f-3f12-3a50-a124-f0c976d663db",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/poi/poi/3.7/poi-3.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/poi/poi/3.7/poi-3.7.pom",
     "method" : "GET"
   },
   "response" : {

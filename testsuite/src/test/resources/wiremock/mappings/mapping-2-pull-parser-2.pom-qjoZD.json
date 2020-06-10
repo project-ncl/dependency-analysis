@@ -1,7 +1,7 @@
 {
   "id" : "98fa432e-e3f6-3dd3-a4b3-5df74b075f2a",
   "request" : {
-    "url" : "/api/group/DApublic/pull-parser/pull-parser/2/pull-parser-2.pom",
+    "url" : "/api/content/maven/group/DApublic/pull-parser/pull-parser/2/pull-parser-2.pom",
     "method" : "GET"
   },
   "response" : {

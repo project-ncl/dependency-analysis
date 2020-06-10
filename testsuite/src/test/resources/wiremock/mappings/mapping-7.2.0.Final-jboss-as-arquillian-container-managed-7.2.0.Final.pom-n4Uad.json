@@ -1,7 +1,7 @@
 {
   "id" : "035c0c42-9909-3630-a02c-0041201d11d7",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/as/jboss-as-arquillian-container-managed/7.2.0.Final/jboss-as-arquillian-container-managed-7.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/as/jboss-as-arquillian-container-managed/7.2.0.Final/jboss-as-arquillian-container-managed-7.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

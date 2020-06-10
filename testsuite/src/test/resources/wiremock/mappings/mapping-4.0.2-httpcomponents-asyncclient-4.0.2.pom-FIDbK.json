@@ -1,7 +1,7 @@
 {
   "id" : "382149e4-9fb9-30ea-a673-c465e250ee4f",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/httpcomponents/httpcomponents-asyncclient/4.0.2/httpcomponents-asyncclient-4.0.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/httpcomponents/httpcomponents-asyncclient/4.0.2/httpcomponents-asyncclient-4.0.2.pom",
     "method" : "GET"
   },
   "response" : {

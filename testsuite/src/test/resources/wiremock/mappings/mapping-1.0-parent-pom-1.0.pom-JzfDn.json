@@ -1,7 +1,7 @@
 {
   "id" : "efda5e73-a5fd-3076-a664-b31678c18ce5",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/fabric3/api/parent-pom/1.0/parent-pom-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/fabric3/api/parent-pom/1.0/parent-pom-1.0.pom",
     "method" : "GET"
   },
   "response" : {

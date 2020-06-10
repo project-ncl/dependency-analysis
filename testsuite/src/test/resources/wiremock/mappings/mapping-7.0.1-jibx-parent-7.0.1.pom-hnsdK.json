@@ -1,7 +1,7 @@
 {
   "id" : "24892110-f834-39e4-92e1-b2f27a27bb92",
   "request" : {
-    "url" : "/api/group/DApublic/org/jibx/config/jibx-parent/7.0.1/jibx-parent-7.0.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jibx/config/jibx-parent/7.0.1/jibx-parent-7.0.1.pom",
     "method" : "GET"
   },
   "response" : {

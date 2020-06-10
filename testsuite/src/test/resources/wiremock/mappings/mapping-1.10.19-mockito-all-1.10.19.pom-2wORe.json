@@ -1,7 +1,7 @@
 {
   "id" : "8dd41474-ce05-3c3d-a269-4f47d0ac5f75",
   "request" : {
-    "url" : "/api/group/DApublic/org/mockito/mockito-all/1.10.19/mockito-all-1.10.19.pom",
+    "url" : "/api/content/maven/group/DApublic/org/mockito/mockito-all/1.10.19/mockito-all-1.10.19.pom",
     "method" : "GET"
   },
   "response" : {

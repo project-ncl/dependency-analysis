@@ -1,7 +1,7 @@
 {
   "id" : "6b5a86c5-d071-3c2d-bbfd-832bcff3427a",
   "request" : {
-    "url" : "/api/group/DApublic/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/ws/rs/javax.ws.rs-api/2.0/javax.ws.rs-api-2.0.pom",
     "method" : "GET"
   },
   "response" : {

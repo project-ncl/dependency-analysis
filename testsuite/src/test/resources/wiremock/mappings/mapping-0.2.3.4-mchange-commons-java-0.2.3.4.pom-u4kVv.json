@@ -1,7 +1,7 @@
 {
   "id" : "59ee4966-884a-3315-829f-f9d46a836e5b",
   "request" : {
-    "url" : "/api/group/DApublic/com/mchange/mchange-commons-java/0.2.3.4/mchange-commons-java-0.2.3.4.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mchange/mchange-commons-java/0.2.3.4/mchange-commons-java-0.2.3.4.pom",
     "method" : "GET"
   },
   "response" : {

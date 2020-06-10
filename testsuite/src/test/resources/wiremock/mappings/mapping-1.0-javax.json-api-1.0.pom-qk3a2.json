@@ -1,7 +1,7 @@
 {
   "id" : "6dedfae0-75b2-39e6-a2d0-c2be47e59af5",
   "request" : {
-    "url" : "/api/group/DApublic/javax/json/javax.json-api/1.0/javax.json-api-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/json/javax.json-api/1.0/javax.json-api-1.0.pom",
     "method" : "GET"
   },
   "response" : {

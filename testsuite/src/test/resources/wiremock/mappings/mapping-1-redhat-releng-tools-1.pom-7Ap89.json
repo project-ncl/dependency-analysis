@@ -1,7 +1,7 @@
 {
   "id" : "9fd638d5-3ad7-31e0-bc3c-177a8b3b3d4f",
   "request" : {
-    "url" : "/api/group/DApublic/com/redhat/rcm/redhat-releng-tools/1/redhat-releng-tools-1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/redhat/rcm/redhat-releng-tools/1/redhat-releng-tools-1.pom",
     "method" : "GET"
   },
   "response" : {

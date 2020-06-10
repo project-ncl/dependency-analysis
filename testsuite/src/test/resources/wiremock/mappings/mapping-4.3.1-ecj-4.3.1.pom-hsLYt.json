@@ -1,7 +1,7 @@
 {
   "id" : "71470c4e-be0c-36bd-91bb-c01892b594a3",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/jdt/core/compiler/ecj/4.3.1/ecj-4.3.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/jdt/core/compiler/ecj/4.3.1/ecj-4.3.1.pom",
     "method" : "GET"
   },
   "response" : {

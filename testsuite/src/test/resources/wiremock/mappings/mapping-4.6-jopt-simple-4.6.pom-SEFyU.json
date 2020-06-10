@@ -1,7 +1,7 @@
 {
   "id" : "028d93a6-3ec1-3ab4-b2b2-02c9ffd245a5",
   "request" : {
-    "url" : "/api/group/DApublic/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.pom",
+    "url" : "/api/content/maven/group/DApublic/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.pom",
     "method" : "GET"
   },
   "response" : {

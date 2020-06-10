@@ -1,7 +1,7 @@
 {
   "id" : "a14985df-862b-3af1-9623-c296c3f9ba47",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/struts/struts-core/1.3.8/struts-core-1.3.8.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/struts/struts-core/1.3.8/struts-core-1.3.8.pom",
     "method" : "GET"
   },
   "response" : {

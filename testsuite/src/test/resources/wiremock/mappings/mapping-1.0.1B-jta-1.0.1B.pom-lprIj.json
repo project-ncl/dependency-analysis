@@ -1,7 +1,7 @@
 {
   "id" : "0594ae9d-211e-3ee9-8917-95c590d47573",
   "request" : {
-    "url" : "/api/group/DApublic/javax/transaction/jta/1.0.1B/jta-1.0.1B.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/transaction/jta/1.0.1B/jta-1.0.1B.pom",
     "method" : "GET"
   },
   "response" : {

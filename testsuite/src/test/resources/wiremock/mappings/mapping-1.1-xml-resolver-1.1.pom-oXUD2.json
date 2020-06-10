@@ -1,7 +1,7 @@
 {
   "id" : "ecd506de-1382-3025-a84c-e69068c02beb",
   "request" : {
-    "url" : "/api/group/DApublic/xml-resolver/xml-resolver/1.1/xml-resolver-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/xml-resolver/xml-resolver/1.1/xml-resolver-1.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "b31f4e1b-7b61-34b9-b78d-6ed5eec2629a",
   "request" : {
-    "url" : "/api/group/DApublic/org/jruby/jcodings/jcodings/1.0.5/jcodings-1.0.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jruby/jcodings/jcodings/1.0.5/jcodings-1.0.5.pom",
     "method" : "GET"
   },
   "response" : {

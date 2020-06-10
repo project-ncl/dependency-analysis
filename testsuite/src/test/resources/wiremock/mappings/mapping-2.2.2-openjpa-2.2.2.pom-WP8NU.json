@@ -1,7 +1,7 @@
 {
   "id" : "29c561fe-d908-3e4c-8e8e-4bcb90d5ad77",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/openjpa/openjpa/2.2.2/openjpa-2.2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/openjpa/openjpa/2.2.2/openjpa-2.2.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "99d84356-fcb8-35d3-b2ec-b72fc4db5bd8",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/arquillian/extension/arquillian-drone-bom/1.1.1.Final/arquillian-drone-bom-1.1.1.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/arquillian/extension/arquillian-drone-bom/1.1.1.Final/arquillian-drone-bom-1.1.1.Final.pom",
     "method" : "GET"
   },
   "response" : {

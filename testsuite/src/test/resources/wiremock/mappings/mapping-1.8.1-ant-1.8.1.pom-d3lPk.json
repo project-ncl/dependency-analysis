@@ -1,7 +1,7 @@
 {
   "id" : "ca195f77-508f-3a8e-85eb-2b691eea6b00",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/ant/ant/1.8.1/ant-1.8.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/ant/ant/1.8.1/ant-1.8.1.pom",
     "method" : "GET"
   },
   "response" : {

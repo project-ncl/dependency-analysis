@@ -1,7 +1,7 @@
 {
   "id" : "cc56e76f-42b8-317f-9bd4-8aa12c6e9c33",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-autotag/1.1.0/tiles-autotag-1.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-autotag/1.1.0/tiles-autotag-1.1.0.pom",
     "method" : "GET"
   },
   "response" : {

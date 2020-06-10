@@ -1,7 +1,7 @@
 {
   "id" : "744e9746-b26c-3c52-ab2a-8c2c51f91246",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/apache/16/apache-16.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/apache/16/apache-16.pom",
     "method" : "GET"
   },
   "response" : {

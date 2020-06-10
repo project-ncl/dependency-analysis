@@ -1,7 +1,7 @@
 {
   "id" : "81a21233-7a7a-356f-916d-4e5f17d44a12",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tomcat/jasper-el/6.0.20/jasper-el-6.0.20.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tomcat/jasper-el/6.0.20/jasper-el-6.0.20.pom",
     "method" : "GET"
   },
   "response" : {

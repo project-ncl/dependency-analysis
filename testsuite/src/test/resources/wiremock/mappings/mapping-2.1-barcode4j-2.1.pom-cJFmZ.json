@@ -1,7 +1,7 @@
 {
   "id" : "8404e398-fcf2-32c2-8c20-a03c1bcf7221",
   "request" : {
-    "url" : "/api/group/DApublic/net/sf/barcode4j/barcode4j/2.1/barcode4j-2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/net/sf/barcode4j/barcode4j/2.1/barcode4j-2.1.pom",
     "method" : "GET"
   },
   "response" : {

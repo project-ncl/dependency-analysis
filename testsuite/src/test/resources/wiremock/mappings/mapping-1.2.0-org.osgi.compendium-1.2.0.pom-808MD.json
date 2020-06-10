@@ -1,7 +1,7 @@
 {
   "id" : "b554039f-fbd5-3f28-a492-2c38a0f26ab4",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/felix/org.osgi.compendium/1.2.0/org.osgi.compendium-1.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/felix/org.osgi.compendium/1.2.0/org.osgi.compendium-1.2.0.pom",
     "method" : "GET"
   },
   "response" : {

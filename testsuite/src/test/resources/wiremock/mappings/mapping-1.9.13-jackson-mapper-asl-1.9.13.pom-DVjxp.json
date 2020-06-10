@@ -1,7 +1,7 @@
 {
   "id" : "301fd0d6-af7f-3f53-8885-b494395321e3",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "d6c0ae7e-5562-3582-a2bb-51dc491c0c10",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-context/3.0.7.RELEASE/spring-context-3.0.7.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-context/3.0.7.RELEASE/spring-context-3.0.7.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

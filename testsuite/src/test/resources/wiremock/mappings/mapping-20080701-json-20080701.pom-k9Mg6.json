@@ -1,7 +1,7 @@
 {
   "id" : "ee1e6fcc-56bd-3cbd-8f74-f98e74d7886a",
   "request" : {
-    "url" : "/api/group/DApublic/org/json/json/20080701/json-20080701.pom",
+    "url" : "/api/content/maven/group/DApublic/org/json/json/20080701/json-20080701.pom",
     "method" : "GET"
   },
   "response" : {

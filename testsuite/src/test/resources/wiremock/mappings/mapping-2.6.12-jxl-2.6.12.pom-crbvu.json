@@ -1,7 +1,7 @@
 {
   "id" : "02a7a39c-0376-343c-bd40-52e7b561680a",
   "request" : {
-    "url" : "/api/group/DApublic/net/sourceforge/jexcelapi/jxl/2.6.12/jxl-2.6.12.pom",
+    "url" : "/api/content/maven/group/DApublic/net/sourceforge/jexcelapi/jxl/2.6.12/jxl-2.6.12.pom",
     "method" : "GET"
   },
   "response" : {

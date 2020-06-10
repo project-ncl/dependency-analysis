@@ -1,7 +1,7 @@
 {
   "id" : "89152ab9-205d-3d0d-919b-7902b6bd917e",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/spec/javax/xml/ws/jboss-jaxws-api_2.2_spec/2.0.2.Final/jboss-jaxws-api_2.2_spec-2.0.2.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/spec/javax/xml/ws/jboss-jaxws-api_2.2_spec/2.0.2.Final/jboss-jaxws-api_2.2_spec-2.0.2.Final.pom",
     "method" : "GET"
   },
   "response" : {

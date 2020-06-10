@@ -1,7 +1,7 @@
 {
   "id" : "246efcad-29a5-3d3c-86af-c5710f5888a5",
   "request" : {
-    "url" : "/api/group/DApublic/org/osgi/org.osgi.core/4.2.0/org.osgi.core-4.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/osgi/org.osgi.core/4.2.0/org.osgi.core-4.2.0.pom",
     "method" : "GET"
   },
   "response" : {

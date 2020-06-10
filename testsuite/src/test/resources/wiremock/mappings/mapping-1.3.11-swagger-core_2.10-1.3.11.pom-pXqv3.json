@@ -1,7 +1,7 @@
 {
   "id" : "b47fca3d-e816-3567-889c-37cbdfa73af0",
   "request" : {
-    "url" : "/api/group/DApublic/com/wordnik/swagger-core_2.10/1.3.11/swagger-core_2.10-1.3.11.pom",
+    "url" : "/api/content/maven/group/DApublic/com/wordnik/swagger-core_2.10/1.3.11/swagger-core_2.10-1.3.11.pom",
     "method" : "GET"
   },
   "response" : {

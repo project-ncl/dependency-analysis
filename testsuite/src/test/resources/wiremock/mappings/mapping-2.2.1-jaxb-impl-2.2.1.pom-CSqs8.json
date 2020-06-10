@@ -1,7 +1,7 @@
 {
   "id" : "a7d364f6-523c-33cd-878b-42ba9e0081c6",
   "request" : {
-    "url" : "/api/group/DApublic/com/sun/xml/bind/jaxb-impl/2.2.1/jaxb-impl-2.2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/sun/xml/bind/jaxb-impl/2.2.1/jaxb-impl-2.2.1.pom",
     "method" : "GET"
   },
   "response" : {

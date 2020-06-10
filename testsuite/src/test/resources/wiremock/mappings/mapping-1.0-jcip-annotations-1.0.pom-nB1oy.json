@@ -1,7 +1,7 @@
 {
   "id" : "05b88350-c7be-3b41-87a0-dc24ddfdd0e0",
   "request" : {
-    "url" : "/api/group/DApublic/net/jcip/jcip-annotations/1.0/jcip-annotations-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/net/jcip/jcip-annotations/1.0/jcip-annotations-1.0.pom",
     "method" : "GET"
   },
   "response" : {

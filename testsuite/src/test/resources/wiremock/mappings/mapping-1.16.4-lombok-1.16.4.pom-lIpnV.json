@@ -1,7 +1,7 @@
 {
   "id" : "65d3a84c-3ed8-3e9c-b374-76582b0b6443",
   "request" : {
-    "url" : "/api/group/DApublic/org/projectlombok/lombok/1.16.4/lombok-1.16.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/projectlombok/lombok/1.16.4/lombok-1.16.4.pom",
     "method" : "GET"
   },
   "response" : {

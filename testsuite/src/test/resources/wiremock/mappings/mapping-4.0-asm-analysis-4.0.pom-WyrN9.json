@@ -1,7 +1,7 @@
 {
   "id" : "250f7927-5afc-3219-9091-df8b31082984",
   "request" : {
-    "url" : "/api/group/DApublic/org/ow2/asm/asm-analysis/4.0/asm-analysis-4.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/ow2/asm/asm-analysis/4.0/asm-analysis-4.0.pom",
     "method" : "GET"
   },
   "response" : {

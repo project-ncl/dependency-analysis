@@ -1,7 +1,7 @@
 {
   "id" : "f143b412-7f20-384c-8645-f5e03ba1384e",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-utils/2.0.6/plexus-utils-2.0.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/plexus/plexus-utils/2.0.6/plexus-utils-2.0.6.pom",
     "method" : "GET"
   },
   "response" : {

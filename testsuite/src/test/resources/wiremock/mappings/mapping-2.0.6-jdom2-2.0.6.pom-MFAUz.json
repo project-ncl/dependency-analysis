@@ -1,7 +1,7 @@
 {
   "id" : "e9ab1ece-309e-33cb-8d96-68e1189f330c",
   "request" : {
-    "url" : "/api/group/DApublic/org/jdom/jdom2/2.0.6/jdom2-2.0.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jdom/jdom2/2.0.6/jdom2-2.0.6.pom",
     "method" : "GET"
   },
   "response" : {

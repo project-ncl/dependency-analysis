@@ -1,7 +1,7 @@
 {
   "id" : "79d74f81-1b27-30ae-988e-c61e73c3c670",
   "request" : {
-    "url" : "/api/group/DApublic/wsdl4j/wsdl4j/1.6.3/wsdl4j-1.6.3.pom",
+    "url" : "/api/content/maven/group/DApublic/wsdl4j/wsdl4j/1.6.3/wsdl4j-1.6.3.pom",
     "method" : "GET"
   },
   "response" : {

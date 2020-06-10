@@ -1,7 +1,7 @@
 {
   "id" : "3ac7d147-54c4-3598-a92d-a27bc3cbd65f",
   "request" : {
-    "url" : "/api/group/DApublic/commons-digester/commons-digester/1.8/commons-digester-1.8.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-digester/commons-digester/1.8/commons-digester-1.8.pom",
     "method" : "GET"
   },
   "response" : {

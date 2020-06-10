@@ -1,7 +1,7 @@
 {
   "id" : "cb01efc5-c668-3f21-9f26-6593e4583b68",
   "request" : {
-    "url" : "/api/group/DApublic/org/jibx/jibx-run/1.2.5/jibx-run-1.2.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jibx/jibx-run/1.2.5/jibx-run-1.2.5.pom",
     "method" : "GET"
   },
   "response" : {

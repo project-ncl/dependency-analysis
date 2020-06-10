@@ -1,7 +1,7 @@
 {
   "id" : "c42c0203-d3fa-375d-8ea7-38067d4cdfbf",
   "request" : {
-    "url" : "/api/group/DApublic/org/kie/kie-bom/6.2.0.Final/kie-bom-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/kie/kie-bom/6.2.0.Final/kie-bom-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

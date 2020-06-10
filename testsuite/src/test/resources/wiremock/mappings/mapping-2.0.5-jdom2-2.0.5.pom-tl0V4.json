@@ -1,7 +1,7 @@
 {
   "id" : "faf7a000-d788-3156-ba38-fcee842035a4",
   "request" : {
-    "url" : "/api/group/DApublic/org/jdom/jdom2/2.0.5/jdom2-2.0.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jdom/jdom2/2.0.5/jdom2-2.0.5.pom",
     "method" : "GET"
   },
   "response" : {

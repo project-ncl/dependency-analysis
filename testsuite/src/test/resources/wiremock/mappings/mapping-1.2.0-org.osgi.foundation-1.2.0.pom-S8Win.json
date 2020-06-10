@@ -1,7 +1,7 @@
 {
   "id" : "5c5274af-1713-3972-83af-f4c31a2c4cdc",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/felix/org.osgi.foundation/1.2.0/org.osgi.foundation-1.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/felix/org.osgi.foundation/1.2.0/org.osgi.foundation-1.2.0.pom",
     "method" : "GET"
   },
   "response" : {

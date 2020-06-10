@@ -1,7 +1,7 @@
 {
   "id" : "ba094f52-b144-3d92-8d2e-a07114d755ec",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/felix/org.osgi.core/1.2.0/org.osgi.core-1.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/felix/org.osgi.core/1.2.0/org.osgi.core-1.2.0.pom",
     "method" : "GET"
   },
   "response" : {

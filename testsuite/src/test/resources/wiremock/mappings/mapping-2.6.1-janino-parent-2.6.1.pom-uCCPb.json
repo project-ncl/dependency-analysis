@@ -1,7 +1,7 @@
 {
   "id" : "6ef9899d-d3f6-3e4f-a99f-1555d73b7eb6",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/janino/janino-parent/2.6.1/janino-parent-2.6.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/janino/janino-parent/2.6.1/janino-parent-2.6.1.pom",
     "method" : "GET"
   },
   "response" : {

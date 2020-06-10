@@ -1,7 +1,7 @@
 {
   "id" : "3d4db6cd-7e90-3212-9d72-adcc3298f139",
   "request" : {
-    "url" : "/api/group/DApublic/com/wordnik/swagger-jaxrs_2.10/1.3.12/swagger-jaxrs_2.10-1.3.12.pom",
+    "url" : "/api/content/maven/group/DApublic/com/wordnik/swagger-jaxrs_2.10/1.3.12/swagger-jaxrs_2.10-1.3.12.pom",
     "method" : "GET"
   },
   "response" : {

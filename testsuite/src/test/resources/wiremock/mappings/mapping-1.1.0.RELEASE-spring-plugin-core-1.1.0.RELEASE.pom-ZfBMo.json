@@ -1,7 +1,7 @@
 {
   "id" : "988de6f4-1026-3241-8508-660c5550f134",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/plugin/spring-plugin-core/1.1.0.RELEASE/spring-plugin-core-1.1.0.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/plugin/spring-plugin-core/1.1.0.RELEASE/spring-plugin-core-1.1.0.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

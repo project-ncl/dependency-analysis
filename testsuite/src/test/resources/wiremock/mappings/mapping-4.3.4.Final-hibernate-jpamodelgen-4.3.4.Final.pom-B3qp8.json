@@ -1,7 +1,7 @@
 {
   "id" : "0ebda248-03d8-3b10-9bda-ab9fa8b4fcd2",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/hibernate-jpamodelgen/4.3.4.Final/hibernate-jpamodelgen-4.3.4.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/hibernate-jpamodelgen/4.3.4.Final/hibernate-jpamodelgen-4.3.4.Final.pom",
     "method" : "GET"
   },
   "response" : {

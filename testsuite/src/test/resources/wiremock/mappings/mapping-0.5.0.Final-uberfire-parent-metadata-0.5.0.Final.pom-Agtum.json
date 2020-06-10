@@ -1,7 +1,7 @@
 {
   "id" : "beb362a6-70ed-328c-99c3-578fb3ad0f40",
   "request" : {
-    "url" : "/api/group/DApublic/org/uberfire/uberfire-parent-metadata/0.5.0.Final/uberfire-parent-metadata-0.5.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/uberfire/uberfire-parent-metadata/0.5.0.Final/uberfire-parent-metadata-0.5.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "0891c17d-15f8-3689-9203-c8482917243f",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/xmlgraphics/batik-bridge/1.7/batik-bridge-1.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/xmlgraphics/batik-bridge/1.7/batik-bridge-1.7.pom",
     "method" : "GET"
   },
   "response" : {

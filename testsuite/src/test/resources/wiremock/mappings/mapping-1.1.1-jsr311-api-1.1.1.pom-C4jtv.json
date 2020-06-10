@@ -1,7 +1,7 @@
 {
   "id" : "a7f29c1d-3e5d-3614-90b5-6344cba31f87",
   "request" : {
-    "url" : "/api/group/DApublic/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.pom",
     "method" : "GET"
   },
   "response" : {

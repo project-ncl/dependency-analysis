@@ -1,7 +1,7 @@
 {
   "id" : "605530b4-2545-3225-b2b5-023f673f815e",
   "request" : {
-    "url" : "/api/group/DApublic/net/minidev/json-smart/1.2/json-smart-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/net/minidev/json-smart/1.2/json-smart-1.2.pom",
     "method" : "GET"
   },
   "response" : {

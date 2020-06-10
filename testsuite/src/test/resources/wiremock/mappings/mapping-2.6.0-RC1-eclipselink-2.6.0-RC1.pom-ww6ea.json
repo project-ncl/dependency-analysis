@@ -1,7 +1,7 @@
 {
   "id" : "e1fcbcf7-389d-32e3-81b8-9f36a1f413c8",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/persistence/eclipselink/2.6.0-RC1/eclipselink-2.6.0-RC1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/persistence/eclipselink/2.6.0-RC1/eclipselink-2.6.0-RC1.pom",
     "method" : "GET"
   },
   "response" : {

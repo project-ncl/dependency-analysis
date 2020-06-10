@@ -1,7 +1,7 @@
 {
   "id" : "4f986fb1-831d-36c5-9bbc-a2f4aacf0864",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/maven-model-builder/3.0.3/maven-model-builder-3.0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/maven-model-builder/3.0.3/maven-model-builder-3.0.3.pom",
     "method" : "GET"
   },
   "response" : {

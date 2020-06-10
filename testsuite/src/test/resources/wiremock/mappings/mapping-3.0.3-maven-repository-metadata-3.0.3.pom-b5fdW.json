@@ -1,7 +1,7 @@
 {
   "id" : "745b2484-30f0-3675-afa2-58d77a64661b",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/maven-repository-metadata/3.0.3/maven-repository-metadata-3.0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/maven-repository-metadata/3.0.3/maven-repository-metadata-3.0.3.pom",
     "method" : "GET"
   },
   "response" : {

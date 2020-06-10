@@ -1,7 +1,7 @@
 {
   "id" : "6e3f868e-ec16-3561-b457-94d1a7f28aff",
   "request" : {
-    "url" : "/api/group/DApublic/javax/resource/connector-api/1.5/connector-api-1.5.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/resource/connector-api/1.5/connector-api-1.5.pom",
     "method" : "GET"
   },
   "response" : {

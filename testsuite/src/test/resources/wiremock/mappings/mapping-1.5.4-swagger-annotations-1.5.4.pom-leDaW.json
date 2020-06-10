@@ -1,7 +1,7 @@
 {
   "id" : "8ccee46c-789d-3c4c-a1f4-df60cb5abd8d",
   "request" : {
-    "url" : "/api/group/DApublic/io/swagger/swagger-annotations/1.5.4/swagger-annotations-1.5.4.pom",
+    "url" : "/api/content/maven/group/DApublic/io/swagger/swagger-annotations/1.5.4/swagger-annotations-1.5.4.pom",
     "method" : "GET"
   },
   "response" : {

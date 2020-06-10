@@ -1,7 +1,7 @@
 {
   "id" : "27949dad-2622-3f5b-a08c-bc90afc7810b",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/sisu-inject-plexus/2.1.1/sisu-inject-plexus-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/sisu-inject-plexus/2.1.1/sisu-inject-plexus-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

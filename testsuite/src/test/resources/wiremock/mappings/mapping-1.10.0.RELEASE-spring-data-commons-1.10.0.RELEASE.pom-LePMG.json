@@ -1,7 +1,7 @@
 {
   "id" : "29eaa39f-955f-3c6b-bcd7-11856783a314",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/data/spring-data-commons/1.10.0.RELEASE/spring-data-commons-1.10.0.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/data/spring-data-commons/1.10.0.RELEASE/spring-data-commons-1.10.0.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

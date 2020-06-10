@@ -1,7 +1,7 @@
 {
   "id" : "7880ae10-ed77-3ce2-aaf2-b2bbb3036c66",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-jdbc/4.0.9.RELEASE/spring-jdbc-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-jdbc/4.0.9.RELEASE/spring-jdbc-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

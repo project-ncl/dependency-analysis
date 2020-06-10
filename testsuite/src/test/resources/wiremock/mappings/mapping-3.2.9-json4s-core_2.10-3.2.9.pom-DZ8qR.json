@@ -1,7 +1,7 @@
 {
   "id" : "a23ed720-6345-3300-b073-baa88e93e42d",
   "request" : {
-    "url" : "/api/group/DApublic/org/json4s/json4s-core_2.10/3.2.9/json4s-core_2.10-3.2.9.pom",
+    "url" : "/api/content/maven/group/DApublic/org/json4s/json4s-core_2.10/3.2.9/json4s-core_2.10-3.2.9.pom",
     "method" : "GET"
   },
   "response" : {

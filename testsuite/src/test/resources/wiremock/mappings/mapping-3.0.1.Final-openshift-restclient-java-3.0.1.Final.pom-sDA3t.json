@@ -1,7 +1,7 @@
 {
   "id" : "51c31963-8176-3cb9-9de6-cae937130307",
   "request" : {
-    "url" : "/api/group/DApublic/com/openshift/openshift-restclient-java/3.0.1.Final/openshift-restclient-java-3.0.1.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/com/openshift/openshift-restclient-java/3.0.1.Final/openshift-restclient-java-3.0.1.Final.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "95f9ea43-c2b2-3524-a4de-fb49f4f235b2",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0/geronimo-stax-api_1.0_spec-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0/geronimo-stax-api_1.0_spec-1.0.pom",
     "method" : "GET"
   },
   "response" : {

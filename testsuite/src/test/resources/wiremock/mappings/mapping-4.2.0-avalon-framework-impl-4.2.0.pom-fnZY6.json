@@ -1,7 +1,7 @@
 {
   "id" : "d7549887-e752-3562-b51f-a785dd0aa99c",
   "request" : {
-    "url" : "/api/group/DApublic/avalon-framework/avalon-framework-impl/4.2.0/avalon-framework-impl-4.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/avalon-framework/avalon-framework-impl/4.2.0/avalon-framework-impl-4.2.0.pom",
     "method" : "GET"
   },
   "response" : {

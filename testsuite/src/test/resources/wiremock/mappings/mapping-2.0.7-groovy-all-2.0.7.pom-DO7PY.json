@@ -1,7 +1,7 @@
 {
   "id" : "598ddbfa-2a9d-3394-a489-5df2592d7ac3",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/groovy/groovy-all/2.0.7/groovy-all-2.0.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/groovy/groovy-all/2.0.7/groovy-all-2.0.7.pom",
     "method" : "GET"
   },
   "response" : {

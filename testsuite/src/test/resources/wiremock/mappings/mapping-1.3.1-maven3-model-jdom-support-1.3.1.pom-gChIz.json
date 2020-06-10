@@ -1,7 +1,7 @@
 {
   "id" : "18bc32ff-0e56-357e-807a-13013f6f22cf",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/maven3-model-jdom-support/1.3.1/maven3-model-jdom-support-1.3.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/maven3-model-jdom-support/1.3.1/maven3-model-jdom-support-1.3.1.pom",
     "method" : "GET"
   },
   "response" : {

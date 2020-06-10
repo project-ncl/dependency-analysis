@@ -1,7 +1,7 @@
 {
   "id" : "147599f9-393e-3a7b-a64c-ffa72df4a58a",
   "request" : {
-    "url" : "/api/group/DApublic/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1.pom",
     "method" : "GET"
   },
   "response" : {

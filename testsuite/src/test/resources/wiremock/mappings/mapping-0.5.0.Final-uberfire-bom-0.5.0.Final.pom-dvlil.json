@@ -1,7 +1,7 @@
 {
   "id" : "b4c6469c-4e07-3101-a4e4-b84e8c996ba5",
   "request" : {
-    "url" : "/api/group/DApublic/org/uberfire/uberfire-bom/0.5.0.Final/uberfire-bom-0.5.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/uberfire/uberfire-bom/0.5.0.Final/uberfire-bom-0.5.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

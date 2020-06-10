@@ -1,7 +1,7 @@
 {
   "id" : "473a51a0-0172-3ed8-9042-c7ae0ae4d13c",
   "request" : {
-    "url" : "/api/group/DApublic/taglibs/standard/1.1.2/standard-1.1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/taglibs/standard/1.1.2/standard-1.1.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "6fa4ded3-84ef-3d85-8d64-6f99001f5ccf",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/ivy/ivy/2.2.0/ivy-2.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/ivy/ivy/2.2.0/ivy-2.2.0.pom",
     "method" : "GET"
   },
   "response" : {

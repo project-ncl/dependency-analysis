@@ -1,7 +1,7 @@
 {
   "id" : "fc588b8b-52e5-3047-b5c6-fcc024eecce3",
   "request" : {
-    "url" : "/api/group/DApublic/do/not-exist/2.0/not-exist-2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/do/not-exist/2.0/not-exist-2.0.pom",
     "method" : "GET"
   },
   "response" : {

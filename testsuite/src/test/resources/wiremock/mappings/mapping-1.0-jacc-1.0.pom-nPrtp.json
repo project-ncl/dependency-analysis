@@ -1,7 +1,7 @@
 {
   "id" : "45be8410-8ce5-3199-9c98-4688fe7f84dd",
   "request" : {
-    "url" : "/api/group/DApublic/javax/security/jacc/1.0/jacc-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/security/jacc/1.0/jacc-1.0.pom",
     "method" : "GET"
   },
   "response" : {

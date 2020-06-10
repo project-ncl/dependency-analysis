@@ -1,7 +1,7 @@
 {
   "id" : "6a29b3e7-1dbb-338b-a7ce-6d734737d8c1",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/arquillian/protocol/arquillian-protocol-servlet/1.1.8.Final/arquillian-protocol-servlet-1.1.8.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/arquillian/protocol/arquillian-protocol-servlet/1.1.8.Final/arquillian-protocol-servlet-1.1.8.Final.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "1e78c1bd-e803-3f1a-b9ec-df5c09f88217",
   "request" : {
-    "url" : "/api/group/DApublic/com/jayway/jsonpath/json-path-parent/0.9.1/json-path-parent-0.9.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/jayway/jsonpath/json-path-parent/0.9.1/json-path-parent-0.9.1.pom",
     "method" : "GET"
   },
   "response" : {

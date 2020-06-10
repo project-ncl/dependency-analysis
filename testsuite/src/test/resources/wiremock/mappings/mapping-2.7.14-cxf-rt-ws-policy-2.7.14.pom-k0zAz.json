@@ -1,7 +1,7 @@
 {
   "id" : "2bfc4776-9e99-3896-9038-8c411fc43bb5",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/cxf/cxf-rt-ws-policy/2.7.14/cxf-rt-ws-policy-2.7.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/cxf/cxf-rt-ws-policy/2.7.14/cxf-rt-ws-policy-2.7.14.pom",
     "method" : "GET"
   },
   "response" : {

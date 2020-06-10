@@ -1,7 +1,7 @@
 {
   "id" : "bcd94100-80f0-3982-8fc3-60f0d69da69f",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/ant/ant-launcher/1.8.4/ant-launcher-1.8.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/ant/ant-launcher/1.8.4/ant-launcher-1.8.4.pom",
     "method" : "GET"
   },
   "response" : {

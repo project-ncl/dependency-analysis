@@ -1,7 +1,7 @@
 {
   "id" : "8327c51a-8a1c-3d27-89c5-f8561852ca52",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1.pom",
     "method" : "GET"
   },
   "response" : {

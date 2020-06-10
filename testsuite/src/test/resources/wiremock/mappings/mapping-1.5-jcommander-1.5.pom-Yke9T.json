@@ -1,7 +1,7 @@
 {
   "id" : "0b85850a-6400-32e1-b8ea-d3baf2ee59bd",
   "request" : {
-    "url" : "/api/group/DApublic/com/beust/jcommander/1.5/jcommander-1.5.pom",
+    "url" : "/api/content/maven/group/DApublic/com/beust/jcommander/1.5/jcommander-1.5.pom",
     "method" : "GET"
   },
   "response" : {

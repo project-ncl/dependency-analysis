@@ -1,7 +1,7 @@
 {
   "id" : "dbf1e740-17b1-35df-8c39-3d9b1cf95ca4",
   "request" : {
-    "url" : "/api/group/DApublic/rome/rome/1.0/rome-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/rome/rome/1.0/rome-1.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "0797d6de-f61c-3f29-abe4-bb27535340e8",
   "request" : {
-    "url" : "/api/group/DApublic/org/clojure/core.incubator/0.1.0/core.incubator-0.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/clojure/core.incubator/0.1.0/core.incubator-0.1.0.pom",
     "method" : "GET"
   },
   "response" : {

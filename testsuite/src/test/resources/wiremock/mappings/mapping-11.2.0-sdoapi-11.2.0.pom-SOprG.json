@@ -1,7 +1,7 @@
 {
   "id" : "187cbb0f-0de8-356c-a823-600f7180d4fd",
   "request" : {
-    "url" : "/api/group/DApublic/oracle/sdoapi/11.2.0/sdoapi-11.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/oracle/sdoapi/11.2.0/sdoapi-11.2.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "74420181-fe9c-389a-a930-58c801aac102",
   "request" : {
-    "url" : "/api/group/DApublic/org/slf4j/jcl-over-slf4j/1.7.6/jcl-over-slf4j-1.7.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/slf4j/jcl-over-slf4j/1.7.6/jcl-over-slf4j-1.7.6.pom",
     "method" : "GET"
   },
   "response" : {

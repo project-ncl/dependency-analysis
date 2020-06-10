@@ -1,7 +1,7 @@
 {
   "id" : "ba2bf89e-080e-32fa-a71f-d4bea7023d99",
   "request" : {
-    "url" : "/api/group/DApublic/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.pom",
     "method" : "GET"
   },
   "response" : {

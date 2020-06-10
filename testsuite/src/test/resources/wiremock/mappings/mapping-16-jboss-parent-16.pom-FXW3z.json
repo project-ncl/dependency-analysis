@@ -1,7 +1,7 @@
 {
   "id" : "8e30e85f-e02a-3092-816f-eeafc34ce442",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/jboss-parent/16/jboss-parent-16.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/jboss-parent/16/jboss-parent-16.pom",
     "method" : "GET"
   },
   "response" : {

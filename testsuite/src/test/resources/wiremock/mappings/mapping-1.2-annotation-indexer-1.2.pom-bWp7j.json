@@ -1,7 +1,7 @@
 {
   "id" : "9794ac8a-a671-3283-bcb5-b95ceb2c8237",
   "request" : {
-    "url" : "/api/group/DApublic/org/jvnet/hudson/annotation-indexer/1.2/annotation-indexer-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jvnet/hudson/annotation-indexer/1.2/annotation-indexer-1.2.pom",
     "method" : "GET"
   },
   "response" : {

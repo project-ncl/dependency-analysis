@@ -1,7 +1,7 @@
 {
   "id" : "62f4fa77-6b34-3fe6-91f7-fee088d2158f",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-cache-partyline/0.10.2/galley-cache-partyline-0.10.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/galley/galley-cache-partyline/0.10.2/galley-cache-partyline-0.10.2.pom",
     "method" : "GET"
   },
   "response" : {

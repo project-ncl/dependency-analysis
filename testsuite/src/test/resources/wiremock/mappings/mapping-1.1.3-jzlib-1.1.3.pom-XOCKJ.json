@@ -1,7 +1,7 @@
 {
   "id" : "e956f275-80e8-3aeb-81fd-49a94b488151",
   "request" : {
-    "url" : "/api/group/DApublic/com/jcraft/jzlib/1.1.3/jzlib-1.1.3.pom",
+    "url" : "/api/content/maven/group/DApublic/com/jcraft/jzlib/1.1.3/jzlib-1.1.3.pom",
     "method" : "GET"
   },
   "response" : {

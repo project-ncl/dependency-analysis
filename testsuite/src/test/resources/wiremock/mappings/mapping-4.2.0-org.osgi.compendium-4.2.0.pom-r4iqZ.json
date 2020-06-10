@@ -1,7 +1,7 @@
 {
   "id" : "10308a49-bb21-336c-807d-2477e9642255",
   "request" : {
-    "url" : "/api/group/DApublic/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.pom",
     "method" : "GET"
   },
   "response" : {

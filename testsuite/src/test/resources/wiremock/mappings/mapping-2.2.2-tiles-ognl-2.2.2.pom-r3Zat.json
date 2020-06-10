@@ -1,7 +1,7 @@
 {
   "id" : "2cc23d40-1188-3431-ad20-6c99163bfea8",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-ognl/2.2.2/tiles-ognl-2.2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-ognl/2.2.2/tiles-ognl-2.2.2.pom",
     "method" : "GET"
   },
   "response" : {

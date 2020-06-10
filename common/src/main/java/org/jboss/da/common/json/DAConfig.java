@@ -11,23 +11,15 @@ public class DAConfig extends AbstractModuleConfig {
 
     @Getter
     @Setter
-    private String aproxServer;
+    private String indyGroup;
 
     @Getter
     @Setter
-    private String aproxGroup;
-
-    @Getter
-    @Setter
-    private String aproxGroupPublic;
-
-    @Getter
-    @Setter
-    private String cartographerServerUrl;
+    private String indyGroupPublic;
 
     @Getter
     @Setter
     @JsonProperty(required = false)
-    private Integer aproxRequestTimeout = 600000;
+    private Integer indyRequestTimeout = 600000;
 
 }

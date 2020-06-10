@@ -1,7 +1,7 @@
 {
   "id" : "beef5855-bd98-3cba-b88d-171811a7b6ea",
   "request" : {
-    "url" : "/api/group/DApublic/saxpath/saxpath/1.0-FCS/saxpath-1.0-FCS.pom",
+    "url" : "/api/content/maven/group/DApublic/saxpath/saxpath/1.0-FCS/saxpath-1.0-FCS.pom",
     "method" : "GET"
   },
   "response" : {

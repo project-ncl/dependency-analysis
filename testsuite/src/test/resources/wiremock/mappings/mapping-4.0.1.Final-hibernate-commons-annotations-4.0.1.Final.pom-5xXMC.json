@@ -1,7 +1,7 @@
 {
   "id" : "050faac2-01f3-3b7b-86d0-a86b1e5ade2d",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/common/hibernate-commons-annotations/4.0.1.Final/hibernate-commons-annotations-4.0.1.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/common/hibernate-commons-annotations/4.0.1.Final/hibernate-commons-annotations-4.0.1.Final.pom",
     "method" : "GET"
   },
   "response" : {

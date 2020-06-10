@@ -1,7 +1,7 @@
 {
   "id" : "1c17bd22-15ff-351c-ab9d-c85b81f37116",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/jetty/jetty-project/9.3.4.v20151007/jetty-project-9.3.4.v20151007.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/jetty/jetty-project/9.3.4.v20151007/jetty-project-9.3.4.v20151007.pom",
     "method" : "GET"
   },
   "response" : {

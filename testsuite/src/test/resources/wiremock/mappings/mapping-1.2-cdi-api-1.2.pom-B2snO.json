@@ -1,7 +1,7 @@
 {
   "id" : "19137767-798f-3448-8e08-556a96c856d8",
   "request" : {
-    "url" : "/api/group/DApublic/javax/enterprise/cdi-api/1.2/cdi-api-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/enterprise/cdi-api/1.2/cdi-api-1.2.pom",
     "method" : "GET"
   },
   "response" : {

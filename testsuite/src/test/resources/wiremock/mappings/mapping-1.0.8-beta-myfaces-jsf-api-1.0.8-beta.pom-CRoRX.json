@@ -1,7 +1,7 @@
 {
   "id" : "f6525a6b-e87c-3732-9c9d-7d4314d86c7c",
   "request" : {
-    "url" : "/api/group/DApublic/myfaces/myfaces-jsf-api/1.0.8-beta/myfaces-jsf-api-1.0.8-beta.pom",
+    "url" : "/api/content/maven/group/DApublic/myfaces/myfaces-jsf-api/1.0.8-beta/myfaces-jsf-api-1.0.8-beta.pom",
     "method" : "GET"
   },
   "response" : {

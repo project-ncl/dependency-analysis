@@ -1,7 +1,7 @@
 {
   "id" : "615b24d6-5ef8-37d6-86dd-245c4d6cb8d7",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/code/gson/gson/1.4/gson-1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/code/gson/gson/1.4/gson-1.4.pom",
     "method" : "GET"
   },
   "response" : {

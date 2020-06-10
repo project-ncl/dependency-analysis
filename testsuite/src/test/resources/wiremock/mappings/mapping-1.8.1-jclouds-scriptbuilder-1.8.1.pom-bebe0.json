@@ -1,7 +1,7 @@
 {
   "id" : "c8fb5126-1328-31f8-9034-ed306eadeb7d",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/jclouds/jclouds-scriptbuilder/1.8.1/jclouds-scriptbuilder-1.8.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/jclouds/jclouds-scriptbuilder/1.8.1/jclouds-scriptbuilder-1.8.1.pom",
     "method" : "GET"
   },
   "response" : {

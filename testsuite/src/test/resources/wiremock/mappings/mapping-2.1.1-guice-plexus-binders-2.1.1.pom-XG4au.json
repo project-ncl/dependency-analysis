@@ -1,7 +1,7 @@
 {
   "id" : "50a03d81-f038-3fb1-b9f3-754e15201aac",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-binders/2.1.1/guice-plexus-binders-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-plexus-binders/2.1.1/guice-plexus-binders-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

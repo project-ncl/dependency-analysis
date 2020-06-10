@@ -1,7 +1,7 @@
 {
   "id" : "789446d9-344a-3371-beac-9200a70d21f1",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-transport-filearc/0.10.2/galley-transport-filearc-0.10.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/galley/galley-transport-filearc/0.10.2/galley-transport-filearc-0.10.2.pom",
     "method" : "GET"
   },
   "response" : {

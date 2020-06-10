@@ -1,7 +1,7 @@
 {
   "id" : "2568e7d9-85eb-3358-887e-c5872cfa4b84",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-parent/2.9.4/guice-parent-2.9.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-parent/2.9.4/guice-parent-2.9.4.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "6ab5fcf0-f205-3105-b11c-8a57c5497976",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-el/3.0.5/tiles-el-3.0.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-el/3.0.5/tiles-el-3.0.5.pom",
     "method" : "GET"
   },
   "response" : {

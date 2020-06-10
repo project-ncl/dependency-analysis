@@ -1,7 +1,7 @@
 {
   "id" : "a214bcac-41dd-3a91-86f0-d000e79e5de1",
   "request" : {
-    "url" : "/api/group/DApublic/org/optaplanner/optaplanner-bom/6.2.0.Final/optaplanner-bom-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/optaplanner/optaplanner-bom/6.2.0.Final/optaplanner-bom-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

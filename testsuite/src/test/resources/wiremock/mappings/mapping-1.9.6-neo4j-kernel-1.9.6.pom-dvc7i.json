@@ -1,7 +1,7 @@
 {
   "id" : "b6d1c5ef-fd56-3a4c-95a1-3a498f4a4559",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/neo4j-kernel/1.9.6/neo4j-kernel-1.9.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/neo4j-kernel/1.9.6/neo4j-kernel-1.9.6.pom",
     "method" : "GET"
   },
   "response" : {

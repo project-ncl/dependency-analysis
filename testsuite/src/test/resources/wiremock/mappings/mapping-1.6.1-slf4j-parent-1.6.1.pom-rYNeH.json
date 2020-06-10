@@ -1,7 +1,7 @@
 {
   "id" : "ef9dd379-dba8-3958-8678-c6dc7ceb0024",
   "request" : {
-    "url" : "/api/group/DApublic/org/slf4j/slf4j-parent/1.6.1/slf4j-parent-1.6.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/slf4j/slf4j-parent/1.6.1/slf4j-parent-1.6.1.pom",
     "method" : "GET"
   },
   "response" : {

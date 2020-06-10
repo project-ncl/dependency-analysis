@@ -1,7 +1,7 @@
 {
   "id" : "95272852-efc2-39f8-97c9-ed9cbbeab728",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/module/jackson-module-scala_2.10/2.4.1/jackson-module-scala_2.10-2.4.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/module/jackson-module-scala_2.10/2.4.1/jackson-module-scala_2.10-2.4.1.pom",
     "method" : "GET"
   },
   "response" : {

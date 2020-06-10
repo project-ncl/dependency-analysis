@@ -1,7 +1,7 @@
 {
   "id" : "341cda05-5f04-30f1-9055-290947bbc3f7",
   "request" : {
-    "url" : "/api/group/DApublic/com/thoughtworks/xstream/xstream/1.4.2/xstream-1.4.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/thoughtworks/xstream/xstream/1.4.2/xstream-1.4.2.pom",
     "method" : "GET"
   },
   "response" : {

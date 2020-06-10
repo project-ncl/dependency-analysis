@@ -1,7 +1,7 @@
 {
   "id" : "73cda8b3-acb1-3047-981d-414bf87a9145",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/maven-aether-provider/3.0.3/maven-aether-provider-3.0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/maven-aether-provider/3.0.3/maven-aether-provider-3.0.3.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "e40382f8-1889-3824-bf87-52461ee4faa6",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-transport-httpclient/0.10.2/galley-transport-httpclient-0.10.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/galley/galley-transport-httpclient/0.10.2/galley-transport-httpclient-0.10.2.pom",
     "method" : "GET"
   },
   "response" : {

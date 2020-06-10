@@ -1,7 +1,7 @@
 {
   "id" : "aed1aa44-f635-3356-b872-9c28583eafa9",
   "request" : {
-    "url" : "/api/group/DApublic/commons-beanutils/commons-beanutils/1.8.0/commons-beanutils-1.8.0.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-beanutils/commons-beanutils/1.8.0/commons-beanutils-1.8.0.pom",
     "method" : "GET"
   },
   "response" : {

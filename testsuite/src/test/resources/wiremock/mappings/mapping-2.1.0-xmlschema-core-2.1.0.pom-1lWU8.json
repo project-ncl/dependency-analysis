@@ -1,7 +1,7 @@
 {
   "id" : "13f466c4-8686-3305-b52c-cc70dbb29506",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/ws/xmlschema/xmlschema-core/2.1.0/xmlschema-core-2.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/ws/xmlschema/xmlschema-core/2.1.0/xmlschema-core-2.1.0.pom",
     "method" : "GET"
   },
   "response" : {

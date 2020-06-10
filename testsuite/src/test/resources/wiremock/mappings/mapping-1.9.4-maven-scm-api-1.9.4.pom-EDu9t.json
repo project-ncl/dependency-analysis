@@ -1,7 +1,7 @@
 {
   "id" : "ea3d3e62-dcb9-394d-a5d0-c24227f6e35b",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/scm/maven-scm-api/1.9.4/maven-scm-api-1.9.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/scm/maven-scm-api/1.9.4/maven-scm-api-1.9.4.pom",
     "method" : "GET"
   },
   "response" : {

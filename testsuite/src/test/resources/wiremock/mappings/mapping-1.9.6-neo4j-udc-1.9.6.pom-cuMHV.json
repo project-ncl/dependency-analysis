@@ -1,7 +1,7 @@
 {
   "id" : "73e14246-49ca-3de0-a626-dc87a6731d4c",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/neo4j-udc/1.9.6/neo4j-udc-1.9.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/neo4j-udc/1.9.6/neo4j-udc-1.9.6.pom",
     "method" : "GET"
   },
   "response" : {

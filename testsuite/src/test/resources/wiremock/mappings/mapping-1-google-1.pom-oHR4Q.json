@@ -1,7 +1,7 @@
 {
   "id" : "ca53451b-ebb1-3356-a7ee-8a2c42ab3fbf",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/google/1/google-1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/google/1/google-1.pom",
     "method" : "GET"
   },
   "response" : {

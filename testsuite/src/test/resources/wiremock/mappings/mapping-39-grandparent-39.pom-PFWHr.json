@@ -1,7 +1,7 @@
 {
   "id" : "b08cbf9d-a4e6-3361-9b94-c2f985034aff",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/build/grandparent/39/grandparent-39.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/build/grandparent/39/grandparent-39.pom",
     "method" : "GET"
   },
   "response" : {

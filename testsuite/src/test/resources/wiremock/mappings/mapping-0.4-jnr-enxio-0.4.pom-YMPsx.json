@@ -1,7 +1,7 @@
 {
   "id" : "4f0055ea-23fc-3056-a838-d3352e785314",
   "request" : {
-    "url" : "/api/group/DApublic/com/github/jnr/jnr-enxio/0.4/jnr-enxio-0.4.pom",
+    "url" : "/api/content/maven/group/DApublic/com/github/jnr/jnr-enxio/0.4/jnr-enxio-0.4.pom",
     "method" : "GET"
   },
   "response" : {

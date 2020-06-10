@@ -1,7 +1,7 @@
 {
   "id" : "ab98a84e-4cd2-37b4-ba72-87595d74db2c",
   "request" : {
-    "url" : "/api/group/DApublic/commons-cli/commons-cli/1.0/commons-cli-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-cli/commons-cli/1.0/commons-cli-1.0.pom",
     "method" : "GET"
   },
   "response" : {

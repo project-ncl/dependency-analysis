@@ -1,7 +1,7 @@
 {
   "id" : "8104d01b-d417-3311-8afe-c720fc3c2be3",
   "request" : {
-    "url" : "/api/group/DApublic/janino/janino/2.5.10/janino-2.5.10.pom",
+    "url" : "/api/content/maven/group/DApublic/janino/janino/2.5.10/janino-2.5.10.pom",
     "method" : "GET"
   },
   "response" : {

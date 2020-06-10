@@ -1,7 +1,7 @@
 {
   "id" : "46951fa7-ffb8-38cf-84de-af5132db5f28",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/commons/commons-parent/9/commons-parent-9.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/commons/commons-parent/9/commons-parent-9.pom",
     "method" : "GET"
   },
   "response" : {

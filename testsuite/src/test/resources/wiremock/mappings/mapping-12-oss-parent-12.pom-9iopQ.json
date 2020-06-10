@@ -1,7 +1,7 @@
 {
   "id" : "f11b0b90-ed81-33ab-a4b4-24e31a5e23db",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/oss-parent/12/oss-parent-12.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/oss-parent/12/oss-parent-12.pom",
     "method" : "GET"
   },
   "response" : {

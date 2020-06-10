@@ -1,7 +1,7 @@
 {
   "id" : "39c1f545-dc01-3352-9abc-e095b8830b7a",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/forge/forge-parent/7/forge-parent-7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/forge/forge-parent/7/forge-parent-7.pom",
     "method" : "GET"
   },
   "response" : {

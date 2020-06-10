@@ -1,7 +1,7 @@
 {
   "id" : "91938113-0582-3757-9b92-ce07fabc807b",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/velocity/velocity/1.6.2/velocity-1.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/velocity/velocity/1.6.2/velocity-1.6.2.pom",
     "method" : "GET"
   },
   "response" : {

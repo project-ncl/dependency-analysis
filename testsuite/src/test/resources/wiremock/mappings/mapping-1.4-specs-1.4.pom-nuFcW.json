@@ -1,7 +1,7 @@
 {
   "id" : "d25d64ca-13af-3297-bdec-503b82504c71",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/geronimo/specs/specs/1.4/specs-1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/geronimo/specs/specs/1.4/specs-1.4.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "49b23dd1-e93c-363a-a183-2e025ea5736e",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/guava/guava/11.0.2/guava-11.0.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/guava/guava/11.0.2/guava-11.0.2.pom",
     "method" : "GET"
   },
   "response" : {

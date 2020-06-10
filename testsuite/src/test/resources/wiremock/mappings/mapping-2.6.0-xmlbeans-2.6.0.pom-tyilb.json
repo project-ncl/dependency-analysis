@@ -1,7 +1,7 @@
 {
   "id" : "13ccf505-544c-36dc-af04-f7c0a70bce1b",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/xmlbeans/xmlbeans/2.6.0/xmlbeans-2.6.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/xmlbeans/xmlbeans/2.6.0/xmlbeans-2.6.0.pom",
     "method" : "GET"
   },
   "response" : {

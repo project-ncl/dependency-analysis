@@ -1,7 +1,7 @@
 {
   "id" : "3b2c6b86-1758-34db-a529-f6b860f96e7b",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/httpcomponents/project/6/project-6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/httpcomponents/project/6/project-6.pom",
     "method" : "GET"
   },
   "response" : {

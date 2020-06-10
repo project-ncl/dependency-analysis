@@ -1,7 +1,7 @@
 {
   "id" : "a8b73cf3-6f8c-353f-83b4-9aed368110f1",
   "request" : {
-    "url" : "/api/group/DApublic/org/jruby/shared/1.4.0/shared-1.4.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jruby/shared/1.4.0/shared-1.4.0.pom",
     "method" : "GET"
   },
   "response" : {

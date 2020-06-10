@@ -1,7 +1,7 @@
 {
   "id" : "59b3ee26-5f38-3bd2-9ef9-e3b0247b4815",
   "request" : {
-    "url" : "/api/group/DApublic/commons-httpclient/commons-httpclient/3.0/commons-httpclient-3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-httpclient/commons-httpclient/3.0/commons-httpclient-3.0.pom",
     "method" : "GET"
   },
   "response" : {

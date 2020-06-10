@@ -1,7 +1,7 @@
 {
   "id" : "2efed130-7420-30f2-b5b7-0f5fd576e584",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/xmlgraphics/batik-gvt/1.7/batik-gvt-1.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/xmlgraphics/batik-gvt/1.7/batik-gvt-1.7.pom",
     "method" : "GET"
   },
   "response" : {

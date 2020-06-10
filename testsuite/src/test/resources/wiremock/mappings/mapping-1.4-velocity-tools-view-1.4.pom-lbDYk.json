@@ -1,7 +1,7 @@
 {
   "id" : "c1e951c3-e57d-3e81-a6b9-3b64fc788333",
   "request" : {
-    "url" : "/api/group/DApublic/velocity-tools/velocity-tools-view/1.4/velocity-tools-view-1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/velocity-tools/velocity-tools-view/1.4/velocity-tools-view-1.4.pom",
     "method" : "GET"
   },
   "response" : {

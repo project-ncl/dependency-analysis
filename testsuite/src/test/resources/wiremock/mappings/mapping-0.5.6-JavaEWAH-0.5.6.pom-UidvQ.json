@@ -1,7 +1,7 @@
 {
   "id" : "fa3017db-4119-3d91-aea9-8ff0bd80f488",
   "request" : {
-    "url" : "/api/group/DApublic/com/googlecode/javaewah/JavaEWAH/0.5.6/JavaEWAH-0.5.6.pom",
+    "url" : "/api/content/maven/group/DApublic/com/googlecode/javaewah/JavaEWAH/0.5.6/JavaEWAH-0.5.6.pom",
     "method" : "GET"
   },
   "response" : {

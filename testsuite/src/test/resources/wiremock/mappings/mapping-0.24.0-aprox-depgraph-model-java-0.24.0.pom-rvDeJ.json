@@ -1,7 +1,7 @@
 {
   "id" : "e17fa8a9-9e0b-346a-a1f7-b51a41e53c9c",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-depgraph-model-java/0.24.0/aprox-depgraph-model-java-0.24.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/aprox/aprox-depgraph-model-java/0.24.0/aprox-depgraph-model-java-0.24.0.pom",
     "method" : "GET"
   },
   "response" : {

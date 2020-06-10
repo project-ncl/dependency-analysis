@@ -1,7 +1,7 @@
 {
   "id" : "bcca4784-b0a6-3216-a3b4-74ad8dc5d216",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/geronimo/genesis/config/config/1.1/config-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/geronimo/genesis/config/config/1.1/config-1.1.pom",
     "method" : "GET"
   },
   "response" : {

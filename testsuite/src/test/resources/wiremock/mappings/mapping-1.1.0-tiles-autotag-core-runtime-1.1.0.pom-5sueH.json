@@ -1,7 +1,7 @@
 {
   "id" : "b2cdf5b6-78db-365c-a0c8-2fd3752f5ee4",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-autotag-core-runtime/1.1.0/tiles-autotag-core-runtime-1.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-autotag-core-runtime/1.1.0/tiles-autotag-core-runtime-1.1.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "2ec39b7e-3fc0-3ab8-9c8f-210658a25d97",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/maven-model/3.0.3/maven-model-3.0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/maven-model/3.0.3/maven-model-3.0.3.pom",
     "method" : "GET"
   },
   "response" : {

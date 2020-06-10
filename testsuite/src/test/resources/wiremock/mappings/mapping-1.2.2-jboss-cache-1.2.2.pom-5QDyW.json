@@ -1,7 +1,7 @@
 {
   "id" : "221ea26b-db6d-3d6c-887a-79af6dba7171",
   "request" : {
-    "url" : "/api/group/DApublic/jboss/jboss-cache/1.2.2/jboss-cache-1.2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/jboss/jboss-cache/1.2.2/jboss-cache-1.2.2.pom",
     "method" : "GET"
   },
   "response" : {

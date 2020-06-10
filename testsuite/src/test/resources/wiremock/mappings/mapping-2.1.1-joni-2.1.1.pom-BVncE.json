@@ -1,7 +1,7 @@
 {
   "id" : "b6a58bbb-111a-3992-98d0-a67ab44f6e4d",
   "request" : {
-    "url" : "/api/group/DApublic/org/jruby/joni/joni/2.1.1/joni-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jruby/joni/joni/2.1.1/joni-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

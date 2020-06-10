@@ -1,7 +1,7 @@
 {
   "id" : "73c62f62-9320-3fb6-bcd2-7760b210168c",
   "request" : {
-    "url" : "/api/group/DApublic/io/netty/netty/3.6.10.Final/netty-3.6.10.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/io/netty/netty/3.6.10.Final/netty-3.6.10.Final.pom",
     "method" : "GET"
   },
   "response" : {

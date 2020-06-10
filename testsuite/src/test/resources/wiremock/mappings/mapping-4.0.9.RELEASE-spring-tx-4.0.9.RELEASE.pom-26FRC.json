@@ -1,7 +1,7 @@
 {
   "id" : "754ab024-8d60-34fd-a390-c8b96c11337d",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-tx/4.0.9.RELEASE/spring-tx-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-tx/4.0.9.RELEASE/spring-tx-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

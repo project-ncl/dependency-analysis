@@ -1,7 +1,7 @@
 {
   "id" : "f9bdb739-adf1-3806-bfb2-225526bdc620",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-bindings-parent/0.15.1/atlas-bindings-parent-0.15.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/atlas/atlas-bindings-parent/0.15.1/atlas-bindings-parent-0.15.1.pom",
     "method" : "GET"
   },
   "response" : {

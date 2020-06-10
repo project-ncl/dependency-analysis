@@ -1,7 +1,7 @@
 {
   "id" : "2c9c1663-9c0e-3818-a0a0-771afe6891ba",
   "request" : {
-    "url" : "/api/group/DApublic/com/jcraft/jsch/0.1.23/jsch-0.1.23.pom",
+    "url" : "/api/content/maven/group/DApublic/com/jcraft/jsch/0.1.23/jsch-0.1.23.pom",
     "method" : "GET"
   },
   "response" : {

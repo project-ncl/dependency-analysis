@@ -1,7 +1,7 @@
 {
   "id" : "73caac75-ae25-3caa-8ded-e6b2576e1d82",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/ext/pom-manipulation-core/1.6/pom-manipulation-core-1.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/ext/pom-manipulation-core/1.6/pom-manipulation-core-1.6.pom",
     "method" : "GET"
   },
   "response" : {

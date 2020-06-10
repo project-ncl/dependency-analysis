@@ -1,7 +1,7 @@
 {
   "id" : "9e08f4e5-dde0-3d19-9425-efe6feb6c561",
   "request" : {
-    "url" : "/api/group/DApublic/org/drools/droolsjbpm-integration/6.2.0.Final/droolsjbpm-integration-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/drools/droolsjbpm-integration/6.2.0.Final/droolsjbpm-integration-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

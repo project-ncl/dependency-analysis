@@ -1,7 +1,7 @@
 {
   "id" : "51d440af-56fd-37e4-8c19-2e93c93dc54e",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-webmvc/4.0.9.RELEASE/spring-webmvc-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-webmvc/4.0.9.RELEASE/spring-webmvc-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "3b1cb839-066f-31b7-b905-c8d8ed7c0b4e",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.4.1/jackson-module-jaxb-annotations-2.4.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.4.1/jackson-module-jaxb-annotations-2.4.1.pom",
     "method" : "GET"
   },
   "response" : {

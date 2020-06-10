@@ -1,7 +1,7 @@
 {
   "id" : "2b1cd056-a61d-30ed-9a36-38e84c6a2d9b",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/jaxrs/jackson-jaxrs-providers/2.4.5/jackson-jaxrs-providers-2.4.5.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/jaxrs/jackson-jaxrs-providers/2.4.5/jackson-jaxrs-providers-2.4.5.pom",
     "method" : "GET"
   },
   "response" : {

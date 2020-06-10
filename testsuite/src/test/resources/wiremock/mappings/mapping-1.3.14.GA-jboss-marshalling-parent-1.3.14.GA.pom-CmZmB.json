@@ -1,7 +1,7 @@
 {
   "id" : "245a382b-a3c9-36a5-882a-f9354541fd4e",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/marshalling/jboss-marshalling-parent/1.3.14.GA/jboss-marshalling-parent-1.3.14.GA.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/marshalling/jboss-marshalling-parent/1.3.14.GA/jboss-marshalling-parent-1.3.14.GA.pom",
     "method" : "GET"
   },
   "response" : {

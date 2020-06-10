@@ -1,7 +1,7 @@
 {
   "id" : "11336cdb-0716-3c6c-aa41-7892055d8f82",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-aop/2.5.6/spring-aop-2.5.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-aop/2.5.6/spring-aop-2.5.6.pom",
     "method" : "GET"
   },
   "response" : {

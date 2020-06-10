@@ -1,7 +1,7 @@
 {
   "id" : "6a9d4d31-7096-3be5-a152-b844f2d79b31",
   "request" : {
-    "url" : "/api/group/DApublic/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.pom",
     "method" : "GET"
   },
   "response" : {

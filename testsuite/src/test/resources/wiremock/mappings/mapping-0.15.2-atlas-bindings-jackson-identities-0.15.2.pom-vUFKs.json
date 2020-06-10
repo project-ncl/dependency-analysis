@@ -1,7 +1,7 @@
 {
   "id" : "d8b87eeb-28ab-3e48-b0f8-d18fab53e49b",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-bindings-jackson-identities/0.15.2/atlas-bindings-jackson-identities-0.15.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/atlas/atlas-bindings-jackson-identities/0.15.2/atlas-bindings-jackson-identities-0.15.2.pom",
     "method" : "GET"
   },
   "response" : {

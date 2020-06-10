@@ -1,7 +1,7 @@
 {
   "id" : "53f14806-4007-32b9-b633-5aa829ee082c",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-scanners/2.1.1/guice-plexus-scanners-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-plexus-scanners/2.1.1/guice-plexus-scanners-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

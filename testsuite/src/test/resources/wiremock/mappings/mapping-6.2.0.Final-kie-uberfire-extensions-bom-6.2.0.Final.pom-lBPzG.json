@@ -1,7 +1,7 @@
 {
   "id" : "e59a7497-7679-35bc-b8b2-c5b600782151",
   "request" : {
-    "url" : "/api/group/DApublic/org/kie/uberfire/kie-uberfire-extensions-bom/6.2.0.Final/kie-uberfire-extensions-bom-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/kie/uberfire/kie-uberfire-extensions-bom/6.2.0.Final/kie-uberfire-extensions-bom-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

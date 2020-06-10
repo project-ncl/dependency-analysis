@@ -1,7 +1,7 @@
 {
   "id" : "282826a0-7db1-3755-b592-d36f98a439ab",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/logging/jboss-logging-tools-parent/1.2.0.Beta1/jboss-logging-tools-parent-1.2.0.Beta1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/logging/jboss-logging-tools-parent/1.2.0.Beta1/jboss-logging-tools-parent-1.2.0.Beta1.pom",
     "method" : "GET"
   },
   "response" : {

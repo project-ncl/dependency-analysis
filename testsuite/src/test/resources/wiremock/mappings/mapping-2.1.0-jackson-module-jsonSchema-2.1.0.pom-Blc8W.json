@@ -1,7 +1,7 @@
 {
   "id" : "79b6376a-2a95-38ef-8b9c-642c49dc313a",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/module/jackson-module-jsonSchema/2.1.0/jackson-module-jsonSchema-2.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/module/jackson-module-jsonSchema/2.1.0/jackson-module-jsonSchema-2.1.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "141c5ab2-f2cf-307f-84f5-432050b2c51a",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/integration-platform/jboss-integration-platform-parent/6.0.0.CR25/jboss-integration-platform-parent-6.0.0.CR25.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/integration-platform/jboss-integration-platform-parent/6.0.0.CR25/jboss-integration-platform-parent-6.0.0.CR25.pom",
     "method" : "GET"
   },
   "response" : {

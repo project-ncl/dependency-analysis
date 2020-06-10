@@ -1,7 +1,7 @@
 {
   "id" : "2e8f6e33-07dd-3e20-88f9-1d99a32420f3",
   "request" : {
-    "url" : "/api/group/DApublic/org/jvnet/hudson/xstream/1.4.7-jenkins-1/xstream-1.4.7-jenkins-1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jvnet/hudson/xstream/1.4.7-jenkins-1/xstream-1.4.7-jenkins-1.pom",
     "method" : "GET"
   },
   "response" : {

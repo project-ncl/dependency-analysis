@@ -1,7 +1,7 @@
 {
   "id" : "34d9a30e-f2c4-332e-b360-319b93b77be3",
   "request" : {
-    "url" : "/api/group/DApublic/org/yaml/snakeyaml/1.6/snakeyaml-1.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/yaml/snakeyaml/1.6/snakeyaml-1.6.pom",
     "method" : "GET"
   },
   "response" : {

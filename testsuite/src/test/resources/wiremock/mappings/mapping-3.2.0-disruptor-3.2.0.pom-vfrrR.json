@@ -1,7 +1,7 @@
 {
   "id" : "4f9cd35a-3633-3467-a074-426c89c8cb2a",
   "request" : {
-    "url" : "/api/group/DApublic/com/lmax/disruptor/3.2.0/disruptor-3.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/lmax/disruptor/3.2.0/disruptor-3.2.0.pom",
     "method" : "GET"
   },
   "response" : {

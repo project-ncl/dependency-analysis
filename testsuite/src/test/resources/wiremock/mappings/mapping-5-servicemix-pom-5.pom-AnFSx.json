@@ -1,7 +1,7 @@
 {
   "id" : "28248fbe-1d71-38b6-8c7c-757a358f778c",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/servicemix/servicemix-pom/5/servicemix-pom-5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/servicemix/servicemix-pom/5/servicemix-pom-5.pom",
     "method" : "GET"
   },
   "response" : {

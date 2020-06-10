@@ -1,7 +1,7 @@
 {
   "id" : "bb789685-a96d-3871-a508-8280634d52c4",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/spice/spice-parent/17/spice-parent-17.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/spice/spice-parent/17/spice-parent-17.pom",
     "method" : "GET"
   },
   "response" : {

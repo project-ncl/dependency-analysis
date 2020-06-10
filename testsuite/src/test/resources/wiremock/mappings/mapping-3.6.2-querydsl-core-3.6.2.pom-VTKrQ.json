@@ -1,7 +1,7 @@
 {
   "id" : "b4cec4c7-0912-3366-a523-5535c2e5d984",
   "request" : {
-    "url" : "/api/group/DApublic/com/mysema/querydsl/querydsl-core/3.6.2/querydsl-core-3.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mysema/querydsl/querydsl-core/3.6.2/querydsl-core-3.6.2.pom",
     "method" : "GET"
   },
   "response" : {

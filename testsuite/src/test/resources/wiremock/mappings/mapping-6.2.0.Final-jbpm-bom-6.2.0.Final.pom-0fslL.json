@@ -1,7 +1,7 @@
 {
   "id" : "334ac2d4-546d-3daf-838b-64524948916a",
   "request" : {
-    "url" : "/api/group/DApublic/org/jbpm/jbpm-bom/6.2.0.Final/jbpm-bom-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jbpm/jbpm-bom/6.2.0.Final/jbpm-bom-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

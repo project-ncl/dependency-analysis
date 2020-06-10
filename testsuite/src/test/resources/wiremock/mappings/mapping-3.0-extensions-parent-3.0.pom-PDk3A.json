@@ -1,7 +1,7 @@
 {
   "id" : "c002b376-58f3-3880-a0d5-f6a78245da40",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/inject/extensions/extensions-parent/3.0/extensions-parent-3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/inject/extensions/extensions-parent/3.0/extensions-parent-3.0.pom",
     "method" : "GET"
   },
   "response" : {

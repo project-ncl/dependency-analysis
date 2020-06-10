@@ -1,7 +1,7 @@
 {
   "id" : "7d2ebd53-4ba1-392b-b87f-1524e7c6f7ee",
   "request" : {
-    "url" : "/api/group/DApublic/org/jenkins-ci/annotation-indexer/1.4/annotation-indexer-1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jenkins-ci/annotation-indexer/1.4/annotation-indexer-1.4.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "1a0d3490-2333-382f-98dc-e15c406bf72c",
   "request" : {
-    "url" : "/api/group/DApublic/msv/xsdlib/20030807/xsdlib-20030807.pom",
+    "url" : "/api/content/maven/group/DApublic/msv/xsdlib/20030807/xsdlib-20030807.pom",
     "method" : "GET"
   },
   "response" : {

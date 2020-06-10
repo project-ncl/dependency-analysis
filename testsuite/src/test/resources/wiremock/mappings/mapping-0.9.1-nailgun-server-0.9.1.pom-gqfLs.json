@@ -1,7 +1,7 @@
 {
   "id" : "eb064d10-e490-3663-9cc1-36880180282a",
   "request" : {
-    "url" : "/api/group/DApublic/com/martiansoftware/nailgun-server/0.9.1/nailgun-server-0.9.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/martiansoftware/nailgun-server/0.9.1/nailgun-server-0.9.1.pom",
     "method" : "GET"
   },
   "response" : {

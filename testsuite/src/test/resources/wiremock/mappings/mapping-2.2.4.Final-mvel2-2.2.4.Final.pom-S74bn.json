@@ -1,7 +1,7 @@
 {
   "id" : "21c6db5d-1d79-3a9f-8b23-e469dc1eef52",
   "request" : {
-    "url" : "/api/group/DApublic/org/mvel/mvel2/2.2.4.Final/mvel2-2.2.4.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/mvel/mvel2/2.2.4.Final/mvel2-2.2.4.Final.pom",
     "method" : "GET"
   },
   "response" : {

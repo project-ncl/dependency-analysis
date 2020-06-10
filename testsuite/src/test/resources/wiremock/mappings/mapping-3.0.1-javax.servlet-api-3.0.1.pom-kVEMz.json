@@ -1,7 +1,7 @@
 {
   "id" : "f8542711-ae14-3196-98da-3a6a11dac74e",
   "request" : {
-    "url" : "/api/group/DApublic/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.pom",
     "method" : "GET"
   },
   "response" : {

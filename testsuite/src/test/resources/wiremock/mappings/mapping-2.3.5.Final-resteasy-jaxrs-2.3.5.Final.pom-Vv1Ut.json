@@ -1,7 +1,7 @@
 {
   "id" : "0ff298a0-e810-327b-a5a3-e8c915f8f51c",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/resteasy/resteasy-jaxrs/2.3.5.Final/resteasy-jaxrs-2.3.5.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/resteasy/resteasy-jaxrs/2.3.5.Final/resteasy-jaxrs-2.3.5.Final.pom",
     "method" : "GET"
   },
   "response" : {

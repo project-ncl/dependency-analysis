@@ -1,7 +1,7 @@
 {
   "id" : "5c4aaa85-191d-3414-bba8-c23f2faa65bb",
   "request" : {
-    "url" : "/api/group/DApublic/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.pom",
     "method" : "GET"
   },
   "response" : {

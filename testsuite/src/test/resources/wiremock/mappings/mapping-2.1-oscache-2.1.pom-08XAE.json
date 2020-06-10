@@ -1,7 +1,7 @@
 {
   "id" : "5fbe3fd0-b7fe-336d-ac33-3094933843f2",
   "request" : {
-    "url" : "/api/group/DApublic/opensymphony/oscache/2.1/oscache-2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/opensymphony/oscache/2.1/oscache-2.1.pom",
     "method" : "GET"
   },
   "response" : {

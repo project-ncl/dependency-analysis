@@ -1,7 +1,7 @@
 {
   "id" : "856e6ba6-2a4b-3196-a4e8-265d1a6a9a7d",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/persistence/org.eclipse.persistence.asm/2.4.2/org.eclipse.persistence.asm-2.4.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/persistence/org.eclipse.persistence.asm/2.4.2/org.eclipse.persistence.asm-2.4.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "461c4e10-5bfa-3f95-823d-df39a4316142",
   "request" : {
-    "url" : "/api/group/DApublic/joda-time/joda-time/2.2/joda-time-2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/joda-time/joda-time/2.2/joda-time-2.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "68c73ab3-6491-323d-bd6c-502d15a5aab9",
   "request" : {
-    "url" : "/api/group/DApublic/org/jvnet/hudson/lib/1.7/lib-1.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jvnet/hudson/lib/1.7/lib-1.7.pom",
     "method" : "GET"
   },
   "response" : {

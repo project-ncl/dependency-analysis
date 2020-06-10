@@ -1,7 +1,7 @@
 {
   "id" : "76a9a5f1-d210-3c86-9bd2-6fb05a4e444b",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-annotations/2.4.1/jackson-annotations-2.4.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/core/jackson-annotations/2.4.1/jackson-annotations-2.4.1.pom",
     "method" : "GET"
   },
   "response" : {

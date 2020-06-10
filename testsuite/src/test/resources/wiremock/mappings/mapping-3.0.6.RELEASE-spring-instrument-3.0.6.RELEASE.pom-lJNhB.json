@@ -1,7 +1,7 @@
 {
   "id" : "e6117d89-f932-3f39-9cee-9ab92251a566",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-instrument/3.0.6.RELEASE/spring-instrument-3.0.6.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-instrument/3.0.6.RELEASE/spring-instrument-3.0.6.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

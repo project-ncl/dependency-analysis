@@ -1,7 +1,7 @@
 {
   "id" : "5131a0e2-0d40-3f94-87d7-09ddf2eb5a19",
   "request" : {
-    "url" : "/api/group/DApublic/asm/asm-tree/3.1/asm-tree-3.1.pom",
+    "url" : "/api/content/maven/group/DApublic/asm/asm-tree/3.1/asm-tree-3.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "0e4aea4c-2e84-3ce2-90df-1193133de8cb",
   "request" : {
-    "url" : "/api/group/DApublic/com/sun/jmx/jmxri/1.2.1/jmxri-1.2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/sun/jmx/jmxri/1.2.1/jmxri-1.2.1.pom",
     "method" : "GET"
   },
   "response" : {

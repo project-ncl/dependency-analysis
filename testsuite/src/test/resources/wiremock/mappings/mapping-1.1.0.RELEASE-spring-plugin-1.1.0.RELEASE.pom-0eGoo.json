@@ -1,7 +1,7 @@
 {
   "id" : "394e1478-f678-3c77-bfc2-42a1d502b7e3",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/plugin/spring-plugin/1.1.0.RELEASE/spring-plugin-1.1.0.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/plugin/spring-plugin/1.1.0.RELEASE/spring-plugin-1.1.0.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

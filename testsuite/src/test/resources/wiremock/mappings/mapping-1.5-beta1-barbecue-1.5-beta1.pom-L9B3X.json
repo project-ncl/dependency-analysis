@@ -1,7 +1,7 @@
 {
   "id" : "36a2c269-f564-3c69-b72f-d614aea58b4d",
   "request" : {
-    "url" : "/api/group/DApublic/net/sourceforge/barbecue/barbecue/1.5-beta1/barbecue-1.5-beta1.pom",
+    "url" : "/api/content/maven/group/DApublic/net/sourceforge/barbecue/barbecue/1.5-beta1/barbecue-1.5-beta1.pom",
     "method" : "GET"
   },
   "response" : {

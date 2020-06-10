@@ -1,7 +1,7 @@
 {
   "id" : "b1fdd521-7a15-3170-bcef-b7879087e382",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-bean-binders/2.1.1/guice-bean-binders-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-bean-binders/2.1.1/guice-bean-binders-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

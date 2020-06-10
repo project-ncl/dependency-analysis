@@ -1,7 +1,7 @@
 {
   "id" : "58b13498-5863-38b2-a78b-ea77d1b46502",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/weld/weld-parent/26/weld-parent-26.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/weld/weld-parent/26/weld-parent-26.pom",
     "method" : "GET"
   },
   "response" : {

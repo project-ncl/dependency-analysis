@@ -1,7 +1,7 @@
 {
   "id" : "29d8c8fd-4717-3de3-ab4a-ef2cec3cefde",
   "request" : {
-    "url" : "/api/group/DApublic/jaxen/jaxen/1.1-beta-8/jaxen-1.1-beta-8.pom",
+    "url" : "/api/content/maven/group/DApublic/jaxen/jaxen/1.1-beta-8/jaxen-1.1-beta-8.pom",
     "method" : "GET"
   },
   "response" : {

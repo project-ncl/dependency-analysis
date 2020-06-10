@@ -1,7 +1,7 @@
 {
   "id" : "fede79d7-b900-304d-bdd5-f3bc8843c020",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus/3.3/plexus-3.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/plexus/plexus/3.3/plexus-3.3.pom",
     "method" : "GET"
   },
   "response" : {

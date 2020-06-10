@@ -1,7 +1,7 @@
 {
   "id" : "64f991be-37c1-393d-b342-e17ef4d2505e",
   "request" : {
-    "url" : "/api/group/DApublic/org/kie/remote/kie-remote-common/6.2.0.Final/kie-remote-common-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/kie/remote/kie-remote-common/6.2.0.Final/kie-remote-common-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

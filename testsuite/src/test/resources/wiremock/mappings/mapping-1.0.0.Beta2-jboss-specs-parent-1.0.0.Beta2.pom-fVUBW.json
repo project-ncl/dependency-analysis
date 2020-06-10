@@ -1,7 +1,7 @@
 {
   "id" : "11730b67-e8d3-393f-bfe6-64740108ba19",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/spec/jboss-specs-parent/1.0.0.Beta2/jboss-specs-parent-1.0.0.Beta2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/spec/jboss-specs-parent/1.0.0.Beta2/jboss-specs-parent-1.0.0.Beta2.pom",
     "method" : "GET"
   },
   "response" : {

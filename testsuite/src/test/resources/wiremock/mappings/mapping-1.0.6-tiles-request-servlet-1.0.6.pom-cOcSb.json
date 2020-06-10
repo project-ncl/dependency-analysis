@@ -1,7 +1,7 @@
 {
   "id" : "63fd2cda-7e85-38b8-8dfa-2c9593ed67b7",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-request-servlet/1.0.6/tiles-request-servlet-1.0.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-request-servlet/1.0.6/tiles-request-servlet-1.0.6.pom",
     "method" : "GET"
   },
   "response" : {

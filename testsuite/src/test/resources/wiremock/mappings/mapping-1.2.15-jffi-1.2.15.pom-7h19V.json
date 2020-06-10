@@ -1,7 +1,7 @@
 {
   "id" : "c0f31fe9-1676-3663-af64-348a3be11bdc",
   "request" : {
-    "url" : "/api/group/DApublic/com/github/jnr/jffi/1.2.15/jffi-1.2.15.pom",
+    "url" : "/api/content/maven/group/DApublic/com/github/jnr/jffi/1.2.15/jffi-1.2.15.pom",
     "method" : "GET"
   },
   "response" : {

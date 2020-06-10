@@ -1,7 +1,7 @@
 {
   "id" : "b4b8cc56-1677-3af2-a6d3-cf6e025f5efe",
   "request" : {
-    "url" : "/api/group/DApublic/org/beanshell/bsh/2.0b4/bsh-2.0b4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/beanshell/bsh/2.0b4/bsh-2.0b4.pom",
     "method" : "GET"
   },
   "response" : {

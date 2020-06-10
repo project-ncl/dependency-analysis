@@ -1,7 +1,7 @@
 {
   "id" : "da501fb2-2e96-3875-a151-9e9aefaa2523",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-framework-bom/4.0.9.RELEASE/spring-framework-bom-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-framework-bom/4.0.9.RELEASE/spring-framework-bom-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

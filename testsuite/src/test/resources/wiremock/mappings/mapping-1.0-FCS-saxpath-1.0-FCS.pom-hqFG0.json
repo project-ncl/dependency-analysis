@@ -1,7 +1,7 @@
 {
   "id" : "89a01a0e-770e-3355-9455-7bf5328de466",
   "request" : {
-    "url" : "/api/group/DApublic/org/jdom/saxpath/1.0-FCS/saxpath-1.0-FCS.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jdom/saxpath/1.0-FCS/saxpath-1.0-FCS.pom",
     "method" : "GET"
   },
   "response" : {

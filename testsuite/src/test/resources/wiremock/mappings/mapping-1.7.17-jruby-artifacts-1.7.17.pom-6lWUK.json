@@ -1,7 +1,7 @@
 {
   "id" : "6f77ad50-f75d-3f77-a39b-6ea59b534225",
   "request" : {
-    "url" : "/api/group/DApublic/org/jruby/jruby-artifacts/1.7.17/jruby-artifacts-1.7.17.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jruby/jruby-artifacts/1.7.17/jruby-artifacts-1.7.17.pom",
     "method" : "GET"
   },
   "response" : {

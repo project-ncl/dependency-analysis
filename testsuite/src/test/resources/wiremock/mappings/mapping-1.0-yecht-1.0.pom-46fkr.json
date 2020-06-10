@@ -1,7 +1,7 @@
 {
   "id" : "2b78c9cd-ac0c-3420-b280-0afcdacd2418",
   "request" : {
-    "url" : "/api/group/DApublic/org/jruby/yecht/1.0/yecht-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jruby/yecht/1.0/yecht-1.0.pom",
     "method" : "GET"
   },
   "response" : {

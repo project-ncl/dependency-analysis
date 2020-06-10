@@ -1,7 +1,7 @@
 {
   "id" : "84a0b2d6-a0ff-3263-a427-4270ac0a1986",
   "request" : {
-    "url" : "/api/group/DApublic/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom",
     "method" : "GET"
   },
   "response" : {

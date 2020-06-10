@@ -1,7 +1,7 @@
 {
   "id" : "23aeccd2-f093-35b2-b9a6-883290584132",
   "request" : {
-    "url" : "/api/group/DApublic/commons-io/commons-io/1.4/commons-io-1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-io/commons-io/1.4/commons-io-1.4.pom",
     "method" : "GET"
   },
   "response" : {

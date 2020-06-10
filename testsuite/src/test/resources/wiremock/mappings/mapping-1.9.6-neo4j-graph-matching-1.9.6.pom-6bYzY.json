@@ -1,7 +1,7 @@
 {
   "id" : "d90761fe-36e7-3d3d-9f6d-af41e4196bc2",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/neo4j-graph-matching/1.9.6/neo4j-graph-matching-1.9.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/neo4j-graph-matching/1.9.6/neo4j-graph-matching-1.9.6.pom",
     "method" : "GET"
   },
   "response" : {

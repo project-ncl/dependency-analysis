@@ -1,7 +1,7 @@
 {
   "id" : "3ac15f71-8c11-3317-9df7-832b22aa5caf",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.4.5/jackson-dataformat-yaml-2.4.5.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.4.5/jackson-dataformat-yaml-2.4.5.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "6c44b7ce-f1c1-3f11-88d4-d137fc4d1545",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/maven-parent/26/maven-parent-26.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/maven-parent/26/maven-parent-26.pom",
     "method" : "GET"
   },
   "response" : {

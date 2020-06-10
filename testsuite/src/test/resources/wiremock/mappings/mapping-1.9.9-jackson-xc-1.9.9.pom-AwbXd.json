@@ -1,7 +1,7 @@
 {
   "id" : "9a4712cf-4182-3eed-978a-3b0b1fdde21d",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/jackson/jackson-xc/1.9.9/jackson-xc-1.9.9.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/jackson/jackson-xc/1.9.9/jackson-xc-1.9.9.pom",
     "method" : "GET"
   },
   "response" : {

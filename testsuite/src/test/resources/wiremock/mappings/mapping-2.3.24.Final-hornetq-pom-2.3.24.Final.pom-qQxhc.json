@@ -1,7 +1,7 @@
 {
   "id" : "2a230503-c796-3cb4-9430-324e234acb11",
   "request" : {
-    "url" : "/api/group/DApublic/org/hornetq/hornetq-pom/2.3.24.Final/hornetq-pom-2.3.24.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hornetq/hornetq-pom/2.3.24.Final/hornetq-pom-2.3.24.Final.pom",
     "method" : "GET"
   },
   "response" : {

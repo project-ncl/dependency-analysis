@@ -1,7 +1,7 @@
 {
   "id" : "1a43b50d-0d9c-3874-b393-7d20160e1750",
   "request" : {
-    "url" : "/api/group/DApublic/commons-javaflow/commons-javaflow/20060411/commons-javaflow-20060411.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-javaflow/commons-javaflow/20060411/commons-javaflow-20060411.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "885c5b38-4511-3dea-a75d-58d95284f304",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/commonjava/4/commonjava-4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/commonjava/4/commonjava-4.pom",
     "method" : "GET"
   },
   "response" : {

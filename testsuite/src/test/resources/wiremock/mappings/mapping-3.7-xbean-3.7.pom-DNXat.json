@@ -1,7 +1,7 @@
 {
   "id" : "598f7e7f-9686-3f37-bb4d-f7fc37995ebc",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/xbean/xbean/3.7/xbean-3.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/xbean/xbean/3.7/xbean-3.7.pom",
     "method" : "GET"
   },
   "response" : {

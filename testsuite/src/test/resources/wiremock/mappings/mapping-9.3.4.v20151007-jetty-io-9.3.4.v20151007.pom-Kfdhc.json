@@ -1,7 +1,7 @@
 {
   "id" : "eb412c38-a396-3ae9-9e32-c2923339097b",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/jetty/jetty-io/9.3.4.v20151007/jetty-io-9.3.4.v20151007.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/jetty/jetty-io/9.3.4.v20151007/jetty-io-9.3.4.v20151007.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "deea07b3-ca32-3fbd-b6b7-be1cf2c260d2",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/shrinkwrap/resolver/shrinkwrap-resolver-bom/1.0.0-beta-7/shrinkwrap-resolver-bom-1.0.0-beta-7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/shrinkwrap/resolver/shrinkwrap-resolver-bom/1.0.0-beta-7/shrinkwrap-resolver-bom-1.0.0-beta-7.pom",
     "method" : "GET"
   },
   "response" : {

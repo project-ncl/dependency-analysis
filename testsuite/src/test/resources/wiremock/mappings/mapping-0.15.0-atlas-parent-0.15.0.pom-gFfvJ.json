@@ -1,7 +1,7 @@
 {
   "id" : "0828d8b6-06b3-36b1-817e-5840e57cf4f6",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-parent/0.15.0/atlas-parent-0.15.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/atlas/atlas-parent/0.15.0/atlas-parent-0.15.0.pom",
     "method" : "GET"
   },
   "response" : {

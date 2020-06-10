@@ -1,7 +1,7 @@
 {
   "id" : "20c7442e-2a46-308d-8e16-f40c7a7a3ef5",
   "request" : {
-    "url" : "/api/group/DApublic/org/mozilla/rhino/1.7R3/rhino-1.7R3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/mozilla/rhino/1.7R3/rhino-1.7R3.pom",
     "method" : "GET"
   },
   "response" : {

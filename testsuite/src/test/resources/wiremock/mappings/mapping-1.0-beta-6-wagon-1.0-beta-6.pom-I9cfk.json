@@ -1,7 +1,7 @@
 {
   "id" : "456f4ae8-b5bb-3eab-afae-e9878969a00c",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/wagon/wagon/1.0-beta-6/wagon-1.0-beta-6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/wagon/wagon/1.0-beta-6/wagon-1.0-beta-6.pom",
     "method" : "GET"
   },
   "response" : {

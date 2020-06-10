@@ -1,7 +1,7 @@
 {
   "id" : "f4af8ced-a262-3a6d-a3b8-865f34a9842b",
   "request" : {
-    "url" : "/api/group/DApublic/net/sf/jasperreports/jasperreports/5.5.1/jasperreports-5.5.1.pom",
+    "url" : "/api/content/maven/group/DApublic/net/sf/jasperreports/jasperreports/5.5.1/jasperreports-5.5.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "33726d3d-caca-3e56-bc60-804110199605",
   "request" : {
-    "url" : "/api/group/DApublic/io/swagger/swagger-project/1.5.3/swagger-project-1.5.3.pom",
+    "url" : "/api/content/maven/group/DApublic/io/swagger/swagger-project/1.5.3/swagger-project-1.5.3.pom",
     "method" : "GET"
   },
   "response" : {

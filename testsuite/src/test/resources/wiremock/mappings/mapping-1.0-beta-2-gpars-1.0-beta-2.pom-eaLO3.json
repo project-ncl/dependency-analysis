@@ -1,7 +1,7 @@
 {
   "id" : "64432d23-a95a-3728-9774-a0a39e3e45cb",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/gpars/gpars/1.0-beta-2/gpars-1.0-beta-2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/gpars/gpars/1.0-beta-2/gpars-1.0-beta-2.pom",
     "method" : "GET"
   },
   "response" : {

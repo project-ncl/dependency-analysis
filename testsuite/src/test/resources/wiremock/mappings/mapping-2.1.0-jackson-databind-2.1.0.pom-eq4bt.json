@@ -1,7 +1,7 @@
 {
   "id" : "843aafd2-9e35-38a6-a539-7c4a79a86a01",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-databind/2.1.0/jackson-databind-2.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/core/jackson-databind/2.1.0/jackson-databind-2.1.0.pom",
     "method" : "GET"
   },
   "response" : {

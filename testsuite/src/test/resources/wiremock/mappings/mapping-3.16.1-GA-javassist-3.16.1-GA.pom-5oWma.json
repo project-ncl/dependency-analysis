@@ -1,7 +1,7 @@
 {
   "id" : "afe6e9f7-029b-3716-a139-d1a154ec3d80",
   "request" : {
-    "url" : "/api/group/DApublic/org/javassist/javassist/3.16.1-GA/javassist-3.16.1-GA.pom",
+    "url" : "/api/content/maven/group/DApublic/org/javassist/javassist/3.16.1-GA/javassist-3.16.1-GA.pom",
     "method" : "GET"
   },
   "response" : {

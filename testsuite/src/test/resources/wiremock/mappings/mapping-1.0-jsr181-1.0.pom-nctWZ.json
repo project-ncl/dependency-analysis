@@ -1,7 +1,7 @@
 {
   "id" : "48044678-bf73-3978-b1a8-de7c473a5708",
   "request" : {
-    "url" : "/api/group/DApublic/javax/jws/jsr181/1.0/jsr181-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/jws/jsr181/1.0/jsr181-1.0.pom",
     "method" : "GET"
   },
   "response" : {

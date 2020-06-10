@@ -1,7 +1,7 @@
 {
   "id" : "ac7c524e-3c5a-30e9-9a29-5d7891d8c2d1",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/resteasy/resteasy-jackson-provider/3.0.12.Final/resteasy-jackson-provider-3.0.12.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/resteasy/resteasy-jackson-provider/3.0.12.Final/resteasy-jackson-provider-3.0.12.Final.pom",
     "method" : "GET"
   },
   "response" : {

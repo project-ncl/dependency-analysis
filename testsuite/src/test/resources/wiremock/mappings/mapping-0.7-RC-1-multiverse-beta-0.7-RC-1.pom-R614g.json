@@ -1,7 +1,7 @@
 {
   "id" : "0cb93ed8-5880-38cb-870d-c74667098775",
   "request" : {
-    "url" : "/api/group/DApublic/org/multiverse/multiverse-beta/0.7-RC-1/multiverse-beta-0.7-RC-1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/multiverse/multiverse-beta/0.7-RC-1/multiverse-beta-0.7-RC-1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "4c5e6be0-4d22-3321-8ddd-884f4e5845d1",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/com.springsource.org.hibernate.validator/4.1.0.GA/com.springsource.org.hibernate.validator-4.1.0.GA.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/com.springsource.org.hibernate.validator/4.1.0.GA/com.springsource.org.hibernate.validator-4.1.0.GA.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "02d6c7e4-3cfa-3149-9757-78697ab49fff",
   "request" : {
-    "url" : "/api/group/DApublic/io/swagger/swagger-jaxrs/1.5.4/swagger-jaxrs-1.5.4.pom",
+    "url" : "/api/content/maven/group/DApublic/io/swagger/swagger-jaxrs/1.5.4/swagger-jaxrs-1.5.4.pom",
     "method" : "GET"
   },
   "response" : {

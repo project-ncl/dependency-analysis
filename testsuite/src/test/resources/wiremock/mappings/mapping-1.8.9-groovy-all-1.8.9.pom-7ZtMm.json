@@ -1,7 +1,7 @@
 {
   "id" : "f192e61f-2f26-389e-ac5e-60510be3edc4",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/groovy/groovy-all/1.8.9/groovy-all-1.8.9.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/groovy/groovy-all/1.8.9/groovy-all-1.8.9.pom",
     "method" : "GET"
   },
   "response" : {

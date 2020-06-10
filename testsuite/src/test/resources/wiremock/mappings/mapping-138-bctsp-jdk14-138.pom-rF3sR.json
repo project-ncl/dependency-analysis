@@ -1,7 +1,7 @@
 {
   "id" : "6696d59e-fb21-3434-9f1a-b491e989efe6",
   "request" : {
-    "url" : "/api/group/DApublic/bouncycastle/bctsp-jdk14/138/bctsp-jdk14-138.pom",
+    "url" : "/api/content/maven/group/DApublic/bouncycastle/bctsp-jdk14/138/bctsp-jdk14-138.pom",
     "method" : "GET"
   },
   "response" : {

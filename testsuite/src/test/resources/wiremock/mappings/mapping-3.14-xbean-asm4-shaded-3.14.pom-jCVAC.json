@@ -1,7 +1,7 @@
 {
   "id" : "1b315184-a399-3a96-bbf1-c08ffefd8c86",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/xbean/xbean-asm4-shaded/3.14/xbean-asm4-shaded-3.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/xbean/xbean-asm4-shaded/3.14/xbean-asm4-shaded-3.14.pom",
     "method" : "GET"
   },
   "response" : {

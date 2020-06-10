@@ -1,7 +1,7 @@
 {
   "id" : "b0788f40-8788-3ae2-9d81-21bd927a9f72",
   "request" : {
-    "url" : "/api/group/DApublic/eclipse/jdtcore/3.1.0/jdtcore-3.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/eclipse/jdtcore/3.1.0/jdtcore-3.1.0.pom",
     "method" : "GET"
   },
   "response" : {

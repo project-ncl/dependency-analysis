@@ -1,7 +1,7 @@
 {
   "id" : "28d3c8f2-f290-3427-9511-39f8b1abc437",
   "request" : {
-    "url" : "/api/group/DApublic/jakarta-regexp/jakarta-regexp/1.4/jakarta-regexp-1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/jakarta-regexp/jakarta-regexp/1.4/jakarta-regexp-1.4.pom",
     "method" : "GET"
   },
   "response" : {

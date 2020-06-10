@@ -1,7 +1,7 @@
 {
   "id" : "5f8f6b1c-9b6f-3a14-8a2d-c57f4129c18f",
   "request" : {
-    "url" : "/api/group/DApublic/ldapsdk/ldapsdk/4.1/ldapsdk-4.1.pom",
+    "url" : "/api/content/maven/group/DApublic/ldapsdk/ldapsdk/4.1/ldapsdk-4.1.pom",
     "method" : "GET"
   },
   "response" : {

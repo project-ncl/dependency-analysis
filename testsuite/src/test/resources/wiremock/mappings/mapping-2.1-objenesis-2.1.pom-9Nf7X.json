@@ -1,7 +1,7 @@
 {
   "id" : "1ea79935-3020-3e3c-9c63-b8ceefb8799d",
   "request" : {
-    "url" : "/api/group/DApublic/org/objenesis/objenesis/2.1/objenesis-2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/objenesis/objenesis/2.1/objenesis-2.1.pom",
     "method" : "GET"
   },
   "response" : {

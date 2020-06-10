@@ -1,7 +1,7 @@
 {
   "id" : "8723cc57-a2b5-33cc-80eb-c30ef373f157",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-classworlds/2.4/plexus-classworlds-2.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/plexus/plexus-classworlds/2.4/plexus-classworlds-2.4.pom",
     "method" : "GET"
   },
   "response" : {

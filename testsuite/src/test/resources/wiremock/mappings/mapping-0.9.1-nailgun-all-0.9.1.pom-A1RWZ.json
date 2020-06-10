@@ -1,7 +1,7 @@
 {
   "id" : "5a71d159-5a38-3d8b-a42b-b6737e75ef45",
   "request" : {
-    "url" : "/api/group/DApublic/com/martiansoftware/nailgun-all/0.9.1/nailgun-all-0.9.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/martiansoftware/nailgun-all/0.9.1/nailgun-all-0.9.1.pom",
     "method" : "GET"
   },
   "response" : {

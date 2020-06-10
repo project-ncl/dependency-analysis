@@ -1,7 +1,7 @@
 {
   "id" : "b070b722-c70f-3ea9-bc5c-de3f694362e9",
   "request" : {
-    "url" : "/api/group/DApublic/org/tukaani/xz/1.5/xz-1.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/tukaani/xz/1.5/xz-1.5.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "e16ed19a-e68d-39e8-a508-cfe5d2e1c525",
   "request" : {
-    "url" : "/api/group/DApublic/org/hornetq/hornetq-jms-client/2.3.24.Final/hornetq-jms-client-2.3.24.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hornetq/hornetq-jms-client/2.3.24.Final/hornetq-jms-client-2.3.24.Final.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "f59b5202-cfd8-30b3-a19e-45575704340f",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/geronimo/specs/geronimo-activation_1.1_spec/1.1/geronimo-activation_1.1_spec-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/geronimo/specs/geronimo-activation_1.1_spec/1.1/geronimo-activation_1.1_spec-1.1.pom",
     "method" : "GET"
   },
   "response" : {

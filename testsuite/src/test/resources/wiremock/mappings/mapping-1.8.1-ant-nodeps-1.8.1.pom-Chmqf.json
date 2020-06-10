@@ -1,7 +1,7 @@
 {
   "id" : "176b589d-44b7-332e-8035-dd6bca4def41",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/ant/ant-nodeps/1.8.1/ant-nodeps-1.8.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/ant/ant-nodeps/1.8.1/ant-nodeps-1.8.1.pom",
     "method" : "GET"
   },
   "response" : {

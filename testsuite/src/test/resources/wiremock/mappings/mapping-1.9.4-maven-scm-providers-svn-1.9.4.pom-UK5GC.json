@@ -1,7 +1,7 @@
 {
   "id" : "4fbd65f2-9d21-39d8-a854-f50b93d64cd9",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/scm/maven-scm-providers-svn/1.9.4/maven-scm-providers-svn-1.9.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/scm/maven-scm-providers-svn/1.9.4/maven-scm-providers-svn-1.9.4.pom",
     "method" : "GET"
   },
   "response" : {

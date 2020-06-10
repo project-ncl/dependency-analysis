@@ -1,7 +1,7 @@
 {
   "id" : "7723d491-3490-3994-a5d9-d97e2c7f4dae",
   "request" : {
-    "url" : "/api/group/DApublic/qdox/qdox/1.5/qdox-1.5.pom",
+    "url" : "/api/content/maven/group/DApublic/qdox/qdox/1.5/qdox-1.5.pom",
     "method" : "GET"
   },
   "response" : {

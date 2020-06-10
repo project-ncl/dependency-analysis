@@ -1,7 +1,7 @@
 {
   "id" : "f58ddb92-45b9-3602-83b5-0ff6dd695b98",
   "request" : {
-    "url" : "/api/group/DApublic/org/hornetq/hornetq-core-client/2.3.24.Final/hornetq-core-client-2.3.24.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hornetq/hornetq-core-client/2.3.24.Final/hornetq-core-client-2.3.24.Final.pom",
     "method" : "GET"
   },
   "response" : {

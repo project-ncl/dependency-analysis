@@ -1,7 +1,7 @@
 {
   "id" : "e1e69e80-52a5-3463-bfe8-1482c84a7e3f",
   "request" : {
-    "url" : "/api/group/DApublic/backport-util-concurrent/backport-util-concurrent/3.0/backport-util-concurrent-3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/backport-util-concurrent/backport-util-concurrent/3.0/backport-util-concurrent-3.0.pom",
     "method" : "GET"
   },
   "response" : {

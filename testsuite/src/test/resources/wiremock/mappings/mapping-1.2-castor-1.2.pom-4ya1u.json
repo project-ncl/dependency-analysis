@@ -1,7 +1,7 @@
 {
   "id" : "4a3db443-21af-32a4-9fb2-f4999a848672",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/castor/castor/1.2/castor-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/castor/castor/1.2/castor-1.2.pom",
     "method" : "GET"
   },
   "response" : {

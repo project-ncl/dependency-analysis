@@ -1,7 +1,7 @@
 {
   "id" : "053e56f6-f29a-3ef7-8f68-ae6f6e39fe59",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/felix/felix/1.0.2/felix-1.0.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/felix/felix/1.0.2/felix-1.0.2.pom",
     "method" : "GET"
   },
   "response" : {

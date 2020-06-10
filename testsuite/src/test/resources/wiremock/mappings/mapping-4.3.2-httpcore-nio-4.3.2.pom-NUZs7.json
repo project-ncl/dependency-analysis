@@ -1,7 +1,7 @@
 {
   "id" : "d089f7c4-f6ed-3b84-9deb-7b856a915a7c",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/httpcomponents/httpcore-nio/4.3.2/httpcore-nio-4.3.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/httpcomponents/httpcore-nio/4.3.2/httpcore-nio-4.3.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "f3db2117-ebbb-30ac-8612-aa4f56073963",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/bom/eap/jboss-eap-bom-parent/6.3.2.GA/jboss-eap-bom-parent-6.3.2.GA.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/bom/eap/jboss-eap-bom-parent/6.3.2.GA/jboss-eap-bom-parent-6.3.2.GA.pom",
     "method" : "GET"
   },
   "response" : {

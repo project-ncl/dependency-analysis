@@ -1,7 +1,7 @@
 {
   "id" : "fd2ef80d-f82c-3026-a938-5e01c2123e50",
   "request" : {
-    "url" : "/api/group/DApublic/javax/enterprise/concurrent/javax.enterprise.concurrent-api/1.0/javax.enterprise.concurrent-api-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/enterprise/concurrent/javax.enterprise.concurrent-api/1.0/javax.enterprise.concurrent-api-1.0.pom",
     "method" : "GET"
   },
   "response" : {

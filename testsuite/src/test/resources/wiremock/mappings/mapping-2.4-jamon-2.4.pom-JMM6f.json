@@ -1,7 +1,7 @@
 {
   "id" : "5e043ac1-9a81-3ca2-8f16-81b7041eb90b",
   "request" : {
-    "url" : "/api/group/DApublic/com/jamonapi/jamon/2.4/jamon-2.4.pom",
+    "url" : "/api/content/maven/group/DApublic/com/jamonapi/jamon/2.4/jamon-2.4.pom",
     "method" : "GET"
   },
   "response" : {

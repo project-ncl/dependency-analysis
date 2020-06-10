@@ -1,7 +1,7 @@
 {
   "id" : "013d055e-83f9-34ce-a6c5-9edffe8ca4e7",
   "request" : {
-    "url" : "/api/group/DApublic/org/dashbuilder/dashbuilder-parent-metadata/0.2.1.Final/dashbuilder-parent-metadata-0.2.1.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/dashbuilder/dashbuilder-parent-metadata/0.2.1.Final/dashbuilder-parent-metadata-0.2.1.Final.pom",
     "method" : "GET"
   },
   "response" : {

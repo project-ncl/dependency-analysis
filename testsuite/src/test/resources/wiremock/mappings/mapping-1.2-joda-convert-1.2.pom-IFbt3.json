@@ -1,7 +1,7 @@
 {
   "id" : "686c03e4-ea50-3041-8c73-92a2903d2d27",
   "request" : {
-    "url" : "/api/group/DApublic/org/joda/joda-convert/1.2/joda-convert-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/joda/joda-convert/1.2/joda-convert-1.2.pom",
     "method" : "GET"
   },
   "response" : {

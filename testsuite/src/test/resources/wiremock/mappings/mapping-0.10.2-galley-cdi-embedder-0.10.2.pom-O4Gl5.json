@@ -1,7 +1,7 @@
 {
   "id" : "5ff2504c-d350-3be2-8ad8-147db60a811a",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-cdi-embedder/0.10.2/galley-cdi-embedder-0.10.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/galley/galley-cdi-embedder/0.10.2/galley-cdi-embedder-0.10.2.pom",
     "method" : "GET"
   },
   "response" : {

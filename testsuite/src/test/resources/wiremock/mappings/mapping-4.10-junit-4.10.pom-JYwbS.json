@@ -1,7 +1,7 @@
 {
   "id" : "6a1add34-9e3d-3287-b27a-386c275e2381",
   "request" : {
-    "url" : "/api/group/DApublic/junit/junit/4.10/junit-4.10.pom",
+    "url" : "/api/content/maven/group/DApublic/junit/junit/4.10/junit-4.10.pom",
     "method" : "GET"
   },
   "response" : {

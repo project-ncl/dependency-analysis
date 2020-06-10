@@ -1,7 +1,7 @@
 {
   "id" : "711023c4-e918-3885-92bf-1c0954a34d9b",
   "request" : {
-    "url" : "/api/group/DApublic/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "e69e156b-fe1a-3c59-b040-227179007dfd",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-orm/4.0.9.RELEASE/spring-orm-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-orm/4.0.9.RELEASE/spring-orm-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "f70d769b-4c79-3791-bff0-5102b4ddb74b",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/ant/ant-parent/1.7.0/ant-parent-1.7.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/ant/ant-parent/1.7.0/ant-parent-1.7.0.pom",
     "method" : "GET"
   },
   "response" : {

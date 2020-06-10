@@ -1,7 +1,7 @@
 {
   "id" : "dd5439e1-08a7-37e1-a04b-33b973f2d281",
   "request" : {
-    "url" : "/api/group/DApublic/jdom/jdom/b10/jdom-b10.pom",
+    "url" : "/api/content/maven/group/DApublic/jdom/jdom/b10/jdom-b10.pom",
     "method" : "GET"
   },
   "response" : {

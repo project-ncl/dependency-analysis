@@ -1,7 +1,7 @@
 {
   "id" : "eea683d9-f3e1-3f38-a350-aa1bb5bee39b",
   "request" : {
-    "url" : "/api/group/DApublic/proxool/proxool/0.8.3/proxool-0.8.3.pom",
+    "url" : "/api/content/maven/group/DApublic/proxool/proxool/0.8.3/proxool-0.8.3.pom",
     "method" : "GET"
   },
   "response" : {

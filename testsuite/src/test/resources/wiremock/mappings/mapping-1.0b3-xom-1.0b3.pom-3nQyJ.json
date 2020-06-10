@@ -1,7 +1,7 @@
 {
   "id" : "e1b18e27-e78c-3a0e-9ac4-fb3e2ccf67a1",
   "request" : {
-    "url" : "/api/group/DApublic/xom/xom/1.0b3/xom-1.0b3.pom",
+    "url" : "/api/content/maven/group/DApublic/xom/xom/1.0b3/xom-1.0b3.pom",
     "method" : "GET"
   },
   "response" : {

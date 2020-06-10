@@ -1,7 +1,7 @@
 {
   "id" : "cb6ff767-2821-3e93-9c34-9e3a2ec53837",
   "request" : {
-    "url" : "/api/group/DApublic/jaxme/jaxme-api/0.3/jaxme-api-0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/jaxme/jaxme-api/0.3/jaxme-api-0.3.pom",
     "method" : "GET"
   },
   "response" : {
