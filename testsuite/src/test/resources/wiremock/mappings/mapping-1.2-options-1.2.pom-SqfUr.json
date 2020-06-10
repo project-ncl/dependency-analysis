@@ -1,7 +1,7 @@
 {
   "id" : "5dc8a09a-6e9f-3b6e-a5bb-b12d7e956ca0",
   "request" : {
-    "url" : "/api/group/DApublic/com/headius/options/1.2/options-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/headius/options/1.2/options-1.2.pom",
     "method" : "GET"
   },
   "response" : {

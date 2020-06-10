@@ -1,7 +1,7 @@
 {
   "id" : "0bcd545c-5bc1-34d0-833d-904c3f14e7bf",
   "request" : {
-    "url" : "/api/group/DApublic/myfaces/myfaces-api/1.1.0/myfaces-api-1.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/myfaces/myfaces-api/1.1.0/myfaces-api-1.1.0.pom",
     "method" : "GET"
   },
   "response" : {

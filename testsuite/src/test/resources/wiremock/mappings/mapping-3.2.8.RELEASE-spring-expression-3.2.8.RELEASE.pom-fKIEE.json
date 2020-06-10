@@ -1,7 +1,7 @@
 {
   "id" : "c91cba4b-1f91-3425-b2f7-a90897b80b11",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-expression/3.2.8.RELEASE/spring-expression-3.2.8.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-expression/3.2.8.RELEASE/spring-expression-3.2.8.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

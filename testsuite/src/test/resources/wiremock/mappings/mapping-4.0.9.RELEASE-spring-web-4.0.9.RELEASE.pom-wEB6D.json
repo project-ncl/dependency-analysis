@@ -1,7 +1,7 @@
 {
   "id" : "de713c74-150a-358e-8926-5da28737f217",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-web/4.0.9.RELEASE/spring-web-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-web/4.0.9.RELEASE/spring-web-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "fdb2a155-7d35-3f0c-a635-d0682687fa9b",
   "request" : {
-    "url" : "/api/group/DApublic/javax/validation/com.springsource.javax.validation/1.0.0.GA/com.springsource.javax.validation-1.0.0.GA.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/validation/com.springsource.javax.validation/1.0.0.GA/com.springsource.javax.validation-1.0.0.GA.pom",
     "method" : "GET"
   },
   "response" : {

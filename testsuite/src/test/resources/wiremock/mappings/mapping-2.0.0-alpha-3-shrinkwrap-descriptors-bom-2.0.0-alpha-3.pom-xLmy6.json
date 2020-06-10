@@ -1,7 +1,7 @@
 {
   "id" : "b2d3698c-6c95-302b-b88c-0693ace222ce",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-bom/2.0.0-alpha-3/shrinkwrap-descriptors-bom-2.0.0-alpha-3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-bom/2.0.0-alpha-3/shrinkwrap-descriptors-bom-2.0.0-alpha-3.pom",
     "method" : "GET"
   },
   "response" : {

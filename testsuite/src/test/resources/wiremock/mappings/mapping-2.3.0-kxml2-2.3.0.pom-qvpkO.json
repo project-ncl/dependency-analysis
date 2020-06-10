@@ -1,7 +1,7 @@
 {
   "id" : "465b9ac2-88ea-37d7-a0b6-83ef8c839459",
   "request" : {
-    "url" : "/api/group/DApublic/net/sf/kxml/kxml2/2.3.0/kxml2-2.3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/net/sf/kxml/kxml2/2.3.0/kxml2-2.3.0.pom",
     "method" : "GET"
   },
   "response" : {

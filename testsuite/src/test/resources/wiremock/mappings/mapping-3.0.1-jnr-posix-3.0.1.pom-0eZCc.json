@@ -1,7 +1,7 @@
 {
   "id" : "c82915f3-14d7-3d62-be57-f0641d185811",
   "request" : {
-    "url" : "/api/group/DApublic/com/github/jnr/jnr-posix/3.0.1/jnr-posix-3.0.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/github/jnr/jnr-posix/3.0.1/jnr-posix-3.0.1.pom",
     "method" : "GET"
   },
   "response" : {

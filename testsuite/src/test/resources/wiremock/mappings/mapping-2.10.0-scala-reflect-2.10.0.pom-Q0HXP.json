@@ -1,7 +1,7 @@
 {
   "id" : "56bd6fe2-095f-316e-903b-7329b9ee35d9",
   "request" : {
-    "url" : "/api/group/DApublic/org/scala-lang/scala-reflect/2.10.0/scala-reflect-2.10.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/scala-lang/scala-reflect/2.10.0/scala-reflect-2.10.0.pom",
     "method" : "GET"
   },
   "response" : {

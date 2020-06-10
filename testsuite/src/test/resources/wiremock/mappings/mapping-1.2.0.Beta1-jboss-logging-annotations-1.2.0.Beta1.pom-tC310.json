@@ -1,7 +1,7 @@
 {
   "id" : "3c39f621-e18b-30c9-8a58-08c3feb3db91",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.pom",
     "method" : "GET"
   },
   "response" : {

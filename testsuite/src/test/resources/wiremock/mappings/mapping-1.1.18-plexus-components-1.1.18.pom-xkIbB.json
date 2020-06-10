@@ -1,7 +1,7 @@
 {
   "id" : "0006028a-6531-31f5-b2eb-dde4a81ba50c",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-components/1.1.18/plexus-components-1.1.18.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/plexus/plexus-components/1.1.18/plexus-components-1.1.18.pom",
     "method" : "GET"
   },
   "response" : {

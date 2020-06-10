@@ -1,7 +1,7 @@
 {
   "id" : "39d873e6-bf7d-3de2-8018-2db5f0827b72",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tomcat/el-api/6.0.20/el-api-6.0.20.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tomcat/el-api/6.0.20/el-api-6.0.20.pom",
     "method" : "GET"
   },
   "response" : {

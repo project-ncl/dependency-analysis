@@ -1,7 +1,7 @@
 {
   "id" : "ba7c6186-1def-3e77-9d9d-3b5000fc7801",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/dependency_analysis/1.2.3/dependency_analysis-1.2.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/dependency_analysis/1.2.3/dependency_analysis-1.2.3.pom",
     "method" : "GET"
   },
   "response" : {

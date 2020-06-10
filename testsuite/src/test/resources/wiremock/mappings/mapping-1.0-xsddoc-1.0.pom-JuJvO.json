@@ -1,7 +1,7 @@
 {
   "id" : "3f401873-13e9-3dd5-9216-b983083c6c67",
   "request" : {
-    "url" : "/api/group/DApublic/xsddoc/xsddoc/1.0/xsddoc-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/xsddoc/xsddoc/1.0/xsddoc-1.0.pom",
     "method" : "GET"
   },
   "response" : {

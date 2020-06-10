@@ -1,7 +1,7 @@
 {
   "id" : "e195c817-6e2b-3c8f-9eae-4744a73b2f11",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-core/3.2.8.RELEASE/spring-core-3.2.8.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-core/3.2.8.RELEASE/spring-core-3.2.8.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

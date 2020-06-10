@@ -1,7 +1,7 @@
 {
   "id" : "7f8e1f63-9a7e-3063-af86-6cab137e8113",
   "request" : {
-    "url" : "/api/group/DApublic/javax/jdo/jdo-api/3.0.1/jdo-api-3.0.1.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/jdo/jdo-api/3.0.1/jdo-api-3.0.1.pom",
     "method" : "GET"
   },
   "response" : {

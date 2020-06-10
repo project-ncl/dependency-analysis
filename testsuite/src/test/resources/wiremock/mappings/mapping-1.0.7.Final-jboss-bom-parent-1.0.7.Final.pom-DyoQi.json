@@ -1,7 +1,7 @@
 {
   "id" : "e213c729-4bbd-32c1-acfa-20542a96fdc3",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom",
     "method" : "GET"
   },
   "response" : {

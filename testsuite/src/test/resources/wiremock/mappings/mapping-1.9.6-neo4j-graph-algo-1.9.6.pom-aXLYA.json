@@ -1,7 +1,7 @@
 {
   "id" : "01e99654-a937-3680-91e7-6d7779f9df97",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/neo4j-graph-algo/1.9.6/neo4j-graph-algo-1.9.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/neo4j-graph-algo/1.9.6/neo4j-graph-algo-1.9.6.pom",
     "method" : "GET"
   },
   "response" : {

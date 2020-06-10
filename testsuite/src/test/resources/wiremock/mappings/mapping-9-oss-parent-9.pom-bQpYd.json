@@ -1,7 +1,7 @@
 {
   "id" : "b0fb0df9-2ce7-3288-9023-b83c555b9a46",
   "request" : {
-    "url" : "/api/group/DApublic/org/99soft/oss-parent/9/oss-parent-9.pom",
+    "url" : "/api/content/maven/group/DApublic/org/99soft/oss-parent/9/oss-parent-9.pom",
     "method" : "GET"
   },
   "response" : {

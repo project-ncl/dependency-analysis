@@ -1,7 +1,7 @@
 {
   "id" : "e76e2e7d-4a3c-3009-b185-5cec08113828",
   "request" : {
-    "url" : "/api/group/DApublic/org/dashbuilder/dashbuilder-bom/0.2.1.Final/dashbuilder-bom-0.2.1.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/dashbuilder/dashbuilder-bom/0.2.1.Final/dashbuilder-bom-0.2.1.Final.pom",
     "method" : "GET"
   },
   "response" : {

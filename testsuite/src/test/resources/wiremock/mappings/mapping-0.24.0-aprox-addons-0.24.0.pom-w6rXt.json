@@ -1,7 +1,7 @@
 {
   "id" : "832941a9-9409-3448-b0d1-48ba79854a5a",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-addons/0.24.0/aprox-addons-0.24.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/aprox/aprox-addons/0.24.0/aprox-addons-0.24.0.pom",
     "method" : "GET"
   },
   "response" : {

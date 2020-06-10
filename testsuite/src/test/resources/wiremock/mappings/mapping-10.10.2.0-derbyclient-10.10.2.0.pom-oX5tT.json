@@ -1,7 +1,7 @@
 {
   "id" : "c97e313f-80f3-33c7-bfca-786393d038f7",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/derby/derbyclient/10.10.2.0/derbyclient-10.10.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/derby/derbyclient/10.10.2.0/derbyclient-10.10.2.0.pom",
     "method" : "GET"
   },
   "response" : {

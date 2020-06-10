@@ -1,7 +1,7 @@
 {
   "id" : "bf1ffe48-e547-3dc0-8b1c-be4e7a74cc4e",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/hibernate-entitymanager/4.2.0.Final/hibernate-entitymanager-4.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/hibernate-entitymanager/4.2.0.Final/hibernate-entitymanager-4.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

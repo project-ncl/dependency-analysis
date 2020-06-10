@@ -1,7 +1,7 @@
 {
   "id" : "c2806cc0-a243-3f67-9c9e-a12a3d6d83bf",
   "request" : {
-    "url" : "/api/group/DApublic/org/fusesource/jansi/jansi-project/1.8/jansi-project-1.8.pom",
+    "url" : "/api/content/maven/group/DApublic/org/fusesource/jansi/jansi-project/1.8/jansi-project-1.8.pom",
     "method" : "GET"
   },
   "response" : {

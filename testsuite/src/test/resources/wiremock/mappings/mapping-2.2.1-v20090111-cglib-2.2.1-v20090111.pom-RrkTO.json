@@ -1,7 +1,7 @@
 {
   "id" : "f87c5804-2f12-31d6-89d6-49125b99d13f",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/cglib/2.2.1-v20090111/cglib-2.2.1-v20090111.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/cglib/2.2.1-v20090111/cglib-2.2.1-v20090111.pom",
     "method" : "GET"
   },
   "response" : {

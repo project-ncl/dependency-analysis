@@ -1,7 +1,7 @@
 {
   "id" : "5eda12a7-a878-3c8d-bb6b-a54aa9765847",
   "request" : {
-    "url" : "/api/group/DApublic/org/jruby/jruby-parent/1.7.17/jruby-parent-1.7.17.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jruby/jruby-parent/1.7.17/jruby-parent-1.7.17.pom",
     "method" : "GET"
   },
   "response" : {

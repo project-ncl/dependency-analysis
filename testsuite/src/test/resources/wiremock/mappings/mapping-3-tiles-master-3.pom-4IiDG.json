@@ -1,7 +1,7 @@
 {
   "id" : "fbcfd3a7-cd94-37f6-9155-1842a2c3d3c9",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-master/3/tiles-master-3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-master/3/tiles-master-3.pom",
     "method" : "GET"
   },
   "response" : {

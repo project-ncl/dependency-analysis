@@ -1,7 +1,7 @@
 {
   "id" : "0b2b5a6f-5fff-383d-b64a-f9f7f05f3bee",
   "request" : {
-    "url" : "/api/group/DApublic/bsf/bsf/2.4.0/bsf-2.4.0.pom",
+    "url" : "/api/content/maven/group/DApublic/bsf/bsf/2.4.0/bsf-2.4.0.pom",
     "method" : "GET"
   },
   "response" : {

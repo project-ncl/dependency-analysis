@@ -1,7 +1,7 @@
 {
   "id" : "2072c53a-f00a-392f-b756-0c92f3aafc98",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/arquillian/arquillian-bom/1.1.0.Final/arquillian-bom-1.1.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/arquillian/arquillian-bom/1.1.0.Final/arquillian-bom-1.1.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

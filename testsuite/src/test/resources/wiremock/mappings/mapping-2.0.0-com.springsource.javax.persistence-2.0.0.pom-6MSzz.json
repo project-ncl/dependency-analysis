@@ -1,7 +1,7 @@
 {
   "id" : "66e39e65-fae3-3a52-a3a7-1357c78e8f44",
   "request" : {
-    "url" : "/api/group/DApublic/javax/persistence/com.springsource.javax.persistence/2.0.0/com.springsource.javax.persistence-2.0.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/persistence/com.springsource.javax.persistence/2.0.0/com.springsource.javax.persistence-2.0.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "998f56ee-0c91-3a42-8808-ed6e51c05d7d",
   "request" : {
-    "url" : "/api/group/DApublic/jfree/jcommon/1.0.15/jcommon-1.0.15.pom",
+    "url" : "/api/content/maven/group/DApublic/jfree/jcommon/1.0.15/jcommon-1.0.15.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "44831ca8-d1f3-3066-a699-51d70d5cf727",
   "request" : {
-    "url" : "/api/group/DApublic/hibernate/antlr/2.7.5H3/antlr-2.7.5H3.pom",
+    "url" : "/api/content/maven/group/DApublic/hibernate/antlr/2.7.5H3/antlr-2.7.5H3.pom",
     "method" : "GET"
   },
   "response" : {

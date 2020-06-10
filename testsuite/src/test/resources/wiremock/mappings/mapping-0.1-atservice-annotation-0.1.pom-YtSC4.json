@@ -1,7 +1,7 @@
 {
   "id" : "0ed5afa9-e233-3c9d-ae83-99e40c6ca066",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/atservice/atservice-annotation/0.1/atservice-annotation-0.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/atservice/atservice-annotation/0.1/atservice-annotation-0.1.pom",
     "method" : "GET"
   },
   "response" : {

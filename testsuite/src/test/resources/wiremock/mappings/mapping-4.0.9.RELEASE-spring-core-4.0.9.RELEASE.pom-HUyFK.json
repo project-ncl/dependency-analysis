@@ -1,7 +1,7 @@
 {
   "id" : "e3197e57-24eb-34d0-b166-7feda7047012",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-core/4.0.9.RELEASE/spring-core-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-core/4.0.9.RELEASE/spring-core-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

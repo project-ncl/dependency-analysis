@@ -1,7 +1,7 @@
 {
   "id" : "b67c3c6d-0bd7-3f57-85a1-4cdce2e6b69b",
   "request" : {
-    "url" : "/api/group/DApublic/org/freemarker/freemarker/2.3.15/freemarker-2.3.15.pom",
+    "url" : "/api/content/maven/group/DApublic/org/freemarker/freemarker/2.3.15/freemarker-2.3.15.pom",
     "method" : "GET"
   },
   "response" : {

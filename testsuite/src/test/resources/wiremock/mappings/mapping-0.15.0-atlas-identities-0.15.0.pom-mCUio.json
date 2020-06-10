@@ -1,7 +1,7 @@
 {
   "id" : "d872c8d6-79dd-3cd6-b699-754d3d25563c",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-identities/0.15.0/atlas-identities-0.15.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/atlas/atlas-identities/0.15.0/atlas-identities-0.15.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "bb107534-6208-3217-bc13-7e590fc6b3b5",
   "request" : {
-    "url" : "/api/group/DApublic/org/aspectj/aspectjweaver/1.6.8/aspectjweaver-1.6.8.pom",
+    "url" : "/api/content/maven/group/DApublic/org/aspectj/aspectjweaver/1.6.8/aspectjweaver-1.6.8.pom",
     "method" : "GET"
   },
   "response" : {

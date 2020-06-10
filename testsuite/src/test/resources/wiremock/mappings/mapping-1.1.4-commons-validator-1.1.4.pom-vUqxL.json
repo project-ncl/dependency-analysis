@@ -1,7 +1,7 @@
 {
   "id" : "af724023-b2b7-3e31-8c3a-15611d15722c",
   "request" : {
-    "url" : "/api/group/DApublic/commons-validator/commons-validator/1.1.4/commons-validator-1.1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-validator/commons-validator/1.1.4/commons-validator-1.1.4.pom",
     "method" : "GET"
   },
   "response" : {

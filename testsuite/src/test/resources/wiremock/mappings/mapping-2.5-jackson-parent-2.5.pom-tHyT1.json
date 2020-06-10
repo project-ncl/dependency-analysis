@@ -1,7 +1,7 @@
 {
   "id" : "94062f0c-8dd7-3622-b989-6bf61dfc00da",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/jackson-parent/2.5/jackson-parent-2.5.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/jackson-parent/2.5/jackson-parent-2.5.pom",
     "method" : "GET"
   },
   "response" : {

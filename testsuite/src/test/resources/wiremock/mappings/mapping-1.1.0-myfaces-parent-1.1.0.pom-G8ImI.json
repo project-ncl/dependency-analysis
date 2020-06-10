@@ -1,7 +1,7 @@
 {
   "id" : "c99a57b8-fd31-3fbc-a1c6-2ca5da86b8e9",
   "request" : {
-    "url" : "/api/group/DApublic/myfaces/myfaces-parent/1.1.0/myfaces-parent-1.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/myfaces/myfaces-parent/1.1.0/myfaces-parent-1.1.0.pom",
     "method" : "GET"
   },
   "response" : {

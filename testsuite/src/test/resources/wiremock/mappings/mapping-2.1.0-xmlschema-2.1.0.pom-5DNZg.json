@@ -1,7 +1,7 @@
 {
   "id" : "b64a0984-3391-3c98-be04-ea2f4cb69bdf",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/ws/xmlschema/xmlschema/2.1.0/xmlschema-2.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/ws/xmlschema/xmlschema/2.1.0/xmlschema-2.1.0.pom",
     "method" : "GET"
   },
   "response" : {

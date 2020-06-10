@@ -1,7 +1,7 @@
 {
   "id" : "4e097e66-05da-38ed-8258-8637e9f1d169",
   "request" : {
-    "url" : "/api/group/DApublic/com/github/jnr/jnr-constants/0.8.5/jnr-constants-0.8.5.pom",
+    "url" : "/api/content/maven/group/DApublic/com/github/jnr/jnr-constants/0.8.5/jnr-constants-0.8.5.pom",
     "method" : "GET"
   },
   "response" : {

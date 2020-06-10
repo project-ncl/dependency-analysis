@@ -1,7 +1,7 @@
 {
   "id" : "a94cbe57-fff4-3d20-a45d-9a589e249094",
   "request" : {
-    "url" : "/api/group/DApublic/cglib/cglib/2.0.2/cglib-2.0.2.pom",
+    "url" : "/api/content/maven/group/DApublic/cglib/cglib/2.0.2/cglib-2.0.2.pom",
     "method" : "GET"
   },
   "response" : {

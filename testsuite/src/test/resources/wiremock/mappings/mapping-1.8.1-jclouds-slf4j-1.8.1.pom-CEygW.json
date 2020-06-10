@@ -1,7 +1,7 @@
 {
   "id" : "f6b23787-6afc-3970-a043-c855529c6cd4",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/jclouds/driver/jclouds-slf4j/1.8.1/jclouds-slf4j-1.8.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/jclouds/driver/jclouds-slf4j/1.8.1/jclouds-slf4j-1.8.1.pom",
     "method" : "GET"
   },
   "response" : {

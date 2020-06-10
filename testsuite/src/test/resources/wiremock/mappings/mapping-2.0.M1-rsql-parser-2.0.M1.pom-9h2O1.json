@@ -1,7 +1,7 @@
 {
   "id" : "6742410e-f2c6-340a-88c3-b9c8120f9832",
   "request" : {
-    "url" : "/api/group/DApublic/cz/jirutka/rsql/rsql-parser/2.0.M1/rsql-parser-2.0.M1.pom",
+    "url" : "/api/content/maven/group/DApublic/cz/jirutka/rsql/rsql-parser/2.0.M1/rsql-parser-2.0.M1.pom",
     "method" : "GET"
   },
   "response" : {

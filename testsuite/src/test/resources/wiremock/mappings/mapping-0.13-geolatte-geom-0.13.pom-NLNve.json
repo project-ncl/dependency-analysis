@@ -1,7 +1,7 @@
 {
   "id" : "39484b9f-ead5-3b99-92c2-4a2422cb6c94",
   "request" : {
-    "url" : "/api/group/DApublic/org/geolatte/geolatte-geom/0.13/geolatte-geom-0.13.pom",
+    "url" : "/api/content/maven/group/DApublic/org/geolatte/geolatte-geom/0.13/geolatte-geom-0.13.pom",
     "method" : "GET"
   },
   "response" : {

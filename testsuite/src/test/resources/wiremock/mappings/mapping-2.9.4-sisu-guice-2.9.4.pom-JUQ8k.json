@@ -1,7 +1,7 @@
 {
   "id" : "aa82b723-d33b-3d36-8f4f-8dd3d995f1c4",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/sisu-guice/2.9.4/sisu-guice-2.9.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/sisu-guice/2.9.4/sisu-guice-2.9.4.pom",
     "method" : "GET"
   },
   "response" : {

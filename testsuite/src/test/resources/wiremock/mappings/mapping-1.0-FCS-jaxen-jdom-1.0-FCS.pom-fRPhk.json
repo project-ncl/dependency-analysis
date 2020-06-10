@@ -1,7 +1,7 @@
 {
   "id" : "2321bb92-3900-3c75-9119-b3e0b055c2bb",
   "request" : {
-    "url" : "/api/group/DApublic/org/jdom/jaxen-jdom/1.0-FCS/jaxen-jdom-1.0-FCS.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jdom/jaxen-jdom/1.0-FCS/jaxen-jdom-1.0-FCS.pom",
     "method" : "GET"
   },
   "response" : {

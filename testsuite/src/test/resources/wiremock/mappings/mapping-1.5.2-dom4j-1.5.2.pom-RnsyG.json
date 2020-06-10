@@ -1,7 +1,7 @@
 {
   "id" : "101baf02-a062-34b0-8991-66b9f5baceea",
   "request" : {
-    "url" : "/api/group/DApublic/dom4j/dom4j/1.5.2/dom4j-1.5.2.pom",
+    "url" : "/api/content/maven/group/DApublic/dom4j/dom4j/1.5.2/dom4j-1.5.2.pom",
     "method" : "GET"
   },
   "response" : {

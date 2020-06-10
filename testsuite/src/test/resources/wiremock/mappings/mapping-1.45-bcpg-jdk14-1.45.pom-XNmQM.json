@@ -1,7 +1,7 @@
 {
   "id" : "4593f735-eeab-37fa-ab9e-c927a451959c",
   "request" : {
-    "url" : "/api/group/DApublic/org/bouncycastle/bcpg-jdk14/1.45/bcpg-jdk14-1.45.pom",
+    "url" : "/api/content/maven/group/DApublic/org/bouncycastle/bcpg-jdk14/1.45/bcpg-jdk14-1.45.pom",
     "method" : "GET"
   },
   "response" : {

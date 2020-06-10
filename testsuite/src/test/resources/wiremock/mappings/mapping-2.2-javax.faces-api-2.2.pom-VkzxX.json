@@ -1,7 +1,7 @@
 {
   "id" : "24e9e493-e30f-34bf-8e9f-112a21a14919",
   "request" : {
-    "url" : "/api/group/DApublic/javax/faces/javax.faces-api/2.2/javax.faces-api-2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/faces/javax.faces-api/2.2/javax.faces-api-2.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "0f50362c-2562-340d-a51c-f15339e64022",
   "request" : {
-    "url" : "/api/group/DApublic/org/atteo/parent/1.11/parent-1.11.pom",
+    "url" : "/api/content/maven/group/DApublic/org/atteo/parent/1.11/parent-1.11.pom",
     "method" : "GET"
   },
   "response" : {

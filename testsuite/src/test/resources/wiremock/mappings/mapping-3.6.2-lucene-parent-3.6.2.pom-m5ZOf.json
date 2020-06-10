@@ -1,7 +1,7 @@
 {
   "id" : "af7a61fd-57a1-3322-94de-0cf5d419db6c",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/lucene/lucene-parent/3.6.2/lucene-parent-3.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/lucene/lucene-parent/3.6.2/lucene-parent-3.6.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "e14ea0b0-3c0d-3363-87e1-2968acdeb488",
   "request" : {
-    "url" : "/api/group/DApublic/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.pom",
+    "url" : "/api/content/maven/group/DApublic/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.pom",
     "method" : "GET"
   },
   "response" : {

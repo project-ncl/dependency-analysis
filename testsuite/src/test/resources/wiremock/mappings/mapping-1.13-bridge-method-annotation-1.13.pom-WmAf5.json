@@ -1,7 +1,7 @@
 {
   "id" : "570ca216-caa0-3fe0-998e-df86142698a3",
   "request" : {
-    "url" : "/api/group/DApublic/com/infradna/tool/bridge-method-annotation/1.13/bridge-method-annotation-1.13.pom",
+    "url" : "/api/content/maven/group/DApublic/com/infradna/tool/bridge-method-annotation/1.13/bridge-method-annotation-1.13.pom",
     "method" : "GET"
   },
   "response" : {

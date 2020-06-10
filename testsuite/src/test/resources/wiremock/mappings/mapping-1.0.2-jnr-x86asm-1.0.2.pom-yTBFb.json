@@ -1,7 +1,7 @@
 {
   "id" : "df870373-95d8-3e3f-8651-219b6cee4603",
   "request" : {
-    "url" : "/api/group/DApublic/com/github/jnr/jnr-x86asm/1.0.2/jnr-x86asm-1.0.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/github/jnr/jnr-x86asm/1.0.2/jnr-x86asm-1.0.2.pom",
     "method" : "GET"
   },
   "response" : {

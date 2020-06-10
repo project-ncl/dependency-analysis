@@ -1,7 +1,7 @@
 {
   "id" : "ef26a945-5f22-3b9b-9af6-5443e63505c0",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-bean-converters/2.1.1/guice-bean-converters-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-bean-converters/2.1.1/guice-bean-converters-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

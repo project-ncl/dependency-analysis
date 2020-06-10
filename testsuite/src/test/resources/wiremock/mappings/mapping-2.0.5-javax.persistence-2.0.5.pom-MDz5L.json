@@ -1,7 +1,7 @@
 {
   "id" : "a9440b0a-cbf1-3832-b029-5db9ce892953",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/persistence/javax.persistence/2.0.5/javax.persistence-2.0.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/persistence/javax.persistence/2.0.5/javax.persistence-2.0.5.pom",
     "method" : "GET"
   },
   "response" : {

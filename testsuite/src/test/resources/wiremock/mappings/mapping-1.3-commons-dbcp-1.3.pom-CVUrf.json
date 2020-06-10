@@ -1,7 +1,7 @@
 {
   "id" : "87a42949-6948-374d-afda-5a1f42cdd24a",
   "request" : {
-    "url" : "/api/group/DApublic/commons-dbcp/commons-dbcp/1.3/commons-dbcp-1.3.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-dbcp/commons-dbcp/1.3/commons-dbcp-1.3.pom",
     "method" : "GET"
   },
   "response" : {

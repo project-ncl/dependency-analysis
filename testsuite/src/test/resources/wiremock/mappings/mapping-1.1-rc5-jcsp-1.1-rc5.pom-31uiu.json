@@ -1,7 +1,7 @@
 {
   "id" : "1bd609a0-a6fe-3eac-b4f9-03bf157ef43a",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/jcsp/jcsp/1.1-rc5/jcsp-1.1-rc5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/jcsp/jcsp/1.1-rc5/jcsp-1.1-rc5.pom",
     "method" : "GET"
   },
   "response" : {

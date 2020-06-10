@@ -1,7 +1,7 @@
 {
   "id" : "10fc5a22-2836-3ba2-be61-74897674d964",
   "request" : {
-    "url" : "/api/group/DApublic/org/hsqldb/hsqldb/2.3.2/hsqldb-2.3.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hsqldb/hsqldb/2.3.2/hsqldb-2.3.2.pom",
     "method" : "GET"
   },
   "response" : {

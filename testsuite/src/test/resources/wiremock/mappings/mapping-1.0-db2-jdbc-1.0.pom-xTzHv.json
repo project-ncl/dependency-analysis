@@ -1,7 +1,7 @@
 {
   "id" : "42578655-1447-3242-9fda-86d6de59e8e9",
   "request" : {
-    "url" : "/api/group/DApublic/com/ibm/db2/db2-jdbc/1.0/db2-jdbc-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/ibm/db2/db2-jdbc/1.0/db2-jdbc-1.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "99d83ce3-e569-3791-b149-a7835a6a74c9",
   "request" : {
-    "url" : "/api/group/DApublic/javax/el/javax.el-api/2.2.5/javax.el-api-2.2.5.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/el/javax.el-api/2.2.5/javax.el-api-2.2.5.pom",
     "method" : "GET"
   },
   "response" : {

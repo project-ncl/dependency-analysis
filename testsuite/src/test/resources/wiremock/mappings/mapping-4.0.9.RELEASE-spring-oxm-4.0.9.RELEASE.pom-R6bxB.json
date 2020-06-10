@@ -1,7 +1,7 @@
 {
   "id" : "e2ec5841-afeb-3ab2-80ed-5884df5435ca",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-oxm/4.0.9.RELEASE/spring-oxm-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-oxm/4.0.9.RELEASE/spring-oxm-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

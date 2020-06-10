@@ -1,7 +1,7 @@
 {
   "id" : "5ead2ac6-321b-3f82-9023-e008bafc8ca8",
   "request" : {
-    "url" : "/api/group/DApublic/javax/servlet/jsp-api/2.0/jsp-api-2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/servlet/jsp-api/2.0/jsp-api-2.0.pom",
     "method" : "GET"
   },
   "response" : {

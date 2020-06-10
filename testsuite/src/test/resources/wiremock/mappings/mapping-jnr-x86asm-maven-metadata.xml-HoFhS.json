@@ -1,7 +1,7 @@
 {
   "id" : "fde3c645-f4c4-35de-af07-a49521395acd",
   "request" : {
-    "url" : "/api/group/DApublic/com/github/jnr/jnr-x86asm/maven-metadata.xml",
+    "url" : "/api/content/maven/group/DApublic/com/github/jnr/jnr-x86asm/maven-metadata.xml",
     "method" : "GET"
   },
   "response" : {

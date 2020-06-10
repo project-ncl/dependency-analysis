@@ -1,7 +1,7 @@
 {
   "id" : "6fd11749-c78c-346c-9855-8e1de80e5de7",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-promote-model-java/0.25.0/aprox-promote-model-java-0.25.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/aprox/aprox-promote-model-java/0.25.0/aprox-promote-model-java-0.25.0.pom",
     "method" : "GET"
   },
   "response" : {

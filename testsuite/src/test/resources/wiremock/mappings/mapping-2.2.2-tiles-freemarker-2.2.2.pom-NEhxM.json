@@ -1,7 +1,7 @@
 {
   "id" : "ba6cf8d0-62a4-3922-9ce4-2698295e0a87",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-freemarker/2.2.2/tiles-freemarker-2.2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-freemarker/2.2.2/tiles-freemarker-2.2.2.pom",
     "method" : "GET"
   },
   "response" : {

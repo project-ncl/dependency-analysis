@@ -1,7 +1,7 @@
 {
   "id" : "2d73e9fe-e0e1-3135-a99c-cfe745109850",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-master/6/tiles-master-6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-master/6/tiles-master-6.pom",
     "method" : "GET"
   },
   "response" : {

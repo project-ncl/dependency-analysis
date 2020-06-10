@@ -1,7 +1,7 @@
 {
   "id" : "eaa235d1-85ae-39c6-819d-1d11a09c710d",
   "request" : {
-    "url" : "/api/group/DApublic/com/googlecode/concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.3.1/concurrentlinkedhashmap-lru-1.3.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/googlecode/concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.3.1/concurrentlinkedhashmap-lru-1.3.1.pom",
     "method" : "GET"
   },
   "response" : {

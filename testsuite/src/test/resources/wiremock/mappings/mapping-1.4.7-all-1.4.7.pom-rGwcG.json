@@ -1,7 +1,7 @@
 {
   "id" : "39de9ffb-31e1-3bb3-8fff-f77144a5803f",
   "request" : {
-    "url" : "/api/group/DApublic/com/sun/mail/all/1.4.7/all-1.4.7.pom",
+    "url" : "/api/content/maven/group/DApublic/com/sun/mail/all/1.4.7/all-1.4.7.pom",
     "method" : "GET"
   },
   "response" : {

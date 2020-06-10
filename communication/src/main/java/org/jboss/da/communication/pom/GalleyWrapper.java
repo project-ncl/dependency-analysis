@@ -61,7 +61,7 @@ public class GalleyWrapper implements AutoCloseable {
 
     /**
      * Return GalleyWrapper pointer to artifact specified in given pom.
-     * 
+     *
      * @param pomPath Path to the pom file relative to the scm repostiory root.
      * @return GalleyWrapper "pointer" to an artifact.
      * @throws PomAnalysisException
@@ -76,7 +76,7 @@ public class GalleyWrapper implements AutoCloseable {
 
     /**
      * Returns GalleyWrapper pointer to artifact representing given GAV.
-     * 
+     *
      * @param gav GAV of the artifact.
      * @return GalleyWrapper "pointer" to an artifact.
      * @throws org.jboss.da.communication.pom.PomAnalysisException
@@ -85,8 +85,9 @@ public class GalleyWrapper implements AutoCloseable {
         try {
             for (Path p : LocalRepo.getAllPoms(scm)) {
                 PomPeek pp = new PomPeek(p.toFile());
-                if (pp.getKey() == null)
+                if (pp.getKey() == null) {
                     continue;
+                }
                 if (gav.equals(generateGAV(pp.getKey()))) {
                     return new Artifact(p);
                 }
@@ -99,7 +100,7 @@ public class GalleyWrapper implements AutoCloseable {
 
     /**
      * Return modules of artifact, including the artifact itselve. Module poms that couldn't be parsed are ommited.
-     * 
+     *
      * @param artifact root artifact.
      * @return Set of all modules.
      */
@@ -115,7 +116,7 @@ public class GalleyWrapper implements AutoCloseable {
     /**
      * Return all (transitive) modules of artifact, including the artifact itselve. Module poms that couldn't be parsed
      * are ommited.
-     * 
+     *
      * @param artifact root artifact.
      * @return Set of all modules.
      */
@@ -135,7 +136,7 @@ public class GalleyWrapper implements AutoCloseable {
     /**
      * Returns {@link MavenPomView} for given artifact. You need to set locations so the galley know where to look for
      * dependencies.
-     * 
+     *
      * @param artifact
      * @return MavenPomView of the artifact
      * @throws org.jboss.da.communication.pom.PomAnalysisException
@@ -154,7 +155,7 @@ public class GalleyWrapper implements AutoCloseable {
     /**
      * Returns first level dependencies of an artifact. You need to set locations so the galley know where to look for
      * dependencies.
-     * 
+     *
      * @param artifact Dependencies of this artifact will be returned
      * @return First level dependencies.
      * @throws org.jboss.da.communication.pom.PomAnalysisException
@@ -180,7 +181,7 @@ public class GalleyWrapper implements AutoCloseable {
 
     /**
      * Add repositories Galley should use when resolving dependencies.
-     * 
+     *
      * @param repositories List of repository URLs.
      */
     public void addLocations(List<String> repositories) {
@@ -191,7 +192,7 @@ public class GalleyWrapper implements AutoCloseable {
 
     /**
      * Add repositories Gally should use when resolving dependencies by analysing pom files in SCM repository.
-     * 
+     *
      * @param pomReader instance of {@link PomReader} used for parsing pom files
      * @throws IOException
      */
@@ -210,7 +211,7 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Add maven central and group from indy repositories among repositories Gally should use when resolving
+     * Add maven central and group from indy repositories among repositories Galley should use when resolving
      * dependencies.
      */
     public void addDefaultLocations(Configuration config) {
@@ -218,8 +219,8 @@ public class GalleyWrapper implements AutoCloseable {
             locations.add(
                     new SimpleLocation(
                             "indy",
-                            config.getConfig().getAproxServer() + "/api/group/"
-                                    + config.getConfig().getAproxGroupPublic() + "/"));
+                            config.getGlobalConfig().getIndyUrl() + "/api/content/maven/group/"
+                                    + config.getConfig().getIndyGroupPublic() + "/"));
         } catch (ConfigurationParseException e) {
             log.error("Failed to add indy group to locations" + e);
         }
@@ -233,7 +234,7 @@ public class GalleyWrapper implements AutoCloseable {
     /**
      * Return all transitive dependencies of given artifact. Dependencies of test-scope and provided-scope dependencies
      * are ommited. You need to set locations so the galley know where to look for dependencies.
-     * 
+     *
      * @param artifact Dependencies of this artifact will be returned
      * @return Set of dependency relationships describing the dependency graph.
      * @throws GalleyMavenException
@@ -250,7 +251,7 @@ public class GalleyWrapper implements AutoCloseable {
     /**
      * Return all transitive dependencies of given artifact. You need to set locations so the galley know where to look
      * for dependencies.
-     * 
+     *
      * @param artifact Dependencies of this artifact will be returned
      * @param testDeps true if should dependencies of test-scope dependency be resolved.
      * @param providedDeps true if should dependencies of provided-scope dependency be resolved.
@@ -277,8 +278,9 @@ public class GalleyWrapper implements AutoCloseable {
             }
             deps.add(dr);
 
-            if (!shouldAnalyzeDependencies(dr, testDeps, providedDeps))
+            if (!shouldAnalyzeDependencies(dr, testDeps, providedDeps)) {
                 continue;
+            }
 
             try {
                 work.addAll(getDeps(dr.getTarget(), processor, src, disConf));
@@ -306,7 +308,7 @@ public class GalleyWrapper implements AutoCloseable {
     /**
      * Return true if scope is compile, runtime, test (when {@code testDeps} is true) or provided (when
      * {@code providedDeps} is true).
-     * 
+     *
      * @param dr Dependency relationship which scope we compare.
      * @param testDeps
      * @param providedDeps
@@ -360,8 +362,9 @@ public class GalleyWrapper implements AutoCloseable {
 
         private Artifact(final Path p) {
             path = p;
-            if (path.endsWith("pom.xml"))
+            if (path.endsWith("pom.xml")) {
                 path = path.getParent();
+            }
             pp = new PomPeek(path.resolve("pom.xml").toFile());
             ref = pp.getKey();
         }
@@ -376,8 +379,9 @@ public class GalleyWrapper implements AutoCloseable {
         }
 
         public GAV getGAV() throws PomAnalysisException {
-            if (ref == null)
+            if (ref == null) {
                 throw new PomAnalysisException("Failed to get gav from " + path);
+            }
 
             return new GAV(ref.getGroupId(), ref.getArtifactId(), ref.getVersionString());
         }

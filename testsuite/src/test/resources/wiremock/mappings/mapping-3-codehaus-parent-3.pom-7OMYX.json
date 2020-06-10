@@ -1,7 +1,7 @@
 {
   "id" : "5e97d22d-4fb8-301f-8b73-4a6e23995183",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/codehaus-parent/3/codehaus-parent-3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/codehaus-parent/3/codehaus-parent-3.pom",
     "method" : "GET"
   },
   "response" : {

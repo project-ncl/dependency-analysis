@@ -1,7 +1,7 @@
 {
   "id" : "ecfe267f-dec3-33bb-86a5-e3fd729c0a1f",
   "request" : {
-    "url" : "/api/group/DApublic/org/kie/remote/ws/kie-remote-ws-common/6.2.0.Final/kie-remote-ws-common-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/kie/remote/ws/kie-remote-ws-common/6.2.0.Final/kie-remote-ws-common-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "1d0fc6db-1442-3aa1-8ba1-24360608867d",
   "request" : {
-    "url" : "/api/group/DApublic/com/thoughtworks/paranamer/paranamer-parent/2.6/paranamer-parent-2.6.pom",
+    "url" : "/api/content/maven/group/DApublic/com/thoughtworks/paranamer/paranamer-parent/2.6/paranamer-parent-2.6.pom",
     "method" : "GET"
   },
   "response" : {

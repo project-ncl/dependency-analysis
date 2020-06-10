@@ -1,7 +1,7 @@
 {
   "id" : "df2e29a5-cc11-378b-aa64-f3b73c9e62c8",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus/2.1.1/guice-plexus-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-plexus/2.1.1/guice-plexus-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -53,8 +53,8 @@ public class CartographerConnectorImpl implements CartographerConnector {
         try {
             PasswordManager emptyPasswordManager = new MemoryPasswordManager();
             SiteConfig sc = new SiteConfigBuilder().withId("Carto")
-                    .withUri(config.getConfig().getCartographerServerUrl())
-                    .withRequestTimeoutSeconds(config.getConfig().getAproxRequestTimeout())
+                    .withUri(config.getGlobalConfig().getCartographerUrl())
+                    .withRequestTimeoutSeconds(config.getConfig().getIndyRequestTimeout())
                     .build();
             HttpFactory httpFactory = new HttpFactory(emptyPasswordManager);
             cartographer = new CartographerRESTClient(sc, httpFactory);
@@ -79,7 +79,7 @@ public class CartographerConnectorImpl implements CartographerConnector {
 
             SingleGraphRequest r = new SingleGraphRequest();
             r.setWorkspaceId("export-" + rootRef.toString());
-            r.setSource("group:" + config.getConfig().getAproxGroupPublic());
+            r.setSource("group:" + config.getConfig().getIndyGroupPublic());
             r.setPatcherIds(DepgraphPatcherConstants.ALL_PATCHERS);
             r.setResolve(true);
             r.setGraph(cartographer.newGraphDescription().withRoots(rootRef).withPreset("requires").build());
@@ -91,10 +91,11 @@ public class CartographerConnectorImpl implements CartographerConnector {
                 return new GAVDependencyTree(gav);
             }
 
-            if (export.getRelationships() == null)
+            if (export.getRelationships() == null) {
                 return new GAVDependencyTree(gav);
-            else
+            } else {
                 return generateGAVDependencyTree(export, gav);
+            }
 
         } catch (ClientHttpException | ConfigurationParseException | CartoClientException e) {
             throw new RepositoryException("Error while trying to communicate with Cartographer", e);

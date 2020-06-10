@@ -1,7 +1,7 @@
 {
   "id" : "141b98ae-b8e1-3bf5-8d6b-52b0ee7d22a4",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-models-parent/0.24.0/aprox-models-parent-0.24.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/aprox/aprox-models-parent/0.24.0/aprox-models-parent-0.24.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "fd16c3c9-8acc-337b-8b67-17ea83b6339b",
   "request" : {
-    "url" : "/api/group/DApublic/xalan/xalan/2.7.2/xalan-2.7.2.pom",
+    "url" : "/api/content/maven/group/DApublic/xalan/xalan/2.7.2/xalan-2.7.2.pom",
     "method" : "GET"
   },
   "response" : {

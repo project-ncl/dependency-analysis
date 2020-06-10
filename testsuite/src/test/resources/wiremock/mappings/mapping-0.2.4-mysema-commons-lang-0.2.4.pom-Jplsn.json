@@ -1,7 +1,7 @@
 {
   "id" : "ceb9adfc-cff6-32e3-b0b3-c70ea95b65af",
   "request" : {
-    "url" : "/api/group/DApublic/com/mysema/commons/mysema-commons-lang/0.2.4/mysema-commons-lang-0.2.4.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mysema/commons/mysema-commons-lang/0.2.4/mysema-commons-lang-0.2.4.pom",
     "method" : "GET"
   },
   "response" : {

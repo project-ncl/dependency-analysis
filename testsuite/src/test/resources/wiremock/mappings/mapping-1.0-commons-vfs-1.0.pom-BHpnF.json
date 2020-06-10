@@ -1,7 +1,7 @@
 {
   "id" : "acd2dcf7-45e2-3646-88fe-1812db9931d6",
   "request" : {
-    "url" : "/api/group/DApublic/commons-vfs/commons-vfs/1.0/commons-vfs-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-vfs/commons-vfs/1.0/commons-vfs-1.0.pom",
     "method" : "GET"
   },
   "response" : {

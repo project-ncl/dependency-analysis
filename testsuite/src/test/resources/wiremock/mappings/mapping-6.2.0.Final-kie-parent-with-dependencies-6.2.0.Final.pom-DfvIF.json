@@ -1,7 +1,7 @@
 {
   "id" : "f27f21d9-93a2-32a6-83e4-14331c7211c9",
   "request" : {
-    "url" : "/api/group/DApublic/org/kie/kie-parent-with-dependencies/6.2.0.Final/kie-parent-with-dependencies-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/kie/kie-parent-with-dependencies/6.2.0.Final/kie-parent-with-dependencies-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

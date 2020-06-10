@@ -1,7 +1,7 @@
 {
   "id" : "d847a5d5-0dec-3fe7-9369-39a5fb4ef533",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/logging/jboss-logging-spi/2.1.2.GA/jboss-logging-spi-2.1.2.GA.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/logging/jboss-logging-spi/2.1.2.GA/jboss-logging-spi-2.1.2.GA.pom",
     "method" : "GET"
   },
   "response" : {

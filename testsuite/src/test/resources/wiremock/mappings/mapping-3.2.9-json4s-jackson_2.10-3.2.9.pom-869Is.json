@@ -1,7 +1,7 @@
 {
   "id" : "9b4141d2-ac90-3a1f-ad0b-6e97f416d2ac",
   "request" : {
-    "url" : "/api/group/DApublic/org/json4s/json4s-jackson_2.10/3.2.9/json4s-jackson_2.10-3.2.9.pom",
+    "url" : "/api/content/maven/group/DApublic/org/json4s/json4s-jackson_2.10/3.2.9/json4s-jackson_2.10-3.2.9.pom",
     "method" : "GET"
   },
   "response" : {

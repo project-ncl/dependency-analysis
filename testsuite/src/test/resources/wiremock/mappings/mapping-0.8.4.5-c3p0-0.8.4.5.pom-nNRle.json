@@ -1,7 +1,7 @@
 {
   "id" : "4e41a803-2a87-3300-83fa-d2d4b65ad8b6",
   "request" : {
-    "url" : "/api/group/DApublic/c3p0/c3p0/0.8.4.5/c3p0-0.8.4.5.pom",
+    "url" : "/api/content/maven/group/DApublic/c3p0/c3p0/0.8.4.5/c3p0-0.8.4.5.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "b38b93b6-2ce4-3d61-a464-9d9bbba14ae9",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-aop/4.0.9.RELEASE/spring-aop-4.0.9.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-aop/4.0.9.RELEASE/spring-aop-4.0.9.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

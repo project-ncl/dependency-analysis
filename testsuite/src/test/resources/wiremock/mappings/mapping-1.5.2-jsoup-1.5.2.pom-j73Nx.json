@@ -1,7 +1,7 @@
 {
   "id" : "ad91a0b5-205e-3eac-8d6b-836b4f0f75ea",
   "request" : {
-    "url" : "/api/group/DApublic/org/jsoup/jsoup/1.5.2/jsoup-1.5.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jsoup/jsoup/1.5.2/jsoup-1.5.2.pom",
     "method" : "GET"
   },
   "response" : {

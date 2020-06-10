@@ -1,7 +1,7 @@
 {
   "id" : "3d298156-0f0e-329c-a165-cc601dc08ead",
   "request" : {
-    "url" : "/api/group/DApublic/io/swagger/swagger-core/1.5.4/swagger-core-1.5.4.pom",
+    "url" : "/api/content/maven/group/DApublic/io/swagger/swagger-core/1.5.4/swagger-core-1.5.4.pom",
     "method" : "GET"
   },
   "response" : {

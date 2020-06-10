@@ -1,7 +1,7 @@
 {
   "id" : "33ba3325-b3ca-3cba-a806-1f74b8237e81",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/httpcomponents/httpcomponents-core/4.3.2/httpcomponents-core-4.3.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/httpcomponents/httpcomponents-core/4.3.2/httpcomponents-core-4.3.2.pom",
     "method" : "GET"
   },
   "response" : {

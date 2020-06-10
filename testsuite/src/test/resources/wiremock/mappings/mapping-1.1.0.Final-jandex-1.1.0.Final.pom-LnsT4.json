@@ -1,7 +1,7 @@
 {
   "id" : "142897fd-a510-3c8e-8ae4-58f87bf03855",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

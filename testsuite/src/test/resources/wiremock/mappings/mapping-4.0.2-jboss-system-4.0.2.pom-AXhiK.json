@@ -1,7 +1,7 @@
 {
   "id" : "d7402dd1-f96e-34d7-8bd5-ac982e21826a",
   "request" : {
-    "url" : "/api/group/DApublic/jboss/jboss-system/4.0.2/jboss-system-4.0.2.pom",
+    "url" : "/api/content/maven/group/DApublic/jboss/jboss-system/4.0.2/jboss-system-4.0.2.pom",
     "method" : "GET"
   },
   "response" : {

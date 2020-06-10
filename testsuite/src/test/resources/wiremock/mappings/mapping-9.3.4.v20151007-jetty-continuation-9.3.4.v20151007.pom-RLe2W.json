@@ -1,7 +1,7 @@
 {
   "id" : "ad5262dd-c181-3051-a318-46bc8aeef635",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/jetty/jetty-continuation/9.3.4.v20151007/jetty-continuation-9.3.4.v20151007.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/jetty/jetty-continuation/9.3.4.v20151007/jetty-continuation-9.3.4.v20151007.pom",
     "method" : "GET"
   },
   "response" : {

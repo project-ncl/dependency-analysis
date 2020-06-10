@@ -1,7 +1,7 @@
 {
   "id" : "a65eff8c-4acd-37c6-9ddc-83ac78f4a0b5",
   "request" : {
-    "url" : "/api/group/DApublic/org/guvnor/guvnor-bom/6.2.0.Final/guvnor-bom-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/guvnor/guvnor-bom/6.2.0.Final/guvnor-bom-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

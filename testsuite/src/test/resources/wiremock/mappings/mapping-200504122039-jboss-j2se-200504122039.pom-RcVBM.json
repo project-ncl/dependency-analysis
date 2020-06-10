@@ -1,7 +1,7 @@
 {
   "id" : "a6a981b9-dea6-3173-a16c-18444ec61e75",
   "request" : {
-    "url" : "/api/group/DApublic/jboss/jboss-j2se/200504122039/jboss-j2se-200504122039.pom",
+    "url" : "/api/content/maven/group/DApublic/jboss/jboss-j2se/200504122039/jboss-j2se-200504122039.pom",
     "method" : "GET"
   },
   "response" : {

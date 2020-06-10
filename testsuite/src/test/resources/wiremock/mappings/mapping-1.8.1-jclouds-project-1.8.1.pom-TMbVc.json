@@ -1,7 +1,7 @@
 {
   "id" : "c9d23dac-19b7-310e-8d9e-2661e41dc5fd",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/jclouds/jclouds-project/1.8.1/jclouds-project-1.8.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/jclouds/jclouds-project/1.8.1/jclouds-project-1.8.1.pom",
     "method" : "GET"
   },
   "response" : {

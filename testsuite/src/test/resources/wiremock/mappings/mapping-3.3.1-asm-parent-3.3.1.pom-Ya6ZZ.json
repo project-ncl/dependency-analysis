@@ -1,7 +1,7 @@
 {
   "id" : "fd80b389-b673-37c1-a5d4-866e3e17fca5",
   "request" : {
-    "url" : "/api/group/DApublic/asm/asm-parent/3.3.1/asm-parent-3.3.1.pom",
+    "url" : "/api/content/maven/group/DApublic/asm/asm-parent/3.3.1/asm-parent-3.3.1.pom",
     "method" : "GET"
   },
   "response" : {

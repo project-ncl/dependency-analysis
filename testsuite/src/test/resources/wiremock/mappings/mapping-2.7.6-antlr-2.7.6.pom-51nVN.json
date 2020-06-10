@@ -1,7 +1,7 @@
 {
   "id" : "2548c7a4-8bc8-3a00-8513-b74260d21716",
   "request" : {
-    "url" : "/api/group/DApublic/antlr/antlr/2.7.6/antlr-2.7.6.pom",
+    "url" : "/api/content/maven/group/DApublic/antlr/antlr/2.7.6/antlr-2.7.6.pom",
     "method" : "GET"
   },
   "response" : {

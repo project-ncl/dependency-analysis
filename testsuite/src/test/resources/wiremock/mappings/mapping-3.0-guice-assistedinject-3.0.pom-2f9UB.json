@@ -1,7 +1,7 @@
 {
   "id" : "c722c860-bd0d-3098-9182-63d2cd39db55",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0.pom",
     "method" : "GET"
   },
   "response" : {

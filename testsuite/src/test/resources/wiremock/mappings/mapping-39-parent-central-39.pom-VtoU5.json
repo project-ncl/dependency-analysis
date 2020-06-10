@@ -1,7 +1,7 @@
 {
   "id" : "ba40faf7-e1ad-3b16-8319-569dafe5c989",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/build/parent-central/39/parent-central-39.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/build/parent-central/39/parent-central-39.pom",
     "method" : "GET"
   },
   "response" : {

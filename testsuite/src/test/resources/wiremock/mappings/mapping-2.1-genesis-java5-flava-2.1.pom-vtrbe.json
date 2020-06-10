@@ -1,7 +1,7 @@
 {
   "id" : "0ced479f-0604-35e0-8240-6c05c59f427b",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/geronimo/genesis/genesis-java5-flava/2.1/genesis-java5-flava-2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/geronimo/genesis/genesis-java5-flava/2.1/genesis-java5-flava-2.1.pom",
     "method" : "GET"
   },
   "response" : {

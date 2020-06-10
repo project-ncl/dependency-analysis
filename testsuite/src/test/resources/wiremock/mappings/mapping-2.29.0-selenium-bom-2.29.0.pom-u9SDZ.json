@@ -1,7 +1,7 @@
 {
   "id" : "7fac32ee-f27a-3772-90f9-60c8d0c63901",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/arquillian/selenium/selenium-bom/2.29.0/selenium-bom-2.29.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/arquillian/selenium/selenium-bom/2.29.0/selenium-bom-2.29.0.pom",
     "method" : "GET"
   },
   "response" : {

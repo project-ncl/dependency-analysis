@@ -1,7 +1,7 @@
 {
   "id" : "cb2e935f-8695-3b89-822f-af1c7f08bc46",
   "request" : {
-    "url" : "/api/group/DApublic/jline/jline/0.9.94/jline-0.9.94.pom",
+    "url" : "/api/content/maven/group/DApublic/jline/jline/0.9.94/jline-0.9.94.pom",
     "method" : "GET"
   },
   "response" : {

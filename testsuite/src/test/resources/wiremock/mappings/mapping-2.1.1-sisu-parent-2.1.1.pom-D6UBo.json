@@ -1,7 +1,7 @@
 {
   "id" : "73c026bb-1fae-35f0-a487-165e914fb657",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/sisu-parent/2.1.1/sisu-parent-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/sisu-parent/2.1.1/sisu-parent-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

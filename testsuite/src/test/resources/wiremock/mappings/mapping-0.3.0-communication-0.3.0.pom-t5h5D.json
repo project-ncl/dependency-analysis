@@ -1,7 +1,7 @@
 {
   "id" : "9e6db279-8bcd-3a6b-a7a4-3e7359cc0bcc",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/da/communication/0.3.0/communication-0.3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/da/communication/0.3.0/communication-0.3.0.pom",
     "method" : "GET"
   },
   "response" : {

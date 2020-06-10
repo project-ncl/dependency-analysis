@@ -1,7 +1,7 @@
 {
   "id" : "446df836-ac0f-33ca-9cb6-5a30f6a657b4",
   "request" : {
-    "url" : "/api/group/DApublic/javax/transaction/javax.transaction-api/1.2/javax.transaction-api-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/transaction/javax.transaction-api/1.2/javax.transaction-api-1.2.pom",
     "method" : "GET"
   },
   "response" : {

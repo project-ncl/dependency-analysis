@@ -1,7 +1,7 @@
 {
   "id" : "fbdb6160-85fe-34a9-9796-3c6e6e6abcae",
   "request" : {
-    "url" : "/api/group/DApublic/org/quartz-scheduler/quartz-parent/1.8.6/quartz-parent-1.8.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/quartz-scheduler/quartz-parent/1.8.6/quartz-parent-1.8.6.pom",
     "method" : "GET"
   },
   "response" : {

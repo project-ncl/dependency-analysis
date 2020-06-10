@@ -1,7 +1,7 @@
 {
   "id" : "ea8e7893-5b2a-3dcb-9f0d-a66f7070d293",
   "request" : {
-    "url" : "/api/group/DApublic/net/java/dev/jna/jna/3.2.3/jna-3.2.3.pom",
+    "url" : "/api/content/maven/group/DApublic/net/java/dev/jna/jna/3.2.3/jna-3.2.3.pom",
     "method" : "GET"
   },
   "response" : {

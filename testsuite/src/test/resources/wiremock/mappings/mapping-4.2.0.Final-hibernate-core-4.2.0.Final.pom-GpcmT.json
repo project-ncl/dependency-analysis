@@ -1,7 +1,7 @@
 {
   "id" : "e2346c7e-4d3e-3509-b26b-9b8e53e5076a",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/hibernate-core/4.2.0.Final/hibernate-core-4.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/hibernate-core/4.2.0.Final/hibernate-core-4.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

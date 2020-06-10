@@ -1,7 +1,7 @@
 {
   "id" : "d49df2ed-21a0-31a1-a4ba-af650e6af277",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/felix/javax.servlet/1.0.0/javax.servlet-1.0.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/felix/javax.servlet/1.0.0/javax.servlet-1.0.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "85802fcf-ee2a-3676-a89f-0601304319e1",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/spec/jboss-javaee-6.0/3.0.2.Final-redhat-13/jboss-javaee-6.0-3.0.2.Final-redhat-13.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/spec/jboss-javaee-6.0/3.0.2.Final-redhat-13/jboss-javaee-6.0-3.0.2.Final-redhat-13.pom",
     "method" : "GET"
   },
   "response" : {

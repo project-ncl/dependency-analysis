@@ -1,7 +1,7 @@
 {
   "id" : "9c95b95e-8980-337d-aab7-172e987e6e7b",
   "request" : {
-    "url" : "/api/group/DApublic/sslext/sslext/1.2-0/sslext-1.2-0.pom",
+    "url" : "/api/content/maven/group/DApublic/sslext/sslext/1.2-0/sslext-1.2-0.pom",
     "method" : "GET"
   },
   "response" : {

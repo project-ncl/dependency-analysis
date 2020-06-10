@@ -1,7 +1,7 @@
 {
   "id" : "dbc9522a-3976-3a71-ac7e-775cb28f96f5",
   "request" : {
-    "url" : "/api/group/DApublic/jfree/jfreechart/1.0.12/jfreechart-1.0.12.pom",
+    "url" : "/api/content/maven/group/DApublic/jfree/jfreechart/1.0.12/jfreechart-1.0.12.pom",
     "method" : "GET"
   },
   "response" : {

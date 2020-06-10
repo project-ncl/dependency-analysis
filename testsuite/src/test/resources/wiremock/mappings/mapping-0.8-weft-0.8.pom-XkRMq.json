@@ -1,7 +1,7 @@
 {
   "id" : "cd6dd7dc-ab4c-3973-a494-9c230e7cd959",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/cdi/util/weft/0.8/weft-0.8.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/cdi/util/weft/0.8/weft-0.8.pom",
     "method" : "GET"
   },
   "response" : {

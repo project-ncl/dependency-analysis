@@ -1,7 +1,7 @@
 {
   "id" : "17a00692-5e4a-359d-882d-5009bfe33287",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/boms/web-commons-bom/9/web-commons-bom-9.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/boms/web-commons-bom/9/web-commons-bom-9.pom",
     "method" : "GET"
   },
   "response" : {

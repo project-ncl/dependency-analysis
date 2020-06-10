@@ -1,7 +1,7 @@
 {
   "id" : "88f0e6d7-afda-31d1-b37f-42d592ec4bb0",
   "request" : {
-    "url" : "/api/group/DApublic/commons-digester/commons-digester/2.0/commons-digester-2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-digester/commons-digester/2.0/commons-digester-2.0.pom",
     "method" : "GET"
   },
   "response" : {

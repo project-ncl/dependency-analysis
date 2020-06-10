@@ -1,7 +1,7 @@
 {
   "id" : "282393c3-04ce-3773-9230-bd43f49a9d5f",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-parent/3.0.5/tiles-parent-3.0.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-parent/3.0.5/tiles-parent-3.0.5.pom",
     "method" : "GET"
   },
   "response" : {

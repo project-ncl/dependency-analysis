@@ -1,7 +1,7 @@
 {
   "id" : "5ea64cbd-0f1d-35f9-a72a-e8c39e3e5619",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/cartographer/cartographer-spi/0.10.2/cartographer-spi-0.10.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/cartographer/cartographer-spi/0.10.2/cartographer-spi-0.10.2.pom",
     "method" : "GET"
   },
   "response" : {

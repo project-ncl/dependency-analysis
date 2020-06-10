@@ -1,7 +1,7 @@
 {
   "id" : "c2b13cdd-f42d-3370-b8ad-df00e80f8fc6",
   "request" : {
-    "url" : "/api/group/DApublic/commons-codec/commons-codec/1.3/commons-codec-1.3.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-codec/commons-codec/1.3/commons-codec-1.3.pom",
     "method" : "GET"
   },
   "response" : {

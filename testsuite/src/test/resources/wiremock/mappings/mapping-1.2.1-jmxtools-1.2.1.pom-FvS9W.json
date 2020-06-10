@@ -1,7 +1,7 @@
 {
   "id" : "a629d492-a874-306f-b661-ca707117ad7e",
   "request" : {
-    "url" : "/api/group/DApublic/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1.pom",
     "method" : "GET"
   },
   "response" : {

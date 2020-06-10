@@ -1,7 +1,7 @@
 {
   "id" : "6187a71d-180f-365c-b57d-69f64874755d",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/geronimo/specs/geronimo-annotation_1.0_spec/1.1.1/geronimo-annotation_1.0_spec-1.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/geronimo/specs/geronimo-annotation_1.0_spec/1.1.1/geronimo-annotation_1.0_spec-1.1.1.pom",
     "method" : "GET"
   },
   "response" : {

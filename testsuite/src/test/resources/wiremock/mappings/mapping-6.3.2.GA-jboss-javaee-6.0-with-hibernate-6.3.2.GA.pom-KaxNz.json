@@ -1,7 +1,7 @@
 {
   "id" : "3f2635a6-8426-3643-9489-9dc09d26ada2",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/bom/eap/jboss-javaee-6.0-with-hibernate/6.3.2.GA/jboss-javaee-6.0-with-hibernate-6.3.2.GA.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/bom/eap/jboss-javaee-6.0-with-hibernate/6.3.2.GA/jboss-javaee-6.0-with-hibernate-6.3.2.GA.pom",
     "method" : "GET"
   },
   "response" : {

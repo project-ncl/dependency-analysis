@@ -1,7 +1,7 @@
 {
   "id" : "ccfb9648-dd99-3b00-9e06-5331f6c7c1c4",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-caches/0.10.2/galley-caches-0.10.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/galley/galley-caches/0.10.2/galley-caches-0.10.2.pom",
     "method" : "GET"
   },
   "response" : {

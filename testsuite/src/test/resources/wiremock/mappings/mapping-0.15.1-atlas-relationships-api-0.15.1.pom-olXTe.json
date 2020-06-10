@@ -1,7 +1,7 @@
 {
   "id" : "fc291402-449e-3a42-8cef-0269555a4d36",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-relationships-api/0.15.1/atlas-relationships-api-0.15.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/atlas/atlas-relationships-api/0.15.1/atlas-relationships-api-0.15.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "0d24a219-0414-3c4a-936e-21f96aaf881a",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "b83d2512-0894-3982-8d4f-cfb4b85fdd35",
   "request" : {
-    "url" : "/api/group/DApublic/commons-attributes/commons-attributes-compiler/2.2/commons-attributes-compiler-2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-attributes/commons-attributes-compiler/2.2/commons-attributes-compiler-2.2.pom",
     "method" : "GET"
   },
   "response" : {

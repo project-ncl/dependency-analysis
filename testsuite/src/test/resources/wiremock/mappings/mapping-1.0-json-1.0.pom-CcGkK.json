@@ -1,7 +1,7 @@
 {
   "id" : "eef5daa4-1d10-3f6a-9602-aa2e935dc08e",
   "request" : {
-    "url" : "/api/group/DApublic/org/glassfish/json/1.0/json-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/glassfish/json/1.0/json-1.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "d8f0d3fa-731b-3dcf-9d2c-45f370bd450f",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/neo4j-jmx/1.9.6/neo4j-jmx-1.9.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/neo4j-jmx/1.9.6/neo4j-jmx-1.9.6.pom",
     "method" : "GET"
   },
   "response" : {

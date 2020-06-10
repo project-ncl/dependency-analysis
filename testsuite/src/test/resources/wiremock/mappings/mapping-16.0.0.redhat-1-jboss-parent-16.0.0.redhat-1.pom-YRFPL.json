@@ -1,7 +1,7 @@
 {
   "id" : "92f52024-4054-360c-9b04-ad946a7b01af",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/jboss-parent/16.0.0.redhat-1/jboss-parent-16.0.0.redhat-1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/jboss-parent/16.0.0.redhat-1/jboss-parent-16.0.0.redhat-1.pom",
     "method" : "GET"
   },
   "response" : {

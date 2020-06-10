@@ -1,7 +1,7 @@
 {
   "id" : "24544e0a-8adb-3234-b15c-51ece3ac2d09",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/jettison/jettison/1.2/jettison-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/jettison/jettison/1.2/jettison-1.2.pom",
     "method" : "GET"
   },
   "response" : {

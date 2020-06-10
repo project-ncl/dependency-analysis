@@ -1,7 +1,7 @@
 {
   "id" : "022351e1-215f-3aca-b9bf-4e6facfa6d8b",
   "request" : {
-    "url" : "/api/group/DApublic/com/mchange/c3p0/0.9.2.1/c3p0-0.9.2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mchange/c3p0/0.9.2.1/c3p0-0.9.2.1.pom",
     "method" : "GET"
   },
   "response" : {

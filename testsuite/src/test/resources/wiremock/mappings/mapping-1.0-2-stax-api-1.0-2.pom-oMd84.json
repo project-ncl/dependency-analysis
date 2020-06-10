@@ -1,7 +1,7 @@
 {
   "id" : "0b304711-0f73-30b8-b9d4-770ff9c50c72",
   "request" : {
-    "url" : "/api/group/DApublic/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.pom",
     "method" : "GET"
   },
   "response" : {

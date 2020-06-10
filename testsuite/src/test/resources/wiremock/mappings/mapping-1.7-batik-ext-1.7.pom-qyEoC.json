@@ -1,7 +1,7 @@
 {
   "id" : "a315eec3-928e-35a8-87ad-a0c06f522c45",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/xmlgraphics/batik-ext/1.7/batik-ext-1.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/xmlgraphics/batik-ext/1.7/batik-ext-1.7.pom",
     "method" : "GET"
   },
   "response" : {

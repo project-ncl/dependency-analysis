@@ -1,7 +1,7 @@
 {
   "id" : "2343969a-65ff-3e25-bdb0-7c636f73659c",
   "request" : {
-    "url" : "/api/group/DApublic/jgroups/jgroups-all/2.2.8/jgroups-all-2.2.8.pom",
+    "url" : "/api/content/maven/group/DApublic/jgroups/jgroups-all/2.2.8/jgroups-all-2.2.8.pom",
     "method" : "GET"
   },
   "response" : {

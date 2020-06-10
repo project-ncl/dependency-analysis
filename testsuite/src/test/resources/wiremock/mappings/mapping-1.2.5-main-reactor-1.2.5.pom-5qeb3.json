@@ -1,7 +1,7 @@
 {
   "id" : "3ba4a055-2ab1-30e6-a350-994badc4d6f3",
   "request" : {
-    "url" : "/api/group/DApublic/org/jibx/config/main-reactor/1.2.5/main-reactor-1.2.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jibx/config/main-reactor/1.2.5/main-reactor-1.2.5.pom",
     "method" : "GET"
   },
   "response" : {

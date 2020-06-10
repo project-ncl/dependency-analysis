@@ -1,7 +1,7 @@
 {
   "id" : "eca79208-aa83-3ff9-8b59-10ac912dc375",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/datatype/jackson-datatype-joda/2.4.5/jackson-datatype-joda-2.4.5.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/datatype/jackson-datatype-joda/2.4.5/jackson-datatype-joda-2.4.5.pom",
     "method" : "GET"
   },
   "response" : {

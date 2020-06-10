@@ -1,7 +1,7 @@
 {
   "id" : "4e68f3e0-2d0d-3864-96cc-9d47bd88cb36",
   "request" : {
-    "url" : "/api/group/DApublic/ant/ant-trax/1.6.2/ant-trax-1.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/ant/ant-trax/1.6.2/ant-trax-1.6.2.pom",
     "method" : "GET"
   },
   "response" : {

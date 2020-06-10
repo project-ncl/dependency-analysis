@@ -1,7 +1,7 @@
 {
   "id" : "32dfa44a-e3d8-3935-8145-c0b5cc514def",
   "request" : {
-    "url" : "/api/group/DApublic/com/headius/invokebinder/1.2/invokebinder-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/headius/invokebinder/1.2/invokebinder-1.2.pom",
     "method" : "GET"
   },
   "response" : {

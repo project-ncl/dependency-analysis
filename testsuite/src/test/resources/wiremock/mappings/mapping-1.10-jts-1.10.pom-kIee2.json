@@ -1,7 +1,7 @@
 {
   "id" : "950c5eda-b456-3ab8-9090-d1e87861f995",
   "request" : {
-    "url" : "/api/group/DApublic/com/vividsolutions/jts/1.10/jts-1.10.pom",
+    "url" : "/api/content/maven/group/DApublic/com/vividsolutions/jts/1.10/jts-1.10.pom",
     "method" : "GET"
   },
   "response" : {

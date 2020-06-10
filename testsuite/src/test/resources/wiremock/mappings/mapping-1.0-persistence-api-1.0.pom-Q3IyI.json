@@ -1,7 +1,7 @@
 {
   "id" : "ae2ae9d7-cbf6-3da8-912d-14c788f6e3cb",
   "request" : {
-    "url" : "/api/group/DApublic/javax/persistence/persistence-api/1.0/persistence-api-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/persistence/persistence-api/1.0/persistence-api-1.0.pom",
     "method" : "GET"
   },
   "response" : {

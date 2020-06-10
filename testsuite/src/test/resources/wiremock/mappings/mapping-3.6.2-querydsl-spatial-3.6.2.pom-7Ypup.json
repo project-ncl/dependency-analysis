@@ -1,7 +1,7 @@
 {
   "id" : "741cf4da-18dd-3720-9831-1e68458ff868",
   "request" : {
-    "url" : "/api/group/DApublic/com/mysema/querydsl/querydsl-spatial/3.6.2/querydsl-spatial-3.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mysema/querydsl/querydsl-spatial/3.6.2/querydsl-spatial-3.6.2.pom",
     "method" : "GET"
   },
   "response" : {

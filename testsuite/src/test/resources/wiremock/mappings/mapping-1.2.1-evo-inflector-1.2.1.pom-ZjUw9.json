@@ -1,7 +1,7 @@
 {
   "id" : "0813e7e1-c019-3a66-b17e-5db1152c417f",
   "request" : {
-    "url" : "/api/group/DApublic/org/atteo/evo-inflector/1.2.1/evo-inflector-1.2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/atteo/evo-inflector/1.2.1/evo-inflector-1.2.1.pom",
     "method" : "GET"
   },
   "response" : {

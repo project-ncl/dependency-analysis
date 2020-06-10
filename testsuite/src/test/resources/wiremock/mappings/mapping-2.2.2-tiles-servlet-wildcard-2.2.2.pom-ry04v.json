@@ -1,7 +1,7 @@
 {
   "id" : "11dafe02-0ada-3ff2-a6d2-a7867bd02789",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-servlet-wildcard/2.2.2/tiles-servlet-wildcard-2.2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-servlet-wildcard/2.2.2/tiles-servlet-wildcard-2.2.2.pom",
     "method" : "GET"
   },
   "response" : {

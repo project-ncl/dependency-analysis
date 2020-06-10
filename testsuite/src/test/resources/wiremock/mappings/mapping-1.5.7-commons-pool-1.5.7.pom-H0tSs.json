@@ -1,7 +1,7 @@
 {
   "id" : "b9636562-6b8c-3cd9-833a-ed0f361e6629",
   "request" : {
-    "url" : "/api/group/DApublic/commons-pool/commons-pool/1.5.7/commons-pool-1.5.7.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-pool/commons-pool/1.5.7/commons-pool-1.5.7.pom",
     "method" : "GET"
   },
   "response" : {

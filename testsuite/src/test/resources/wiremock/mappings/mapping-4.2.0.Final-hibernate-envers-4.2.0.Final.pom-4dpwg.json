@@ -1,7 +1,7 @@
 {
   "id" : "9c922e0f-4cd4-3f91-92ce-c6f2fc94d1f2",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/hibernate-envers/4.2.0.Final/hibernate-envers-4.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/hibernate-envers/4.2.0.Final/hibernate-envers-4.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

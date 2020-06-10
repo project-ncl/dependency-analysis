@@ -1,7 +1,7 @@
 {
   "id" : "db28ec5e-23c0-3b99-a66b-b1ee89fb8d21",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/ant/ant-junit/1.7.1/ant-junit-1.7.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/ant/ant-junit/1.7.1/ant-junit-1.7.1.pom",
     "method" : "GET"
   },
   "response" : {

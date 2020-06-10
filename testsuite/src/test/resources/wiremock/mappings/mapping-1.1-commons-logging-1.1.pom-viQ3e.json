@@ -1,7 +1,7 @@
 {
   "id" : "247dd2fc-35ca-3843-a26e-fe33a2dacd01",
   "request" : {
-    "url" : "/api/group/DApublic/commons-logging/commons-logging/1.1/commons-logging-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-logging/commons-logging/1.1/commons-logging-1.1.pom",
     "method" : "GET"
   },
   "response" : {

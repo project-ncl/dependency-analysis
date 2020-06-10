@@ -1,7 +1,7 @@
 {
   "id" : "a077a0c7-15eb-3a5d-92c2-c5cd47e345aa",
   "request" : {
-    "url" : "/api/group/DApublic/org/kohsuke/metainf-services/metainf-services/1.1/metainf-services-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/kohsuke/metainf-services/metainf-services/1.1/metainf-services-1.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "e3d35355-d596-3127-8767-488fbe1d318f",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/cxf/cxf-xerces-xsd-validation/2.7.14/cxf-xerces-xsd-validation-2.7.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/cxf/cxf-xerces-xsd-validation/2.7.14/cxf-xerces-xsd-validation-2.7.14.pom",
     "method" : "GET"
   },
   "response" : {

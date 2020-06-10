@@ -1,7 +1,7 @@
 {
   "id" : "11be0cc3-0559-3782-85b1-4dc4792d822e",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/jetty/jetty-parent/25/jetty-parent-25.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/jetty/jetty-parent/25/jetty-parent-25.pom",
     "method" : "GET"
   },
   "response" : {

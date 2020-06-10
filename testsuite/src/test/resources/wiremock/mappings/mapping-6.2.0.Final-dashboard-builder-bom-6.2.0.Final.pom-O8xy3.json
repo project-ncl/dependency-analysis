@@ -1,7 +1,7 @@
 {
   "id" : "3b99dc4c-794a-3534-ba35-02a2c80c8dc4",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/dashboard-builder/dashboard-builder-bom/6.2.0.Final/dashboard-builder-bom-6.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/dashboard-builder/dashboard-builder-bom/6.2.0.Final/dashboard-builder-bom-6.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

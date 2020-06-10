@@ -1,7 +1,7 @@
 {
   "id" : "e65e3917-c511-35ee-93aa-28705bcb5f61",
   "request" : {
-    "url" : "/api/group/DApublic/javax/interceptor/javax.interceptor-api/1.2/javax.interceptor-api-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/interceptor/javax.interceptor-api/1.2/javax.interceptor-api-1.2.pom",
     "method" : "GET"
   },
   "response" : {

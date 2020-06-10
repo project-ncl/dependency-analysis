@@ -1,7 +1,7 @@
 {
   "id" : "0cbe6f56-adc2-3077-bb71-ee8c30bfa805",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/oss/oss-parent/7.0.0.redhat-4/oss-parent-7.0.0.redhat-4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/oss/oss-parent/7.0.0.redhat-4/oss-parent-7.0.0.redhat-4.pom",
     "method" : "GET"
   },
   "response" : {

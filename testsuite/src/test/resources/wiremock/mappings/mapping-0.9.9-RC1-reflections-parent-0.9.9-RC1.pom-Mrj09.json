@@ -1,7 +1,7 @@
 {
   "id" : "c9410a51-0e46-393e-ac8c-86461e40ed22",
   "request" : {
-    "url" : "/api/group/DApublic/org/reflections/reflections-parent/0.9.9-RC1/reflections-parent-0.9.9-RC1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/reflections/reflections-parent/0.9.9-RC1/reflections-parent-0.9.9-RC1.pom",
     "method" : "GET"
   },
   "response" : {

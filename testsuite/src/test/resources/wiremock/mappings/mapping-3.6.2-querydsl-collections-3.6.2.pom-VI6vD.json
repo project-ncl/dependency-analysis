@@ -1,7 +1,7 @@
 {
   "id" : "6e3968ed-b2b8-3258-bf41-051e3053331d",
   "request" : {
-    "url" : "/api/group/DApublic/com/mysema/querydsl/querydsl-collections/3.6.2/querydsl-collections-3.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mysema/querydsl/querydsl-collections/3.6.2/querydsl-collections-3.6.2.pom",
     "method" : "GET"
   },
   "response" : {

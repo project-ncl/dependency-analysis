@@ -1,7 +1,7 @@
 {
   "id" : "774a0714-ed05-336f-87df-53e71c17706d",
   "request" : {
-    "url" : "/api/group/DApublic/org/scala-lang/scalap/2.10.0/scalap-2.10.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/scala-lang/scalap/2.10.0/scalap-2.10.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "55187fdb-2d05-3c43-b7ca-955538b66a43",
   "request" : {
-    "url" : "/api/group/DApublic/org/postgis/postgis-jdbc/1.3.3/postgis-jdbc-1.3.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/postgis/postgis-jdbc/1.3.3/postgis-jdbc-1.3.3.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "b111a20a-2033-3db8-9176-6163ede420bd",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-servlet/2.2.2/tiles-servlet-2.2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-servlet/2.2.2/tiles-servlet-2.2.2.pom",
     "method" : "GET"
   },
   "response" : {

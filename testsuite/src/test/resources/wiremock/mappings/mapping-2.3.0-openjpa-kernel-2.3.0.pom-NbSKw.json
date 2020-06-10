@@ -1,7 +1,7 @@
 {
   "id" : "07073694-a36e-3dd2-a966-37b44c7c7b4f",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/openjpa/openjpa-kernel/2.3.0/openjpa-kernel-2.3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/openjpa/openjpa-kernel/2.3.0/openjpa-kernel-2.3.0.pom",
     "method" : "GET"
   },
   "response" : {

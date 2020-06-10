@@ -1,7 +1,7 @@
 {
   "id" : "cf9f5a9e-f062-37fd-9628-15f771184aad",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/bcel/bcel/5.2/bcel-5.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/bcel/bcel/5.2/bcel-5.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "7a2e299a-d44a-30dc-a1aa-7ca9edc26918",
   "request" : {
-    "url" : "/api/group/DApublic/org/mvel/mvel2/2.0.11/mvel2-2.0.11.pom",
+    "url" : "/api/content/maven/group/DApublic/org/mvel/mvel2/2.0.11/mvel2-2.0.11.pom",
     "method" : "GET"
   },
   "response" : {

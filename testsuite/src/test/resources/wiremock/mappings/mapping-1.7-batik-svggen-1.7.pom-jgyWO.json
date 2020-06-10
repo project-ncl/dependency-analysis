@@ -1,7 +1,7 @@
 {
   "id" : "76125f9c-7084-3c8b-aace-68adafc769a0",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/xmlgraphics/batik-svggen/1.7/batik-svggen-1.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/xmlgraphics/batik-svggen/1.7/batik-svggen-1.7.pom",
     "method" : "GET"
   },
   "response" : {

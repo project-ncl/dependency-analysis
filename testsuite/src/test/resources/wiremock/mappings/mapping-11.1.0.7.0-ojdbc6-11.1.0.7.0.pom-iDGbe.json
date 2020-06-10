@@ -1,7 +1,7 @@
 {
   "id" : "238326b9-8b8f-3e5e-b784-7b90ba9c272c",
   "request" : {
-    "url" : "/api/group/DApublic/com/oracle/ojdbc6/11.1.0.7.0/ojdbc6-11.1.0.7.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/oracle/ojdbc6/11.1.0.7.0/ojdbc6-11.1.0.7.0.pom",
     "method" : "GET"
   },
   "response" : {

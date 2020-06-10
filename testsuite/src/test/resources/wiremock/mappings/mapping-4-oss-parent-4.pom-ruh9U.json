@@ -1,7 +1,7 @@
 {
   "id" : "976174d8-94a6-3bc6-bee4-be436577157a",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/oss-parent/4/oss-parent-4.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/oss-parent/4/oss-parent-4.pom",
     "method" : "GET"
   },
   "response" : {

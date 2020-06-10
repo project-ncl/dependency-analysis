@@ -1,7 +1,7 @@
 {
   "id" : "ad45a42c-1bff-34af-9967-c6e78d715f0b",
   "request" : {
-    "url" : "/api/group/DApublic/ch/qos/logback/logback-core/0.9.30/logback-core-0.9.30.pom",
+    "url" : "/api/content/maven/group/DApublic/ch/qos/logback/logback-core/0.9.30/logback-core-0.9.30.pom",
     "method" : "GET"
   },
   "response" : {

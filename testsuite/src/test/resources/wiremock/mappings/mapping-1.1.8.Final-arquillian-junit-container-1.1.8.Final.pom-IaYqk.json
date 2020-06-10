@@ -1,7 +1,7 @@
 {
   "id" : "ba370e21-c2fc-3b53-955f-c42099c27083",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/arquillian/junit/arquillian-junit-container/1.1.8.Final/arquillian-junit-container-1.1.8.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/arquillian/junit/arquillian-junit-container/1.1.8.Final/arquillian-junit-container-1.1.8.Final.pom",
     "method" : "GET"
   },
   "response" : {

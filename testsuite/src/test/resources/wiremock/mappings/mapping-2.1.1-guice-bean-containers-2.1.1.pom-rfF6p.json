@@ -1,7 +1,7 @@
 {
   "id" : "2ffb893f-12bb-3c47-9120-1585cce445c6",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-bean-containers/2.1.1/guice-bean-containers-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-bean-containers/2.1.1/guice-bean-containers-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

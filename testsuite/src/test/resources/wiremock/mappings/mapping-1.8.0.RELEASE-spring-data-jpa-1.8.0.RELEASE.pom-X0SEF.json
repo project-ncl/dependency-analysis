@@ -1,7 +1,7 @@
 {
   "id" : "91252eb8-dc51-34c6-bdc6-aed08d833ec7",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/data/spring-data-jpa/1.8.0.RELEASE/spring-data-jpa-1.8.0.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/data/spring-data-jpa/1.8.0.RELEASE/spring-data-jpa-1.8.0.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

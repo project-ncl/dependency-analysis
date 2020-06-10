@@ -1,7 +1,7 @@
 {
   "id" : "1042d5e5-dd08-3358-9ece-0e6715031da7",
   "request" : {
-    "url" : "/api/group/DApublic/log4j/log4j/1.1.3/log4j-1.1.3.pom",
+    "url" : "/api/content/maven/group/DApublic/log4j/log4j/1.1.3/log4j-1.1.3.pom",
     "method" : "GET"
   },
   "response" : {

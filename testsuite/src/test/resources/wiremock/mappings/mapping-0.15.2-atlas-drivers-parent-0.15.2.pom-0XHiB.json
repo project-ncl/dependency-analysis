@@ -1,7 +1,7 @@
 {
   "id" : "8c95944d-c4c9-3231-b478-fbac6f8e54b5",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-drivers-parent/0.15.2/atlas-drivers-parent-0.15.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/atlas/atlas-drivers-parent/0.15.2/atlas-drivers-parent-0.15.2.pom",
     "method" : "GET"
   },
   "response" : {

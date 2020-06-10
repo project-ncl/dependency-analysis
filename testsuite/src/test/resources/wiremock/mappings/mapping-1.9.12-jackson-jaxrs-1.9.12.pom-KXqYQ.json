@@ -1,7 +1,7 @@
 {
   "id" : "f3abef29-c2de-31a7-8728-a4cd1eb1ce6d",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/jackson/jackson-jaxrs/1.9.12/jackson-jaxrs-1.9.12.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/jackson/jackson-jaxrs/1.9.12/jackson-jaxrs-1.9.12.pom",
     "method" : "GET"
   },
   "response" : {

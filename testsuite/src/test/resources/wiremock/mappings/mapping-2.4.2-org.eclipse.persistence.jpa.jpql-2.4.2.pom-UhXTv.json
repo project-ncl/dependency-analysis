@@ -1,7 +1,7 @@
 {
   "id" : "f417a733-9252-3aec-9cbb-09705161b70d",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/persistence/org.eclipse.persistence.jpa.jpql/2.4.2/org.eclipse.persistence.jpa.jpql-2.4.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/persistence/org.eclipse.persistence.jpa.jpql/2.4.2/org.eclipse.persistence.jpa.jpql-2.4.2.pom",
     "method" : "GET"
   },
   "response" : {

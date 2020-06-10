@@ -1,7 +1,7 @@
 {
   "id" : "b8f1a586-ff0a-3c7d-b7ec-50e08dbf013b",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/hibernate-core/4.2.14.SP4-redhat-1/hibernate-core-4.2.14.SP4-redhat-1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/hibernate-core/4.2.14.SP4-redhat-1/hibernate-core-4.2.14.SP4-redhat-1.pom",
     "method" : "GET"
   },
   "response" : {

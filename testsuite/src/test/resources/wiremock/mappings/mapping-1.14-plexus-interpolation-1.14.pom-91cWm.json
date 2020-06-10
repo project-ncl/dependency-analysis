@@ -1,7 +1,7 @@
 {
   "id" : "7a2e137e-e5ea-37b8-adb6-63c0894fb98e",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-interpolation/1.14/plexus-interpolation-1.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/plexus/plexus-interpolation/1.14/plexus-interpolation-1.14.pom",
     "method" : "GET"
   },
   "response" : {

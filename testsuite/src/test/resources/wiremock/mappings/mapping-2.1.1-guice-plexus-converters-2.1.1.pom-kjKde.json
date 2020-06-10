@@ -1,7 +1,7 @@
 {
   "id" : "22785f2e-e9fc-362c-8f6d-75a6d707bb7b",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-converters/2.1.1/guice-plexus-converters-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-plexus-converters/2.1.1/guice-plexus-converters-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "4a90bb62-62cf-375c-9f88-1477fe9da709",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/struts/struts-parent/1.3.8/struts-parent-1.3.8.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/struts/struts-parent/1.3.8/struts-parent-1.3.8.pom",
     "method" : "GET"
   },
   "response" : {

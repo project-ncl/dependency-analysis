@@ -1,7 +1,7 @@
 {
   "id" : "8ceb5824-509d-3c59-a327-b09d6bbf6213",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/cxf/cxf-rt-bindings-xml/2.7.14/cxf-rt-bindings-xml-2.7.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/cxf/cxf-rt-bindings-xml/2.7.14/cxf-rt-bindings-xml-2.7.14.pom",
     "method" : "GET"
   },
   "response" : {

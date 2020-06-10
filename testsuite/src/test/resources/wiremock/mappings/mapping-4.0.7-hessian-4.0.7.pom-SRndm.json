@@ -1,7 +1,7 @@
 {
   "id" : "f9cc53ac-dd5b-3e0d-909a-429d6ef851f2",
   "request" : {
-    "url" : "/api/group/DApublic/com/caucho/hessian/4.0.7/hessian-4.0.7.pom",
+    "url" : "/api/content/maven/group/DApublic/com/caucho/hessian/4.0.7/hessian-4.0.7.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "273d3450-7337-33fe-a86b-f24cbe6e9058",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/util/partyline/1.4/partyline-1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/util/partyline/1.4/partyline-1.4.pom",
     "method" : "GET"
   },
   "response" : {

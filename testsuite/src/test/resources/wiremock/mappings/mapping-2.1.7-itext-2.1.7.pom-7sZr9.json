@@ -1,7 +1,7 @@
 {
   "id" : "1ac0bae3-139e-3dcb-ab9c-97b44d6dd83c",
   "request" : {
-    "url" : "/api/group/DApublic/com/lowagie/itext/2.1.7/itext-2.1.7.pom",
+    "url" : "/api/content/maven/group/DApublic/com/lowagie/itext/2.1.7/itext-2.1.7.pom",
     "method" : "GET"
   },
   "response" : {

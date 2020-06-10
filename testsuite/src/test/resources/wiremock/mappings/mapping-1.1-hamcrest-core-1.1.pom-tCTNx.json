@@ -1,7 +1,7 @@
 {
   "id" : "6d017902-b420-3d22-8578-d8209282cc18",
   "request" : {
-    "url" : "/api/group/DApublic/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.pom",
     "method" : "GET"
   },
   "response" : {

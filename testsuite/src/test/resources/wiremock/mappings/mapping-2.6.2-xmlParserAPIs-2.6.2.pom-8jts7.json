@@ -1,7 +1,7 @@
 {
   "id" : "57cc8895-21f2-3f4a-b03b-33d3941a951a",
   "request" : {
-    "url" : "/api/group/DApublic/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.pom",
     "method" : "GET"
   },
   "response" : {

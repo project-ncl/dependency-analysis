@@ -1,7 +1,7 @@
 {
   "id" : "8d57629f-deef-30a6-af29-923869b5053e",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/castor/castor-core/1.3.3/castor-core-1.3.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/castor/castor-core/1.3.3/castor-core-1.3.3.pom",
     "method" : "GET"
   },
   "response" : {

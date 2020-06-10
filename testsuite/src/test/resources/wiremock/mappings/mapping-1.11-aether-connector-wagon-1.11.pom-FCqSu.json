@@ -1,7 +1,7 @@
 {
   "id" : "87781e8e-0d9d-38eb-9530-79c6a5c9e6e4",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/aether/aether-connector-wagon/1.11/aether-connector-wagon-1.11.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/aether/aether-connector-wagon/1.11/aether-connector-wagon-1.11.pom",
     "method" : "GET"
   },
   "response" : {

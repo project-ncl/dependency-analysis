@@ -1,7 +1,7 @@
 {
   "id" : "506d75eb-fb93-3bbf-a93b-2db302ba6845",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-client-core-java/0.25.1/aprox-client-core-java-0.25.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/aprox/aprox-client-core-java/0.25.1/aprox-client-core-java-0.25.1.pom",
     "method" : "GET"
   },
   "response" : {

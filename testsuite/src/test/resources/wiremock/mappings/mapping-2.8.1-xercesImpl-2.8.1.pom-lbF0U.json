@@ -1,7 +1,7 @@
 {
   "id" : "4050a973-05c1-3ffa-89a7-0060cf066fb1",
   "request" : {
-    "url" : "/api/group/DApublic/xerces/xercesImpl/2.8.1/xercesImpl-2.8.1.pom",
+    "url" : "/api/content/maven/group/DApublic/xerces/xercesImpl/2.8.1/xercesImpl-2.8.1.pom",
     "method" : "GET"
   },
   "response" : {

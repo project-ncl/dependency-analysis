@@ -1,7 +1,7 @@
 {
   "id" : "584af303-072b-3461-81cd-f7fa66053ab3",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/servicemix/bundles/bundles-pom/8/bundles-pom-8.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/servicemix/bundles/bundles-pom/8/bundles-pom-8.pom",
     "method" : "GET"
   },
   "response" : {

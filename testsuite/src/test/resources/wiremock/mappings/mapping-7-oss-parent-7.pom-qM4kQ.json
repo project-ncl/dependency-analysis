@@ -1,7 +1,7 @@
 {
   "id" : "f9347b62-7bab-3bbd-92b2-a38424c6c3d1",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/oss/oss-parent/7/oss-parent-7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/oss/oss-parent/7/oss-parent-7.pom",
     "method" : "GET"
   },
   "response" : {

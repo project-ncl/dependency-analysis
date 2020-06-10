@@ -1,7 +1,7 @@
 {
   "id" : "29dfb9c7-6b8e-3c40-88b0-b432a5a06a3e",
   "request" : {
-    "url" : "/api/group/DApublic/commons-attributes/commons-attributes-api/2.2/commons-attributes-api-2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-attributes/commons-attributes-api/2.2/commons-attributes-api-2.2.pom",
     "method" : "GET"
   },
   "response" : {

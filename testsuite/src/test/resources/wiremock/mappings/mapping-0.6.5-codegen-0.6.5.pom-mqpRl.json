@@ -1,7 +1,7 @@
 {
   "id" : "c8ce116c-1546-3519-a6e7-07a636394e74",
   "request" : {
-    "url" : "/api/group/DApublic/com/mysema/codegen/codegen/0.6.5/codegen-0.6.5.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mysema/codegen/codegen/0.6.5/codegen-0.6.5.pom",
     "method" : "GET"
   },
   "response" : {

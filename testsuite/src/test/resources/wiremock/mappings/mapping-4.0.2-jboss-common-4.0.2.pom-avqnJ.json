@@ -1,7 +1,7 @@
 {
   "id" : "38b70b75-8ea9-3fd8-8fe0-e2f1b2146691",
   "request" : {
-    "url" : "/api/group/DApublic/jboss/jboss-common/4.0.2/jboss-common-4.0.2.pom",
+    "url" : "/api/content/maven/group/DApublic/jboss/jboss-common/4.0.2/jboss-common-4.0.2.pom",
     "method" : "GET"
   },
   "response" : {

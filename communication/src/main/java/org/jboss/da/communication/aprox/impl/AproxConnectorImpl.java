@@ -4,6 +4,7 @@ import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.aprox.api.AproxConnector;
@@ -48,6 +49,8 @@ public class AproxConnectorImpl implements AproxConnector {
 
     private DAConfig config;
 
+    private GlobalConfig globalConfig;
+
     @Inject
     private PomAnalyzer pomAnalyzer;
 
@@ -60,7 +63,8 @@ public class AproxConnectorImpl implements AproxConnector {
     @Inject
     public AproxConnectorImpl(Configuration configuration) {
         try {
-            this.config = configuration.getConfig();
+            config = configuration.getConfig();
+            globalConfig = configuration.getGlobalConfig();
         } catch (ConfigurationParseException ex) {
             throw new IllegalStateException("Configuration failure, can't parse default repository group", ex);
         }
@@ -68,7 +72,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public List<String> getVersionsOfGA(GA ga) throws RepositoryException {
-        return this.getVersionsOfGA(ga, config.getAproxGroup());
+        return this.getVersionsOfGA(ga, config.getIndyGroup());
     }
 
     @Override
@@ -113,7 +117,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
     @Override
     public List<String> getVersionsOfNpm(String packageName) throws RepositoryException {
-        return this.getVersionsOfNpm(packageName, config.getAproxGroup());
+        return this.getVersionsOfNpm(packageName, config.getIndyGroup());
     }
 
     @Override
@@ -130,7 +134,7 @@ public class AproxConnectorImpl implements AproxConnector {
                     packageName,
                     connection.getResponseCode(),
                     versions);
-            return new ArrayList(versions);
+            return new ArrayList<>(versions);
         } catch (FileNotFoundException ex) {
             log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
             return Collections.emptyList();
@@ -143,7 +147,7 @@ public class AproxConnectorImpl implements AproxConnector {
 
     private String repositoryLink(String type, String repository, String path) {
         StringBuilder query = new StringBuilder();
-        query.append(config.getAproxServer());
+        query.append(globalConfig.getIndyUrl());
         query.append("/api/content/");
         query.append(type);
         query.append("/group/");
@@ -166,8 +170,8 @@ public class AproxConnectorImpl implements AproxConnector {
     private HttpURLConnection getResponse(String query) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL(query).openConnection();
         MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
-        connection.setConnectTimeout(config.getAproxRequestTimeout());
-        connection.setReadTimeout(config.getAproxRequestTimeout());
+        connection.setConnectTimeout(config.getIndyRequestTimeout());
+        connection.setReadTimeout(config.getIndyRequestTimeout());
         int retry = 0;
         while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500) && retry < 2) {
 
@@ -185,8 +189,8 @@ public class AproxConnectorImpl implements AproxConnector {
 
             connection = (HttpURLConnection) new URL(query).openConnection();
             MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
-            connection.setConnectTimeout(config.getAproxRequestTimeout());
-            connection.setReadTimeout(config.getAproxRequestTimeout());
+            connection.setConnectTimeout(config.getIndyRequestTimeout());
+            connection.setReadTimeout(config.getIndyRequestTimeout());
         }
         return connection;
     }
@@ -200,9 +204,9 @@ public class AproxConnectorImpl implements AproxConnector {
     public Optional<InputStream> getPomStream(GAV gav) throws RepositoryException {
         StringBuilder query = new StringBuilder();
         try {
-            query.append(config.getAproxServer());
-            query.append("/api/group/");
-            query.append(config.getAproxGroupPublic()).append('/');
+            query.append(globalConfig.getIndyUrl());
+            query.append("/api/content/maven/group/");
+            query.append(config.getIndyGroupPublic()).append('/');
             query.append(gav.getGroupId().replace(".", "/")).append("/");
             query.append(gav.getArtifactId()).append('/');
             query.append(gav.getVersion()).append('/');
@@ -230,9 +234,9 @@ public class AproxConnectorImpl implements AproxConnector {
         StringBuilder query = new StringBuilder();
 
         try {
-            query.append(config.getAproxServer());
-            query.append("/api/group/");
-            query.append(config.getAproxGroupPublic()).append('/');
+            query.append(globalConfig.getIndyUrl());
+            query.append("/api/content/maven/group/");
+            query.append(config.getIndyGroupPublic()).append('/');
             query.append(gav.getGroupId().replace(".", "/")).append("/");
             query.append(gav.getArtifactId()).append('/');
             query.append(gav.getVersion()).append('/');

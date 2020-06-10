@@ -1,7 +1,7 @@
 {
   "id" : "6dcb7604-a8b6-3642-b633-11dc7b2a6bc0",
   "request" : {
-    "url" : "/api/group/DApublic/bouncycastle/bcmail-jdk14/138/bcmail-jdk14-138.pom",
+    "url" : "/api/content/maven/group/DApublic/bouncycastle/bcmail-jdk14/138/bcmail-jdk14-138.pom",
     "method" : "GET"
   },
   "response" : {

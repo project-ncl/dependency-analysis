@@ -1,7 +1,7 @@
 {
   "id" : "495bee98-e509-3de1-b661-6e65c15245a0",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/parent/1.9.6/parent-1.9.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/parent/1.9.6/parent-1.9.6.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "a664f900-f69b-3166-8055-6359d5b6f4e5",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/spec/javax/transaction/jboss-transaction-api_1.1_spec/1.0.0.Final/jboss-transaction-api_1.1_spec-1.0.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/spec/javax/transaction/jboss-transaction-api_1.1_spec/1.0.0.Final/jboss-transaction-api_1.1_spec-1.0.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

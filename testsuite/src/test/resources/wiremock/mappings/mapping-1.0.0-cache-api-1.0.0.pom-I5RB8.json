@@ -1,7 +1,7 @@
 {
   "id" : "c81e9371-4726-30ea-b8ce-28726f0474ae",
   "request" : {
-    "url" : "/api/group/DApublic/javax/cache/cache-api/1.0.0/cache-api-1.0.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/cache/cache-api/1.0.0/cache-api-1.0.0.pom",
     "method" : "GET"
   },
   "response" : {

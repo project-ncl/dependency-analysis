@@ -1,7 +1,7 @@
 {
   "id" : "b8e9c17e-d619-35b9-bdee-be469cd0ddf7",
   "request" : {
-    "url" : "/api/group/DApublic/org/json4s/json4s-native_2.10/3.2.11/json4s-native_2.10-3.2.11.pom",
+    "url" : "/api/content/maven/group/DApublic/org/json4s/json4s-native_2.10/3.2.11/json4s-native_2.10-3.2.11.pom",
     "method" : "GET"
   },
   "response" : {

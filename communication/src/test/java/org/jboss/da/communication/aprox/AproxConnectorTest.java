@@ -2,6 +2,7 @@ package org.jboss.da.communication.aprox;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.util.UserLog;
@@ -87,13 +88,16 @@ public class AproxConnectorTest {
             + "    <lastUpdated>20171203034828</lastUpdated>\n" + "  </versioning>\n" + "</metadata>";
 
     private static Configuration initConfig() {
+        GlobalConfig globalCfg = new GlobalConfig();
+        globalCfg.setIndyUrl("http://localhost:8082");
+
         DAConfig cfg = new DAConfig();
-        cfg.setAproxServer("http://localhost:8082");
-        cfg.setAproxGroup("DA-TEST-GROUP");
-        cfg.setAproxGroupPublic("DA-PUBLIC-TEST-GROUP");
-        cfg.setAproxRequestTimeout(30000);
+        cfg.setIndyGroup("DA-TEST-GROUP");
+        cfg.setIndyGroupPublic("DA-PUBLIC-TEST-GROUP");
+        cfg.setIndyRequestTimeout(30000);
         Configuration config = Mockito.mock(Configuration.class);
         try {
+            when(config.getGlobalConfig()).thenReturn(globalCfg);
             when(config.getConfig()).thenReturn(cfg);
         } catch (ConfigurationParseException ex) {
             throw new RuntimeException(ex);

@@ -1,7 +1,7 @@
 {
   "id" : "4b354644-dfd4-3649-a646-84a8ebca6667",
   "request" : {
-    "url" : "/api/group/DApublic/org/99soft/guice/rocoto/6.2/rocoto-6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/99soft/guice/rocoto/6.2/rocoto-6.2.pom",
     "method" : "GET"
   },
   "response" : {

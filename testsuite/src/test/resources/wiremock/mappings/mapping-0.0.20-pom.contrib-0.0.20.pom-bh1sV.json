@@ -1,7 +1,7 @@
 {
   "id" : "e62533bc-75a9-3fbf-adb1-e7b3bc9f571a",
   "request" : {
-    "url" : "/api/group/DApublic/org/clojure/pom.contrib/0.0.20/pom.contrib-0.0.20.pom",
+    "url" : "/api/content/maven/group/DApublic/org/clojure/pom.contrib/0.0.20/pom.contrib-0.0.20.pom",
     "method" : "GET"
   },
   "response" : {

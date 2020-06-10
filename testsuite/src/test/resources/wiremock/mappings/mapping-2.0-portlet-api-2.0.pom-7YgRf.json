@@ -1,7 +1,7 @@
 {
   "id" : "c01a0759-e0b7-3010-bf05-9203e84fc924",
   "request" : {
-    "url" : "/api/group/DApublic/javax/portlet/portlet-api/2.0/portlet-api-2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/portlet/portlet-api/2.0/portlet-api-2.0.pom",
     "method" : "GET"
   },
   "response" : {

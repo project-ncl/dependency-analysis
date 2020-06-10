@@ -1,7 +1,7 @@
 {
   "id" : "5ce9ea21-acd6-3400-9c8b-ab8afb6b4f82",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/maven-settings-builder/3.0.3/maven-settings-builder-3.0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/maven-settings-builder/3.0.3/maven-settings-builder-3.0.3.pom",
     "method" : "GET"
   },
   "response" : {

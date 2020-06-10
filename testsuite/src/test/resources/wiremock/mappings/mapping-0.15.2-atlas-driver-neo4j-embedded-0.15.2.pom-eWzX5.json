@@ -1,7 +1,7 @@
 {
   "id" : "4a440296-9956-3595-95f9-ec09a7e88cd1",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/atlas/atlas-driver-neo4j-embedded/0.15.2/atlas-driver-neo4j-embedded-0.15.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/atlas/atlas-driver-neo4j-embedded/0.15.2/atlas-driver-neo4j-embedded-0.15.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "0227dc46-4cbe-380c-8b5d-90f8ad67eaca",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/jetty/jetty-security/9.1.5.v20140505/jetty-security-9.1.5.v20140505.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/jetty/jetty-security/9.1.5.v20140505/jetty-security-9.1.5.v20140505.pom",
     "method" : "GET"
   },
   "response" : {

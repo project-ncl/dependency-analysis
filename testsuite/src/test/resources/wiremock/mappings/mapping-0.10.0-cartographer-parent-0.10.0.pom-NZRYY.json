@@ -1,7 +1,7 @@
 {
   "id" : "c5b5f13f-75be-3785-8053-24587a1791b5",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/cartographer/cartographer-parent/0.10.0/cartographer-parent-0.10.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/cartographer/cartographer-parent/0.10.0/cartographer-parent-0.10.0.pom",
     "method" : "GET"
   },
   "response" : {

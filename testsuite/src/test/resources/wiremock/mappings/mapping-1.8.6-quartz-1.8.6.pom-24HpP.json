@@ -1,7 +1,7 @@
 {
   "id" : "ee4b3efc-95b4-3492-b313-1c823182c93f",
   "request" : {
-    "url" : "/api/group/DApublic/org/quartz-scheduler/quartz/1.8.6/quartz-1.8.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/quartz-scheduler/quartz/1.8.6/quartz-1.8.6.pom",
     "method" : "GET"
   },
   "response" : {

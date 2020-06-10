@@ -1,7 +1,7 @@
 {
   "id" : "b2672846-dfc4-34c8-a1a4-9c461d25a938",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/inject/guice-parent/3.0/guice-parent-3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/inject/guice-parent/3.0/guice-parent-3.0.pom",
     "method" : "GET"
   },
   "response" : {

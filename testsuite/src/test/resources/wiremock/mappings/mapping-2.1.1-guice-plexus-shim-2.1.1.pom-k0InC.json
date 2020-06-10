@@ -1,7 +1,7 @@
 {
   "id" : "2be2ba71-f3c6-3f12-b030-95aa8b13e38b",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-shim/2.1.1/guice-plexus-shim-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-plexus-shim/2.1.1/guice-plexus-shim-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

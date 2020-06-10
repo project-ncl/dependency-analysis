@@ -1,7 +1,7 @@
 {
   "id" : "66ce546d-ba4e-39f6-b954-fa0c5a2d62dc",
   "request" : {
-    "url" : "/api/group/DApublic/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.pom",
+    "url" : "/api/content/maven/group/DApublic/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.pom",
     "method" : "GET"
   },
   "response" : {

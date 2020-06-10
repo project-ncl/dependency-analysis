@@ -1,7 +1,7 @@
 {
   "id" : "546b71dd-0dbb-3fec-a7c9-2905c750836a",
   "request" : {
-    "url" : "/api/group/DApublic/com/keypoint/png-encoder/1.5/png-encoder-1.5.pom",
+    "url" : "/api/content/maven/group/DApublic/com/keypoint/png-encoder/1.5/png-encoder-1.5.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "5b4bb6d4-eeea-323a-a278-baf8495725d6",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-plexus-locators/2.1.1/guice-plexus-locators-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-plexus-locators/2.1.1/guice-plexus-locators-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

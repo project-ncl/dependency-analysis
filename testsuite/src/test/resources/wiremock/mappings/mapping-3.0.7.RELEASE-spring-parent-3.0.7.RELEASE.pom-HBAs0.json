@@ -1,7 +1,7 @@
 {
   "id" : "9aea82c1-17a0-3080-9b22-cd28a7a0de86",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-parent/3.0.7.RELEASE/spring-parent-3.0.7.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-parent/3.0.7.RELEASE/spring-parent-3.0.7.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "da2a3427-97d6-369f-a762-61891a22f2d4",
   "request" : {
-    "url" : "/api/group/DApublic/org/jruby/jruby-stdlib/1.7.17/jruby-stdlib-1.7.17.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jruby/jruby-stdlib/1.7.17/jruby-stdlib-1.7.17.pom",
     "method" : "GET"
   },
   "response" : {

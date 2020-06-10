@@ -1,7 +1,7 @@
 {
   "id" : "a14c6702-bad5-38d2-a370-89aca3e16819",
   "request" : {
-    "url" : "/api/group/DApublic/org/clojure/tools.logging/0.2.3/tools.logging-0.2.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/clojure/tools.logging/0.2.3/tools.logging-0.2.3.pom",
     "method" : "GET"
   },
   "response" : {

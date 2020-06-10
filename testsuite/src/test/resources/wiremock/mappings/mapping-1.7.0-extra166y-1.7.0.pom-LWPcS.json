@@ -1,7 +1,7 @@
 {
   "id" : "14dd1f15-670b-3cd5-acfa-f4ed3f62082c",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/jsr166-mirror/extra166y/1.7.0/extra166y-1.7.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/jsr166-mirror/extra166y/1.7.0/extra166y-1.7.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "2739d99c-ba12-3fb5-bc09-81be4c639537",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/da/common/0.3.0/common-0.3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/da/common/0.3.0/common-0.3.0.pom",
     "method" : "GET"
   },
   "response" : {

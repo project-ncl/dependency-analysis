@@ -1,7 +1,7 @@
 {
   "id" : "245078ce-c65f-3360-bdfb-80e1d75b7438",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/code/findbugs/annotations/2.0.1/annotations-2.0.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/code/findbugs/annotations/2.0.1/annotations-2.0.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "bc827d9d-40af-3450-83d0-cdc6d5d81dbd",
   "request" : {
-    "url" : "/api/group/DApublic/com/github/jnr/jnr-netdb/1.1.2/jnr-netdb-1.1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/github/jnr/jnr-netdb/1.1.2/jnr-netdb-1.1.2.pom",
     "method" : "GET"
   },
   "response" : {

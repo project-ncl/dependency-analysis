@@ -1,7 +1,7 @@
 {
   "id" : "79ee5e06-029b-318e-a7c6-0f1f2b315f6d",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/core/jackson-core/2.4.3/jackson-core-2.4.3.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/core/jackson-core/2.4.3/jackson-core-2.4.3.pom",
     "method" : "GET"
   },
   "response" : {

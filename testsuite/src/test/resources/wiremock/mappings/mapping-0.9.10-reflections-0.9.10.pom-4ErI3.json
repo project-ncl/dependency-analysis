@@ -1,7 +1,7 @@
 {
   "id" : "664ec1d3-09b8-31c5-b7da-f6fe9708cfb6",
   "request" : {
-    "url" : "/api/group/DApublic/org/reflections/reflections/0.9.10/reflections-0.9.10.pom",
+    "url" : "/api/content/maven/group/DApublic/org/reflections/reflections/0.9.10/reflections-0.9.10.pom",
     "method" : "GET"
   },
   "response" : {

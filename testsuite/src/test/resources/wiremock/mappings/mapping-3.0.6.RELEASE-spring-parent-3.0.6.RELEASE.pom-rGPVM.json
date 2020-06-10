@@ -1,7 +1,7 @@
 {
   "id" : "cb64064d-dfff-311a-800a-d088b556e3c4",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-parent/3.0.6.RELEASE/spring-parent-3.0.6.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-parent/3.0.6.RELEASE/spring-parent-3.0.6.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

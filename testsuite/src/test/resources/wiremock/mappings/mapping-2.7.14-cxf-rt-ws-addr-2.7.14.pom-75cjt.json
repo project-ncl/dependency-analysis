@@ -1,7 +1,7 @@
 {
   "id" : "e99b40bd-013d-3ed7-8b65-2d660498c98b",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/cxf/cxf-rt-ws-addr/2.7.14/cxf-rt-ws-addr-2.7.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/cxf/cxf-rt-ws-addr/2.7.14/cxf-rt-ws-addr-2.7.14.pom",
     "method" : "GET"
   },
   "response" : {

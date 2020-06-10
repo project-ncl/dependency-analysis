@@ -1,7 +1,7 @@
 {
   "id" : "3721cd05-c983-3c0c-91a5-16742db6437f",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/jboss-dmr/1.2.0.Final/jboss-dmr-1.2.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/jboss-dmr/1.2.0.Final/jboss-dmr-1.2.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

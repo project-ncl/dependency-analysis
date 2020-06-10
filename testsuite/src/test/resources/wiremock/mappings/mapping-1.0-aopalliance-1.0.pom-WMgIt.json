@@ -1,7 +1,7 @@
 {
   "id" : "37065373-2e53-33eb-846f-af84ca02adf8",
   "request" : {
-    "url" : "/api/group/DApublic/aopalliance/aopalliance/1.0/aopalliance-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/aopalliance/aopalliance/1.0/aopalliance-1.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "ac4747d7-32a4-3360-bef1-2531f877f0e9",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/openjpa/openjpa-persistence-jdbc/2.3.0/openjpa-persistence-jdbc-2.3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/openjpa/openjpa-persistence-jdbc/2.3.0/openjpa-persistence-jdbc-2.3.0.pom",
     "method" : "GET"
   },
   "response" : {

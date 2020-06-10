@@ -1,7 +1,7 @@
 {
   "id" : "0f4ffdd5-159a-33fc-969f-c52877c3bcb2",
   "request" : {
-    "url" : "/api/group/DApublic/com/sun/xml/fastinfoset/fastinfoset-project/1.2.13/fastinfoset-project-1.2.13.pom",
+    "url" : "/api/content/maven/group/DApublic/com/sun/xml/fastinfoset/fastinfoset-project/1.2.13/fastinfoset-project-1.2.13.pom",
     "method" : "GET"
   },
   "response" : {

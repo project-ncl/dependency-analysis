@@ -1,7 +1,7 @@
 {
   "id" : "9ffc9c07-7a13-36b5-9503-a417d3ceaf9b",
   "request" : {
-    "url" : "/api/group/DApublic/org/bouncycastle/bcprov-jdk14/1.45/bcprov-jdk14-1.45.pom",
+    "url" : "/api/content/maven/group/DApublic/org/bouncycastle/bcprov-jdk14/1.45/bcprov-jdk14-1.45.pom",
     "method" : "GET"
   },
   "response" : {

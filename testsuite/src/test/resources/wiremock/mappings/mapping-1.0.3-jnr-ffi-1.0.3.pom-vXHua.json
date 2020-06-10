@@ -1,7 +1,7 @@
 {
   "id" : "0cee5e7e-fb60-3b30-b83d-fee7b9525d0d",
   "request" : {
-    "url" : "/api/group/DApublic/com/github/jnr/jnr-ffi/1.0.3/jnr-ffi-1.0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/com/github/jnr/jnr-ffi/1.0.3/jnr-ffi-1.0.3.pom",
     "method" : "GET"
   },
   "response" : {

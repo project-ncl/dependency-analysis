@@ -1,7 +1,7 @@
 {
   "id" : "397319bb-e9b5-3af9-8bd6-73ef663bf89c",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/spring-asm/3.0.7.RELEASE/spring-asm-3.0.7.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/spring-asm/3.0.7.RELEASE/spring-asm-3.0.7.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

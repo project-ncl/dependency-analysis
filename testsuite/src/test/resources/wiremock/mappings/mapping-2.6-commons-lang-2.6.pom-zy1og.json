@@ -1,7 +1,7 @@
 {
   "id" : "b9c96101-c716-3115-ab79-eca8e2484863",
   "request" : {
-    "url" : "/api/group/DApublic/commons-lang/commons-lang/2.6/commons-lang-2.6.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-lang/commons-lang/2.6/commons-lang-2.6.pom",
     "method" : "GET"
   },
   "response" : {

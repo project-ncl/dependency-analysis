@@ -1,7 +1,7 @@
 {
   "id" : "2f008ceb-d9ce-3fa6-b290-2e407d7fb284",
   "request" : {
-    "url" : "/api/group/DApublic/org/aspectj/aspectjrt/1.8.5/aspectjrt-1.8.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/aspectj/aspectjrt/1.8.5/aspectjrt-1.8.5.pom",
     "method" : "GET"
   },
   "response" : {

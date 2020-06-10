@@ -1,7 +1,7 @@
 {
   "id" : "1b86b419-dc5d-39b0-9377-2a907368825a",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/scm/maven-scm-provider-svnexe/1.9.4/maven-scm-provider-svnexe-1.9.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/scm/maven-scm-provider-svnexe/1.9.4/maven-scm-provider-svnexe-1.9.4.pom",
     "method" : "GET"
   },
   "response" : {

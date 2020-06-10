@@ -1,7 +1,7 @@
 {
   "id" : "9b5bc2b9-deae-3d7d-8eb2-d87746ee06f4",
   "request" : {
-    "url" : "/api/group/DApublic/com/infradna/tool/bridge-method-injector-parent/1.13/bridge-method-injector-parent-1.13.pom",
+    "url" : "/api/content/maven/group/DApublic/com/infradna/tool/bridge-method-injector-parent/1.13/bridge-method-injector-parent-1.13.pom",
     "method" : "GET"
   },
   "response" : {

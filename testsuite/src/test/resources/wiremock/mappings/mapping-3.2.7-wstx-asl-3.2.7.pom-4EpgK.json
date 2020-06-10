@@ -1,7 +1,7 @@
 {
   "id" : "34a0e6aa-f467-310a-8073-f3fd7a1c43ed",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/woodstox/wstx-asl/3.2.7/wstx-asl-3.2.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/woodstox/wstx-asl/3.2.7/wstx-asl-3.2.7.pom",
     "method" : "GET"
   },
   "response" : {

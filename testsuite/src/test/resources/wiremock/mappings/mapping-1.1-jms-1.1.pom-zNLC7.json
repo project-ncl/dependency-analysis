@@ -1,7 +1,7 @@
 {
   "id" : "2c1c34ce-99ee-3e0f-b886-46ca0ca11fe2",
   "request" : {
-    "url" : "/api/group/DApublic/javax/jms/jms/1.1/jms-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/jms/jms/1.1/jms-1.1.pom",
     "method" : "GET"
   },
   "response" : {

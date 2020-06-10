@@ -1,7 +1,7 @@
 {
   "id" : "1249453a-1955-34b5-9fce-39dffd7295e1",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/poi/poi/3.10.1/poi-3.10.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/poi/poi/3.10.1/poi-3.10.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "346c1d20-ef1f-3066-b27d-a9f858cea52b",
   "request" : {
-    "url" : "/api/group/DApublic/javax/activation/activation/1.1.1/activation-1.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/activation/activation/1.1.1/activation-1.1.1.pom",
     "method" : "GET"
   },
   "response" : {

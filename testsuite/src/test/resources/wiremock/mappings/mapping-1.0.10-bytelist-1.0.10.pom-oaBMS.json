@@ -1,7 +1,7 @@
 {
   "id" : "8a91a742-fc03-39fa-a53a-15d77e953360",
   "request" : {
-    "url" : "/api/group/DApublic/org/jruby/extras/bytelist/1.0.10/bytelist-1.0.10.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jruby/extras/bytelist/1.0.10/bytelist-1.0.10.pom",
     "method" : "GET"
   },
   "response" : {

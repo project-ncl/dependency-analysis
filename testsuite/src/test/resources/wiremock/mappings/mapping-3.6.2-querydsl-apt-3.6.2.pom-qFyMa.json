@@ -1,7 +1,7 @@
 {
   "id" : "7bd8d623-4e81-3c92-8078-1d0209f0149e",
   "request" : {
-    "url" : "/api/group/DApublic/com/mysema/querydsl/querydsl-apt/3.6.2/querydsl-apt-3.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mysema/querydsl/querydsl-apt/3.6.2/querydsl-apt-3.6.2.pom",
     "method" : "GET"
   },
   "response" : {

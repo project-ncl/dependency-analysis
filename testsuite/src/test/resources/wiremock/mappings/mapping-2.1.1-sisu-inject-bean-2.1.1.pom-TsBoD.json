@@ -1,7 +1,7 @@
 {
   "id" : "f0119bdd-c531-334a-a3f8-2e09d0e7c161",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/sisu-inject-bean/2.1.1/sisu-inject-bean-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/sisu-inject-bean/2.1.1/sisu-inject-bean-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

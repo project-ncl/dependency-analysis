@@ -4,8 +4,8 @@
   "configs": [
     {
       "@module-group": "global",
-      "config": [
-      ]
+      "indyUrl": "",
+      "cartographerUrl": ""
     },
     {
       "@module-group": "pnc",
@@ -16,13 +16,8 @@
       "configs": [
         {
           "@module-config": "da-config",
-          "aproxServer": "",
-          "aproxGroup": "",
-          "aproxGroupPublic": "",
-          "cartographerServerUrl": "",
-          "backupScmUrl": "",
-          "backupScmBranch": "",
-          "repourUrl": ""
+          "indyGroup": "",
+          "indyGroupPublic": ""
         }
       ]
     }

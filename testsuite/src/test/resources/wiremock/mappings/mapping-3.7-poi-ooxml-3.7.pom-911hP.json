@@ -1,7 +1,7 @@
 {
   "id" : "03d76520-ea6f-3e3e-becc-c658307c1475",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/poi/poi-ooxml/3.7/poi-ooxml-3.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/poi/poi-ooxml/3.7/poi-ooxml-3.7.pom",
     "method" : "GET"
   },
   "response" : {

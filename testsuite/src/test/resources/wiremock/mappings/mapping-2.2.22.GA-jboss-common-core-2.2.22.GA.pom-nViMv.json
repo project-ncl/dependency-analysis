@@ -1,7 +1,7 @@
 {
   "id" : "249642a9-a74b-3a82-a051-8a3b50bd44e1",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/jboss-common-core/2.2.22.GA/jboss-common-core-2.2.22.GA.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/jboss-common-core/2.2.22.GA/jboss-common-core-2.2.22.GA.pom",
     "method" : "GET"
   },
   "response" : {

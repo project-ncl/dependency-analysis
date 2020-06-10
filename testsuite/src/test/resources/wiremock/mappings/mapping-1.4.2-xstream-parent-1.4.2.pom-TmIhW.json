@@ -1,7 +1,7 @@
 {
   "id" : "e395c414-bac3-3d22-9e32-3dfdff6d5eee",
   "request" : {
-    "url" : "/api/group/DApublic/com/thoughtworks/xstream/xstream-parent/1.4.2/xstream-parent-1.4.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/thoughtworks/xstream/xstream-parent/1.4.2/xstream-parent-1.4.2.pom",
     "method" : "GET"
   },
   "response" : {

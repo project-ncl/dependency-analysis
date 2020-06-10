@@ -1,6 +1,7 @@
 package org.jboss.da.common.util;
 
 import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.json.GlobalConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,56 +38,56 @@ public class ConfigurationTest {
     public void defaultConfigurationIsLoaded() throws ConfigurationParseException {
         System.getProperties().remove(CONFIG_SYSPROP);
 
+        GlobalConfig globalConfig = configuration.getGlobalConfig();
         DAConfig config = configuration.getConfig();
 
-        checkRequiredFields(config, "", "", "", "", "", "");
+        checkRequiredFields(globalConfig, config, "", "", "", "");
     }
 
     @Test
     public void userCanSetConfigurationUsingSystemProperty() throws ConfigurationParseException {
         System.setProperty(CONFIG_SYSPROP, "testConfig.json");
 
+        GlobalConfig globalConfig = configuration.getGlobalConfig();
         DAConfig config = configuration.getConfig();
 
         checkRequiredFields(
+                globalConfig,
                 config,
-                "pnc-server",
-                "aprox-server",
-                "aprox-group",
-                "aprox-group-public",
-                "backup-scm-url",
-                "cartographer-server-url");
-        assertEquals(100000, config.getAproxRequestTimeout().intValue());
+                "http://127.0.0.1:8004",
+                "http://127.0.0.1:8002",
+                "indy-da-group",
+                "indy-da-group-public");
+        assertEquals(100000, config.getIndyRequestTimeout().intValue());
     }
 
     @Test
     public void configurationWithoutPropsWithDefaultValues() throws ConfigurationParseException {
         System.setProperty(CONFIG_SYSPROP, "configWithoutDefaults.json");
 
+        GlobalConfig globalConfig = configuration.getGlobalConfig();
         DAConfig config = configuration.getConfig();
 
         checkRequiredFields(
+                globalConfig,
                 config,
-                "pnc-server",
-                "aprox-server",
-                "aprox-group",
-                "aprox-group-public",
-                "backup-scm-url",
-                "cartographer-server-url");
-        assertEquals(600000, config.getAproxRequestTimeout().intValue());
+                "http://127.0.0.1:8004",
+                "http://127.0.0.1:8002",
+                "indy-da-group",
+                "indy-da-group-public");
+        assertEquals(600000, config.getIndyRequestTimeout().intValue());
     }
 
     private void checkRequiredFields(
+            GlobalConfig globalConfig,
             DAConfig config,
-            String pncServer,
-            String aproxServer,
-            String aproxGroup,
-            String aproxGroupPublic,
-            String backupScmUrl,
-            String cartographerServerUrl) {
-        assertEquals(aproxServer, config.getAproxServer());
-        assertEquals(aproxGroup, config.getAproxGroup());
-        assertEquals(aproxGroupPublic, config.getAproxGroupPublic());
-        assertEquals(cartographerServerUrl, config.getCartographerServerUrl());
+            String indyServer,
+            String cartographerServerUrl,
+            String indyGroup,
+            String indyGroupPublic) {
+        assertEquals(indyServer, globalConfig.getIndyUrl());
+        assertEquals(cartographerServerUrl, globalConfig.getCartographerUrl());
+        assertEquals(indyGroup, config.getIndyGroup());
+        assertEquals(indyGroupPublic, config.getIndyGroupPublic());
     }
 }

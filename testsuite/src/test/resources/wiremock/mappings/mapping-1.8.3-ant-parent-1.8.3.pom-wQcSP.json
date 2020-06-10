@@ -1,7 +1,7 @@
 {
   "id" : "39e92d83-3d22-3b94-bd47-6b3acf143310",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/ant/ant-parent/1.8.3/ant-parent-1.8.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/ant/ant-parent/1.8.3/ant-parent-1.8.3.pom",
     "method" : "GET"
   },
   "response" : {

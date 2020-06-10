@@ -1,7 +1,7 @@
 {
   "id" : "7f6262dd-bc48-310c-9b33-54f67f8b70be",
   "request" : {
-    "url" : "/api/group/DApublic/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.pom",
+    "url" : "/api/content/maven/group/DApublic/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.pom",
     "method" : "GET"
   },
   "response" : {

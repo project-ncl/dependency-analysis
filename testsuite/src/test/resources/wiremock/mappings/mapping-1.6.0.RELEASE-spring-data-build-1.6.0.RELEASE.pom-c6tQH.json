@@ -1,7 +1,7 @@
 {
   "id" : "44d9bc82-4ad5-3a5b-8b51-a4bcc85593a2",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/data/build/spring-data-build/1.6.0.RELEASE/spring-data-build-1.6.0.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/data/build/spring-data-build/1.6.0.RELEASE/spring-data-build-1.6.0.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

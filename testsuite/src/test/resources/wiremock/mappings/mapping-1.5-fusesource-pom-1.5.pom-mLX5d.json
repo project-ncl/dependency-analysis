@@ -1,7 +1,7 @@
 {
   "id" : "372ddf3c-46cb-3826-9dba-00a7028665ef",
   "request" : {
-    "url" : "/api/group/DApublic/org/fusesource/fusesource-pom/1.5/fusesource-pom-1.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/fusesource/fusesource-pom/1.5/fusesource-pom-1.5.pom",
     "method" : "GET"
   },
   "response" : {

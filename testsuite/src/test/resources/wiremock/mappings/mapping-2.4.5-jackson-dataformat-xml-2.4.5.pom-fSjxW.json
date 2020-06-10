@@ -1,7 +1,7 @@
 {
   "id" : "8fab9930-33cb-3878-998b-98cfd63ff27a",
   "request" : {
-    "url" : "/api/group/DApublic/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.4.5/jackson-dataformat-xml-2.4.5.pom",
+    "url" : "/api/content/maven/group/DApublic/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.4.5/jackson-dataformat-xml-2.4.5.pom",
     "method" : "GET"
   },
   "response" : {

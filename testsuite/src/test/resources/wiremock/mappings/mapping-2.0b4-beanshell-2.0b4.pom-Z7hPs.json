@@ -1,7 +1,7 @@
 {
   "id" : "ed3e9695-e243-3ebd-8166-3dd454eccb5b",
   "request" : {
-    "url" : "/api/group/DApublic/org/beanshell/beanshell/2.0b4/beanshell-2.0b4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/beanshell/beanshell/2.0b4/beanshell-2.0b4.pom",
     "method" : "GET"
   },
   "response" : {

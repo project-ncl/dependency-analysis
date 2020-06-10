@@ -1,7 +1,7 @@
 {
   "id" : "ea3c7191-e53d-3c51-a426-ffe117a27993",
   "request" : {
-    "url" : "/api/group/DApublic/org/jenkins-ci/jenkins/1.26/jenkins-1.26.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jenkins-ci/jenkins/1.26/jenkins-1.26.pom",
     "method" : "GET"
   },
   "response" : {

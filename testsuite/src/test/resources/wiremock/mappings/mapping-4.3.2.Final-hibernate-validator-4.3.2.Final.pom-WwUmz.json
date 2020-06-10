@@ -1,7 +1,7 @@
 {
   "id" : "92defff7-0db4-31c3-b7f1-99e8eb713be1",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/hibernate-validator/4.3.2.Final/hibernate-validator-4.3.2.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/hibernate-validator/4.3.2.Final/hibernate-validator-4.3.2.Final.pom",
     "method" : "GET"
   },
   "response" : {

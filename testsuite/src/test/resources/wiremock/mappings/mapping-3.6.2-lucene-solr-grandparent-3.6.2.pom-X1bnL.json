@@ -1,7 +1,7 @@
 {
   "id" : "0f398804-481d-3720-ab0a-b7fe47d40b2b",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/lucene/lucene-solr-grandparent/3.6.2/lucene-solr-grandparent-3.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/lucene/lucene-solr-grandparent/3.6.2/lucene-solr-grandparent-3.6.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "13e013d0-f79a-37f1-986a-0bb1bb24b03e",
   "request" : {
-    "url" : "/api/group/DApublic/net/sf/ehcache/ehcache-core/2.6.7/ehcache-core-2.6.7.pom",
+    "url" : "/api/content/maven/group/DApublic/net/sf/ehcache/ehcache-core/2.6.7/ehcache-core-2.6.7.pom",
     "method" : "GET"
   },
   "response" : {

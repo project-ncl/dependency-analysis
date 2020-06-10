@@ -1,7 +1,7 @@
 {
   "id" : "da918ea1-c43d-3cdc-878f-43ab67faa05d",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/neethi/neethi/3.0.3/neethi-3.0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/neethi/neethi/3.0.3/neethi-3.0.3.pom",
     "method" : "GET"
   },
   "response" : {

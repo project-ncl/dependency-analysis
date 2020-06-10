@@ -1,7 +1,7 @@
 {
   "id" : "7d3fe0c2-025a-39a5-974a-23c9a0fdc59d",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/commons/commons-compress/1.5/commons-compress-1.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/commons/commons-compress/1.5/commons-compress-1.5.pom",
     "method" : "GET"
   },
   "response" : {

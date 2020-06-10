@@ -1,7 +1,7 @@
 {
   "id" : "9e97c4db-2332-360b-92f5-bc3bb3adf8e5",
   "request" : {
-    "url" : "/api/group/DApublic/org/scala-lang/scala-library/2.10.4/scala-library-2.10.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/scala-lang/scala-library/2.10.4/scala-library-2.10.4.pom",
     "method" : "GET"
   },
   "response" : {

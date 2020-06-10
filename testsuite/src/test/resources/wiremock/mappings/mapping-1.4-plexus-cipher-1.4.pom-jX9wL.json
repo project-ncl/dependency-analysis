@@ -1,7 +1,7 @@
 {
   "id" : "cea71121-a03d-3931-9e43-b4d31569a7ba",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.pom",
     "method" : "GET"
   },
   "response" : {

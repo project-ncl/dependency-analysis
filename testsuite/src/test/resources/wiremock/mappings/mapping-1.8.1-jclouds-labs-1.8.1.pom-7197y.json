@@ -1,7 +1,7 @@
 {
   "id" : "d25dd091-f502-33a9-8b51-98fbe8822004",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/jclouds/labs/jclouds-labs/1.8.1/jclouds-labs-1.8.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/jclouds/labs/jclouds-labs/1.8.1/jclouds-labs-1.8.1.pom",
     "method" : "GET"
   },
   "response" : {

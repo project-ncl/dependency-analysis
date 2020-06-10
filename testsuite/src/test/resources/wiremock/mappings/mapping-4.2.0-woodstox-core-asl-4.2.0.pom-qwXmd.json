@@ -1,7 +1,7 @@
 {
   "id" : "13dece0a-526e-3080-89b4-266c84526763",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/woodstox/woodstox-core-asl/4.2.0/woodstox-core-asl-4.2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/woodstox/woodstox-core-asl/4.2.0/woodstox-core-asl-4.2.0.pom",
     "method" : "GET"
   },
   "response" : {

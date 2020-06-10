@@ -1,7 +1,7 @@
 {
   "id" : "d163c95e-294a-37aa-8f08-58acff64c96a",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/collections/google-collections/1.0/google-collections-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/collections/google-collections/1.0/google-collections-1.0.pom",
     "method" : "GET"
   },
   "response" : {

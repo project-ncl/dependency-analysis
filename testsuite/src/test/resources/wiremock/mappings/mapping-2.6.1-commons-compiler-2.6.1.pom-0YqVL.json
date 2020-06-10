@@ -1,7 +1,7 @@
 {
   "id" : "7ae45f98-cdde-359a-a0a6-7c24432e70d0",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/janino/commons-compiler/2.6.1/commons-compiler-2.6.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/janino/commons-compiler/2.6.1/commons-compiler-2.6.1.pom",
     "method" : "GET"
   },
   "response" : {

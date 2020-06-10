@@ -1,7 +1,7 @@
 {
   "id" : "eecf1517-3f3e-3564-8fa2-79acda16263f",
   "request" : {
-    "url" : "/api/group/DApublic/org/springframework/data/build/spring-data-parent/1.6.0.RELEASE/spring-data-parent-1.6.0.RELEASE.pom",
+    "url" : "/api/content/maven/group/DApublic/org/springframework/data/build/spring-data-parent/1.6.0.RELEASE/spring-data-parent-1.6.0.RELEASE.pom",
     "method" : "GET"
   },
   "response" : {

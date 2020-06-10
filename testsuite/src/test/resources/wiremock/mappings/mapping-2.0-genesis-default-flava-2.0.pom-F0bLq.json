@@ -1,7 +1,7 @@
 {
   "id" : "833d0281-44ca-3809-89e5-49870ead6c0d",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/geronimo/genesis/genesis-default-flava/2.0/genesis-default-flava-2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/geronimo/genesis/genesis-default-flava/2.0/genesis-default-flava-2.0.pom",
     "method" : "GET"
   },
   "response" : {

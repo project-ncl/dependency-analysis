@@ -1,7 +1,7 @@
 {
   "id" : "61e35bb8-1565-3627-b000-684346969baf",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/tiles/tiles-velocity/2.2.2/tiles-velocity-2.2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/tiles/tiles-velocity/2.2.2/tiles-velocity-2.2.2.pom",
     "method" : "GET"
   },
   "response" : {

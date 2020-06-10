@@ -1,7 +1,7 @@
 {
   "id" : "223187bf-e8ef-3c6b-9db5-eadfcbaede45",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/aprox/aprox-depgraph/0.24.0/aprox-depgraph-0.24.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/aprox/aprox-depgraph/0.24.0/aprox-depgraph-0.24.0.pom",
     "method" : "GET"
   },
   "response" : {

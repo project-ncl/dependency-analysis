@@ -1,7 +1,7 @@
 {
   "id" : "4bcde94a-b1e6-385f-96de-8378223193bd",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/aether/aether-util/1.11/aether-util-1.11.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/aether/aether-util/1.11/aether-util-1.11.pom",
     "method" : "GET"
   },
   "response" : {

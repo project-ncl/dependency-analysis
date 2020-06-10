@@ -1,7 +1,7 @@
 {
   "id" : "4ab18d9c-4115-3c9d-a950-7c38531129c0",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/servicemix/bundles/org.apache.servicemix.bundles.javax-inject/1_2/org.apache.servicemix.bundles.javax-inject-1_2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/servicemix/bundles/org.apache.servicemix.bundles.javax-inject/1_2/org.apache.servicemix.bundles.javax-inject-1_2.pom",
     "method" : "GET"
   },
   "response" : {

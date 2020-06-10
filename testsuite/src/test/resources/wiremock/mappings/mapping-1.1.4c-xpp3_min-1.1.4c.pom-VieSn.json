@@ -1,7 +1,7 @@
 {
   "id" : "4ec0aad5-4f92-3fbb-9604-dde8f7deb9ca",
   "request" : {
-    "url" : "/api/group/DApublic/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.pom",
+    "url" : "/api/content/maven/group/DApublic/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.pom",
     "method" : "GET"
   },
   "response" : {

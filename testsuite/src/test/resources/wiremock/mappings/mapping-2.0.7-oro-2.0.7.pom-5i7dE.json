@@ -1,7 +1,7 @@
 {
   "id" : "6dcbdf59-210d-32e5-93a1-a396f139f5fe",
   "request" : {
-    "url" : "/api/group/DApublic/oro/oro/2.0.7/oro-2.0.7.pom",
+    "url" : "/api/content/maven/group/DApublic/oro/oro/2.0.7/oro-2.0.7.pom",
     "method" : "GET"
   },
   "response" : {

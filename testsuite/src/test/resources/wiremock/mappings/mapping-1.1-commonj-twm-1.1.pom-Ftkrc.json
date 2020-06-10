@@ -1,7 +1,7 @@
 {
   "id" : "21836e79-e403-3beb-b7bd-9938a779143a",
   "request" : {
-    "url" : "/api/group/DApublic/com/bea/wlplatform/commonj-twm/1.1/commonj-twm-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/com/bea/wlplatform/commonj-twm/1.1/commonj-twm-1.1.pom",
     "method" : "GET"
   },
   "response" : {

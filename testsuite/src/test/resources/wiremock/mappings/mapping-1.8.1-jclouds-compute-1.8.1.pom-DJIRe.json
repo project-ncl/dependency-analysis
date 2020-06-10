@@ -1,7 +1,7 @@
 {
   "id" : "596468b7-e196-33dd-973b-436c23b20bfd",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/jclouds/jclouds-compute/1.8.1/jclouds-compute-1.8.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/jclouds/jclouds-compute/1.8.1/jclouds-compute-1.8.1.pom",
     "method" : "GET"
   },
   "response" : {

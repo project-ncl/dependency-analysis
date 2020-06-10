@@ -1,7 +1,7 @@
 {
   "id" : "5464d982-b7e0-3bfe-915b-4d8f5556446d",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/spec/javax/jms/jboss-jms-api_1.1_spec/1.0.1.Final/jboss-jms-api_1.1_spec-1.0.1.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/spec/javax/jms/jboss-jms-api_1.1_spec/1.0.1.Final/jboss-jms-api_1.1_spec-1.0.1.Final.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "57b4fa7f-2512-3f89-a0f8-13bc24606163",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

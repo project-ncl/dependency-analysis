@@ -1,7 +1,7 @@
 {
   "id" : "3e8306a5-4e2c-396f-99bd-5898960c4126",
   "request" : {
-    "url" : "/api/group/DApublic/xalan/serializer/2.7.2/serializer-2.7.2.pom",
+    "url" : "/api/content/maven/group/DApublic/xalan/serializer/2.7.2/serializer-2.7.2.pom",
     "method" : "GET"
   },
   "response" : {

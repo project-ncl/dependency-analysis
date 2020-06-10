@@ -1,7 +1,7 @@
 {
   "id" : "b897c161-af7c-3099-97ca-55e92d152a83",
   "request" : {
-    "url" : "/api/group/DApublic/commons-fileupload/commons-fileupload/1.3.1/commons-fileupload-1.3.1.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-fileupload/commons-fileupload/1.3.1/commons-fileupload-1.3.1.pom",
     "method" : "GET"
   },
   "response" : {

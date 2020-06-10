@@ -1,7 +1,7 @@
 {
   "id" : "d2171a0d-4fa7-3279-8dc2-0732336f45d3",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/bom/jboss-javaee-6.0-with-tools/1.0.7.Final/jboss-javaee-6.0-with-tools-1.0.7.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/bom/jboss-javaee-6.0-with-tools/1.0.7.Final/jboss-javaee-6.0-with-tools-1.0.7.Final.pom",
     "method" : "GET"
   },
   "response" : {

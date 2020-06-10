@@ -1,7 +1,7 @@
 {
   "id" : "3e334140-91fb-32af-98f9-25e899a99d23",
   "request" : {
-    "url" : "/api/group/DApublic/mondrian/mondrian/3.1.1.12687/mondrian-3.1.1.12687.pom",
+    "url" : "/api/content/maven/group/DApublic/mondrian/mondrian/3.1.1.12687/mondrian-3.1.1.12687.pom",
     "method" : "GET"
   },
   "response" : {

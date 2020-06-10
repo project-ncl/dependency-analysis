@@ -1,7 +1,7 @@
 {
   "id" : "30e05177-6413-3c03-b941-d8bf513df7bb",
   "request" : {
-    "url" : "/api/group/DApublic/org/hibernate/hibernate-parent/3.6.10.Final/hibernate-parent-3.6.10.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/hibernate/hibernate-parent/3.6.10.Final/hibernate-parent-3.6.10.Final.pom",
     "method" : "GET"
   },
   "response" : {

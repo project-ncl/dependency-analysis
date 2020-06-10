@@ -1,7 +1,7 @@
 {
   "id" : "ef1f9c93-3f8e-32ab-b367-45dd395951b3",
   "request" : {
-    "url" : "/api/group/DApublic/org/jgroups/jgroups/3.2.13.Final/jgroups-3.2.13.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jgroups/jgroups/3.2.13.Final/jgroups-3.2.13.Final.pom",
     "method" : "GET"
   },
   "response" : {

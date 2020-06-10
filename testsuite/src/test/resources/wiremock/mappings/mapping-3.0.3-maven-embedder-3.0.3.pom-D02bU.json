@@ -1,7 +1,7 @@
 {
   "id" : "e7b9037d-56dc-313c-ae9e-1811f99f31c3",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/maven/maven-embedder/3.0.3/maven-embedder-3.0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/maven/maven-embedder/3.0.3/maven-embedder-3.0.3.pom",
     "method" : "GET"
   },
   "response" : {

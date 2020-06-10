@@ -1,7 +1,7 @@
 {
   "id" : "f8c62275-4cf1-3722-8709-7201b9612638",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.pom",
     "method" : "GET"
   },
   "response" : {

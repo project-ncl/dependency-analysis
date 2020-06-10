@@ -1,7 +1,7 @@
 {
   "id" : "e0ccaf5c-6eda-3ba9-8f22-50ba3bfb5695",
   "request" : {
-    "url" : "/api/group/DApublic/com/wordnik/swagger-project_2.10/1.3.11/swagger-project_2.10-1.3.11.pom",
+    "url" : "/api/content/maven/group/DApublic/com/wordnik/swagger-project_2.10/1.3.11/swagger-project_2.10-1.3.11.pom",
     "method" : "GET"
   },
   "response" : {

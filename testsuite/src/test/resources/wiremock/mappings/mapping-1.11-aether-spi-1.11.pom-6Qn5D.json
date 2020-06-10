@@ -1,7 +1,7 @@
 {
   "id" : "2b8f5627-390d-3819-8887-44be6946b79b",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/aether/aether-spi/1.11/aether-spi-1.11.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/aether/aether-spi/1.11/aether-spi-1.11.pom",
     "method" : "GET"
   },
   "response" : {

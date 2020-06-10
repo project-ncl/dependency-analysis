@@ -1,7 +1,7 @@
 {
   "id" : "468f829a-2cce-3db2-a860-2bdcbca69304",
   "request" : {
-    "url" : "/api/group/DApublic/commons-chain/commons-chain/1.0/commons-chain-1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-chain/commons-chain/1.0/commons-chain-1.0.pom",
     "method" : "GET"
   },
   "response" : {

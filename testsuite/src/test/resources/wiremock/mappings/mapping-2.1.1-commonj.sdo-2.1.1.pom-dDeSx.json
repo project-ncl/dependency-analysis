@@ -1,7 +1,7 @@
 {
   "id" : "440bd452-caf9-3597-acbc-b0d5fc9f6988",
   "request" : {
-    "url" : "/api/group/DApublic/org/eclipse/persistence/commonj.sdo/2.1.1/commonj.sdo-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/eclipse/persistence/commonj.sdo/2.1.1/commonj.sdo-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "5d2c0f3d-39f3-3305-8717-c83813b86ac3",
   "request" : {
-    "url" : "/api/group/DApublic/com/github/jnr/jnr-unixsocket/0.3/jnr-unixsocket-0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/com/github/jnr/jnr-unixsocket/0.3/jnr-unixsocket-0.3.pom",
     "method" : "GET"
   },
   "response" : {

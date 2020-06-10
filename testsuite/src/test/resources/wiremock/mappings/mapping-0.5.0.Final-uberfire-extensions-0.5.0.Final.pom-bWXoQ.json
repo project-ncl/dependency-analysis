@@ -1,7 +1,7 @@
 {
   "id" : "c6cd8995-4768-32c7-954f-d83064891149",
   "request" : {
-    "url" : "/api/group/DApublic/org/uberfire/uberfire-extensions/0.5.0.Final/uberfire-extensions-0.5.0.Final.pom",
+    "url" : "/api/content/maven/group/DApublic/org/uberfire/uberfire-extensions/0.5.0.Final/uberfire-extensions-0.5.0.Final.pom",
     "method" : "GET"
   },
   "response" : {

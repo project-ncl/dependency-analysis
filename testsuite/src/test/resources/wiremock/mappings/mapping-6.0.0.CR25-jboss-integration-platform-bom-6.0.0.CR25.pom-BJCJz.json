@@ -1,7 +1,7 @@
 {
   "id" : "d94ba449-f0c1-349b-9d47-ed1a42761ca3",
   "request" : {
-    "url" : "/api/group/DApublic/org/jboss/integration-platform/jboss-integration-platform-bom/6.0.0.CR25/jboss-integration-platform-bom-6.0.0.CR25.pom",
+    "url" : "/api/content/maven/group/DApublic/org/jboss/integration-platform/jboss-integration-platform-bom/6.0.0.CR25/jboss-integration-platform-bom-6.0.0.CR25.pom",
     "method" : "GET"
   },
   "response" : {

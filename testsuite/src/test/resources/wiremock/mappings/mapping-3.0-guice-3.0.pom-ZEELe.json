@@ -1,7 +1,7 @@
 {
   "id" : "9e6bd6a7-a9c0-3cac-88e4-a51840dfc5c3",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/inject/guice/3.0/guice-3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/inject/guice/3.0/guice-3.0.pom",
     "method" : "GET"
   },
   "response" : {

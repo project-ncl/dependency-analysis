@@ -1,7 +1,7 @@
 {
   "id" : "adec6730-95ee-3162-a212-d7c2e5d94ab6",
   "request" : {
-    "url" : "/api/group/DApublic/javax/inject/javax.inject/1/javax.inject-1.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/inject/javax.inject/1/javax.inject-1.pom",
     "method" : "GET"
   },
   "response" : {

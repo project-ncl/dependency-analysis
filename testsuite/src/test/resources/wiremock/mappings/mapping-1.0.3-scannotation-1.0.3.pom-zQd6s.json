@@ -1,7 +1,7 @@
 {
   "id" : "86bb3c11-9356-3d50-9529-f8e650b17962",
   "request" : {
-    "url" : "/api/group/DApublic/org/scannotation/scannotation/1.0.3/scannotation-1.0.3.pom",
+    "url" : "/api/content/maven/group/DApublic/org/scannotation/scannotation/1.0.3/scannotation-1.0.3.pom",
     "method" : "GET"
   },
   "response" : {

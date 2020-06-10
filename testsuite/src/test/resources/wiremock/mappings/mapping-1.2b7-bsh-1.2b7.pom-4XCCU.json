@@ -1,7 +1,7 @@
 {
   "id" : "a3286d8e-e5a9-30ae-990f-dc8589e6df84",
   "request" : {
-    "url" : "/api/group/DApublic/bsh/bsh/1.2b7/bsh-1.2b7.pom",
+    "url" : "/api/content/maven/group/DApublic/bsh/bsh/1.2b7/bsh-1.2b7.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "8e8fbcf7-78c9-3fe8-89d6-2fbdbcc9a8ad",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/plexus/plexus-containers/1.5.5/plexus-containers-1.5.5.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/plexus/plexus-containers/1.5.5/plexus-containers-1.5.5.pom",
     "method" : "GET"
   },
   "response" : {

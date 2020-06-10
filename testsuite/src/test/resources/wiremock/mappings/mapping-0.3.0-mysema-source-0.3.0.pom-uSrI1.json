@@ -1,7 +1,7 @@
 {
   "id" : "9bf22510-fdea-3623-9d3e-efa743c21a35",
   "request" : {
-    "url" : "/api/group/DApublic/com/mysema/home/mysema-source/0.3.0/mysema-source-0.3.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mysema/home/mysema-source/0.3.0/mysema-source-0.3.0.pom",
     "method" : "GET"
   },
   "response" : {

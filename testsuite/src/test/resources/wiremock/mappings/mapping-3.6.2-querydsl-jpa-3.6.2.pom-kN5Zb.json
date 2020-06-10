@@ -1,7 +1,7 @@
 {
   "id" : "054290c3-80ff-3eda-95be-e74d94558374",
   "request" : {
-    "url" : "/api/group/DApublic/com/mysema/querydsl/querydsl-jpa/3.6.2/querydsl-jpa-3.6.2.pom",
+    "url" : "/api/content/maven/group/DApublic/com/mysema/querydsl/querydsl-jpa/3.6.2/querydsl-jpa-3.6.2.pom",
     "method" : "GET"
   },
   "response" : {

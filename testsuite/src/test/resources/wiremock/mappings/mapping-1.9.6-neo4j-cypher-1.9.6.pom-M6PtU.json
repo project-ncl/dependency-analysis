@@ -1,7 +1,7 @@
 {
   "id" : "e5623d87-98db-3e5c-96a4-c6988e0083ba",
   "request" : {
-    "url" : "/api/group/DApublic/org/neo4j/neo4j-cypher/1.9.6/neo4j-cypher-1.9.6.pom",
+    "url" : "/api/content/maven/group/DApublic/org/neo4j/neo4j-cypher/1.9.6/neo4j-cypher-1.9.6.pom",
     "method" : "GET"
   },
   "response" : {

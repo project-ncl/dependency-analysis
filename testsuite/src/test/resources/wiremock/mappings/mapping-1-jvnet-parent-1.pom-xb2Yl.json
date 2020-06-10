@@ -1,7 +1,7 @@
 {
   "id" : "277cb4bd-78a7-3abf-8a80-cea194378f9b",
   "request" : {
-    "url" : "/api/group/DApublic/net/java/jvnet-parent/1/jvnet-parent-1.pom",
+    "url" : "/api/content/maven/group/DApublic/net/java/jvnet-parent/1/jvnet-parent-1.pom",
     "method" : "GET"
   },
   "response" : {

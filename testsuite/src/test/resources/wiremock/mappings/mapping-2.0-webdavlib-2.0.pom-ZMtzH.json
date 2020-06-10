@@ -1,7 +1,7 @@
 {
   "id" : "9c84b1b4-d507-3dca-8113-87e60ea932c8",
   "request" : {
-    "url" : "/api/group/DApublic/slide/webdavlib/2.0/webdavlib-2.0.pom",
+    "url" : "/api/content/maven/group/DApublic/slide/webdavlib/2.0/webdavlib-2.0.pom",
     "method" : "GET"
   },
   "response" : {

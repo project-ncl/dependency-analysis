@@ -1,7 +1,7 @@
 {
   "id" : "f322e7d9-75fc-31ed-84f4-3569f586a952",
   "request" : {
-    "url" : "/api/group/DApublic/javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.pom",
     "method" : "GET"
   },
   "response" : {

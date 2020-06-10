@@ -1,7 +1,7 @@
 {
   "id" : "7c367a6f-d5e4-3ca4-b893-ddf992930440",
   "request" : {
-    "url" : "/api/group/DApublic/ognl/ognl/2.7.3/ognl-2.7.3.pom",
+    "url" : "/api/content/maven/group/DApublic/ognl/ognl/2.7.3/ognl-2.7.3.pom",
     "method" : "GET"
   },
   "response" : {

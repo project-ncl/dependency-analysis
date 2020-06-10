@@ -1,7 +1,7 @@
 {
   "id" : "ee95165f-9ccc-3232-933d-043be9b434f3",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/geronimo/specs/geronimo-jpa_2.0_spec/1.1/geronimo-jpa_2.0_spec-1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/geronimo/specs/geronimo-jpa_2.0_spec/1.1/geronimo-jpa_2.0_spec-1.1.pom",
     "method" : "GET"
   },
   "response" : {

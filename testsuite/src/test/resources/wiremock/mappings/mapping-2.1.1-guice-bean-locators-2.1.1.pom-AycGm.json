@@ -1,7 +1,7 @@
 {
   "id" : "dc34463f-f856-393b-95c2-0a9a32df024c",
   "request" : {
-    "url" : "/api/group/DApublic/org/sonatype/sisu/inject/guice-bean-locators/2.1.1/guice-bean-locators-2.1.1.pom",
+    "url" : "/api/content/maven/group/DApublic/org/sonatype/sisu/inject/guice-bean-locators/2.1.1/guice-bean-locators-2.1.1.pom",
     "method" : "GET"
   },
   "response" : {

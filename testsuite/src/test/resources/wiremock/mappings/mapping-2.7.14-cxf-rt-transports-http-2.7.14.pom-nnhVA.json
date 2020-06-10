@@ -1,7 +1,7 @@
 {
   "id" : "141d2b8a-a0b2-3043-8898-d00344efc267",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/cxf/cxf-rt-transports-http/2.7.14/cxf-rt-transports-http-2.7.14.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/cxf/cxf-rt-transports-http/2.7.14/cxf-rt-transports-http-2.7.14.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "f83998a0-bdbb-3829-b07f-78722d31713f",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/xbean/xbean-reflect/3.7/xbean-reflect-3.7.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/xbean/xbean-reflect/3.7/xbean-reflect-3.7.pom",
     "method" : "GET"
   },
   "response" : {

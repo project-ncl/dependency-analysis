@@ -1,7 +1,7 @@
 {
   "id" : "ac34d225-30f6-3b19-ac5e-453cd9e0c6ae",
   "request" : {
-    "url" : "/api/group/DApublic/org/threeten/threetenbp/1.2/threetenbp-1.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/threeten/threetenbp/1.2/threetenbp-1.2.pom",
     "method" : "GET"
   },
   "response" : {

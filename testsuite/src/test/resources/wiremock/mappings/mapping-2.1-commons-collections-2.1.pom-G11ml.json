@@ -1,7 +1,7 @@
 {
   "id" : "8b1dadec-e043-3098-b7fa-eb232fa78309",
   "request" : {
-    "url" : "/api/group/DApublic/commons-collections/commons-collections/2.1/commons-collections-2.1.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-collections/commons-collections/2.1/commons-collections-2.1.pom",
     "method" : "GET"
   },
   "response" : {

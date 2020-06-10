@@ -1,7 +1,7 @@
 {
   "id" : "d44ec73b-8e29-3890-b69c-d3c26784ea2a",
   "request" : {
-    "url" : "/api/group/DApublic/javax/mail/mail/1.4.3/mail-1.4.3.pom",
+    "url" : "/api/content/maven/group/DApublic/javax/mail/mail/1.4.3/mail-1.4.3.pom",
     "method" : "GET"
   },
   "response" : {

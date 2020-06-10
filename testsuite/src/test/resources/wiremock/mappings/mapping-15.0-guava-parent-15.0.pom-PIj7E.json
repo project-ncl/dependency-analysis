@@ -1,7 +1,7 @@
 {
   "id" : "a4ece517-1b2d-3de9-8b3f-6870a67522a5",
   "request" : {
-    "url" : "/api/group/DApublic/com/google/guava/guava-parent/15.0/guava-parent-15.0.pom",
+    "url" : "/api/content/maven/group/DApublic/com/google/guava/guava-parent/15.0/guava-parent-15.0.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "bd049bc2-0af4-3119-ae52-374d6f144b7a",
   "request" : {
-    "url" : "/api/group/DApublic/org/commonjava/maven/galley/galley-api/0.10.2/galley-api-0.10.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/commonjava/maven/galley/galley-api/0.10.2/galley-api-0.10.2.pom",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "id" : "0f38ff3b-7369-356b-912b-b9d7548e55e7",
   "request" : {
-    "url" : "/api/group/DApublic/org/codehaus/fabric3/api/commonj/1.1.0/commonj-1.1.0.pom",
+    "url" : "/api/content/maven/group/DApublic/org/codehaus/fabric3/api/commonj/1.1.0/commonj-1.1.0.pom",
     "method" : "GET"
   },
   "response" : {

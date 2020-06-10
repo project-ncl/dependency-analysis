@@ -1,7 +1,7 @@
 {
   "id" : "5f6380ca-fcca-3814-ba23-0e70946c717f",
   "request" : {
-    "url" : "/api/group/DApublic/org/apache/openjpa/openjpa-parent/2.2.2/openjpa-parent-2.2.2.pom",
+    "url" : "/api/content/maven/group/DApublic/org/apache/openjpa/openjpa-parent/2.2.2/openjpa-parent-2.2.2.pom",
     "method" : "GET"
   },
   "response" : {

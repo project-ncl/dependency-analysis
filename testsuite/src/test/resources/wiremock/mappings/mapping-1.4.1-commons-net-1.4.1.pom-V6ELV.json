@@ -1,7 +1,7 @@
 {
   "id" : "c45e776a-d250-30da-9336-de9c90dad449",
   "request" : {
-    "url" : "/api/group/DApublic/commons-net/commons-net/1.4.1/commons-net-1.4.1.pom",
+    "url" : "/api/content/maven/group/DApublic/commons-net/commons-net/1.4.1/commons-net-1.4.1.pom",
     "method" : "GET"
   },
   "response" : {
