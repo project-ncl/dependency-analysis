@@ -21,8 +21,6 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
 
     private static final String ENCODING = "utf-8";
 
-    private static final String PATH_REPORTS_GAV = "/reports/gav";
-
     static final String PATH_REPORTS_ALIGN = "/reports/align";
 
     private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
@@ -34,23 +32,6 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
     @Before
     public void workaroundNoHttpResponseException() throws InterruptedException {
         Thread.sleep(2000);
-    }
-
-    @Test
-    public void testGavReportBasic() throws Exception {
-        Response response = assertResponseForRequest(PATH_REPORTS_GAV, "guava18");
-        assertEquals(200, response.getStatus());
-    }
-
-    @Test
-    public void testGavReportNonexisting() throws Exception {
-        String gavNonexisting = "gavNonexisting";
-        File jsonRequestFile = getJsonRequestFile(PATH_REPORTS_GAV, gavNonexisting);
-
-        Response response = createClientRequest(PATH_REPORTS_GAV)
-                .post(Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
-
-        assertEquals(404, response.getStatus());
     }
 
     @Test
@@ -100,14 +81,6 @@ public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
         Response response = createClientRequest(PATH_SCM).post(Entity.json(json));
 
         assertEquals(200, response.getStatus());
-    }
-
-    @Test
-    public void testReportWithoutDependencies() throws Exception {
-        Response responseWith = assertResponseForRequest(PATH_REPORTS_GAV, "withDependencies");
-        assertEquals(200, responseWith.getStatus());
-        Response responseWithout = assertResponseForRequest(PATH_REPORTS_GAV, "withoutDependencies");
-        assertEquals(200, responseWithout.getStatus());
     }
 
     @Override

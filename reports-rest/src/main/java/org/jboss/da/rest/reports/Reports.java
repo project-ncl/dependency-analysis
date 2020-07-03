@@ -1,25 +1,30 @@
 package org.jboss.da.rest.reports;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.aprox.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.ErrorMessage;
 import org.jboss.da.model.rest.ErrorMessage.ErrorType;
-import org.jboss.da.reports.model.response.AdvancedReport;
-import org.jboss.da.reports.model.response.AlignReport;
 import org.jboss.da.reports.model.request.AlignReportRequest;
-import org.jboss.da.reports.model.response.BuiltReport;
 import org.jboss.da.reports.model.request.BuiltReportRequest;
-import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
 import org.jboss.da.reports.model.request.LookupNPMRequest;
-import org.jboss.da.reports.model.response.LookupReport;
-import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.reports.model.request.SCMReportRequest;
+import org.jboss.da.reports.model.response.AdvancedReport;
+import org.jboss.da.reports.model.response.AlignReport;
+import org.jboss.da.reports.model.response.BuiltReport;
+import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.NPMLookupReport;
+import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.rest.facade.ReportsFacade;
+import org.jboss.da.validation.ValidationException;
+import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -30,16 +35,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
-import org.jboss.da.validation.ValidationException;
-import org.jboss.pnc.pncmetrics.rest.TimedMetric;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -93,40 +88,6 @@ public class Reports {
             return handleException(e);
         }
 
-    }
-
-    @POST
-    @Path("/gav")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get dependency report for a GAV ", response = Report.class)
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            code = 404,
-                            message = "Requested GAV was not found in repository",
-                            response = ErrorMessage.class),
-                    @ApiResponse(code = 502, message = "Communication with remote repository failed") })
-    @TimedMetric
-    public Response gavGenerator(
-            @ApiParam(value = "JSON Object with keys 'groupId', 'artifactId', and 'version'") GAVRequest gavRequest) {
-        try {
-            return Response.ok().entity(facade.gavReport(gavRequest)).build();
-        } catch (RepositoryException e) {
-            return handleException(
-                    "Communication with remote repository failed",
-                    ErrorType.COMMUNICATION_FAIL,
-                    Status.BAD_GATEWAY,
-                    e);
-        } catch (FindGAVDependencyException e) {
-            return handleException(
-                    "Requested GA was not found in artifact repository",
-                    ErrorType.GA_NOT_FOUND,
-                    Status.NOT_FOUND,
-                    e);
-        } catch (Exception e) {
-            return handleException(e);
-        }
     }
 
     @POST

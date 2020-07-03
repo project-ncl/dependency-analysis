@@ -100,16 +100,6 @@ class CLITool(object):
         message += ("        --group GROUP    use given repository group for version lookup\n")
         message += ("        Output: <groupId>:<artifactId>:<version> <Exact Matched Red Hat Version> <In black/white list?> <Available Versions>\n")
         message += ("\n")
-        message += ("    python " + sys.argv[0] + " report [--raw|--json] [--products PRODUCTS] [--productIDs IDS] GROUP_ID:ARTIFACT_ID:VERSION\n")
-        message += ("        Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS]).\n")
-        message += ("        IDs of available products can be obtained by " + sys.argv[0] + " list whitelist-products\n")
-        message += ("        Generate dependency report for GROUP_ID:ARTIFACT_ID:VERSION.\n")
-        message += ("        --repository REPOSITORY   Aditional maven repositories required by the analysed project. You can specify this\n")
-        message += ("                                  option multiple times. Repositories should be separated by comma.\n")
-        message += ("        Output: <Tree of groupId:artifactId:version> <Exact Matched Red Hat Version> <In black/white list?> <Number of not built dependencies> <Number of available versions>\n")
-        message += ("        --raw output: <groupId>:<artifactId>:<version> <Exact Matched Red Hat Version> <In black/white list?> <Number of not built dependencies> <Available Versions>\n")
-        message += ("        --json output: json aquiered from server\n")
-        message += ("\n")
         message += ("    python " + sys.argv[0] + " scm-report [--raw|--json] scm tag pom-path [--products PRODUCTS] [--productIDs IDS] [--repository REPOSITORY]\n")
         message += ("        Check all dependencies from git-scm link\n")
         message += ("        Consider artifact only from products specified by IDs ([--productIDs IDS]) or names ([--products PRODUCTS]).\n")
@@ -248,13 +238,6 @@ class CLITool(object):
             self.listings.pom_bw_junit_xml(sys.argv,parser)
         except IndexError:
             print("Too few arguments! Use ./da-cli.py --help for help")
-            
-    def report(self):
-        try:
-            self.listings.report()
-        except IndexError:
-            print("Too few arguments! Use ./da-cli.py --help for help")
-        exit()
         
     def lookup(self):
         try:

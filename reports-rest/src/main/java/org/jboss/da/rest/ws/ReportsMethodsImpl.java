@@ -1,23 +1,21 @@
 package org.jboss.da.rest.ws;
 
+import org.jboss.da.reports.model.request.AlignReportRequest;
+import org.jboss.da.reports.model.request.BuiltReportRequest;
+import org.jboss.da.reports.model.request.LookupGAVsRequest;
+import org.jboss.da.reports.model.request.SCMReportRequest;
+import org.jboss.da.reports.model.response.AdvancedReport;
+import org.jboss.da.reports.model.response.AlignReport;
+import org.jboss.da.reports.model.response.BuiltReport;
+import org.jboss.da.reports.model.response.LookupReport;
+import org.jboss.da.reports.model.response.Report;
+import org.jboss.da.rest.facade.ReportsFacade;
 import org.jboss.da.rest.websocket.DefaultMethod;
 import org.jboss.da.rest.websocket.Method;
 import org.jboss.da.rest.websocket.Methods;
-import org.jboss.da.reports.model.response.AdvancedReport;
-import org.jboss.da.reports.model.response.AlignReport;
-import org.jboss.da.reports.model.request.AlignReportRequest;
-import org.jboss.da.reports.model.response.BuiltReport;
-import org.jboss.da.reports.model.request.BuiltReportRequest;
-import org.jboss.da.reports.model.request.GAVRequest;
-import org.jboss.da.reports.model.request.LookupGAVsRequest;
-import org.jboss.da.reports.model.response.LookupReport;
-import org.jboss.da.reports.model.response.Report;
-import org.jboss.da.reports.model.request.SCMReportRequest;
-import org.jboss.da.rest.facade.ReportsFacade;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +28,6 @@ public class ReportsMethodsImpl implements Methods {
     private final DefaultMethod<SCMReportRequest, Report, Map> SCM;
 
     private final DefaultMethod<SCMReportRequest, AdvancedReport, Map> SCM_ADVANCED;
-
-    private final DefaultMethod<GAVRequest, Report, Map> GAV;
 
     private final DefaultMethod<BuiltReportRequest, Set<BuiltReport>, Set> BUILT;
 
@@ -57,8 +53,6 @@ public class ReportsMethodsImpl implements Methods {
                         SCMReportRequest.class,
                         Map.class,
                         params -> facade.advancedScmReport(params)));
-
-        GAV = put(new DefaultMethod<>("reports.gav", GAVRequest.class, Map.class, params -> facade.gavReport(params)));
 
         BUILT = put(
                 new DefaultMethod<>(
