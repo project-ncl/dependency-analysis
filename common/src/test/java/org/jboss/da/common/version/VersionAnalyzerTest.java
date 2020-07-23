@@ -140,9 +140,22 @@ public class VersionAnalyzerTest {
 
     @Test
     public void NCL2931ReproducerTest() {
-        String[] avaliableVersions = { "1.4.0.redhat-4", "1.4.redhat-3", "1.4-redhat-2", "1.4-redhat-1",
-                "1.6.0.redhat-5", "1.6.0.redhat-4", "1.6.0.redhat-3", "1.6.redhat-2", "1.6.redhat-1", "1.9.0.redhat-1",
-                "1.10.0.redhat-5", "1.10.0.redhat-4", "1.10.0.redhat-3", "1.10.0.redhat-2", "1.10.0.redhat-1" };
+        String[] avaliableVersions = {
+                "1.4.0.redhat-4",
+                "1.4.redhat-3",
+                "1.4-redhat-2",
+                "1.4-redhat-1",
+                "1.6.0.redhat-5",
+                "1.6.0.redhat-4",
+                "1.6.0.redhat-3",
+                "1.6.redhat-2",
+                "1.6.redhat-1",
+                "1.9.0.redhat-1",
+                "1.10.0.redhat-5",
+                "1.10.0.redhat-4",
+                "1.10.0.redhat-3",
+                "1.10.0.redhat-2",
+                "1.10.0.redhat-1" };
         checkBMV("1.4.0.redhat-4", "1.4", avaliableVersions);
     }
 
@@ -189,8 +202,14 @@ public class VersionAnalyzerTest {
 
     @Test
     public void NCL4266ReproducerTest() {
-        String[] avaliableVersions1 = { "2.2.3.redhat-00001", "2.2.0.temporary-redhat-00001", "2.2.0.redhat-00001",
-                "2.1.16.redhat-00001", "2.1.9.redhat-1", "2.1.9.redhat-001", "2.1.3.redhat-001" };
+        String[] avaliableVersions1 = {
+                "2.2.3.redhat-00001",
+                "2.2.0.temporary-redhat-00001",
+                "2.2.0.redhat-00001",
+                "2.1.16.redhat-00001",
+                "2.1.9.redhat-1",
+                "2.1.9.redhat-001",
+                "2.1.3.redhat-001" };
         checkBMV(
                 new VersionAnalyzer(new VersionParser("temporary-redhat")),
                 "2.2.3.redhat-00001",
@@ -202,8 +221,14 @@ public class VersionAnalyzerTest {
     public void preferOSGiVersionFormatTest() {
         // as 3.0.0-redhat-2 and 3.0.0.redhat-2 are the same version then ordering in the array matters
         // (if they were in opposite direction test would pass even without OSGi preference)
-        String[] availableVersions = { "3-redhat-2", "3.0.0-redhat-2", "3.0.0.redhat-2", "3.0.0.redhat-1",
-                "2.1.1.redhat-3", "2.1.16-redhat-9", "2.9.9-redhat-00001" };
+        String[] availableVersions = {
+                "3-redhat-2",
+                "3.0.0-redhat-2",
+                "3.0.0.redhat-2",
+                "3.0.0.redhat-1",
+                "2.1.1.redhat-3",
+                "2.1.16-redhat-9",
+                "2.9.9-redhat-00001" };
         checkBMV("3.0.0.redhat-2", "3", availableVersions);
     }
 
@@ -232,7 +257,11 @@ public class VersionAnalyzerTest {
         String[] avaliableVersionsOrder2 = { "1.4.0.temporary-redhat-1", "1.4.0.redhat-1" };
         checkBMV(versionAnalyzer, expectedVersion, version, avaliableVersionsOrder2);
 
-        String[] avaliableVersionsMultiple = { "1.4.0.redhat-4", "1.4.0.redhat-3", "1.4.0.redhat-2", "1.4.0.redhat-1",
+        String[] avaliableVersionsMultiple = {
+                "1.4.0.redhat-4",
+                "1.4.0.redhat-3",
+                "1.4.0.redhat-2",
+                "1.4.0.redhat-1",
                 "1.4.0.temporary-redhat-1", };
         checkBMV(versionAnalyzer, expectedVersion, version, avaliableVersionsMultiple);
     }
@@ -248,7 +277,11 @@ public class VersionAnalyzerTest {
         String[] avaliableVersionsOrder2 = { "1.4.0.temporary-redhat-1", "1.4.0.redhat-1" };
         checkBMV(versionAnalyzer, "1.4.0.redhat-1", version, avaliableVersionsOrder2);
 
-        String[] avaliableVersionsMultiple = { "1.4.0.redhat-4", "1.4.0.redhat-3", "1.4.0.redhat-2", "1.4.0.redhat-1",
+        String[] avaliableVersionsMultiple = {
+                "1.4.0.redhat-4",
+                "1.4.0.redhat-3",
+                "1.4.0.redhat-2",
+                "1.4.0.redhat-1",
                 "1.4.0.temporary-redhat-1", };
         checkBMV(versionAnalyzer, "1.4.0.redhat-4", version, avaliableVersionsMultiple);
     }

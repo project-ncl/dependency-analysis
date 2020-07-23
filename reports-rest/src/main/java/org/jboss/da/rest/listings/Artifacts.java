@@ -186,10 +186,11 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Add an artifact to the whitelist", response = SuccessResponse.class)
     @ApiResponses(
-            value = { @ApiResponse(
-                    code = 409,
-                    message = "Can't add artifact to whitelist, artifact is blacklisted",
-                    response = ErrorMessage.class) })
+            value = {
+                    @ApiResponse(
+                            code = 409,
+                            message = "Can't add artifact to whitelist, artifact is blacklisted",
+                            response = ErrorMessage.class) })
     public Response addWhiteArtifact(
             @ApiParam(
                     value = "JSON object with keys 'groupId', 'artifactId', 'version' and 'productId'") RestProductArtifact artifact) {
@@ -269,10 +270,11 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Add a product to the whitelist", response = SuccessResponse.class)
     @ApiResponses(
-            value = { @ApiResponse(
-                    code = 400,
-                    message = "Name and version parameters are required",
-                    response = ErrorMessage.class) })
+            value = {
+                    @ApiResponse(
+                            code = 400,
+                            message = "Name and version parameters are required",
+                            response = ErrorMessage.class) })
     public Response addProduct(
             @ApiParam(
                     value = "JSON object with keys 'name', 'version' and optional 'status'") RestProductInput product) {
@@ -325,7 +327,8 @@ public class Artifacts {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Change support status of product in whitelist", response = SuccessResponse.class)
     @ApiResponses(
-            value = { @ApiResponse(code = 404, message = "Product not found", response = ErrorMessage.class),
+            value = {
+                    @ApiResponse(code = 404, message = "Product not found", response = ErrorMessage.class),
                     @ApiResponse(code = 400, message = "All parameters are required", response = ErrorMessage.class) })
     public Response changeProductStatus(
             @ApiParam(value = "JSON object with keys 'name', 'version' and 'status'") RestProductInput product) {
