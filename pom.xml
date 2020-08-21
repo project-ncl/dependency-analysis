@@ -92,7 +92,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.cli>1.4.0</version.cli>
+        <version.cli>2.0.0</version.cli>
         <version.reports.rest>1</version.reports.rest>
         <version.bc.rest>1</version.bc.rest>
         <version.galley>0.13.4</version.galley>
