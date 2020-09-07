@@ -40,7 +40,11 @@ public class GlobalConfig extends AbstractModuleGroup {
     }
 
     public void setIndyUrl(String indyUrl) {
-        this.indyUrl = indyUrl;
+        if (indyUrl.endsWith("/")) {
+            this.indyUrl = indyUrl.substring(0, indyUrl.length() - 1);
+        } else {
+            this.indyUrl = indyUrl;
+        }
     }
 
 }
