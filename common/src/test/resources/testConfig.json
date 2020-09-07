@@ -7,7 +7,7 @@
       "bpmUrl": "http://127.0.0.1:8001",
       "cartographerUrl": "http://127.0.0.1:8002",
       "daUrl": "http://127.0.0.1:8003",
-      "indyUrl": "http://127.0.0.1:8004",
+      "indyUrl": "http://127.0.0.1:8004/",
       "pncUrl": "http://127.0.0.1:8005",
       "repourUrl": "http://127.0.0.1:8006",
       "externalBifrostUrl": "http://1.2.3.4",
