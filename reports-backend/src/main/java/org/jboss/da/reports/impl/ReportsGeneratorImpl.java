@@ -52,9 +52,11 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.jboss.da.common.util.UserLog;
+import org.jboss.da.common.version.SuffixedVersion;
 
 import org.jboss.da.common.version.VersionAnalyzer;
 import org.jboss.da.common.version.VersionAnalyzer.VersionAnalysisResult;
@@ -65,7 +67,9 @@ import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.jboss.da.reports.model.request.LookupNPMRequest;
+import org.jboss.da.reports.model.request.VersionsNPMRequest;
 import org.jboss.da.reports.model.response.NPMLookupReport;
+import org.jboss.da.reports.model.response.NPMVersionsReport;
 
 /**
  * The implementation of reports, which provides information about built/not built artifacts/blacklisted artifacts
@@ -484,6 +488,41 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return createLookupReports(request.getPackages(), versionSuffix, artifactsMap);
     }
 
+    private Predicate<SuffixedVersion> majorMinorFilter(NPMPackage pkg) {
+        SuffixedVersion version = VersionParser.parseUnsuffixed(pkg.getVersion());
+        return (SuffixedVersion s) -> s.getMajor() == version.getMajor() && s.getMinor() == version.getMinor();
+    }
+
+    @Override
+    public List<NPMVersionsReport> getVersionsReports(VersionsNPMRequest request) throws CommunicationException {
+        final VersionsNPMRequest.VersionFilter versionFilter = request.getVersionFilter();
+
+        Function<NPMPackage, Predicate<SuffixedVersion>> predicateProvider;
+        switch (versionFilter) {
+            case MAJOR_MINOR:
+                predicateProvider = this::majorMinorFilter;
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown filter " + versionFilter);
+        }
+
+        final String repositoryGroup = request.getRepositoryGroup();
+        if (repositoryGroup != null && !repositoryGroup.isEmpty()) {
+            repositoryProductProvider.setRepository(repositoryGroup);
+        }
+
+        Set<String> uniqueNames = request.getPackages().stream().map(x -> x.getName()).collect(Collectors.toSet());
+
+        Map<String, CompletableFuture<Set<String>>> artifactsMap = new HashMap<>();
+        for (String name : uniqueNames) {
+            CompletableFuture<Set<String>> artifacts = productProvider.getAllVersions(new NPMArtifact(name, "0.0.0"));
+
+            artifactsMap.put(name, artifacts);
+        }
+
+        return createVersionsReports(request.getPackages(), artifactsMap, predicateProvider);
+    }
+
     private Map<String, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsNPM(Set<String> packageNames) {
         Map<String, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
         for (String name : packageNames) {
@@ -521,6 +560,28 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                             .availableVersions(v.getAvailableVersions())
                             .bestMatchVersion(v.getBestMatchVersion().orElse(null))
                             .build());
+        }).collect(Collectors.toList());
+
+        return joinFutures(futures);
+    }
+
+    private List<NPMVersionsReport> createVersionsReports(
+            List<NPMPackage> packages,
+            Map<String, CompletableFuture<Set<String>>> artifactsMap,
+            Function<NPMPackage, Predicate<SuffixedVersion>> predicateProvider) throws CommunicationException {
+        List<CompletableFuture<NPMVersionsReport>> futures = packages.stream().distinct().map((a) -> {
+            Predicate<SuffixedVersion> predicate = predicateProvider.apply(a);
+
+            CompletableFuture<List<String>> versions = artifactsMap.get(a.getName())
+                    .thenApply(
+                            s -> s.stream()
+                                    .map(VersionParser::parseUnsuffixed)
+                                    .filter(predicate)
+                                    .map(SuffixedVersion::getOriginalVersion)
+                                    .sorted()
+                                    .collect(Collectors.toList()));
+
+            return versions.thenApply(v -> NPMVersionsReport.builder().npmPackage(a).availableVersions(v).build());
         }).collect(Collectors.toList());
 
         return joinFutures(futures);

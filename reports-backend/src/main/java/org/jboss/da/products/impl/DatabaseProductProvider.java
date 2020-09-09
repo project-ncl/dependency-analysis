@@ -109,6 +109,19 @@ public class DatabaseProductProvider implements ProductProvider {
                                                 .collect(Collectors.toSet()))));
     }
 
+    @Override
+    public CompletableFuture<Set<String>> getAllVersions(Artifact artifact) {
+        if (artifact.getType() != ArtifactType.MAVEN) {
+            return CompletableFuture.completedFuture(Collections.emptySet());
+        }
+        GA ga = ((MavenArtifact) artifact).getGav().getGA();
+        return CompletableFuture.supplyAsync(
+                () -> getArtifacts(ga.getGroupId(), ga.getArtifactId(), Optional.empty()).stream()
+                        .flatMap(a -> a.getArtifacts().stream())
+                        .map(Artifact::getVersion)
+                        .collect(Collectors.toSet()));
+    }
+
     private Set<ProductArtifacts> getArtifacts(
             final String groupId,
             final String artifactId,

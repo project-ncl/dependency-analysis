@@ -1,6 +1,39 @@
 {
   "name" : "jquery",
   "versions" : {
+    "1.5.2" : {
+      "name" : "jquery",
+      "description" : "jQuery: The Write Less, Do More, JavaScript Library",
+      "main" : "./dist/node-jquery.js",
+      "version" : "1.5.2",
+      "url" : "jquery.com",
+      "keywords" : [ "util", "dom", "jquery" ],
+      "author" : {
+        "name" : "John Resig",
+        "email" : "jeresig@gmail.com"
+      },
+      "dependencies" : {
+        "jsdom" : "=0.1.20",
+        "htmlparser" : ">= 1.7.3"
+      },
+      "dist" : {
+        "shasum" : "2ae2d661e906c1a01e044a71bb5b2743942183e6",
+        "tarball" : "http://mwnodereg-devel.hosts.mwqe.eng.bos.redhat.com:49153/jquery/-/jquery-1.5.2.tgz"
+      },
+      "directories" : {
+        "lib" : "./lib"
+      },
+      "engines" : {
+        "node" : "*"
+      },
+      "files" : [ "" ],
+      "deprecated" : "Versions of the jquery npm package older than 1.9.0 are patched versions that don't work in web browsers. Please upgrade to >=1.11.0.",
+      "lib" : "lib",
+      "_engineSupported" : true,
+      "_npmVersion" : "0.3.15",
+      "_nodeVersion" : "v0.4.2",
+      "_defaultsLoaded" : true
+    },
     "1.5.1" : {
       "name" : "jquery",
       "description" : "jQuery: The Write Less, Do More, JavaScript Library",

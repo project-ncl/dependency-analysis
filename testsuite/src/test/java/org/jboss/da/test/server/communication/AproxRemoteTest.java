@@ -72,6 +72,7 @@ public class AproxRemoteTest extends AbstractServerTest {
                         "1.12.4",
                         "1.5.1",
                         "1.5.1-redhat-1",
+                        "1.5.2",
                         "1.6.2-redhat-1",
                         "1.6.2",
                         "1.6.3",
