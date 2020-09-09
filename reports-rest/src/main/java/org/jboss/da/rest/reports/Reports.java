@@ -16,11 +16,13 @@ import org.jboss.da.reports.model.request.BuiltReportRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
 import org.jboss.da.reports.model.request.LookupNPMRequest;
 import org.jboss.da.reports.model.request.SCMReportRequest;
+import org.jboss.da.reports.model.request.VersionsNPMRequest;
 import org.jboss.da.reports.model.response.AdvancedReport;
 import org.jboss.da.reports.model.response.AlignReport;
 import org.jboss.da.reports.model.response.BuiltReport;
 import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.NPMLookupReport;
+import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.rest.facade.ReportsFacade;
 import org.jboss.da.validation.ValidationException;
@@ -135,6 +137,34 @@ public class Reports {
             List<NPMLookupReport> lookupReportList = facade.lookupReport(request);
             log.info("Request to /lookup/npm completed successfully. Payload: " + request.toString());
             return Response.status(Status.OK).entity(lookupReportList).build();
+        } catch (RepositoryException e) {
+            return handleException(
+                    "Communication with remote repository failed",
+                    ErrorType.COMMUNICATION_FAIL,
+                    Status.BAD_GATEWAY,
+                    e);
+        } catch (Exception e) {
+            return handleException(e);
+        }
+    }
+
+    @POST
+    @Path("/versions/npm")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(
+            value = "Lookup and filter versions for the list of provided NPM artifacts",
+            responseContainer = "List",
+            response = NPMLookupReport.class)
+    @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
+    @TimedMetric
+    public Response versionsNPM(
+            @ApiParam(value = "JSON object with list of package names") VersionsNPMRequest request) {
+        try {
+            log.info("Incoming request to /versions/npm. Payload: " + request.toString());
+            List<NPMVersionsReport> versionsReportList = facade.versionReport(request);
+            log.info("Request to /versions/npm completed successfully. Payload: " + request.toString());
+            return Response.status(Status.OK).entity(versionsReportList).build();
         } catch (RepositoryException e) {
             return handleException(
                     "Communication with remote repository failed",

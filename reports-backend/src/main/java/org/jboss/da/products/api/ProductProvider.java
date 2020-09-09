@@ -17,14 +17,14 @@ public interface ProductProvider {
     // Products getters
     /**
      * Returns all known products.
-     * 
+     *
      * @return Set of all products.
      */
     Future<Set<Product>> getAllProducts();
 
     /**
      * Get all products with given name.
-     * 
+     *
      * @param name Name of the products.
      * @return Set of all products with given name.
      */
@@ -32,7 +32,7 @@ public interface ProductProvider {
 
     /**
      * Get all products with given support status.
-     * 
+     *
      * @param status Support status of the products.
      * @return Set of all products with given support status.
      */
@@ -41,7 +41,7 @@ public interface ProductProvider {
     // Artifacts getters
     /**
      * Get all artifacts in a given product.
-     * 
+     *
      * @param product Product containing the artifacts.
      * @return Set of all artifacts.
      */
@@ -74,4 +74,12 @@ public interface ProductProvider {
      */
     Future<Map<Product, Set<String>>> getVersions(Artifact artifact);
 
+    /**
+     * Get all artifacts versions with the same name and type as given artifact regardless if they are from product or
+     * not.
+     *
+     * @param artifact artifact which name and type will be used for searching.
+     * @return Set of artifacts versions.
+     */
+    Future<Set<String>> getAllVersions(Artifact artifact);
 }

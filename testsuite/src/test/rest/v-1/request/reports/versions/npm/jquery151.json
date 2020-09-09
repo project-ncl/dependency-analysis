@@ -1,0 +1,9 @@
+{
+  "versionFilter": "MAJOR_MINOR",
+  "packages": [
+    {
+      "name": "jquery",
+      "version": "1.5.1"
+    }
+  ]
+}
