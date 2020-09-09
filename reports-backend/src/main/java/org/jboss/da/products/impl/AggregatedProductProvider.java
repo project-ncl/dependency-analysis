@@ -108,6 +108,11 @@ public class AggregatedProductProvider implements ProductProvider {
         return aggregate(x -> x.getVersions(artifact), new MapCol<>(AggregatedProductProvider::combineSets));
     }
 
+    @Override
+    public CompletableFuture<Set<String>> getAllVersions(Artifact artifact) {
+        return aggregate(x -> x.getAllVersions(artifact), new SetCollector<>());
+    }
+
     private <R> CompletableFuture<R> aggregate(
             Function<ProductProvider, Future<R>> getter,
             Collector<? super R, ?, R> collector) {

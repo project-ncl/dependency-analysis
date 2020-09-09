@@ -26,10 +26,16 @@ public class VersionParser {
 
     private static final String RE_SUFFIX_E = "-(?<suffixversion>[0-9]{1,9}))?";
 
+    private static final Pattern UNSUFFIXED_PATTERN = Pattern.compile("^" + RE_MMM + RE_QUALIFIER + "?" + "$");
+
     public VersionParser(String suffix) {
         this.suffix = suffix;
         this.versionPattern = Pattern
                 .compile("^" + RE_MMM + RE_QUALIFIER + "??" + RE_SUFFIX_S + suffix + RE_SUFFIX_E + "$");
+    }
+
+    public static SuffixedVersion parseUnsuffixed(String version) {
+        return parseVersion(UNSUFFIXED_PATTERN.matcher(version), version);
     }
 
     public SuffixedVersion parse(String version) {
@@ -41,7 +47,24 @@ public class VersionParser {
         return suffixedVersion;
     }
 
-    private SuffixedVersion parseVersion(Matcher versionMatcher, String version, String parseSuffix)
+    private static SuffixedVersion parseVersion(Matcher versionMatcher, String version)
+            throws NumberFormatException, IllegalArgumentException {
+        if (!versionMatcher.matches()) {
+            throw new IllegalArgumentException("Version " + version + "is unparsable");
+        }
+        String majorString = versionMatcher.group("major");
+        String minorString = versionMatcher.group("minor");
+        String microString = versionMatcher.group("micro");
+        String qualifierString = versionMatcher.group("qualifier");
+
+        int major = parseNumberString(majorString);
+        int minor = parseNumberString(minorString);
+        int micro = parseNumberString(microString);
+        String qualifier = qualifierString == null ? "" : qualifierString.replace('.', '-').replace(',', '-');
+        return new SuffixedVersion(major, minor, micro, qualifier, version);
+    }
+
+    private static SuffixedVersion parseVersion(Matcher versionMatcher, String version, String parseSuffix)
             throws NumberFormatException, IllegalArgumentException {
         if (!versionMatcher.matches()) {
             throw new IllegalArgumentException("Version " + version + "is unparsable");
@@ -64,13 +87,13 @@ public class VersionParser {
         }
     }
 
-    private int parseNumberString(String segmentString) {
+    private static int parseNumberString(String segmentString) {
         return segmentString == null ? 0 : Integer.parseInt(segmentString);
     }
 
     /**
      * Converts version to osgi compliant
-     * 
+     *
      * @param version
      * @return
      */
