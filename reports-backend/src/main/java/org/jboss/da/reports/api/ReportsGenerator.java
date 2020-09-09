@@ -9,8 +9,10 @@ import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
 import org.jboss.da.reports.model.request.LookupNPMRequest;
 import org.jboss.da.reports.model.request.SCMReportRequest;
+import org.jboss.da.reports.model.request.VersionsNPMRequest;
 import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.NPMLookupReport;
+import org.jboss.da.reports.model.response.NPMVersionsReport;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +27,7 @@ public interface ReportsGenerator {
 
     /**
      * Create a report about artifacts given an scm-url
-     * 
+     *
      * @param scml
      * @return Created report
      */
@@ -46,7 +48,7 @@ public interface ReportsGenerator {
     /**
      * Creates a report about built/not built/blacklisted artifacts. It performs searches in the whole available
      * repository as well as artifact whitelists.
-     * 
+     *
      * No restrictions on the artifacts belonging to the certain product are applied if the request contains no
      * product/product version IDs. Otherwise only provides info for white listed artifacts belonging to the specified
      * product/product versions.
@@ -59,7 +61,7 @@ public interface ReportsGenerator {
 
     /**
      * Creates an aligment report.
-     * 
+     *
      * @param scml
      * @param productIds Optional list of product ids to filter the result.
      * @return
@@ -75,5 +77,7 @@ public interface ReportsGenerator {
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request) throws CommunicationException;
 
     public List<NPMLookupReport> getLookupReports(LookupNPMRequest request) throws CommunicationException;
+
+    public List<NPMVersionsReport> getVersionsReports(VersionsNPMRequest request) throws CommunicationException;
 
 }
