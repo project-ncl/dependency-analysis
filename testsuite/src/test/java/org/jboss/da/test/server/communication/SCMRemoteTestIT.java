@@ -24,7 +24,7 @@ import java.util.Collections;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RunWith(Arquillian.class)
-public class SCMRemoteTest extends AbstractServerTest {
+public class SCMRemoteTestIT extends AbstractServerTest {
 
     @Inject
     private SCMConnector scmConnector;

@@ -13,7 +13,7 @@ import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-public class RestApiListingsTest extends AbstractRestApiListingTest {
+public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     private final RequestGenerator generator = new RequestGenerator();
 

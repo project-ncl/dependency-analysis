@@ -20,7 +20,7 @@ import javax.inject.Inject;
  * @author Honza Brázdil <janinko.g@gmail.com>
  */
 @RunWith(Arquillian.class)
-public class WhiteArtifactServiceTest extends AbstractServerTest {
+public class WhiteArtifactServiceTestIT extends AbstractServerTest {
 
     @Inject
     ProductVersionService pvs;
