@@ -40,7 +40,7 @@ import java.util.Set;
  * @author fkujikis
  */
 @RunWith(Arquillian.class)
-public class ReportsWithWhitelistedArtifactsRemoteTest extends AbstractServerTest {
+public class ReportsWithWhitelistedArtifactsRemoteTestIT extends AbstractServerTest {
 
     @Inject
     private ReportsGenerator reportGenerator;

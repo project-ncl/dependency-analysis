@@ -40,7 +40,7 @@ import java.util.Set;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RunWith(Arquillian.class)
-public class GalleyWrapperTest extends AbstractServerTest {
+public class GalleyWrapperTestIT extends AbstractServerTest {
 
     private static final String VERSION = "0.5.1";
 

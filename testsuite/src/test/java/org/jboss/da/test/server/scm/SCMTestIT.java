@@ -19,7 +19,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class SCMTest {
+public class SCMTestIT {
 
     private void testDaGitClone(String scmUrl) throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_git_clone");
