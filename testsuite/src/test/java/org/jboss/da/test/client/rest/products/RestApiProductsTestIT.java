@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-public class RestApiProductsTest extends AbstractRestApiListingTest {
+public class RestApiProductsTestIT extends AbstractRestApiListingTest {
 
     protected static final String PATH_FILES_PRODUCTS = "/products";
 

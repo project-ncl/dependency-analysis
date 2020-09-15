@@ -9,7 +9,7 @@ import org.junit.Test;
  *
  * @author Stanislav Knot &lt;sknot@redhat.com&gt;
  */
-public class GAVComparatorRemoteTest {
+public class GAVComparatorRemoteTestIT {
 
     @Test
     public void test() {

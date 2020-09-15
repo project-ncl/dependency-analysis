@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RunWith(Arquillian.class)
-public class DeploymentTest {
+public class DeploymentTestIT {
 
     @Deployment
     public static EnterpriseArchive createDeployment() {

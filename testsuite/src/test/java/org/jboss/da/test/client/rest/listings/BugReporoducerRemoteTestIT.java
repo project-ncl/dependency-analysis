@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-public class BugReporoducerRemoteTest extends AbstractRestApiListingTest {
+public class BugReporoducerRemoteTestIT extends AbstractRestApiListingTest {
 
     private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 

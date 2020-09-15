@@ -8,7 +8,7 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import java.io.IOException;
 
-public class WebsocketApiReportsTest extends AbstractWebsocketReportsTest {
+public class WebsocketApiReportsTestIT extends AbstractWebsocketReportsTest {
 
     private static final String PATH_REPORTS_ALIGN = "/reports/align";
 

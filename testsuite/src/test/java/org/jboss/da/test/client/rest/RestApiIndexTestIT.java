@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 import javax.ws.rs.core.Response;
 
-public class RestApiIndexTest extends AbstractRestReportsTest {
+public class RestApiIndexTestIT extends AbstractRestReportsTest {
 
     @Test
     public void testIndexHtml() throws Exception {
