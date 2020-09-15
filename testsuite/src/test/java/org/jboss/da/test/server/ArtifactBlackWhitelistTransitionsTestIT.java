@@ -30,7 +30,7 @@ import org.junit.runner.RunWith;
  * @author fkujikis
  */
 @RunWith(Arquillian.class)
-public class ArtifactBlackWhitelistTransitionsTest extends AbstractServerTest {
+public class ArtifactBlackWhitelistTransitionsTestIT extends AbstractServerTest {
 
     @Inject
     private BlackArtifactService blackService;

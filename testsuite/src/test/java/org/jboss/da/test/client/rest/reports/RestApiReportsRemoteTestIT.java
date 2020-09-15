@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 
 import java.io.File;
 
-public class RestApiReportsRemoteTest extends AbstractRestReportsTest {
+public class RestApiReportsRemoteTestIT extends AbstractRestReportsTest {
 
     private static final String ENCODING = "utf-8";
 

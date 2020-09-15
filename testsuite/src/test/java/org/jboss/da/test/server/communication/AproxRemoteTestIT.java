@@ -27,7 +27,7 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Before;
 
 @RunWith(Arquillian.class)
-public class AproxRemoteTest extends AbstractServerTest {
+public class AproxRemoteTestIT extends AbstractServerTest {
 
     @Inject
     private AproxConnector aproxConnector;

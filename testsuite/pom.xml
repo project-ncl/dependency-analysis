@@ -116,7 +116,7 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
                     <systemProperties>
                         <jboss.home>${testsuiteContainer}</jboss.home>
@@ -124,9 +124,6 @@
                         <arquillianPortConfig>-Djboss.socket.binding.port-offset=100
                             -Djboss.management.native.port=9054</arquillianPortConfig>
                     </systemProperties>
-                    <excludes>
-                        <exclude>${testsuite.test.excludes}</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
         </plugins>

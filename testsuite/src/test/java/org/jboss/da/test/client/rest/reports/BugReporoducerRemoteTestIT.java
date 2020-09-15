@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-public class BugReporoducerRemoteTest extends AbstractRestReportsTest {
+public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
 
     private static final String ENCODING = "utf-8";
 
