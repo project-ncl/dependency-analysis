@@ -6,6 +6,8 @@
 package org.jboss.da.test.client.rest.listings;
 
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.core.Response;
@@ -14,6 +16,7 @@ import javax.ws.rs.core.Response;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@Ignore
 public class BugReporoducerRemoteTestIT extends AbstractRestApiListingTest {
 
     private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
