@@ -442,29 +442,6 @@
     </build>
     <profiles>
         <profile>
-            <id>excludeTests</id>
-            <activation>
-                <property>
-                    <name>testsuite.test.excludes</name>
-                </property>
-            </activation>
-            <modules>
-                <module>testsuite</module>
-            </modules>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <excludes>
-                                <exclude>${testsuite.test.excludes}</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>excludeRemoteTests</id>
             <activation>
                 <property>

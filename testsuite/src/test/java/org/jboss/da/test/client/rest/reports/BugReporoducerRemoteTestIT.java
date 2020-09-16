@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
 import static org.junit.Assert.assertEquals;
 import org.junit.Assume;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.Response;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@Ignore
 public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
 
     private static final String ENCODING = "utf-8";
