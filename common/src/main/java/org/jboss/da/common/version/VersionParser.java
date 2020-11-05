@@ -16,9 +16,13 @@ public class VersionParser {
 
     private final Pattern versionPattern;
 
+    // single dot at the end of the version indicates ommited micro "0"
+    // NCLSUP-132 asks to allow dash instead of dot before micro
+    static final String RE_MICRO = "(\\.$|[.-](?<micro>[0-9]{1,9}))";
+
     // major.minor.micro.qualifier-suffix-X
     // numbers limited to max 9 digits, beacuse of integer limitatations
-    static final String RE_MMM = "((?<major>[0-9]{1,9})?(\\.(?<minor>[0-9]{1,9})(\\.(?<micro>[0-9]{1,9}))?)?)";
+    static final String RE_MMM = "((?<major>[0-9]{1,9})?(\\.(?<minor>[0-9]{1,9})" + RE_MICRO + "?)?)";
 
     static final String RE_QUALIFIER = "([.-]?(?<qualifier>.+?))";
 

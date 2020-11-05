@@ -23,6 +23,41 @@ public class VersionParserTest {
         assertEquals("1.1.0.CR4", VersionParser.getOSGiVersion("1.1.CR4"));
         assertEquals("1.1.0.final", VersionParser.getOSGiVersion("1.1-final"));
         assertEquals("1.1.0.final-redhat-1", VersionParser.getOSGiVersion("1.1.0.final-redhat-1"));
+        assertEquals("1.1.2", VersionParser.getOSGiVersion("1.1-2"));
+        assertEquals("1.1.2.Final", VersionParser.getOSGiVersion("1.1-2.Final"));
+        assertEquals("1.1.2.Final", VersionParser.getOSGiVersion("1.1-2-Final"));
+        assertEquals("1.1.2.Final-redhat-2", VersionParser.getOSGiVersion("1.1-2.Final-redhat-2"));
+        assertEquals("1.1.2.Final-redhat-2", VersionParser.getOSGiVersion("1.1-2-Final-redhat-2"));
+    }
+
+    @Test
+    public void testVersionParser() {
+        VersionParser versionParser = new VersionParser("redhat");
+        assertEquals(new SuffixedVersion(1, 1, 0, "Final", "1.1.Final"), versionParser.parse("1.1.Final"));
+        assertEquals(new SuffixedVersion(1, 1, 0, "", "1.1"), versionParser.parse("1.1"));
+        assertEquals(
+                new SuffixedVersion(1, 1, 0, "", "redhat", 1, "1.1.redhat-1"),
+                versionParser.parse("1.1.redhat-1"));
+        assertEquals(
+                new SuffixedVersion(1, 1, 0, "", "redhat", 1, "1.1-redhat-1"),
+                versionParser.parse("1.1-redhat-1"));
+        assertEquals(new SuffixedVersion(1, 1, 0, "Final", "1.1Final"), versionParser.parse("1.1Final"));
+        assertEquals(new SuffixedVersion(1, 1, 5, "CR4", "1.1.5CR4"), versionParser.parse("1.1.5CR4"));
+        assertEquals(new SuffixedVersion(1, 1, 0, "", "1.1."), versionParser.parse("1.1."));
+        assertEquals(new SuffixedVersion(1, 1, 0, "CR4", "1.1.CR4"), versionParser.parse("1.1.CR4"));
+        assertEquals(new SuffixedVersion(1, 1, 0, "final", "1.1-final"), versionParser.parse("1.1-final"));
+        assertEquals(
+                new SuffixedVersion(1, 1, 0, "final", "redhat", 1, "1.1.0.final-redhat-1"),
+                versionParser.parse("1.1.0.final-redhat-1"));
+        assertEquals(new SuffixedVersion(1, 1, 2, "", "1.1-2"), versionParser.parse("1.1-2"));
+        assertEquals(new SuffixedVersion(1, 1, 2, "Final", "1.1-2.Final"), versionParser.parse("1.1-2.Final"));
+        assertEquals(new SuffixedVersion(1, 1, 2, "Final", "1.1-2-Final"), versionParser.parse("1.1-2-Final"));
+        assertEquals(
+                new SuffixedVersion(1, 1, 2, "Final", "redhat", 2, "1.1-2.Final-redhat-2"),
+                versionParser.parse("1.1-2.Final-redhat-2"));
+        assertEquals(
+                new SuffixedVersion(1, 1, 2, "Final", "redhat", 2, "1.1-2-Final-redhat-2"),
+                versionParser.parse("1.1-2-Final-redhat-2"));
     }
 
     @Test

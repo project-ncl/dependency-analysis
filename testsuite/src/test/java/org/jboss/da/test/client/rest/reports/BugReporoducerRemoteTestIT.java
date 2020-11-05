@@ -22,6 +22,7 @@ public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
     private static final String ENCODING = "utf-8";
 
     private static final String PATH_SCM = "/reports/scm";
+    private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
 
     @Test
     public void testDA176() throws Exception {
@@ -56,6 +57,12 @@ public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
         Response response = createClientRequest(PATH_SCM)
                 .post(Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
 
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    public void testNCLSUP132() throws Exception {
+        Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "NCLSUP132");
         assertEquals(200, response.getStatus());
     }
 }
