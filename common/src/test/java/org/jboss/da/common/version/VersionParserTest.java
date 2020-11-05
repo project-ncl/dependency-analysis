@@ -17,7 +17,6 @@ public class VersionParserTest {
         assertEquals("1.1.0", VersionParser.getOSGiVersion("1.1"));
         assertEquals("1.1.0.redhat-1", VersionParser.getOSGiVersion("1.1.redhat-1"));
         assertEquals("1.1.0.redhat-1", VersionParser.getOSGiVersion("1.1-redhat-1"));
-        assertEquals("1.1.0", VersionParser.getOSGiVersion("1.1"));
         assertEquals("1.1.0.Final", VersionParser.getOSGiVersion("1.1Final"));
         assertEquals("1.1.5.CR4", VersionParser.getOSGiVersion("1.1.5CR4"));
         assertEquals("1.1.0", VersionParser.getOSGiVersion("1.1."));
