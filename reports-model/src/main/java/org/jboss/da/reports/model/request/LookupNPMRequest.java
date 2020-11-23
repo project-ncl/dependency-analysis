@@ -33,11 +33,12 @@ import lombok.Value;
 @Value
 @Builder(builderClassName = "Builder")
 @JsonDeserialize(builder = LookupNPMRequest.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LookupNPMRequest {
 
-    private final String repositoryGroup;
-
     private final String versionSuffix;
+
+    private final Boolean temporaryBuild;
 
     @NonNull
     private final List<NPMPackage> packages;

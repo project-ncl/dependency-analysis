@@ -15,6 +15,10 @@ public class DAConfig extends AbstractModuleConfig {
 
     @Getter
     @Setter
+    private String indyTemporaryGroup;
+
+    @Getter
+    @Setter
     private String indyGroupPublic;
 
     @Getter

@@ -1,9 +1,9 @@
 package org.jboss.da.products.impl;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.pnc.PncConnector;
 import org.jboss.da.model.rest.GA;
-import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
+import org.jboss.da.products.impl.PncProductProvider.Pnc;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -14,7 +14,6 @@ import javax.inject.Qualifier;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import static java.lang.annotation.ElementType.FIELD;
@@ -24,26 +23,25 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- *
- * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
+ * @author <a href="mailto:pkocandr@redhat.com">Petr Kocandrle</a>
  */
-@Repository
+@Pnc
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 @RequestScoped
-public class RepositoryProductProvider extends AbstractProductProvider {
+public class PncProductProvider extends AbstractProductProvider {
 
     @Inject
-    private IndyConnector indyConnector;
+    private PncConnector pncConnector;
 
-    private Optional<String> repository = Optional.empty();
+    private boolean temporaryBuild;
 
     /**
-     * Sets given repository to be used instead of the default one.
+     * Sets the temporary builds flag.
      *
-     * @param repository The repository to use insteady of the default one.
+     * @param temporaryBuild the flag value
      */
-    public void setRepository(String repository) {
-        this.repository = Optional.ofNullable(repository);
+    public void setTemporaryBuild(boolean temporaryBuild) {
+        this.temporaryBuild = temporaryBuild;
     }
 
     @Override
@@ -55,11 +53,7 @@ public class RepositoryProductProvider extends AbstractProductProvider {
         }
         try {
             List<String> versionsOfGA;
-            if (repository.isPresent()) {
-                versionsOfGA = indyConnector.getVersionsOfGA(ga, repository.get());
-            } else {
-                versionsOfGA = indyConnector.getVersionsOfGA(ga);
-            }
+            versionsOfGA = pncConnector.getMavenVersions(ga, temporaryBuild);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
@@ -70,11 +64,7 @@ public class RepositoryProductProvider extends AbstractProductProvider {
     Stream<String> getVersionsStreamNPM(String name) {
         try {
             List<String> versionsOfGA;
-            if (repository.isPresent()) {
-                versionsOfGA = indyConnector.getVersionsOfNpm(name, repository.get());
-            } else {
-                versionsOfGA = indyConnector.getVersionsOfNpm(name);
-            }
+            versionsOfGA = pncConnector.getNpmVersions(name, temporaryBuild);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
@@ -84,7 +74,7 @@ public class RepositoryProductProvider extends AbstractProductProvider {
     @Qualifier
     @Retention(RUNTIME)
     @Target({ TYPE, METHOD, FIELD, PARAMETER })
-    public static @interface Repository {
+    public static @interface Pnc {
     }
 
 }

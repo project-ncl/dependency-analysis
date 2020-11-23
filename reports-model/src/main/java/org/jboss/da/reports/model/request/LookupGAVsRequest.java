@@ -33,6 +33,12 @@ public class LookupGAVsRequest {
     private String repositoryGroup;
 
     @Getter
+    private Boolean brewPullActive;
+
+    @Getter
+    private Boolean temporaryBuild;
+
+    @Getter
     private String versionSuffix;
 
     @Getter
