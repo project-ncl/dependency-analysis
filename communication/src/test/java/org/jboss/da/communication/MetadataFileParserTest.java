@@ -1,8 +1,8 @@
 package org.jboss.da.communication;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.aprox.impl.MetadataFileParser;
-import org.jboss.da.communication.aprox.model.VersionResponse;
+import org.jboss.da.communication.indy.impl.MetadataFileParser;
+import org.jboss.da.communication.indy.model.VersionResponse;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

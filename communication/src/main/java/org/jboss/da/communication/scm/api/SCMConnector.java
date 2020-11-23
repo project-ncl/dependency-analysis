@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.model.rest.GA;

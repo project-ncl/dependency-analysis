@@ -4,10 +4,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.aprox.FindGAVDependencyException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.cartographer.api.CartographerConnector;
+import org.jboss.da.communication.indy.FindGAVDependencyException;
+import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 

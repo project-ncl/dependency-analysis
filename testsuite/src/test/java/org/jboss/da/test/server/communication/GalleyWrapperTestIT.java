@@ -9,7 +9,7 @@ import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.util.Configuration;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.GalleyWrapper;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.PomReader;

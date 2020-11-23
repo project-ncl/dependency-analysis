@@ -6,7 +6,7 @@ import org.commonjava.maven.galley.maven.model.view.DependencyView;
 import org.commonjava.maven.galley.maven.model.view.MavenPomView;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
+import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.listings.api.model.Artifact;
@@ -45,7 +45,7 @@ public class WLFillerImpl implements WLFiller {
     private ProductVersionServiceImpl productVersionService;
 
     @Inject
-    private AproxConnector aprox;
+    private IndyConnector indyConnector;
 
     @Inject
     private SCM scmManager;
@@ -76,7 +76,7 @@ public class WLFillerImpl implements WLFiller {
         }
         try {
             final GAV gav = new GAV(groupId, artifactId, version);
-            Optional<InputStream> is = aprox.getPomStream(gav);
+            Optional<InputStream> is = indyConnector.getPomStream(gav);
             if (is.isPresent()) {
                 MavenPomView view = analyzer.getMavenPomView(is.get());
                 fillWLFromPom(view, productId);

@@ -1,4 +1,4 @@
-package org.jboss.da.communication.aprox.impl;
+package org.jboss.da.communication.indy.impl;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
@@ -7,8 +7,8 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.VersionResponse;
+import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.indy.model.VersionResponse;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.repository.api.RepositoryException;
@@ -36,7 +36,7 @@ import org.jboss.da.common.logging.MDCUtils;
 import org.jboss.da.common.util.UserLog;
 
 @ApplicationScoped
-public class AproxConnectorImpl implements AproxConnector {
+public class IndyConnectorImpl implements IndyConnector {
 
     private static final String METRICS_KEY = "da.client.indy.timer";
 
@@ -61,7 +61,7 @@ public class AproxConnectorImpl implements AproxConnector {
     private MetricsConfiguration metricsConfiguration;
 
     @Inject
-    public AproxConnectorImpl(Configuration configuration) {
+    public IndyConnectorImpl(Configuration configuration) {
         try {
             config = configuration.getConfig();
             globalConfig = configuration.getGlobalConfig();

@@ -6,10 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.aprox.FindGAVDependencyException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.cartographer.api.CartographerConnector;
+import org.jboss.da.communication.indy.FindGAVDependencyException;
+import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.junit.Test;
@@ -27,10 +27,10 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Before;
 
 @RunWith(Arquillian.class)
-public class AproxRemoteTestIT extends AbstractServerTest {
+public class IndyRemoteTestIT extends AbstractServerTest {
 
     @Inject
-    private AproxConnector aproxConnector;
+    private IndyConnector indyConnector;
 
     @Inject
     private CartographerConnector cartographerConnector;
@@ -45,7 +45,7 @@ public class AproxRemoteTestIT extends AbstractServerTest {
         GA ga = new GA("org.jboss.ballroom", "ballroom");
         List<String> ballroomTest = Arrays
                 .asList(new String[] { "1.3.0.Final-redhat-1", "1.4.0.Final-redhat-1", "1.6.0.Final-redhat-1" });
-        List<String> result = aproxConnector.getVersionsOfGA(ga);
+        List<String> result = indyConnector.getVersionsOfGA(ga);
         assertTrue(result.size() > 0);
         // future releases might make the size of result to be bigger
         assertTrue(ballroomTest.size() <= result.size());
@@ -107,7 +107,7 @@ public class AproxRemoteTestIT extends AbstractServerTest {
                         "3.2.1",
                         "3.3.0",
                         "3.3.1" });
-        List<String> result = aproxConnector.getVersionsOfNpm("jquery");
+        List<String> result = indyConnector.getVersionsOfNpm("jquery");
         assertEquals(jqueryVersions.size(), result.size());
         assertTrue(result.containsAll(jqueryVersions));
     }
@@ -145,10 +145,10 @@ public class AproxRemoteTestIT extends AbstractServerTest {
     @Test
     public void findIfGAVInPublicRepo() throws CommunicationException {
         GAV not_exist = new GAV("do", "not-exist", "2.0");
-        assertFalse(aproxConnector.doesGAVExistInPublicRepo(not_exist));
+        assertFalse(indyConnector.doesGAVExistInPublicRepo(not_exist));
 
         GAV exist = new GAV("xom", "xom", "1.2.5");
-        assertTrue(aproxConnector.doesGAVExistInPublicRepo(exist));
+        assertTrue(indyConnector.doesGAVExistInPublicRepo(exist));
     }
 
 }
