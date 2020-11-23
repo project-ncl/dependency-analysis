@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.model.rest.GAV;

@@ -5,7 +5,7 @@ import java.util.Comparator;
 import org.commonjava.maven.atlas.graph.rel.DependencyRelationship;
 import org.commonjava.maven.atlas.ident.ref.ArtifactRef;
 import org.commonjava.maven.atlas.ident.ref.ProjectRef;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.GalleyWrapper;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;

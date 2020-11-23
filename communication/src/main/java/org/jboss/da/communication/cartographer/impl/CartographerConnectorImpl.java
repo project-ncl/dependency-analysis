@@ -18,10 +18,10 @@ import org.commonjava.util.jhttpc.model.SiteConfigBuilder;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.communication.aprox.FindGAVDependencyException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.cartographer.api.CartographerConnector;
+import org.jboss.da.communication.indy.FindGAVDependencyException;
+import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
@@ -44,7 +44,7 @@ public class CartographerConnectorImpl implements CartographerConnector {
     private Configuration config;
 
     @Inject
-    private AproxConnector aproxConnector;
+    private IndyConnector indyConnector;
 
     private CartographerRESTClient cartographer;
 
@@ -66,8 +66,8 @@ public class CartographerConnectorImpl implements CartographerConnector {
     @Override
     public GAVDependencyTree getDependencyTreeOfGAV(GAV gav) throws CommunicationException, FindGAVDependencyException {
 
-        if (!aproxConnector.doesGAVExistInPublicRepo(gav)) {
-            throw new FindGAVDependencyException("Could not find: " + gav + " in public repo of Aprox");
+        if (!indyConnector.doesGAVExistInPublicRepo(gav)) {
+            throw new FindGAVDependencyException("Could not find: " + gav + " in public repo of Indy");
         }
 
         try {

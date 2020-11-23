@@ -1,8 +1,8 @@
-package org.jboss.da.communication.aprox.impl;
+package org.jboss.da.communication.indy.impl;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.aprox.model.VersionResponse;
-import org.jboss.da.communication.aprox.model.npm.NpmMetadata;
+import org.jboss.da.communication.indy.model.VersionResponse;
+import org.jboss.da.communication.indy.model.npm.NpmMetadata;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

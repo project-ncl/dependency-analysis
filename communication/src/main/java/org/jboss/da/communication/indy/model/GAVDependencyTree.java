@@ -1,4 +1,4 @@
-package org.jboss.da.communication.aprox.model;
+package org.jboss.da.communication.indy.model;
 
 import org.jboss.da.model.rest.GAV;
 

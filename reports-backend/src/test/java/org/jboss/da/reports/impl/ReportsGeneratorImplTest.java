@@ -9,10 +9,10 @@ import static org.mockito.Mockito.when;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.util.UserLog;
-import org.jboss.da.communication.aprox.FindGAVDependencyException;
-import org.jboss.da.communication.aprox.api.AproxConnector;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
 import org.jboss.da.communication.cartographer.api.CartographerConnector;
+import org.jboss.da.communication.indy.FindGAVDependencyException;
+import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
@@ -66,7 +66,7 @@ import java.util.Objects;
 public class ReportsGeneratorImplTest {
 
     @Mock
-    private AproxConnector aproxClient;
+    private IndyConnector indyClient;
 
     @Mock
     private CartographerConnector cartographerClient;

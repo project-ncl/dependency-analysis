@@ -1,4 +1,4 @@
-package org.jboss.da.communication.aprox;
+package org.jboss.da.communication.indy;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
@@ -6,8 +6,8 @@ import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.util.UserLog;
-import org.jboss.da.communication.aprox.impl.AproxConnectorImpl;
-import org.jboss.da.communication.aprox.impl.MetadataFileParser;
+import org.jboss.da.communication.indy.impl.IndyConnectorImpl;
+import org.jboss.da.communication.indy.impl.MetadataFileParser;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.model.rest.GA;
 import org.jboss.pnc.pncmetrics.MetricsConfiguration;
@@ -42,7 +42,7 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RunWith(MockitoJUnitRunner.class)
-public class AproxConnectorTest {
+public class IndyConnectorTest {
 
     @Rule
     public WireMockRule wireMockRule = (new WireMockRule(8082));
@@ -70,7 +70,7 @@ public class AproxConnectorTest {
     private MetadataFileParser parser = new MetadataFileParser();
 
     @InjectMocks
-    private final AproxConnectorImpl aproxConnector = new AproxConnectorImpl(config);
+    private final IndyConnectorImpl indyConnector = new IndyConnectorImpl(config);
 
     private static final String REDHAT3 = "1.9.13.redhat-3";
 
@@ -113,7 +113,7 @@ public class AproxConnectorTest {
                                 .withHeader("Content-Type", "text/xml")
                                 .withBody(FOOBAR_MAVEN_METADATA)));
 
-        List<String> versionsOfGA = aproxConnector.getVersionsOfGA(GA);
+        List<String> versionsOfGA = indyConnector.getVersionsOfGA(GA);
 
         // verify
         assertTrue(
@@ -133,7 +133,7 @@ public class AproxConnectorTest {
                                 .withHeader("Content-Type", "text/xml")
                                 .withBody(FOOBAR_MAVEN_METADATA)));
 
-        List<String> versionsOfGA = aproxConnector.getVersionsOfGA(GA, "DA-TEST-GROUP2");
+        List<String> versionsOfGA = indyConnector.getVersionsOfGA(GA, "DA-TEST-GROUP2");
 
         // verify
         assertTrue(
@@ -153,7 +153,7 @@ public class AproxConnectorTest {
                                 .withHeader("Content-Type", "application/json")
                                 .withBodyFile("jquery-package.json")));
 
-        List<String> versionsOfGA = aproxConnector.getVersionsOfNpm("jquery");
+        List<String> versionsOfGA = indyConnector.getVersionsOfNpm("jquery");
 
         // verify
         assertTrue(

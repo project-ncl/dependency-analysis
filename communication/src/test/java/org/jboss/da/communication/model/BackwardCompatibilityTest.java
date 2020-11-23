@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Paths;
 
-import org.jboss.da.communication.aprox.model.VersionResponse;
-import org.jboss.da.communication.aprox.model.Versioning;
-import org.jboss.da.communication.aprox.model.Versions;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.jboss.da.communication.indy.model.VersionResponse;
+import org.jboss.da.communication.indy.model.Versioning;
+import org.jboss.da.communication.indy.model.Versions;
 import org.json.JSONException;
 import static org.junit.Assert.fail;
 

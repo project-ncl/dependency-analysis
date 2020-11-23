@@ -1,4 +1,4 @@
-package org.jboss.da.communication.aprox.model.npm;
+package org.jboss.da.communication.indy.model.npm;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

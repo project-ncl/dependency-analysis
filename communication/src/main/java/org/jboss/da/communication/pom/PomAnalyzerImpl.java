@@ -16,7 +16,7 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.pom.qualifier.DACartographerCore;
