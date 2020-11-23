@@ -8,6 +8,9 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.util.UserLog;
 import org.jboss.da.communication.cartographer.api.CartographerConnector;
 import org.jboss.da.communication.indy.FindGAVDependencyException;
@@ -22,6 +25,7 @@ import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.impl.AggregatedProductProvider;
+import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.impl.DependencyTreeGeneratorImpl;
@@ -51,6 +55,8 @@ import org.jboss.da.reports.backend.impl.ProductAdapter;
 import org.junit.Before;
 import org.mockito.ArgumentMatcher;
 import org.slf4j.Logger;
+
+import javax.inject.Inject;
 
 import java.lang.reflect.Field;
 
@@ -82,6 +88,12 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private AggregatedProductProvider productProvider;
+
+    @Mock
+    private RepositoryProductProvider repoProductProvider;
+
+    @Mock
+    private Configuration config;
 
     @Mock
     @UserLog
@@ -172,6 +184,15 @@ public class ReportsGeneratorImplTest {
         prepareProductProvider(versions, whitelisted, daCoreGAV);
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
         when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
+
+        DAConfig daConfig = new DAConfig();
+        daConfig.setIndyGroup("DA");
+        daConfig.setIndyGroup("DA-temporary-builds");
+        try {
+            when(config.getConfig()).thenReturn(daConfig);
+        } catch (ConfigurationParseException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     private void prepareMulti() throws CommunicationException, FindGAVDependencyException {
@@ -304,7 +325,14 @@ public class ReportsGeneratorImplTest {
     @Test
     public void testBlacklistedLookupReport() throws CommunicationException, FindGAVDependencyException {
         prepare(Collections.emptyList(), true, daCoreVersionsBest, daCoreNoDT);
-        LookupGAVsRequest lgr = new LookupGAVsRequest(Collections.singletonList(daCoreGAV));
+        LookupGAVsRequest lgr = new LookupGAVsRequest(
+                Collections.emptySet(),
+                Collections.emptySet(),
+                null,
+                true,
+                false,
+                null,
+                Collections.singletonList(daCoreGAV));
 
         List<LookupReport> lookupReportsForGavs = generator.getLookupReportsForGavs(lgr);
 

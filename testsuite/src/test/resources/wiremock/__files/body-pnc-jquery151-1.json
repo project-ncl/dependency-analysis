@@ -1,0 +1,32 @@
+{
+  "pageIndex": 0,
+  "pageSize": 50,
+  "totalPages": 1,
+  "totalHits": 4,
+  "content": [
+    {
+      "id": "5010",
+      "identifier": "jquery:1.5.1-redhat-1",
+      "artifactQuality": "NEW",
+      "repositoryType": "NPM"
+    },
+    {
+      "id": "5011",
+      "identifier": "jquery:1.5.1",
+      "artifactQuality": "NEW",
+      "repositoryType": "NPM"
+    },
+    {
+      "id": "5012",
+      "identifier": "jquery:1.5.2",
+      "artifactQuality": "NEW",
+      "repositoryType": "NPM"
+    },
+    {
+      "id": "5013",
+      "identifier": "jquery:1.6.2-redhat-1",
+      "artifactQuality": "NEW",
+      "repositoryType": "NPM"
+    }
+  ]
+}

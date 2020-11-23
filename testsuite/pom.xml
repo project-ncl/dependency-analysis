@@ -20,9 +20,9 @@
             <type>ejb</type>
         </dependency>
         <dependency>
-	        <groupId>org.jboss.da</groupId>
-	    	<artifactId>reports-backend</artifactId>
-	    	<type>ejb</type>
+            <groupId>org.jboss.da</groupId>
+            <artifactId>reports-backend</artifactId>
+            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.jboss.pnc.metrics</groupId>

@@ -26,6 +26,7 @@ public class GlobalConfig extends AbstractModuleGroup {
 
     private String cartographerUrl;
     private String indyUrl;
+    private String pncUrl;
 
     public String getCartographerUrl() {
         return cartographerUrl;
@@ -45,6 +46,14 @@ public class GlobalConfig extends AbstractModuleGroup {
         } else {
             this.indyUrl = indyUrl;
         }
+    }
+
+    public String getPncUrl() {
+        return pncUrl;
+    }
+
+    public void setPncUrl(String pncUrl) {
+        this.pncUrl = pncUrl;
     }
 
 }

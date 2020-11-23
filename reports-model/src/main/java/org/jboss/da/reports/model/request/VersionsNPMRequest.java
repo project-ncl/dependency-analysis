@@ -33,6 +33,7 @@ import lombok.Value;
 @Value
 @Builder(builderClassName = "Builder")
 @JsonDeserialize(builder = VersionsNPMRequest.Builder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VersionsNPMRequest {
 
     public enum VersionFilter {
@@ -41,7 +42,7 @@ public class VersionsNPMRequest {
 
     private final VersionFilter versionFilter;
 
-    private final String repositoryGroup;
+    private final Boolean temporaryBuild;
 
     @NonNull
     private final List<NPMPackage> packages;

@@ -24,11 +24,34 @@
             <artifactId>source-code-manager</artifactId>
             <type>ejb</type>
         </dependency>
+
+        <dependency>
+            <groupId>org.jboss.pnc</groupId>
+            <artifactId>common</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.commonjava.atlas</groupId>
+                    <artifactId>atlas-identities</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.pnc</groupId>
+            <artifactId>rest-api</artifactId>
+            <classifier>java-client</classifier>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.commonjava.atlas</groupId>
+                    <artifactId>atlas-identities</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.jboss.pnc.metrics</groupId>
             <artifactId>pncmetrics</artifactId>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>

@@ -1,14 +1,19 @@
 package org.jboss.da.reports.impl;
 
-import org.jboss.da.reports.backend.impl.ProductAdapter;
-import static org.jboss.da.listings.model.ProductSupportStatus.SUPERSEDED;
-import static org.jboss.da.listings.model.ProductSupportStatus.SUPPORTED;
-
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.common.util.UserLog;
+import org.jboss.da.common.version.SuffixedVersion;
+import org.jboss.da.common.version.VersionAnalyzer;
+import org.jboss.da.common.version.VersionAnalyzer.VersionAnalysisResult;
+import org.jboss.da.common.version.VersionComparator;
 import org.jboss.da.common.version.VersionParser;
-import org.jboss.da.communication.aprox.FindGAVDependencyException;
-import org.jboss.da.communication.aprox.model.GAVDependencyTree;
+import org.jboss.da.communication.indy.FindGAVDependencyException;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.scm.api.SCMConnector;
@@ -16,10 +21,17 @@ import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.model.rest.NPMPackage;
+import org.jboss.da.products.api.MavenArtifact;
+import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.api.Product;
-import static org.jboss.da.products.api.Product.UNKNOWN;
 import org.jboss.da.products.api.ProductArtifacts;
+import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.AggregatedProductProvider;
+import org.jboss.da.products.impl.PncProductProvider;
+import org.jboss.da.products.impl.PncProductProvider.Pnc;
+import org.jboss.da.products.impl.RepositoryProductProvider;
+import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
@@ -27,11 +39,16 @@ import org.jboss.da.reports.api.BuiltReportModule;
 import org.jboss.da.reports.api.ProductArtifact;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
+import org.jboss.da.reports.backend.impl.ProductAdapter;
 import org.jboss.da.reports.model.api.SCMLocator;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
-import org.jboss.da.reports.model.response.LookupReport;
+import org.jboss.da.reports.model.request.LookupNPMRequest;
 import org.jboss.da.reports.model.request.SCMReportRequest;
+import org.jboss.da.reports.model.request.VersionsNPMRequest;
+import org.jboss.da.reports.model.response.LookupReport;
+import org.jboss.da.reports.model.response.NPMLookupReport;
+import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
@@ -55,21 +72,10 @@ import java.util.concurrent.CompletionException;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import org.jboss.da.common.util.UserLog;
-import org.jboss.da.common.version.SuffixedVersion;
 
-import org.jboss.da.common.version.VersionAnalyzer;
-import org.jboss.da.common.version.VersionAnalyzer.VersionAnalysisResult;
-import org.jboss.da.common.version.VersionComparator;
-import org.jboss.da.model.rest.NPMPackage;
-import org.jboss.da.products.api.MavenArtifact;
-import org.jboss.da.products.api.NPMArtifact;
-import org.jboss.da.products.impl.RepositoryProductProvider;
-import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
-import org.jboss.da.reports.model.request.LookupNPMRequest;
-import org.jboss.da.reports.model.request.VersionsNPMRequest;
-import org.jboss.da.reports.model.response.NPMLookupReport;
-import org.jboss.da.reports.model.response.NPMVersionsReport;
+import static org.jboss.da.listings.model.ProductSupportStatus.SUPERSEDED;
+import static org.jboss.da.listings.model.ProductSupportStatus.SUPPORTED;
+import static org.jboss.da.products.api.Product.UNKNOWN;
 
 /**
  * The implementation of reports, which provides information about built/not built artifacts/blacklisted artifacts
@@ -88,6 +94,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private Logger userLog;
 
     @Inject
+    private Configuration config;
+
+    @Inject
     private BlackArtifactService blackArtifactService;
 
     @Inject
@@ -103,7 +112,11 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private SCMConnector scmConnector;
 
     @Inject
-    private AggregatedProductProvider productProvider;
+    private AggregatedProductProvider aggProductProvider;
+
+    @Inject
+    @Pnc
+    private PncProductProvider pncProductProvider;
 
     @Inject
     @Repository
@@ -115,8 +128,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public Optional<ArtifactReport> getReportFromSCM(SCMReportRequest scml)
             throws ScmException, PomAnalysisException, CommunicationException {
-        if (scml == null)
+        if (scml == null) {
             throw new IllegalArgumentException("SCM information can't be null");
+        }
 
         Set<Product> products = productAdapter.toProducts(scml.getProductNames(), scml.getProductVersionIds());
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml.getScml());
@@ -126,8 +140,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Override
     public ArtifactReport getReport(GAVRequest gavRequest) throws CommunicationException, FindGAVDependencyException {
-        if (gavRequest == null)
+        if (gavRequest == null) {
             throw new IllegalArgumentException("GAV can't be null");
+        }
 
         Set<Product> products = productAdapter
                 .toProducts(gavRequest.getProductNames(), gavRequest.getProductVersionIds());
@@ -161,8 +176,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             ArtifactReport dar = new ArtifactReport(dt.getGav());
 
             // if dt hasn't been visited yet, add dependencies of dt in the report
-            if (!nodesVisited.contains(dt))
+            if (!nodesVisited.contains(dt)) {
                 addDependencyReports(dar, dt.getDependencies(), nodesVisited);
+            }
 
             ar.addDependency(dar);
             nodesVisited.add(dt);
@@ -179,7 +195,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private CompletableFuture<Void> fillArtifactReport(ArtifactReport report, Set<Product> products) {
         GAV gav = report.getGav();
 
-        CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider.getArtifacts(new MavenArtifact(gav));
+        CompletableFuture<Set<ProductArtifacts>> artifacts = aggProductProvider.getArtifacts(new MavenArtifact(gav));
         artifacts = filterProductArtifacts(products, artifacts);
 
         report.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
@@ -259,14 +275,17 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 populateAdvancedArtifactReportFields(advancedReport, dep, modulesAnalyzed, repoFolder);
             } else {
                 // only generate populate advanced report with community GAVs
-                if (parser.parse(dep.getVersion()).isSuffixed())
+                if (parser.parse(dep.getVersion()).isSuffixed()) {
                     continue;
+                }
 
                 // we have a top-level module dependency
-                if (!dep.getWhitelisted().isEmpty())
+                if (!dep.getWhitelisted().isEmpty()) {
                     advancedReport.addWhitelistedArtifact(gav, new HashSet<>(dep.getWhitelisted()));
-                if (dep.isBlacklisted())
+                }
+                if (dep.isBlacklisted()) {
                     advancedReport.addBlacklistedArtifact(gav);
+                }
 
                 if (dep.getBestMatchVersion().isPresent()) {
                     advancedReport.addCommunityGavWithBestMatchVersion(gav, dep.getBestMatchVersion().get());
@@ -326,7 +345,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 CompletableFuture<Set<ProductArtifacts>> artifacts = filterProducts(
                         useUnknownProduct,
                         products,
-                        productProvider.getArtifacts(new MavenArtifact(gav)));
+                        aggProductProvider.getArtifacts(new MavenArtifact(gav)));
                 CompletableFuture<VersionAnalysisResult> versions = analyzeVersions(
                         versionParser,
                         gav.getVersion(),
@@ -452,7 +471,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         Set<CompletableFuture<BuiltReportModule>> builtSet = new HashSet<>();
         for (Map.Entry<GA, Set<GAV>> e : dependenciesOfModules.entrySet()) {
             for (GAV gav : e.getValue()) {
-                CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider
+                CompletableFuture<Set<ProductArtifacts>> artifacts = aggProductProvider
                         .getArtifacts(new MavenArtifact(gav));
                 artifacts = filterBuiltArtifacts(artifacts);
                 builtSet.add(
@@ -473,12 +492,12 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public List<NPMLookupReport> getLookupReports(LookupNPMRequest request) throws CommunicationException {
         final String versionSuffix = request.getVersionSuffix();
-        final String repositoryGroup = request.getRepositoryGroup();
+        Boolean temporaryBuild = request.getTemporaryBuild();
         if (versionSuffix != null && !versionSuffix.isEmpty()) {
-            repositoryProductProvider.setVersionSuffix(versionSuffix);
+            pncProductProvider.setVersionSuffix(versionSuffix);
         }
-        if (repositoryGroup != null && !repositoryGroup.isEmpty()) {
-            repositoryProductProvider.setRepository(repositoryGroup);
+        if (temporaryBuild != null) {
+            pncProductProvider.setTemporaryBuild(temporaryBuild);
         }
 
         Set<String> uniqueNames = request.getPackages().stream().map(x -> x.getName()).collect(Collectors.toSet());
@@ -506,16 +525,14 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 throw new UnsupportedOperationException("Unknown filter " + versionFilter);
         }
 
-        final String repositoryGroup = request.getRepositoryGroup();
-        if (repositoryGroup != null && !repositoryGroup.isEmpty()) {
-            repositoryProductProvider.setRepository(repositoryGroup);
-        }
+        ProductProvider productProvider = setupProductProvider(null, false, null, request.getTemporaryBuild());
 
         Set<String> uniqueNames = request.getPackages().stream().map(x -> x.getName()).collect(Collectors.toSet());
 
         Map<String, CompletableFuture<Set<String>>> artifactsMap = new HashMap<>();
         for (String name : uniqueNames) {
-            CompletableFuture<Set<String>> artifacts = productProvider.getAllVersions(new NPMArtifact(name, "0.0.0"));
+            CompletableFuture<Set<String>> artifacts = (CompletableFuture<Set<String>>) productProvider
+                    .getAllVersions(new NPMArtifact(name, "0.0.0"));
 
             artifactsMap.put(name, artifacts);
         }
@@ -526,7 +543,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private Map<String, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsNPM(Set<String> packageNames) {
         Map<String, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
         for (String name : packageNames) {
-            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider
+            CompletableFuture<Set<ProductArtifacts>> artifacts = pncProductProvider
                     .getArtifacts(new NPMArtifact(name, "0.0.0"));
 
             gaProductArtifactsMap.put(name, artifacts);
@@ -590,34 +607,60 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request) throws CommunicationException {
         userLog.info("Starting lookup report for: " + request);
-        final String versionSuffix = request.getVersionSuffix();
-        final String repositoryGroup = request.getRepositoryGroup();
-        if (versionSuffix != null && !versionSuffix.isEmpty()) {
-            repositoryProductProvider.setVersionSuffix(versionSuffix);
-        }
-        if (repositoryGroup != null && !repositoryGroup.isEmpty()) {
-            repositoryProductProvider.setRepository(repositoryGroup);
-        }
 
         /** Get set of GAs */
         Set<GA> uniqueGAs = request.getGavs().stream().map(GAV::getGA).collect(Collectors.toSet());
 
-        Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = getProductArtifactsPerGA(
-                request,
-                uniqueGAs);
+        Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap;
+        ProductProvider productProvider = setupProductProvider(
+                request.getRepositoryGroup(),
+                request.getBrewPullActive(),
+                request.getVersionSuffix(),
+                request.getTemporaryBuild());
+        gaProductArtifactsMap = getProductArtifactsPerGA(productProvider, request, uniqueGAs);
 
         return createLookupReports(request, gaProductArtifactsMap);
+    }
 
+    private ProductProvider setupProductProvider(
+            String repositoryGroup,
+            Boolean brewPullActive,
+            final String versionSuffix,
+            final Boolean temporaryBuild) {
+        if (BooleanUtils.isNotFalse(brewPullActive)) {
+            if (!StringUtils.isEmpty(versionSuffix)) {
+                repositoryProductProvider.setVersionSuffix(versionSuffix);
+            }
+            String repoGroup0 = repositoryGroup;
+            if (StringUtils.isEmpty(repoGroup0)) {
+                try {
+                    if (BooleanUtils.isTrue(temporaryBuild)) {
+                        repoGroup0 = config.getConfig().getIndyTemporaryGroup();
+                    } else {
+                        repoGroup0 = config.getConfig().getIndyGroup();
+                    }
+                } catch (ConfigurationParseException e) {
+                    log.error("Cannot read Indy group from config: " + e, e);
+                }
+            }
+            repositoryProductProvider.setRepository(repoGroup0);
+
+            return aggProductProvider;
+        } else {
+            pncProductProvider.setTemporaryBuild(BooleanUtils.isTrue(temporaryBuild));
+            return pncProductProvider;
+        }
     }
 
     private Map<GA, CompletableFuture<Set<ProductArtifacts>>> getProductArtifactsPerGA(
+            ProductProvider productProvider,
             LookupGAVsRequest request,
             Set<GA> uniqueGAs) throws CommunicationException {
         Set<Product> products = productAdapter.toProducts(request.getProductNames(), request.getProductVersionIds());
 
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
         for (GA ga : uniqueGAs) {
-            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider
+            CompletableFuture<Set<ProductArtifacts>> artifacts = (CompletableFuture<Set<ProductArtifacts>>) productProvider
                     .getArtifacts(new MavenArtifact(new GAV(ga, "0.0.0")));
             artifacts = filterProductArtifacts(products, artifacts);
 
