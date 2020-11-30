@@ -8,11 +8,6 @@
     <artifactId>common</artifactId>
     <packaging>ejb</packaging>
     <dependencies>
-        <dependency>
-            <groupId>org.jboss.spec.javax.servlet</groupId>
-            <artifactId>jboss-servlet-api_3.1_spec</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -31,8 +26,8 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.commonjava.maven.ext</groupId>
@@ -45,6 +40,24 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <configuration>
+                        <archive>
+                            <manifestEntries combine.children="append">
+                                <Dependencies>
+                                    org.apache.httpcomponents export meta-inf
+                                </Dependencies>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>pl.project13.maven</groupId>
@@ -71,8 +84,8 @@
 
                 </configuration>
             </plugin>
-                
-            <plugin>   
+
+            <plugin>
                 <groupId>com.google.code.maven-replacer-plugin</groupId>
                 <artifactId>maven-replacer-plugin</artifactId>
                 <version>1.4.0</version>
