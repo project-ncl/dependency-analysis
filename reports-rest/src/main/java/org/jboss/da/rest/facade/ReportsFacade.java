@@ -112,11 +112,6 @@ public class ReportsFacade {
         return advancedArtifactReport.map(Translate::toAdvancedReport).orElseThrow(() -> new NoSuchElementException());
     }
 
-    public Report gavReport(GAVRequest gavRequest) throws CommunicationException, FindGAVDependencyException {
-        ArtifactReport artifactReport = reportsGenerator.getReport(gavRequest);
-        return Translate.toReport(artifactReport);
-    }
-
     public List<LookupReport> gavsReport(LookupGAVsRequest gavRequest) throws CommunicationException {
         return reportsGenerator.getLookupReportsForGavs(gavRequest);
     }

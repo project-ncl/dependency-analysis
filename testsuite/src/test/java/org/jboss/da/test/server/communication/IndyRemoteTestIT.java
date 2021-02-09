@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.cartographer.api.CartographerConnector;
 import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
@@ -31,9 +30,6 @@ public class IndyRemoteTestIT extends AbstractServerTest {
 
     @Inject
     private IndyConnector indyConnector;
-
-    @Inject
-    private CartographerConnector cartographerConnector;
 
     @Before
     public void workaroundNoHttpResponseException() throws InterruptedException {
@@ -110,36 +106,6 @@ public class IndyRemoteTestIT extends AbstractServerTest {
         List<String> result = indyConnector.getVersionsOfNpm("jquery");
         assertEquals(jqueryVersions.size(), result.size());
         assertTrue(result.containsAll(jqueryVersions));
-    }
-
-    @Test
-    public void testGetCorrectDependencies() throws CommunicationException, FindGAVDependencyException {
-        GAV gav = new GAV("xom", "xom", "1.2.5");
-        GAVDependencyTree tree = cartographerConnector.getDependencyTreeOfGAV(gav);
-
-        Set<String> expectedDependencyGAV = new HashSet<>(
-                Arrays.asList(
-                        new String[] { "xalan:xalan:2.7.0", "xerces:xercesImpl:2.8.0", "xml-apis:xml-apis:1.3.03" }));
-
-        Set<String> receivedDependencyGAV = tree.getDependencies()
-                .stream()
-                .map(f -> f.getGav().toString())
-                .collect(Collectors.toSet());
-
-        assertEquals(expectedDependencyGAV, receivedDependencyGAV);
-    }
-
-    @Test(expected = FindGAVDependencyException.class)
-    public void testNoGAVInRepository() throws CommunicationException, FindGAVDependencyException {
-        GAV gav = new GAV("do", "not-exist", "1.0");
-        cartographerConnector.getDependencyTreeOfGAV(gav);
-    }
-
-    @Test
-    public void noDependenciesForGAV() throws CommunicationException, FindGAVDependencyException {
-        GAV gav = new GAV("org.scala-lang", "scala-library", "2.11.7");
-        GAVDependencyTree reply = cartographerConnector.getDependencyTreeOfGAV(gav);
-        assertTrue(reply.getDependencies().isEmpty());
     }
 
     @Test

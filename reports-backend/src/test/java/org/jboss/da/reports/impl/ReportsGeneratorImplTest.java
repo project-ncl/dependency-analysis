@@ -12,7 +12,6 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.util.UserLog;
-import org.jboss.da.communication.cartographer.api.CartographerConnector;
 import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
@@ -56,8 +55,6 @@ import org.junit.Before;
 import org.mockito.ArgumentMatcher;
 import org.slf4j.Logger;
 
-import javax.inject.Inject;
-
 import java.lang.reflect.Field;
 
 import static org.mockito.Matchers.argThat;
@@ -73,9 +70,6 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private IndyConnector indyClient;
-
-    @Mock
-    private CartographerConnector cartographerClient;
 
     @Mock
     private BlackArtifactService blackArtifactService;
@@ -183,7 +177,6 @@ public class ReportsGeneratorImplTest {
 
         prepareProductProvider(versions, whitelisted, daCoreGAV);
         when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
-        when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(dependencyTree);
 
         DAConfig daConfig = new DAConfig();
         daConfig.setIndyGroup("DA");
@@ -197,7 +190,6 @@ public class ReportsGeneratorImplTest {
 
     private void prepareMulti() throws CommunicationException, FindGAVDependencyException {
         prepare(Collections.emptyList(), false, daCoreVersionsBest, daCoreNoDT);
-        when(cartographerClient.getDependencyTreeOfGAV(daCoreGAV)).thenReturn(daCoreDT);
 
         when(productProvider.getArtifacts(matchingGAV(daUtilGAV))).thenReturn(
                 CompletableFuture.completedFuture(toProductArtifacts(daUtilGAV.getGA(), daCoreVersionsBest)));
@@ -208,88 +200,6 @@ public class ReportsGeneratorImplTest {
                 CompletableFuture.completedFuture(toProductArtifacts(daCommonGAV.getGA(), daCoreVersionsNoBest)));
         prepareProductProvider(daCoreVersionsNoBest, Collections.emptyList(), daCommonGAV);
         when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testNullGAV() throws CommunicationException, FindGAVDependencyException {
-        generator.getReport(null);
-    }
-
-    @Test(expected = FindGAVDependencyException.class)
-    public void testNonExistingGAV() throws CommunicationException, FindGAVDependencyException {
-        when(cartographerClient.getDependencyTreeOfGAV(daGAV)).thenThrow(FindGAVDependencyException.class);
-
-        generator.getReport(gavToRequest(daGAV));
-    }
-
-    @Test
-    public void testNonListedNoBestMatchGAV() throws CommunicationException, FindGAVDependencyException {
-        prepare(Collections.emptyList(), false, daCoreVersionsNoBest, daCoreNoDT);
-
-        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
-
-        assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
-        assertEquals(daCoreGAV, report.getGav());
-        assertFalse(report.getBestMatchVersion().isPresent());
-        assertTrue(report.getDependencies().isEmpty());
-        assertFalse(report.isBlacklisted());
-        assertTrue(report.getWhitelisted().isEmpty());
-
-    }
-
-    @Test
-    public void testWhiteListedNoBestMatchGAV() throws CommunicationException, FindGAVDependencyException {
-        List<Product> whitelisted = Arrays.asList(productEAP);
-        prepare(whitelisted, false, daCoreVersionsNoBest, daCoreNoDT);
-
-        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
-
-        assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
-        assertEquals(daCoreGAV, report.getGav());
-        assertFalse(report.getBestMatchVersion().isPresent());
-        assertTrue(report.getDependencies().isEmpty());
-        assertFalse(report.isBlacklisted());
-        assertFalse(report.getWhitelisted().isEmpty());
-        assertEquals(1, report.getWhitelisted().size());
-    }
-
-    @Test
-    public void testBlackListedBestMatchGAV() throws CommunicationException, FindGAVDependencyException {
-        prepare(Collections.emptyList(), true, daCoreVersionsBest, daCoreNoDT);
-
-        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
-
-        assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
-        assertEquals(daCoreGAV, report.getGav());
-        assertEquals(bestMatchVersion, report.getBestMatchVersion().get());
-        assertTrue(report.getDependencies().isEmpty());
-        assertTrue(report.isBlacklisted());
-        assertTrue(report.getWhitelisted().isEmpty());
-    }
-
-    @Test
-    public void testArtifactReportShouldNotHaveNullValuesInAvailableVersionsWhenBestMatchVersionIsNull()
-            throws CommunicationException, FindGAVDependencyException {
-        prepare(Collections.emptyList(), false, daCoreVersionsNoBest, daCoreNoDT);
-
-        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
-
-        assertFalse(report.getBestMatchVersion().isPresent());
-        assertFalse(report.getAvailableVersions().stream().anyMatch(version -> version == null));
-    }
-
-    @Test
-    public void testGetMultipleReport() throws CommunicationException, FindGAVDependencyException {
-        prepareMulti();
-
-        ArtifactReport report = generator.getReport(gavToRequest(daCoreGAV));
-
-        assertTrue(report.getAvailableVersions().containsAll(daCoreVersionsNoBest));
-        assertEquals(daCoreGAV, report.getGav());
-        assertEquals(bestMatchVersion, report.getBestMatchVersion().get());
-        assertFalse(report.isBlacklisted());
-        assertTrue(report.getWhitelisted().isEmpty());
-        assertMultipleDependencies(report.getDependencies());
     }
 
     /**

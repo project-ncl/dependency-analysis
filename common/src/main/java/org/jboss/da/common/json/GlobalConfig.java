@@ -24,17 +24,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GlobalConfig extends AbstractModuleGroup {
 
-    private String cartographerUrl;
     private String indyUrl;
     private String pncUrl;
-
-    public String getCartographerUrl() {
-        return cartographerUrl;
-    }
-
-    public void setCartographerUrl(String cartographerUrl) {
-        this.cartographerUrl = cartographerUrl;
-    }
 
     public String getIndyUrl() {
         return indyUrl;

@@ -78,7 +78,7 @@
 
         <dependency>
             <groupId>org.commonjava.cartographer</groupId>
-            <artifactId>cartographer-rest-client-java</artifactId>
+            <artifactId>cartographer</artifactId>
         </dependency>
 
         <dependency>
