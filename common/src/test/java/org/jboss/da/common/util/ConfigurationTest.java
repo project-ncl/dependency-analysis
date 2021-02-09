@@ -41,7 +41,7 @@ public class ConfigurationTest {
         GlobalConfig globalConfig = configuration.getGlobalConfig();
         DAConfig config = configuration.getConfig();
 
-        checkRequiredFields(globalConfig, config, "", "", "", "");
+        checkRequiredFields(globalConfig, config, "", "", "");
     }
 
     @Test
@@ -51,13 +51,7 @@ public class ConfigurationTest {
         GlobalConfig globalConfig = configuration.getGlobalConfig();
         DAConfig config = configuration.getConfig();
 
-        checkRequiredFields(
-                globalConfig,
-                config,
-                "http://127.0.0.1:8004",
-                "http://127.0.0.1:8002",
-                "indy-da-group",
-                "indy-da-group-public");
+        checkRequiredFields(globalConfig, config, "http://127.0.0.1:8004", "indy-da-group", "indy-da-group-public");
         assertEquals(100000, config.getIndyRequestTimeout().intValue());
     }
 
@@ -68,13 +62,7 @@ public class ConfigurationTest {
         GlobalConfig globalConfig = configuration.getGlobalConfig();
         DAConfig config = configuration.getConfig();
 
-        checkRequiredFields(
-                globalConfig,
-                config,
-                "http://127.0.0.1:8004",
-                "http://127.0.0.1:8002",
-                "indy-da-group",
-                "indy-da-group-public");
+        checkRequiredFields(globalConfig, config, "http://127.0.0.1:8004", "indy-da-group", "indy-da-group-public");
         assertEquals(600000, config.getIndyRequestTimeout().intValue());
     }
 
@@ -82,11 +70,9 @@ public class ConfigurationTest {
             GlobalConfig globalConfig,
             DAConfig config,
             String indyServer,
-            String cartographerServerUrl,
             String indyGroup,
             String indyGroupPublic) {
         assertEquals(indyServer, globalConfig.getIndyUrl());
-        assertEquals(cartographerServerUrl, globalConfig.getCartographerUrl());
         assertEquals(indyGroup, config.getIndyGroup());
         assertEquals(indyGroupPublic, config.getIndyGroupPublic());
     }

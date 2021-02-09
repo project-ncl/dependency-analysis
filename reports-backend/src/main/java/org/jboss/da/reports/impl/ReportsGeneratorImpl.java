@@ -138,19 +138,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return createReport(dt, products);
     }
 
-    @Override
-    public ArtifactReport getReport(GAVRequest gavRequest) throws CommunicationException, FindGAVDependencyException {
-        if (gavRequest == null) {
-            throw new IllegalArgumentException("GAV can't be null");
-        }
-
-        Set<Product> products = productAdapter
-                .toProducts(gavRequest.getProductNames(), gavRequest.getProductVersionIds());
-        GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(gavRequest.asGavObject());
-
-        return createReport(dt, products).get();
-    }
-
     private Optional<ArtifactReport> createReport(GAVDependencyTree dt, Set<Product> products)
             throws CommunicationException {
         ArtifactReport report = new ArtifactReport(dt.getGav());

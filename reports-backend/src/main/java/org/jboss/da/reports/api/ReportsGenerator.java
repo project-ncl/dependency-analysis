@@ -46,20 +46,6 @@ public interface ReportsGenerator {
             throws ScmException, PomAnalysisException, CommunicationException;
 
     /**
-     * Creates a report about built/not built/blacklisted artifacts. It performs searches in the whole available
-     * repository as well as artifact whitelists.
-     *
-     * No restrictions on the artifacts belonging to the certain product are applied if the request contains no
-     * product/product version IDs. Otherwise only provides info for white listed artifacts belonging to the specified
-     * product/product versions.
-     *
-     * @param gav Top-level GAV for which is the report generated
-     * @return Created report or empty Optional if the requested GAV was not found in the repository
-     * @throws CommunicationException when there is a problem with communication with remote services
-     */
-    public ArtifactReport getReport(GAVRequest gav) throws CommunicationException, FindGAVDependencyException;
-
-    /**
      * Creates an aligment report.
      *
      * @param scml

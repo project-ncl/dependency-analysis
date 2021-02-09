@@ -353,62 +353,6 @@ public class ReportsWithWhitelistedArtifactsRemoteTestIT extends AbstractServerT
         return gavRequest;
     }
 
-    @Test
-    public void testGavAllWhiteArtifactsPresent() throws CommunicationException, FindGAVDependencyException {
-
-        // Query all white artifacts from all products
-        GAVRequest gavRequest = getDefaultGAVRequest();
-
-        ArtifactReport artifactReport = reportGenerator.getReport(gavRequest);
-
-        // Ensure we got an artifact report back
-        assertTrue(artifactReport != null);
-
-        // Ensure all dependencies from whitelist are present matching the query GA
-        assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact1_1_2.getVersion()));
-        assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact1_2_2.getVersion()));
-        assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_c.getVersion()));
-    }
-
-    @Test
-    public void testGavWhiteArtifactsPresentForSingleProduct()
-            throws CommunicationException, FindGAVDependencyException {
-
-        GAVRequest gavRequest = getDefaultGAVRequest();
-
-        // Query all white artifacts from Product 1
-        gavRequest.getProductNames().add(prodVer1_1.getProduct().getName());
-        ArtifactReport artifactReport = reportGenerator.getReport(gavRequest);
-
-        // Ensure we got an artifact report back
-        assertTrue(artifactReport != null);
-
-        // Dependencies from Product 1 expected
-        assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact1_1_2.getVersion()));
-        assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact1_2_2.getVersion()));
-        assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_c.getVersion()));
-    }
-
-    @Test
-    public void testGavWhiteArtifactsPresentForSingleProductVersion()
-            throws CommunicationException, FindGAVDependencyException {
-
-        GAVRequest gavRequest = getDefaultGAVRequest();
-
-        // Query all white artifacts from Product 1 version 2
-        gavRequest.getProductVersionIds().add(prodVer1_2.getId());
-
-        ArtifactReport artifactReport = reportGenerator.getReport(gavRequest);
-
-        // Ensure we got an artifact report back
-        assertTrue(artifactReport != null);
-
-        // Dependencies from Product 1 version 2 expected
-        assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact1_1_2.getVersion()));
-        assertTrue(artifactReport.getAvailableVersions().contains(whiteArtifact1_2_2.getVersion()));
-        assertFalse(artifactReport.getAvailableVersions().contains(whiteArtifact2_1_c.getVersion()));
-    }
-
     private GAV artifactToGAV(RestProductArtifact art) {
         return new GAV(art.getGroupId(), art.getArtifactId(), art.getVersion());
     }

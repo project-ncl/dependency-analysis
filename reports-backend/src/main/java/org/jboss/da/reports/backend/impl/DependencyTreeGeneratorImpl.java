@@ -4,9 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.cartographer.api.CartographerConnector;
 import org.jboss.da.communication.indy.FindGAVDependencyException;
-import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
@@ -35,9 +33,6 @@ import java.util.Optional;
 public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
 
     @Inject
-    private CartographerConnector cartographerConnector;
-
-    @Inject
     SCMConnector scmConnector;
 
     @Override
@@ -47,11 +42,6 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
                 scml.getRevision(),
                 scml.getPomPath(),
                 scml.getRepositories());
-    }
-
-    @Override
-    public GAVDependencyTree getDependencyTree(GAV gav) throws CommunicationException, FindGAVDependencyException {
-        return cartographerConnector.getDependencyTreeOfGAV(gav);
     }
 
     @Override
@@ -93,21 +83,9 @@ public class DependencyTreeGeneratorImpl implements DependencyTreeGenerator {
     }
 
     @Override
-    public GAVToplevelDependencies getToplevelDependencies(GAV gav)
-            throws CommunicationException, FindGAVDependencyException {
-        return treeToToplevel(getDependencyTree(gav));
-    }
-
-    @Override
     public GAVToplevelDependencies getToplevelDependencies(String url, String revision, GAV gav)
             throws ScmException, PomAnalysisException {
         Set<GAV> deps = scmConnector.getToplevelDependencyOfRevision(url, revision, gav);
         return new GAVToplevelDependencies(gav, deps);
-    }
-
-    private GAVToplevelDependencies treeToToplevel(GAVDependencyTree tree) {
-        Set<GAV> dependencies = tree.getDependencies().stream().map(x -> x.getGav()).collect(Collectors.toSet());
-
-        return new GAVToplevelDependencies(tree.getGav(), dependencies);
     }
 }

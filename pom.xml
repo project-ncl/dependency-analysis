@@ -214,7 +214,7 @@
             <!-- Commonjava -->
             <dependency>
                 <groupId>org.commonjava.cartographer</groupId>
-                <artifactId>cartographer-rest-client-java</artifactId>
+                <artifactId>cartographer</artifactId>
                 <version>${version.cartographer}</version>
                 <exclusions>
                     <exclusion>
