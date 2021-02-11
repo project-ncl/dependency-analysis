@@ -17,6 +17,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
+
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
@@ -45,7 +47,7 @@ public class ProductsServiceImpl implements ProductsService {
                 .collect(Collectors.toMap(WhiteArtifact::getGa, WhiteArtifact::getOsgiVersion));
         Set<ArtifactDiff> ret = new HashSet<>();
 
-        VersionComparator comparator = new VersionComparator(new VersionParser(VersionParser.DEFAULT_SUFFIX));
+        VersionComparator comparator = new VersionComparator(new VersionParser(DEFAULT_SUFFIX));
         for (GA ga : allGAs) {
             String leftVersion = leftGAs.get(ga);
             String rightVersion = rightGAs.get(ga);

@@ -12,6 +12,8 @@ import javax.inject.Inject;
 
 import java.util.List;
 
+import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
+
 /**
  * 
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
@@ -20,7 +22,7 @@ import java.util.List;
  */
 public abstract class ArtifactServiceImpl<T extends Artifact> implements ArtifactService<T> {
 
-    protected VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
+    protected VersionParser versionParser = new VersionParser(DEFAULT_SUFFIX);
 
     @Inject
     AuthenticatorService auth;

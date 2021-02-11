@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
+import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
 
 /**
  * A product provider reading artifacts from an external source without an information about products.
@@ -44,7 +45,7 @@ public abstract class AbstractProductProvider implements ProductProvider {
     @Resource
     private ManagedExecutorService executorService;
 
-    private VersionParser versionParser = new VersionParser(VersionParser.DEFAULT_SUFFIX);
+    private VersionParser versionParser = new VersionParser(DEFAULT_SUFFIX);
 
     /**
      * Sets the suffix that distinguish product artifacts in the repository.
