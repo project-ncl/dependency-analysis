@@ -1,12 +1,17 @@
 package org.jboss.da.common.version;
 
 import org.junit.Test;
+
+import static java.util.Collections.singleton;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class VersionParserTest {
@@ -101,12 +106,68 @@ public class VersionParserTest {
                 "1.7.21.t20180425-112559-465-redhat-1",
                 "1.7.21.temporary-redhat-1");
 
-        VersionParser vp = new VersionParser("temporary-redhat");
+        VersionParser vp = new VersionParser("temporary-redhat", "redhat");
         List<String> filtered = versions.stream().filter(v -> vp.parse(v).isSuffixed()).collect(Collectors.toList());
         assertEquals(6, filtered.size());
         assertTrue(filtered.contains("1.7.21.temporary-redhat-1"));
         assertTrue(filtered.contains("1.6.4.redhat-2"));
         assertTrue(filtered.contains("1.7.21.t20180425-112559-465-redhat-1"));
         assertFalse(filtered.contains("1.5.8-patch-01"));
+    }
+
+    @Test
+    public void shuldNormalizeVersionWhenParsing() {
+        VersionParser vp1 = new VersionParser("A", "B-A", "B-C-A");
+        assertEquals(new SuffixedVersion(1, 5, 8, "", "1.5.8"), vp1.parse("1.5.8"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "", "A", 2, "1.5.8.A-2"), vp1.parse("1.5.8.A-2"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "B-2", "1.5.8.B-2"), vp1.parse("1.5.8.B-2"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "", "B-A", 2, "1.5.8.B-A-2"), vp1.parse("1.5.8.B-A-2"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "C", "A", 2, "1.5.8.B-A-2"), vp1.parse("1.5.8.C-A-2"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "", "B-C-A", 2, "1.5.8.B-C-A-2"), vp1.parse("1.5.8.B-C-A-2"));
+
+        VersionParser vp2 = new VersionParser("B-C-A", "B-A", "A");
+        assertEquals(new SuffixedVersion(1, 5, 8, "", "1.5.8"), vp2.parse("1.5.8"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "", "A", 2, "1.5.8.A-2"), vp2.parse("1.5.8.A-2"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "B-2", "1.5.8.B-2"), vp2.parse("1.5.8.B-2"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "", "B-A", 2, "1.5.8.B-A-2"), vp2.parse("1.5.8.B-A-2"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "C", "A", 2, "1.5.8.B-A-2"), vp2.parse("1.5.8.C-A-2"));
+        assertEquals(new SuffixedVersion(1, 5, 8, "", "B-C-A", 2, "1.5.8.B-C-A-2"), vp2.parse("1.5.8.B-C-A-2"));
+    }
+
+    @Test
+    public void shouldParseMultipleSuffixes() {
+        VersionParser vp1 = new VersionParser("A", "B-A", "B-C-A");
+
+        assertTrue(vp1.parseSuffixed("1.5.8").isEmpty());
+
+        String version1 = "1.5.8.A-2";
+        Set<SuffixedVersion> set1 = vp1.parseSuffixed(version1);
+        assertEquals(1, set1.size());
+        assertEquals(singleton(new SuffixedVersion(1, 5, 8, "", "A", 2, version1)), set1);
+
+        assertTrue(vp1.parseSuffixed("1.5.8.B-2").isEmpty());
+
+        String version2 = "1.5.8.B-A-2";
+        Set<SuffixedVersion> set2 = vp1.parseSuffixed(version2);
+        assertEquals(2, set2.size());
+        Set<SuffixedVersion> expected2 = new HashSet<>(
+                Arrays.asList(
+                        new SuffixedVersion(1, 5, 8, "B", "A", 2, version2),
+                        new SuffixedVersion(1, 5, 8, "", "B-A", 2, version2)));
+        assertEquals(expected2, set2);
+
+        String version3 = "1.5.8.C-A-2";
+        Set<SuffixedVersion> set3 = vp1.parseSuffixed(version3);
+        assertEquals(1, set3.size());
+        assertEquals(singleton(new SuffixedVersion(1, 5, 8, "C", "A", 2, version3)), set3);
+
+        String version4 = "1.5.8.B-C-A-2";
+        Set<SuffixedVersion> set4 = vp1.parseSuffixed(version4);
+        assertEquals(2, set4.size());
+        Set<SuffixedVersion> expected4 = new HashSet<>(
+                Arrays.asList(
+                        new SuffixedVersion(1, 5, 8, "B-C", "A", 2, version4),
+                        new SuffixedVersion(1, 5, 8, "", "B-C-A", 2, version4)));
+        assertEquals(expected4, set4);
     }
 }

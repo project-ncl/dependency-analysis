@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class VersionAnalyzerTest {
 
-    private VersionAnalyzer versionFinder = new VersionAnalyzer(new VersionParser("redhat"));
+    private VersionAnalyzer versionFinder = new VersionAnalyzer(Collections.singletonList("redhat"));
 
     private static final String NO_BUILT_VERSION = "1.1.3";
 
@@ -104,15 +104,13 @@ public class VersionAnalyzerTest {
 
     @Test
     public void getBestMatchVersionForNonExistingGAV() throws CommunicationException {
-        VersionAnalyzer.VersionAnalysisResult result = versionFinder.analyseVersions("0.0.1", Collections.EMPTY_LIST);
-        Optional<String> bmv = result.getBestMatchVersion();
+        Optional<String> bmv = versionFinder.findBiggestMatchingVersion("0.0.1", Collections.EMPTY_LIST);
         assertFalse("Best match version expected to not be present", bmv.isPresent());
     }
 
     @Test
     public void getBestMatchVersionForNotBuiltGAV() throws CommunicationException {
-        VersionAnalyzer.VersionAnalysisResult result = versionFinder.analyseVersions(NO_BUILT_VERSION, All_VERSIONS);
-        Optional<String> bmv = result.getBestMatchVersion();
+        Optional<String> bmv = versionFinder.findBiggestMatchingVersion(NO_BUILT_VERSION, All_VERSIONS);
         assertFalse("Best match version expected to not be present", bmv.isPresent());
     }
 
@@ -211,7 +209,7 @@ public class VersionAnalyzerTest {
                 "2.1.9.redhat-001",
                 "2.1.3.redhat-001" };
         checkBMV(
-                new VersionAnalyzer(new VersionParser("temporary-redhat")),
+                new VersionAnalyzer(Arrays.asList("temporary-redhat", "redhat")),
                 "2.2.3.redhat-00001",
                 "2.2.3",
                 avaliableVersions1);
@@ -230,6 +228,46 @@ public class VersionAnalyzerTest {
                 "2.1.16-redhat-9",
                 "2.9.9-redhat-00001" };
         checkBMV("3.0.0.redhat-2", "3", availableVersions);
+        Collections.reverse(Arrays.asList(availableVersions));
+        checkBMV("3.0.0.redhat-2", "3", availableVersions);
+        String[] availableVersions2 = {
+                "2.1.1.redhat-3",
+                "2.1.16-redhat-9",
+                "3-redhat-2",
+                "3.0-redhat-2",
+                "3.0.redhat-2",
+                "3.0.-redhat-2",
+                "3.0.0-redhat-2",
+                "3.0.0.redhat-1",
+                "3.0.0.redhat-2",
+                "2.9.9-redhat-00001" };
+        checkBMV("3.0.0.redhat-2", "3", availableVersions2);
+        Collections.reverse(Arrays.asList(availableVersions2));
+        checkBMV("3.0.0.redhat-2", "3", availableVersions2);
+        String[] availableVersions3 = {
+                "2.1.1.redhat-3",
+                "2.1.16-redhat-9",
+                "3-redhat-2",
+                "3.0-redhat-2",
+                "3.0.redhat-2",
+                "3.0.-redhat-2",
+                "3.0.0-redhat-2",
+                "3.0.0.redhat-1",
+                "2.9.9-redhat-00001" };
+        checkBMV("3.0.0-redhat-2", "3", availableVersions3);
+        Collections.reverse(Arrays.asList(availableVersions3));
+        checkBMV("3.0.0-redhat-2", "3", availableVersions3);
+        String[] availableVersions4 = {
+                "2.1.1.redhat-3",
+                "2.1.16-redhat-9",
+                "3-redhat-2",
+                "3.0-redhat-2",
+                "3.0.redhat-2",
+                "3.0.0.redhat-1",
+                "2.9.9-redhat-00001" };
+        checkBMV("3.0.redhat-2", "3", availableVersions4);
+        Collections.reverse(Arrays.asList(availableVersions4));
+        checkBMV("3.0.redhat-2", "3", availableVersions4);
     }
 
     private void checkBMV(String expectedVersion, String version, String[] versions) {
@@ -237,17 +275,15 @@ public class VersionAnalyzerTest {
     }
 
     private void checkBMV(VersionAnalyzer versionAnalyzer, String expectedVersion, String version, String[] versions) {
-        VersionAnalyzer.VersionAnalysisResult result = versionAnalyzer
-                .analyseVersions(version, Arrays.asList(versions));
+        Optional<String> bmv = versionAnalyzer.findBiggestMatchingVersion(version, Arrays.asList(versions));
 
-        Optional<String> bmv = result.getBestMatchVersion();
         assertTrue("Best match version expected to be present", bmv.isPresent());
         assertEquals(expectedVersion, bmv.get());
     }
 
     @Test
     public void testDifferentSuffix() {
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(new VersionParser("temporary-redhat"));
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(Arrays.asList("temporary-redhat", "redhat"));
         String version = "1.4.0";
         String expectedVersion = "1.4.0.temporary-redhat-1";
 
@@ -268,7 +304,7 @@ public class VersionAnalyzerTest {
 
     @Test
     public void testDifferentSuffixWithOnlyDefaultVersions() {
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(new VersionParser("t20180522-115319-991-redhat"));
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(Arrays.asList("t20180522-115319-991-redhat", "redhat"));
         String version = "1.4.0";
 
         String[] avaliableVersionsOrder1 = { "1.4.0.redhat-1", "1.4.0.temporary-redhat-1" };

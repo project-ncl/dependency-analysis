@@ -17,62 +17,58 @@ package org.jboss.da.common.version;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import lombok.Data;
-
 /**
- *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class VersionAnalyzer {
 
-    private final VersionParser versionParser;
+    private static final Pattern VERSION_PATTERN = Pattern
+            .compile("^" + VersionParser.RE_MMM + VersionParser.RE_QUALIFIER_WITH_SEPARATOR + "?");
 
-    public VersionAnalyzer(VersionParser versionParser) {
-        this.versionParser = versionParser;
+    private final VersionParser versionParser;
+    private final List<String> suffixes = new ArrayList<>();
+
+    public VersionAnalyzer(List<String> suffixes) {
+        this.suffixes.addAll(suffixes);
+        this.versionParser = new VersionParser(suffixes);
     }
 
-    public VersionAnalysisResult analyseVersions(String querry, Collection<String> versions) {
+    public List<String> sortVersions(String querry, Collection<String> versions) {
         VersionComparator comparator = new VersionComparator(querry, versionParser);
-        List<String> sortedVersions = new ArrayList<>();
-        List<SuffixedVersion> parsedVersions = versions.stream()
-                .sorted(comparator)
-                .distinct()
-                .peek(v -> sortedVersions.add(v))
-                .map(versionParser::parse)
+        List<String> sortedVersions = versions.stream().sorted(comparator).distinct().collect(Collectors.toList());
+        return sortedVersions;
+    }
+
+    public Optional<String> findBiggestMatchingVersion(String query, Collection<String> versions) {
+        String unsuffixedQuery = versionParser.parse(query).unsuffixedVesion();
+
+        List<SuffixedVersion> candidateSuffixedVersions = versions.stream()
+                .map(versionParser::parseSuffixed)
+                .flatMap(Set::stream)
+                .filter(v -> unsuffixedQuery.equals(v.unsuffixedVesion()))
                 .collect(Collectors.toList());
 
-        SuffixedVersion version = versionParser.parse(querry);
-        Optional<String> bmv = findBiggestMatchingVersion(version, parsedVersions);
+        List<SuffixedVersion> versionsToSearch = Collections.emptyList();
+        for (String suffix : suffixes) {
+            versionsToSearch = candidateSuffixedVersions.stream()
+                    .filter(v -> suffix.equals(v.getSuffix().get()))
+                    .collect(Collectors.toList());
+            if (!versionsToSearch.isEmpty()) {
+                break;
+            }
+        }
 
-        return new VersionAnalysisResult(bmv, sortedVersions);
-    }
-
-    private Optional<String> findBiggestMatchingVersion(
-            SuffixedVersion queryVersion,
-            Collection<SuffixedVersion> versions) {
         String bestMatchVersion = null;
         int biggestBuildNumber = 0;
-        String unsuffixedVesion = queryVersion.unsuffixedVesion();
-
-        List<SuffixedVersion> candidateVersions = versions.stream()
-                .filter(SuffixedVersion::isSuffixed)
-                .filter(v -> unsuffixedVesion.equals(v.unsuffixedVesion()))
-                .collect(Collectors.toList());
-
-        boolean onlyDefaultSuffixPresent = candidateVersions.stream()
-                .map(v -> v.getSuffix().get())
-                .allMatch(VersionAnalyzer::isDefaultSuffix);
-
-        List<SuffixedVersion> versionsToSearch = candidateVersions.stream()
-                .filter(v -> onlyDefaultSuffixPresent || !isDefaultSuffix(v.getSuffix().get()))
-                .collect(Collectors.toList());
-
         for (SuffixedVersion ver : versionsToSearch) {
             int foundBuildNumber = ver.getSuffixVersion().get();
             if (bestMatchVersion == null || foundBuildNumber > biggestBuildNumber) {
@@ -86,38 +82,40 @@ public class VersionAnalyzer {
         return Optional.ofNullable(bestMatchVersion);
     }
 
-    private static boolean isDefaultSuffix(String suffix) {
-        return VersionParser.DEFAULT_SUFFIX.equals(suffix);
-    }
-
     /**
      * Assuming the two versions have the same OSGi representation, returns the more specific version. That means
      * X.Y.Z.something is preffered to X.Y.something which is preffered to X.something.
      */
     private String getMoreSpecificVersion(String first, String second) {
-        Pattern pattern = Pattern.compile("^" + VersionParser.RE_MMM + VersionParser.RE_QUALIFIER + "?");
-        Matcher firstMatcher = pattern.matcher(first);
-        Matcher secondMatcher = pattern.matcher(second);
+        Matcher firstMatcher = VERSION_PATTERN.matcher(first);
+        Matcher secondMatcher = VERSION_PATTERN.matcher(second);
         if (!firstMatcher.matches()) {
             throw new IllegalArgumentException("Couldn't parse version " + first);
         }
         if (!secondMatcher.matches()) {
             throw new IllegalArgumentException("Couldn't parse version " + second);
         }
-        if (firstMatcher.group("minor") == null && secondMatcher.group("minor") != null) {
+        boolean firstIsOSGi = first.equals(VersionParser.getOSGiVersion(first));
+        String firstMinor = firstMatcher.group("minor");
+        String firstMicro = firstMatcher.group("micro");
+        boolean returnFirst;
+
+        if (firstIsOSGi != second.equals(VersionParser.getOSGiVersion(second))) {
+            returnFirst = firstIsOSGi; // One of the version is not OSGi, prefer the OSGi version
+        } else if (!Objects.equals(firstMinor, secondMatcher.group("minor"))) {
+            returnFirst = firstMinor != null; // One of the versions is missing minor number, prefer the one with it
+        } else if (!Objects.equals(firstMicro, secondMatcher.group("micro"))) {
+            returnFirst = firstMicro != null; // One of the versions is missing micro number, prefer the one with it
+        } else {
+            // Prefer the version that separates qualifier with '.', not something else like '-'
+            // If both are the same, prefer first
+            returnFirst = firstMatcher.group("qualifier").startsWith(".")
+                    || !secondMatcher.group("qualifier").startsWith(".");
+        }
+        if (returnFirst) {
+            return first;
+        } else {
             return second;
         }
-        if (firstMatcher.group("micro") == null && secondMatcher.group("micro") != null) {
-            return second;
-        }
-        return first;
-    }
-
-    @Data
-    public static class VersionAnalysisResult {
-
-        private final Optional<String> bestMatchVersion;
-
-        private final List<String> availableVersions;
     }
 }
