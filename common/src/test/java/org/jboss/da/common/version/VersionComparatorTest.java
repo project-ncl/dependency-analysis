@@ -60,6 +60,17 @@ public class VersionComparatorTest {
     }
 
     @Test
+    public void testCompareVersionWithMultipleSuffixes() {
+        VersionComparator vc1 = new VersionComparator(new VersionParser("temporary-redhat", "redhat"));
+        VersionComparator vc2 = new VersionComparator(new VersionParser("redhat", "temporary-redhat"));
+
+        assertTrue(vc1.compare("3.0.0.Final", "3.0.0.Final-redhat-1") < 0);
+        assertTrue(vc1.compare("3.0.0.Final", "3.0.0.Final-temporary-redhat-1") < 0);
+        assertTrue(vc1.compare("3.0.0.Final-redhat-1", "3.0.0.Final-temporary-redhat-1") < 0);
+        assertTrue(vc2.compare("3.0.0.Final-redhat-1", "3.0.0.Final-temporary-redhat-1") < 0);
+    }
+
+    @Test
     public void testBaseVersion() {
         VersionComparator vc = new VersionComparator("3.4.2.Final", VERSION_PARSER);
 
@@ -119,6 +130,19 @@ public class VersionComparatorTest {
         assertTrue(vc.compare("2.2.0.GA", "2.2.0.CR1") < 0);
         assertTrue(vc.compare("2.2.0.MR1", "2.2.0.SP4") > 0); // Too difficult to implement correctly
         assertTrue(vc.compare("2.2.0.MR1", "2.2.0.CR1") < 0);
+    }
+
+    @Test
+    public void testBaseVersionWithMultipleSuffixes() {
+        VersionComparator vc1 = new VersionComparator("3.4.2.Final", new VersionParser("temporary-redhat", "redhat"));
+
+        assertTrue(vc1.compare("3.4.2.Final", "3.4.2.Final-redhat-1") < 0);
+        assertTrue(vc1.compare("3.4.2.Final-redhat-2", "3.4.2.Final-redhat-1") < 0);
+        assertTrue(vc1.compare("3.4.2.Final", "3.4.2.Final-temporary-redhat-1") < 0);
+        assertTrue(vc1.compare("3.4.2.Final-temporary-redhat-2", "3.4.2.Final-temporary-redhat-1") < 0);
+        assertTrue(vc1.compare("3.4.3.Final", "3.4.1.Final") < 0);
+        assertTrue(vc1.compare("3.4.99.Final", "3.5.0.Final") < 0);
+        assertTrue(vc1.compare("3.4.3.Final", "3.4.3.Alpha") < 0);
     }
 
     @Test
