@@ -155,7 +155,7 @@ public class Reports {
     @ApiOperation(
             value = "Lookup and filter versions for the list of provided NPM artifacts",
             responseContainer = "List",
-            response = NPMLookupReport.class)
+            response = NPMVersionsReport.class)
     @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     @TimedMetric
     public Response versionsNPM(
