@@ -4,8 +4,6 @@ import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.util.UserLog;
 import org.jboss.da.common.version.SuffixedVersion;
 import org.jboss.da.common.version.VersionAnalyzer;
@@ -92,9 +90,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Inject
     @UserLog
     private Logger userLog;
-
-    @Inject
-    private Configuration config;
 
     @Inject
     private BlackArtifactService blackArtifactService;
@@ -514,7 +509,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 throw new UnsupportedOperationException("Unknown filter " + versionFilter);
         }
 
-        ProductProvider productProvider = setupProductProvider(null, false, null, request.getTemporaryBuild());
+        ProductProvider productProvider = setupProductProvider(false, null, request.getTemporaryBuild());
 
         Set<String> uniqueNames = request.getPackages().stream().map(x -> x.getName()).collect(Collectors.toSet());
 
@@ -595,7 +590,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap;
         ProductProvider productProvider = setupProductProvider(
-                request.getRepositoryGroup(),
                 request.getBrewPullActive(),
                 request.getVersionSuffix(),
                 request.getTemporaryBuild());
@@ -605,7 +599,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     private ProductProvider setupProductProvider(
-            String repositoryGroup,
             Boolean brewPullActive,
             final String versionSuffix,
             final Boolean temporaryBuild) {
@@ -614,20 +607,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             if (!StringUtils.isEmpty(versionSuffix)) {
                 repositoryProductProvider.setVersionSuffix(versionSuffix);
             }
-            String repoGroup0 = repositoryGroup;
-            if (StringUtils.isEmpty(repoGroup0)) {
-                try {
-                    if (BooleanUtils.isTrue(temporaryBuild)) {
-                        repoGroup0 = config.getConfig().getIndyTemporaryGroup();
-                    } else {
-                        repoGroup0 = config.getConfig().getIndyGroup();
-                    }
-                } catch (ConfigurationParseException e) {
-                    log.error("Cannot read Indy group from config: " + e, e);
-                }
-            }
-            repositoryProductProvider.setRepository(repoGroup0);
-
             return aggProductProvider;
         } else {
             return pncProductProvider;

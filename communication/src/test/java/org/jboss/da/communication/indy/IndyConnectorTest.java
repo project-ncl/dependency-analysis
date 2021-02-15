@@ -126,26 +126,6 @@ public class IndyConnectorTest {
     }
 
     @Test
-    public void testGetVersionsOfGASpecificRepository() throws ConfigurationParseException, CommunicationException {
-        stubFor(
-                get(urlEqualTo("/api/content/maven/group/DA-TEST-GROUP2/foo/bar/baz/maven-metadata.xml")).willReturn(
-                        aResponse().withStatus(200)
-                                .withHeader("Content-Type", "text/xml")
-                                .withBody(FOOBAR_MAVEN_METADATA)));
-
-        List<String> versionsOfGA = indyConnector.getVersionsOfGA(GA, "DA-TEST-GROUP2");
-
-        // verify
-        assertTrue(
-                "Unmatched requests: " + WireMock.findUnmatchedRequests(),
-                WireMock.findUnmatchedRequests().isEmpty());
-        assertEquals(3, versionsOfGA.size());
-        assertTrue(versionsOfGA.contains(REDHAT5));
-        assertTrue(versionsOfGA.contains(REDHAT2));
-        assertTrue(versionsOfGA.contains(REDHAT3));
-    }
-
-    @Test
     public void testGetVersionsOfNpm() throws ConfigurationParseException, CommunicationException {
         stubFor(
                 get(urlEqualTo("/api/content/npm/group/DA-TEST-GROUP/jquery/package.json")).willReturn(
