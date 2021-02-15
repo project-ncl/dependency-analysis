@@ -609,6 +609,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             Boolean brewPullActive,
             final String versionSuffix,
             final Boolean temporaryBuild) {
+        pncProductProvider.setTemporaryBuild(BooleanUtils.isTrue(temporaryBuild));
         if (BooleanUtils.isNotFalse(brewPullActive)) {
             if (!StringUtils.isEmpty(versionSuffix)) {
                 repositoryProductProvider.setVersionSuffix(versionSuffix);
@@ -629,7 +630,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
             return aggProductProvider;
         } else {
-            pncProductProvider.setTemporaryBuild(BooleanUtils.isTrue(temporaryBuild));
             return pncProductProvider;
         }
     }

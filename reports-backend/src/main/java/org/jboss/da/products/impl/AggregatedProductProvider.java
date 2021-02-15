@@ -7,6 +7,7 @@ import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.DatabaseProductProvider.Database;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
+import org.jboss.da.products.impl.PncProductProvider.Pnc;
 
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedScheduledExecutorService;
@@ -70,6 +71,10 @@ public class AggregatedProductProvider implements ProductProvider {
     @Repository
     RepositoryProductProvider repositoryProductProvider;
 
+    @Inject
+    @Pnc
+    PncProductProvider pncProductProvider;
+
     @Resource
     private ManagedScheduledExecutorService scheduler;
 
@@ -120,6 +125,7 @@ public class AggregatedProductProvider implements ProductProvider {
 
         results.add(getter.apply(databaseProductProvider));
         results.add(getter.apply(repositoryProductProvider));
+        results.add(getter.apply(pncProductProvider));
 
         CompletableFuture<R> ret = new CompletableFuture<>();
         scheduler.schedule((Runnable) () -> tryToComplete(ret, results, collector), 1, TimeUnit.MILLISECONDS);

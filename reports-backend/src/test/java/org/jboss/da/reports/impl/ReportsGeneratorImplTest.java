@@ -1,11 +1,15 @@
 package org.jboss.da.reports.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.when;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
@@ -19,47 +23,40 @@ import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.listings.model.ProductSupportStatus;
+import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.products.api.Artifact;
+import org.jboss.da.products.api.ArtifactType;
+import org.jboss.da.products.api.MavenArtifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.impl.AggregatedProductProvider;
+import org.jboss.da.products.impl.PncProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.impl.DependencyTreeGeneratorImpl;
+import org.jboss.da.reports.backend.impl.ProductAdapter;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
 import org.jboss.da.reports.model.response.LookupReport;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatcher;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
-
-import org.jboss.da.model.rest.GA;
-import org.jboss.da.products.api.ArtifactType;
-import org.jboss.da.products.api.MavenArtifact;
-import org.jboss.da.reports.backend.impl.ProductAdapter;
-import org.junit.Before;
-import org.mockito.ArgumentMatcher;
 import org.slf4j.Logger;
 
-import java.lang.reflect.Field;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockito.Matchers.argThat;
-
-import java.util.Objects;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -85,6 +82,9 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private RepositoryProductProvider repoProductProvider;
+
+    @Mock
+    private PncProductProvider pncProductProvider;
 
     @Mock
     private Configuration config;
