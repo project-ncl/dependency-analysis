@@ -30,6 +30,7 @@ public class LookupGAVsRequest {
     private Set<Long> productVersionIds = new HashSet<>();
 
     @Getter
+    @Deprecated
     private String repositoryGroup;
 
     @Getter

@@ -35,17 +35,6 @@ public class RepositoryProductProvider extends AbstractProductProvider {
     @Inject
     private IndyConnector indyConnector;
 
-    private Optional<String> repository = Optional.empty();
-
-    /**
-     * Sets given repository to be used instead of the default one.
-     *
-     * @param repository The repository to use insteady of the default one.
-     */
-    public void setRepository(String repository) {
-        this.repository = Optional.ofNullable(repository);
-    }
-
     @Override
     Stream<String> getVersionsStreamMaven(GA ga) {
         if (!ga.isValid()) {
@@ -55,11 +44,7 @@ public class RepositoryProductProvider extends AbstractProductProvider {
         }
         try {
             List<String> versionsOfGA;
-            if (repository.isPresent()) {
-                versionsOfGA = indyConnector.getVersionsOfGA(ga, repository.get());
-            } else {
-                versionsOfGA = indyConnector.getVersionsOfGA(ga);
-            }
+            versionsOfGA = indyConnector.getVersionsOfGA(ga);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
@@ -70,11 +55,7 @@ public class RepositoryProductProvider extends AbstractProductProvider {
     Stream<String> getVersionsStreamNPM(String name) {
         try {
             List<String> versionsOfGA;
-            if (repository.isPresent()) {
-                versionsOfGA = indyConnector.getVersionsOfNpm(name, repository.get());
-            } else {
-                versionsOfGA = indyConnector.getVersionsOfNpm(name);
-            }
+            versionsOfGA = indyConnector.getVersionsOfNpm(name);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);

@@ -2,6 +2,7 @@ package org.jboss.da.communication.indy.impl;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
+
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
@@ -32,6 +33,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
 import org.jboss.da.common.logging.MDCUtils;
 import org.jboss.da.common.util.UserLog;
 
@@ -72,15 +74,7 @@ public class IndyConnectorImpl implements IndyConnector {
 
     @Override
     public List<String> getVersionsOfGA(GA ga) throws RepositoryException {
-        return this.getVersionsOfGA(ga, config.getIndyGroup());
-    }
-
-    @Override
-    public List<String> getVersionsOfGA(GA ga, String repository) throws RepositoryException {
-        String query = repositoryLink(
-                "maven",
-                repository,
-                ga.getGroupId().replace(".", "/") + "/" + ga.getArtifactId());
+        String query = repositoryLink("maven", ga.getGroupId().replace(".", "/") + "/" + ga.getArtifactId());
 
         MetricRegistry registry = metricsConfiguration.getMetricRegistry();
         Timer.Context context = null;
@@ -117,12 +111,7 @@ public class IndyConnectorImpl implements IndyConnector {
 
     @Override
     public List<String> getVersionsOfNpm(String packageName) throws RepositoryException {
-        return this.getVersionsOfNpm(packageName, config.getIndyGroup());
-    }
-
-    @Override
-    public List<String> getVersionsOfNpm(String packageName, String repository) throws RepositoryException {
-        String query = repositoryLink("npm", repository, packageName);
+        String query = repositoryLink("npm", packageName);
         try {
             userLog.info("Retrieving versions for npm artifacts " + packageName + " from " + query);
             log.info("Retrieving npm metadata for " + packageName + " from " + query);
@@ -145,13 +134,13 @@ public class IndyConnectorImpl implements IndyConnector {
         }
     }
 
-    private String repositoryLink(String type, String repository, String path) {
+    private String repositoryLink(String type, String path) {
         StringBuilder query = new StringBuilder();
         query.append(globalConfig.getIndyUrl());
         query.append("/api/content/");
         query.append(type);
         query.append("/group/");
-        query.append(repository).append('/');
+        query.append(config.getIndyGroup()).append('/');
         query.append(path).append('/');
         switch (type) {
             case "maven": {
