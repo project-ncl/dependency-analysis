@@ -30,7 +30,21 @@
           "@module-config": "da-config",
           "indyGroup": "indy-da-group",
           "indyGroupPublic": "indy-da-group-public",
-          "indyRequestTimeout": 100000
+          "indyRequestTimeout": 100000,
+          "modes": [
+            {
+              "name": "PERSISTENT",
+              "suffixes": [ "redhat" ],
+              "buildCategory": "STANDARD",
+              "artifactQualities": [ "NEW", "VERIFIED", "TESTED"]
+            },
+            {
+              "name": "TEMPORARY",
+              "suffixes": ["temporary-redhat", "redhat" ],
+              "buildCategory": "STANDARD",
+              "artifactQualities": [ "NEW", "VERIFIED", "TESTED", "TEMPORARY" ]
+            }
+          ]
         }
       ]
     }
