@@ -33,17 +33,6 @@ public class PncProductProvider extends AbstractProductProvider {
     @Inject
     private PncConnector pncConnector;
 
-    private boolean temporaryBuild;
-
-    /**
-     * Sets the temporary builds flag.
-     *
-     * @param temporaryBuild the flag value
-     */
-    public void setTemporaryBuild(boolean temporaryBuild) {
-        this.temporaryBuild = temporaryBuild;
-    }
-
     @Override
     Stream<String> getVersionsStreamMaven(GA ga) {
         if (!ga.isValid()) {
@@ -53,7 +42,7 @@ public class PncProductProvider extends AbstractProductProvider {
         }
         try {
             List<String> versionsOfGA;
-            versionsOfGA = pncConnector.getMavenVersions(ga, temporaryBuild);
+            versionsOfGA = pncConnector.getMavenVersions(ga, mode);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
@@ -64,7 +53,7 @@ public class PncProductProvider extends AbstractProductProvider {
     Stream<String> getVersionsStreamNPM(String name) {
         try {
             List<String> versionsOfGA;
-            versionsOfGA = pncConnector.getNpmVersions(name, temporaryBuild);
+            versionsOfGA = pncConnector.getNpmVersions(name, mode);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);

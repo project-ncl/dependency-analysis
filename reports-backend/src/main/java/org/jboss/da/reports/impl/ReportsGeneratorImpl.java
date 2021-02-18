@@ -1,9 +1,9 @@
 package org.jboss.da.reports.impl;
 
 import org.apache.commons.lang.BooleanUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.UserLog;
 import org.jboss.da.common.version.SuffixedVersion;
 import org.jboss.da.common.version.VersionAnalyzer;
@@ -46,6 +46,8 @@ import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
+import org.jboss.pnc.enums.ArtifactQuality;
+import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -477,12 +479,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     public List<NPMLookupReport> getLookupReports(LookupNPMRequest request) throws CommunicationException {
         final String versionSuffix = request.getVersionSuffix();
         Boolean temporaryBuild = request.getTemporaryBuild();
-        if (versionSuffix != null && !versionSuffix.isEmpty()) {
-            pncProductProvider.setVersionSuffix(versionSuffix);
-        }
-        if (temporaryBuild != null) {
-            pncProductProvider.setTemporaryBuild(temporaryBuild);
-        }
+
+        LookupMode lookupMode = getLookupMode(versionSuffix, temporaryBuild);
+        pncProductProvider.setLookupMode(lookupMode);
 
         Set<String> uniqueNames = request.getPackages().stream().map(x -> x.getName()).collect(Collectors.toSet());
 
@@ -602,11 +601,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             Boolean brewPullActive,
             final String versionSuffix,
             final Boolean temporaryBuild) {
-        pncProductProvider.setTemporaryBuild(BooleanUtils.isTrue(temporaryBuild));
+        LookupMode lookupMode = getLookupMode(versionSuffix, temporaryBuild);
+        pncProductProvider.setLookupMode(lookupMode);
         if (BooleanUtils.isNotFalse(brewPullActive)) {
-            if (!StringUtils.isEmpty(versionSuffix)) {
-                repositoryProductProvider.setVersionSuffix(versionSuffix);
-            }
+            repositoryProductProvider.setLookupMode(lookupMode);
             return aggProductProvider;
         } else {
             return pncProductProvider;
@@ -738,6 +736,23 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 .filter(p -> !UNKNOWN.equals(p))
                 .map(p -> new RestProductInput(p.getName(), p.getVersion(), p.getStatus()))
                 .collect(Collectors.toList());
+    }
+
+    private LookupMode getLookupMode(String suffix, Boolean temporary) {
+        LookupMode mode = new LookupMode();
+        mode.setName("ON_THE_FLY_MODE");
+        mode.setBuildCategory(BuildCategory.STANDARD);
+        if (suffix != null && !suffix.isEmpty()) {
+            mode.getSuffixes().add(suffix);
+        }
+        mode.getSuffixes().add(DEFAULT_SUFFIX);
+        mode.getArtifactQualities().add(ArtifactQuality.NEW);
+        mode.getArtifactQualities().add(ArtifactQuality.VERIFIED);
+        mode.getArtifactQualities().add(ArtifactQuality.TESTED);
+        if (temporary != null && temporary) {
+            mode.getArtifactQualities().add(ArtifactQuality.TEMPORARY);
+        }
+        return mode;
     }
 
     @Data

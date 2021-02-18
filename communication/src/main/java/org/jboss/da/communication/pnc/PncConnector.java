@@ -1,5 +1,6 @@
 package org.jboss.da.communication.pnc;
 
+import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 
@@ -14,7 +15,7 @@ public interface PncConnector {
      * @return list of available versions for given groupId:artifactId in repository, never {@code null}
      * @throws RepositoryException When there is problem with communication.
      */
-    List<String> getMavenVersions(GA ga, boolean temporaryBuild) throws RepositoryException;
+    List<String> getMavenVersions(GA ga, LookupMode mode) throws RepositoryException;
 
     /**
      * Finds available versions for given npm package.
@@ -23,6 +24,6 @@ public interface PncConnector {
      * @return list of available versions for package in repository, never {@code null}
      * @throws RepositoryException When there is problem with communication.
      */
-    List<String> getNpmVersions(String packageName, boolean temporaryBuild) throws RepositoryException;
+    List<String> getNpmVersions(String packageName, LookupMode mode) throws RepositoryException;
 
 }

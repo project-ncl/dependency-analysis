@@ -17,7 +17,21 @@
         {
           "@module-config": "da-config",
           "indyGroup": "",
-          "indyGroupPublic": ""
+          "indyGroupPublic": "",
+          "modes": [
+            {
+              "name": "PERSISTENT",
+              "suffixes": [ "redhat" ],
+              "buildCategory": "STANDARD",
+              "artifactQualities": [ "NEW", "VERIFIED", "TESTED"]
+            },
+            {
+              "name": "TEMPORARY",
+              "suffixes": ["temporary-redhat", "redhat" ],
+              "buildCategory": "STANDARD",
+              "artifactQualities": [ "NEW", "VERIFIED", "TESTED", "TEMPORARY" ]
+            }
+          ]
         }
       ]
     }

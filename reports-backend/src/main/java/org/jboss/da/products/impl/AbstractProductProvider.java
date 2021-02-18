@@ -1,5 +1,17 @@
 package org.jboss.da.products.impl;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.annotation.Resource;
+import javax.enterprise.concurrent.ManagedExecutorService;
+import javax.inject.Inject;
+
+import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.UserLog;
 import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.listings.model.ProductSupportStatus;
@@ -11,19 +23,9 @@ import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
+import org.jboss.pnc.enums.ArtifactQuality;
+import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
-
-import javax.annotation.Resource;
-import javax.enterprise.concurrent.ManagedExecutorService;
-import javax.inject.Inject;
-
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
 import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
@@ -34,6 +36,16 @@ import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
  * @author <a href="mailto:pkocandr@redhat.com">Petr Kocandrle</a>
  */
 public abstract class AbstractProductProvider implements ProductProvider {
+
+    private static final LookupMode DEFAULT_MODE = new LookupMode();
+    static {
+        DEFAULT_MODE.setName("DEFAULT");
+        DEFAULT_MODE.setBuildCategory(BuildCategory.STANDARD);
+        DEFAULT_MODE.getArtifactQualities().add(ArtifactQuality.NEW);
+        DEFAULT_MODE.getArtifactQualities().add(ArtifactQuality.VERIFIED);
+        DEFAULT_MODE.getArtifactQualities().add(ArtifactQuality.TESTED);
+        DEFAULT_MODE.getSuffixes().add(DEFAULT_SUFFIX);
+    }
 
     @Inject
     protected Logger log;
@@ -47,13 +59,16 @@ public abstract class AbstractProductProvider implements ProductProvider {
 
     private VersionParser versionParser = new VersionParser(DEFAULT_SUFFIX);
 
+    protected LookupMode mode = DEFAULT_MODE;
+
     /**
-     * Sets the suffix that distinguish product artifacts in the repository.
+     * Sets the lookup configuration mode.
      *
-     * @param suffix Suffix of the product artifacts.
+     * @param mode The configuration of the lookup.
      */
-    public void setVersionSuffix(String suffix) {
-        versionParser = new VersionParser(suffix);
+    public void setLookupMode(LookupMode mode) {
+        versionParser = new VersionParser(mode.getSuffixes());
+        this.mode = mode;
     }
 
     private <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier) {

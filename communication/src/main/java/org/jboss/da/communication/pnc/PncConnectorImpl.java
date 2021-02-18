@@ -1,6 +1,7 @@
 package org.jboss.da.communication.pnc;
 
 import org.jboss.da.common.json.GlobalConfig;
+import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
@@ -20,6 +21,7 @@ import javax.inject.Inject;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
@@ -31,11 +33,6 @@ import java.util.TreeSet;
  */
 @ApplicationScoped
 public class PncConnectorImpl implements PncConnector {
-
-    private static final EnumSet<ArtifactQuality> persistentQuals = EnumSet
-            .of(ArtifactQuality.NEW, ArtifactQuality.VERIFIED, ArtifactQuality.TESTED);
-    private static final EnumSet<ArtifactQuality> temporaryQuals = EnumSet
-            .of(ArtifactQuality.NEW, ArtifactQuality.VERIFIED, ArtifactQuality.TESTED, ArtifactQuality.TEMPORARY);
 
     @Inject
     private Logger log;
@@ -51,25 +48,26 @@ public class PncConnectorImpl implements PncConnector {
         }
     }
 
-    private Collection<ArtifactInfo> getArtifacts(
-            String identifierPattern,
-            RepositoryType repoType,
-            boolean temporaryBuild) throws RepositoryException {
+    private Collection<ArtifactInfo> getArtifacts(String identifierPattern, RepositoryType repoType, LookupMode mode)
+            throws RepositoryException {
         ArtifactClient artifactClient = getArtifactClient();
-        EnumSet<ArtifactQuality> qualities = temporaryBuild ? temporaryQuals : persistentQuals;
         RemoteCollection<ArtifactInfo> artCollection;
         try {
-            artCollection = artifactClient.getAllFiltered(identifierPattern, qualities, repoType);
+            artCollection = artifactClient.getAllFiltered(
+                    identifierPattern,
+                    mode.getArtifactQualities(),
+                    repoType,
+                    Collections.singleton(mode.getBuildCategory()));
         } catch (RemoteResourceException ex) {
-            throw new RepositoryException("Error when reading artifacvts from PNC: " + ex, ex);
+            throw new RepositoryException("Error when reading artifacts from PNC: " + ex, ex);
         }
         return artCollection.getAll();
     }
 
     @Override
-    public List<String> getMavenVersions(GA ga, boolean temporaryBuild) throws RepositoryException {
+    public List<String> getMavenVersions(GA ga, LookupMode mode) throws RepositoryException {
         String identifierPattern = ga.getGroupId() + ':' + ga.getArtifactId() + ":pom:*";
-        Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.MAVEN, temporaryBuild);
+        Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.MAVEN, mode);
 
         List<String> versions = new ArrayList<>(arts.size());
         for (ArtifactInfo art : arts) {
@@ -85,9 +83,9 @@ public class PncConnectorImpl implements PncConnector {
     }
 
     @Override
-    public List<String> getNpmVersions(String packageName, boolean temporaryBuild) throws RepositoryException {
+    public List<String> getNpmVersions(String packageName, LookupMode mode) throws RepositoryException {
         String identifierPattern = packageName + ":*";
-        Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.NPM, temporaryBuild);
+        Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.NPM, mode);
 
         List<String> versions = new ArrayList<>(arts.size());
         for (ArtifactInfo art : arts) {
