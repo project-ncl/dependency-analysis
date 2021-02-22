@@ -1,0 +1,21 @@
+{
+  "id" : "5681ff8a-7796-4ae4-affd-5ddb04182da3",
+  "name" : "pnc-rest_v2_artifacts_filter",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=com.fasterxml.jackson.core%3Ajackson-core%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"pageIndex\":0,\"pageSize\":100,\"totalPages\":1,\"totalHits\":22,\"content\":[{\"id\":\"12478\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.10.0\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"6379\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.10.1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"5430\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.10.2\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3122\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.10.3\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"7508\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.10.4\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"7509\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.11.0\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"12301\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.11.1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3123\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.3.2\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1421\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.4.1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1496\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.4.5\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"886\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.5.1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1439\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.5.4\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"4948\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.5.4.redhat-1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3124\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.6.3\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"11015\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.7.4\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"442\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.8.11.redhat-1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"12025\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.8.2\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"4949\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.8.5\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"11248\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.9.7\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3125\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.9.8\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1670\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.9.8.redhat-00004\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"6050\",\"identifier\":\"com.fasterxml.jackson.core:jackson-core:pom:2.9.9\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"}]}",
+    "headers" : {
+      "Date" : "Mon, 22 Feb 2021 14:38:54 GMT",
+      "Content-Type" : "application/json",
+      "Set-Cookie" : "fa8d113a8504f19cbc7a1242da8f67d6=b04dd753290d286f8e4db9fbc393e741; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "5681ff8a-7796-4ae4-affd-5ddb04182da3",
+  "persistent" : true,
+  "insertionIndex" : 2331
+}

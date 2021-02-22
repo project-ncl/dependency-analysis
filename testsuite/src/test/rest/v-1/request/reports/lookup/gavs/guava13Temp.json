@@ -2,6 +2,7 @@
     "productNames": [],
     "productVersionIds": [],
     "repositoryGroup": "DA-temporary",
+    "temporaryBuild": "true",
     "gavs": [
         {
             "groupId": "com.google.guava",

@@ -1,0 +1,21 @@
+{
+  "id" : "033b2ecd-272b-422e-a4a2-be02e9f7b2cc",
+  "name" : "pnc-rest_v2_artifacts_filter",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.jboss.da%3Acommon%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"pageIndex\":0,\"pageSize\":100,\"totalPages\":1,\"totalHits\":12,\"content\":[{\"id\":\"1301\",\"identifier\":\"org.jboss.da:common:pom:0.8.2.redhat-00001\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"4936\",\"identifier\":\"org.jboss.da:common:pom:1.2.0.redhat-00001\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"398\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00001\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1156\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00002\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1165\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00003\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1179\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00004\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1227\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00005\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1247\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00006\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1655\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00007\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1821\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00008\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"2408\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00009\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"2424\",\"identifier\":\"org.jboss.da:common:pom:2.0.0.redhat-00011\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"}]}",
+    "headers" : {
+      "Date" : "Mon, 22 Feb 2021 14:38:54 GMT",
+      "Content-Type" : "application/json",
+      "Set-Cookie" : "fa8d113a8504f19cbc7a1242da8f67d6=b04dd753290d286f8e4db9fbc393e741; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "033b2ecd-272b-422e-a4a2-be02e9f7b2cc",
+  "persistent" : true,
+  "insertionIndex" : 2330
+}

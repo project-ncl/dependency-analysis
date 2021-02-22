@@ -6,7 +6,10 @@
         "builtVersion": null,
         "availableVersions": [
             "2.5.4.redhat-1",
-            "2.6.3.redhat-2"
+            "2.5.4.redhat-2",
+            "2.6.3.redhat-2",
+            "2.8.11.redhat-1",
+            "2.9.8.redhat-00004"
         ]
     },
     {
@@ -30,7 +33,10 @@
         "artifactId": "bc-backend",
         "version": "0.1.0",
         "builtVersion": null,
-        "availableVersions": []
+        "availableVersions": [
+            "0.8.2.redhat-00001",
+            "1.2.0.redhat-00001"
+            ]
     },
     {
         "groupId": "org.jboss.arquillian.protocol",
@@ -51,7 +57,20 @@
         "artifactId": "common",
         "version": "0.1.0",
         "builtVersion": null,
-        "availableVersions": []
+        "availableVersions": [
+            "0.8.2.redhat-00001",
+            "1.2.0.redhat-00001",
+            "2.0.0.redhat-00001",
+            "2.0.0.redhat-00002",
+            "2.0.0.redhat-00003",
+            "2.0.0.redhat-00004",
+            "2.0.0.redhat-00005",
+            "2.0.0.redhat-00006",
+            "2.0.0.redhat-00007",
+            "2.0.0.redhat-00008",
+            "2.0.0.redhat-00009",
+            "2.0.0.redhat-00011"
+        ]
     },
     {
         "groupId": "org.jboss.as",
@@ -63,12 +82,16 @@
         "groupId": "org.slf4j",
         "artifactId": "slf4j-api",
         "version": "1.7.7",
-        "builtVersion": "1.7.7.redhat-3",
+        "builtVersion": "1.7.7.redhat-4",
         "availableVersions": [
+            "1.7.7.redhat-4",
             "1.7.7.redhat-3",
             "1.7.7.redhat-2",
             "1.7.21.redhat-3",
             "1.7.21.redhat-2",
+            "1.7.22.redhat-2",
+            "1.7.30.redhat-00001",
+            "1.7.2.redhat-4",
             "1.7.2.redhat-3",
             "1.7.2.redhat-2",
             "1.7.2-redhat-1",
@@ -81,7 +104,20 @@
         "artifactId": "reports-backend",
         "version": "0.1.0",
         "builtVersion": null,
-        "availableVersions": []
+        "availableVersions": [
+            "0.8.2.redhat-00001",
+            "1.2.0.redhat-00001",
+            "2.0.0.redhat-00001",
+            "2.0.0.redhat-00002",
+            "2.0.0.redhat-00003",
+            "2.0.0.redhat-00004",
+            "2.0.0.redhat-00005",
+            "2.0.0.redhat-00006",
+            "2.0.0.redhat-00007",
+            "2.0.0.redhat-00008",
+            "2.0.0.redhat-00009",
+            "2.0.0.redhat-00011"
+        ]
     },
     {
         "groupId": "org.hibernate",
@@ -101,14 +137,30 @@
         "artifactId": "bc-rest",
         "version": "0.1.0",
         "builtVersion": null,
-        "availableVersions": []
+        "availableVersions": [
+            "0.8.2.redhat-00001",
+            "1.2.0.redhat-00001"
+        ]
     },
     {
         "groupId": "org.jboss.da",
         "artifactId": "communication",
         "version": "0.1.0",
         "builtVersion": null,
-        "availableVersions": []
+        "availableVersions": [
+            "0.8.2.redhat-00001",
+            "1.2.0.redhat-00001",
+            "2.0.0.redhat-00001",
+            "2.0.0.redhat-00002",
+            "2.0.0.redhat-00003",
+            "2.0.0.redhat-00004",
+            "2.0.0.redhat-00005",
+            "2.0.0.redhat-00006",
+            "2.0.0.redhat-00007",
+            "2.0.0.redhat-00008",
+            "2.0.0.redhat-00009",
+            "2.0.0.redhat-00011"
+        ]
     },
     {
         "groupId": "org.jboss.arquillian.junit",
@@ -135,7 +187,8 @@
             "1.0.0.SP4-redhat-6",
             "1.2.0.redhat-2",
             "1.0-SP4-redhat-1",
-            "1.0-SP4-redhat-2"
+            "1.0-SP4-redhat-2",
+            "2.0.0.SP1-redhat-00001"
         ]
     },
     {
@@ -149,7 +202,20 @@
         "artifactId": "reports-rest",
         "version": "0.1.0",
         "builtVersion": null,
-        "availableVersions": []
+        "availableVersions": [
+            "0.8.2.redhat-00001",
+            "1.2.0.redhat-00001",
+            "2.0.0.redhat-00001",
+            "2.0.0.redhat-00002",
+            "2.0.0.redhat-00003",
+            "2.0.0.redhat-00004",
+            "2.0.0.redhat-00005",
+            "2.0.0.redhat-00006",
+            "2.0.0.redhat-00007",
+            "2.0.0.redhat-00008",
+            "2.0.0.redhat-00009",
+            "2.0.0.redhat-00011"
+        ]
     },
     {
         "groupId": "javax.ws.rs",
@@ -165,7 +231,8 @@
         "builtVersion": "4.11-redhat-1",
         "availableVersions": [
             "4.10-redhat-2",
-            "4.11-redhat-1"
+            "4.11-redhat-1",
+            "4.12.0.redhat-003"
         ]
     }
 ]

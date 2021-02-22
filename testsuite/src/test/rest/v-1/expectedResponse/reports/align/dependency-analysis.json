@@ -1,459 +1,2189 @@
-{  
-    "internallyBuilt":[  
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"reports-backend",
-            "gavProducts":[  
-                {  
-                    "groupId":"org.jboss.spec",
-                    "artifactId":"jboss-javaee-6.0",
-                    "version":"3.0.2.Final",
-                    "gavProducts":[  
-                        {  
-                            "version":"3.0.2.Final-redhat-15",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                },
-                {  
-                    "groupId":"org.slf4j",
-                    "artifactId":"slf4j-api",
-                    "version":"1.7.7",
-                    "gavProducts":[  
-                        {  
-                            "version":"1.7.7.redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                },
-                {  
-                    "groupId":"org.hibernate",
-                    "artifactId":"hibernate-core",
-                    "version":"4.2.14.SP4-redhat-1",
-                    "gavProducts":[  
-                        {  
-                            "version":"4.2.14.SP4-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"bc-backend",
-            "gavProducts":[  
-                {  
-                    "groupId":"org.slf4j",
-                    "artifactId":"slf4j-api",
-                    "version":"1.7.7",
-                    "gavProducts":[  
-                        {  
-                            "version":"1.7.7.redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"reports-rest",
-            "gavProducts":[  
-                {  
-                    "groupId":"org.slf4j",
-                    "artifactId":"slf4j-api",
-                    "version":"1.7.7",
-                    "gavProducts":[  
-                        {  
-                            "version":"1.7.7.redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                },
-                {  
-                    "groupId":"org.jboss.spec",
-                    "artifactId":"jboss-javaee-6.0",
-                    "version":"3.0.2.Final",
-                    "gavProducts":[  
-                        {  
-                            "version":"3.0.2.Final-redhat-15",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"bc-rest",
-            "gavProducts":[  
-                {  
-                    "groupId":"org.slf4j",
-                    "artifactId":"slf4j-api",
-                    "version":"1.7.7",
-                    "gavProducts":[  
-                        {  
-                            "version":"1.7.7.redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"testsuite",
-            "gavProducts":[  
-                {  
-                    "groupId":"junit",
-                    "artifactId":"junit",
-                    "version":"4.11",
-                    "gavProducts":[  
-                        {  
-                            "version":"4.11-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"common",
-            "gavProducts":[  
-                {  
-                    "groupId":"javax.enterprise",
-                    "artifactId":"cdi-api",
-                    "version":"1.2",
-                    "gavProducts":[  
-                        {  
-                            "version":"1.2.0.redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                },
-                {  
-                    "groupId":"junit",
-                    "artifactId":"junit",
-                    "version":"4.11",
-                    "gavProducts":[  
-                        {  
-                            "version":"4.11-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"communication",
-            "gavProducts":[  
-                {  
-                    "groupId":"org.slf4j",
-                    "artifactId":"slf4j-api",
-                    "version":"1.7.7",
-                    "gavProducts":[  
-                        {  
-                            "version":"1.7.7.redhat-3",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                },
-                {  
-                    "groupId":"junit",
-                    "artifactId":"junit",
-                    "version":"4.11",
-                    "gavProducts":[  
-                        {  
-                            "version":"4.11-redhat-1",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                },
-                {  
-                    "groupId":"javax.enterprise",
-                    "artifactId":"cdi-api",
-                    "version":"1.2",
-                    "gavProducts":[  
-                        {  
-                            "version":"1.2.0.redhat-2",
-                            "product":{  
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        }
-                    ]
-                }
-            ]
+{
+  "internallyBuilt": [
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "bc-backend",
+      "gavProducts": [
+        {
+          "groupId": "org.slf4j",
+          "artifactId": "slf4j-api",
+          "version": "1.7.7",
+          "gavProducts": [
+            {
+              "version": "1.7.7.redhat-4",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
         }
-    ],
-    "builtInDifferentVersion":[  
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"common",
-            "gavProducts":[  
-                {  
-                    "groupId":"com.fasterxml.jackson.core",
-                    "artifactId":"jackson-databind",
-                    "version":"2.4.4",
-                    "gavProducts":[
-                        {
-                            "version": "2.5.4.redhat-1",
-                            "differenceType": "MINOR",
-                            "product": {
-                                "name":"Unknown",
-                                "version":"Unknown",
-                                "supportStatus":"UNKNOWN"
-                            }
-                        },
-                        {
-                            "version": "2.6.3.redhat-2",
-                            "differenceType": "MINOR",
-                            "product": {
-                                "name": "Unknown",
-                                "version": "Unknown",
-                                "supportStatus": "UNKNOWN"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"testsuite",
-            "gavProducts":[  
-                {  
-                    "groupId":"org.jboss.as",
-                    "artifactId":"jboss-as-arquillian-container-managed",
-                    "version":"7.2.0.Final"
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"communication",
-            "gavProducts":[  
-                {  
-                    "groupId":"org.jboss.resteasy",
-                    "artifactId":"resteasy-client",
-                    "version":"3.0.11.Final"
-                },
-                {  
-                    "groupId":"org.jboss.resteasy",
-                    "artifactId":"resteasy-jaxrs",
-                    "version":"3.0.11.Final"
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"reports-rest",
-            "gavProducts":[  
-                {  
-                    "groupId":"org.jboss.resteasy",
-                    "artifactId":"resteasy-jaxrs",
-                    "version":"3.0.11.Final"
-                }
-            ]
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "bc-rest",
+      "gavProducts": [
+        {
+          "groupId": "org.slf4j",
+          "artifactId": "slf4j-api",
+          "version": "1.7.7",
+          "gavProducts": [
+            {
+              "version": "1.7.7.redhat-4",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
         }
-    ],
-    "notBuilt":[  
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"reports-backend",
-            "gavs":[  
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"communication",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.projectlombok",
-                    "artifactId":"lombok",
-                    "version":"1.16.4"
-                }
-            ]
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "common",
+      "gavProducts": [
+        {
+          "groupId": "javax.enterprise",
+          "artifactId": "cdi-api",
+          "version": "1.2",
+          "gavProducts": [
+            {
+              "version": "1.2.0.redhat-2",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
         },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"testsuite",
-            "gavs":[  
-                {  
-                    "groupId":"org.jboss.arquillian.junit",
-                    "artifactId":"arquillian-junit-container",
-                    "version":"1.1.8.Final"
-                },
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"bc-rest",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"reports-rest",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.jboss.arquillian.protocol",
-                    "artifactId":"arquillian-protocol-servlet",
-                    "version":"1.1.8.Final"
-                },
-                {  
-                    "groupId":"org.jboss.shrinkwrap.resolver",
-                    "artifactId":"shrinkwrap-resolver-impl-maven-archive",
-                    "version":"2.1.1"
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"communication",
-            "gavs":[  
-                {  
-                    "groupId":"javax.ws.rs",
-                    "artifactId":"javax.ws.rs-api",
-                    "version":"2.0"
-                },
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"common",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.projectlombok",
-                    "artifactId":"lombok",
-                    "version":"1.16.4"
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"bc-rest",
-            "gavs":[  
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"bc-backend",
-                    "version":"0.1.0"
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"application",
-            "gavs":[  
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"bc-backend",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"reports-backend",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"communication",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"bc-rest",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"reports-rest",
-                    "version":"0.1.0"
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"bc-backend",
-            "gavs":[  
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"reports-backend",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"communication",
-                    "version":"0.1.0"
-                }
-            ]
-        },
-        {  
-            "groupId":"org.jboss.da",
-            "artifactId":"reports-rest",
-            "gavs":[  
-                {  
-                    "groupId":"org.jboss.da",
-                    "artifactId":"reports-backend",
-                    "version":"0.1.0"
-                },
-                {  
-                    "groupId":"org.projectlombok",
-                    "artifactId":"lombok",
-                    "version":"1.16.4"
-                }
-            ]
+        {
+          "groupId": "junit",
+          "artifactId": "junit",
+          "version": "4.11",
+          "gavProducts": [
+            {
+              "version": "4.11-redhat-1",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
         }
-    ],
-    "blacklisted":[  
-
-    ]
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "communication",
+      "gavProducts": [
+        {
+          "groupId": "javax.enterprise",
+          "artifactId": "cdi-api",
+          "version": "1.2",
+          "gavProducts": [
+            {
+              "version": "1.2.0.redhat-2",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "junit",
+          "artifactId": "junit",
+          "version": "4.11",
+          "gavProducts": [
+            {
+              "version": "4.11-redhat-1",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.slf4j",
+          "artifactId": "slf4j-api",
+          "version": "1.7.7",
+          "gavProducts": [
+            {
+              "version": "1.7.7.redhat-4",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "reports-backend",
+      "gavProducts": [
+        {
+          "groupId": "org.hibernate",
+          "artifactId": "hibernate-core",
+          "version": "4.2.14.SP4-redhat-1",
+          "gavProducts": [
+            {
+              "version": "4.2.14.SP4-redhat-1",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.spec",
+          "artifactId": "jboss-javaee-6.0",
+          "version": "3.0.2.Final",
+          "gavProducts": [
+            {
+              "version": "3.0.2.Final-redhat-15",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.slf4j",
+          "artifactId": "slf4j-api",
+          "version": "1.7.7",
+          "gavProducts": [
+            {
+              "version": "1.7.7.redhat-4",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "reports-rest",
+      "gavProducts": [
+        {
+          "groupId": "org.jboss.spec",
+          "artifactId": "jboss-javaee-6.0",
+          "version": "3.0.2.Final",
+          "gavProducts": [
+            {
+              "version": "3.0.2.Final-redhat-15",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.slf4j",
+          "artifactId": "slf4j-api",
+          "version": "1.7.7",
+          "gavProducts": [
+            {
+              "version": "1.7.7.redhat-4",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "testsuite",
+      "gavProducts": [
+        {
+          "groupId": "junit",
+          "artifactId": "junit",
+          "version": "4.11",
+          "gavProducts": [
+            {
+              "version": "4.11-redhat-1",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "builtInDifferentVersion": [
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "application",
+      "gavProducts": [
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "bc-backend",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "bc-rest",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "communication",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00002",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00003",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00004",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00005",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00006",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00007",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00008",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00009",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00011",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "reports-backend",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00002",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00003",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00004",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00005",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00006",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00007",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00008",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00009",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00011",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "reports-rest",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00002",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00003",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00004",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00005",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00006",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00007",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00008",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00009",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00011",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "bc-backend",
+      "gavProducts": [
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "communication",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00002",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00003",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00004",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00005",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00006",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00007",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00008",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00009",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00011",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "reports-backend",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00002",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00003",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00004",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00005",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00006",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00007",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00008",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00009",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00011",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "bc-rest",
+      "gavProducts": [
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "bc-backend",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "common",
+      "gavProducts": [
+        {
+          "groupId": "com.fasterxml.jackson.core",
+          "artifactId": "jackson-databind",
+          "version": "2.4.4",
+          "gavProducts": [
+            {
+              "version": "2.5.4.redhat-1",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.5.4.redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.6.3.redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.8.11.redhat-1",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.9.8.redhat-00004",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "communication",
+      "gavProducts": [
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "common",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00002",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00003",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00004",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00005",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00006",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00007",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00008",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00009",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00011",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.resteasy",
+          "artifactId": "resteasy-client",
+          "version": "3.0.11.Final",
+          "gavProducts": [
+            {
+              "version": "3.0.16.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.17.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.18.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.19.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.19.SP1-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.resteasy",
+          "artifactId": "resteasy-jaxrs",
+          "version": "3.0.11.Final",
+          "gavProducts": [
+            {
+              "version": "2.3.3.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.4.Final-redhat-2",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.6.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.7.1.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.7.2.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.7.Final-redhat-2",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.Final-redhat-3",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.SP2-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.SP2-redhat-3",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.SP3-redhat-2",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.SP4-redhat-2",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.10.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.12.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.13.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.15.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.16.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.17.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.16.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.17.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.18.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.19.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.19.SP1-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.1.0.Final-redhat-1",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.9.3.SP1-redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "reports-backend",
+      "gavProducts": [
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "communication",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00002",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00003",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00004",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00005",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00006",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00007",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00008",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00009",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00011",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "reports-rest",
+      "gavProducts": [
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "reports-backend",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00002",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00003",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00004",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00005",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00006",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00007",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00008",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00009",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00011",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.resteasy",
+          "artifactId": "resteasy-jaxrs",
+          "version": "3.0.11.Final",
+          "gavProducts": [
+            {
+              "version": "2.3.3.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.4.Final-redhat-2",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.6.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.7.1.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.7.2.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.7.Final-redhat-2",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.Final-redhat-3",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.SP2-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.SP2-redhat-3",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.SP3-redhat-2",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.8.SP4-redhat-2",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.10.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.12.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.13.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.15.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.16.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.3.17.Final-redhat-1",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.16.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.17.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.18.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.19.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.0.19.SP1-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.1.0.Final-redhat-1",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "3.9.3.SP1-redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "testsuite",
+      "gavProducts": [
+        {
+          "groupId": "org.jboss.as",
+          "artifactId": "jboss-as-arquillian-container-managed",
+          "version": "7.2.0.Final",
+          "gavProducts": [
+            {
+              "version": "7.2.2.Final-redhat-1",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.2.2.Final-redhat-4",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.2.3.Final-redhat-2",
+              "differenceType": "MICRO",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.0.Final-redhat-21",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.2.Final-redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.3.Final-redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.5.Final-redhat-3",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.6.Final-redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.7.Final-redhat-3",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.8.Final-redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.9.Final-redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.10.Final-redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.11.Final-redhat-1",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.12.Final-redhat-1",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.13.Final-redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "7.5.14.Final-redhat-2",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "bc-rest",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "org.jboss.da",
+          "artifactId": "reports-rest",
+          "version": "0.1.0",
+          "gavProducts": [
+            {
+              "version": "0.8.2.redhat-00001",
+              "differenceType": "MINOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "1.2.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00001",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00002",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00003",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00004",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00005",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00006",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00007",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00008",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00009",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            },
+            {
+              "version": "2.0.0.redhat-00011",
+              "differenceType": "MAJOR",
+              "product": {
+                "name": "Unknown",
+                "version": "Unknown",
+                "supportStatus": "UNKNOWN"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notBuilt": [
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "communication",
+      "gavs": [
+        {
+          "groupId": "javax.ws.rs",
+          "artifactId": "javax.ws.rs-api",
+          "version": "2.0"
+        },
+        {
+          "groupId": "org.projectlombok",
+          "artifactId": "lombok",
+          "version": "1.16.4"
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "reports-backend",
+      "gavs": [
+        {
+          "groupId": "org.projectlombok",
+          "artifactId": "lombok",
+          "version": "1.16.4"
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "reports-rest",
+      "gavs": [
+        {
+          "groupId": "org.projectlombok",
+          "artifactId": "lombok",
+          "version": "1.16.4"
+        }
+      ]
+    },
+    {
+      "groupId": "org.jboss.da",
+      "artifactId": "testsuite",
+      "gavs": [
+        {
+          "groupId": "org.jboss.arquillian.junit",
+          "artifactId": "arquillian-junit-container",
+          "version": "1.1.8.Final"
+        },
+        {
+          "groupId": "org.jboss.arquillian.protocol",
+          "artifactId": "arquillian-protocol-servlet",
+          "version": "1.1.8.Final"
+        },
+        {
+          "groupId": "org.jboss.shrinkwrap.resolver",
+          "artifactId": "shrinkwrap-resolver-impl-maven-archive",
+          "version": "2.1.1"
+        }
+      ]
+    }
+  ],
+  "blacklisted": []
 }

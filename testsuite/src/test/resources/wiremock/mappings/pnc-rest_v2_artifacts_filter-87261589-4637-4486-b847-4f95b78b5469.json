@@ -1,0 +1,21 @@
+{
+  "id" : "87261589-4637-4486-b847-4f95b78b5469",
+  "name" : "pnc-rest_v2_artifacts_filter",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=com.google.guava%3Aguava%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"pageIndex\":0,\"pageSize\":100,\"totalPages\":1,\"totalHits\":19,\"content\":[{\"id\":\"1030\",\"identifier\":\"com.google.guava:guava:pom:10.0.1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"12037\",\"identifier\":\"com.google.guava:guava:pom:14.0.1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1384\",\"identifier\":\"com.google.guava:guava:pom:15.0\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3163\",\"identifier\":\"com.google.guava:guava:pom:16.0.1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"587\",\"identifier\":\"com.google.guava:guava:pom:18.0\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3164\",\"identifier\":\"com.google.guava:guava:pom:19.0\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"4960\",\"identifier\":\"com.google.guava:guava:pom:20.0\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1133\",\"identifier\":\"com.google.guava:guava:pom:20.0.0.redhat-1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"6853\",\"identifier\":\"com.google.guava:guava:pom:23.0\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"6413\",\"identifier\":\"com.google.guava:guava:pom:25.0-jre\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1683\",\"identifier\":\"com.google.guava:guava:pom:25.0.0.redhat-1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"4159\",\"identifier\":\"com.google.guava:guava:pom:25.1-android\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"7575\",\"identifier\":\"com.google.guava:guava:pom:25.1-jre\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"10108\",\"identifier\":\"com.google.guava:guava:pom:27.0-jre\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"6085\",\"identifier\":\"com.google.guava:guava:pom:27.0.1-jre\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"10109\",\"identifier\":\"com.google.guava:guava:pom:28.1-jre\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"7576\",\"identifier\":\"com.google.guava:guava:pom:28.2-android\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"6593\",\"identifier\":\"com.google.guava:guava:pom:28.2-jre\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"12307\",\"identifier\":\"com.google.guava:guava:pom:29.0-jre\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"}]}",
+    "headers" : {
+      "Date" : "Mon, 22 Feb 2021 14:28:17 GMT",
+      "Content-Type" : "application/json",
+      "Set-Cookie" : "fa8d113a8504f19cbc7a1242da8f67d6=b04dd753290d286f8e4db9fbc393e741; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "87261589-4637-4486-b847-4f95b78b5469",
+  "persistent" : true,
+  "insertionIndex" : 2326
+}
