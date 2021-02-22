@@ -1,0 +1,21 @@
+{
+  "id" : "63b92693-a802-48f8-ba0c-0b6bd77be3ab",
+  "name" : "pnc-rest_v2_artifacts_filter",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.jboss.resteasy%3Aresteasy-jaxrs%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"pageIndex\":0,\"pageSize\":100,\"totalPages\":1,\"totalHits\":4,\"content\":[{\"id\":\"1342\",\"identifier\":\"org.jboss.resteasy:resteasy-jaxrs:pom:3.0.16.Final-redhat-1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"12193\",\"identifier\":\"org.jboss.resteasy:resteasy-jaxrs:pom:3.1.4.Final\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"6523\",\"identifier\":\"org.jboss.resteasy:resteasy-jaxrs:pom:3.9.3.SP1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"9665\",\"identifier\":\"org.jboss.resteasy:resteasy-jaxrs:pom:3.9.3.SP1-redhat-00001\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"}]}",
+    "headers" : {
+      "Date" : "Mon, 22 Feb 2021 14:39:00 GMT",
+      "Content-Type" : "application/json",
+      "Set-Cookie" : "fa8d113a8504f19cbc7a1242da8f67d6=b04dd753290d286f8e4db9fbc393e741; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "63b92693-a802-48f8-ba0c-0b6bd77be3ab",
+  "persistent" : true,
+  "insertionIndex" : 2345
+}

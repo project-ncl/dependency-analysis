@@ -1,0 +1,21 @@
+{
+  "id" : "06eb7f0b-1b69-4699-97c0-679ae4e1c162",
+  "name" : "pnc-rest_v2_artifacts_filter",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.jboss.shrinkwrap.resolver%3Ashrinkwrap-resolver-impl-maven-archive%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"pageIndex\":0,\"pageSize\":100,\"totalPages\":0,\"totalHits\":0,\"content\":[]}",
+    "headers" : {
+      "Date" : "Mon, 22 Feb 2021 14:39:02 GMT",
+      "Content-Type" : "application/json",
+      "Set-Cookie" : "fa8d113a8504f19cbc7a1242da8f67d6=b04dd753290d286f8e4db9fbc393e741; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "06eb7f0b-1b69-4699-97c0-679ae4e1c162",
+  "persistent" : true,
+  "insertionIndex" : 2358
+}

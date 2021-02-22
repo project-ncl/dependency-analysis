@@ -1,0 +1,21 @@
+{
+  "id" : "662a789b-2fb8-479c-b374-bd313e8809e8",
+  "name" : "pnc-rest_v2_artifacts_filter",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.jboss.as%3Ajboss-as-arquillian-container-managed%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"pageIndex\":0,\"pageSize\":100,\"totalPages\":0,\"totalHits\":0,\"content\":[]}",
+    "headers" : {
+      "Date" : "Mon, 22 Feb 2021 14:39:01 GMT",
+      "Content-Type" : "application/json",
+      "Set-Cookie" : "fa8d113a8504f19cbc7a1242da8f67d6=b04dd753290d286f8e4db9fbc393e741; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "662a789b-2fb8-479c-b374-bd313e8809e8",
+  "persistent" : true,
+  "insertionIndex" : 2356
+}

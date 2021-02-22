@@ -1,0 +1,21 @@
+{
+  "id" : "01e91d3b-2de2-4969-b6b4-b6fabb07e0f8",
+  "name" : "pnc-rest_v2_artifacts_filter",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.jboss.da%3Areports-rest%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"pageIndex\":0,\"pageSize\":100,\"totalPages\":1,\"totalHits\":12,\"content\":[{\"id\":\"1304\",\"identifier\":\"org.jboss.da:reports-rest:pom:0.8.2.redhat-00001\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"4944\",\"identifier\":\"org.jboss.da:reports-rest:pom:1.2.0.redhat-00001\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"400\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00001\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1149\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00002\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1164\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00003\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1194\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00004\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1232\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00005\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1246\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00006\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1663\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00007\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1829\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00008\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"2416\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00009\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"2432\",\"identifier\":\"org.jboss.da:reports-rest:pom:2.0.0.redhat-00011\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"}]}",
+    "headers" : {
+      "Date" : "Mon, 22 Feb 2021 14:39:01 GMT",
+      "Content-Type" : "application/json",
+      "Set-Cookie" : "fa8d113a8504f19cbc7a1242da8f67d6=b04dd753290d286f8e4db9fbc393e741; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "01e91d3b-2de2-4969-b6b4-b6fabb07e0f8",
+  "persistent" : true,
+  "insertionIndex" : 2354
+}

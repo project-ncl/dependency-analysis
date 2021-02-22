@@ -2,7 +2,19 @@
     "groupId": "org.jboss.da",
     "artifactId": "common",
     "version": "0.1.0",
-    "availableVersions": [],
+    "availableVersions": [
+        "0.8.2.redhat-00001",
+        "1.2.0.redhat-00001",
+        "2.0.0.redhat-00001",
+        "2.0.0.redhat-00002",
+        "2.0.0.redhat-00003",
+        "2.0.0.redhat-00004",
+        "2.0.0.redhat-00005",
+        "2.0.0.redhat-00006",
+        "2.0.0.redhat-00007",
+        "2.0.0.redhat-00008",
+        "2.0.0.redhat-00009",
+        "2.0.0.redhat-00011"],
     "bestMatchVersion": null,
     "dependencyVersionsSatisfied": false,
     "dependencies": [
@@ -12,7 +24,10 @@
             "version": "2.4.4",
             "availableVersions": [
                 "2.5.4.redhat-1",
-                "2.6.3.redhat-2"
+                "2.5.4.redhat-2",
+                "2.6.3.redhat-2",
+                "2.8.11.redhat-1",
+                "2.9.8.redhat-00004"
             ],
             "bestMatchVersion": null,
             "dependencyVersionsSatisfied": false,
@@ -23,7 +38,9 @@
                     "version": "2.4.0",
                     "availableVersions": [
                         "2.5.4.redhat-1",
-                        "2.6.3.redhat-2"
+                        "2.6.3.redhat-2",
+                        "2.8.11.redhat-1",
+                        "2.9.8.redhat-00004"
                     ],
                     "bestMatchVersion": null,
                     "dependencyVersionsSatisfied": true,
@@ -55,7 +72,9 @@
                     "version": "2.4.4",
                     "availableVersions": [
                         "2.5.4.redhat-1",
-                        "2.6.3.redhat-2"
+                        "2.6.3.redhat-2",
+                        "2.8.11.redhat-1",
+                        "2.9.8.redhat-00004"
                     ],
                     "bestMatchVersion": null,
                     "dependencyVersionsSatisfied": true,
@@ -85,7 +104,8 @@
                     "version": "4.8.2",
                     "availableVersions": [
                         "4.10-redhat-2",
-                        "4.11-redhat-1"
+                        "4.11-redhat-1",
+                        "4.12.0.redhat-003"
                     ],
                     "bestMatchVersion": null,
                     "dependencyVersionsSatisfied": true,
@@ -122,7 +142,8 @@
             "version": "4.11",
             "availableVersions":[  
                 "4.10-redhat-2",
-                "4.11-redhat-1"
+                "4.11-redhat-1",
+                "4.12.0.redhat-003"
             ],
             "bestMatchVersion":"4.11-redhat-1",
             "dependencyVersionsSatisfied": true,
@@ -142,7 +163,8 @@
                 "1.0.0.SP4-redhat-6",
                 "1.2.0.redhat-2",
                 "1.0-SP4-redhat-1",
-                "1.0-SP4-redhat-2"
+                "1.0-SP4-redhat-2",
+                "2.0.0.SP1-redhat-00001"
             ],
             "bestMatchVersion":"1.2.0.redhat-2",
             "dependencyVersionsSatisfied": false,

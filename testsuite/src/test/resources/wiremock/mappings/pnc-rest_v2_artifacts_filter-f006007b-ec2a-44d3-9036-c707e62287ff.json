@@ -1,0 +1,21 @@
+{
+  "id" : "f006007b-ec2a-44d3-9036-c707e62287ff",
+  "name" : "pnc-rest_v2_artifacts_filter",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.slf4j%3Aslf4j-api%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"pageIndex\":0,\"pageSize\":100,\"totalPages\":1,\"totalHits\":19,\"content\":[{\"id\":\"332\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.5.6\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"10572\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.6.1\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"10573\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.6.6\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"659\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.12\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3614\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.13\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"725\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.2\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"4921\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.2.redhat-4\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"11121\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.21\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"949\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.22.redhat-2\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"6550\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.25\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3615\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.26\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"7945\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.28\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"12731\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.29\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3616\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.30\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"2697\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.30.redhat-00001\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3931\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.4\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"3617\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.5\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"1477\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.7\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"},{\"id\":\"4990\",\"identifier\":\"org.slf4j:slf4j-api:pom:1.7.7.redhat-4\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"}]}",
+    "headers" : {
+      "Date" : "Mon, 22 Feb 2021 14:39:00 GMT",
+      "Content-Type" : "application/json",
+      "Set-Cookie" : "fa8d113a8504f19cbc7a1242da8f67d6=b04dd753290d286f8e4db9fbc393e741; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "f006007b-ec2a-44d3-9036-c707e62287ff",
+  "persistent" : true,
+  "insertionIndex" : 2343
+}

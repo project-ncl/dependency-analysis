@@ -1,0 +1,21 @@
+{
+  "id" : "022ed9ff-8a94-439a-b5a2-4d50bb86f040",
+  "name" : "pnc-rest_v2_artifacts_filter",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=javax.interceptor%3Ajavax.interceptor-api%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"pageIndex\":0,\"pageSize\":100,\"totalPages\":1,\"totalHits\":1,\"content\":[{\"id\":\"1438\",\"identifier\":\"javax.interceptor:javax.interceptor-api:pom:1.2\",\"artifactQuality\":\"NEW\",\"repositoryType\":\"MAVEN\"}]}",
+    "headers" : {
+      "Date" : "Mon, 22 Feb 2021 14:38:55 GMT",
+      "Content-Type" : "application/json",
+      "Set-Cookie" : "fa8d113a8504f19cbc7a1242da8f67d6=b04dd753290d286f8e4db9fbc393e741; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "022ed9ff-8a94-439a-b5a2-4d50bb86f040",
+  "persistent" : true,
+  "insertionIndex" : 2340
+}

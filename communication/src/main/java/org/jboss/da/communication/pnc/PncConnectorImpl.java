@@ -20,9 +20,11 @@ import javax.inject.Inject;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author <a href="mailto:pkocandr@redhat.com">Petr Kocandrle</a>
@@ -30,16 +32,10 @@ import java.util.Set;
 @ApplicationScoped
 public class PncConnectorImpl implements PncConnector {
 
-    private static final Set<ArtifactQuality> persistentQuals = new HashSet<>(3);
-    private static final Set<ArtifactQuality> temporaryQuals = new HashSet<>(4);
-    static {
-        persistentQuals.add(ArtifactQuality.NEW);
-        persistentQuals.add(ArtifactQuality.VERIFIED);
-        persistentQuals.add(ArtifactQuality.TESTED);
-
-        temporaryQuals.addAll(persistentQuals);
-        temporaryQuals.add(ArtifactQuality.TEMPORARY);
-    }
+    private static final EnumSet<ArtifactQuality> persistentQuals = EnumSet
+            .of(ArtifactQuality.NEW, ArtifactQuality.VERIFIED, ArtifactQuality.TESTED);
+    private static final EnumSet<ArtifactQuality> temporaryQuals = EnumSet
+            .of(ArtifactQuality.NEW, ArtifactQuality.VERIFIED, ArtifactQuality.TESTED, ArtifactQuality.TEMPORARY);
 
     @Inject
     private Logger log;
@@ -60,7 +56,7 @@ public class PncConnectorImpl implements PncConnector {
             RepositoryType repoType,
             boolean temporaryBuild) throws RepositoryException {
         ArtifactClient artifactClient = getArtifactClient();
-        Set<ArtifactQuality> qualities = temporaryBuild ? temporaryQuals : persistentQuals;
+        EnumSet<ArtifactQuality> qualities = temporaryBuild ? temporaryQuals : persistentQuals;
         RemoteCollection<ArtifactInfo> artCollection;
         try {
             artCollection = artifactClient.getAllFiltered(identifierPattern, qualities, repoType);
