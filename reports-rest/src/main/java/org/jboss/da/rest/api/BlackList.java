@@ -1,4 +1,4 @@
-package org.jboss.da.rest.spi;
+package org.jboss.da.rest.api;
 
 import org.jboss.da.listings.model.rest.ContainsResponse;
 import org.jboss.da.listings.model.rest.RestArtifact;
