@@ -513,8 +513,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         Map<String, CompletableFuture<Set<String>>> artifactsMap = new HashMap<>();
         for (String name : uniqueNames) {
-            CompletableFuture<Set<String>> artifacts = (CompletableFuture<Set<String>>) productProvider
-                    .getAllVersions(new NPMArtifact(name, "0.0.0"));
+            CompletableFuture<Set<String>> artifacts = productProvider.getAllVersions(new NPMArtifact(name, "0.0.0"));
 
             artifactsMap.put(name, artifacts);
         }
@@ -618,7 +617,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         Map<GA, CompletableFuture<Set<ProductArtifacts>>> gaProductArtifactsMap = new HashMap<>();
         for (GA ga : uniqueGAs) {
-            CompletableFuture<Set<ProductArtifacts>> artifacts = (CompletableFuture<Set<ProductArtifacts>>) productProvider
+            CompletableFuture<Set<ProductArtifacts>> artifacts = productProvider
                     .getArtifacts(new MavenArtifact(new GAV(ga, "0.0.0")));
             artifacts = filterProductArtifacts(products, artifacts);
 

@@ -4,7 +4,7 @@ import org.jboss.da.listings.model.ProductSupportStatus;
 
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Product Provider is used for providing information about products and their artifacts. Each product is defined by its
@@ -20,7 +20,7 @@ public interface ProductProvider {
      *
      * @return Set of all products.
      */
-    Future<Set<Product>> getAllProducts();
+    CompletableFuture<Set<Product>> getAllProducts();
 
     /**
      * Get all products with given name.
@@ -28,7 +28,7 @@ public interface ProductProvider {
      * @param name Name of the products.
      * @return Set of all products with given name.
      */
-    Future<Set<Product>> getProductsByName(String name);
+    CompletableFuture<Set<Product>> getProductsByName(String name);
 
     /**
      * Get all products with given support status.
@@ -36,7 +36,7 @@ public interface ProductProvider {
      * @param status Support status of the products.
      * @return Set of all products with given support status.
      */
-    Future<Set<Product>> getProductsByStatus(ProductSupportStatus status);
+    CompletableFuture<Set<Product>> getProductsByStatus(ProductSupportStatus status);
 
     // Artifacts getters
     /**
@@ -45,7 +45,7 @@ public interface ProductProvider {
      * @param product Product containing the artifacts.
      * @return Set of all artifacts.
      */
-    Future<Set<Artifact>> getArtifacts(Product product);
+    CompletableFuture<Set<Artifact>> getArtifacts(Product product);
 
     /**
      * Get all artifacts with the same name and type as given artifact and their products.
@@ -53,7 +53,7 @@ public interface ProductProvider {
      * @param artifact artifact which name and type will be used for searching.
      * @return Set of products and their artifacts.
      */
-    Future<Set<ProductArtifacts>> getArtifacts(Artifact artifact);
+    CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact);
 
     /**
      * Get all artifacts with the same name and type as given artifact and their products, limited to * products with
@@ -63,7 +63,7 @@ public interface ProductProvider {
      * @param status Support status of the products.
      * @return Set of products and their artifacts.
      */
-    Future<Set<ProductArtifacts>> getArtifacts(Artifact artifact, ProductSupportStatus status);
+    CompletableFuture<Set<ProductArtifacts>> getArtifacts(Artifact artifact, ProductSupportStatus status);
 
     // Versions getters
     /**
@@ -72,7 +72,7 @@ public interface ProductProvider {
      * @param artifact artifact which name and type will be used for searching.
      * @return Set of products and their artifacts versions.
      */
-    Future<Map<Product, Set<String>>> getVersions(Artifact artifact);
+    CompletableFuture<Map<Product, Set<String>>> getVersions(Artifact artifact);
 
     /**
      * Get all artifacts versions with the same name and type as given artifact regardless if they are from product or
@@ -81,5 +81,5 @@ public interface ProductProvider {
      * @param artifact artifact which name and type will be used for searching.
      * @return Set of artifacts versions.
      */
-    Future<Set<String>> getAllVersions(Artifact artifact);
+    CompletableFuture<Set<String>> getAllVersions(Artifact artifact);
 }
