@@ -65,7 +65,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -146,7 +145,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         traverseAndFill(report, products, futures);
 
-        joinFutures(futures);
+        FuturesUtil.joinFutures(futures);
 
         return Optional.of(report);
     }
@@ -354,7 +353,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                     CompletableFuture.allOf(intrDone, diffDone)
                             .thenAccept(x -> fillNotBuilt(blacklisted, internallyBuilt, differentVersion, notBuilt)));
         }
-        joinFutures(futures);
+        FuturesUtil.joinFutures(futures);
         return ret;
     }
 
@@ -465,7 +464,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                                 .thenApply(v -> toBuiltReportModule(gav, v)));
             }
         }
-        return joinFutures(builtSet);
+        return FuturesUtil.joinFutures(builtSet);
     }
 
     private BuiltReportModule toBuiltReportModule(GAV gav, VersionAnalysisResult vlr) {
@@ -555,7 +554,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                             .build());
         }).collect(Collectors.toList());
 
-        return joinFutures(futures);
+        return FuturesUtil.joinFutures(futures);
     }
 
     private List<NPMVersionsReport> createVersionsReports(
@@ -577,7 +576,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             return versions.thenApply(v -> NPMVersionsReport.builder().npmPackage(a).availableVersions(v).build());
         }).collect(Collectors.toList());
 
-        return joinFutures(futures);
+        return FuturesUtil.joinFutures(futures);
     }
 
     @Override
@@ -654,7 +653,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
             lr.setBlacklisted(blackArtifactService.isArtifactPresent(gav));
         });
 
-        joinFutures(futures);
+        FuturesUtil.joinFutures(futures);
 
         return reports;
     }
@@ -666,28 +665,6 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         }
         suffixes.add(DEFAULT_SUFFIX);
         return suffixes;
-    }
-
-    private <T> List<T> joinFutures(List<CompletableFuture<T>> futures) throws CommunicationException {
-        try {
-            return futures.stream().map(r -> r.join()).collect(Collectors.toList());
-        } catch (CompletionException ex) {
-            if (ex.getCause() instanceof CommunicationException) {
-                throw (CommunicationException) ex.getCause();
-            }
-            throw ex;
-        }
-    }
-
-    private <T> Set<T> joinFutures(Set<CompletableFuture<T>> futures) throws CommunicationException {
-        try {
-            return futures.stream().map(r -> r.join()).collect(Collectors.toSet());
-        } catch (CompletionException ex) {
-            if (ex.getCause() instanceof CommunicationException) {
-                throw (CommunicationException) ex.getCause();
-            }
-            throw ex;
-        }
     }
 
     private static ProductArtifact toProductArtifact(
