@@ -20,8 +20,6 @@ public class LookupReport {
      * 
      * Also, use @JsonIgnore so that the getters and setters generated for 'gav' are also ignored by Jackson.
      */
-    @Getter(onMethod = @__({ @JsonIgnore }))
-    @Setter(onMethod = @__({ @JsonIgnore }))
     @NonNull
     @JsonIgnore
     private GAV gav;
@@ -60,5 +58,15 @@ public class LookupReport {
 
     public String getVersion() {
         return gav.getVersion();
+    }
+
+    @JsonIgnore
+    public @NonNull GAV getGav() {
+        return this.gav;
+    }
+
+    @JsonIgnore
+    public void setGav(@NonNull GAV gav) {
+        this.gav = gav;
     }
 }
