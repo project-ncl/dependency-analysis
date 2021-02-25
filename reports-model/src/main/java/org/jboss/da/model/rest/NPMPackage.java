@@ -17,6 +17,8 @@ package org.jboss.da.model.rest;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 
@@ -26,6 +28,7 @@ import lombok.Value;
  */
 @Value
 @Builder(builderClassName = "Builder")
+@AllArgsConstructor
 @JsonDeserialize(builder = NPMPackage.Builder.class)
 public class NPMPackage {
 
