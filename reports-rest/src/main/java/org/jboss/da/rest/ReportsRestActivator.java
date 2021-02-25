@@ -7,6 +7,8 @@ import java.util.Set;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+
+import org.jboss.da.rest.exceptions.AllExceptionsMapper;
 import org.jboss.da.rest.filter.MDCLoggingFilter;
 
 import org.jboss.da.rest.listings.Artifacts;
@@ -31,6 +33,7 @@ public class ReportsRestActivator extends Application {
         addSwaggerResources(resources);
         addProjectResources(resources);
         addMetricsResources(resources);
+        addExceptionMappers(resources);
         return resources;
     }
 
@@ -63,5 +66,9 @@ public class ReportsRestActivator extends Application {
         resources.add(TimedMetric.class);
         resources.add(TimedMetricFilter.class);
         resources.add(MDCLoggingFilter.class);
+    }
+
+    private void addExceptionMappers(Set<Class<?>> resources) {
+        resources.add(AllExceptionsMapper.class);
     }
 }
