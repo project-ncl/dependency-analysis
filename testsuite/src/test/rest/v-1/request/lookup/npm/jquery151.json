@@ -1,0 +1,9 @@
+{
+  "packages": [
+    {
+      "name": "jquery",
+      "version": "1.5.1"
+    }
+  ],
+  "mode": "PERSISTENT"
+}

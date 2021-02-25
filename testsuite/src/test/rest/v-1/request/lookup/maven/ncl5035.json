@@ -1,0 +1,11 @@
+{
+  "artifacts": [
+    {
+      "groupId": "org.jboss",
+      "artifactId": "jboss-parent",
+      "version": "6"
+    }
+  ],
+  "mode": "PERSISTENT",
+  "brewPullActive": true
+}
