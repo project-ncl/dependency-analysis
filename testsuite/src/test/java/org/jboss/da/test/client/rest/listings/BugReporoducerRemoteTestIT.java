@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 public class BugReporoducerRemoteTestIT extends AbstractRestApiListingTest {
 
     private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
+    private static final String PATH_LOOKUP_MAVEN = "/lookup/maven";
 
     @Test
     public void testNCL5035() throws Exception {
@@ -30,6 +31,15 @@ public class BugReporoducerRemoteTestIT extends AbstractRestApiListingTest {
         // Response response = createClientRequest(PATH_LOOKUP_GAVS).post(
         // Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
         // System.out.println("Response: " + response.readEntity(String.class));
+
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    public void testNCL5035OnLookupEndpoint() throws Exception {
+        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavParent", true);
+
+        Response response = assertResponseForRequest(PATH_LOOKUP_MAVEN, "ncl5035");
 
         assertEquals(200, response.getStatus());
     }

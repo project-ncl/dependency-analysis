@@ -1,0 +1,8 @@
+[
+    {
+        "bestMatchVersion": "3.0.0.fuse-jdk11-800011-temporary-redhat-00001",
+        "groupId": "org.fusesource.jansi",
+        "artifactId": "jansi",
+        "version": "3.3.5.fuse.jdk11-800013"
+    }
+]
