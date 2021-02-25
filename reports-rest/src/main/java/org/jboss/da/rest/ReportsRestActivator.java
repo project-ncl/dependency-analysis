@@ -57,6 +57,7 @@ public class ReportsRestActivator extends Application {
         resources.add(Root.class);
         resources.add(Artifacts.class);
         resources.add(Reports.class);
+        resources.add(LookupImpl.class);
         resources.add(Products.class);
         resources.add(BlackListImpl.class);
     }
