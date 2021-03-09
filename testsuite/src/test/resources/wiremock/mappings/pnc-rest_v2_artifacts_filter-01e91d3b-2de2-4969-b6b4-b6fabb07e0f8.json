@@ -2,7 +2,7 @@
   "id" : "01e91d3b-2de2-4969-b6b4-b6fabb07e0f8",
   "name" : "pnc-rest_v2_artifacts_filter",
   "request" : {
-    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.jboss.da%3Areports-rest%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.jboss.da%3Areports-rest%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN&buildCategories=STANDARD",
     "method" : "GET"
   },
   "response" : {

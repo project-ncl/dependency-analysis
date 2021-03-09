@@ -2,7 +2,7 @@
   "id" : "85884fa7-e7b0-47b6-84d5-2122ebaf3a48",
   "name" : "pnc-rest_v2_artifacts_filter",
   "request" : {
-    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=javax.ws.rs%3Ajavax.ws.rs-api%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=javax.ws.rs%3Ajavax.ws.rs-api%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN&buildCategories=STANDARD",
     "method" : "GET"
   },
   "response" : {

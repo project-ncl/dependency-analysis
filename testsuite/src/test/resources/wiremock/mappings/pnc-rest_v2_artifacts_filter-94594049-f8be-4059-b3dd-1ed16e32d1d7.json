@@ -2,7 +2,7 @@
   "id" : "94594049-f8be-4059-b3dd-1ed16e32d1d7",
   "name" : "pnc-rest_v2_artifacts_filter",
   "request" : {
-    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.jboss.arquillian.junit%3Aarquillian-junit-container%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN",
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=org.jboss.arquillian.junit%3Aarquillian-junit-container%3Apom%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&repoType=MAVEN&buildCategories=STANDARD",
     "method" : "GET"
   },
   "response" : {
