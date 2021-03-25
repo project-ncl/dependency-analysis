@@ -1,29 +1,23 @@
 package org.jboss.da.test.server.communication;
 
-import org.jboss.da.test.server.AbstractServerTest;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.indy.api.IndyConnector;
-import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.test.server.AbstractServerTest;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import org.junit.Before;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 public class IndyRemoteTestIT extends AbstractServerTest {

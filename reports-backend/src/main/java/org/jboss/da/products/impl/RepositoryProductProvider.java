@@ -14,7 +14,6 @@ import javax.inject.Qualifier;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import static java.lang.annotation.ElementType.FIELD;

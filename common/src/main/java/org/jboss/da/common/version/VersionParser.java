@@ -1,7 +1,7 @@
 package org.jboss.da.common.version;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import org.commonjava.maven.ext.manip.impl.Version;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.commonjava.maven.ext.manip.impl.Version;
 
 public class VersionParser {
 
