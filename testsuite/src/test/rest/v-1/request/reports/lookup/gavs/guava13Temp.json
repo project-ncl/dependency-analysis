@@ -1,8 +1,7 @@
 {
     "productNames": [],
     "productVersionIds": [],
-    "repositoryGroup": "DA-temporary",
-    "temporaryBuild": "true",
+    "mode": "TEMPORARY",
     "gavs": [
         {
             "groupId": "com.google.guava",

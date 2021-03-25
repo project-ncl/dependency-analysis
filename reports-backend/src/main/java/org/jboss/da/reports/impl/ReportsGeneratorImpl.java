@@ -1,9 +1,14 @@
 package org.jboss.da.reports.impl;
 
+import lombok.Data;
+
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.maven.scm.ScmException;
+import org.codehaus.plexus.util.StringUtils;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.LookupMode;
+import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.util.UserLog;
 import org.jboss.da.common.version.SuffixedVersion;
 import org.jboss.da.common.version.VersionAnalyzer;
@@ -52,6 +57,7 @@ import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.validation.ValidationException;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -69,7 +75,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import lombok.Data;
 import static org.jboss.da.listings.model.ProductSupportStatus.SUPERSEDED;
 import static org.jboss.da.listings.model.ProductSupportStatus.SUPPORTED;
 import static org.jboss.da.products.api.Product.UNKNOWN;
@@ -120,6 +125,16 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Inject
     private ProductAdapter productAdapter;
+
+    private Map<String, LookupMode> modes;
+
+    @Inject
+    public ReportsGeneratorImpl(Configuration config) throws ConfigurationParseException {
+        modes = config.getConfig()
+                .getModes()
+                .stream()
+                .collect(Collectors.toMap(LookupMode::getName, Function.identity()));
+    }
 
     @Override
     public Optional<ArtifactReport> getReportFromSCM(SCMReportRequest scml)
@@ -477,9 +492,9 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     @Override
     public List<NPMLookupReport> getLookupReports(LookupNPMRequest request) throws CommunicationException {
         final String versionSuffix = request.getVersionSuffix();
-        Boolean temporaryBuild = request.getTemporaryBuild();
+        String mode = request.getMode();
 
-        LookupMode lookupMode = getLookupMode(versionSuffix, temporaryBuild);
+        LookupMode lookupMode = getLookupMode(mode, versionSuffix);
         pncProductProvider.setLookupMode(lookupMode);
 
         Set<String> uniqueNames = request.getPackages().stream().map(x -> x.getName()).collect(Collectors.toSet());
@@ -507,7 +522,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 throw new UnsupportedOperationException("Unknown filter " + versionFilter);
         }
 
-        ProductProvider productProvider = setupProductProvider(false, null, request.getTemporaryBuild());
+        ProductProvider productProvider = setupProductProvider(false, null, request.getMode());
 
         Set<String> uniqueNames = request.getPackages().stream().map(x -> x.getName()).collect(Collectors.toSet());
 
@@ -589,7 +604,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         ProductProvider productProvider = setupProductProvider(
                 request.getBrewPullActive(),
                 request.getVersionSuffix(),
-                request.getTemporaryBuild());
+                request.getMode());
         gaProductArtifactsMap = getProductArtifactsPerGA(productProvider, request, uniqueGAs);
 
         return createLookupReports(request, gaProductArtifactsMap);
@@ -598,8 +613,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private ProductProvider setupProductProvider(
             Boolean brewPullActive,
             final String versionSuffix,
-            final Boolean temporaryBuild) {
-        LookupMode lookupMode = getLookupMode(versionSuffix, temporaryBuild);
+            final String mode) {
+        LookupMode lookupMode = getLookupMode(mode, versionSuffix);
         pncProductProvider.setLookupMode(lookupMode);
         if (BooleanUtils.isNotFalse(brewPullActive)) {
             repositoryProductProvider.setLookupMode(lookupMode);
@@ -714,19 +729,28 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 .collect(Collectors.toList());
     }
 
-    private LookupMode getLookupMode(String suffix, Boolean temporary) {
-        LookupMode mode = new LookupMode();
-        mode.setName("ON_THE_FLY_MODE");
-        mode.setBuildCategory(BuildCategory.STANDARD);
-        if (suffix != null && !suffix.isEmpty()) {
-            mode.getSuffixes().add(suffix);
-        }
-        mode.getSuffixes().add(DEFAULT_SUFFIX);
-        mode.getArtifactQualities().add(ArtifactQuality.NEW);
-        mode.getArtifactQualities().add(ArtifactQuality.VERIFIED);
-        mode.getArtifactQualities().add(ArtifactQuality.TESTED);
-        if (temporary != null && temporary) {
-            mode.getArtifactQualities().add(ArtifactQuality.TEMPORARY);
+    private LookupMode getLookupMode(String modeName, String suffix) {
+        LookupMode mode;
+        if (StringUtils.isEmpty(modeName)) {
+            mode = new LookupMode();
+            mode.setName("ON_THE_FLY_MODE");
+            mode.setBuildCategory(BuildCategory.STANDARD);
+            if (suffix != null && !suffix.isEmpty()) {
+                mode.getSuffixes().add(suffix);
+            }
+            mode.getSuffixes().add(DEFAULT_SUFFIX);
+            mode.getArtifactQualities().add(ArtifactQuality.NEW);
+            mode.getArtifactQualities().add(ArtifactQuality.VERIFIED);
+            mode.getArtifactQualities().add(ArtifactQuality.TESTED);
+            if (suffix != null && suffix.contains("temporary")) {
+                mode.getArtifactQualities().add(ArtifactQuality.TEMPORARY);
+            }
+        } else {
+            if (!modes.containsKey(modeName)) {
+                throw new ValidationException(
+                        "Invalid mode name: " + modeName + ". Available modes are: " + modes.keySet());
+            }
+            mode = modes.get(modeName);
         }
         return mode;
     }

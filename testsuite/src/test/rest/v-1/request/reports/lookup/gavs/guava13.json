@@ -1,6 +1,7 @@
 {
   "productNames": [],
   "productVersionIds": [],
+  "mode": "PERSISTENT",
   "gavs": [
     {
       "groupId": "com.google.guava",
