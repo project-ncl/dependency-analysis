@@ -1,15 +1,5 @@
 package org.jboss.da.reports.impl;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
@@ -24,12 +14,22 @@ import org.jboss.da.model.rest.NPMPackage;
 import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.MavenArtifact;
 import org.jboss.da.products.api.NPMArtifact;
-import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.AggregatedProductProvider;
 import org.jboss.da.products.impl.PncProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.reports.api.LookupGenerator;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static org.jboss.da.reports.impl.FuturesUtil.joinFutures;
 

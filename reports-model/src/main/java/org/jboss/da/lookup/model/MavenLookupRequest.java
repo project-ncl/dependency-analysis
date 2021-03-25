@@ -1,20 +1,15 @@
 package org.jboss.da.lookup.model;
 
-import java.util.Set;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.extern.jackson.Jacksonized;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.jboss.da.model.rest.GAV;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.extern.jackson.Jacksonized;
+import java.util.Set;
 
 @Data
 @Jacksonized

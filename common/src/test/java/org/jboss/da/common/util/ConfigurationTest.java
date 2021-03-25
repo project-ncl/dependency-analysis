@@ -1,11 +1,5 @@
 package org.jboss.da.common.util;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.json.LookupMode;
@@ -14,8 +8,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import static org.jboss.da.common.util.Configuration.CONFIG_SYSPROP;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class ConfigurationTest {
 

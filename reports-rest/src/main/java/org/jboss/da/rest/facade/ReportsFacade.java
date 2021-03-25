@@ -2,40 +2,36 @@ package org.jboss.da.rest.facade;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
+import org.jboss.da.reports.api.AdvancedArtifactReport;
 import org.jboss.da.reports.api.AlignmentReportModule;
+import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.api.BuiltReportModule;
 import org.jboss.da.reports.api.ReportsGenerator;
 import org.jboss.da.reports.model.api.SCMLocator;
-import org.jboss.da.reports.model.response.AlignReport;
 import org.jboss.da.reports.model.request.AlignReportRequest;
-import org.jboss.da.reports.model.response.BuiltReport;
 import org.jboss.da.reports.model.request.BuiltReportRequest;
-
-import javax.inject.Inject;
-
-import java.util.Set;
-
-import org.jboss.da.reports.api.AdvancedArtifactReport;
-import org.jboss.da.reports.api.ArtifactReport;
-import org.jboss.da.reports.model.response.AdvancedReport;
-import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
 import org.jboss.da.reports.model.request.LookupNPMRequest;
-import org.jboss.da.reports.model.request.VersionsNPMRequest;
-import org.jboss.da.reports.model.response.LookupReport;
-import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.reports.model.request.SCMReportRequest;
+import org.jboss.da.reports.model.request.VersionsNPMRequest;
+import org.jboss.da.reports.model.response.AdvancedReport;
+import org.jboss.da.reports.model.response.AlignReport;
+import org.jboss.da.reports.model.response.BuiltReport;
+import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.reports.model.response.NPMVersionsReport;
+import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
+
+import javax.inject.Inject;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 public class ReportsFacade {
 

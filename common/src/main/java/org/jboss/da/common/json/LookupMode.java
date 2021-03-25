@@ -1,15 +1,13 @@
 package org.jboss.da.common.json;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import lombok.Data;
 
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 
-import lombok.Data;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 
 @Data
 public class LookupMode {

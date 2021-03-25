@@ -1,14 +1,14 @@
 package org.jboss.da.listings.model.rest;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import org.jboss.da.listings.model.ProductSupportStatus;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 @JsonRootName(value = "product")
 @NoArgsConstructor

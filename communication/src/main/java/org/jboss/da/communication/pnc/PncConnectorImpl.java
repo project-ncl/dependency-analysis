@@ -11,7 +11,6 @@ import org.jboss.pnc.client.RemoteCollection;
 import org.jboss.pnc.client.RemoteResourceException;
 import org.jboss.pnc.common.logging.MDCUtils;
 import org.jboss.pnc.dto.response.ArtifactInfo;
-import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.RepositoryType;
 import org.slf4j.Logger;
 
@@ -22,11 +21,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.EnumSet;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * @author <a href="mailto:pkocandr@redhat.com">Petr Kocandrle</a>

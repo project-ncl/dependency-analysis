@@ -1,9 +1,30 @@
 package org.jboss.da.rest.listings;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+import org.jboss.da.listings.api.model.ProductVersion;
+import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
+import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.listings.api.service.ProductService;
+import org.jboss.da.listings.api.service.ProductVersionService;
+import org.jboss.da.listings.api.service.WLFiller;
+import org.jboss.da.listings.api.service.WhiteArtifactFilterService;
+import org.jboss.da.listings.api.service.WhiteArtifactService;
+import org.jboss.da.listings.model.ProductSupportStatus;
+import org.jboss.da.listings.model.rest.RestArtifact;
+import org.jboss.da.listings.model.rest.RestProduct;
+import org.jboss.da.listings.model.rest.RestProductArtifact;
+import org.jboss.da.listings.model.rest.RestProductGAV;
+import org.jboss.da.listings.model.rest.RestProductInput;
+import org.jboss.da.listings.model.rest.SuccessResponse;
+import org.jboss.da.listings.model.rest.WLFill;
+import org.jboss.da.model.rest.ErrorMessage;
+import org.jboss.da.validation.Validation;
+import org.jboss.da.validation.ValidationException;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -19,36 +40,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.jboss.da.listings.api.model.BlackArtifact;
-import org.jboss.da.listings.api.model.ProductVersion;
-import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
-import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.ProductService;
-import org.jboss.da.listings.api.service.ProductVersionService;
-import org.jboss.da.listings.api.service.WLFiller;
-import org.jboss.da.listings.api.service.WhiteArtifactFilterService;
-import org.jboss.da.listings.api.service.WhiteArtifactService;
-import org.jboss.da.listings.model.ProductSupportStatus;
-import org.jboss.da.listings.model.rest.ContainsResponse;
-import org.jboss.da.listings.model.rest.RestArtifact;
-import org.jboss.da.listings.model.rest.RestProduct;
-import org.jboss.da.listings.model.rest.RestProductArtifact;
-import org.jboss.da.listings.model.rest.RestProductGAV;
-import org.jboss.da.listings.model.rest.RestProductInput;
-import org.jboss.da.listings.model.rest.SuccessResponse;
-import org.jboss.da.listings.model.rest.WLFill;
-import org.jboss.da.model.rest.ErrorMessage;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
-import java.util.ArrayList;
-
-import org.jboss.da.validation.Validation;
-import org.jboss.da.validation.ValidationException;
+import java.util.Collection;
+import java.util.Optional;
 
 /**
  *

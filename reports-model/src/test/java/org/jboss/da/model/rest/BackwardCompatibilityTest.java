@@ -2,23 +2,12 @@ package org.jboss.da.model.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import org.jboss.da.listings.model.ProductSupportStatus;
-import org.jboss.da.listings.model.rest.RestArtifact;
-import org.jboss.da.listings.model.rest.RestProductGAV;
-import org.junit.Test;
-
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
-import org.json.JSONException;
 import org.jboss.da.listings.model.rest.ContainsResponse;
+import org.jboss.da.listings.model.rest.RestArtifact;
 import org.jboss.da.listings.model.rest.RestProduct;
 import org.jboss.da.listings.model.rest.RestProductArtifact;
+import org.jboss.da.listings.model.rest.RestProductGAV;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.listings.model.rest.SuccessResponse;
 import org.jboss.da.listings.model.rest.WLFill;
@@ -26,12 +15,21 @@ import org.jboss.da.products.model.rest.GADiff;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.Report;
-import static org.junit.Assert.fail;
+import org.json.JSONException;
+import org.junit.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.TreeSet;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.stream.Collectors;
+
+import static org.junit.Assert.fail;
 
 /**
  *

@@ -1,11 +1,6 @@
 package org.jboss.da.rest.exceptions;
 
-import java.util.NoSuchElementException;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import lombok.extern.slf4j.Slf4j;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
@@ -14,7 +9,12 @@ import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.ErrorMessage;
 import org.jboss.da.validation.ValidationException;
 
-import lombok.extern.slf4j.Slf4j;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
+
+import java.util.NoSuchElementException;
+
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.COMMUNICATION_FAIL;
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.ILLEGAL_ARGUMENTS;
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.NO_RELATIONSHIP_FOUND;

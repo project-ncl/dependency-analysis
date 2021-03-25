@@ -2,10 +2,8 @@ package org.jboss.da.reports.api;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.model.api.SCMLocator;
-import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
 import org.jboss.da.reports.model.request.LookupNPMRequest;
 import org.jboss.da.reports.model.request.SCMReportRequest;
