@@ -9,9 +9,6 @@ import io.swagger.annotations.ApiResponses;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
-import org.jboss.da.communication.repository.api.RepositoryException;
-import org.jboss.da.model.rest.ErrorMessage;
-import org.jboss.da.model.rest.ErrorMessage.ErrorType;
 import org.jboss.da.reports.model.request.AlignReportRequest;
 import org.jboss.da.reports.model.request.BuiltReportRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
@@ -31,6 +28,7 @@ import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -38,8 +36,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * Main end point for the reports
@@ -92,6 +90,7 @@ public class Reports {
             response = LookupReport.class)
     @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     @TimedMetric
+    @Valid
     public Response lookupGav(
             @ApiParam(
                     value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest)
@@ -112,6 +111,7 @@ public class Reports {
             response = NPMLookupReport.class)
     @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     @TimedMetric
+    @Valid
     public Response lookupNPM(@ApiParam(value = "JSON object with list of package names") LookupNPMRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/npm. Payload: " + request.toString());
@@ -130,6 +130,7 @@ public class Reports {
             response = NPMVersionsReport.class)
     @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
     @TimedMetric
+    @Valid
     public Response versionsNPM(@ApiParam(value = "JSON object with list of package names") VersionsNPMRequest request)
             throws CommunicationException {
         log.info("Incoming request to /versions/npm. Payload: " + request.toString());

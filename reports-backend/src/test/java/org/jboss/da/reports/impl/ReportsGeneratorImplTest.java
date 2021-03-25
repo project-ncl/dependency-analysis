@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.util.UserLog;
@@ -56,6 +57,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.argThat;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -86,7 +88,6 @@ public class ReportsGeneratorImplTest {
     @Mock
     private PncProductProvider pncProductProvider;
 
-    @Mock
     private Configuration config;
 
     @Mock
@@ -102,7 +103,7 @@ public class ReportsGeneratorImplTest {
     private final DependencyTreeGenerator dependencyTreeGenerator = new DependencyTreeGeneratorImpl();
 
     @InjectMocks
-    private ReportsGeneratorImpl generator = new ReportsGeneratorImpl();
+    private ReportsGeneratorImpl generator;
 
     private final GAV daGAV = new GAV("org.jboss", "dependency-analysis", "1.0.1");
 
@@ -133,6 +134,17 @@ public class ReportsGeneratorImplTest {
             new HashSet<>(Arrays.asList(daUtilDT, daCommonDT)));
 
     private final Product productEAP = new Product("EAP", "7.0", ProductSupportStatus.UNKNOWN);
+
+    public ReportsGeneratorImplTest() throws ConfigurationParseException {
+        config = mock(Configuration.class);
+        DAConfig daConfig = new DAConfig();
+        LookupMode mode = new LookupMode();
+        mode.setName("PERSISTENT");
+        mode.setSuffixes(Arrays.asList("redhat"));
+        daConfig.setModes(Collections.singletonList(mode));
+        when(config.getConfig()).thenReturn(daConfig);
+        generator = new ReportsGeneratorImpl(config);
+    }
 
     @Before
     public void initMock() throws ReflectiveOperationException {
@@ -240,7 +252,7 @@ public class ReportsGeneratorImplTest {
                 Collections.emptySet(),
                 null,
                 true,
-                false,
+                "PERSISTENT",
                 null,
                 Collections.singletonList(daCoreGAV));
 

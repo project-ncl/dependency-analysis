@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.ToString;
 import org.jboss.da.model.rest.GAV;
 
+import javax.validation.constraints.NotNull;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,7 +39,8 @@ public class LookupGAVsRequest {
     private Boolean brewPullActive;
 
     @Getter
-    private Boolean temporaryBuild;
+    @NotNull
+    private String mode;
 
     @Getter
     private String versionSuffix;

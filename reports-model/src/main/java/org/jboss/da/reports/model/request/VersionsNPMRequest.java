@@ -17,6 +17,8 @@ package org.jboss.da.reports.model.request;
 
 import org.jboss.da.model.rest.NPMPackage;
 
+import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -42,7 +44,8 @@ public class VersionsNPMRequest {
 
     private final VersionFilter versionFilter;
 
-    private final Boolean temporaryBuild;
+    @NotNull
+    private final String mode;
 
     @NonNull
     private final List<NPMPackage> packages;

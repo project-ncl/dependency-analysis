@@ -1,5 +1,6 @@
 {
   "versionFilter": "MAJOR_MINOR",
+  "mode": "PERSISTENT",
   "packages": [
     {
       "name": "jquery",

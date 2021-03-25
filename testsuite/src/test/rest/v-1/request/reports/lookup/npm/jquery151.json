@@ -1,4 +1,5 @@
 {
+  "mode": "PERSISTENT",
   "packages": [
     {
       "name": "jquery",
