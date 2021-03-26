@@ -5,7 +5,7 @@ import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
-import org.jboss.pnc.client.ArtifactClient;
+import org.jboss.pnc.client.ArtifactClient21;
 import org.jboss.pnc.client.Configuration;
 import org.jboss.pnc.client.RemoteCollection;
 import org.jboss.pnc.client.RemoteResourceException;
@@ -45,7 +45,7 @@ public class PncConnectorImpl implements PncConnector {
 
     private Collection<ArtifactInfo> getArtifacts(String identifierPattern, RepositoryType repoType, LookupMode mode)
             throws RepositoryException {
-        ArtifactClient artifactClient = getArtifactClient();
+        ArtifactClient21 artifactClient = getArtifactClient();
         RemoteCollection<ArtifactInfo> artCollection;
         try {
             artCollection = artifactClient.getAllFiltered(
@@ -95,12 +95,12 @@ public class PncConnectorImpl implements PncConnector {
         return versions;
     }
 
-    private ArtifactClient getArtifactClient() {
+    private ArtifactClient21 getArtifactClient() {
         URI uri = URI.create(globalConfig.getPncUrl());
 
         Configuration config = getClientConfig(uri.getScheme(), uri.getHost(), uri.getPort());
 
-        return new ArtifactClient(config);
+        return new ArtifactClient21(config);
     }
 
     private Configuration getClientConfig(String protocol, String host, Integer port) {
