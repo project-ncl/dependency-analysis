@@ -734,7 +734,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         if (StringUtils.isEmpty(modeName)) {
             mode = new LookupMode();
             mode.setName("ON_THE_FLY_MODE");
-            mode.setBuildCategory(BuildCategory.STANDARD);
+            mode.getBuildCategories().add(BuildCategory.STANDARD);
             if (suffix != null && !suffix.isEmpty()) {
                 mode.getSuffixes().add(suffix);
             }

@@ -13,6 +13,6 @@ import java.util.List;
 public class LookupMode {
     private String name;
     private List<String> suffixes = new ArrayList<>();
-    private BuildCategory buildCategory;
+    private EnumSet<BuildCategory> buildCategories = EnumSet.noneOf(BuildCategory.class);
     private EnumSet<ArtifactQuality> artifactQualities = EnumSet.noneOf(ArtifactQuality.class);
 }
