@@ -52,7 +52,7 @@ public class PncConnectorImpl implements PncConnector {
                     identifierPattern,
                     mode.getArtifactQualities(),
                     repoType,
-                    Collections.singleton(mode.getBuildCategory()));
+                    mode.getBuildCategories());
         } catch (RemoteResourceException ex) {
             throw new RepositoryException("Error when reading artifacts from PNC: " + ex, ex);
         }

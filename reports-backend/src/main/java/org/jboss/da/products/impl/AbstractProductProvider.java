@@ -40,7 +40,7 @@ public abstract class AbstractProductProvider implements ProductProvider {
     private static final LookupMode DEFAULT_MODE = new LookupMode();
     static {
         DEFAULT_MODE.setName("DEFAULT");
-        DEFAULT_MODE.setBuildCategory(BuildCategory.STANDARD);
+        DEFAULT_MODE.getBuildCategories().add(BuildCategory.STANDARD);
         DEFAULT_MODE.getArtifactQualities().add(ArtifactQuality.NEW);
         DEFAULT_MODE.getArtifactQualities().add(ArtifactQuality.VERIFIED);
         DEFAULT_MODE.getArtifactQualities().add(ArtifactQuality.TESTED);
