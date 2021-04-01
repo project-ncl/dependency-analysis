@@ -41,14 +41,22 @@
         </web-resource-collection>
     </security-constraint>
 
-    <!-- Allow all users to access the POST /reports endpoints -->
+    <!-- Allow all users to access the POST /reports and /lookup endpoints -->
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>Access to blacklist for Authorized users on GET</web-resource-name>
+            <web-resource-name>Access to reports for all users on POST</web-resource-name>
             <url-pattern>/rest/v-${version.reports.rest}/reports/*</url-pattern>
             <http-method>POST</http-method>
         </web-resource-collection>
     </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Access to lookups for all users on POST</web-resource-name>
+            <url-pattern>/rest/v-${version.reports.rest}/lookup/*</url-pattern>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+    </security-constraint>
+
 
     <!-- Allow all logged users to access the other endpoints -->
     <security-constraint>
