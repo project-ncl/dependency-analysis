@@ -561,11 +561,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                     artifacts);
 
             return analyzedVersions.thenApply(
-                    (v) -> NPMLookupReport.builder()
-                            .npmPackage(a)
-                            .availableVersions(v.getAvailableVersions())
-                            .bestMatchVersion(v.getBestMatchVersion().orElse(null))
-                            .build());
+                    (v) -> new NPMLookupReport(a, v.getBestMatchVersion().orElse(null), v.getAvailableVersions()));
         }).collect(Collectors.toList());
 
         return FuturesUtil.joinFutures(futures);

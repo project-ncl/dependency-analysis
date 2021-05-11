@@ -20,7 +20,8 @@ import org.jboss.da.model.rest.NPMPackage;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Data;
 
 /**
@@ -28,13 +29,14 @@ import lombok.Data;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Data
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class NPMLookupReport {
 
     @JsonUnwrapped
-    private final NPMPackage npmPackage;
+    private NPMPackage npmPackage;
 
-    private final String bestMatchVersion;
+    private String bestMatchVersion;
 
-    private final List<String> availableVersions;
+    private List<String> availableVersions;
 }

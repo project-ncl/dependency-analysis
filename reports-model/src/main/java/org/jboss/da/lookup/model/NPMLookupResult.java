@@ -1,6 +1,8 @@
 package org.jboss.da.lookup.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
@@ -8,11 +10,13 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import org.jboss.da.model.rest.NPMPackage;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class NPMLookupResult {
 
     @NonNull
     @JsonUnwrapped
     private NPMPackage npmPackage;
 
-    private final String bestMatchVersion;
+    private String bestMatchVersion;
 }
