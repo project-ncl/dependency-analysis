@@ -1,0 +1,17 @@
+{
+  "bestMatchVersion": null,
+  "availableVersions": [
+    "1.2.7.rocksand-4"
+  ],
+  "blacklisted": false,
+  "whitelisted": [
+    {
+      "name": "JAMIE",
+      "version": "6.4.12",
+      "supportStatus": "SUPERSEDED"
+    }
+  ],
+  "version": "1.2.5",
+  "groupId": "xom",
+  "artifactId": "xom"
+}

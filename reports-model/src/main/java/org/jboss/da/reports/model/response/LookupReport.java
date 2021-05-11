@@ -1,72 +1,30 @@
 package org.jboss.da.reports.model.response;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GAV;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class LookupReport {
 
-    /*
-     * Manually unwrap 'gav' via getters so as not to confuse Swagger.
-     * 
-     * Also, use @JsonIgnore so that the getters and setters generated for 'gav' are also ignored by Jackson.
-     */
+    @JsonUnwrapped
     @NonNull
-    @JsonIgnore
     private GAV gav;
 
-    @Getter
-    @Setter
     private String bestMatchVersion;
-
-    @Getter
-    @Setter
     private List<String> availableVersions;
-
-    @Getter
-    @Setter
     private boolean blacklisted;
-
-    @Getter
-    @Setter
     private List<RestProductInput> whitelisted;
 
     public LookupReport(GAV gav) {
-        this.gav = gav;
-    }
-
-    // **************************************************************************
-    // Keep `getGroupId`, `getArtifactId`, and `getVersion` here for Swagger,
-    // and so that Jackson knows how to marshall 'gav' properly!
-    // **************************************************************************
-    public String getGroupId() {
-        return gav.getGroupId();
-    }
-
-    public String getArtifactId() {
-        return gav.getArtifactId();
-    }
-
-    public String getVersion() {
-        return gav.getVersion();
-    }
-
-    @JsonIgnore
-    public @NonNull GAV getGav() {
-        return this.gav;
-    }
-
-    @JsonIgnore
-    public void setGav(@NonNull GAV gav) {
         this.gav = gav;
     }
 }
