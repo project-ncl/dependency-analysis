@@ -11,7 +11,7 @@ public abstract class CommunicationException extends Exception {
     }
 
     protected CommunicationException(String message, Throwable cause) {
-        super(message + ": " + cause.getMessage(), cause);
+        super(message + ": " + (cause.getMessage() == null ? cause.toString() : cause.getMessage()), cause);
     }
 
     protected CommunicationException(Throwable cause) {
