@@ -50,6 +50,8 @@ public class VersionsNPMRequest {
     @NonNull
     private final List<NPMPackage> packages;
 
+    private final boolean includeAll;
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder {
