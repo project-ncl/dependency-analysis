@@ -6,6 +6,8 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.lookup.model.MavenLatestRequest;
+import org.jboss.da.lookup.model.MavenLatestResult;
 import org.jboss.da.lookup.model.MavenLookupRequest;
 import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.NPMLookupRequest;
@@ -31,6 +33,11 @@ public class LookupImpl implements Lookup {
                 .lookupBestMatchMaven(request.getArtifacts(), request.getMode(), request.isBrewPullActive());
         log.info("Request to /lookup/maven completed successfully. Payload: " + request.toString());
         return result;
+    }
+
+    @Override
+    public Set<MavenLatestResult> lookupMaven(MavenLatestRequest request) throws CommunicationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override

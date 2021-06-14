@@ -8,6 +8,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.lookup.model.MavenLatestRequest;
+import org.jboss.da.lookup.model.MavenLatestResult;
 import org.jboss.da.lookup.model.MavenLookupRequest;
 import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.NPMLookupRequest;
@@ -33,6 +35,14 @@ public interface Lookup {
             responseContainer = "List",
             response = MavenLookupResult.class)
     Set<MavenLookupResult> lookupMaven(MavenLookupRequest request) throws CommunicationException;
+
+    @POST
+    @Path(value = "/maven/latest")
+    @ApiOperation(
+            value = "Finds latest matching versions for given Maven artifact coordinates (GAV).",
+            responseContainer = "List",
+            response = MavenLatestResult.class)
+    Set<MavenLatestResult> lookupMaven(MavenLatestRequest request) throws CommunicationException;
 
     @POST
     @Path(value = "/npm")
