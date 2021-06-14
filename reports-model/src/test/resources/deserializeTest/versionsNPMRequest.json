@@ -1,0 +1,10 @@
+  {
+    "versionFilter": "MAJOR_MINOR",
+    "mode": "FOO",
+    "packages": [
+      {
+        "name": "abab",
+        "version": "1.2.3"
+      }
+    ]
+  }
