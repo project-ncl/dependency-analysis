@@ -9,9 +9,12 @@ import org.jboss.da.model.rest.NPMPackage;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Data
 @Jacksonized
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NPMLookupRequest {
 
     @NonNull
