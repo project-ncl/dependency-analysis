@@ -1,0 +1,8 @@
+[
+  {
+    "latestVersion": "13.0.2.temporary-redhat-00001",
+    "groupId": "com.google.guava",
+    "artifactId": "guava",
+    "version": "13.0.2"
+  }
+]

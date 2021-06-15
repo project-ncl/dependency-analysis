@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class LookupTestIT extends AbstractRestReportsTest {
 
     private static final String PATH_LOOKUP_MAVEN = "/lookup/maven";
+    private static final String PATH_LATEST_MAVEN = "/lookup/maven/latest";
 
     private static final String PATH_LOOKUP_NPM = "/lookup/npm";
 
@@ -22,6 +23,18 @@ public class LookupTestIT extends AbstractRestReportsTest {
     @Test
     public void testGavLookupSingleTemporary() throws Exception {
         Response response = assertResponseForRequest(PATH_LOOKUP_MAVEN, "guava13Temp");
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    public void testGavLatestTemporary() throws Exception {
+        Response response = assertResponseForRequest(PATH_LATEST_MAVEN, "guava13Temp");
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    public void testGavLatestMissingTemporary() throws Exception {
+        Response response = assertResponseForRequest(PATH_LATEST_MAVEN, "guava13Temp2");
         assertEquals(200, response.getStatus());
     }
 

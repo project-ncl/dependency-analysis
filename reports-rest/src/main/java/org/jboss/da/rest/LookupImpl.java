@@ -37,7 +37,10 @@ public class LookupImpl implements Lookup {
 
     @Override
     public Set<MavenLatestResult> lookupMaven(MavenLatestRequest request) throws CommunicationException {
-        throw new UnsupportedOperationException();
+        log.info("Incoming request to /lookup/maven/latest. Payload: " + request);
+        Set<MavenLatestResult> result = lookupGenerator.lookupLatestMaven(request.getArtifacts(), request.getMode());
+        log.info("Request to /lookup/maven/latest completed successfully. Payload: " + request);
+        return result;
     }
 
     @Override
