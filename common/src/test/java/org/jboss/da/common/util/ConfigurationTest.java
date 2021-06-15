@@ -94,6 +94,7 @@ public class ConfigurationTest {
         assertNotNull(persistent.getSuffixes());
         assertEquals(1, persistent.getSuffixes().size());
         assertEquals("redhat", persistent.getSuffixes().get(0));
+        assertEquals("redhat", persistent.getIncrementSuffix());
         assertEquals(1, persistent.getBuildCategories().size());
         assertTrue(persistent.getBuildCategories().contains(BuildCategory.STANDARD));
         assertFalse(persistent.getArtifactQualities().isEmpty());

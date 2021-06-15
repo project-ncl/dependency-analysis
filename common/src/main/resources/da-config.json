@@ -22,12 +22,14 @@
             {
               "name": "PERSISTENT",
               "suffixes": [ "redhat" ],
+              "incrementSuffix": "redhat",
               "buildCategories": [ "STANDARD" ],
               "artifactQualities": [ "NEW", "VERIFIED", "TESTED"]
             },
             {
               "name": "TEMPORARY",
               "suffixes": ["temporary-redhat", "redhat" ],
+              "incrementSuffix": "temporary-redhat",
               "buildCategories": [ "STANDARD" ],
               "artifactQualities": [ "NEW", "VERIFIED", "TESTED", "TEMPORARY" ]
             }
