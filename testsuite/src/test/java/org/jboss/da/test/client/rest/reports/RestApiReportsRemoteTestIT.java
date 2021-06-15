@@ -49,6 +49,12 @@ public class RestApiReportsRemoteTestIT extends AbstractRestReportsTest {
     }
 
     @Test
+    public void testNPMVersionsSingleIncludeAll() throws Exception {
+        Response response = assertResponseForRequest(PATH_VERSIONS_NPM, "jquery151-2");
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
     public void testGavLookupSingle() throws Exception {
         Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13");
         assertEquals(200, response.getStatus());

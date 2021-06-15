@@ -63,6 +63,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -522,7 +523,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
                 throw new UnsupportedOperationException("Unknown filter " + versionFilter);
         }
 
-        ProductProvider productProvider = setupProductProvider(false, null, request.getMode());
+        ProductProvider productProvider = setupProductProvider(false, null, request.getMode(), request.isIncludeAll());
 
         Set<String> uniqueNames = request.getPackages().stream().map(x -> x.getName()).collect(Collectors.toSet());
 
@@ -606,11 +607,19 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return createLookupReports(request, gaProductArtifactsMap);
     }
 
+    private ProductProvider setupProductProvider(Boolean brewPullActive, String versionSuffix, String mode) {
+        return setupProductProvider(brewPullActive, versionSuffix, mode, false);
+    }
+
     private ProductProvider setupProductProvider(
             Boolean brewPullActive,
             final String versionSuffix,
-            final String mode) {
+            final String mode,
+            final boolean includeAll) {
         LookupMode lookupMode = getLookupMode(mode, versionSuffix);
+        if (includeAll) {
+            lookupMode = lookupMode.toBuilder().artifactQualities(EnumSet.allOf(ArtifactQuality.class)).build();
+        }
         pncProductProvider.setLookupMode(lookupMode);
         if (BooleanUtils.isNotFalse(brewPullActive)) {
             repositoryProductProvider.setLookupMode(lookupMode);
