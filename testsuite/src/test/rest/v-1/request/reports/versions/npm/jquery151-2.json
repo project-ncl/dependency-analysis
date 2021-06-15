@@ -1,0 +1,11 @@
+{
+  "versionFilter": "MAJOR_MINOR",
+  "mode": "PERSISTENT",
+  "includeAll": true,
+  "packages": [
+    {
+      "name": "jquery",
+      "version": "1.5.1"
+    }
+  ]
+}

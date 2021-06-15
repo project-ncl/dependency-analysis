@@ -1,0 +1,19 @@
+{
+  "id" : "0815b223-399a-408e-8915-893e5f5adca4",
+  "request" : {
+    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=jquery%3A*&qualities=NEW&qualities=VERIFIED&qualities=TESTED&qualities=DEPRECATED&qualities=BLACKLISTED&qualities=DELETED&qualities=TEMPORARY&qualities=IMPORTED&repoType=NPM&buildCategories=STANDARD",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-pnc-jquery151-1g.json",
+    "headers" : {
+      "Last-Modified" : "Mon, 27 Nov 2020 13:25:23 GMT",
+      "Content-Type" : "application/json",
+      "Date" : "Mon, 27 Nov 2020 13:25:02 GMT",
+      "Set-Cookie" : "881c698dbba9c1e95dc2575edaf73bf7=98ad06d522073398132003c37b4baa97; path=/; HttpOnly",
+      "Cache-control" : "private"
+    }
+  },
+  "uuid" : "0815b223-399a-408e-8915-893e5f5adca4"
+}
