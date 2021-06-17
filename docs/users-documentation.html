@@ -21,7 +21,7 @@
             the users about alternatives instead of the artifacts used in their projects, produces
             dependency reports of artifacts and resolves dependency tree.</p>
 
-        <p>Dependency Analyzer also maintains a database of product-artifacts mapping and blacklisted
+        <p>Dependency Analyzer also maintains a database of blocklisted
             artifacts, which should help the user to decide, which artifacts to use in their
             projects.</p>
         <p>
@@ -31,34 +31,22 @@
             welcome.
         </p>
 
-        <h3>Blacklist / Whitelist</h3>
-        <p>The service maintains the database of the product-artifacts mapping and blacklisted artifacts. This
+        <h3>Blocklist</h3>
+        <p>The service maintains the database of the blocklisted artifacts. This
             data in the database can be changed ony by authenticated users. In future authorization
             may be added.</p>
         <p>The meaning of the this lists is:</p>
         <ul>
             <li>
-                <span class="strong">Product-artifact mapping (Whitelist)</span>
-                - contains artifacts, which are the best option to be used in the projects. Each
-                artifact is associated to a particular product. These
-                artifacts are used in the latest versions of the most important products and
-                therefore they are supported. The inserted artifacts are restricted to RedHat build
-                versions of artifacts (e.g. 4.2.18.Final-redhat-2).
-            </li>
-            <li>
-                <span class="strong">Blacklist</span>
+                <span class="strong">Blocklist</span>
                 - contains artifacts, which should not be used in the projects. There are typically
                 artifacts, which cannot be built, has unacceptable license, contains
                 vulnerabilities, etc. The inserted artifacts can be of community versions of
-                artifacts (e.g. 4.2.18.Final) which will blacklist all redhat builds of that version
-		or of redhat version (e.g. 4.2.18.Final-redhat-1) which will blacklist the specific
+                artifacts (e.g. 4.2.18.Final) which will blocklist all redhat builds of that version
+		or of redhat version (e.g. 4.2.18.Final-redhat-1) which will blocklist the specific
 		version.
             </li>
         </ul>
-
-        <p>Artifacts, which are not in any of the lists are treated as graylisted, so there is
-            no guarantee they are suitable to be used in products and they should instead be judged
-            manually.</p>
 
         <h3>Lookup of built artifacts</h3>
         <p>Dependency Analyzer can lookup the Red Hat built artifacts and tell the user if
@@ -67,13 +55,13 @@
         <ul>
             <li>The latest built version of the artifact</li>
             <li>All built versions of artifacts with the same GroupId, ArtifactId</li>
-            <li>Blacklist/whitelist status of the requested artifact</li>
+            <li>Blocklist status of the requested artifact</li>
         </ul>
 
 
         <h3>Dependency reports</h3>
         The system is able to provide information about the dependencies of a project. It can
-        analyse a specific GAV or a repository specified by the SCM URL (+ revision). This feature
+        analyse a repository specified by the SCM URL (+ revision). This feature
         extends the lookup and it resolves whole dependency tree and provides information for every
         artifact in the tree and also some helper data like how many dependencies are not built.
 
@@ -94,14 +82,13 @@
 
         <h2>Interfaces</h2>
         <p>
-            Dependency Analyzer is a server side application and there are three ways how to use
+            Dependency Analyzer is a server side application and there are two ways how to use
             it. A <span class="strong">REST API</span>,
             which provides the main logic of the system and provides an easy way to use it in
             other applications.
             A <span class="strong">CLI tool</span>,
             which is more handy for the manual usage. The CLI tool is mainly a thin client,
             which gets all data from the service using the REST API.
-            And a <span class="strong">PNC UI</span>, which contains some of the functionality.
         </p>
 
         <h3>REST API</h3>
@@ -221,39 +208,6 @@
             </li>
 
             <li>
-                <span id="optionReport" class="strong">Dependency report of a GAV (report)</span>
-                <ul>
-                    <li>
-                        Creates a dependency report for a single GAV. This option provides the
-                        information from the lookup plus the same information also for dependencies
-                        and some additional information like "how many transitive dependencies is
-                        not built".
-                        <br />
-                        To make the output better readable the all available builds of GAVs are
-                        collapsed to the single information "how many builds of GAV exists". To
-                        display all the builds you can use parameter "--raw", which also provides
-                        script-friendly output.
-                    </li>
-                    <li>
-                        <span class="strong">Output:</span>
-                        <ul>
-                            <li>GAV</li>
-                            <li>RH version of the artifact or "None" if the artifact was not
-                                found</li>
-                            <li>blacklisted/greylisted/whitelisted</li>
-                            <li>Number of not built transitive dependencies (XY dependencies
-                                not built) or "all dependencies built"</li>
-                            <li>All available versions</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="strong">Usage:</span>
-                        ./da-cli.py report [--raw|--json] [--products PRODUCTS] [--productIDs IDS] GROUP_ID:ARTIFACT_ID:VERSION
-                    </li>
-                </ul>
-            </li>
-
-            <li>
                 <span id="optionScmReport" class="strong">Dependency report of a SCM
                     repository (scm-report)</span>
                 <ul>
@@ -293,14 +247,13 @@
                         with the some summarizing information related directly to the analysed
                         project.
                         <br />
-                        The new information are: which project GAVs are whitelisted / blacklisted,
+                        The new information are: which project GAVs are blocklisted,
                         which GAVs are already built / not built / built in the different versions.
                     </li>
                     <li>
                         <span class="strong">Output:</span>
                         <ul>
-                            <li>Blacklisted artifacts in a project</li>
-                            <li>Whitelisted artifacts in a project</li>
+                            <li>Blocklisted artifacts in a project</li>
                             <li>Built community artifacts, which were built internally</li>
                             <li>Community artifacts with other built version - artifacts, which wasn't built, but there are builds of the same GA</li>
                             <li>Community artifacts - artifacts, which weren't been built</li>
@@ -417,7 +370,7 @@
             <dt>Add several artifact to whitelist by reading G:A:Vs from standard input</dt>
             <dd>./da-cli-admin.py add white eap:7.0.0 < gavfile.text</dd>
 
-            <dt>Remove an artifact from blacklist</dt>
+            <dt>Remove an artifact from blocklist</dt>
             <dd>./da-cli-admin.py delete black org.jboss.hibernate:hibernate-core:3.4.2</dd>
 
             <dt>Check all dependencies from pom and print their black/white list status</dt>
