@@ -162,7 +162,8 @@ public class IndyConnectorImpl implements IndyConnector {
         connection.setConnectTimeout(config.getIndyRequestTimeout());
         connection.setReadTimeout(config.getIndyRequestTimeout());
         int retry = 0;
-        while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500) && retry < 2) {
+        while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
+                && retry < config.getIndyRequestRetries()) {
 
             userLog.warn("Connection to: {} failed with status: {}. retrying...", query, connection.getResponseCode());
             log.warn("Connection to: {} failed with status: {}. retrying...", query, connection.getResponseCode());
@@ -170,8 +171,8 @@ public class IndyConnectorImpl implements IndyConnector {
             retry++;
 
             try {
-                // Wait before retrying using Exponential back-off: 200ms, 400ms
-                Thread.sleep((long) Math.pow(2, retry) * 100L);
+                // Wait before retrying using Exponential back-off: 100ms, 200ms, 400ms, cap to 5000ms
+                Thread.sleep(Math.min((long) Math.pow(2, retry) * 100L, 5000L));
             } catch (InterruptedException e) {
                 log.error(e.getMessage());
             }
