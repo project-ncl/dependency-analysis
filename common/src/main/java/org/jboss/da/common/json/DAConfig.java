@@ -18,6 +18,9 @@ public class DAConfig extends AbstractModuleConfig {
     @JsonProperty(required = false)
     private Integer indyRequestTimeout = 600000;
 
+    @JsonProperty(required = false)
+    private Integer indyRequestRetries = 10;
+
     private List<LookupMode> modes;
 
 }

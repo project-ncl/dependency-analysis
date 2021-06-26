@@ -18,6 +18,8 @@
           "@module-config": "da-config",
           "indyGroup": "",
           "indyGroupPublic": "",
+          "indyRequestTimeout": "3600000",
+          "indyRequestRetries": "10",
           "modes": [
             {
               "name": "PERSISTENT",
