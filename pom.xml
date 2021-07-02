@@ -208,7 +208,7 @@
             <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-core</artifactId>
-                <version>4.8.20.Final-redhat-00001</version>
+                <version>13.0.0</version>
             </dependency>
 
             <!-- Commonjava -->
