@@ -49,7 +49,7 @@ public interface Lookup {
     @ApiOperation(
             value = "Finds best matching versions for given NPM artifact coordinates (name, version).",
             responseContainer = "List",
-            response = MavenLookupResult.class)
+            response = NPMLookupResult.class)
     Set<NPMLookupResult> lookupNPM(NPMLookupRequest request) throws CommunicationException;
 
 }
