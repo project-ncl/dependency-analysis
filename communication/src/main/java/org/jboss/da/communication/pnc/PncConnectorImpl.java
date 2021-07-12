@@ -103,11 +103,11 @@ public class PncConnectorImpl implements PncConnector {
         return new ArtifactClient(config);
     }
 
-    private Configuration getClientConfig(String protocol, String host, Integer port) {
+    private Configuration getClientConfig(String protocol, String host, int port) {
         Configuration.ConfigurationBuilder builder = Configuration.builder();
         builder.protocol(protocol);
         builder.host(host);
-        builder.port(port);
+        builder.port(port == -1 ? null : port);
 
         builder.mdcToHeadersMappings(MDCUtils.getMDCToHeaderMappings());
 
