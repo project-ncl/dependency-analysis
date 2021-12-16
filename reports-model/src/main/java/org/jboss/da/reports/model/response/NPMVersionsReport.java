@@ -15,6 +15,9 @@
  */
 package org.jboss.da.reports.model.response;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import org.jboss.da.model.rest.NPMPackage;
 
 import java.util.List;
@@ -29,10 +32,19 @@ import lombok.Data;
  */
 @Data
 @Builder
+@AllArgsConstructor
 public class NPMVersionsReport {
 
     @JsonUnwrapped
     private final NPMPackage npmPackage;
 
     private final List<String> availableVersions;
+
+    // Constructor needed because JsonUnwrapped is used on final field
+    @JsonCreator
+    private NPMVersionsReport(@JsonProperty("availableVersions") List<String> availableVersions) {
+        this.npmPackage = null;
+        this.availableVersions = availableVersions;
+    }
+
 }
