@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 
+import lombok.extern.jackson.Jacksonized;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GAV;
 
@@ -15,6 +17,8 @@ import org.jboss.da.model.rest.GAV;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@Builder
+@Jacksonized
 @JsonRootName(value = "report")
 @AllArgsConstructor
 public class Report {
