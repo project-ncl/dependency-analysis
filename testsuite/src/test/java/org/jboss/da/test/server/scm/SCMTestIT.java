@@ -51,6 +51,7 @@ public class SCMTestIT {
     }
 
     @Test
+    @Ignore("Github discontinued support for git://")
     public void shouldCloneGitRepository_Git() throws Exception {
         testDaGitClone("git://github.com/project-ncl/dependency-analysis.git");
     }
