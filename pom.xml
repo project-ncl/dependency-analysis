@@ -12,6 +12,7 @@
     <artifactId>parent</artifactId>
     <version>2.3.2-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <!-- test -->
 
     <name>Dependency Analyzer</name>
     <description>This project is a service, which provides information about built artifacts and analyse the projects' dependencies.</description>
