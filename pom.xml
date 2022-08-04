@@ -209,6 +209,22 @@
                 <version>4.8.20.Final-redhat-00001</version>
             </dependency>
 
+            <!-- needed when using J11 -->
+            <!-- JAXB API -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.3.1</version>
+            </dependency>
+
+            <!-- needed when using J11 -->
+            <!-- JAXB RI -->
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>2.3.4</version>
+            </dependency>
+
             <!-- Commonjava -->
             <dependency>
                 <groupId>org.commonjava.cartographer</groupId>

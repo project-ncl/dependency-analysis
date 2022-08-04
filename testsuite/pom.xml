@@ -60,6 +60,20 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JAXB API -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JAXB RI -->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Arquilian dependencies -->
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
