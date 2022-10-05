@@ -1,11 +1,12 @@
 package org.jboss.da.rest.reports;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -46,7 +47,9 @@ import java.util.List;
  * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  */
 @Path("/reports")
-@Api(value = "reports")
+@Tag(name = "reports")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class Reports {
 
     @Inject
@@ -57,24 +60,20 @@ public class Reports {
 
     @POST
     @Path("/scm")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get dependency report for a project specified in a repository URL", response = Report.class)
+    @Operation(summary = "Get dependency report for a project specified in a repository URL.")
+    @ApiResponse(content = @Content(schema = @Schema(implementation = Report.class)))
     @TimedMetric
-    public Response scmGenerator(@ApiParam(value = "scm information") SCMReportRequest request)
+    public Response scmGenerator(@Parameter(description = "scm information") SCMReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
         return Response.ok().entity(facade.scmReport(request)).build();
     }
 
     @POST
     @Path("/scm-advanced")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get dependency report for a project specified in a repository URL",
-            response = AdvancedReport.class)
+    @Operation(summary = "Get dependency report for a project specified in a repository URL.")
+    @ApiResponse(content = @Content(schema = @Schema(implementation = AdvancedReport.class)))
     @TimedMetric
-    public Response advancedScmGenerator(@ApiParam(value = "scm information") SCMReportRequest request)
+    public Response advancedScmGenerator(@Parameter(description = "scm information") SCMReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
         return Response.ok().entity(facade.advancedScmReport(request)).build();
 
@@ -82,18 +81,18 @@ public class Reports {
 
     @POST
     @Path("/lookup/gavs")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Lookup built versions for the list of provided GAVs",
-            responseContainer = "List",
-            response = LookupReport.class)
-    @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
+    @Operation(
+            summary = "Lookup built versions for the list of provided GAVs.",
+            deprecated = true,
+            description = "DEPRECATED: use /lookup/maven endpoint instead.")
+    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = LookupReport.class))))
+    @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
+    @Tag(name = "deprecated")
     @TimedMetric
     @Valid
     public Response lookupGav(
-            @ApiParam(
-                    value = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest)
+            @Parameter(
+                    description = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest)
             throws CommunicationException {
         log.info("Incoming request to /lookup/gavs. Payload: " + gavRequest.toString());
         List<LookupReport> lookupReportList = facade.gavsReport(gavRequest);
@@ -103,16 +102,17 @@ public class Reports {
 
     @POST
     @Path("/lookup/npm")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Lookup built versions for the list of provided NPM artifacts",
-            responseContainer = "List",
-            response = NPMLookupReport.class)
-    @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
+    @Operation(
+            summary = "Lookup built versions for the list of provided NPM artifacts.",
+            deprecated = true,
+            description = "DEPRECATED: use /lookup/npm endpoint instead.")
+    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMLookupReport.class))))
+    @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
+    @Tag(name = "deprecated")
     @TimedMetric
     @Valid
-    public Response lookupNPM(@ApiParam(value = "JSON object with list of package names") LookupNPMRequest request)
+    public Response lookupNPM(
+            @Parameter(description = "JSON object with list of package names") LookupNPMRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/npm. Payload: " + request.toString());
         List<NPMLookupReport> lookupReportList = facade.lookupReport(request);
@@ -122,16 +122,13 @@ public class Reports {
 
     @POST
     @Path("/versions/npm")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Lookup and filter versions for the list of provided NPM artifacts",
-            responseContainer = "List",
-            response = NPMVersionsReport.class)
-    @ApiResponses(value = { @ApiResponse(code = 502, message = "Communication with remote repository failed") })
+    @Operation(summary = "Lookup and filter versions for the list of provided NPM artifacts.")
+    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMVersionsReport.class))))
+    @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
     @TimedMetric
     @Valid
-    public Response versionsNPM(@ApiParam(value = "JSON object with list of package names") VersionsNPMRequest request)
+    public Response versionsNPM(
+            @Parameter(description = "JSON object with list of package names") VersionsNPMRequest request)
             throws CommunicationException {
         log.info("Incoming request to /versions/npm. Payload: " + request.toString());
         List<NPMVersionsReport> versionsReportList = facade.versionReport(request);
@@ -141,11 +138,8 @@ public class Reports {
 
     @POST
     @Path("/align")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get alignment report for project specified in a repository URL.",
-            response = AlignReport.class)
+    @Operation(summary = "Get alignment report for project specified in a repository URL.")
+    @ApiResponse(content = @Content(schema = @Schema(implementation = AlignReport.class)))
     @TimedMetric
     public Response alignReport(AlignReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
@@ -156,9 +150,8 @@ public class Reports {
     @Path("/built")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get builded artifacts for project specified in a repository URL.",
-            response = BuiltReport.class)
+    @Operation(summary = "Get built artifacts for project specified in a repository URL.")
+    @ApiResponse(content = @Content(schema = @Schema(implementation = BuiltReport.class)))
     @TimedMetric
     public Response builtReport(BuiltReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {

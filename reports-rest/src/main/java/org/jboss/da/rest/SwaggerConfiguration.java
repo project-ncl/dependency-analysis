@@ -1,18 +1,24 @@
 package org.jboss.da.rest;
 
-import io.swagger.annotations.SwaggerDefinition;
-import io.swagger.annotations.Tag;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
- *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@SwaggerDefinition(
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Dependency Analyzer",
+                license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html")),
+        servers = { @Server(url = "da/", description = "Dependency Analyzer") },
         tags = {
-                @Tag(name = "listings", description = "Listings of white listed artifacts"),
-                @Tag(name = "blacklist", description = "Listings of blacklisted artifacts"),
+                @Tag(name = "lookup", description = "Lookup of artifact versions."),
+                @Tag(name = "blocklist", description = "Listings of blocklisted artifacts"),
                 @Tag(name = "reports", description = "Get report of dependencies of projects"),
-                @Tag(name = "config", description = "Dependency analyzer configuration APIs") })
+                @Tag(name = "deprecated", description = "Deprecated endpoints.") })
 public interface SwaggerConfiguration {
 
 }

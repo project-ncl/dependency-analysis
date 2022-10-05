@@ -1,11 +1,7 @@
 package org.jboss.da.rest.listings;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -50,7 +46,7 @@ import java.util.Optional;
  *
  */
 @Path("/listings")
-@Api(value = "listings")
+@Tag(name = "deprecated")
 public class Artifacts {
 
     @Inject
@@ -83,10 +79,7 @@ public class Artifacts {
     @GET
     @Path("/whitelist")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get all artifacts in the whitelist",
-            responseContainer = "List",
-            response = RestProductGAV.class)
+    @Operation(deprecated = true)
     public Collection<RestProductGAV> getAllWhiteArtifacts() {
         return convert.toRestProductGAVList(whiteArtifactFilterService.getAllWithWhiteArtifacts());
     }
@@ -95,10 +88,8 @@ public class Artifacts {
     @Path("/whitelist/fill/scm")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Fill artifacts from given git pom", response = SuccessResponse.class)
-    public Response fillFromGitBom(
-            @ApiParam(
-                    value = "JSON object with keys 'scmUrl', 'revision', 'pomPath', list of 'repositories' and 'productId'") WLFill wlFill) {
+    @Operation(deprecated = true)
+    public Response fillFromGitBom(WLFill wlFill) {
 
         SuccessResponse response = new SuccessResponse();
         try {
@@ -139,10 +130,8 @@ public class Artifacts {
     @Path("/whitelist/fill/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Fill artifacts from given maven pom gav", response = SuccessResponse.class)
-    public Response fillFromGAVBom(
-            @ApiParam(
-                    value = "JSON object with keys 'groupId', 'artifactId', 'version' and 'productId'") RestProductArtifact a) {
+    @Operation(deprecated = true)
+    public Response fillFromGAVBom(RestProductArtifact a) {
         SuccessResponse response = new SuccessResponse();
         WLFiller.WLStatus result = filler
                 .fillWhitelistFromGAV(a.getGroupId(), a.getArtifactId(), a.getVersion(), a.getProductId());
@@ -177,16 +166,8 @@ public class Artifacts {
     @Path("/whitelist/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Add an artifact to the whitelist", response = SuccessResponse.class)
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            code = 409,
-                            message = "Can't add artifact to whitelist, artifact is blacklisted",
-                            response = ErrorMessage.class) })
-    public Response addWhiteArtifact(
-            @ApiParam(
-                    value = "JSON object with keys 'groupId', 'artifactId', 'version' and 'productId'") RestProductArtifact artifact) {
+    @Operation(deprecated = true)
+    public Response addWhiteArtifact(RestProductArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         try {
             ArtifactStatus result = whiteService.addArtifact(
@@ -227,9 +208,8 @@ public class Artifacts {
     @Path("/whitelist/gav")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Remove an artifact from the whitelist", response = SuccessResponse.class)
-    public SuccessResponse removeWhiteArtifact(
-            @ApiParam(value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestArtifact artifact) {
+    @Operation(deprecated = true)
+    public SuccessResponse removeWhiteArtifact(RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(
                 whiteService.removeArtifact(artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion()));
@@ -240,10 +220,8 @@ public class Artifacts {
     @Path("/whitelist/gavproduct")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Remove an artifact from the product", response = SuccessResponse.class)
-    public SuccessResponse removeWhiteArtifactFromProduct(
-            @ApiParam(
-                    value = "JSON object with keys 'groupId', 'artifactId', and 'version'") RestProductArtifact artifact) {
+    @Operation(deprecated = true)
+    public SuccessResponse removeWhiteArtifactFromProduct(RestProductArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(
                 whiteService.removeArtifractFromProductVersion(
@@ -261,16 +239,8 @@ public class Artifacts {
     @Path("/whitelist/product")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Add a product to the whitelist", response = SuccessResponse.class)
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            code = 400,
-                            message = "Name and version parameters are required",
-                            response = ErrorMessage.class) })
-    public Response addProduct(
-            @ApiParam(
-                    value = "JSON object with keys 'name', 'version' and optional 'status'") RestProductInput product) {
+    @Operation(deprecated = true)
+    public Response addProduct(RestProductInput product) {
         SuccessResponse response = new SuccessResponse();
         if (product.getName().isEmpty() || product.getVersion().isEmpty()) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -295,10 +265,8 @@ public class Artifacts {
     @Path("/whitelist/product")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Remove a product from the whitelist", response = SuccessResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 404, message = "Product not found", response = ErrorMessage.class) })
-    public Response removeProduct(
-            @ApiParam(value = "JSON object with keys 'name'and 'version'") RestProductInput product) {
+    @Operation(deprecated = true)
+    public Response removeProduct(RestProductInput product) {
         SuccessResponse response = new SuccessResponse();
         try {
             response.setSuccess(productService.removeProduct(product.getName(), product.getVersion()));
@@ -318,13 +286,8 @@ public class Artifacts {
     @Path("/whitelist/product")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Change support status of product in whitelist", response = SuccessResponse.class)
-    @ApiResponses(
-            value = {
-                    @ApiResponse(code = 404, message = "Product not found", response = ErrorMessage.class),
-                    @ApiResponse(code = 400, message = "All parameters are required", response = ErrorMessage.class) })
-    public Response changeProductStatus(
-            @ApiParam(value = "JSON object with keys 'name', 'version' and 'status'") RestProductInput product) {
+    @Operation(deprecated = true)
+    public Response changeProductStatus(RestProductInput product) {
         SuccessResponse response = new SuccessResponse();
         if (product.getSupportStatus() == null) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -347,10 +310,7 @@ public class Artifacts {
     @GET
     @Path("/whitelist/products")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get all products from the whitelist",
-            responseContainer = "List",
-            response = RestProduct.class)
+    @Operation(deprecated = true)
     public Collection<RestProduct> getProducts() {
         return convert.toRestProductList(productVersionService.getAll());
     }
@@ -358,7 +318,7 @@ public class Artifacts {
     @GET
     @Path("/whitelist/product")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get product from the whitelist", responseContainer = "List", response = RestProduct.class)
+    @Operation(deprecated = true)
     public Collection<RestProduct> getProduct(
             @QueryParam("id") Long id,
             @QueryParam("name") String name,
@@ -373,10 +333,7 @@ public class Artifacts {
     @GET
     @Path("/whitelist/artifacts/product")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get all artifacts of product from the whitelist",
-            responseContainer = "List",
-            response = RestProductGAV.class)
+    @Operation(deprecated = true)
     public Response artifactsOfProduct(@QueryParam("name") String name, @QueryParam("version") String version) {
         Optional<ProductVersion> pv = whiteArtifactFilterService.getProductVersionWithWhiteArtifacts(name, version);
         if (pv.isPresent()) {
@@ -391,10 +348,7 @@ public class Artifacts {
     @GET
     @Path("/whitelist/artifacts/gav")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get all artifacts with specified GAV from the whitelist",
-            responseContainer = "List",
-            response = RestProductGAV.class)
+    @Operation(deprecated = true)
     public Response productsWithArtifactGAV(
             @QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId,
@@ -411,10 +365,7 @@ public class Artifacts {
     @GET
     @Path("/whitelist/artifacts/status")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get all artifacts with specified status from the whitelist",
-            responseContainer = "List",
-            response = RestProductGAV.class)
+    @Operation(deprecated = true)
     public Response productsWithArtifactStatus(@QueryParam("status") ProductSupportStatus status) {
 
         return Response
@@ -427,10 +378,7 @@ public class Artifacts {
     @GET
     @Path("/whitelist/artifacts/gastatus")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Get all artifacts with specified GA and status from the whitelist",
-            responseContainer = "List",
-            response = RestProductGAV.class)
+    @Operation(deprecated = true)
     public Response productsWithArtifactGAAndStatus(
             @QueryParam("groupid") String groupId,
             @QueryParam("artifactid") String artifactId,

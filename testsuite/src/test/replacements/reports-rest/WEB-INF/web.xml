@@ -2,35 +2,8 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     version="3.0">
-    <servlet>
-        <servlet-name>SwaggerClass</servlet-name>
-        <servlet-class>io.swagger.jaxrs.config.DefaultJaxrsConfig</servlet-class>
-        <init-param>
-            <param-name>api.version</param-name>
-            <param-value>0.3.0</param-value>
-        </init-param>
-        <init-param>
-            <param-name>swagger.api.basepath</param-name>
-            <param-value>/testsuite/rest/v-0.3</param-value>
-        </init-param>
-        <load-on-startup>2</load-on-startup>
-    </servlet>
 
     <module-name>reports-rest</module-name>
-    <!-- SECURITY -->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>All Access for api docs</web-resource-name>
-            <url-pattern>/doc/</url-pattern>
-        </web-resource-collection>
-    </security-constraint>
-
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>All Access for api docs</web-resource-name>
-            <url-pattern>/doc/*</url-pattern>
-        </web-resource-collection>
-    </security-constraint>
 
     <!-- Allow all users to access the GET endpoints -->
     <security-constraint>

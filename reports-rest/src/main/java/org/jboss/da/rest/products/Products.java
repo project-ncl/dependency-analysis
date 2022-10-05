@@ -1,5 +1,7 @@
 package org.jboss.da.rest.products;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.ProductVersionService;
 import org.jboss.da.model.rest.ErrorMessage;
@@ -25,8 +27,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import java.util.TreeSet;
 
 /**
@@ -34,7 +34,7 @@ import java.util.TreeSet;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Path("/products")
-@Api(value = "products")
+@Tag(name = "deprecated")
 public class Products {
 
     @Inject
@@ -49,7 +49,7 @@ public class Products {
     @GET
     @Path("/diff")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get difference of two products", response = ProductDiff.class)
+    @Operation(deprecated = true)
     public Response getProduct(
             @QueryParam("leftProduct") Long leftProduct,
             @QueryParam("rightProduct") Long rightProduct) {
