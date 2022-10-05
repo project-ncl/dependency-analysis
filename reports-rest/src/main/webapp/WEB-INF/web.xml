@@ -4,19 +4,6 @@
          version="3.0">
     <module-name>reports-rest</module-name>
     <!-- SECURITY -->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>All Access for api docs</web-resource-name>
-            <url-pattern>/doc/</url-pattern>
-        </web-resource-collection>
-    </security-constraint>
-
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>All Access for api docs</web-resource-name>
-            <url-pattern>/doc/*</url-pattern>
-        </web-resource-collection>
-    </security-constraint>
 
     <!-- Allow all users to access the GET endpoints -->
     <security-constraint>
