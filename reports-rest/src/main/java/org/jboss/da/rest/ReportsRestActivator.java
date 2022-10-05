@@ -2,12 +2,19 @@ package org.jboss.da.rest;
 
 import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.servlet.ServletConfig;
 
+import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
+import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
+import io.swagger.v3.oas.integration.OpenApiConfigurationException;
 import org.jboss.da.rest.exceptions.AllExceptionsMapper;
 import org.jboss.da.rest.filter.MDCLoggingFilter;
 
@@ -27,6 +34,25 @@ import org.jboss.pnc.pncmetrics.rest.TimedMetricFilter;
 @ApplicationPath("/rest/v-" + REST_API_VERSION_REPORTS)
 public class ReportsRestActivator extends Application {
 
+    @Context
+    private ServletConfig servletConfig;
+
+    @PostConstruct
+    public void init() {
+        configureSwagger();
+    }
+
+    private void configureSwagger() {
+        try {
+            new JaxrsOpenApiContextBuilder().servletConfig(servletConfig)
+                    .application(this)
+                    .resourcePackages(Collections.singleton("org.jboss.da.rest"))
+                    .buildContext(true);
+        } catch (OpenApiConfigurationException ex) {
+            throw new IllegalArgumentException("Failed to setup OpenAPI configuration", ex);
+        }
+    }
+
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new HashSet<>();
@@ -43,9 +69,7 @@ public class ReportsRestActivator extends Application {
      * @param resources
      */
     public void addSwaggerResources(Set<Class<?>> resources) {
-        resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
-        resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
-        resources.add(SwaggerConfiguration.class);
+        resources.add(OpenApiResource.class);
     }
 
     /**
