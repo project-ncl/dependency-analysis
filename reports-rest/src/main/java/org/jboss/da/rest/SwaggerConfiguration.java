@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
         info = @Info(
                 title = "Dependency Analyzer",
                 license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html")),
-        servers = { @Server(url = "da/", description = "Dependency Analyzer") },
+        servers = { @Server(url = "/da", description = "Dependency Analyzer") },
         tags = {
                 @Tag(name = "lookup", description = "Lookup of artifact versions."),
                 @Tag(name = "blocklist", description = "Listings of blocklisted artifacts"),
