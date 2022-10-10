@@ -2,16 +2,16 @@ package org.jboss.da.listings.impl.dao;
 
 import static java.util.Objects.requireNonNull;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.jboss.da.common.logging.AuditLogger;
 import org.jboss.da.listings.api.dao.GenericDAO;
 import org.jboss.da.listings.api.model.GenericEntity;
 
 /**
- * 
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
- *
  */
 public abstract class GenericDAOImpl<T extends GenericEntity> implements GenericDAO<T> {
 
@@ -53,13 +53,25 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
     public void delete(T entity) {
         requireNonNull(entity);
         requireNonNull(entity.getId());
-        em.remove(em.getReference(type, entity.getId()));
+        try {
+            em.remove(em.getReference(type, entity.getId()));
+        } catch (RuntimeException ex) {
+            AuditLogger.LOG.info("Deleting entity " + type.getSimpleName() + " with id " + entity.getId() + " failed.");
+            throw ex;
+        }
+        AuditLogger.LOG.info("Deleted entity " + type.getSimpleName() + " with id " + entity.getId() + ".");
     }
 
     @Override
     public void delete(long id) {
-        T entity = read(id);
-        delete(entity);
+        try {
+            T entity = read(id);
+            delete(entity);
+        } catch (RuntimeException ex) {
+            AuditLogger.LOG.info("Deleting entity " + type.getSimpleName() + " with id " + id + " failed.");
+            throw ex;
+        }
+        AuditLogger.LOG.info("Deleted entity " + type.getSimpleName() + " with id " + id + ".");
     }
 
 }

@@ -13,9 +13,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
- *
  */
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -40,4 +38,8 @@ public class Artifact extends GenericEntity {
     @NonNull
     @ManyToOne
     private User insertedBy;
+
+    public String gav() {
+        return ga.getGroupId() + ":" + ga.getArtifactId() + ":" + version;
+    }
 }

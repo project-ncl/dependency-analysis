@@ -1,21 +1,19 @@
 package org.jboss.da.listings.impl.dao;
 
-import javax.ejb.Stateless;
-
+import org.jboss.da.common.logging.AuditLogger;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.GA;
 
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
-
 import java.util.List;
 
 /**
- * 
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
@@ -24,6 +22,17 @@ public class BlackArtifactDAOImpl extends ArtifactDAOImpl<BlackArtifact> impleme
 
     public BlackArtifactDAOImpl() {
         super(BlackArtifact.class);
+    }
+
+    @Override
+    public void create(BlackArtifact entity) {
+        try {
+            super.create(entity);
+        } catch (RuntimeException ex) {
+            AuditLogger.LOG.info("Add blocklisted artifact " + entity.gav() + " .failed");
+            throw ex;
+        }
+        AuditLogger.LOG.info("Added blocklisted artifact " + entity.gav() + ".");
     }
 
     @Override
