@@ -9,7 +9,7 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.da.communication.auth.impl.JAASAuthenticatorService;
+import org.jboss.da.common.auth.impl.JAASAuthenticatorService;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.ProductVersion;

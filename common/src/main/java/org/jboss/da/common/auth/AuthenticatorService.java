@@ -1,4 +1,4 @@
-package org.jboss.da.communication.auth;
+package org.jboss.da.common.auth;
 
 import java.util.Optional;
 
