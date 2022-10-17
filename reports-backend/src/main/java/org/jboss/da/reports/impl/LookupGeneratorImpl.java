@@ -8,7 +8,10 @@ import org.jboss.da.common.version.VersionAnalyzer;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.lookup.model.MavenLatestResult;
 import org.jboss.da.lookup.model.MavenLookupResult;
+import org.jboss.da.lookup.model.MavenVersionsResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
+import org.jboss.da.lookup.model.NPMVersionsResult;
+import org.jboss.da.lookup.model.VersionFilter;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.NPMPackage;
@@ -69,17 +72,31 @@ public class LookupGeneratorImpl implements LookupGenerator {
     @Override
     public Set<MavenLookupResult> lookupBestMatchMaven(Set<GAV> gavs, String mode, boolean brewPullActive)
             throws CommunicationException {
-        LookupMode lookupMode = getMode(mode);
+        LookupMode lookupMode = getMode(mode, false);
         ProductProvider productProvider = setupProductProvider(brewPullActive, lookupMode);
         Map<GA, CompletableFuture<Set<String>>> productArtifacts = getArtifactVersions(productProvider, gavs, true);
         return createLookupResult(gavs, lookupMode, productArtifacts);
     }
 
     @Override
+    public Set<MavenVersionsResult> lookupVersionsMaven(
+            Set<GAV> gavs,
+            VersionFilter vf,
+            String mode,
+            boolean brewPullActive,
+            boolean includeBad) throws CommunicationException {
+        LookupMode lookupMode = getMode(mode, includeBad);
+        ProductProvider productProvider = setupProductProvider(brewPullActive, lookupMode);
+        Map<GA, CompletableFuture<Set<String>>> productArtifacts = getArtifactVersions(
+                productProvider,
+                gavs,
+                !includeBad);
+        return createVersionsResult(gavs, lookupMode, vf, productArtifacts);
+    }
+
+    @Override
     public Set<MavenLatestResult> lookupLatestMaven(Set<GAV> gavs, String mode) throws CommunicationException {
-        LookupMode lookupMode = getMode(mode).toBuilder()
-                .artifactQualities(EnumSet.allOf(ArtifactQuality.class))
-                .build();
+        LookupMode lookupMode = getMode(mode, true);
         ProductProvider productProvider = setupProductProvider(true, lookupMode);
         Map<GA, CompletableFuture<Set<String>>> productArtifacts = getArtifactVersions(productProvider, gavs, false);
         return createLatestResult(gavs, lookupMode, productArtifacts);
@@ -88,10 +105,22 @@ public class LookupGeneratorImpl implements LookupGenerator {
     @Override
     public Set<NPMLookupResult> lookupBestMatchNPM(Set<NPMPackage> packages, String mode)
             throws CommunicationException {
-        LookupMode lookupMode = getMode(mode);
+        LookupMode lookupMode = getMode(mode, false);
         pncProductProvider.setLookupMode(lookupMode);
         Map<String, CompletableFuture<Set<String>>> productArtifacts = getArtifactVersions(packages);
         return createLookupResultNpm(packages, lookupMode, productArtifacts);
+    }
+
+    @Override
+    public Set<NPMVersionsResult> lookupVersionsNPM(
+            Set<NPMPackage> packages,
+            VersionFilter vf,
+            String mode,
+            boolean includeBad) throws CommunicationException {
+        LookupMode lookupMode = getMode(mode, includeBad);
+        pncProductProvider.setLookupMode(lookupMode);
+        Map<String, CompletableFuture<Set<String>>> productArtifacts = getArtifactVersions(packages);
+        return createVersionsResultNpm(packages, lookupMode, vf, productArtifacts);
     }
 
     private ProductProvider setupProductProvider(boolean brewPullActive, LookupMode mode) {
@@ -151,6 +180,21 @@ public class LookupGeneratorImpl implements LookupGenerator {
         return joinFutures(futures);
     }
 
+    private Set<MavenVersionsResult> createVersionsResult(
+            Set<GAV> gavs,
+            LookupMode mode,
+            VersionFilter vf,
+            Map<GA, CompletableFuture<Set<String>>> artifactsMap) throws CommunicationException {
+
+        VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes());
+
+        Set<CompletableFuture<MavenVersionsResult>> futures = gavs.stream()
+                .map(gav -> artifactsMap.get(gav.getGA()).thenApply(pas -> getMatchingVersions(va, vf, gav, pas)))
+                .collect(Collectors.toSet());
+
+        return joinFutures(futures);
+    }
+
     private Set<MavenLatestResult> createLatestResult(
             Set<GAV> gavs,
             LookupMode mode,
@@ -178,6 +222,20 @@ public class LookupGeneratorImpl implements LookupGenerator {
         return joinFutures(futures);
     }
 
+    private Set<NPMVersionsResult> createVersionsResultNpm(
+            Set<NPMPackage> packages,
+            LookupMode mode,
+            VersionFilter vf,
+            Map<String, CompletableFuture<Set<String>>> artifactsMap) throws CommunicationException {
+        VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes());
+
+        Set<CompletableFuture<NPMVersionsResult>> futures = packages.stream()
+                .map(pkg -> artifactsMap.get(pkg.getName()).thenApply(f -> getMatchingVersions(va, vf, pkg, f)))
+                .collect(Collectors.toSet());
+
+        return joinFutures(futures);
+    }
+
     private MavenLookupResult getLookupResult(VersionAnalyzer va, GAV gav, Set<String> versions) {
         Optional<String> bmv = va.findBiggestMatchingVersion(gav.getVersion(), versions);
         return new MavenLookupResult(gav, bmv.orElse(null));
@@ -188,15 +246,36 @@ public class LookupGeneratorImpl implements LookupGenerator {
         return new MavenLatestResult(gav, bmv.orElse(null));
     }
 
+    private MavenVersionsResult getMatchingVersions(
+            VersionAnalyzer va,
+            VersionFilter vf,
+            GAV gav,
+            Set<String> versions) {
+        List<String> availableVersions = va.filterVersions(gav.getVersion(), vf, versions);
+        return new MavenVersionsResult(gav, availableVersions);
+    }
+
+    private NPMVersionsResult getMatchingVersions(
+            VersionAnalyzer va,
+            VersionFilter vf,
+            NPMPackage pkg,
+            Set<String> versions) {
+        List<String> availableVersions = va.filterVersions(pkg.getVersion(), vf, versions);
+        return new NPMVersionsResult(pkg, availableVersions);
+    }
+
     private NPMLookupResult getLookupResult(VersionAnalyzer va, NPMPackage pkg, Set<String> versions) {
         Optional<String> bmv = va.findBiggestMatchingVersion(pkg.getVersion(), versions);
         return new NPMLookupResult(pkg, bmv.orElse(null));
     }
 
-    private LookupMode getMode(String mode) {
+    private LookupMode getMode(String mode, boolean includeAll) {
         LookupMode lookupMode = modes.get(mode);
         if (lookupMode == null) {
             throw new IllegalArgumentException("Unknown lookup mode " + mode);
+        }
+        if (includeAll) {
+            lookupMode = lookupMode.toBuilder().artifactQualities(EnumSet.allOf(ArtifactQuality.class)).build();
         }
         return lookupMode;
     }
