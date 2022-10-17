@@ -45,7 +45,13 @@ public class VersionComparator implements Comparator<String>, Serializable {
     public VersionDifference difference(String version1, String version2) {
         SuffixedVersion v1 = versionParser.parse(version1);
         SuffixedVersion v2 = versionParser.parse(version2);
+        return difference(v1, v2);
+    }
 
+    /**
+     * Return information about first part of version that is different.
+     */
+    public VersionDifference difference(SuffixedVersion v1, SuffixedVersion v2) {
         if (v1.getMajor() != v2.getMajor()) {
             return VersionDifference.MAJOR;
         }
@@ -65,6 +71,13 @@ public class VersionComparator implements Comparator<String>, Serializable {
             return VersionDifference.RH_SUFFIX;
         }
         return VersionDifference.EQUAL;
+    }
+
+    /**
+     * Return information about first part of version that is different, compared to the base version.
+     */
+    public VersionDifference difference(SuffixedVersion version) {
+        return difference(base, version);
     }
 
     @Override

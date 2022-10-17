@@ -18,8 +18,13 @@ import org.jboss.da.lookup.model.MavenLatestRequest;
 import org.jboss.da.lookup.model.MavenLatestResult;
 import org.jboss.da.lookup.model.MavenLookupRequest;
 import org.jboss.da.lookup.model.MavenLookupResult;
+import org.jboss.da.lookup.model.MavenVersionsRequest;
+import org.jboss.da.lookup.model.MavenVersionsResult;
 import org.jboss.da.lookup.model.NPMLookupRequest;
 import org.jboss.da.lookup.model.NPMLookupResult;
+import org.jboss.da.lookup.model.NPMVersionsRequest;
+import org.jboss.da.lookup.model.NPMVersionsResult;
+import org.jboss.da.reports.model.response.NPMVersionsReport;
 
 /**
  *
@@ -38,6 +43,12 @@ public interface Lookup {
     Set<MavenLookupResult> lookupMaven(MavenLookupRequest request) throws CommunicationException;
 
     @POST
+    @Path(value = "/maven/versions")
+    @Operation(summary = "Lookup and filter available versions for the given Maven artifact coordinates (GAV).")
+    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = MavenLookupResult.class))))
+    Set<MavenVersionsResult> versionsMaven(MavenVersionsRequest request) throws CommunicationException;
+
+    @POST
     @Path(value = "/maven/latest")
     @Operation(
             summary = "Finds latest matching versions for given Maven artifact coordinates (GAV), including bad versions.",
@@ -50,5 +61,11 @@ public interface Lookup {
     @Operation(summary = "Finds best matching versions for given NPM artifact coordinates (name, version).")
     @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMLookupResult.class))))
     Set<NPMLookupResult> lookupNPM(NPMLookupRequest request) throws CommunicationException;
+
+    @POST
+    @Path(value = "/npm/versions")
+    @Operation(summary = "Lookup and filter available versions for the given NPM artifact coordinates (name, version).")
+    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMVersionsResult.class))))
+    Set<NPMVersionsResult> versionsNPM(NPMVersionsRequest request) throws CommunicationException;
 
 }

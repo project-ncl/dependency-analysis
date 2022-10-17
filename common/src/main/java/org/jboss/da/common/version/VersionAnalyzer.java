@@ -15,10 +15,15 @@
  */
 package org.jboss.da.common.version;
 
+import org.jboss.da.lookup.model.VersionFilter;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -26,10 +31,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static org.jboss.da.common.version.VersionComparator.VersionDifference.EQUAL;
+import static org.jboss.da.common.version.VersionComparator.VersionDifference.MICRO;
+import static org.jboss.da.common.version.VersionComparator.VersionDifference.MINOR;
+import static org.jboss.da.common.version.VersionComparator.VersionDifference.QUALIFIER;
+import static org.jboss.da.common.version.VersionComparator.VersionDifference.RH_SUFFIX;
+import static org.jboss.da.common.version.VersionComparator.VersionDifference.SUFFIX;
+
 /**
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class VersionAnalyzer {
+
+    public static final Map<VersionFilter, EnumSet<VersionComparator.VersionDifference>> ALLOWED_DIFFERENCE = new HashMap<>();
+    static {
+        ALLOWED_DIFFERENCE.put(VersionFilter.ALL, EnumSet.allOf(VersionComparator.VersionDifference.class));
+        ALLOWED_DIFFERENCE.put(VersionFilter.MAJOR, EnumSet.of(MINOR, MICRO, QUALIFIER, SUFFIX, RH_SUFFIX, EQUAL));
+        ALLOWED_DIFFERENCE.put(VersionFilter.MAJOR_MINOR, EnumSet.of(MICRO, QUALIFIER, SUFFIX, RH_SUFFIX, EQUAL));
+        ALLOWED_DIFFERENCE.put(VersionFilter.MAJOR_MINOR_MICRO, EnumSet.of(QUALIFIER, SUFFIX, RH_SUFFIX, EQUAL));
+        ALLOWED_DIFFERENCE.put(VersionFilter.MAJOR_MINOR_MICRO_QUALIFIER, EnumSet.of(SUFFIX, RH_SUFFIX, EQUAL));
+    }
 
     private static final Pattern VERSION_PATTERN = Pattern
             .compile("^" + VersionParser.RE_MMM + VersionParser.RE_QUALIFIER_WITH_SEPARATOR + "?");
@@ -46,6 +67,24 @@ public class VersionAnalyzer {
         VersionComparator comparator = new VersionComparator(querry, versionParser);
         List<String> sortedVersions = versions.stream().sorted(comparator).distinct().collect(Collectors.toList());
         return sortedVersions;
+    }
+
+    public List<String> filterVersions(String query, VersionFilter vf, Collection<String> versions) {
+        VersionComparator vc = new VersionComparator(query, versionParser);
+
+        return versions.stream()
+                .map(versionParser::parseSuffixed)
+                .flatMap(Set::stream)
+                .filter(v -> matches(vc, v, vf))
+                .map(SuffixedVersion::getOriginalVersion)
+                .sorted(vc)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    private boolean matches(VersionComparator vc, SuffixedVersion v, VersionFilter vf) {
+        VersionComparator.VersionDifference difference = vc.difference(v);
+        return ALLOWED_DIFFERENCE.get(vf).contains(difference);
     }
 
     public Optional<String> findBiggestMatchingVersion(String query, Collection<String> versions) {
