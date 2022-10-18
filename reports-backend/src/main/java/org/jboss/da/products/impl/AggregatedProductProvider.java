@@ -1,5 +1,6 @@
 package org.jboss.da.products.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
@@ -39,6 +40,7 @@ import java.util.stream.Collectors;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ApplicationScoped
+@Slf4j
 public class AggregatedProductProvider implements ProductProvider {
 
     public static Set<ProductArtifacts> filterArtifacts(
@@ -149,8 +151,10 @@ public class AggregatedProductProvider implements ProductProvider {
                 }
                 ret.complete(resultList.stream().collect(collector));
             } catch (ExecutionException | RuntimeException ex) {
+                log.debug("Failed to complete futures", ex);
                 ret.completeExceptionally(ex);
             } catch (InterruptedException ex) {
+                log.debug("Failed to complete futures", ex);
                 ret.completeExceptionally(ex);
                 Thread.currentThread().interrupt();
             }

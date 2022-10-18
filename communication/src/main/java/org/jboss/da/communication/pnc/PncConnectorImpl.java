@@ -54,6 +54,7 @@ public class PncConnectorImpl implements PncConnector {
                     repoType,
                     mode.getBuildCategories());
         } catch (RemoteResourceException ex) {
+            log.debug("Error when reading artifacts from PNC: " + ex, ex);
             throw new RepositoryException("Error when reading artifacts from PNC: " + ex, ex);
         }
         return artCollection.getAll();

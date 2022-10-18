@@ -99,6 +99,7 @@ public class IndyConnectorImpl implements IndyConnector {
             log.debug("Maven metadata for {} not found. Assuming empty version list.", ga);
             return Collections.emptyList();
         } catch (IOException | CommunicationException e) {
+            log.debug("Failed to obtain versions for " + ga + " from repository on url " + query, e);
             throw new RepositoryException(
                     "Failed to obtain versions for " + ga + " from repository on url " + query,
                     e);
@@ -128,6 +129,7 @@ public class IndyConnectorImpl implements IndyConnector {
             log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
             return Collections.emptyList();
         } catch (IOException e) {
+            log.debug("Failed to obtain versions for " + packageName + " from repository on url " + query, e);
             throw new RepositoryException(
                     "Failed to obtain versions for " + packageName + " from repository on url " + query,
                     e);
