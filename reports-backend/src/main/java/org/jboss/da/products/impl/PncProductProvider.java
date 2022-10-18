@@ -43,6 +43,7 @@ public class PncProductProvider extends AbstractProductProvider {
         try {
             List<String> versionsOfGA;
             versionsOfGA = pncConnector.getMavenVersions(ga, mode);
+            log.debug("Got versions of " + ga + " from PNC: " + versionsOfGA);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
@@ -54,6 +55,7 @@ public class PncProductProvider extends AbstractProductProvider {
         try {
             List<String> versionsOfGA;
             versionsOfGA = pncConnector.getNpmVersions(name, mode);
+            log.debug("Got versions of " + name + " from PNC: " + versionsOfGA);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);

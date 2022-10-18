@@ -44,6 +44,7 @@ public class RepositoryProductProvider extends AbstractProductProvider {
         try {
             List<String> versionsOfGA;
             versionsOfGA = indyConnector.getVersionsOfGA(ga);
+            log.debug("Got versions of " + ga + " from repository: " + versionsOfGA);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
@@ -55,6 +56,7 @@ public class RepositoryProductProvider extends AbstractProductProvider {
         try {
             List<String> versionsOfGA;
             versionsOfGA = indyConnector.getVersionsOfNpm(name);
+            log.debug("Got versions of " + name + " from repository: " + versionsOfGA);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
