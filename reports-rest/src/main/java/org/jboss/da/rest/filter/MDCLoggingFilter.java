@@ -17,7 +17,7 @@
  */
 package org.jboss.da.rest.filter;
 
-import org.jboss.da.common.auth.AuthenticatorService;
+import org.jboss.da.communication.auth.AuthenticatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;

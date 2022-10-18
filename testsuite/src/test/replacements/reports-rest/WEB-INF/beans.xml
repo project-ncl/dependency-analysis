@@ -5,6 +5,6 @@
         http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="all">
     <alternatives>
-        <class>org.jboss.da.common.auth.impl.JAASAuthenticatorService</class>
+        <class>org.jboss.da.communication.auth.impl.JAASAuthenticatorService</class>
     </alternatives>
 </beans>

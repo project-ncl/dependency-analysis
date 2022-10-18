@@ -1,6 +1,6 @@
-package org.jboss.da.common.auth.impl;
+package org.jboss.da.communication.auth.impl;
 
-import org.jboss.da.common.auth.AuthenticatorService;
+import org.jboss.da.communication.auth.AuthenticatorService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Alternative;

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.apache.maven.scm.ScmException;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.auth.impl.JAASAuthenticatorService;
+import org.jboss.da.communication.auth.impl.JAASAuthenticatorService;
 import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;

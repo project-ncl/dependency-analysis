@@ -1,7 +1,7 @@
 package org.jboss.da.test.server.listings;
 
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.da.common.auth.impl.JAASAuthenticatorService;
+import org.jboss.da.communication.auth.impl.JAASAuthenticatorService;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus;
 import org.jboss.da.listings.api.service.ProductService;
