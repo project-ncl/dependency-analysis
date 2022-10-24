@@ -15,6 +15,7 @@ import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.pnc.common.log.MDCUtils;
 import org.jboss.pnc.pncmetrics.MetricsConfiguration;
 import org.slf4j.Logger;
 
@@ -34,7 +35,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import org.jboss.da.common.logging.MDCUtils;
 import org.jboss.da.common.util.UserLog;
 
 @ApplicationScoped
@@ -160,7 +160,7 @@ public class IndyConnectorImpl implements IndyConnector {
 
     private HttpURLConnection getResponse(String query) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL(query).openConnection();
-        MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
+        MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
         connection.setConnectTimeout(config.getIndyRequestTimeout());
         connection.setReadTimeout(config.getIndyRequestTimeout());
         int retry = 0;
@@ -180,7 +180,7 @@ public class IndyConnectorImpl implements IndyConnector {
             }
 
             connection = (HttpURLConnection) new URL(query).openConnection();
-            MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
+            MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
             connection.setConnectTimeout(config.getIndyRequestTimeout());
             connection.setReadTimeout(config.getIndyRequestTimeout());
         }
@@ -205,7 +205,7 @@ public class IndyConnectorImpl implements IndyConnector {
             query.append(gav.getArtifactId()).append('-').append(gav.getVersion()).append(".pom");
 
             URLConnection connection = new URL(query.toString()).openConnection();
-            MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
+            MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
             return Optional.of(connection.getInputStream());
         } catch (FileNotFoundException ex) {
             return Optional.empty();
@@ -235,7 +235,7 @@ public class IndyConnectorImpl implements IndyConnector {
             query.append(gav.getArtifactId()).append("-").append(gav.getVersion()).append(".pom");
 
             URLConnection connection = new URL(query.toString()).openConnection();
-            MDCUtils.headersFromContext().forEach(connection::addRequestProperty);
+            MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
             try {
                 connection.getInputStream().close();
                 // if we've reached here, then it means the pom exists

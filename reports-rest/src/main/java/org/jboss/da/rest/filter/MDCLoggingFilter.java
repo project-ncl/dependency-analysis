@@ -18,6 +18,8 @@
 package org.jboss.da.rest.filter;
 
 import org.jboss.da.communication.auth.AuthenticatorService;
+import org.jboss.pnc.api.constants.MDCKeys;
+import org.jboss.pnc.common.log.MDCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -28,8 +30,6 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
-
-import org.jboss.da.common.logging.MDCUtils;
 
 /**
  * @author <a href="mailto:matejonnet@gmail.com">Matej Lazar</a>
@@ -47,23 +47,17 @@ public class MDCLoggingFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
-        MDC.clear();
-        for (String key : MDCUtils.headerKeys()) {
-            String mdcContext = containerRequestContext.getHeaderString(key);
-            if (mdcContext != null) {
-                MDCUtils.contextFromHeader(key, mdcContext);
-            }
-        }
+        MDCUtils.setMDCFromRequestContext(containerRequestContext);
         addAuditMDC();
     }
 
     public void addAuditMDC() {
-        userService.username().ifPresent(username -> MDC.put("user", username));
+        userService.username().ifPresent(username -> MDC.put(MDCKeys.USER_NAME_KEY, username));
         if (sr != null) {
-            MDC.put("src_ip", sr.getRemoteAddr());
+            MDC.put(MDCKeys.SRC_IP_KEY, sr.getRemoteAddr());
             String forwardedFor = sr.getHeader("X-FORWARDED-FOR");
             if (forwardedFor != null) {
-                MDC.put("x_forwarded_for", forwardedFor);
+                MDC.put(MDCKeys.X_FORWARDED_FOR_KEY, forwardedFor);
             }
         }
     }
