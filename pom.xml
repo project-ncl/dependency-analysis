@@ -95,6 +95,7 @@
         <version.reports.rest>1</version.reports.rest>
         <version.bc.rest>1</version.bc.rest>
         <version.pnc>2.3.2</version.pnc>
+        <version.pnc-common>2.2.1-SNAPSHOT</version.pnc-common>
         <version.galley>0.13.4</version.galley>
         <version.cartographer>0.12.2</version.cartographer>
         <maven.compiler.source>11</maven.compiler.source>
@@ -149,6 +150,11 @@
             <!-- Project modules -->
 
             <!-- PNC -->
+            <dependency>
+                <groupId>org.jboss.pnc</groupId>
+                <artifactId>pnc-common</artifactId>
+                <version>${version.pnc-common}</version>
+            </dependency>
             <dependency>
                 <groupId>org.jboss.pnc</groupId>
                 <artifactId>constants</artifactId>
