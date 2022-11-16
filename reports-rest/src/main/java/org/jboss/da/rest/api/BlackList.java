@@ -1,5 +1,7 @@
 package org.jboss.da.rest.api;
 
+import io.opentelemetry.instrumentation.annotations.SpanAttribute;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -40,12 +42,15 @@ public interface BlackList {
     @Produces(value = MediaType.APPLICATION_JSON)
     @Operation(summary = "Add an artifact to the blocklist")
     @ApiResponse(content = @Content(schema = @Schema(implementation = SuccessResponse.class)))
-    Response addBlackArtifact(@Parameter(description = GAV_JSON) RestArtifact artifact);
+    @WithSpan()
+    Response addBlackArtifact(
+            @SpanAttribute(value = "artifact") @Parameter(description = GAV_JSON) RestArtifact artifact);
 
     @GET
     @Produces(value = MediaType.APPLICATION_JSON)
     @Operation(summary = "Get all artifacts in the blocklist")
     @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = RestArtifact.class))))
+    @WithSpan()
     Collection<RestArtifact> getAllBlackArtifacts();
 
     @GET
@@ -53,9 +58,10 @@ public interface BlackList {
     @Produces(value = MediaType.APPLICATION_JSON)
     @Operation(summary = "Get artifacts in the blocklist with given groupid and artifactid")
     @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = RestArtifact.class))))
+    @WithSpan()
     Collection<RestArtifact> getBlackArtifacts(
-            @QueryParam(value = "groupid") String groupId,
-            @QueryParam(value = "artifactid") String artifactId);
+            @SpanAttribute(value = "groupId") @QueryParam(value = "groupid") String groupId,
+            @SpanAttribute(value = "artifactId") @QueryParam(value = "artifactid") String artifactId);
 
     @GET
     @Path(value = "/gav")
@@ -70,10 +76,11 @@ public interface BlackList {
             responseCode = "400",
             description = "All parameters are required",
             content = @Content(schema = @Schema(implementation = ErrorMessage.class)))
+    @WithSpan()
     Response isBlackArtifactPresent(
-            @QueryParam(value = "groupid") String groupId,
-            @QueryParam(value = "artifactid") String artifactId,
-            @QueryParam(value = "version") String version);
+            @SpanAttribute(value = "groupId") @QueryParam(value = "groupid") String groupId,
+            @SpanAttribute(value = "artifactId") @QueryParam(value = "artifactid") String artifactId,
+            @SpanAttribute(value = "version") @QueryParam(value = "version") String version);
 
     @DELETE
     @Path(value = "/gav")
@@ -81,6 +88,8 @@ public interface BlackList {
     @Produces(value = MediaType.APPLICATION_JSON)
     @Operation(summary = "Remove an artifact from the blocklist")
     @ApiResponse(content = @Content(schema = @Schema(implementation = SuccessResponse.class)))
-    SuccessResponse removeBlackArtifact(@Parameter(description = GAV_JSON) RestArtifact artifact);
+    @WithSpan()
+    SuccessResponse removeBlackArtifact(
+            @SpanAttribute(value = "artifact") @Parameter(description = GAV_JSON) RestArtifact artifact);
 
 }
