@@ -20,6 +20,7 @@ import java.util.Optional;
 import org.jboss.da.rest.api.BlackList;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 
 /**
  *
@@ -34,6 +35,7 @@ public class BlackListImpl implements BlackList {
     private BlackArtifactService blackService;
 
     @Override
+    @WithSpan()
     public Collection<RestArtifact> getAllBlackArtifacts() {
         List<RestArtifact> artifacts = new ArrayList<>();
         artifacts.addAll(convert.toRestArtifacts(blackService.getAll()));
@@ -41,6 +43,7 @@ public class BlackListImpl implements BlackList {
     }
 
     @Override
+    @WithSpan()
     public Response isBlackArtifactPresent(
             @SpanAttribute(value = "groupId") String groupId,
             @SpanAttribute(value = "artifactId") String artifactId,
@@ -70,6 +73,7 @@ public class BlackListImpl implements BlackList {
     }
 
     @Override
+    @WithSpan()
     public Response addBlackArtifact(@SpanAttribute(value = "artifact") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         ArtifactService.ArtifactStatus result = blackService
@@ -97,6 +101,7 @@ public class BlackListImpl implements BlackList {
     }
 
     @Override
+    @WithSpan()
     public SuccessResponse removeBlackArtifact(@SpanAttribute(value = "artifact") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(
@@ -105,6 +110,7 @@ public class BlackListImpl implements BlackList {
     }
 
     @Override
+    @WithSpan()
     public Collection<RestArtifact> getBlackArtifacts(
             @SpanAttribute(value = "groupId") String groupId,
             @SpanAttribute(value = "artifactId") String artifactId) {
