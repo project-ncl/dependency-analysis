@@ -20,6 +20,8 @@ import org.jboss.da.reports.api.LookupGenerator;
 import org.jboss.da.rest.api.Lookup;
 import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 
+import io.opentelemetry.instrumentation.annotations.SpanAttribute;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import lombok.extern.slf4j.Slf4j;
 
 @ApplicationScoped
@@ -31,7 +33,9 @@ public class LookupImpl implements Lookup {
 
     @Override
     @TimedMetric
-    public Set<MavenLookupResult> lookupMaven(MavenLookupRequest request) throws CommunicationException {
+    @WithSpan()
+    public Set<MavenLookupResult> lookupMaven(@SpanAttribute(value = "request") MavenLookupRequest request)
+            throws CommunicationException {
         log.info("Incoming request to /lookup/maven. Payload: " + request.toString());
         Set<MavenLookupResult> result = lookupGenerator
                 .lookupBestMatchMaven(request.getArtifacts(), request.getMode(), request.isBrewPullActive());
@@ -40,7 +44,9 @@ public class LookupImpl implements Lookup {
     }
 
     @Override
-    public Set<MavenVersionsResult> versionsMaven(MavenVersionsRequest request) throws CommunicationException {
+    @WithSpan()
+    public Set<MavenVersionsResult> versionsMaven(@SpanAttribute(value = "request") MavenVersionsRequest request)
+            throws CommunicationException {
         log.info("Incoming request to /lookup/maven/versions. Payload: " + request.toString());
         Set<MavenVersionsResult> result = lookupGenerator.lookupVersionsMaven(
                 request.getArtifacts(),
@@ -53,7 +59,9 @@ public class LookupImpl implements Lookup {
     }
 
     @Override
-    public Set<MavenLatestResult> lookupMaven(MavenLatestRequest request) throws CommunicationException {
+    @WithSpan()
+    public Set<MavenLatestResult> lookupMaven(@SpanAttribute(value = "request") MavenLatestRequest request)
+            throws CommunicationException {
         log.info("Incoming request to /lookup/maven/latest. Payload: " + request);
         Set<MavenLatestResult> result = lookupGenerator.lookupLatestMaven(request.getArtifacts(), request.getMode());
         log.info("Request to /lookup/maven/latest completed successfully. Payload: " + request);
@@ -62,7 +70,9 @@ public class LookupImpl implements Lookup {
 
     @Override
     @TimedMetric
-    public Set<NPMLookupResult> lookupNPM(NPMLookupRequest request) throws CommunicationException {
+    @WithSpan()
+    public Set<NPMLookupResult> lookupNPM(@SpanAttribute(value = "request") NPMLookupRequest request)
+            throws CommunicationException {
         log.info("Incoming request to /lookup/npm. Payload: " + request.toString());
         Set<NPMLookupResult> result = lookupGenerator.lookupBestMatchNPM(request.getPackages(), request.getMode());
         log.info("Request to /lookup/npm completed successfully. Payload: " + request.toString());
@@ -70,7 +80,9 @@ public class LookupImpl implements Lookup {
     }
 
     @Override
-    public Set<NPMVersionsResult> versionsNPM(NPMVersionsRequest request) throws CommunicationException {
+    @WithSpan()
+    public Set<NPMVersionsResult> versionsNPM(@SpanAttribute(value = "request") NPMVersionsRequest request)
+            throws CommunicationException {
         log.info("Incoming request to /lookup/npm/versions. Payload: " + request.toString());
         Set<NPMVersionsResult> result = lookupGenerator.lookupVersionsNPM(
                 request.getPackages(),

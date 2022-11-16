@@ -19,6 +19,9 @@ import java.util.Optional;
 
 import org.jboss.da.rest.api.BlackList;
 
+import io.opentelemetry.instrumentation.annotations.SpanAttribute;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
+
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
@@ -32,6 +35,7 @@ public class BlackListImpl implements BlackList {
     private BlackArtifactService blackService;
 
     @Override
+    @WithSpan()
     public Collection<RestArtifact> getAllBlackArtifacts() {
         List<RestArtifact> artifacts = new ArrayList<>();
         artifacts.addAll(convert.toRestArtifacts(blackService.getAll()));
@@ -39,7 +43,11 @@ public class BlackListImpl implements BlackList {
     }
 
     @Override
-    public Response isBlackArtifactPresent(String groupId, String artifactId, String version) {
+    @WithSpan()
+    public Response isBlackArtifactPresent(
+            @SpanAttribute(value = "groupId") String groupId,
+            @SpanAttribute(value = "artifactId") String artifactId,
+            @SpanAttribute(value = "version") String version) {
         if (groupId == null || artifactId == null || version == null) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(
@@ -65,7 +73,8 @@ public class BlackListImpl implements BlackList {
     }
 
     @Override
-    public Response addBlackArtifact(RestArtifact artifact) {
+    @WithSpan()
+    public Response addBlackArtifact(@SpanAttribute(value = "artifact") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         ArtifactService.ArtifactStatus result = blackService
                 .addArtifact(artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion());
@@ -92,7 +101,8 @@ public class BlackListImpl implements BlackList {
     }
 
     @Override
-    public SuccessResponse removeBlackArtifact(RestArtifact artifact) {
+    @WithSpan()
+    public SuccessResponse removeBlackArtifact(@SpanAttribute(value = "artifact") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(
                 blackService.removeArtifact(artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion()));
@@ -100,7 +110,10 @@ public class BlackListImpl implements BlackList {
     }
 
     @Override
-    public Collection<RestArtifact> getBlackArtifacts(String groupId, String artifactId) {
+    @WithSpan()
+    public Collection<RestArtifact> getBlackArtifacts(
+            @SpanAttribute(value = "groupId") String groupId,
+            @SpanAttribute(value = "artifactId") String artifactId) {
         return convert.toRestArtifacts(blackService.getArtifacts(groupId, artifactId));
     }
 }
