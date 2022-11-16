@@ -1,5 +1,7 @@
 package org.jboss.da.rest.listings;
 
+import io.opentelemetry.instrumentation.annotations.SpanAttribute;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.jboss.da.listings.api.model.ProductVersion;
@@ -80,6 +82,7 @@ public class Artifacts {
     @Path("/whitelist")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
+    @WithSpan()
     public Collection<RestProductGAV> getAllWhiteArtifacts() {
         return convert.toRestProductGAVList(whiteArtifactFilterService.getAllWithWhiteArtifacts());
     }
@@ -89,7 +92,8 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public Response fillFromGitBom(WLFill wlFill) {
+    @WithSpan()
+    public Response fillFromGitBom(@SpanAttribute(value = "wlFill") WLFill wlFill) {
 
         SuccessResponse response = new SuccessResponse();
         try {
@@ -131,7 +135,8 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public Response fillFromGAVBom(RestProductArtifact a) {
+    @WithSpan()
+    public Response fillFromGAVBom(@SpanAttribute(value = "a") RestProductArtifact a) {
         SuccessResponse response = new SuccessResponse();
         WLFiller.WLStatus result = filler
                 .fillWhitelistFromGAV(a.getGroupId(), a.getArtifactId(), a.getVersion(), a.getProductId());
@@ -167,7 +172,8 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public Response addWhiteArtifact(RestProductArtifact artifact) {
+    @WithSpan()
+    public Response addWhiteArtifact(@SpanAttribute(value = "artifact") RestProductArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         try {
             ArtifactStatus result = whiteService.addArtifact(
@@ -209,7 +215,8 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public SuccessResponse removeWhiteArtifact(RestArtifact artifact) {
+    @WithSpan()
+    public SuccessResponse removeWhiteArtifact(@SpanAttribute(value = "artifact") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(
                 whiteService.removeArtifact(artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion()));
@@ -221,7 +228,9 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public SuccessResponse removeWhiteArtifactFromProduct(RestProductArtifact artifact) {
+    @WithSpan()
+    public SuccessResponse removeWhiteArtifactFromProduct(
+            @SpanAttribute(value = "artifact") RestProductArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         response.setSuccess(
                 whiteService.removeArtifractFromProductVersion(
@@ -240,7 +249,8 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public Response addProduct(RestProductInput product) {
+    @WithSpan()
+    public Response addProduct(@SpanAttribute(value = "product") RestProductInput product) {
         SuccessResponse response = new SuccessResponse();
         if (product.getName().isEmpty() || product.getVersion().isEmpty()) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -266,7 +276,8 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public Response removeProduct(RestProductInput product) {
+    @WithSpan()
+    public Response removeProduct(@SpanAttribute(value = "product") RestProductInput product) {
         SuccessResponse response = new SuccessResponse();
         try {
             response.setSuccess(productService.removeProduct(product.getName(), product.getVersion()));
@@ -287,7 +298,8 @@ public class Artifacts {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public Response changeProductStatus(RestProductInput product) {
+    @WithSpan()
+    public Response changeProductStatus(@SpanAttribute(value = "product") RestProductInput product) {
         SuccessResponse response = new SuccessResponse();
         if (product.getSupportStatus() == null) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -311,6 +323,7 @@ public class Artifacts {
     @Path("/whitelist/products")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
+    @WithSpan()
     public Collection<RestProduct> getProducts() {
         return convert.toRestProductList(productVersionService.getAll());
     }
@@ -319,11 +332,12 @@ public class Artifacts {
     @Path("/whitelist/product")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
+    @WithSpan()
     public Collection<RestProduct> getProduct(
-            @QueryParam("id") Long id,
-            @QueryParam("name") String name,
-            @QueryParam("version") String version,
-            @QueryParam("supportStatus") ProductSupportStatus supportStatus) {
+            @SpanAttribute(value = "id") @QueryParam("id") Long id,
+            @SpanAttribute(value = "name") @QueryParam("name") String name,
+            @SpanAttribute(value = "version") @QueryParam("version") String version,
+            @SpanAttribute(value = "supportStatus") @QueryParam("supportStatus") ProductSupportStatus supportStatus) {
         return convert.toRestProductList(productVersionService.getProductVersions(id, name, version, supportStatus));
     }
 
@@ -334,7 +348,10 @@ public class Artifacts {
     @Path("/whitelist/artifacts/product")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public Response artifactsOfProduct(@QueryParam("name") String name, @QueryParam("version") String version) {
+    @WithSpan()
+    public Response artifactsOfProduct(
+            @SpanAttribute(value = "name") @QueryParam("name") String name,
+            @SpanAttribute(value = "version") @QueryParam("version") String version) {
         Optional<ProductVersion> pv = whiteArtifactFilterService.getProductVersionWithWhiteArtifacts(name, version);
         if (pv.isPresent()) {
             return Response.ok(convert.toRestProductGAV(pv.get())).build();
@@ -349,10 +366,11 @@ public class Artifacts {
     @Path("/whitelist/artifacts/gav")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
+    @WithSpan()
     public Response productsWithArtifactGAV(
-            @QueryParam("groupid") String groupId,
-            @QueryParam("artifactid") String artifactId,
-            @QueryParam("version") String version) {
+            @SpanAttribute(value = "groupId") @QueryParam("groupid") String groupId,
+            @SpanAttribute(value = "artifactId") @QueryParam("artifactid") String artifactId,
+            @SpanAttribute(value = "version") @QueryParam("version") String version) {
 
         return Response
                 .ok(
@@ -366,7 +384,9 @@ public class Artifacts {
     @Path("/whitelist/artifacts/status")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
-    public Response productsWithArtifactStatus(@QueryParam("status") ProductSupportStatus status) {
+    @WithSpan()
+    public Response productsWithArtifactStatus(
+            @SpanAttribute(value = "status") @QueryParam("status") ProductSupportStatus status) {
 
         return Response
                 .ok(
@@ -379,10 +399,11 @@ public class Artifacts {
     @Path("/whitelist/artifacts/gastatus")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
+    @WithSpan()
     public Response productsWithArtifactGAAndStatus(
-            @QueryParam("groupid") String groupId,
-            @QueryParam("artifactid") String artifactId,
-            @QueryParam("status") ProductSupportStatus status) {
+            @SpanAttribute(value = "groupId") @QueryParam("groupid") String groupId,
+            @SpanAttribute(value = "artifactId") @QueryParam("artifactid") String artifactId,
+            @SpanAttribute(value = "status") @QueryParam("status") ProductSupportStatus status) {
 
         return Response
                 .ok(

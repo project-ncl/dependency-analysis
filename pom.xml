@@ -104,6 +104,9 @@
         <mvn-scm.version>1.11.2</mvn-scm.version>
         <pncmetrics.version>1.1.3</pncmetrics.version>
         <corsUrlPattern>/*</corsUrlPattern>
+
+        <!-- OTEL Dependencies for Instrumentation -->
+        <version.io.opentelemetry.instrumentation>1.19.2</version.io.opentelemetry.instrumentation>
     <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
     <tagSuffix />
     </properties>
@@ -319,6 +322,21 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-servlets</artifactId>
                 <version>9.4.41.v20210516</version>
+            </dependency>
+
+            <!-- OTEL Dependencies for Instrumentation -->
+            <!-- BOMs -->
+            <dependency>
+                <groupId>io.opentelemetry.instrumentation</groupId>
+                <artifactId>opentelemetry-instrumentation-bom</artifactId>
+                <version>${version.io.opentelemetry.instrumentation}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.opentelemetry.instrumentation</groupId>
+                <artifactId>opentelemetry-instrumentation-annotations</artifactId>
+                <version>${version.io.opentelemetry.instrumentation}-alpha</version>
             </dependency>
 
             <!-- Test dependencies -->

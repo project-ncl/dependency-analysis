@@ -1,5 +1,7 @@
 package org.jboss.da.rest.products;
 
+import io.opentelemetry.instrumentation.annotations.SpanAttribute;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.jboss.da.listings.api.model.ProductVersion;
@@ -50,9 +52,10 @@ public class Products {
     @Path("/diff")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(deprecated = true)
+    @WithSpan()
     public Response getProduct(
-            @QueryParam("leftProduct") Long leftProduct,
-            @QueryParam("rightProduct") Long rightProduct) {
+            @SpanAttribute(value = "leftProduct") @QueryParam("leftProduct") Long leftProduct,
+            @SpanAttribute(value = "rightProduct") @QueryParam("rightProduct") Long rightProduct) {
         Optional<ProductVersion> left = productService.getProductVersion(leftProduct);
         if (!left.isPresent()) {
             return Response.status(NOT_FOUND)

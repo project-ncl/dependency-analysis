@@ -1,5 +1,7 @@
 package org.jboss.da.rest.reports;
 
+import io.opentelemetry.instrumentation.annotations.SpanAttribute;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -63,7 +65,9 @@ public class Reports {
     @Operation(summary = "Get dependency report for a project specified in a repository URL.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = Report.class)))
     @TimedMetric
-    public Response scmGenerator(@Parameter(description = "scm information") SCMReportRequest request)
+    @WithSpan()
+    public Response scmGenerator(
+            @SpanAttribute(value = "request") @Parameter(description = "scm information") SCMReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
         return Response.ok().entity(facade.scmReport(request)).build();
     }
@@ -73,7 +77,9 @@ public class Reports {
     @Operation(summary = "Get dependency report for a project specified in a repository URL.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = AdvancedReport.class)))
     @TimedMetric
-    public Response advancedScmGenerator(@Parameter(description = "scm information") SCMReportRequest request)
+    @WithSpan()
+    public Response advancedScmGenerator(
+            @SpanAttribute(value = "request") @Parameter(description = "scm information") SCMReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
         return Response.ok().entity(facade.advancedScmReport(request)).build();
 
@@ -90,8 +96,9 @@ public class Reports {
     @Tag(name = "deprecated")
     @TimedMetric
     @Valid
+    @WithSpan()
     public Response lookupGav(
-            @Parameter(
+            @SpanAttribute(value = "gavRequest") @Parameter(
                     description = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest)
             throws CommunicationException {
         log.info("Incoming request to /lookup/gavs. Payload: " + gavRequest.toString());
@@ -111,8 +118,10 @@ public class Reports {
     @Tag(name = "deprecated")
     @TimedMetric
     @Valid
+    @WithSpan()
     public Response lookupNPM(
-            @Parameter(description = "JSON object with list of package names") LookupNPMRequest request)
+            @SpanAttribute(value = "request") @Parameter(
+                    description = "JSON object with list of package names") LookupNPMRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/npm. Payload: " + request.toString());
         List<NPMLookupReport> lookupReportList = facade.lookupReport(request);
@@ -127,8 +136,10 @@ public class Reports {
     @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
     @TimedMetric
     @Valid
+    @WithSpan()
     public Response versionsNPM(
-            @Parameter(description = "JSON object with list of package names") VersionsNPMRequest request)
+            @SpanAttribute(value = "request") @Parameter(
+                    description = "JSON object with list of package names") VersionsNPMRequest request)
             throws CommunicationException {
         log.info("Incoming request to /versions/npm. Payload: " + request.toString());
         List<NPMVersionsReport> versionsReportList = facade.versionReport(request);
@@ -141,7 +152,8 @@ public class Reports {
     @Operation(summary = "Get alignment report for project specified in a repository URL.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = AlignReport.class)))
     @TimedMetric
-    public Response alignReport(AlignReportRequest request)
+    @WithSpan()
+    public Response alignReport(@SpanAttribute(value = "request") AlignReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
         return Response.status(Status.OK).entity(facade.alignReport(request)).build();
     }
@@ -153,7 +165,8 @@ public class Reports {
     @Operation(summary = "Get built artifacts for project specified in a repository URL.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = BuiltReport.class)))
     @TimedMetric
-    public Response builtReport(BuiltReportRequest request)
+    @WithSpan()
+    public Response builtReport(@SpanAttribute(value = "request") BuiltReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
         return Response.status(Status.OK).entity(facade.builtReport(request)).build();
     }
