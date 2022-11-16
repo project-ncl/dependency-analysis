@@ -21,7 +21,6 @@ import org.jboss.da.rest.api.Lookup;
 import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
-import io.opentelemetry.instrumentation.annotations.WithSpan;
 import lombok.extern.slf4j.Slf4j;
 
 @ApplicationScoped
@@ -33,7 +32,6 @@ public class LookupImpl implements Lookup {
 
     @Override
     @TimedMetric
-    @WithSpan()
     public Set<MavenLookupResult> lookupMaven(@SpanAttribute(value = "request") MavenLookupRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/maven. Payload: " + request.toString());
@@ -44,7 +42,6 @@ public class LookupImpl implements Lookup {
     }
 
     @Override
-    @WithSpan()
     public Set<MavenVersionsResult> versionsMaven(@SpanAttribute(value = "request") MavenVersionsRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/maven/versions. Payload: " + request.toString());
@@ -59,7 +56,6 @@ public class LookupImpl implements Lookup {
     }
 
     @Override
-    @WithSpan()
     public Set<MavenLatestResult> lookupMaven(@SpanAttribute(value = "request") MavenLatestRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/maven/latest. Payload: " + request);
@@ -70,7 +66,6 @@ public class LookupImpl implements Lookup {
 
     @Override
     @TimedMetric
-    @WithSpan()
     public Set<NPMLookupResult> lookupNPM(@SpanAttribute(value = "request") NPMLookupRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/npm. Payload: " + request.toString());
@@ -80,7 +75,6 @@ public class LookupImpl implements Lookup {
     }
 
     @Override
-    @WithSpan()
     public Set<NPMVersionsResult> versionsNPM(@SpanAttribute(value = "request") NPMVersionsRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/npm/versions. Payload: " + request.toString());
