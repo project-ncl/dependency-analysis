@@ -18,11 +18,14 @@
 package org.jboss.da.rest.filter;
 
 import org.jboss.da.communication.auth.AuthenticatorService;
+import org.jboss.pnc.api.constants.MDCHeaderKeys;
 import org.jboss.pnc.api.constants.MDCKeys;
 import org.jboss.pnc.common.log.MDCUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+
+import io.opentelemetry.api.trace.Span;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +51,13 @@ public class MDCLoggingFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
         MDCUtils.setMDCFromRequestContext(containerRequestContext);
+        MDCUtils.addMDCFromOtelHeadersWithFallback(
+                containerRequestContext,
+                MDCHeaderKeys.SLF4J_TRACE_ID,
+                MDCHeaderKeys.SLF4J_SPAN_ID,
+                MDCHeaderKeys.SLF4J_TRACE_FLAGS,
+                MDCHeaderKeys.SLF4J_TRACE_STATE,
+                Span.current().getSpanContext());
         addAuditMDC();
     }
 
