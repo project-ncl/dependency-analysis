@@ -52,6 +52,8 @@ public class LookupTestIT extends AbstractRestReportsTest {
         assertEquals(200, response.getStatus());
         response = assertResponseForRequest(PATH_MAVEN_VERSIONS, "guava13Minor");
         assertEquals(200, response.getStatus());
+        response = assertResponseForRequest(PATH_MAVEN_VERSIONS, "guava13Closest");
+        assertEquals(200, response.getStatus());
     }
 
     @Test

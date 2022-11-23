@@ -8,6 +8,7 @@ import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.MavenVersionsResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
 import org.jboss.da.lookup.model.NPMVersionsResult;
+import org.jboss.da.lookup.model.VersionDistanceRule;
 import org.jboss.da.lookup.model.VersionFilter;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.NPMPackage;
@@ -20,6 +21,7 @@ public interface LookupGenerator {
     Set<MavenVersionsResult> lookupVersionsMaven(
             Set<GAV> gavs,
             VersionFilter vf,
+            VersionDistanceRule distanceRule,
             String mode,
             boolean brewPullActive,
             boolean includeBad) throws CommunicationException;
@@ -31,6 +33,7 @@ public interface LookupGenerator {
     Set<NPMVersionsResult> lookupVersionsNPM(
             Set<NPMPackage> packages,
             VersionFilter vf,
+            VersionDistanceRule distanceRule,
             String mode,
             boolean includeBad) throws CommunicationException;
 }
