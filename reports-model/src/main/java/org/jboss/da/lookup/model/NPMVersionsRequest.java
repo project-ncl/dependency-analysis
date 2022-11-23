@@ -40,12 +40,16 @@ public class NPMVersionsRequest {
     private final VersionFilter filter;
 
     @NotNull
+    @lombok.Builder.Default
+    private final VersionDistanceRule distanceRule = VersionDistanceRule.RECOMMENDED_REPLACEMENT;
+
+    @NotNull
     private final String mode;
 
     @NonNull
     private final Set<NPMPackage> packages;
 
-    @JsonProperty(defaultValue = "false")
-    private final boolean includeBad;
+    @lombok.Builder.Default
+    private final boolean includeBad = false;
 
 }

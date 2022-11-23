@@ -1,0 +1,13 @@
+{
+  "artifacts": [
+    {
+      "groupId": "com.google.guava",
+      "artifactId": "guava",
+      "version": "13.0.2"
+    }
+  ],
+  "mode": "TEMPORARY",
+  "filter": "ALL",
+  "distanceRule": "CLOSEST_BY_PARTS",
+  "brewPullActive": true
+}

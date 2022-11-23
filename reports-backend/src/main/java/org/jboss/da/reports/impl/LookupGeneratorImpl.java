@@ -11,6 +11,7 @@ import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.MavenVersionsResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
 import org.jboss.da.lookup.model.NPMVersionsResult;
+import org.jboss.da.lookup.model.VersionDistanceRule;
 import org.jboss.da.lookup.model.VersionFilter;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
@@ -82,6 +83,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
     public Set<MavenVersionsResult> lookupVersionsMaven(
             Set<GAV> gavs,
             VersionFilter vf,
+            VersionDistanceRule distanceRule,
             String mode,
             boolean brewPullActive,
             boolean includeBad) throws CommunicationException {
@@ -91,7 +93,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
                 productProvider,
                 gavs,
                 !includeBad);
-        return createVersionsResult(gavs, lookupMode, vf, productArtifacts);
+        return createVersionsResult(gavs, lookupMode, vf, distanceRule, productArtifacts);
     }
 
     @Override
@@ -115,12 +117,13 @@ public class LookupGeneratorImpl implements LookupGenerator {
     public Set<NPMVersionsResult> lookupVersionsNPM(
             Set<NPMPackage> packages,
             VersionFilter vf,
+            VersionDistanceRule distanceRule,
             String mode,
             boolean includeBad) throws CommunicationException {
         LookupMode lookupMode = getMode(mode, includeBad);
         pncProductProvider.setLookupMode(lookupMode);
         Map<String, CompletableFuture<Set<String>>> productArtifacts = getArtifactVersions(packages);
-        return createVersionsResultNpm(packages, lookupMode, vf, productArtifacts);
+        return createVersionsResultNpm(packages, lookupMode, vf, distanceRule, productArtifacts);
     }
 
     private ProductProvider setupProductProvider(boolean brewPullActive, LookupMode mode) {
@@ -184,9 +187,10 @@ public class LookupGeneratorImpl implements LookupGenerator {
             Set<GAV> gavs,
             LookupMode mode,
             VersionFilter vf,
+            VersionDistanceRule distanceRule,
             Map<GA, CompletableFuture<Set<String>>> artifactsMap) throws CommunicationException {
 
-        VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes());
+        VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes(), distanceRule);
 
         Set<CompletableFuture<MavenVersionsResult>> futures = gavs.stream()
                 .map(gav -> artifactsMap.get(gav.getGA()).thenApply(pas -> getMatchingVersions(va, vf, gav, pas)))
@@ -226,8 +230,9 @@ public class LookupGeneratorImpl implements LookupGenerator {
             Set<NPMPackage> packages,
             LookupMode mode,
             VersionFilter vf,
+            VersionDistanceRule distanceRule,
             Map<String, CompletableFuture<Set<String>>> artifactsMap) throws CommunicationException {
-        VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes());
+        VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes(), distanceRule);
 
         Set<CompletableFuture<NPMVersionsResult>> futures = packages.stream()
                 .map(pkg -> artifactsMap.get(pkg.getName()).thenApply(f -> getMatchingVersions(va, vf, pkg, f)))

@@ -40,15 +40,19 @@ public class MavenVersionsRequest {
     private final VersionFilter filter;
 
     @NotNull
+    @lombok.Builder.Default
+    private final VersionDistanceRule distanceRule = VersionDistanceRule.RECOMMENDED_REPLACEMENT;
+
+    @NotNull
     private final String mode;
 
     @NonNull
     private final Set<GAV> artifacts;
 
-    @JsonProperty(defaultValue = "false")
-    private final boolean includeBad;
+    @lombok.Builder.Default
+    private final boolean includeBad = false;
 
-    @JsonProperty(defaultValue = "false")
-    private final boolean brewPullActive;
+    @lombok.Builder.Default
+    private final boolean brewPullActive = false;
 
 }
