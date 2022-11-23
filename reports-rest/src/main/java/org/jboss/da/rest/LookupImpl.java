@@ -51,6 +51,7 @@ public class LookupImpl implements Lookup {
         Set<MavenVersionsResult> result = lookupGenerator.lookupVersionsMaven(
                 request.getArtifacts(),
                 request.getFilter(),
+                request.getDistanceRule(),
                 request.getMode(),
                 request.isBrewPullActive(),
                 request.isIncludeBad());
@@ -87,6 +88,7 @@ public class LookupImpl implements Lookup {
         Set<NPMVersionsResult> result = lookupGenerator.lookupVersionsNPM(
                 request.getPackages(),
                 request.getFilter(),
+                request.getDistanceRule(),
                 request.getMode(),
                 request.isIncludeBad());
         log.info("Request to /lookup/npm/versions completed successfully. Payload: " + request.toString());
