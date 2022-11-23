@@ -1,4 +1,4 @@
-package org.jboss.da.rest.products;
+package org.jboss.da.rest.api.v1;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;

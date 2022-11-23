@@ -1,4 +1,4 @@
-package org.jboss.da.rest.listings;
+package org.jboss.da.rest.api.v1;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
@@ -21,6 +21,7 @@ import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.listings.model.rest.SuccessResponse;
 import org.jboss.da.listings.model.rest.WLFill;
 import org.jboss.da.model.rest.ErrorMessage;
+import org.jboss.da.rest.listings.RestConvert;
 import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
 

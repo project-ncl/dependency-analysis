@@ -1,4 +1,4 @@
-package org.jboss.da.rest.api;
+package org.jboss.da.rest.api.v1;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

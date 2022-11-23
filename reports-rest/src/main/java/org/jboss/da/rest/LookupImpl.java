@@ -17,7 +17,7 @@ import org.jboss.da.lookup.model.NPMLookupResult;
 import org.jboss.da.lookup.model.NPMVersionsRequest;
 import org.jboss.da.lookup.model.NPMVersionsResult;
 import org.jboss.da.reports.api.LookupGenerator;
-import org.jboss.da.rest.api.Lookup;
+import org.jboss.da.rest.api.v1.Lookup;
 import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;

@@ -1,27 +1,21 @@
-package org.jboss.da.rest;
+package org.jboss.da.rest.api;
 
 import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Context;
-import javax.servlet.ServletConfig;
 
-import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
-import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
-import io.swagger.v3.oas.integration.OpenApiConfigurationException;
+import org.jboss.da.rest.LookupImpl;
+import org.jboss.da.rest.api.v1.Artifacts;
+import org.jboss.da.rest.api.v1.Products;
+import org.jboss.da.rest.api.v1.Reports;
+import org.jboss.da.rest.api.v1.Root;
+import org.jboss.da.rest.api.v1.SwaggerConfiguration;
 import org.jboss.da.rest.exceptions.AllExceptionsMapper;
 import org.jboss.da.rest.filter.MDCLoggingFilter;
-
-import org.jboss.da.rest.listings.Artifacts;
 import org.jboss.da.rest.listings.BlackListImpl;
-import org.jboss.da.rest.products.Products;
-import org.jboss.da.rest.reports.Reports;
 import org.jboss.pnc.pncmetrics.rest.GeneralRestMetricsFilter;
 import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 import org.jboss.pnc.pncmetrics.rest.TimedMetricFilter;
@@ -32,36 +26,7 @@ import org.jboss.pnc.pncmetrics.rest.TimedMetricFilter;
  *
  */
 @ApplicationPath("/rest/v-" + REST_API_VERSION_REPORTS)
-public class ReportsRestActivator extends Application {
-
-    @Context
-    private ServletConfig servletConfig;
-
-    @PostConstruct
-    public void init() {
-        configureSwagger();
-    }
-
-    private void configureSwagger() {
-        try {
-            new JaxrsOpenApiContextBuilder().servletConfig(servletConfig)
-                    .application(this)
-                    .resourcePackages(Collections.singleton("org.jboss.da.rest"))
-                    .buildContext(true);
-        } catch (OpenApiConfigurationException ex) {
-            throw new IllegalArgumentException("Failed to setup OpenAPI configuration", ex);
-        }
-    }
-
-    @Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> resources = new HashSet<>();
-        addSwaggerResources(resources);
-        addProjectResources(resources);
-        addMetricsResources(resources);
-        addExceptionMappers(resources);
-        return resources;
-    }
+public class ApiV1 extends AbstractApi {
 
     /**
      * Swagger classes required to generate the API JSON generation
@@ -69,7 +34,7 @@ public class ReportsRestActivator extends Application {
      * @param resources
      */
     public void addSwaggerResources(Set<Class<?>> resources) {
-        resources.add(OpenApiResource.class);
+        resources.add(SwaggerConfiguration.class);
     }
 
     /**
@@ -95,5 +60,17 @@ public class ReportsRestActivator extends Application {
 
     private void addExceptionMappers(Set<Class<?>> resources) {
         resources.add(AllExceptionsMapper.class);
+    }
+
+    @Override
+    public Set<Class<?>> getApiClasses() {
+        Set<Class<?>> resources = new HashSet<>();
+
+        addSwaggerResources(resources);
+        addProjectResources(resources);
+        addMetricsResources(resources);
+        addExceptionMappers(resources);
+
+        return resources;
     }
 }

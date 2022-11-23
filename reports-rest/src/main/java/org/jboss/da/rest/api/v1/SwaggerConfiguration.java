@@ -1,4 +1,4 @@
-package org.jboss.da.rest;
+package org.jboss.da.rest.api.v1;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;

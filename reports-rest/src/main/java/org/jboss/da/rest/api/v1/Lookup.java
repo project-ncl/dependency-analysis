@@ -1,4 +1,4 @@
-package org.jboss.da.rest.api;
+package org.jboss.da.rest.api.v1;
 
 import java.util.Set;
 import javax.ws.rs.Consumes;

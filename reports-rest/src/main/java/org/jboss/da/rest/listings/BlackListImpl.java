@@ -7,6 +7,7 @@ import org.jboss.da.listings.model.rest.ContainsResponse;
 import org.jboss.da.listings.model.rest.RestArtifact;
 import org.jboss.da.listings.model.rest.SuccessResponse;
 import org.jboss.da.model.rest.ErrorMessage;
+import org.jboss.da.rest.api.v1.BlackList;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
@@ -16,8 +17,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import org.jboss.da.rest.api.BlackList;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;

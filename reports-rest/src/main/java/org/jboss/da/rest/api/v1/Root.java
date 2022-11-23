@@ -1,4 +1,4 @@
-package org.jboss.da.rest;
+package org.jboss.da.rest.api.v1;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
