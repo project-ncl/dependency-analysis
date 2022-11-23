@@ -1,5 +1,6 @@
 package org.jboss.da.common.version;
 
+import org.jboss.da.lookup.model.VersionDistanceRule;
 import org.junit.Test;
 
 import static org.jboss.da.common.version.VersionComparator.VersionDifference.EQUAL;
@@ -90,7 +91,6 @@ public class VersionComparatorTest {
         assertTrue(vc.compare("2.2.2.Beta4", "2.2.2.Beta3") < 0);
         assertTrue(vc.compare("2.2.2.Beta3", "2.2.2.Beta1") < 0);
         assertTrue(vc.compare("2.2.2.Final", "2.2.2.Alpha") < 0);
-        assertTrue(vc.compare("2.2.2.Final", "2.2.2.Alpha") < 0);
         assertTrue(vc.compare("2.3.3.Final", "2.2.2.Alpha") < 0);
         assertTrue(vc.compare("2.2.3.Alpha", "2.2.2.Alpha") < 0);
         assertTrue(vc.compare("2.2.2.Beta3", "2.2.1.Final") < 0);
@@ -99,6 +99,99 @@ public class VersionComparatorTest {
         assertTrue(vc.compare("2.2.2.Alpha", "2.2.1.Final") < 0);
 
         vc = new VersionComparator("2.2", VERSION_PARSER);
+
+        assertTrue(vc.compare("2.2", "2.2.0") == 0);
+
+        assertTrue(vc.compare("2.2", "2.2-beta-5") < 0);
+        assertTrue(vc.compare("2.2", "2.2.0-b21") < 0);
+        assertTrue(vc.compare("2.2", "2.2.0-b10") < 0);
+        assertTrue(vc.compare("2.2", "2.2.SP4") < 0);
+        assertTrue(vc.compare("2.2", "2.2.0.SP1") < 0);
+        assertTrue(vc.compare("2.2", "2.2.Final") < 0);
+        assertTrue(vc.compare("2.2", "2.2.0.Final") < 0);
+        assertTrue(vc.compare("2.2", "2.2.0.CR1") < 0);
+
+        assertTrue(vc.compare("2.2.0", "2.2-beta-5") < 0);
+        assertTrue(vc.compare("2.2.0", "2.2.0-b21") < 0);
+        assertTrue(vc.compare("2.2.0", "2.2.0-b10") < 0);
+        assertTrue(vc.compare("2.2.0", "2.2.SP4") < 0);
+        assertTrue(vc.compare("2.2.0", "2.2.0.SP1") < 0);
+        assertTrue(vc.compare("2.2.0", "2.2.Final") < 0);
+        assertTrue(vc.compare("2.2.0", "2.2.0.Final") < 0);
+        assertTrue(vc.compare("2.2.0", "2.2.0.CR1") < 0);
+
+        assertTrue(vc.compare("2.2.0.b21", "2.2.0.b10") < 0);
+        assertTrue(vc.compare("2.2.0.SP4", "2.2.0.b21") < 0);
+        assertTrue(vc.compare("2.2.0.Final", "2.2.0.SP4") > 0); // Too difficult to implement correctly - the list of
+                                                                // special
+                                                                // qualifiers (like Final, GA, ...) would be needed
+        assertTrue(vc.compare("2.2.0.Final", "2.2.0.CR1") < 0);
+        assertTrue(vc.compare("2.2.0.GA", "2.2.0.SP4") > 0); // Too difficult to implement correctly
+        assertTrue(vc.compare("2.2.0.GA", "2.2.0.CR1") < 0);
+        assertTrue(vc.compare("2.2.0.MR1", "2.2.0.SP4") > 0); // Too difficult to implement correctly
+        assertTrue(vc.compare("2.2.0.MR1", "2.2.0.CR1") < 0);
+    }
+
+    @Test
+    public void testBaseVersionWithClosestByPartsRule() {
+        VersionComparator vc = new VersionComparator("2.0.0", VersionDistanceRule.CLOSEST_BY_PARTS, VERSION_PARSER);
+
+        assertTrue(vc.compare("2.0.1", "3.0.0") < 0); // Rule 1 - less different parts
+        assertTrue(vc.compare("3.0.0", "4.0.0") < 0); // Rule 2a - lesser difference in differing part
+        assertTrue(vc.compare("3.0.0", "1.0.0") < 0); // Rule 2b - same difference in differing part, but higher
+        assertTrue(vc.compare("3.0.0", "3.0.1") < 0); // Rule 3 - closer to base by order
+        assertTrue(vc.compare("1.0.1", "1.0.0") < 0); // Rule 3 - closer to base by order
+
+        vc = new VersionComparator("3.4.2.Final", VersionDistanceRule.CLOSEST_BY_PARTS, VERSION_PARSER);
+
+        assertTrue(vc.compare("3.4.3.Final", "3.4.4.Final") < 0);
+        assertTrue(vc.compare("3.4.3.Final", "3.4.1.Final") < 0);
+        assertTrue(vc.compare("3.4.4.Final", "3.4.1.Final") > 0); // 1 is close to 2 then 4
+        assertTrue(vc.compare("3.4.99.Final", "3.5.0.Final") < 0);
+        assertTrue(vc.compare("3.4.3.Final", "3.4.3.Alpha") < 0);
+        assertTrue(vc.compare("3.4.3.Beta", "3.4.3.Alpha") < 0);
+        assertTrue(vc.compare("3.4.3.Final", "3.4.2.CR1") > 0); // Right one matches in micro
+        assertTrue(vc.compare("3.5.0.Final", "3.4.2.Beta") > 0); // Right one matches in minor
+        assertTrue(vc.compare("3.4.2.Alpha", "4.2.3.Final") < 0);
+        assertTrue(vc.compare("3.4.4.Final", "4.4.1.Final") < 0);
+        assertTrue(vc.compare("3.4.2.Alpha", "4.4.1.Final") < 0);
+
+        vc = new VersionComparator("2.2.2.Beta2", VersionDistanceRule.CLOSEST_BY_PARTS, VERSION_PARSER);
+
+        assertTrue(vc.compare("2.2.2.Beta4", "2.2.2.Beta3") < 0);
+        assertTrue(vc.compare("2.2.2.Beta3", "2.2.2.Beta1") < 0);
+        assertTrue(vc.compare("2.2.2.Final", "2.2.2.Alpha") < 0);
+        assertTrue(vc.compare("2.3.3.Final", "2.2.2.Alpha") > 0); // Right one matches in minor
+        assertTrue(vc.compare("2.2.3.Alpha", "2.2.2.Alpha") > 0); // Right one matches in micro
+        assertTrue(vc.compare("2.2.2.Beta3", "2.2.1.Final") < 0);
+        assertTrue(vc.compare("2.2.2.CR1", "2.2.1.Final") < 0);
+        assertTrue(vc.compare("2.2.2.Final", "2.2.1.Final") < 0);
+        assertTrue(vc.compare("2.2.2.Alpha", "2.2.1.Final") < 0);
+
+        assertTrue(vc.compare("3.3.3.Final", "3.3.3.Final") == 0);
+        assertTrue(vc.compare("3.3.3.Final", "3.3.3.Alpha") < 0);
+        assertTrue(vc.compare("3.3.2.Final", "3.3.3.Final") < 0);
+        assertTrue(vc.compare("3.3.0.Final", "3.3.2.Final") < 0);
+        assertTrue(vc.compare("3.3.1.Final", "3.3.3.Final") < 0);
+        assertTrue(vc.compare("3.3.0.Final", "3.3.0.Final") == 0);
+        assertTrue(vc.compare("3.2.0.Final", "3.3.0.Final") < 0);
+        assertTrue(vc.compare("3.0.0.Final", "3.3.0.Final") < 0);
+        assertTrue(vc.compare("3.1.0.Final", "3.3.0.Final") < 0);
+        assertTrue(vc.compare("13.0.0.Final", "13.0.0.Final") == 0);
+        assertTrue(vc.compare("12.0.0.Final", "13.0.0.Final") < 0);
+        assertTrue(vc.compare("2.0.0.Final", "13.0.0.Final") < 0);
+        assertTrue(vc.compare("1.0.0.Final", "3.0.0.Final") > 0);
+        assertTrue(vc.compare("1.1.1.Final", "1.1.1.Final") == 0);
+        assertTrue(vc.compare("1.1.1.Final", "1.1.1.Alpha") < 0);
+        assertTrue(vc.compare("1.1.1.Final", "1.1.2.Final") > 0);
+        assertTrue(vc.compare("1.1.1.Final", "1.1.3.Final") > 0);
+        assertTrue(vc.compare("1.1.1.Final", "1.1.4.Final") > 0);
+        assertTrue(vc.compare("1.1.0.Final", "1.1.0.Final") == 0);
+        assertTrue(vc.compare("1.1.0.Final", "1.2.0.Final") > 0);
+        assertTrue(vc.compare("1.1.0.Final", "1.3.0.Final") > 0);
+        assertTrue(vc.compare("1.1.0.Final", "1.4.0.Final") > 0);
+
+        vc = new VersionComparator("2.2", VersionDistanceRule.CLOSEST_BY_PARTS, VERSION_PARSER);
 
         assertTrue(vc.compare("2.2", "2.2.0") == 0);
 

@@ -15,6 +15,7 @@
  */
 package org.jboss.da.common.version;
 
+import org.jboss.da.lookup.model.VersionDistanceRule;
 import org.jboss.da.lookup.model.VersionFilter;
 
 import java.util.ArrayList;
@@ -57,20 +58,26 @@ public class VersionAnalyzer {
 
     private final VersionParser versionParser;
     private final List<String> suffixes = new ArrayList<>();
+    private final VersionDistanceRule distanceRule;
 
     public VersionAnalyzer(List<String> suffixes) {
+        this(suffixes, VersionDistanceRule.RECOMMENDED_REPLACEMENT);
+    }
+
+    public VersionAnalyzer(List<String> suffixes, VersionDistanceRule distanceRule) {
         this.suffixes.addAll(suffixes);
         this.versionParser = new VersionParser(suffixes);
+        this.distanceRule = Objects.requireNonNull(distanceRule);
     }
 
     public List<String> sortVersions(String querry, Collection<String> versions) {
-        VersionComparator comparator = new VersionComparator(querry, versionParser);
+        VersionComparator comparator = new VersionComparator(querry, distanceRule, versionParser);
         List<String> sortedVersions = versions.stream().sorted(comparator).distinct().collect(Collectors.toList());
         return sortedVersions;
     }
 
     public List<String> filterVersions(String query, VersionFilter vf, Collection<String> versions) {
-        VersionComparator vc = new VersionComparator(query, versionParser);
+        VersionComparator vc = new VersionComparator(query, distanceRule, versionParser);
 
         return versions.stream()
                 .map(versionParser::parseSuffixed)
