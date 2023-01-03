@@ -110,7 +110,7 @@ public class PncConnectorImpl implements PncConnector {
         builder.host(host);
         builder.port(port == -1 ? null : port);
 
-        builder.mdcToHeadersMappings(MDCUtils.getMDCToHeaderMappings());
+        builder.mdcToHeadersMappings(MDCUtils.HEADER_KEY_MAPPING);
 
         Configuration config = builder.build();
         return config;
