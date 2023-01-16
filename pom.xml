@@ -107,7 +107,7 @@
         <corsUrlPattern>/*</corsUrlPattern>
 
         <!-- OTEL Dependencies for Instrumentation -->
-        <version.io.opentelemetry.instrumentation>1.19.2</version.io.opentelemetry.instrumentation>
+        <version.io.opentelemetry.instrumentation>1.22.0</version.io.opentelemetry.instrumentation>
     <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
     <tagSuffix />
     </properties>
@@ -342,7 +342,7 @@
             <dependency>
                 <groupId>io.opentelemetry.instrumentation</groupId>
                 <artifactId>opentelemetry-instrumentation-annotations</artifactId>
-                <version>${version.io.opentelemetry.instrumentation}-alpha</version>
+                <version>${version.io.opentelemetry.instrumentation}</version>
             </dependency>
 
             <!-- Test dependencies -->
