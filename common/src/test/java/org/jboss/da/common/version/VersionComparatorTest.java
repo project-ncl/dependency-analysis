@@ -138,6 +138,7 @@ public class VersionComparatorTest {
 
         assertTrue(vc.compare("2.0.1", "3.0.0") < 0); // Rule 1 - less different parts
         assertTrue(vc.compare("3.0.0", "4.0.0") < 0); // Rule 2a - lesser difference in differing part
+        assertTrue(vc.compare("1.0.0", "0.0.0") < 0);
         assertTrue(vc.compare("3.0.0", "1.0.0") < 0); // Rule 2b - same difference in differing part, but higher
         assertTrue(vc.compare("3.0.0", "3.0.1") < 0); // Rule 3 - closer to base by order
         assertTrue(vc.compare("1.0.1", "1.0.0") < 0); // Rule 3 - closer to base by order
@@ -267,5 +268,21 @@ public class VersionComparatorTest {
         assertEquals(RH_SUFFIX, vc.difference("3.4.2.redhat-1", "3.4.2.redhat-2"));
 
         assertEquals(QUALIFIER, vc.difference("1.1.0.SP18-redhat-1", "1.1.0.SP17-redhat-1")); // NCL-3208
+    }
+
+    @Test
+    public void testBaseVersionWithClosestByPartsRuleReproduceNCLSUP898() {
+        VersionComparator vc = new VersionComparator(
+                "8.34.0.Final",
+                VersionDistanceRule.CLOSEST_BY_PARTS,
+                VERSION_PARSER);
+
+        assertTrue(vc.compare("8.24.1.Beta-redhat-00006", "8.24.1.Beta-redhat-00005") < 0);
+        assertTrue(vc.compare("8.24.1.Beta-redhat-00006", "8.24.0.Beta-redhat-00004") < 0);
+        assertTrue(vc.compare("8.27.0.Beta-redhat-00005", "8.24.1.Beta-redhat-00006") < 0);
+        assertTrue(vc.compare("8.32.0.Final-redhat-00004", "8.24.1.Beta-redhat-00006") < 0);
+        assertTrue(vc.compare("8.33.0.Final-redhat-00003", "8.24.1.Beta-redhat-00006") < 0);
+        assertTrue(vc.compare("8.24.1.Beta-redhat-00006", "6.5.0.Final-redhat-27") < 0);
+
     }
 }

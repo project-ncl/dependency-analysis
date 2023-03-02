@@ -272,6 +272,6 @@ public class VersionComparator implements Comparator<String>, Serializable {
                 return 1;
             }
         }
-        return v1 - v2;
+        return v1diff - v2diff;
     }
 }
