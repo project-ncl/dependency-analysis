@@ -17,6 +17,7 @@ import java.util.NoSuchElementException;
 
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.COMMUNICATION_FAIL;
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.ILLEGAL_ARGUMENTS;
+import static org.jboss.da.model.rest.ErrorMessage.ErrorType.INPUT_VALIDATION;
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.NO_RELATIONSHIP_FOUND;
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.POM_ANALYSIS;
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.SCM_ENDPOINT;
@@ -30,6 +31,8 @@ public class AllExceptionsMapper implements ExceptionMapper<Exception> {
     public Response toResponse(Exception e) {
         if (e instanceof ValidationException) { // order of tests is important
             return ((ValidationException) e).getResponse();
+        } else if (e instanceof org.jboss.pnc.common.alignment.ranking.exception.ValidationException) {
+            return handleException("Constraint validation failed.", INPUT_VALIDATION, Response.Status.BAD_REQUEST, e);
         } else if (e instanceof NoSuchElementException) {
             return handleException("No relationship found", NO_RELATIONSHIP_FOUND, Response.Status.NOT_FOUND, e);
         } else if (e instanceof RepositoryException) {

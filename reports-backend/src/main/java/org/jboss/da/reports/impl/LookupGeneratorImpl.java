@@ -1,6 +1,8 @@
 package org.jboss.da.reports.impl;
 
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.CompiledConstraints;
+import org.jboss.da.common.CompiledGAVConstraints;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
@@ -13,6 +15,7 @@ import org.jboss.da.lookup.model.NPMLookupResult;
 import org.jboss.da.lookup.model.NPMVersionsResult;
 import org.jboss.da.lookup.model.VersionDistanceRule;
 import org.jboss.da.lookup.model.VersionFilter;
+import org.jboss.da.model.rest.Constraints;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.NPMPackage;
@@ -24,6 +27,13 @@ import org.jboss.da.products.impl.AggregatedProductProvider;
 import org.jboss.da.products.impl.PncProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.reports.api.LookupGenerator;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
+import org.jboss.pnc.common.alignment.ranking.AlignmentPredicate;
+import org.jboss.pnc.common.alignment.ranking.AlignmentRanking;
+import org.jboss.pnc.common.alignment.ranking.exception.ValidationException;
+import org.jboss.pnc.common.alignment.ranking.tokenizer.QualifierToken;
+import org.jboss.pnc.common.alignment.ranking.tokenizer.Token;
+import org.jboss.pnc.dto.requests.QValue;
 import org.jboss.pnc.enums.ArtifactQuality;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -73,12 +83,42 @@ public class LookupGeneratorImpl implements LookupGenerator {
     }
 
     @Override
-    public Set<MavenLookupResult> lookupBestMatchMaven(Set<GAV> gavs, String mode, boolean brewPullActive)
-            throws CommunicationException {
+    public Set<MavenLookupResult> lookupBestMatchMaven(
+            Set<GAV> gavs,
+            String mode,
+            boolean brewPullActive,
+            Set<Constraints> constraints) throws CommunicationException, ValidationException {
         LookupMode lookupMode = getMode(mode, false);
-        ProductProvider productProvider = setupProductProvider(brewPullActive, lookupMode);
-        Map<GA, CompletableFuture<Set<String>>> productArtifacts = getArtifactVersions(productProvider, gavs, true);
-        return createLookupResult(gavs, lookupMode, productArtifacts);
+        Set<CompiledGAVConstraints> compiledConstraints = compileMavenConstraints(constraints);
+
+        ProductProvider productProvider = setupProductProvider(
+                brewPullActive,
+                lookupMode,
+                extractQualifiers(compiledConstraints));
+        Map<GA, CompletableFuture<Set<Version>>> productArtifacts = getArtifactVersions(productProvider, gavs, true);
+        return createLookupResult(gavs, lookupMode, productArtifacts, compiledConstraints);
+    }
+
+    private static Set<CompiledGAVConstraints> compileMavenConstraints(Set<Constraints> constraints) {
+        return constraints == null ? Set.of()
+                : constraints.stream().map(CompiledGAVConstraints::from).collect(Collectors.toSet());
+    }
+
+    private static Set<QValue> extractQualifiers(Set<? extends CompiledConstraints<?>> constraints) {
+        Set<Token> allTokens = new HashSet<>();
+        for (var constraint : constraints) {
+            AlignmentRanking ranks = constraint.getRanks();
+            AlignmentPredicate allow = constraint.getAllowList();
+            AlignmentPredicate deny = constraint.getDenyList();
+            allTokens.addAll(ranks.getRanksAsTokens().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
+            allTokens.addAll(allow.getTokens());
+            allTokens.addAll(deny.getTokens());
+        }
+        return allTokens.stream()
+                .filter(token -> token instanceof QualifierToken)
+                .map(token -> (QualifierToken) token)
+                .map(qToken -> QValue.valueOf(qToken.toString()))
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -107,7 +147,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
     }
 
     @Override
-    public Set<NPMLookupResult> lookupBestMatchNPM(Set<NPMPackage> packages, String mode)
+    public Set<NPMLookupResult> lookupBestMatchNPM(Set<NPMPackage> packages, String mode, Set<Constraints> constraints)
             throws CommunicationException {
         LookupMode lookupMode = getMode(mode, false);
         pncProductProvider.setLookupMode(lookupMode);
@@ -128,8 +168,9 @@ public class LookupGeneratorImpl implements LookupGenerator {
         return createVersionsResultNpm(packages, lookupMode, vf, distanceRule, productArtifacts);
     }
 
-    private ProductProvider setupProductProvider(boolean brewPullActive, LookupMode mode) {
+    private ProductProvider setupProductProvider(boolean brewPullActive, LookupMode mode, Set<QValue> qualifiers) {
         pncProductProvider.setLookupMode(mode);
+        pncProductProvider.setQualifiers(qualifiers);
         if (brewPullActive) {
             repositoryProductProvider.setLookupMode(mode);
             return aggProductProvider;
@@ -176,15 +217,47 @@ public class LookupGeneratorImpl implements LookupGenerator {
     private Set<MavenLookupResult> createLookupResult(
             Set<GAV> gavs,
             LookupMode mode,
-            Map<GA, CompletableFuture<Set<String>>> artifactsMap) throws CommunicationException {
+            Map<GA, CompletableFuture<Set<Version>>> artifactsMap,
+            Set<CompiledGAVConstraints> compiledConstraints) throws CommunicationException {
 
-        VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes());
+        Map<CompiledConstraints<GAV>, VersionAnalyzer> vas = compiledConstraints.stream()
+                .collect(Collectors.toMap(Function.identity(), con -> new VersionAnalyzer(mode.getSuffixes(), con)));
+        VersionAnalyzer def = new VersionAnalyzer(mode.getSuffixes(), CompiledConstraints.none());
 
         Set<CompletableFuture<MavenLookupResult>> futures = gavs.stream()
-                .map(gav -> artifactsMap.get(gav.getGA()).thenApply(pas -> getLookupResult(va, gav, pas)))
+                .map(
+                        gav -> artifactsMap.get(gav.getGA())
+                                .thenApply(pas -> getLookupResult(chooseVa(gav, vas, def), gav, pas)))
                 .collect(Collectors.toSet());
 
         return joinFutures(futures);
+    }
+
+    /**
+     * Returns VersionAnalyzer with the closest match based on artifact. If map is empty or there was no match
+     * (matchSignificance is 0), return a default VersionAnalyzer.
+     *
+     * @param artifact an artifact (GAV or NPM)
+     * @param vas Map of Constraints and VAs
+     * @param def default VA to return
+     * @return closest VA or default VA on empty map or no match
+     * @param <T> GAV or NPM
+     */
+    private <T> VersionAnalyzer chooseVa(
+            T artifact,
+            Map<CompiledConstraints<T>, VersionAnalyzer> vas,
+            VersionAnalyzer def) {
+        var max = vas.keySet().stream().max((cc1, cc2) -> {
+            int sim1 = cc1.matchSignificance(artifact);
+            int sim2 = cc2.matchSignificance(artifact);
+            return Integer.compare(sim1, sim2);
+        });
+
+        if (max.isPresent() && max.get().matchSignificance(artifact) != 0) {
+            return vas.get(max.get());
+        }
+
+        return def;
     }
 
     private Set<MavenVersionsResult> createVersionsResult(
@@ -197,7 +270,8 @@ public class LookupGeneratorImpl implements LookupGenerator {
         VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes(), distanceRule);
 
         Set<CompletableFuture<MavenVersionsResult>> futures = gavs.stream()
-                .map(gav -> artifactsMap.get(gav.getGA())
+                .map(
+                        gav -> artifactsMap.get(gav.getGA())
                                 .thenApply(pas -> pas.stream().map(Version::getVersion).collect(Collectors.toSet()))
                                 .thenApply(pas -> getMatchingVersions(va, vf, gav, pas)))
                 .collect(Collectors.toSet());
@@ -241,16 +315,16 @@ public class LookupGeneratorImpl implements LookupGenerator {
         VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes(), distanceRule);
 
         Set<CompletableFuture<NPMVersionsResult>> futures = packages.stream()
-                .map(pkg -> artifactsMap.get(pkg.getName())
+                .map(
+                        pkg -> artifactsMap.get(pkg.getName())
                                 .thenApply(f -> f.stream().map(Version::getVersion).collect(Collectors.toSet()))
-                                .thenApply(f -> getMatchingVersions(va, vf,pkg,f)))
+                                .thenApply(f -> getMatchingVersions(va, vf, pkg, f)))
                 .collect(Collectors.toSet());
 
         return joinFutures(futures);
     }
 
     private MavenLookupResult getLookupResult(VersionAnalyzer va, GAV gav, Set<Version> versions) {
-        // TODO here will be the version stuffs
         Optional<String> bmv = va.findBiggestMatchingVersion(gav.getVersion(), versions);
         return new MavenLookupResult(gav, bmv.orElse(null));
     }
