@@ -4,6 +4,8 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.PncConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.products.impl.PncProductProvider.Pnc;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
+import org.jboss.pnc.dto.requests.QValue;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -33,6 +35,17 @@ public class PncProductProvider extends AbstractProductProvider {
 
     @Inject
     private PncConnector pncConnector;
+
+    private Set<QValue> qualifiers = Set.of();
+
+    /**
+     * Sets what qualifiers should be retrieved from PNC on a request.
+     *
+     * @param qualifiers to fetch
+     */
+    public void setQualifiers(Set<QValue> qualifiers) {
+        this.qualifiers = qualifiers;
+    }
 
     @Override
     Stream<Version> getVersionsStreamMaven(GA ga) {
