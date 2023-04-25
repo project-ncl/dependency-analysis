@@ -1,6 +1,7 @@
 package org.jboss.da.products.api;
 
 import org.jboss.da.listings.model.ProductSupportStatus;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 
 import java.util.Map;
 import java.util.Set;
@@ -72,7 +73,7 @@ public interface ProductProvider {
      * @param artifact artifact which name and type will be used for searching.
      * @return Set of products and their artifacts versions.
      */
-    CompletableFuture<Map<Product, Set<String>>> getVersions(Artifact artifact);
+    CompletableFuture<Map<Product, Set<Version>>> getVersions(Artifact artifact);
 
     /**
      * Get all artifacts versions with the same name and type as given artifact regardless if they are from product or
@@ -81,5 +82,5 @@ public interface ProductProvider {
      * @param artifact artifact which name and type will be used for searching.
      * @return Set of artifacts versions.
      */
-    CompletableFuture<Set<String>> getAllVersions(Artifact artifact);
+    CompletableFuture<Set<Version>> getAllVersions(Artifact artifact);
 }

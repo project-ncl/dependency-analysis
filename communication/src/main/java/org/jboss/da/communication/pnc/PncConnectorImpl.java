@@ -5,11 +5,13 @@ import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 import org.jboss.pnc.client.ArtifactClient;
 import org.jboss.pnc.client.Configuration;
 import org.jboss.pnc.client.RemoteCollection;
 import org.jboss.pnc.client.RemoteResourceException;
 import org.jboss.pnc.common.logging.MDCUtils;
+import org.jboss.pnc.dto.requests.QValue;
 import org.jboss.pnc.dto.response.ArtifactInfo;
 import org.jboss.pnc.enums.RepositoryType;
 import org.slf4j.Logger;
@@ -20,8 +22,8 @@ import javax.inject.Inject;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:pkocandr@redhat.com">Petr Kocandrle</a>
@@ -43,16 +45,29 @@ public class PncConnectorImpl implements PncConnector {
         }
     }
 
-    private Collection<ArtifactInfo> getArtifacts(String identifierPattern, RepositoryType repoType, LookupMode mode)
-            throws RepositoryException {
+    private Collection<ArtifactInfo> getArtifacts(
+            String identifierPattern,
+            RepositoryType repoType,
+            LookupMode mode,
+            Set<QValue> qualifiers) throws RepositoryException {
         ArtifactClient artifactClient = getArtifactClient();
         RemoteCollection<ArtifactInfo> artCollection;
         try {
-            artCollection = artifactClient.getAllFiltered(
-                    identifierPattern,
-                    mode.getArtifactQualities(),
-                    repoType,
-                    mode.getBuildCategories());
+            if (qualifiers.isEmpty()) {
+                artCollection = artifactClient.getAllFiltered(
+                        identifierPattern,
+                        mode.getArtifactQualities(),
+                        repoType,
+                        mode.getBuildCategories(),
+                        null);
+            } else {
+                artCollection = artifactClient.getAllFiltered(
+                        identifierPattern,
+                        mode.getArtifactQualities(),
+                        repoType,
+                        mode.getBuildCategories(),
+                        qualifiers);
+            }
         } catch (RemoteResourceException ex) {
             log.debug("Error when reading artifacts from PNC: " + ex, ex);
             throw new RepositoryException("Error when reading artifacts from PNC: " + ex, ex);
@@ -61,36 +76,36 @@ public class PncConnectorImpl implements PncConnector {
     }
 
     @Override
-    public List<String> getMavenVersions(GA ga, LookupMode mode) throws RepositoryException {
+    public List<Version> getMavenVersions(GA ga, LookupMode mode, Set<QValue> qualifiers) throws RepositoryException {
         String identifierPattern = ga.getGroupId() + ':' + ga.getArtifactId() + ":pom:*";
-        Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.MAVEN, mode);
+        Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.MAVEN, mode, qualifiers);
 
-        List<String> versions = new ArrayList<>(arts.size());
+        List<Version> versions = new ArrayList<>(arts.size());
         for (ArtifactInfo art : arts) {
             String[] parts = art.getIdentifier().split(":");
             if (parts.length == 4) {
                 // TODO filtering by target repository if necessary
-                versions.add(parts[3]);
-            } else {
-                log.error("Cannot read version for artifact with identifier %s", art.getIdentifier());
+                versions.add(new Version(parts[3], art.getQualifiers()));
+                log.error("Cannot read version for artifact with identifier {}", art.getIdentifier());
             }
         }
         return versions;
     }
 
     @Override
-    public List<String> getNpmVersions(String packageName, LookupMode mode) throws RepositoryException {
+    public List<Version> getNpmVersions(String packageName, LookupMode mode, Set<QValue> qualifiers)
+            throws RepositoryException {
         String identifierPattern = packageName + ":*";
-        Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.NPM, mode);
+        Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.NPM, mode, qualifiers);
 
-        List<String> versions = new ArrayList<>(arts.size());
+        List<Version> versions = new ArrayList<>(arts.size());
         for (ArtifactInfo art : arts) {
             String[] parts = art.getIdentifier().split(":");
             if (parts.length == 2) {
                 // TODO filtering by target repository if necessary
-                versions.add(parts[1]);
+                versions.add(new Version(parts[1], art.getQualifiers()));
             } else {
-                log.error("Cannot read version for artifact with identifier %s", art.getIdentifier());
+                log.error("Cannot read version for artifact with identifier {}", art.getIdentifier());
             }
         }
         return versions;

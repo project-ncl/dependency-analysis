@@ -23,6 +23,8 @@ import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
+import org.jboss.pnc.dto.requests.QValue;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
@@ -109,19 +111,20 @@ public abstract class AbstractProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Map<Product, Set<String>>> getVersions(Artifact artifact) {
+    public CompletableFuture<Map<Product, Set<Version>>> getVersions(Artifact artifact) {
         switch (artifact.getType()) {
             case MAVEN: {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
-                CompletableFuture<Set<String>> versions = supplyAsync(
-                        () -> getVersionsStreamMaven(ga).filter(v -> versionParser.parse(v).isSuffixed())
+                CompletableFuture<Set<Version>> versions = supplyAsync(
+                        () -> getVersionsStreamMaven(ga).filter(v -> versionParser.parse(v.getVersion()).isSuffixed())
                                 .distinct()
                                 .collect(Collectors.toSet()));
                 return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN, rv));
             }
             case NPM: {
-                CompletableFuture<Set<String>> versions = supplyAsync(
-                        () -> getVersionsStreamNPM(artifact.getName()).filter(v -> versionParser.parse(v).isSuffixed())
+                CompletableFuture<Set<Version>> versions = supplyAsync(
+                        () -> getVersionsStreamNPM(artifact.getName())
+                                .filter(v -> versionParser.parse(v.getVersion()).isSuffixed())
                                 .distinct()
                                 .collect(Collectors.toSet()));
                 return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN, rv));
@@ -133,7 +136,7 @@ public abstract class AbstractProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Set<String>> getAllVersions(Artifact artifact) {
+    public CompletableFuture<Set<Version>> getAllVersions(Artifact artifact) {
         switch (artifact.getType()) {
             case MAVEN: {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
@@ -164,7 +167,8 @@ public abstract class AbstractProductProvider implements ProductProvider {
     }
 
     private Set<ProductArtifacts> getArtifactsMaven(GA ga) {
-        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga).filter(v -> versionParser.parse(v).isSuffixed())
+        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga).map(Version::getVersion)
+                .filter(v -> versionParser.parse(v).isSuffixed())
                 .distinct()
                 .map(x -> new GAV(ga, x))
                 .map(MavenArtifact::new)
@@ -178,7 +182,7 @@ public abstract class AbstractProductProvider implements ProductProvider {
     private Set<ProductArtifacts> getArtifactsNPM(String name) {
         Set<Artifact> allArtifacts = getVersionsStreamNPM(name).filter(v -> versionParser.parse(v).isSuffixed())
                 .distinct()
-                .map(v -> new NPMArtifact(name, v))
+                .map(v -> new NPMArtifact(name, v.getVersion()))
                 .collect(Collectors.toSet());
         if (allArtifacts.isEmpty()) {
             return Collections.emptySet();
@@ -186,8 +190,8 @@ public abstract class AbstractProductProvider implements ProductProvider {
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, allArtifacts));
     }
 
-    abstract Stream<String> getVersionsStreamMaven(GA ga);
+    abstract Stream<Version> getVersionsStreamMaven(GA ga);
 
-    abstract Stream<String> getVersionsStreamNPM(String name);
+    abstract Stream<Version> getVersionsStreamNPM(String name);
 
 }

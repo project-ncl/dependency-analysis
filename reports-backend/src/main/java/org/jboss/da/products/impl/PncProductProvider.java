@@ -14,6 +14,7 @@ import javax.inject.Qualifier;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static java.lang.annotation.ElementType.FIELD;
@@ -34,15 +35,15 @@ public class PncProductProvider extends AbstractProductProvider {
     private PncConnector pncConnector;
 
     @Override
-    Stream<String> getVersionsStreamMaven(GA ga) {
+    Stream<Version> getVersionsStreamMaven(GA ga) {
         if (!ga.isValid()) {
             userLog.warn("Received nonvalid GA " + ga + ", using empty list of versions.");
             log.warn("Received nonvalid GA: " + ga);
             return Stream.empty();
         }
         try {
-            List<String> versionsOfGA;
-            versionsOfGA = pncConnector.getMavenVersions(ga, mode);
+            List<Version> versionsOfGA;
+            versionsOfGA = pncConnector.getMavenVersions(ga, mode, qualifiers);
             log.debug("Got versions of " + ga + " from PNC: " + versionsOfGA);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
@@ -51,10 +52,10 @@ public class PncProductProvider extends AbstractProductProvider {
     }
 
     @Override
-    Stream<String> getVersionsStreamNPM(String name) {
+    Stream<Version> getVersionsStreamNPM(String name) {
         try {
-            List<String> versionsOfGA;
-            versionsOfGA = pncConnector.getNpmVersions(name, mode);
+            List<Version> versionsOfGA;
+            versionsOfGA = pncConnector.getNpmVersions(name, mode, qualifiers);
             log.debug("Got versions of " + name + " from PNC: " + versionsOfGA);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {

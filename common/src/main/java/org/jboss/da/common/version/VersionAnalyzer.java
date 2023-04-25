@@ -94,7 +94,7 @@ public class VersionAnalyzer {
         return ALLOWED_DIFFERENCE.get(vf).contains(difference);
     }
 
-    public Optional<String> findBiggestMatchingVersion(String query, Collection<String> versions) {
+    public Optional<String> findBiggestMatchingVersion(String query, Collection<Version> versions) {
         String unsuffixedQuery = versionParser.parse(query).unsuffixedVesion();
 
         List<SuffixedVersion> candidateSuffixedVersions = versions.stream()
