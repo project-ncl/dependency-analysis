@@ -14,6 +14,7 @@ import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.DatabaseProductProvider.Database;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 
 import javax.inject.Inject;
 import javax.inject.Qualifier;
@@ -93,7 +94,7 @@ public class DatabaseProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Map<Product, Set<String>>> getVersions(Artifact artifact) {
+    public CompletableFuture<Map<Product, Set<Version>>> getVersions(Artifact artifact) {
         if (artifact.getType() != ArtifactType.MAVEN) {
             return CompletableFuture.completedFuture(Collections.emptyMap());
         }
@@ -106,11 +107,12 @@ public class DatabaseProductProvider implements ProductProvider {
                                         x -> x.getArtifacts()
                                                 .stream()
                                                 .map(Artifact::getVersion)
+                                                .map(Version::new)
                                                 .collect(Collectors.toSet()))));
     }
 
     @Override
-    public CompletableFuture<Set<String>> getAllVersions(Artifact artifact) {
+    public CompletableFuture<Set<Version>> getAllVersions(Artifact artifact) {
         if (artifact.getType() != ArtifactType.MAVEN) {
             return CompletableFuture.completedFuture(Collections.emptySet());
         }
@@ -119,6 +121,7 @@ public class DatabaseProductProvider implements ProductProvider {
                 () -> getArtifacts(ga.getGroupId(), ga.getArtifactId(), Optional.empty()).stream()
                         .flatMap(a -> a.getArtifacts().stream())
                         .map(Artifact::getVersion)
+                        .map(Version::new)
                         .collect(Collectors.toSet()));
     }
 

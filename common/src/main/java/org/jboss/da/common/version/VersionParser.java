@@ -1,6 +1,6 @@
 package org.jboss.da.common.version;
 
-import org.commonjava.maven.ext.manip.impl.Version;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -46,7 +46,32 @@ public class VersionParser {
     }
 
     public static SuffixedVersion parseUnsuffixed(String version) {
-        return parseVersion(UNSUFFIXED_PATTERN.matcher(version), version);
+        return parseVersion(UNSUFFIXED_PATTERN.matcher(version), new Version(version));
+    }
+
+    /**
+     * Parses the version string and returns the normalized version.
+     *
+     * @see #parse(Version) for details
+     * @param version the original string version
+     * @return The normalized version
+     */
+    public SuffixedVersion parse(String version) {
+        return parse(new Version(version));
+    }
+
+    public static SuffixedVersion parseUnsuffixed(Version version) {
+        return parseVersion(UNSUFFIXED_PATTERN.matcher(version.getVersion()), version);
+    }
+
+    /**
+     * Returns suffixed versions that can be parsed from the provided version string.
+     *
+     * @param version The version string to parse
+     * @return Set of suffixed versions parsable from the version string.
+     */
+    public Set<SuffixedVersion> parseSuffixed(String version) {
+        return parseSuffixed(new Version(version));
     }
 
     /**
@@ -54,13 +79,13 @@ public class VersionParser {
      * any of the suffixes (ore none) the normalized version is the one with the longest suffix (or in other words with
      * shortest version string after removing the suffix).
      *
-     * @param version The original version string.
+     * @param versionWithMeta The original version string with metadata.
      * @return The normalized version
      */
-    public SuffixedVersion parse(String version) {
-        SuffixedVersion normalized = parseUnsuffixed(version);
+    public SuffixedVersion parse(Version versionWithMeta) {
+        SuffixedVersion normalized = parseUnsuffixed(versionWithMeta);
         int length = normalized.getQualifier().length();
-        for (SuffixedVersion suffixedVersion : parseSuffixed(version)) {
+        for (SuffixedVersion suffixedVersion : parseSuffixed(versionWithMeta)) {
             if (suffixedVersion.getQualifier().length() < length) {
                 normalized = suffixedVersion;
                 length = suffixedVersion.getQualifier().length();
@@ -72,15 +97,18 @@ public class VersionParser {
     /**
      * Returns suffixed versions that can be parsed from the provided version string.
      *
-     * @param version The version string to parse
+     * @param versionWithMeta The version to parse
      * @return Set of suffixed versions parsable from the version string.
      */
-    public Set<SuffixedVersion> parseSuffixed(String version) {
+    public Set<SuffixedVersion> parseSuffixed(Version versionWithMeta) {
         Set<SuffixedVersion> ret = new HashSet<>();
         for (Map.Entry<String, Pattern> entry : versionPatterns.entrySet()) {
             String suffix = entry.getKey();
             Pattern versionPattern = entry.getValue();
-            SuffixedVersion suffixedVersion = parseVersion(versionPattern.matcher(version), version, suffix);
+            SuffixedVersion suffixedVersion = parseVersion(
+                    versionPattern.matcher(versionWithMeta.getVersion()),
+                    versionWithMeta,
+                    suffix);
             if (suffixedVersion.isSuffixed()) {
                 ret.add(suffixedVersion);
             }
@@ -88,8 +116,10 @@ public class VersionParser {
         return ret;
     }
 
-    private static SuffixedVersion parseVersion(Matcher versionMatcher, String version)
+    private static SuffixedVersion parseVersion(Matcher versionMatcher, Version versionWithMeta)
             throws NumberFormatException, IllegalArgumentException {
+        String version = versionWithMeta.getVersion();
+
         if (!versionMatcher.matches()) {
             throw new IllegalArgumentException("Version " + version + "is unparsable");
         }
@@ -102,13 +132,13 @@ public class VersionParser {
         int minor = parseNumberString(minorString);
         int micro = parseNumberString(microString);
         String qualifier = qualifierString == null ? "" : qualifierString.replace('.', '-').replace(',', '-');
-        return new SuffixedVersion(major, minor, micro, qualifier, version);
+        return new SuffixedVersion(major, minor, micro, qualifier, versionWithMeta);
     }
 
-    private static SuffixedVersion parseVersion(Matcher versionMatcher, String version, String parseSuffix)
+    private static SuffixedVersion parseVersion(Matcher versionMatcher, Version versionWithMeta, String parseSuffix)
             throws NumberFormatException, IllegalArgumentException {
         if (!versionMatcher.matches()) {
-            throw new IllegalArgumentException("Version " + version + "is unparsable");
+            throw new IllegalArgumentException("Version " + versionWithMeta.getVersion() + "is unparsable");
         }
         String majorString = versionMatcher.group("major");
         String minorString = versionMatcher.group("minor");
@@ -121,10 +151,10 @@ public class VersionParser {
         int micro = parseNumberString(microString);
         String qualifier = qualifierString == null ? "" : qualifierString.replace('.', '-').replace(',', '-');
         if (suffixVersionString == null) {
-            return new SuffixedVersion(major, minor, micro, qualifier, version);
+            return new SuffixedVersion(major, minor, micro, qualifier, versionWithMeta);
         } else {
             int suffixVersion = Integer.parseInt(suffixVersionString);
-            return new SuffixedVersion(major, minor, micro, qualifier, parseSuffix, suffixVersion, version);
+            return new SuffixedVersion(major, minor, micro, qualifier, parseSuffix, suffixVersion, versionWithMeta);
         }
     }
 
@@ -139,7 +169,7 @@ public class VersionParser {
      * @return
      */
     public static String getOSGiVersion(String version) {
-        String osgiS = (new Version(version + ".foo")).getOSGiVersionString();
+        String osgiS = (new org.commonjava.maven.ext.manip.impl.Version(version + ".foo")).getOSGiVersionString();
         int len = osgiS.length();
         return osgiS.substring(0, len - 4);
     }
