@@ -147,7 +147,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
     }
 
     @Override
-    public Set<NPMLookupResult> lookupBestMatchNPM(Set<NPMPackage> packages, String mode, Set<Constraints> constraints)
+    public Set<NPMLookupResult> lookupBestMatchNPM(Set<NPMPackage> packages, String mode)
             throws CommunicationException {
         LookupMode lookupMode = getMode(mode, false);
         pncProductProvider.setLookupMode(lookupMode);
