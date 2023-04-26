@@ -78,8 +78,7 @@ public class LookupImpl implements Lookup {
     public Set<NPMLookupResult> lookupNPM(@SpanAttribute(value = "request") NPMLookupRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/npm. Payload: " + request.toString());
-        Set<NPMLookupResult> result = lookupGenerator
-                .lookupBestMatchNPM(request.getPackages(), request.getMode(), Set.of());
+        Set<NPMLookupResult> result = lookupGenerator.lookupBestMatchNPM(request.getPackages(), request.getMode());
         log.info("Request to /lookup/npm completed successfully. Payload: " + request.toString());
         return result;
     }

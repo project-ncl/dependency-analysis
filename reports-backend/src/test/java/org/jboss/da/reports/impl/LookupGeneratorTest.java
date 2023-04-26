@@ -105,7 +105,7 @@ public class LookupGeneratorTest {
         gavs.add(gav1);
         gavs.add(gav2);
 
-        Set<NPMLookupResult> results = lookupGenerator.lookupBestMatchNPM(gavs, PERSISTENT, Set.of());
+        Set<NPMLookupResult> results = lookupGenerator.lookupBestMatchNPM(gavs, PERSISTENT);
 
         assertEquals(2, results.size());
         NPMLookupResult result1 = results.stream().filter(r -> gav1.equals(r.getNpmPackage())).findFirst().get();
