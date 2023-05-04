@@ -17,7 +17,7 @@ package org.jboss.da.common.version;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
+import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -42,10 +42,10 @@ public class SuffixedVersion implements Comparable<SuffixedVersion> {
 
     private final Integer suffixVersion;
 
-    private final Version originalVersionWithMeta;
+    private final QualifiedVersion originalVersionWithMeta;
 
     public SuffixedVersion(int major, int minor, int micro, String qualifier, String originalVersion) {
-        this(major, minor, micro, qualifier, new Version(originalVersion));
+        this(major, minor, micro, qualifier, new QualifiedVersion(originalVersion));
     }
 
     public SuffixedVersion(
@@ -56,10 +56,15 @@ public class SuffixedVersion implements Comparable<SuffixedVersion> {
             String suffix,
             int suffixVersion,
             String originalVersion) {
-        this(major, minor, micro, qualifier, suffix, suffixVersion, new Version(originalVersion));
+        this(major, minor, micro, qualifier, suffix, suffixVersion, new QualifiedVersion(originalVersion));
     }
 
-    public SuffixedVersion(int major, int minor, int micro, String qualifier, Version originalVersionWithMeta) {
+    public SuffixedVersion(
+            int major,
+            int minor,
+            int micro,
+            String qualifier,
+            QualifiedVersion originalVersionWithMeta) {
         this.major = major;
         this.minor = minor;
         this.micro = micro;
@@ -76,7 +81,7 @@ public class SuffixedVersion implements Comparable<SuffixedVersion> {
             String qualifier,
             String suffix,
             int suffixVersion,
-            Version originalVersionWithMeta) {
+            QualifiedVersion originalVersionWithMeta) {
         if (suffix == null || suffix.isEmpty()) {
             throw new IllegalArgumentException("Suffix must be provided in this constructor.");
         }

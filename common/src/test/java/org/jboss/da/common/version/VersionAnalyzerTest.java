@@ -1,7 +1,7 @@
 package org.jboss.da.common.version;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
+import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -114,7 +114,7 @@ public class VersionAnalyzerTest {
     public void getBestMatchVersionForNotBuiltGAV() throws CommunicationException {
         Optional<String> bmv = versionFinder.findBiggestMatchingVersion(
                 NO_BUILT_VERSION,
-                All_VERSIONS.stream().map(Version::new).collect(Collectors.toList()));
+                All_VERSIONS.stream().map(QualifiedVersion::new).collect(Collectors.toList()));
         assertFalse("Best match version expected to not be present", bmv.isPresent());
     }
 
@@ -281,7 +281,7 @@ public class VersionAnalyzerTest {
     private void checkBMV(VersionAnalyzer versionAnalyzer, String expectedVersion, String version, String[] versions) {
         Optional<String> bmv = versionAnalyzer.findBiggestMatchingVersion(
                 version,
-                Arrays.stream(versions).map(Version::new).collect(Collectors.toList()));
+                Arrays.stream(versions).map(QualifiedVersion::new).collect(Collectors.toList()));
 
         assertTrue("Best match version expected to be present", bmv.isPresent());
         assertEquals(expectedVersion, bmv.get());
