@@ -23,8 +23,7 @@ import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
-import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
-import org.jboss.pnc.dto.requests.QValue;
+import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
@@ -111,18 +110,18 @@ public abstract class AbstractProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Map<Product, Set<Version>>> getVersions(Artifact artifact) {
+    public CompletableFuture<Map<Product, Set<QualifiedVersion>>> getVersions(Artifact artifact) {
         switch (artifact.getType()) {
             case MAVEN: {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
-                CompletableFuture<Set<Version>> versions = supplyAsync(
+                CompletableFuture<Set<QualifiedVersion>> versions = supplyAsync(
                         () -> getVersionsStreamMaven(ga).filter(v -> versionParser.parse(v.getVersion()).isSuffixed())
                                 .distinct()
                                 .collect(Collectors.toSet()));
                 return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN, rv));
             }
             case NPM: {
-                CompletableFuture<Set<Version>> versions = supplyAsync(
+                CompletableFuture<Set<QualifiedVersion>> versions = supplyAsync(
                         () -> getVersionsStreamNPM(artifact.getName())
                                 .filter(v -> versionParser.parse(v.getVersion()).isSuffixed())
                                 .distinct()
@@ -136,7 +135,7 @@ public abstract class AbstractProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Set<Version>> getAllVersions(Artifact artifact) {
+    public CompletableFuture<Set<QualifiedVersion>> getAllVersions(Artifact artifact) {
         switch (artifact.getType()) {
             case MAVEN: {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
@@ -167,7 +166,7 @@ public abstract class AbstractProductProvider implements ProductProvider {
     }
 
     private Set<ProductArtifacts> getArtifactsMaven(GA ga) {
-        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga).map(Version::getVersion)
+        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga).map(QualifiedVersion::getVersion)
                 .filter(v -> versionParser.parse(v).isSuffixed())
                 .distinct()
                 .map(x -> new GAV(ga, x))
@@ -190,8 +189,8 @@ public abstract class AbstractProductProvider implements ProductProvider {
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, allArtifacts));
     }
 
-    abstract Stream<Version> getVersionsStreamMaven(GA ga);
+    abstract Stream<QualifiedVersion> getVersionsStreamMaven(GA ga);
 
-    abstract Stream<Version> getVersionsStreamNPM(String name);
+    abstract Stream<QualifiedVersion> getVersionsStreamNPM(String name);
 
 }

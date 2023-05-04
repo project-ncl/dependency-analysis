@@ -4,7 +4,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
-import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
+import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -36,7 +36,7 @@ public class RepositoryProductProvider extends AbstractProductProvider {
     private IndyConnector indyConnector;
 
     @Override
-    Stream<Version> getVersionsStreamMaven(GA ga) {
+    Stream<QualifiedVersion> getVersionsStreamMaven(GA ga) {
         if (!ga.isValid()) {
             userLog.warn("Received nonvalid GA " + ga + ", using empty list of versions.");
             log.warn("Received nonvalid GA: " + ga);
@@ -46,19 +46,19 @@ public class RepositoryProductProvider extends AbstractProductProvider {
             List<String> versionsOfGA;
             versionsOfGA = indyConnector.getVersionsOfGA(ga);
             log.debug("Got versions of " + ga + " from repository: " + versionsOfGA);
-            return versionsOfGA.stream().map(Version::new);
+            return versionsOfGA.stream().map(QualifiedVersion::new);
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
         }
     }
 
     @Override
-    Stream<Version> getVersionsStreamNPM(String name) {
+    Stream<QualifiedVersion> getVersionsStreamNPM(String name) {
         try {
             List<String> versionsOfGA;
             versionsOfGA = indyConnector.getVersionsOfNpm(name);
             log.debug("Got versions of " + name + " from repository: " + versionsOfGA);
-            return versionsOfGA.stream().map(Version::new);
+            return versionsOfGA.stream().map(QualifiedVersion::new);
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
         }
