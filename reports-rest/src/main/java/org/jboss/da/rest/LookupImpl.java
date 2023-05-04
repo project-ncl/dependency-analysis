@@ -41,7 +41,7 @@ public class LookupImpl implements Lookup {
                 request.getArtifacts(),
                 request.getMode(),
                 request.isBrewPullActive(),
-                request.getConstraints());
+                request.getStrategies());
         log.info("Request to /lookup/maven completed successfully. Payload: " + request.toString());
         return result;
     }

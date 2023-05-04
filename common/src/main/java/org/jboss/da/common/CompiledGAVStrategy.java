@@ -1,19 +1,19 @@
 package org.jboss.da.common;
 
 import lombok.experimental.SuperBuilder;
-import org.jboss.da.model.rest.Constraints;
+import org.jboss.da.model.rest.Strategy;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.pnc.common.alignment.ranking.AlignmentPredicate;
 import org.jboss.pnc.common.alignment.ranking.AlignmentRanking;
 import org.jboss.pnc.common.alignment.ranking.exception.ValidationException;
 
 @SuperBuilder
-public class CompiledGAVConstraints extends CompiledConstraints<GAV> {
+public class CompiledGAVStrategy extends CompiledStrategy<GAV> {
 
     @Override
     public int matchSignificance(GAV toMatch) {
         if (getArtifactScope() == null) {
-            // null signifies global scope and constraints, has the least significance
+            // Null signifies global scope for a strategy. It has the least significance.
             return 1;
         }
 
@@ -40,11 +40,11 @@ public class CompiledGAVConstraints extends CompiledConstraints<GAV> {
         return 0;
     }
 
-    public static CompiledGAVConstraints from(Constraints constraints) throws ValidationException {
-        return builder().artifactScope(constraints.getArtifactScope())
-                .ranks(new AlignmentRanking(constraints.getRanks(), null))
-                .allowList(new AlignmentPredicate(constraints.getAllowList(), ver -> true))
-                .denyList(new AlignmentPredicate(constraints.getDenyList(), ver -> false))
+    public static CompiledGAVStrategy from(Strategy strategy) throws ValidationException {
+        return builder().artifactScope(strategy.getArtifactScope())
+                .ranks(new AlignmentRanking(strategy.getRanks(), null))
+                .allowList(new AlignmentPredicate(strategy.getAllowList(), ver -> true))
+                .denyList(new AlignmentPredicate(strategy.getDenyList(), ver -> false))
                 .build();
     }
 }

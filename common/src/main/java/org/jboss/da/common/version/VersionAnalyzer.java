@@ -15,7 +15,7 @@
  */
 package org.jboss.da.common.version;
 
-import org.jboss.da.common.CompiledConstraints;
+import org.jboss.da.common.CompiledStrategy;
 import org.jboss.da.lookup.model.VersionDistanceRule;
 import org.jboss.da.lookup.model.VersionFilter;
 import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
@@ -61,27 +61,27 @@ public class VersionAnalyzer {
     private final VersionParser versionParser;
     private final List<String> suffixes = new ArrayList<>();
     private final VersionDistanceRule distanceRule;
-    private final CompiledConstraints constraints;
+    private final CompiledStrategy strategies;
 
     public VersionAnalyzer(List<String> suffixes) {
         this(suffixes, VersionDistanceRule.RECOMMENDED_REPLACEMENT);
     }
 
-    public VersionAnalyzer(List<String> suffixes, CompiledConstraints constraints) {
-        this(suffixes, VersionDistanceRule.RECOMMENDED_REPLACEMENT, constraints);
+    public VersionAnalyzer(List<String> suffixes, CompiledStrategy strategies) {
+        this(suffixes, VersionDistanceRule.RECOMMENDED_REPLACEMENT, strategies);
     }
 
     public VersionAnalyzer(List<String> suffixes, VersionDistanceRule distanceRule) {
-        this(suffixes, distanceRule, CompiledConstraints.none());
+        this(suffixes, distanceRule, CompiledStrategy.none());
     }
 
-    public VersionAnalyzer(List<String> suffixes, VersionDistanceRule distanceRule, CompiledConstraints constraints) {
+    public VersionAnalyzer(List<String> suffixes, VersionDistanceRule distanceRule, CompiledStrategy strategies) {
         this.suffixes.addAll(suffixes);
         this.versionParser = new VersionParser(suffixes);
         this.distanceRule = Objects.requireNonNull(distanceRule);
-        this.constraints = Objects.requireNonNull(constraints);
+        this.strategies = Objects.requireNonNull(strategies);
 
-        constraints.getRanks().overrideVersionComparator(this::compareByBuildNumber);
+        strategies.getRanks().overrideVersionComparator(this::compareByBuildNumber);
     }
 
     // TECHNICALLY NOT NEEDED, THIS IS FOR OLD MAVEN/NPM LOOKUP STUFF ENDPOINTS
@@ -132,9 +132,9 @@ public class VersionAnalyzer {
 
         return versionsToSearch.stream()
                 .map(SuffixedVersion::getOriginalVersionWithMeta)
-                .filter(constraints.getAllowList())
-                .filter(constraints.getDenyList().negate())
-                .max(constraints.getRanks())
+                .filter(strategies.getAllowList())
+                .filter(strategies.getDenyList().negate())
+                .max(strategies.getRanks())
                 .map(QualifiedVersion::getVersion);
     }
 

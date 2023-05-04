@@ -15,7 +15,7 @@ import java.util.List;
 @Jacksonized
 @ToString
 @EqualsAndHashCode
-public class Constraints {
+public class Strategy {
 
     private final String artifactScope;
 

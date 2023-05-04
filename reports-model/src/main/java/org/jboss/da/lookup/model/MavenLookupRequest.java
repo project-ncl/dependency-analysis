@@ -8,7 +8,7 @@ import lombok.extern.jackson.Jacksonized;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.jboss.da.model.rest.Constraints;
+import org.jboss.da.model.rest.Strategy;
 import org.jboss.da.model.rest.GAV;
 
 import java.util.Set;
@@ -25,7 +25,7 @@ public class MavenLookupRequest {
     @NonNull
     private final String mode;
 
-    private final Set<Constraints> constraints;
+    private final Set<Strategy> strategies;
 
     @JsonProperty(defaultValue = "false")
     private final boolean brewPullActive;
