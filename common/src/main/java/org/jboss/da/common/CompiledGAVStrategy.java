@@ -11,16 +11,16 @@ import org.jboss.pnc.common.alignment.ranking.exception.ValidationException;
 public class CompiledGAVStrategy extends CompiledStrategy<GAV> {
 
     @Override
-    public int matchSignificance(GAV toMatch) {
+    public int matchSignificance(GAV gav) {
         if (getArtifactScope() == null) {
-            // Null signifies global scope for a strategy. It has the least significance.
+            // Null signifies a global scope for a strategy. It has the least non-zero significance.
             return 1;
         }
 
         String[] scopeSplit = getArtifactScope().split(":");
-        String group = toMatch.getGroupId();
-        String artifact = toMatch.getArtifactId();
-        String version = toMatch.getVersion();
+        String group = gav.getGroupId();
+        String artifact = gav.getArtifactId();
+        String version = gav.getVersion();
 
         if (scopeSplit.length == 1 && group.equals(scopeSplit[0])) {
             // gav matched groupID

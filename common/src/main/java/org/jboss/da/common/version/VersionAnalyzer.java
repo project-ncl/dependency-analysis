@@ -117,6 +117,9 @@ public class VersionAnalyzer {
         List<SuffixedVersion> candidateSuffixedVersions = versions.stream()
                 .map(versionParser::parseSuffixed)
                 .flatMap(Set::stream)
+                // apply strategy filters earlier because they might filter out an entire suffix
+                .filter(sv -> strategies.getAllowList().test(sv.getOriginalVersionWithMeta()))
+                .filter(sv -> strategies.getDenyList().negate().test(sv.getOriginalVersionWithMeta()))
                 .filter(v -> unsuffixedQuery.equals(v.unsuffixedVesion()))
                 .collect(Collectors.toList());
 
@@ -132,8 +135,6 @@ public class VersionAnalyzer {
 
         return versionsToSearch.stream()
                 .map(SuffixedVersion::getOriginalVersionWithMeta)
-                .filter(strategies.getAllowList())
-                .filter(strategies.getDenyList().negate())
                 .max(strategies.getRanks())
                 .map(QualifiedVersion::getVersion);
     }
@@ -186,44 +187,6 @@ public class VersionAnalyzer {
             return 1;
         } else {
             return -1;
-        }
-    }
-
-    /**
-     * Assuming the two versions have the same OSGi representation, returns the more specific version. That means
-     * X.Y.Z.something is preffered to X.Y.something which is preffered to X.something.
-     */
-    private static String getMoreSpecificVersionString(String first, String second) {
-        Matcher firstMatcher = VERSION_PATTERN.matcher(first);
-        Matcher secondMatcher = VERSION_PATTERN.matcher(second);
-        if (!firstMatcher.matches()) {
-            throw new IllegalArgumentException("Couldn't parse version " + first);
-        }
-        if (!secondMatcher.matches()) {
-            throw new IllegalArgumentException("Couldn't parse version " + second);
-        }
-        boolean firstIsOSGi = first.equals(VersionParser.getOSGiVersion(first));
-        boolean secondIsOSGi = second.equals(VersionParser.getOSGiVersion(second));
-        String firstMinor = firstMatcher.group("minor");
-        String firstMicro = firstMatcher.group("micro");
-        boolean returnFirst;
-
-        if (firstIsOSGi != secondIsOSGi) {
-            returnFirst = firstIsOSGi; // One of the version is not OSGi, prefer the OSGi version
-        } else if (!Objects.equals(firstMinor, secondMatcher.group("minor"))) {
-            returnFirst = firstMinor != null; // One of the versions is missing minor number, prefer the one with it
-        } else if (!Objects.equals(firstMicro, secondMatcher.group("micro"))) {
-            returnFirst = firstMicro != null; // One of the versions is missing micro number, prefer the one with it
-        } else {
-            // Prefer the version that separates qualifier with '.', not something else like '-'
-            // If both are the same, prefer first
-            returnFirst = firstMatcher.group("qualifier").startsWith(".")
-                    || !secondMatcher.group("qualifier").startsWith(".");
-        }
-        if (returnFirst) {
-            return first;
-        } else {
-            return second;
         }
     }
 }
