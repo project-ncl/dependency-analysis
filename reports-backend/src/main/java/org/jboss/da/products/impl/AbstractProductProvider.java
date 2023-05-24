@@ -13,7 +13,6 @@ import javax.inject.Inject;
 
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.UserLog;
-import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
@@ -24,6 +23,7 @@ import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
 import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
+import org.jboss.pnc.common.version.VersionParser;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
