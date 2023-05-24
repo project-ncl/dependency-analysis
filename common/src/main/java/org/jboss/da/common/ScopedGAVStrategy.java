@@ -8,7 +8,7 @@ import org.jboss.pnc.common.alignment.ranking.AlignmentRanking;
 import org.jboss.pnc.common.alignment.ranking.exception.ValidationException;
 
 @SuperBuilder
-public class CompiledGAVStrategy extends CompiledStrategy<GAV> {
+public class ScopedGAVStrategy extends ScopedStrategy<GAV> {
 
     @Override
     public int matchSignificance(GAV gav) {
@@ -40,11 +40,11 @@ public class CompiledGAVStrategy extends CompiledStrategy<GAV> {
         return 0;
     }
 
-    public static CompiledGAVStrategy from(Strategy strategy) throws ValidationException {
-        return builder().artifactScope(strategy.getArtifactScope())
-                .ranks(new AlignmentRanking(strategy.getRanks(), null))
-                .allowList(new AlignmentPredicate(strategy.getAllowList(), ver -> true))
-                .denyList(new AlignmentPredicate(strategy.getDenyList(), ver -> false))
+    public static ScopedGAVStrategy from(Strategy restStrategy) throws ValidationException {
+        return builder().artifactScope(restStrategy.getArtifactScope())
+                .ranks(new AlignmentRanking(restStrategy.getRanks(), null))
+                .allowList(new AlignmentPredicate(restStrategy.getAllowList(), ver -> true))
+                .denyList(new AlignmentPredicate(restStrategy.getDenyList(), ver -> false))
                 .build();
     }
 }

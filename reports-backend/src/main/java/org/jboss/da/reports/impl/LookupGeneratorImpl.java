@@ -1,12 +1,13 @@
 package org.jboss.da.reports.impl;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.CompiledStrategy;
-import org.jboss.da.common.CompiledGAVStrategy;
+import org.jboss.da.common.ScopedStrategy;
+import org.jboss.da.common.ScopedGAVStrategy;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.version.VersionAnalyzer;
+import org.jboss.da.common.version.VersionStrategy;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.lookup.model.MavenLatestResult;
 import org.jboss.da.lookup.model.MavenLookupResult;
@@ -89,7 +90,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
             boolean brewPullActive,
             Set<Strategy> strategies) throws CommunicationException, ValidationException {
         LookupMode lookupMode = getMode(mode, false);
-        Set<CompiledGAVStrategy> compiledStrategies = compileMavenStrategies(strategies);
+        Set<ScopedGAVStrategy> compiledStrategies = compileMavenStrategies(strategies);
 
         ProductProvider productProvider = setupProductProvider(
                 brewPullActive,
@@ -102,14 +103,14 @@ public class LookupGeneratorImpl implements LookupGenerator {
         return createLookupResult(gavs, lookupMode, productArtifacts, compiledStrategies);
     }
 
-    private static Set<CompiledGAVStrategy> compileMavenStrategies(Set<Strategy> strategies) {
+    private static Set<ScopedGAVStrategy> compileMavenStrategies(Set<Strategy> strategies) {
         if (strategies == null) {
             return Collections.emptySet();
         }
-        return strategies.stream().map(CompiledGAVStrategy::from).collect(Collectors.toSet());
+        return strategies.stream().map(ScopedGAVStrategy::from).collect(Collectors.toSet());
     }
 
-    private static Set<QValue> extractQualifiers(Set<? extends CompiledStrategy<?>> strategies) {
+    private static Set<QValue> extractQualifiers(Set<? extends ScopedStrategy<?>> strategies) {
         Set<Token> allTokens = new HashSet<>();
         for (var strategy : strategies) {
             AlignmentRanking ranks = strategy.getRanks();
@@ -226,11 +227,11 @@ public class LookupGeneratorImpl implements LookupGenerator {
             Set<GAV> gavs,
             LookupMode mode,
             Map<GA, CompletableFuture<Set<QualifiedVersion>>> artifactsMap,
-            Set<CompiledGAVStrategy> compiledStrategies) throws CommunicationException {
+            Set<ScopedGAVStrategy> compiledStrategies) throws CommunicationException {
 
-        Map<CompiledStrategy<GAV>, VersionAnalyzer> vas = compiledStrategies.stream()
+        Map<ScopedStrategy<GAV>, VersionAnalyzer> vas = compiledStrategies.stream()
                 .collect(Collectors.toMap(Function.identity(), con -> new VersionAnalyzer(mode.getSuffixes(), con)));
-        VersionAnalyzer def = new VersionAnalyzer(mode.getSuffixes(), CompiledStrategy.none());
+        VersionAnalyzer def = new VersionAnalyzer(mode.getSuffixes(), VersionStrategy.none());
 
         Set<CompletableFuture<MavenLookupResult>> futures = gavs.stream()
                 .map(
@@ -251,10 +252,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
      * @return closest VA or default VA on empty map or no match
      * @param <T> GAV or NPM
      */
-    private <T> VersionAnalyzer chooseVa(
-            T artifact,
-            Map<CompiledStrategy<T>, VersionAnalyzer> vas,
-            VersionAnalyzer def) {
+    private <T> VersionAnalyzer chooseVa(T artifact, Map<ScopedStrategy<T>, VersionAnalyzer> vas, VersionAnalyzer def) {
         var max = vas.keySet().stream().max((cc1, cc2) -> {
             int sim1 = cc1.matchSignificance(artifact);
             int sim2 = cc2.matchSignificance(artifact);
