@@ -9,5 +9,6 @@ public final class Constants {
     public static final String REST_API_VERSION_REPORTS = "@version.reports.rest@";
     
     public static final String COMMIT_HASH = "@commit.id.abbrev@";
+    public static final String BUILD_TIME = "@build-time@";
 
 }
