@@ -136,6 +136,10 @@
                             <token>@commit.id.abbrev@</token>
                             <value>${git.commit.id.abbrev}</value>
                         </replacement>
+                        <replacement>
+                            <token>@build-time@</token>
+                            <value>${maven.build.timestamp}</value>
+                        </replacement>
                     </replacements>
                 </configuration>
             </plugin>
