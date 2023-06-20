@@ -21,8 +21,6 @@ import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.listings.api.service.ProductVersionService;
-import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
@@ -37,7 +35,6 @@ import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.impl.DependencyTreeGeneratorImpl;
-import org.jboss.da.reports.backend.impl.ProductAdapter;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
 import org.jboss.da.reports.model.response.LookupReport;
@@ -74,12 +71,6 @@ public class ReportsGeneratorImplTest {
     private BlackArtifactService blackArtifactService;
 
     @Mock
-    private WhiteArtifactService whiteArtifactService;
-
-    @Mock
-    private ProductVersionService productVersionService;
-
-    @Mock
     private AggregatedProductProvider productProvider;
 
     @Mock
@@ -93,10 +84,6 @@ public class ReportsGeneratorImplTest {
     @Mock
     @UserLog
     private Logger userLog;
-
-    @InjectMocks
-    @Spy
-    private final ProductAdapter productAdapter = new ProductAdapter();
 
     @InjectMocks
     @Spy

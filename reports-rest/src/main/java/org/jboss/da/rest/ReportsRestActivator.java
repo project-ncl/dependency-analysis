@@ -18,9 +18,7 @@ import io.swagger.v3.oas.integration.OpenApiConfigurationException;
 import org.jboss.da.rest.exceptions.AllExceptionsMapper;
 import org.jboss.da.rest.filter.MDCLoggingFilter;
 
-import org.jboss.da.rest.listings.Artifacts;
 import org.jboss.da.rest.listings.BlackListImpl;
-import org.jboss.da.rest.products.Products;
 import org.jboss.da.rest.reports.Reports;
 import org.jboss.pnc.pncmetrics.rest.GeneralRestMetricsFilter;
 import org.jboss.pnc.pncmetrics.rest.TimedMetric;
@@ -79,10 +77,8 @@ public class ReportsRestActivator extends Application {
      */
     public void addProjectResources(Set<Class<?>> resources) {
         resources.add(Root.class);
-        resources.add(Artifacts.class);
         resources.add(Reports.class);
         resources.add(LookupImpl.class);
-        resources.add(Products.class);
         resources.add(BlackListImpl.class);
     }
 
