@@ -84,6 +84,7 @@ public class ReportsRestActivator extends Application {
         resources.add(LookupImpl.class);
         resources.add(Products.class);
         resources.add(BlackListImpl.class);
+        resources.add(VersionEndpointImpl.class);
     }
 
     public void addMetricsResources(Set<Class<?>> resources) {
