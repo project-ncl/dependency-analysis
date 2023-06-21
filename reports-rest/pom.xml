@@ -71,6 +71,12 @@
             <artifactId>jboss-servlet-api_4.0_spec</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- Needed to serialize ComponentVersion's ZonedDateTime -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <!-- OTEL Dependencies for Instrumentation -->
     </dependencies>
 
