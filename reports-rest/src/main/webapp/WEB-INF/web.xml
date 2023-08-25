@@ -31,6 +31,17 @@
         </web-resource-collection>
     </security-constraint>
 
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Access to lookups for all users on POST</web-resource-name>
+            <url-pattern>/rest/v-${version.reports.rest}/listings/blacklist/gav</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>pnc-users-da-admin</role-name>
+        </auth-constraint>
+    </security-constraint>
 
     <!-- Allow all logged users to access the other endpoints -->
     <security-constraint>
@@ -49,6 +60,9 @@
 
     <security-role>
         <role-name>*</role-name>
+    </security-role>
+    <security-role>
+        <role-name>pnc-users-da-admin</role-name>
     </security-role>
     <!-- SECURITY -->
     
