@@ -221,7 +221,7 @@
             <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-core</artifactId>
-                <version>17.0.1</version>
+                <version>18.0.9.redhat-00001</version>
             </dependency>
 
             <!-- needed when using J11 -->
