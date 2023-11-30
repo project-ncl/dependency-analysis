@@ -39,7 +39,7 @@
             <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>pnc-users-da-admin</role-name>
+            <role-name>pnc-app-da-user</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -62,7 +62,7 @@
         <role-name>*</role-name>
     </security-role>
     <security-role>
-        <role-name>pnc-users-da-admin</role-name>
+        <role-name>pnc-app-da-user</role-name>
     </security-role>
     <!-- SECURITY -->
     
