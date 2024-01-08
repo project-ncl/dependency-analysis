@@ -58,6 +58,7 @@ public class ReportsRestActivator extends Application {
         addProjectResources(resources);
         addMetricsResources(resources);
         addExceptionMappers(resources);
+        addProviders(resources);
         return resources;
     }
 
@@ -88,6 +89,10 @@ public class ReportsRestActivator extends Application {
         resources.add(TimedMetric.class);
         resources.add(TimedMetricFilter.class);
         resources.add(MDCLoggingFilter.class);
+    }
+
+    public void addProviders(Set<Class<?>> resources) {
+        resources.add(JacksonProvider.class);
     }
 
     private void addExceptionMappers(Set<Class<?>> resources) {
