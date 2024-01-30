@@ -11,6 +11,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.jboss.da.model.rest.GAV;
 
 /**
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
@@ -41,5 +42,9 @@ public class Artifact extends GenericEntity {
 
     public String gav() {
         return ga.getGroupId() + ":" + ga.getArtifactId() + ":" + version;
+    }
+
+    public GAV toGAV() {
+        return new GAV(ga.getGroupId(), ga.getArtifactId(), version);
     }
 }
