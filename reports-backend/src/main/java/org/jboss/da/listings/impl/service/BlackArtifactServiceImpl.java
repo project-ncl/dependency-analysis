@@ -8,15 +8,19 @@ import javax.inject.Inject;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
 import org.jboss.da.listings.api.dao.GADAO;
+import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.model.rest.GAV;
 
 import java.util.Comparator;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
+import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
 import org.jboss.pnc.common.version.SuffixedVersion;
 import org.jboss.pnc.common.version.VersionParser;
 
@@ -37,6 +41,28 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     @Override
     protected ArtifactDAO<BlackArtifact> getDAO() {
         return blackArtifactDAO;
+    }
+
+    @Override
+    public Set<GAV> prefetchGAs(Set<org.jboss.da.model.rest.GA> gaToPrefetch) {
+        if (gaToPrefetch.isEmpty()) {
+            return Set.of();
+        }
+        Set<org.jboss.da.listings.api.model.GA> blocklistedGAs = gaDAO.findGAs(gaToPrefetch);
+        if (blocklistedGAs.isEmpty()) {
+            return Set.of();
+        }
+        return blackArtifactDAO.findArtifact(blocklistedGAs).stream().map(Artifact::toGAV).collect(Collectors.toSet());
+    }
+
+    @Override
+    public boolean isBlocklisted(Set<GAV> cache, org.jboss.da.model.rest.GA ga, QualifiedVersion version) {
+        SuffixedVersion parsedVersion = versionParser.parse(version);
+
+        GAV unsuffixedGAV = new GAV(ga, parsedVersion.unsuffixedVersion());
+        GAV osgiGAV = new GAV(ga, VersionParser.getOSGiVersion(version.getVersion()));
+
+        return cache.contains(unsuffixedGAV) || cache.contains(osgiGAV);
     }
 
     @Override
