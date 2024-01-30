@@ -3,6 +3,7 @@ package org.jboss.da.listings.api.service;
 import java.util.Optional;
 
 import org.jboss.da.listings.api.model.BlackArtifact;
+import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 
 import java.util.Set;
@@ -68,4 +69,8 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
     public boolean removeArtifact(String groupId, String artifactId, String version);
 
     public Set<BlackArtifact> getArtifacts(String groupId, String artifactId);
+
+    Set<GAV> prefetchGAs(Set<GA> gas);
+
+    boolean isBlocklisted(Set<GAV> cache, GA ga, String version);
 }
