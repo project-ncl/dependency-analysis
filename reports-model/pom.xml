@@ -6,6 +6,7 @@
         <version>3.2.0-SNAPSHOT</version>
     </parent>
     <artifactId>reports-model</artifactId>
+    <name>reports-model</name>
     <packaging>ejb</packaging>
     <properties>
         <!-- Compile to Java 8 because PME and GME are strictly stuck on 8 and use these classes for requests -->
