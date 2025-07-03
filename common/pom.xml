@@ -6,6 +6,7 @@
         <version>2.6.9-SNAPSHOT</version>
     </parent>
     <artifactId>common</artifactId>
+    <name>common</name>
     <packaging>ejb</packaging>
     <dependencies>
         <dependency>

@@ -6,6 +6,7 @@
         <version>2.6.9-SNAPSHOT</version>
     </parent>
     <artifactId>cli-wrap</artifactId>
+    <name>cli-wrap</name>
     <packaging>pom</packaging>
     <profiles>
         <profile>

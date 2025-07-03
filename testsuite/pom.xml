@@ -6,6 +6,7 @@
         <version>2.6.9-SNAPSHOT</version>
     </parent>
     <artifactId>testsuite</artifactId>
+    <name>testsuite</name>
 
     <dependencies>
         <dependency>

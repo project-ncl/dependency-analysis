@@ -6,6 +6,7 @@
         <version>2.6.9-SNAPSHOT</version>
     </parent>
     <artifactId>reports-backend</artifactId>
+    <name>reports-backend</name>
     <packaging>ejb</packaging>
 
     <dependencies>

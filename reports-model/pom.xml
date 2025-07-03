@@ -6,6 +6,7 @@
         <version>2.6.9-SNAPSHOT</version>
     </parent>
     <artifactId>reports-model</artifactId>
+    <name>reports-model</name>
     <packaging>ejb</packaging>
     <dependencies>
         <dependency>
