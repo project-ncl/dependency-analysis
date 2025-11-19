@@ -48,7 +48,7 @@ public class AllExceptionsMapper implements ExceptionMapper<Exception> {
         } else if (e instanceof ScmException) {
             return handleException("Exception thrown in SCM analysis", SCM_ENDPOINT, e);
         } else if (e instanceof IllegalArgumentException) {
-            return handleException("Illegal arguments exception", ILLEGAL_ARGUMENTS, Response.Status.BAD_REQUEST, e);
+            return handleException("Illegal arguments exception", ILLEGAL_ARGUMENTS, e);
         } else {
             return handleException("Unknown error while handling request", UNEXPECTED_SERVER_ERR, e);
         }

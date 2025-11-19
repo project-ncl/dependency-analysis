@@ -53,14 +53,10 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
         return target.request(MediaType.APPLICATION_JSON_TYPE);
     }
 
-    protected Response getResponseForRequest(String endpoint, String requestFile) throws IOException {
+    protected Response assertResponseForRequest(String endpoint, String requestFile) throws IOException, Exception {
         File jsonRequestFile = getJsonRequestFile(endpoint, requestFile);
         final String entity = FileUtils.readFileToString(jsonRequestFile, ENCODING);
-        return createClientRequest(endpoint).post(Entity.json(entity));
-    }
-
-    protected Response assertResponseForRequest(String endpoint, String requestFile) throws IOException, Exception {
-        Response response = getResponseForRequest(endpoint, requestFile);
+        Response response = createClientRequest(endpoint).post(Entity.json(entity));
         File expectedResponseFile = getJsonResponseFile(endpoint, requestFile);
         final String actual = response.readEntity(String.class).trim();
         System.out.println("Actual: " + actual);
