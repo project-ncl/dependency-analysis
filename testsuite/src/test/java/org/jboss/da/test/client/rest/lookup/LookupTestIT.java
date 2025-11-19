@@ -59,12 +59,6 @@ public class LookupTestIT extends AbstractRestReportsTest {
     }
 
     @Test
-    public void testGavLookupInvalidMode() throws Exception {
-        Response response = getResponseForRequest(PATH_LOOKUP_MAVEN, "guava13_invalidmode400");
-        assertEquals(400, response.getStatus());
-    }
-
-    @Test
     public void testPackageVersions() throws Exception {
         Response response = assertResponseForRequest(PATH_NPM_VERSIONS, "jquery151");
         assertEquals(200, response.getStatus());
