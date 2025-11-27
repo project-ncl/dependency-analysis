@@ -285,7 +285,7 @@
                 <groupId>org.eclipse.jgit</groupId>
                 <artifactId>org.eclipse.jgit</artifactId>
                 <!-- Forcing older version that worked. Otherwise, the version is provided from EAP bom, but we don't use EAP's library anyway. -->
-                <version>5.0.2.201807311906-r-redhat-00001</version>
+                <version>6.10.1.202505221210-r-redhat-00002</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.maven.scm</groupId>
