@@ -208,7 +208,7 @@
             <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-core</artifactId>
-                <version>18.0.9.redhat-00001</version>
+                <version>26.2.5.redhat-00001</version>
             </dependency>
 
             <!-- needed when using J11 -->
