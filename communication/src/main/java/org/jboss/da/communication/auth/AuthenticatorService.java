@@ -13,6 +13,7 @@ public interface AuthenticatorService {
      *
      * @return Acess token string or empty optional if not authenticated.
      */
+    @Deprecated
     Optional<String> accessToken();
 
     /**
