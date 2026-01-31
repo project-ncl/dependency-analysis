@@ -6,6 +6,7 @@
         <dependencies>
             <module name="deployment.dependency-analysis.ear.reports-backend.jar"/>
             <module name="deployment.dependency-analysis.ear.pncmetrics.jar"/>
+            <module name="org.wildfly.security.elytron-http-oidc"/>
         </dependencies>
     </sub-deployment>
     <sub-deployment name="reports-model.jar">
@@ -28,7 +29,7 @@
             <module name="deployment.dependency-analysis.ear.common.jar"/>
             <module name="deployment.dependency-analysis.ear.source-code-manager.jar"/>
             <module name="deployment.dependency-analysis.ear.pncmetrics.jar"/>
-            <module name="org.keycloak.keycloak-core"/>
+            <module name="org.wildfly.security.elytron-http-oidc"/>
         </dependencies>
     </sub-deployment>
 </jboss-deployment-structure>

@@ -4,6 +4,9 @@
          version="3.0">
     <module-name>reports-rest</module-name>
     <!-- SECURITY -->
+    <login-config>
+        <auth-method>BASIC?silent=true,OIDC</auth-method>
+    </login-config>
 
     <!-- Allow all users to access the GET endpoints -->
     <security-constraint>
@@ -86,4 +89,7 @@
         <filter-name>cross-origin</filter-name>
         <url-pattern>${corsUrlPattern}</url-pattern>
     </filter-mapping>
+    <listener>
+        <listener-class>org.wildfly.security.http.oidc.OidcConfigurationServletListener</listener-class>
+    </listener>
 </web-app>

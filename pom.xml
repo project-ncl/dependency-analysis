@@ -210,7 +210,12 @@
                 <artifactId>keycloak-core</artifactId>
                 <version>18.0.9.redhat-00001</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.wildfly.security</groupId>
+                <artifactId>wildfly-elytron-http-oidc</artifactId>
+                <version>1.15.9.Final</version>
+                <scope>provided</scope>
+            </dependency>
             <!-- needed when using J11 -->
             <!-- JAXB API -->
             <dependency>
