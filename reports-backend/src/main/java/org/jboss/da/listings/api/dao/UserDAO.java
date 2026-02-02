@@ -12,10 +12,10 @@ import org.jboss.da.listings.api.model.User;
 public interface UserDAO extends GenericDAO<User> {
 
     /**
-     * Finds user by given keycloak id.
+     * Finds user by given username.
      * 
-     * @param keycloakId Keycloak id of the user
+     * @param username username of the user
      * @return Optional of user or empty when not found.
      */
-    Optional<User> findUser(String keycloakId);
+    Optional<User> findUser(String username);
 }

@@ -26,12 +26,12 @@ public class UserDAOImpl extends GenericDAOImpl<User> implements UserDAO {
     }
 
     @Override
-    public Optional<User> findUser(String keycloakId) {
+    public Optional<User> findUser(String username) {
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<User> cq = cb.createQuery(type);
             Root<User> user = cq.from(type);
-            cq.select(user).where(cb.equal(user.get("keycloakId"), keycloakId));
+            cq.select(user).where(cb.equal(user.get("username"), username));
             TypedQuery<User> q = em.createQuery(cq);
             return Optional.of(q.getSingleResult());
         } catch (NoResultException e) {
