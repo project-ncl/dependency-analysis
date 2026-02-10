@@ -94,7 +94,7 @@
         <corsUrlPattern>/*</corsUrlPattern>
 
         <!-- OTEL Dependencies for Instrumentation -->
-        <version.io.opentelemetry.instrumentation>1.22.0</version.io.opentelemetry.instrumentation>
+        <version.io.opentelemetry.instrumentation>2.24.0</version.io.opentelemetry.instrumentation>
     <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
     <tagSuffix />
     </properties>
