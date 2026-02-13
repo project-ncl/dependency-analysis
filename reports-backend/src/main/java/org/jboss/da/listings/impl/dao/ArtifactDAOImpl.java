@@ -2,7 +2,6 @@ package org.jboss.da.listings.impl.dao;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -44,16 +43,6 @@ public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> imple
         } catch (NoResultException e) {
             return Optional.empty();
         }
-    }
-
-    @Override
-    public List<T> findArtifact(Set<GA> gas) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<T> cq = cb.createQuery(type);
-        Root<T> artifact = cq.from(type);
-        cq.select(artifact).where(cb.in(artifact.get("ga").in(gas)));
-        TypedQuery<T> q = em.createQuery(cq);
-        return q.getResultList();
     }
 
     @Override
