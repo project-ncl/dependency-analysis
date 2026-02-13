@@ -9,7 +9,6 @@ import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.DatabaseProductProvider.Database;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.jboss.da.products.impl.PncProductProvider.Pnc;
-import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedScheduledExecutorService;
@@ -112,12 +111,12 @@ public class AggregatedProductProvider implements ProductProvider {
     }
 
     @Override
-    public CompletableFuture<Map<Product, Set<Version>>> getVersions(Artifact artifact) {
+    public CompletableFuture<Map<Product, Set<String>>> getVersions(Artifact artifact) {
         return aggregate(x -> x.getVersions(artifact), new MapCol<>(AggregatedProductProvider::combineSets));
     }
 
     @Override
-    public CompletableFuture<Set<Version>> getAllVersions(Artifact artifact) {
+    public CompletableFuture<Set<String>> getAllVersions(Artifact artifact) {
         return aggregate(x -> x.getAllVersions(artifact), new SetCollector<>());
     }
 

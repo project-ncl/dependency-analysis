@@ -17,7 +17,7 @@ package org.jboss.da.common.version;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
+import org.commonjava.maven.ext.manip.impl.Version;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -26,7 +26,7 @@ import java.util.Optional;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@EqualsAndHashCode(exclude = { "originalVersionWithMeta" })
+@EqualsAndHashCode(exclude = { "originalVersion" })
 @Getter
 public class SuffixedVersion implements Comparable<SuffixedVersion> {
 
@@ -42,10 +42,16 @@ public class SuffixedVersion implements Comparable<SuffixedVersion> {
 
     private final Integer suffixVersion;
 
-    private final Version originalVersionWithMeta;
+    private final String originalVersion;
 
     public SuffixedVersion(int major, int minor, int micro, String qualifier, String originalVersion) {
-        this(major, minor, micro, qualifier, new Version(originalVersion));
+        this.major = major;
+        this.minor = minor;
+        this.micro = micro;
+        this.qualifier = Objects.requireNonNull(qualifier);
+        this.suffix = null;
+        this.suffixVersion = null;
+        this.originalVersion = originalVersion;
     }
 
     public SuffixedVersion(
@@ -56,27 +62,6 @@ public class SuffixedVersion implements Comparable<SuffixedVersion> {
             String suffix,
             int suffixVersion,
             String originalVersion) {
-        this(major, minor, micro, qualifier, suffix, suffixVersion, new Version(originalVersion));
-    }
-
-    public SuffixedVersion(int major, int minor, int micro, String qualifier, Version originalVersionWithMeta) {
-        this.major = major;
-        this.minor = minor;
-        this.micro = micro;
-        this.qualifier = Objects.requireNonNull(qualifier);
-        this.suffix = null;
-        this.suffixVersion = null;
-        this.originalVersionWithMeta = originalVersionWithMeta;
-    }
-
-    public SuffixedVersion(
-            int major,
-            int minor,
-            int micro,
-            String qualifier,
-            String suffix,
-            int suffixVersion,
-            Version originalVersionWithMeta) {
         if (suffix == null || suffix.isEmpty()) {
             throw new IllegalArgumentException("Suffix must be provided in this constructor.");
         }
@@ -86,11 +71,7 @@ public class SuffixedVersion implements Comparable<SuffixedVersion> {
         this.qualifier = Objects.requireNonNull(qualifier);
         this.suffix = Objects.requireNonNull(suffix);
         this.suffixVersion = suffixVersion;
-        this.originalVersionWithMeta = originalVersionWithMeta;
-    }
-
-    public String getOriginalVersion() {
-        return originalVersionWithMeta.getVersion();
+        this.originalVersion = originalVersion;
     }
 
     public Optional<String> getSuffix() {
@@ -149,8 +130,8 @@ public class SuffixedVersion implements Comparable<SuffixedVersion> {
     }
 
     private boolean isOsgiVersion() {
-        var osgi = new org.commonjava.maven.ext.manip.impl.Version(getOriginalVersion());
-        return getOriginalVersion().equals(osgi.getOSGiVersionString());
+        Version osgi = new Version(originalVersion);
+        return originalVersion.equals(osgi.getOSGiVersionString());
     }
 
     public final String normalizedVesion() {
