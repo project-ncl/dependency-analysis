@@ -4,7 +4,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pnc.PncConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.products.impl.PncProductProvider.Pnc;
-import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 import org.jboss.pnc.dto.requests.QValue;
 
 import javax.ejb.TransactionAttribute;
@@ -48,14 +48,14 @@ public class PncProductProvider extends AbstractProductProvider {
     }
 
     @Override
-    Stream<QualifiedVersion> getVersionsStreamMaven(GA ga) {
+    Stream<Version> getVersionsStreamMaven(GA ga) {
         if (!ga.isValid()) {
             userLog.warn("Received nonvalid GA " + ga + ", using empty list of versions.");
             log.warn("Received nonvalid GA: " + ga);
             return Stream.empty();
         }
         try {
-            List<QualifiedVersion> versionsOfGA;
+            List<Version> versionsOfGA;
             versionsOfGA = pncConnector.getMavenVersions(ga, mode, qualifiers);
             log.debug("Got versions of " + ga + " from PNC: " + versionsOfGA);
             return versionsOfGA.stream();
@@ -65,9 +65,9 @@ public class PncProductProvider extends AbstractProductProvider {
     }
 
     @Override
-    Stream<QualifiedVersion> getVersionsStreamNPM(String name) {
+    Stream<Version> getVersionsStreamNPM(String name) {
         try {
-            List<QualifiedVersion> versionsOfGA;
+            List<Version> versionsOfGA;
             versionsOfGA = pncConnector.getNpmVersions(name, mode, qualifiers);
             log.debug("Got versions of " + name + " from PNC: " + versionsOfGA);
             return versionsOfGA.stream();

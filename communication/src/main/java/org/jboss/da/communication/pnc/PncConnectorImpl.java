@@ -5,7 +5,7 @@ import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
-import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 import org.jboss.pnc.client.ArtifactClient;
 import org.jboss.pnc.client.Configuration;
 import org.jboss.pnc.client.RemoteCollection;
@@ -76,17 +76,16 @@ public class PncConnectorImpl implements PncConnector {
     }
 
     @Override
-    public List<QualifiedVersion> getMavenVersions(GA ga, LookupMode mode, Set<QValue> qualifiers)
-            throws RepositoryException {
+    public List<Version> getMavenVersions(GA ga, LookupMode mode, Set<QValue> qualifiers) throws RepositoryException {
         String identifierPattern = ga.getGroupId() + ':' + ga.getArtifactId() + ":pom:*";
         Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.MAVEN, mode, qualifiers);
 
-        List<QualifiedVersion> versions = new ArrayList<>(arts.size());
+        List<Version> versions = new ArrayList<>(arts.size());
         for (ArtifactInfo art : arts) {
             String[] parts = art.getIdentifier().split(":");
             if (parts.length == 4) {
                 // TODO filtering by target repository if necessary
-                versions.add(new QualifiedVersion(parts[3], art.getQualifiers()));
+                versions.add(new Version(parts[3], art.getQualifiers()));
                 log.error("Cannot read version for artifact with identifier {}", art.getIdentifier());
             }
         }
@@ -94,17 +93,17 @@ public class PncConnectorImpl implements PncConnector {
     }
 
     @Override
-    public List<QualifiedVersion> getNpmVersions(String packageName, LookupMode mode, Set<QValue> qualifiers)
+    public List<Version> getNpmVersions(String packageName, LookupMode mode, Set<QValue> qualifiers)
             throws RepositoryException {
         String identifierPattern = packageName + ":*";
         Collection<ArtifactInfo> arts = getArtifacts(identifierPattern, RepositoryType.NPM, mode, qualifiers);
 
-        List<QualifiedVersion> versions = new ArrayList<>(arts.size());
+        List<Version> versions = new ArrayList<>(arts.size());
         for (ArtifactInfo art : arts) {
             String[] parts = art.getIdentifier().split(":");
             if (parts.length == 2) {
                 // TODO filtering by target repository if necessary
-                versions.add(new QualifiedVersion(parts[1], art.getQualifiers()));
+                versions.add(new Version(parts[1], art.getQualifiers()));
             } else {
                 log.error("Cannot read version for artifact with identifier {}", art.getIdentifier());
             }

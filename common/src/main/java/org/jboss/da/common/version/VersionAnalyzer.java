@@ -18,7 +18,7 @@ package org.jboss.da.common.version;
 import org.jboss.da.common.CompiledConstraints;
 import org.jboss.da.lookup.model.VersionDistanceRule;
 import org.jboss.da.lookup.model.VersionFilter;
-import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -110,7 +110,7 @@ public class VersionAnalyzer {
         return ALLOWED_DIFFERENCE.get(vf).contains(difference);
     }
 
-    public Optional<String> findBiggestMatchingVersion(String query, Collection<QualifiedVersion> versions) {
+    public Optional<String> findBiggestMatchingVersion(String query, Collection<Version> versions) {
         String unsuffixedQuery = versionParser.parse(query).unsuffixedVesion();
 
         // IF QUERY==2.3.4.REDHAT-00001 then FILTER ALL versions in 'versions' to have 2.3.4
@@ -135,7 +135,7 @@ public class VersionAnalyzer {
                 .filter(constraints.getAllowList())
                 .filter(constraints.getDenyList().negate())
                 .max(constraints.getRanks())
-                .map(QualifiedVersion::getVersion);
+                .map(Version::getVersion);
     }
 
     private int compareByBuildNumber(String first, String second) {

@@ -52,7 +52,7 @@ import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
-import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
@@ -231,7 +231,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
             Optional<String> bmv = va.findBiggestMatchingVersion(
                     version,
-                    versions.stream().map(QualifiedVersion::new).collect(Collectors.toList()));
+                    versions.stream().map(Version::new).collect(Collectors.toList()));
             List<String> sortedVersions = va.sortVersions(version, versions);
 
             return new VersionAnalysisResult(bmv, sortedVersions);
@@ -534,7 +534,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         Map<String, CompletableFuture<Set<String>>> artifactsMap = new HashMap<>();
         for (String name : uniqueNames) {
             CompletableFuture<Set<String>> artifacts = productProvider.getAllVersions(new NPMArtifact(name, "0.0.0"))
-                    .thenApply(s -> s.stream().map(QualifiedVersion::getVersion).collect(Collectors.toSet()));
+                    .thenApply(s -> s.stream().map(Version::getVersion).collect(Collectors.toSet()));
 
             artifactsMap.put(name, artifacts);
         }
