@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import org.jboss.da.common.version.SuffixedVersion;
+import org.jboss.da.common.version.VersionParser;
 
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.GADAO;
@@ -18,8 +20,6 @@ import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.api.service.WhiteArtifactService;
 import org.jboss.da.model.rest.GAV;
-import org.jboss.pnc.common.version.SuffixedVersion;
-import org.jboss.pnc.common.version.VersionParser;
 
 /**
  * 

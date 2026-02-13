@@ -1,14 +1,14 @@
 package org.jboss.da.products.impl;
 
+import org.jboss.da.common.version.VersionComparator;
+import org.jboss.da.common.version.VersionComparator.VersionDifference;
+import org.jboss.da.common.version.VersionParser;
 import org.jboss.da.listings.api.dao.ProductVersionDAO;
 import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.model.ProductVersion;
 import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.products.api.ArtifactDiff;
 import org.jboss.da.products.api.ProductsService;
-import org.jboss.pnc.common.version.VersionComparator;
-import org.jboss.pnc.common.version.VersionComparator.VersionDifference;
-import org.jboss.pnc.common.version.VersionParser;
 
 import javax.inject.Inject;
 
