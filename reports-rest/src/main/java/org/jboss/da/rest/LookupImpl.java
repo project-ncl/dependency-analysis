@@ -37,11 +37,8 @@ public class LookupImpl implements Lookup {
     public Set<MavenLookupResult> lookupMaven(@SpanAttribute(value = "request") MavenLookupRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/maven. Payload: " + request.toString());
-        Set<MavenLookupResult> result = lookupGenerator.lookupBestMatchMaven(
-                request.getArtifacts(),
-                request.getMode(),
-                request.isBrewPullActive(),
-                request.getConstraints());
+        Set<MavenLookupResult> result = lookupGenerator
+                .lookupBestMatchMaven(request.getArtifacts(), request.getMode(), request.isBrewPullActive());
         log.info("Request to /lookup/maven completed successfully. Payload: " + request.toString());
         return result;
     }
@@ -78,8 +75,7 @@ public class LookupImpl implements Lookup {
     public Set<NPMLookupResult> lookupNPM(@SpanAttribute(value = "request") NPMLookupRequest request)
             throws CommunicationException {
         log.info("Incoming request to /lookup/npm. Payload: " + request.toString());
-        Set<NPMLookupResult> result = lookupGenerator
-                .lookupBestMatchNPM(request.getPackages(), request.getMode(), Set.of());
+        Set<NPMLookupResult> result = lookupGenerator.lookupBestMatchNPM(request.getPackages(), request.getMode());
         log.info("Request to /lookup/npm completed successfully. Payload: " + request.toString());
         return result;
     }
