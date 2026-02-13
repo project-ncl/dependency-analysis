@@ -254,6 +254,17 @@
                 <artifactId>galley-cache-partyline</artifactId>
                 <version>${version.galley}</version>
             </dependency>
+            <dependency>
+                <groupId>org.commonjava.maven.ext</groupId>
+                <artifactId>pom-manipulation-core</artifactId>
+                <version>1.6</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
             <!-- Commonjava -->
 
             <dependency>

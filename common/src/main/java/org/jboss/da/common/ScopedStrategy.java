@@ -2,7 +2,7 @@ package org.jboss.da.common;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
-import org.jboss.pnc.common.alignment.ranking.VersionStrategy;
+import org.jboss.da.common.version.VersionStrategy;
 
 import java.util.Comparator;
 
