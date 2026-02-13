@@ -24,12 +24,6 @@ public interface ArtifactDAO<T extends Artifact> extends GenericDAO<T> {
      */
     Optional<T> findArtifact(String groupId, String artifactId, String version);
 
-    /**
-     * Find all artifacts that have group id and artifact id matching one from the provided set.
-     *
-     * @param gas Set of Group ids and artifact ids of desired artifacts.
-     * @return List of found artifacts.
-     */
     List<T> findArtifact(Set<GA> gas);
 
     /**
