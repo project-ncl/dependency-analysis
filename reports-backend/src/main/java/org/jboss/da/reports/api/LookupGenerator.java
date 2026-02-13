@@ -32,7 +32,8 @@ public interface LookupGenerator {
 
     Set<MavenLatestResult> lookupLatestMaven(Set<GAV> gavs, String mode) throws CommunicationException;
 
-    Set<NPMLookupResult> lookupBestMatchNPM(Set<NPMPackage> packages, String mode) throws CommunicationException;
+    Set<NPMLookupResult> lookupBestMatchNPM(Set<NPMPackage> packages, String mode, Set<Constraints> constraints)
+            throws CommunicationException;
 
     Set<NPMVersionsResult> lookupVersionsNPM(
             Set<NPMPackage> packages,
