@@ -6,6 +6,7 @@ import org.junit.After;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +24,7 @@ import javax.ws.rs.core.Response;
 public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest {
 
     protected enum ListEntityType {
-        BLACK;
+        BLACK, WHITE, PRODUCT;
     }
 
     protected enum OperationType {
@@ -32,16 +33,33 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
 
     protected static final String PATH_FILES_LISTINGS_GAV = "/listings";
 
+    protected static final String PATH_WHITE_LIST = "/listings/whitelist";
+
     protected static final String PATH_BLACK_LIST = "/listings/blacklist";
+
+    protected static final String PATH_WHITE_LISTINGS_GAV = "/listings/whitelist/gav";
+
+    protected static final String PATH_WHITE_ARTIFACTS = "/listings/whitelist/artifacts/gav";
 
     protected static final String PATH_BLACK_LISTINGS_GAV = "/listings/blacklist/gav";
 
     protected static final String PATH_BLACK_LISTINGS_GA = "/listings/blacklist/ga";
 
+    protected static final String PATH_PRODUCT = "/listings/whitelist/product";
+
+    protected static final String PATH_PRODUCTS = "/listings/whitelist/products";
+
     @After
     public void dropTables() throws Exception {
+        List<RestWhiteArtifact> whitelistedArtifacts = getAllWhiteArtifactsFromList(PATH_WHITE_LIST);
+        List<RestArtifact> artifacts = whiteToRestArtifactList(whitelistedArtifacts);
+        artifacts.forEach(gav -> removeGavFromList(PATH_WHITE_LISTINGS_GAV, gav));
+
         List<RestArtifact> blacklistedArtifacts = getAllArtifactsFromList(PATH_BLACK_LIST);
         blacklistedArtifacts.forEach(gav -> removeGavFromList(PATH_BLACK_LISTINGS_GAV, gav));
+
+        List<RestProduct> products = getAllProductsFromList(PATH_PRODUCTS);
+        products.forEach(product -> removeProductFromList(PATH_PRODUCT, product));
     }
 
     private void removeGavFromList(String listUrl, RestArtifact gav) {
@@ -52,12 +70,31 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
         }
     }
 
+    private void removeProductFromList(String url, RestProduct product) {
+        try {
+            createClientRequest(url).method("DELETE", Entity.json(toRestProductRequest(product)), String.class);
+        } catch (Exception e) {
+            fail("Failed to remove product from the list using URL " + url);
+        }
+
+    }
+
     private String toRestProductRequest(RestProduct p) {
         return "{" + "\"name\":" + "\"" + p.getName() + "\"," + "\"version\":" + "\"" + p.getVersion() + "\"" + "}";
     }
 
     protected List<RestArtifact> getAllArtifactsFromList(String listUrl) throws Exception {
         return processGetRequest(new GenericType<List<RestArtifact>>() {
+        }, listUrl);
+    }
+
+    private List<RestWhiteArtifact> getAllWhiteArtifactsFromList(String listUrl) throws Exception {
+        return processGetRequest(new GenericType<List<RestWhiteArtifact>>() {
+        }, listUrl);
+    }
+
+    private List<RestProduct> getAllProductsFromList(String listUrl) throws Exception {
+        return processGetRequest(new GenericType<List<RestProduct>>() {
         }, listUrl);
     }
 
@@ -92,8 +129,14 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
             Boolean checkSuccess) throws Exception {
         String path = null;
         switch (entity) {
+            case WHITE:
+                path = PATH_WHITE_LISTINGS_GAV;
+                break;
             case BLACK:
                 path = PATH_BLACK_LISTINGS_GAV;
+                break;
+            case PRODUCT:
+                path = PATH_PRODUCT;
                 break;
         }
 
@@ -118,4 +161,20 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
         return response;
     }
 
+    private List<RestArtifact> whiteToRestArtifactList(List<RestWhiteArtifact> whites) {
+        List<RestArtifact> artifacts = new ArrayList<>();
+        for (RestWhiteArtifact w : whites) {
+            RestArtifact a = new RestArtifact();
+            a.setArtifactId(w.getGav().artifactId);
+            a.setGroupId(w.getGav().getGroupId());
+            a.setVersion(w.getGav().getVersion());
+            artifacts.add(a);
+        }
+        return artifacts;
+    }
+
+    protected long getIdOfProduct(String name, String version) throws Exception {
+        return createClientRequest(PATH_PRODUCT + "?name=" + name + "&version=" + version).get(RestProduct[].class)[0]
+                .getId();
+    }
 }
