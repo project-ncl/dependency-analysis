@@ -51,7 +51,7 @@ public class ArtifactDAOImpl<T extends Artifact> extends GenericDAOImpl<T> imple
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<T> cq = cb.createQuery(type);
         Root<T> artifact = cq.from(type);
-        cq.select(artifact).where(artifact.get("ga").in(gas));
+        cq.select(artifact).where(cb.in(artifact.get("ga").in(gas)));
         TypedQuery<T> q = em.createQuery(cq);
         return q.getResultList();
     }
