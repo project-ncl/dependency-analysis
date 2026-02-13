@@ -23,7 +23,6 @@ import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.NPMPackage;
-import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.MavenArtifact;
 import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.api.Product;
@@ -52,7 +51,6 @@ import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
-import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
@@ -226,12 +224,10 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
         return availableArtifacts.thenApply(pas -> {
             List<String> versions = pas.stream()
                     .flatMap(as -> as.getArtifacts().stream())
-                    .map(Artifact::getVersion)
+                    .map(a -> a.getVersion())
                     .collect(Collectors.toList());
 
-            Optional<String> bmv = va.findBiggestMatchingVersion(
-                    version,
-                    versions.stream().map(Version::new).collect(Collectors.toList()));
+            Optional<String> bmv = va.findBiggestMatchingVersion(version, versions);
             List<String> sortedVersions = va.sortVersions(version, versions);
 
             return new VersionAnalysisResult(bmv, sortedVersions);
@@ -533,8 +529,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         Map<String, CompletableFuture<Set<String>>> artifactsMap = new HashMap<>();
         for (String name : uniqueNames) {
-            CompletableFuture<Set<String>> artifacts = productProvider.getAllVersions(new NPMArtifact(name, "0.0.0"))
-                    .thenApply(s -> s.stream().map(Version::getVersion).collect(Collectors.toSet()));
+            CompletableFuture<Set<String>> artifacts = productProvider.getAllVersions(new NPMArtifact(name, "0.0.0"));
 
             artifactsMap.put(name, artifacts);
         }

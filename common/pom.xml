@@ -33,11 +33,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.pnc</groupId>
-            <artifactId>pnc-common</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
