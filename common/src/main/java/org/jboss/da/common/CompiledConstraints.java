@@ -11,7 +11,7 @@ import java.util.Comparator;
 
 @SuperBuilder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class CompiledStrategy<T> implements Comparator<T> {
+public abstract class CompiledConstraints<T> implements Comparator<T> {
     @Getter
     private final String artifactScope;
 
@@ -27,22 +27,22 @@ public abstract class CompiledStrategy<T> implements Comparator<T> {
     public abstract int matchSignificance(T match);
 
     /**
-     * Returns such strategy that do not alter behaviour of version analysis
+     * Returns such constraints that do not alter behaviour of version analysis
      *
-     * @return strategy that do not affect version analysis
+     * @return constraint that do not affect version analysis
      */
-    public static CompiledStrategy<Object> none() {
-        return DefaultCompiledStrategy.get();
+    public static CompiledConstraints<Object> none() {
+        return DefaultCompiledConstraints.get();
     }
 
     @SuperBuilder
-    private static class DefaultCompiledStrategy extends CompiledStrategy<Object> {
+    private static class DefaultCompiledConstraints extends CompiledConstraints<Object> {
         @Override
         public int matchSignificance(Object match) {
             return 0;
         }
 
-        private static DefaultCompiledStrategy get() {
+        private static DefaultCompiledConstraints get() {
             return builder().artifactScope(null)
                     .ranks(new AlignmentRanking(null, null))
                     .allowList(new AlignmentPredicate(null, ver -> true))
