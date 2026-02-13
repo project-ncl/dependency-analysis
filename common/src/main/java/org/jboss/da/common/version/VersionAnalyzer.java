@@ -15,6 +15,7 @@
  */
 package org.jboss.da.common.version;
 
+import org.jboss.da.common.CompiledStrategy;
 import org.jboss.da.lookup.model.VersionDistanceRule;
 import org.jboss.da.lookup.model.VersionFilter;
 import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
@@ -60,21 +61,21 @@ public class VersionAnalyzer {
     private final VersionParser versionParser;
     private final List<String> suffixes = new ArrayList<>();
     private final VersionDistanceRule distanceRule;
-    private final VersionStrategy strategies;
+    private final CompiledStrategy strategies;
 
     public VersionAnalyzer(List<String> suffixes) {
         this(suffixes, VersionDistanceRule.RECOMMENDED_REPLACEMENT);
     }
 
-    public VersionAnalyzer(List<String> suffixes, VersionStrategy strategies) {
+    public VersionAnalyzer(List<String> suffixes, CompiledStrategy strategies) {
         this(suffixes, VersionDistanceRule.RECOMMENDED_REPLACEMENT, strategies);
     }
 
     public VersionAnalyzer(List<String> suffixes, VersionDistanceRule distanceRule) {
-        this(suffixes, distanceRule, VersionStrategy.none());
+        this(suffixes, distanceRule, CompiledStrategy.none());
     }
 
-    public VersionAnalyzer(List<String> suffixes, VersionDistanceRule distanceRule, VersionStrategy strategies) {
+    public VersionAnalyzer(List<String> suffixes, VersionDistanceRule distanceRule, CompiledStrategy strategies) {
         this.suffixes.addAll(suffixes);
         this.versionParser = new VersionParser(suffixes);
         this.distanceRule = Objects.requireNonNull(distanceRule);

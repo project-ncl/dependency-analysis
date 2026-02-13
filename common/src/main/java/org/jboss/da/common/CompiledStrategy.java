@@ -1,15 +1,28 @@
 package org.jboss.da.common;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
-import org.jboss.da.common.version.VersionStrategy;
+import org.jboss.pnc.common.alignment.ranking.AlignmentPredicate;
+import org.jboss.pnc.common.alignment.ranking.AlignmentRanking;
 
 import java.util.Comparator;
 
 @SuperBuilder
-public abstract class ScopedStrategy<T> extends VersionStrategy implements Comparator<T> {
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+public abstract class CompiledStrategy<T> implements Comparator<T> {
     @Getter
     private final String artifactScope;
+
+    @Getter
+    private final AlignmentRanking ranks;
+
+    @Getter
+    private final AlignmentPredicate denyList;
+
+    @Getter
+    private final AlignmentPredicate allowList;
 
     /**
      * Returns a number that conveys how much does an artifact identifier conform to an artifactScope. Higher number
@@ -25,24 +38,22 @@ public abstract class ScopedStrategy<T> extends VersionStrategy implements Compa
      *
      * @return strategy that do not affect version analysis
      */
-    public static ScopedStrategy<Object> none() {
-        return DefaultScopedStrategy.get();
+    public static CompiledStrategy<Object> none() {
+        return DefaultCompiledStrategy.get();
     }
 
     @SuperBuilder
-    private static class DefaultScopedStrategy extends ScopedStrategy<Object> {
+    private static class DefaultCompiledStrategy extends CompiledStrategy<Object> {
         @Override
         public int matchSignificance(Object artifactIdentifier) {
             return 0;
         }
 
-        private static DefaultScopedStrategy get() {
-            var vStrategy = VersionStrategy.none();
-
+        private static DefaultCompiledStrategy get() {
             return builder().artifactScope(null)
-                    .ranks(vStrategy.getRanks())
-                    .allowList(vStrategy.getAllowList())
-                    .denyList(vStrategy.getDenyList())
+                    .ranks(new AlignmentRanking(null, null))
+                    .allowList(new AlignmentPredicate(null, ver -> true))
+                    .denyList(new AlignmentPredicate(null, ver -> false))
                     .build();
         }
     }
