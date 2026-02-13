@@ -1,6 +1,6 @@
 package org.jboss.da.common.version;
 
-import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -46,21 +46,21 @@ public class VersionParser {
     }
 
     public static SuffixedVersion parseUnsuffixed(String version) {
-        return parseVersion(UNSUFFIXED_PATTERN.matcher(version), new QualifiedVersion(version));
+        return parseVersion(UNSUFFIXED_PATTERN.matcher(version), new Version(version));
     }
 
     /**
      * Parses the version string and returns the normalized version.
      *
-     * @see #parse(QualifiedVersion) for details
+     * @see #parse(Version) for details
      * @param version the original string version
      * @return The normalized version
      */
     public SuffixedVersion parse(String version) {
-        return parse(new QualifiedVersion(version));
+        return parse(new Version(version));
     }
 
-    public static SuffixedVersion parseUnsuffixed(QualifiedVersion version) {
+    public static SuffixedVersion parseUnsuffixed(Version version) {
         return parseVersion(UNSUFFIXED_PATTERN.matcher(version.getVersion()), version);
     }
 
@@ -71,7 +71,7 @@ public class VersionParser {
      * @return Set of suffixed versions parsable from the version string.
      */
     public Set<SuffixedVersion> parseSuffixed(String version) {
-        return parseSuffixed(new QualifiedVersion(version));
+        return parseSuffixed(new Version(version));
     }
 
     /**
@@ -82,7 +82,7 @@ public class VersionParser {
      * @param versionWithMeta The original version string with metadata.
      * @return The normalized version
      */
-    public SuffixedVersion parse(QualifiedVersion versionWithMeta) {
+    public SuffixedVersion parse(Version versionWithMeta) {
         SuffixedVersion normalized = parseUnsuffixed(versionWithMeta);
         int length = normalized.getQualifier().length();
         for (SuffixedVersion suffixedVersion : parseSuffixed(versionWithMeta)) {
@@ -100,7 +100,7 @@ public class VersionParser {
      * @param versionWithMeta The version to parse
      * @return Set of suffixed versions parsable from the version string.
      */
-    public Set<SuffixedVersion> parseSuffixed(QualifiedVersion versionWithMeta) {
+    public Set<SuffixedVersion> parseSuffixed(Version versionWithMeta) {
         Set<SuffixedVersion> ret = new HashSet<>();
         for (Map.Entry<String, Pattern> entry : versionPatterns.entrySet()) {
             String suffix = entry.getKey();
@@ -116,7 +116,7 @@ public class VersionParser {
         return ret;
     }
 
-    private static SuffixedVersion parseVersion(Matcher versionMatcher, QualifiedVersion versionWithMeta)
+    private static SuffixedVersion parseVersion(Matcher versionMatcher, Version versionWithMeta)
             throws NumberFormatException, IllegalArgumentException {
         String version = versionWithMeta.getVersion();
 
@@ -135,10 +135,8 @@ public class VersionParser {
         return new SuffixedVersion(major, minor, micro, qualifier, versionWithMeta);
     }
 
-    private static SuffixedVersion parseVersion(
-            Matcher versionMatcher,
-            QualifiedVersion versionWithMeta,
-            String parseSuffix) throws NumberFormatException, IllegalArgumentException {
+    private static SuffixedVersion parseVersion(Matcher versionMatcher, Version versionWithMeta, String parseSuffix)
+            throws NumberFormatException, IllegalArgumentException {
         if (!versionMatcher.matches()) {
             throw new IllegalArgumentException("Version " + versionWithMeta.getVersion() + "is unparsable");
         }

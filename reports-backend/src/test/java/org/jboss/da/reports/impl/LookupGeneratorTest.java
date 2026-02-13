@@ -17,7 +17,7 @@ import org.jboss.da.products.impl.AggregatedProductProvider;
 import org.jboss.da.products.impl.PncProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.reports.api.LookupGenerator;
-import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import static org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion.of;
+import static org.jboss.pnc.api.dependencyanalyzer.dto.Version.of;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Matchers.eq;
@@ -114,12 +114,12 @@ public class LookupGeneratorTest {
         assertNull(result2.getBestMatchVersion());
     }
 
-    private void preparePnc(GA ga, List<QualifiedVersion> versions) {
+    private void preparePnc(GA ga, List<Version> versions) {
         when(pncProductProvider.getAllVersions(eq(new MavenArtifact(new GAV(ga, "0.0.0")))))
                 .thenReturn(CompletableFuture.completedFuture(new HashSet<>(versions)));
     }
 
-    private void preparePnc(String name, List<QualifiedVersion> versions) {
+    private void preparePnc(String name, List<Version> versions) {
         when(pncProductProvider.getAllVersions(eq(new NPMArtifact(name, "0.0.0"))))
                 .thenReturn(CompletableFuture.completedFuture(new HashSet<>(versions)));
     }

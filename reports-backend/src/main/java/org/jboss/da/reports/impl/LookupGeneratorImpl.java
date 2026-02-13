@@ -27,7 +27,7 @@ import org.jboss.da.products.impl.AggregatedProductProvider;
 import org.jboss.da.products.impl.PncProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.da.reports.api.LookupGenerator;
-import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
+import org.jboss.pnc.api.dependencyanalyzer.dto.Version;
 import org.jboss.pnc.common.alignment.ranking.AlignmentPredicate;
 import org.jboss.pnc.common.alignment.ranking.AlignmentRanking;
 import org.jboss.pnc.common.alignment.ranking.exception.ValidationException;
@@ -95,10 +95,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
                 brewPullActive,
                 lookupMode,
                 extractQualifiers(compiledConstraints));
-        Map<GA, CompletableFuture<Set<QualifiedVersion>>> productArtifacts = getArtifactVersions(
-                productProvider,
-                gavs,
-                true);
+        Map<GA, CompletableFuture<Set<Version>>> productArtifacts = getArtifactVersions(productProvider, gavs, true);
         return createLookupResult(gavs, lookupMode, productArtifacts, compiledConstraints);
     }
 
@@ -134,7 +131,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
             boolean includeBad) throws CommunicationException {
         LookupMode lookupMode = getMode(mode, includeBad);
         ProductProvider productProvider = setupProductProvider(brewPullActive, lookupMode, Set.of());
-        Map<GA, CompletableFuture<Set<QualifiedVersion>>> productArtifacts = getArtifactVersions(
+        Map<GA, CompletableFuture<Set<Version>>> productArtifacts = getArtifactVersions(
                 productProvider,
                 gavs,
                 !includeBad);
@@ -145,10 +142,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
     public Set<MavenLatestResult> lookupLatestMaven(Set<GAV> gavs, String mode) throws CommunicationException {
         LookupMode lookupMode = getMode(mode, true);
         ProductProvider productProvider = setupProductProvider(true, lookupMode, Set.of());
-        Map<GA, CompletableFuture<Set<QualifiedVersion>>> productArtifacts = getArtifactVersions(
-                productProvider,
-                gavs,
-                false);
+        Map<GA, CompletableFuture<Set<Version>>> productArtifacts = getArtifactVersions(productProvider, gavs, false);
         return createLatestResult(gavs, lookupMode, productArtifacts);
     }
 
@@ -157,7 +151,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
             throws CommunicationException {
         LookupMode lookupMode = getMode(mode, false);
         pncProductProvider.setLookupMode(lookupMode);
-        Map<String, CompletableFuture<Set<QualifiedVersion>>> productArtifacts = getArtifactVersions(packages);
+        Map<String, CompletableFuture<Set<Version>>> productArtifacts = getArtifactVersions(packages);
         return createLookupResultNpm(packages, lookupMode, productArtifacts);
     }
 
@@ -170,7 +164,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
             boolean includeBad) throws CommunicationException {
         LookupMode lookupMode = getMode(mode, includeBad);
         pncProductProvider.setLookupMode(lookupMode);
-        Map<String, CompletableFuture<Set<QualifiedVersion>>> productArtifacts = getArtifactVersions(packages);
+        Map<String, CompletableFuture<Set<Version>>> productArtifacts = getArtifactVersions(packages);
         return createVersionsResultNpm(packages, lookupMode, vf, distanceRule, productArtifacts);
     }
 
@@ -185,15 +179,15 @@ public class LookupGeneratorImpl implements LookupGenerator {
         }
     }
 
-    private Map<GA, CompletableFuture<Set<QualifiedVersion>>> getArtifactVersions(
+    private Map<GA, CompletableFuture<Set<Version>>> getArtifactVersions(
             ProductProvider productProvider,
             Set<GAV> gavs,
             boolean filterBlacklisted) {
-        Map<GA, CompletableFuture<Set<QualifiedVersion>>> ret = new HashMap<>();
+        Map<GA, CompletableFuture<Set<Version>>> ret = new HashMap<>();
         Set<GA> distinctGAs = gavs.stream().map(GAV::getGA).collect(Collectors.toSet());
         for (GA ga : distinctGAs) {
             MavenArtifact mavenArtifact = new MavenArtifact(new GAV(ga, "0.0.0"));
-            CompletableFuture<Set<QualifiedVersion>> versions = productProvider.getAllVersions(mavenArtifact);
+            CompletableFuture<Set<Version>> versions = productProvider.getAllVersions(mavenArtifact);
             if (filterBlacklisted) {
                 versions = filterBlacklistedArtifacts(versions, ga);
             }
@@ -202,7 +196,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
         return ret;
     }
 
-    private Map<String, CompletableFuture<Set<QualifiedVersion>>> getArtifactVersions(Set<NPMPackage> packages) {
+    private Map<String, CompletableFuture<Set<Version>>> getArtifactVersions(Set<NPMPackage> packages) {
         return packages.stream()
                 .map(NPMPackage::getName)
                 .distinct()
@@ -210,10 +204,10 @@ public class LookupGeneratorImpl implements LookupGenerator {
                 .collect(Collectors.toMap(Artifact::getName, pncProductProvider::getAllVersions));
     }
 
-    private CompletableFuture<Set<QualifiedVersion>> filterBlacklistedArtifacts(
-            CompletableFuture<Set<QualifiedVersion>> versions,
+    private CompletableFuture<Set<Version>> filterBlacklistedArtifacts(
+            CompletableFuture<Set<Version>> versions,
             GA ga) {
-        Predicate<QualifiedVersion> isNotBlacklisted = version -> {
+        Predicate<Version> isNotBlacklisted = version -> {
             GAV gav = new GAV(ga, version.getVersion());
             return !blackArtifactService.isArtifactPresent(gav);
         };
@@ -223,7 +217,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
     private Set<MavenLookupResult> createLookupResult(
             Set<GAV> gavs,
             LookupMode mode,
-            Map<GA, CompletableFuture<Set<QualifiedVersion>>> artifactsMap,
+            Map<GA, CompletableFuture<Set<Version>>> artifactsMap,
             Set<CompiledGAVConstraints> compiledConstraints) throws CommunicationException {
 
         Map<CompiledConstraints<GAV>, VersionAnalyzer> vas = compiledConstraints.stream()
@@ -271,17 +265,14 @@ public class LookupGeneratorImpl implements LookupGenerator {
             LookupMode mode,
             VersionFilter vf,
             VersionDistanceRule distanceRule,
-            Map<GA, CompletableFuture<Set<QualifiedVersion>>> artifactsMap) throws CommunicationException {
+            Map<GA, CompletableFuture<Set<Version>>> artifactsMap) throws CommunicationException {
 
         VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes(), distanceRule);
 
         Set<CompletableFuture<MavenVersionsResult>> futures = gavs.stream()
                 .map(
                         gav -> artifactsMap.get(gav.getGA())
-                                .thenApply(
-                                        pas -> pas.stream()
-                                                .map(QualifiedVersion::getVersion)
-                                                .collect(Collectors.toSet()))
+                                .thenApply(pas -> pas.stream().map(Version::getVersion).collect(Collectors.toSet()))
                                 .thenApply(pas -> getMatchingVersions(va, vf, gav, pas)))
                 .collect(Collectors.toSet());
 
@@ -291,7 +282,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
     private Set<MavenLatestResult> createLatestResult(
             Set<GAV> gavs,
             LookupMode mode,
-            Map<GA, CompletableFuture<Set<QualifiedVersion>>> artifactsMap) throws CommunicationException {
+            Map<GA, CompletableFuture<Set<Version>>> artifactsMap) throws CommunicationException {
 
         VersionAnalyzer va = new VersionAnalyzer(Collections.singletonList(mode.getIncrementSuffix()));
 
@@ -305,7 +296,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
     private Set<NPMLookupResult> createLookupResultNpm(
             Set<NPMPackage> packages,
             LookupMode mode,
-            Map<String, CompletableFuture<Set<QualifiedVersion>>> artifactsMap) throws CommunicationException {
+            Map<String, CompletableFuture<Set<Version>>> artifactsMap) throws CommunicationException {
         VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes());
 
         Set<CompletableFuture<NPMLookupResult>> futures = packages.stream()
@@ -320,26 +311,25 @@ public class LookupGeneratorImpl implements LookupGenerator {
             LookupMode mode,
             VersionFilter vf,
             VersionDistanceRule distanceRule,
-            Map<String, CompletableFuture<Set<QualifiedVersion>>> artifactsMap) throws CommunicationException {
+            Map<String, CompletableFuture<Set<Version>>> artifactsMap) throws CommunicationException {
         VersionAnalyzer va = new VersionAnalyzer(mode.getSuffixes(), distanceRule);
 
         Set<CompletableFuture<NPMVersionsResult>> futures = packages.stream()
                 .map(
                         pkg -> artifactsMap.get(pkg.getName())
-                                .thenApply(
-                                        f -> f.stream().map(QualifiedVersion::getVersion).collect(Collectors.toSet()))
+                                .thenApply(f -> f.stream().map(Version::getVersion).collect(Collectors.toSet()))
                                 .thenApply(f -> getMatchingVersions(va, vf, pkg, f)))
                 .collect(Collectors.toSet());
 
         return joinFutures(futures);
     }
 
-    private MavenLookupResult getLookupResult(VersionAnalyzer va, GAV gav, Set<QualifiedVersion> versions) {
+    private MavenLookupResult getLookupResult(VersionAnalyzer va, GAV gav, Set<Version> versions) {
         Optional<String> bmv = va.findBiggestMatchingVersion(gav.getVersion(), versions);
         return new MavenLookupResult(gav, bmv.orElse(null));
     }
 
-    private MavenLatestResult getLatestResult(VersionAnalyzer va, GAV gav, Set<QualifiedVersion> versions) {
+    private MavenLatestResult getLatestResult(VersionAnalyzer va, GAV gav, Set<Version> versions) {
         Optional<String> bmv = va.findBiggestMatchingVersion(gav.getVersion(), versions);
         return new MavenLatestResult(gav, bmv.orElse(null));
     }
@@ -362,7 +352,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
         return new NPMVersionsResult(pkg, availableVersions);
     }
 
-    private NPMLookupResult getLookupResult(VersionAnalyzer va, NPMPackage pkg, Set<QualifiedVersion> versions) {
+    private NPMLookupResult getLookupResult(VersionAnalyzer va, NPMPackage pkg, Set<Version> versions) {
         Optional<String> bmv = va.findBiggestMatchingVersion(pkg.getVersion(), versions);
         return new NPMLookupResult(pkg, bmv.orElse(null));
     }
