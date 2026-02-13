@@ -1,17 +1,15 @@
 package org.jboss.da.test.client.rest.lookup;
 
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
 import org.junit.Test;
 
-import static org.jboss.da.test.client.rest.listings.AbstractRestApiListingTest.PATH_BLACK_LISTINGS_GAV;
 import static org.junit.Assert.assertEquals;
 
 public class LookupTestIT extends AbstractRestReportsTest {
 
-    static final String PATH_LOOKUP_MAVEN = "/lookup/maven";
+    private static final String PATH_LOOKUP_MAVEN = "/lookup/maven";
     private static final String PATH_LATEST_MAVEN = "/lookup/maven/latest";
     private static final String PATH_MAVEN_VERSIONS = "/lookup/maven/versions";
 
