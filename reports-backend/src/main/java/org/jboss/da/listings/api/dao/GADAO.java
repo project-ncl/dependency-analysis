@@ -27,10 +27,11 @@ public interface GADAO extends GenericDAO<GA> {
     Optional<GA> findGA(String groupId, String artifactId);
 
     /**
-     * Finds GA with specific groupId and artifactId from the provided set.
+     * Finds GA with specific groupId and artifactId
      *
-     * @param gas Set of group ids and artifact ids to search.
-     * @return List of found GAss.
+     * @param groupId
+     * @param artifactId
+     * @return Optional of GA
      */
     Set<GA> findGAs(Set<org.jboss.da.model.rest.GA> gas);
 
