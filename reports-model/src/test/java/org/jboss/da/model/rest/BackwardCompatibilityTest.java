@@ -11,6 +11,7 @@ import org.jboss.da.listings.model.rest.RestProductGAV;
 import org.jboss.da.listings.model.rest.RestProductInput;
 import org.jboss.da.listings.model.rest.SuccessResponse;
 import org.jboss.da.listings.model.rest.WLFill;
+import org.jboss.da.products.model.rest.GADiff;
 import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.Report;
@@ -137,6 +138,13 @@ public class BackwardCompatibilityTest {
         GAV gav = new GAV("g", "a", "v");
 
         compare(gav, "GAV");
+    }
+
+    @Test
+    public void testGADiff() throws IOException {
+        GADiff gadiff = new GADiff(new GA("g", "a"), "1.0.0", "1.0.1", "MICRO");
+
+        compare(gadiff, "GADiff");
     }
 
     @Test

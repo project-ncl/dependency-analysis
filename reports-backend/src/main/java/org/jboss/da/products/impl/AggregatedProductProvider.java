@@ -6,6 +6,7 @@ import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
+import org.jboss.da.products.impl.DatabaseProductProvider.Database;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.jboss.da.products.impl.PncProductProvider.Pnc;
 import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
@@ -66,6 +67,10 @@ public class AggregatedProductProvider implements ProductProvider {
     // known product, it's removed from the unknown
 
     @Inject
+    @Database
+    ProductProvider databaseProductProvider;
+
+    @Inject
     @Repository
     RepositoryProductProvider repositoryProductProvider;
 
@@ -121,6 +126,7 @@ public class AggregatedProductProvider implements ProductProvider {
             Collector<? super R, ?, R> collector) {
         final List<Future<R>> results = new ArrayList<>();
 
+        results.add(getter.apply(databaseProductProvider));
         results.add(getter.apply(repositoryProductProvider));
         results.add(getter.apply(pncProductProvider));
 
