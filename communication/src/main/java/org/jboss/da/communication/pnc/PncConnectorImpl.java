@@ -87,7 +87,6 @@ public class PncConnectorImpl implements PncConnector {
             if (parts.length == 4) {
                 // TODO filtering by target repository if necessary
                 versions.add(new QualifiedVersion(parts[3], art.getQualifiers()));
-            } else {
                 log.error("Cannot read version for artifact with identifier {}", art.getIdentifier());
             }
         }

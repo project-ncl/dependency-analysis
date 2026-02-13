@@ -24,14 +24,7 @@ public abstract class CompiledStrategy<T> implements Comparator<T> {
     @Getter
     private final AlignmentPredicate allowList;
 
-    /**
-     * Returns a number that conveys how much does an artifact identifier conform to an artifactScope. Higher number
-     * suggests a better match. The method returns 0 if the identifier doesn't match the artifactScope at all.
-     *
-     * @param artifactIdentifier artifact identifier
-     * @return an integer. Higher value means higher match. No match return 0.
-     */
-    public abstract int matchSignificance(T artifactIdentifier);
+    public abstract int matchSignificance(T match);
 
     /**
      * Returns such strategy that do not alter behaviour of version analysis
@@ -45,7 +38,7 @@ public abstract class CompiledStrategy<T> implements Comparator<T> {
     @SuperBuilder
     private static class DefaultCompiledStrategy extends CompiledStrategy<Object> {
         @Override
-        public int matchSignificance(Object artifactIdentifier) {
+        public int matchSignificance(Object match) {
             return 0;
         }
 
@@ -58,18 +51,8 @@ public abstract class CompiledStrategy<T> implements Comparator<T> {
         }
     }
 
-    /**
-     * Compare objects of Type T on how significant they match against this strategy's scope. T is usually a GAV.
-     *
-     * @param o1 the first object to be compared.
-     * @param o2 the second object to be compared.
-     * @return
-     */
     @Override
     public int compare(T o1, T o2) {
-        int s1 = matchSignificance(o1);
-        int s2 = matchSignificance(o2);
-
-        return Integer.compare(s1, s2);
+        return Comparator.comparingInt(this::matchSignificance).compare(o1, o2);
     }
 }
