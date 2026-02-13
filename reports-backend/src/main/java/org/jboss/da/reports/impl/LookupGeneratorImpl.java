@@ -194,12 +194,11 @@ public class LookupGeneratorImpl implements LookupGenerator {
             boolean filterBlacklisted) {
         Map<GA, CompletableFuture<Set<QualifiedVersion>>> ret = new HashMap<>();
         Set<GA> distinctGAs = gavs.stream().map(GAV::getGA).collect(Collectors.toSet());
-        Set<GAV> cache = blackArtifactService.prefetchGAs(distinctGAs);
         for (GA ga : distinctGAs) {
             MavenArtifact mavenArtifact = new MavenArtifact(new GAV(ga, "0.0.0"));
             CompletableFuture<Set<QualifiedVersion>> versions = productProvider.getAllVersions(mavenArtifact);
             if (filterBlacklisted) {
-                versions = filterBlacklistedArtifacts(versions, cache, ga);
+                versions = filterBlacklistedArtifacts(versions, ga);
             }
             ret.put(ga, versions);
         }
@@ -216,10 +215,11 @@ public class LookupGeneratorImpl implements LookupGenerator {
 
     private CompletableFuture<Set<QualifiedVersion>> filterBlacklistedArtifacts(
             CompletableFuture<Set<QualifiedVersion>> versions,
-            Set<GAV> cache,
             GA ga) {
-        Predicate<QualifiedVersion> isNotBlacklisted = version -> !blackArtifactService
-                .isBlocklisted(cache, ga, version);
+        Predicate<QualifiedVersion> isNotBlacklisted = version -> {
+            GAV gav = new GAV(ga, version.getVersion());
+            return !blackArtifactService.isArtifactPresent(gav);
+        };
         return versions.thenApply(v -> v.stream().filter(isNotBlacklisted).collect(Collectors.toSet()));
     }
 
