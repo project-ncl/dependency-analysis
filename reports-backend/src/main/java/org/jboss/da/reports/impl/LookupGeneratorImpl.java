@@ -103,10 +103,8 @@ public class LookupGeneratorImpl implements LookupGenerator {
     }
 
     private static Set<CompiledGAVStrategy> compileMavenStrategies(Set<Strategy> strategies) {
-        if (strategies == null) {
-            return Collections.emptySet();
-        }
-        return strategies.stream().map(CompiledGAVStrategy::from).collect(Collectors.toSet());
+        return strategies == null ? Set.of()
+                : strategies.stream().map(CompiledGAVStrategy::from).collect(Collectors.toSet());
     }
 
     private static Set<QValue> extractQualifiers(Set<? extends CompiledStrategy<?>> strategies) {
@@ -261,7 +259,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
             return Integer.compare(sim1, sim2);
         });
 
-        if (max.map(k -> k.matchSignificance(artifact)).orElse(0) != 0) {
+        if (max.isPresent() && max.get().matchSignificance(artifact) != 0) {
             return vas.get(max.get());
         }
 
