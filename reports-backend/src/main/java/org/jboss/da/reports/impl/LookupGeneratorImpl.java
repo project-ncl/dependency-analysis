@@ -1,8 +1,8 @@
 package org.jboss.da.reports.impl;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.CompiledStrategy;
-import org.jboss.da.common.CompiledGAVStrategy;
+import org.jboss.da.common.CompiledConstraints;
+import org.jboss.da.common.CompiledGAVConstraints;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
@@ -15,7 +15,7 @@ import org.jboss.da.lookup.model.NPMLookupResult;
 import org.jboss.da.lookup.model.NPMVersionsResult;
 import org.jboss.da.lookup.model.VersionDistanceRule;
 import org.jboss.da.lookup.model.VersionFilter;
-import org.jboss.da.model.rest.Strategy;
+import org.jboss.da.model.rest.Constraints;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.NPMPackage;
@@ -87,32 +87,32 @@ public class LookupGeneratorImpl implements LookupGenerator {
             Set<GAV> gavs,
             String mode,
             boolean brewPullActive,
-            Set<Strategy> strategies) throws CommunicationException, ValidationException {
+            Set<Constraints> constraints) throws CommunicationException, ValidationException {
         LookupMode lookupMode = getMode(mode, false);
-        Set<CompiledGAVStrategy> compiledStrategies = compileMavenStrategies(strategies);
+        Set<CompiledGAVConstraints> compiledConstraints = compileMavenConstraints(constraints);
 
         ProductProvider productProvider = setupProductProvider(
                 brewPullActive,
                 lookupMode,
-                extractQualifiers(compiledStrategies));
+                extractQualifiers(compiledConstraints));
         Map<GA, CompletableFuture<Set<QualifiedVersion>>> productArtifacts = getArtifactVersions(
                 productProvider,
                 gavs,
                 true);
-        return createLookupResult(gavs, lookupMode, productArtifacts, compiledStrategies);
+        return createLookupResult(gavs, lookupMode, productArtifacts, compiledConstraints);
     }
 
-    private static Set<CompiledGAVStrategy> compileMavenStrategies(Set<Strategy> strategies) {
-        return strategies == null ? Set.of()
-                : strategies.stream().map(CompiledGAVStrategy::from).collect(Collectors.toSet());
+    private static Set<CompiledGAVConstraints> compileMavenConstraints(Set<Constraints> constraints) {
+        return constraints == null ? Set.of()
+                : constraints.stream().map(CompiledGAVConstraints::from).collect(Collectors.toSet());
     }
 
-    private static Set<QValue> extractQualifiers(Set<? extends CompiledStrategy<?>> strategies) {
+    private static Set<QValue> extractQualifiers(Set<? extends CompiledConstraints<?>> constraints) {
         Set<Token> allTokens = new HashSet<>();
-        for (var strategy : strategies) {
-            AlignmentRanking ranks = strategy.getRanks();
-            AlignmentPredicate allow = strategy.getAllowList();
-            AlignmentPredicate deny = strategy.getDenyList();
+        for (var constraint : constraints) {
+            AlignmentRanking ranks = constraint.getRanks();
+            AlignmentPredicate allow = constraint.getAllowList();
+            AlignmentPredicate deny = constraint.getDenyList();
             allTokens.addAll(ranks.getRanksAsTokens().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
             allTokens.addAll(allow.getTokens());
             allTokens.addAll(deny.getTokens());
@@ -224,11 +224,11 @@ public class LookupGeneratorImpl implements LookupGenerator {
             Set<GAV> gavs,
             LookupMode mode,
             Map<GA, CompletableFuture<Set<QualifiedVersion>>> artifactsMap,
-            Set<CompiledGAVStrategy> compiledStrategies) throws CommunicationException {
+            Set<CompiledGAVConstraints> compiledConstraints) throws CommunicationException {
 
-        Map<CompiledStrategy<GAV>, VersionAnalyzer> vas = compiledStrategies.stream()
+        Map<CompiledConstraints<GAV>, VersionAnalyzer> vas = compiledConstraints.stream()
                 .collect(Collectors.toMap(Function.identity(), con -> new VersionAnalyzer(mode.getSuffixes(), con)));
-        VersionAnalyzer def = new VersionAnalyzer(mode.getSuffixes(), CompiledStrategy.none());
+        VersionAnalyzer def = new VersionAnalyzer(mode.getSuffixes(), CompiledConstraints.none());
 
         Set<CompletableFuture<MavenLookupResult>> futures = gavs.stream()
                 .map(
@@ -244,14 +244,14 @@ public class LookupGeneratorImpl implements LookupGenerator {
      * (matchSignificance is 0), return a default VersionAnalyzer.
      *
      * @param artifact an artifact (GAV or NPM)
-     * @param vas Map of Strategies and VAs
+     * @param vas Map of Constraints and VAs
      * @param def default VA to return
      * @return closest VA or default VA on empty map or no match
      * @param <T> GAV or NPM
      */
     private <T> VersionAnalyzer chooseVa(
             T artifact,
-            Map<CompiledStrategy<T>, VersionAnalyzer> vas,
+            Map<CompiledConstraints<T>, VersionAnalyzer> vas,
             VersionAnalyzer def) {
         var max = vas.keySet().stream().max((cc1, cc2) -> {
             int sim1 = cc1.matchSignificance(artifact);
