@@ -1,6 +1,7 @@
 package org.jboss.da.common.version;
 
 import org.jboss.da.common.CommunicationException;
+import org.jboss.da.model.rest.Strategy;
 import org.jboss.pnc.api.dependencyanalyzer.dto.QualifiedVersion;
 import org.jboss.pnc.api.enums.Qualifier;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static org.jboss.da.common.CompiledGAVStrategy.from;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -346,8 +348,8 @@ public class VersionAnalyzerTest {
 
     @Test
     public void testSingleRankOfQuality() {
-        VersionStrategy strat = VersionStrategy.from(List.of("QUALITY:RELEASED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("QUALITY:RELEASED")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -364,8 +366,8 @@ public class VersionAnalyzerTest {
 
     @Test
     public void testSingleRankOfProduct() {
-        VersionStrategy strat = VersionStrategy.from(List.of("PRODUCT_ID:1"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("PRODUCT_ID:1")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -382,8 +384,8 @@ public class VersionAnalyzerTest {
 
     @Test
     public void testSingleRankWithNoMatch() {
-        VersionStrategy strat = VersionStrategy.from(List.of("QUALITY:RELEASED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("QUALITY:RELEASED")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -400,8 +402,8 @@ public class VersionAnalyzerTest {
 
     @Test
     public void testTwoSimilarRanks() {
-        VersionStrategy strat = VersionStrategy.from(List.of("QUALITY:RELEASED", "QUALITY:TESTED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("QUALITY:RELEASED", "QUALITY:TESTED")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -418,8 +420,8 @@ public class VersionAnalyzerTest {
 
     @Test
     public void testTwoSimilarRanksReversed() {
-        VersionStrategy strat = VersionStrategy.from(List.of("QUALITY:TESTED", "QUALITY:RELEASED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("QUALITY:TESTED", "QUALITY:RELEASED")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -439,8 +441,8 @@ public class VersionAnalyzerTest {
         /**
          * Ranks: 1st: PRODUCT:EAP 2nd: QUALITY:RELEASED 3rd: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy.from(List.of("PRODUCT:EAP", "QUALITY:RELEASED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("PRODUCT:EAP", "QUALITY:RELEASED")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -471,9 +473,8 @@ public class VersionAnalyzerTest {
         /**
          * Ranks: 1st: PRODUCT:EAP or PRODUCT:RHSSO 2nd: QUALITY:RELEASED 3rd: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy
-                .from(List.of("PRODUCT:EAP or PRODUCT:RHSSO", "QUALITY:RELEASED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("PRODUCT:EAP or PRODUCT:RHSSO", "QUALITY:RELEASED")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -504,9 +505,8 @@ public class VersionAnalyzerTest {
         /**
          * Ranks: 1st: QUALITY:RELEASED or QUALITY:TESTED 2nd: PRODUCT:EAP 3rd: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy
-                .from(List.of("QUALITY:RELEASED or QUALITY:TESTED", "PRODUCT:EAP"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("QUALITY:RELEASED or QUALITY:TESTED", "PRODUCT:EAP")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -541,9 +541,8 @@ public class VersionAnalyzerTest {
         /**
          * Ranks: 1st: QUALITY:RELEASED 2nd: QUALITY:TESTED 3rd: PRODUCT:EAP 4th: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy
-                .from(List.of("QUALITY:RELEASED", "QUALITY:TESTED", "PRODUCT:EAP"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("QUALITY:RELEASED", "QUALITY:TESTED", "PRODUCT:EAP")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -581,9 +580,10 @@ public class VersionAnalyzerTest {
          * With explicit parentheses, Ranks would look like this: 1st: PRODUCT:EAP or (QUALITY:TESTED and
          * QUALITY:RELEASED) 2nd: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy
-                .from(List.of("PRODUCT:EAP or QUALITY:TESTED and QUALITY:RELEASED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder()
+                .ranks(List.of("PRODUCT:EAP or QUALITY:TESTED and QUALITY:RELEASED"))
+                .build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -618,9 +618,10 @@ public class VersionAnalyzerTest {
         /**
          * Ranks: 1st: (PRODUCT:EAP or QUALITY:TESTED) and QUALITY:RELEASED 2nd: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy
-                .from(List.of("(PRODUCT:EAP or QUALITY:TESTED) and QUALITY:RELEASED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder()
+                .ranks(List.of("(PRODUCT:EAP or QUALITY:TESTED) and QUALITY:RELEASED"))
+                .build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -656,11 +657,10 @@ public class VersionAnalyzerTest {
          * Ranks: 1st: PRODUCT:EAP sort-by SUFFIX-VERSION 2nd: QUALITY:RELEASED sort-by SUFFIX-VERSION 3rd:
          * SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy.from(
-                List.of("PRODUCT:EAP sort-by SUFFIX-VERSION", "QUALITY:RELEASED sort-by SUFFIX-VERSION"),
-                null,
-                null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder()
+                .ranks(List.of("PRODUCT:EAP sort-by SUFFIX-VERSION", "QUALITY:RELEASED sort-by SUFFIX-VERSION"))
+                .build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -691,13 +691,13 @@ public class VersionAnalyzerTest {
          * Ranks: 1st: PRODUCT:EAP or QUALITY:TESTED sort-by SUFFIX-VERSION 2nd: QUALITY:RELEASED sort-by SUFFIX-VERSION
          * 3rd: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy.from(
-                List.of(
-                        "PRODUCT:EAP or QUALITY:TESTED sort-by SUFFIX-VERSION",
-                        "QUALITY:RELEASED sort-by SUFFIX-VERSION"),
-                null,
-                null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder()
+                .ranks(
+                        List.of(
+                                "PRODUCT:EAP or QUALITY:TESTED sort-by SUFFIX-VERSION",
+                                "QUALITY:RELEASED sort-by SUFFIX-VERSION"))
+                .build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -729,13 +729,13 @@ public class VersionAnalyzerTest {
          * Ranks: 1st: PRODUCT:EAP and QUALITY:TESTED sort-by SUFFIX-VERSION 2nd: QUALITY:RELEASED sort-by
          * SUFFIX-VERSION 3rd: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy.from(
-                List.of(
-                        "PRODUCT:EAP and QUALITY:TESTED sort-by SUFFIX-VERSION",
-                        "QUALITY:RELEASED sort-by SUFFIX-VERSION"),
-                null,
-                null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder()
+                .ranks(
+                        List.of(
+                                "PRODUCT:EAP and QUALITY:TESTED sort-by SUFFIX-VERSION",
+                                "QUALITY:RELEASED sort-by SUFFIX-VERSION"))
+                .build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -766,9 +766,10 @@ public class VersionAnalyzerTest {
         /**
          * Ranks: 1st: PRODUCT:EAP 2nd: QUALITY:RELEASED sort-by SUFFIX-VERSION 3rd: QUALITY:TESTED 4th: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy
-                .from(List.of("PRODUCT:EAP", "QUALITY:RELEASED sort-by SUFFIX-VERSION", "QUALITY:TESTED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder()
+                .ranks(List.of("PRODUCT:EAP", "QUALITY:RELEASED sort-by SUFFIX-VERSION", "QUALITY:TESTED"))
+                .build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -806,9 +807,8 @@ public class VersionAnalyzerTest {
         /**
          * Ranks: 1st: PRODUCT:EAP 2nd: QUALITY:RELEASED 3rd: QUALITY:TESTED 4th: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy
-                .from(List.of("PRODUCT:EAP", "QUALITY:RELEASED", "QUALITY:TESTED"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("PRODUCT:EAP", "QUALITY:RELEASED", "QUALITY:TESTED")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -845,8 +845,8 @@ public class VersionAnalyzerTest {
         /**
          * Deny list: QUALITY:RELEASED
          */
-        VersionStrategy strat = VersionStrategy.from(null, null, "QUALITY:RELEASED");
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().denyList("QUALITY:RELEASED").build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -871,8 +871,8 @@ public class VersionAnalyzerTest {
         /**
          * Deny list: QUALITY:RELEASED, PRODUCT:RHSSO
          */
-        VersionStrategy strat = VersionStrategy.from(null, null, "QUALITY:RELEASED, PRODUCT:RHSSO");
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().denyList("QUALITY:RELEASED, PRODUCT:RHSSO").build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -897,8 +897,8 @@ public class VersionAnalyzerTest {
         /**
          * Allow list: QUALITY:RELEASED
          */
-        VersionStrategy strat = VersionStrategy.from(null, "QUALITY:RELEASED", null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().allowList("QUALITY:RELEASED").build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -923,8 +923,8 @@ public class VersionAnalyzerTest {
         /**
          * Allow list: QUALITY:RELEASED, PRODUCT:EAP
          */
-        VersionStrategy strat = VersionStrategy.from(null, "QUALITY:RELEASED, PRODUCT:EAP", null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().allowList("QUALITY:RELEASED, PRODUCT:EAP").build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -949,8 +949,8 @@ public class VersionAnalyzerTest {
         /**
          * Allow list: QUALITY:RELEASED Deny list: PRODUCT:RHSSO
          */
-        VersionStrategy strat = VersionStrategy.from(null, "QUALITY:RELEASED", "PRODUCT:RHSSO");
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder().allowList("QUALITY:RELEASED").denyList("PRODUCT:RHSSO").build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -977,8 +977,11 @@ public class VersionAnalyzerTest {
          *
          * Ranks: 1st: PRODUCT:EAP 2nd: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy.from(List.of("PRODUCT:EAP"), "QUALITY:RELEASED, PRODUCT:RHSSO", null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), strat);
+        Strategy strat = Strategy.builder()
+                .allowList("QUALITY:RELEASED, PRODUCT:RHSSO")
+                .ranks(List.of("PRODUCT:EAP"))
+                .build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -1003,8 +1006,8 @@ public class VersionAnalyzerTest {
         /**
          * Ranks: 1st: PRODUCT:RHSSO 2nd: PRODUCT:EAP 3rd: SUFFIX-VERSION
          */
-        VersionStrategy strat = VersionStrategy.from(List.of("PRODUCT:RHSSO", "PRODUCT:EAP"), null, null);
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("temporary-redhat", "redhat"), strat);
+        Strategy strat = Strategy.builder().ranks(List.of("PRODUCT:RHSSO", "PRODUCT:EAP")).build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("temporary-redhat", "redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -1038,8 +1041,8 @@ public class VersionAnalyzerTest {
         /**
          * Deny list: QUALITY:DELETE
          */
-        VersionStrategy strat = VersionStrategy.from(null, null, "QUALITY:DELETE");
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("temporary-redhat", "redhat"), strat);
+        Strategy strat = Strategy.builder().denyList("QUALITY:DELETE").build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("temporary-redhat", "redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
@@ -1067,8 +1070,8 @@ public class VersionAnalyzerTest {
         /**
          * Deny list: QUALITY:DELETE
          */
-        VersionStrategy strat = VersionStrategy.from(null, null, "QUALITY:DELETE");
-        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("temporary-redhat", "redhat"), strat);
+        Strategy strat = Strategy.builder().denyList("QUALITY:DELETE").build();
+        VersionAnalyzer versionAnalyzer = new VersionAnalyzer(List.of("temporary-redhat", "redhat"), from(strat));
         String version = "1.4.0";
 
         List<QualifiedVersion> versions = new ArrayList<>(
