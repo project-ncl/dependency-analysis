@@ -1,10 +1,10 @@
 package org.jboss.da.products.api;
 
-import org.jboss.da.common.version.VersionComparator.VersionDifference;
 import org.jboss.da.model.rest.GA;
 
 import lombok.Getter;
 import lombok.NonNull;
+import org.jboss.pnc.common.version.VersionComparator.VersionDifference;
 
 /**
  *

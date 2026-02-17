@@ -21,8 +21,8 @@ import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import org.jboss.da.common.version.SuffixedVersion;
-import org.jboss.da.common.version.VersionParser;
+import org.jboss.pnc.common.version.SuffixedVersion;
+import org.jboss.pnc.common.version.VersionParser;
 
 /**
  * 
@@ -82,7 +82,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version) {
         SuffixedVersion parsedVersion = versionParser.parse(version);
         Optional<BlackArtifact> artifact = blackArtifactDAO
-                .findArtifact(groupId, artifactId, parsedVersion.unsuffixedVesion());
+                .findArtifact(groupId, artifactId, parsedVersion.unsuffixedVersion());
         if (parsedVersion.isSuffixed() && !artifact.isPresent()) {
             artifact = blackArtifactDAO.findArtifact(groupId, artifactId, VersionParser.getOSGiVersion(version));
         }
