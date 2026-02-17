@@ -83,7 +83,6 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- OTEL Dependencies for Instrumentation -->
     </dependencies>
 
     <build>
