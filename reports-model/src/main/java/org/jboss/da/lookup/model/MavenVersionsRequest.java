@@ -21,6 +21,8 @@ import lombok.Data;
 import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.pnc.api.constants.versions.VersionDistanceRule;
+import org.jboss.pnc.api.constants.versions.VersionFilter;
 
 import javax.validation.constraints.NotNull;
 import java.util.Set;
