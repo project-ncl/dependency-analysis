@@ -28,6 +28,10 @@
             <groupId>org.jboss.pnc.metrics</groupId>
             <artifactId>pncmetrics</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.commonjava.maven.atlas</groupId>
+            <artifactId>atlas-identities</artifactId>
+        </dependency>
 
         <!-- Test dependencies -->
         <dependency>
