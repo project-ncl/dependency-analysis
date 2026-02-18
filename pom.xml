@@ -151,6 +151,16 @@
                 <groupId>org.jboss.pnc</groupId>
                 <artifactId>pnc-common</artifactId>
                 <version>${version.pnc-common}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.opentelemetry</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.httpcomponents</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.pnc</groupId>
