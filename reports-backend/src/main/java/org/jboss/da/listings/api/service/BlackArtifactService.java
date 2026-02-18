@@ -3,12 +3,13 @@ package org.jboss.da.listings.api.service;
 import java.util.Optional;
 
 import org.jboss.da.listings.api.model.BlackArtifact;
+import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 
 import java.util.Set;
 
 /**
- * 
+ *
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  *
  */
@@ -28,7 +29,7 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
     /**
      * Checks if list contains artifact with specific GAV. All restrictions and conversions are applied like using
      * getArtifact method of specific list.
-     * 
+     *
      * @param gav
      * @return True if list contains the artifact otherwise false.
      */
@@ -44,7 +45,7 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
     /**
      * Checks if blacklist contains artifact with specific groupId, artifactId and version. If the version have redhat
      * suffix it is removed. Then the version is converted to OSGi version and finds this version in blacklist;
-     * 
+     *
      * @return found artifact
      */
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version);
@@ -59,7 +60,7 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
 
     /**
      * Remove artifact from list. Removes only exact match of artifact.
-     * 
+     *
      * @param groupId
      * @param artifactId
      * @param version
@@ -68,4 +69,8 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
     public boolean removeArtifact(String groupId, String artifactId, String version);
 
     public Set<BlackArtifact> getArtifacts(String groupId, String artifactId);
+
+    Set<GAV> prefetchGAs(Set<GA> gas);
+
+    boolean isBlocklisted(Set<GAV> cache, GA ga, String version);
 }
