@@ -1,6 +1,5 @@
 package org.jboss.da.reports.model.response.striped;
 
-import lombok.extern.slf4j.Slf4j;
 import org.jboss.da.reports.model.response.*;
 import org.jboss.da.reports.model.response.RestVersionProduct;
 
