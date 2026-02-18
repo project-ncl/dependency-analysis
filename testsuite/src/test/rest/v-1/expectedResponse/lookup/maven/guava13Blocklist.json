@@ -1,0 +1,8 @@
+[
+  {
+    "bestMatchVersion": "13.0.1-redhat-1",
+    "groupId": "com.google.guava",
+    "artifactId": "guava",
+    "version": "13.0.1"
+  }
+]
