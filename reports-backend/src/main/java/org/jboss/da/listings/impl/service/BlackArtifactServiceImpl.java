@@ -1,8 +1,6 @@
 package org.jboss.da.listings.impl.service;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -10,10 +8,8 @@ import javax.inject.Inject;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
 import org.jboss.da.listings.api.dao.GADAO;
-import org.jboss.da.listings.api.dao.WhiteArtifactDAO;
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.GA;
-import org.jboss.da.listings.api.model.WhiteArtifact;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.model.rest.GAV;
 
@@ -34,9 +30,6 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
 
     @Inject
     private BlackArtifactDAO blackArtifactDAO;
-
-    @Inject
-    private WhiteArtifactDAO whiteArtifactDAO;
 
     @Inject
     private GADAO gaDAO;
@@ -61,21 +54,8 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
         if (blackArtifactDAO.findArtifact(groupId, artifactId, osgiVersion).isPresent()) {
             return ArtifactStatus.NOT_MODIFIED;
         }
-
-        Set<WhiteArtifact> whites = new HashSet<>();
-        Optional<WhiteArtifact> rhA = whiteArtifactDAO.findArtifact(groupId, artifactId, osgiVersion);
-        rhA.ifPresent(x -> whites.add(rhA.get()));
-        Optional<WhiteArtifact> a = whiteArtifactDAO.findArtifact(groupId, artifactId, version);
-        a.ifPresent(x -> whites.add(a.get()));
-
-        ArtifactStatus status = ArtifactStatus.ADDED;
-
-        if (!whites.isEmpty()) {
-            status = ArtifactStatus.WAS_WHITELISTED;
-        }
-
         blackArtifactDAO.create(artifact);
-        return status;
+        return ArtifactStatus.ADDED;
     }
 
     @Override
