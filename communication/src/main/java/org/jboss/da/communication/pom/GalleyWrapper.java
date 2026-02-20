@@ -1,11 +1,9 @@
 package org.jboss.da.communication.pom;
 
-import org.commonjava.cartographer.CartoDataException;
-import org.commonjava.maven.atlas.graph.model.EProjectDirectRelationships;
-import org.commonjava.maven.atlas.graph.rel.DependencyRelationship;
-import org.commonjava.maven.atlas.graph.rel.RelationshipType;
-import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
-import org.commonjava.maven.galley.maven.GalleyMaven;
+import org.commonjava.atlas.maven.graph.model.EProjectDirectRelationships;
+import org.commonjava.atlas.maven.graph.rel.DependencyRelationship;
+import org.commonjava.atlas.maven.graph.rel.RelationshipType;
+import org.commonjava.atlas.maven.ident.ref.ProjectVersionRef;
 import org.commonjava.maven.galley.maven.GalleyMavenException;
 import org.commonjava.maven.galley.maven.model.view.DependencyView;
 import org.commonjava.maven.galley.maven.model.view.MavenGAVView;
@@ -14,6 +12,7 @@ import org.commonjava.maven.galley.maven.parse.MavenPomReader;
 import org.commonjava.maven.galley.maven.parse.PomPeek;
 import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
+import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
 import org.jboss.da.common.util.Configuration;
@@ -26,7 +25,13 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Queue;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -49,13 +54,17 @@ public class GalleyWrapper implements AutoCloseable {
 
     private MavenModelProcessor processor;
 
-    public GalleyWrapper(GalleyMaven galley, File scmDir, ModelProcessorConfig disConf, MavenModelProcessor processor)
-            throws IOException {
+    public GalleyWrapper(
+            MavenPomReader mavenPomReader,
+            TypeMapper typeMapper,
+            File scmDir,
+            ModelProcessorConfig disConf,
+            MavenModelProcessor processor) throws IOException {
         this.disConf = disConf;
         this.processor = processor;
-        this.mvnPomReader = galley.getPomReader();
+        this.mvnPomReader = mavenPomReader;
         this.scm = scmDir.toPath();
-        this.localRepo = new LocalRepo(galley, scmDir);
+        this.localRepo = new LocalRepo(typeMapper, scmDir);
         locations.add(localRepo.getLocation());
     }
 
@@ -238,13 +247,11 @@ public class GalleyWrapper implements AutoCloseable {
      * @param artifact Dependencies of this artifact will be returned
      * @return Set of dependency relationships describing the dependency graph.
      * @throws GalleyMavenException
-     * @throws CartoDataException
      * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
      * @see #addLocations(java.util.List)
      * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
      */
-    public Set<DependencyRelationship> getAllDependencies(Artifact artifact)
-            throws GalleyMavenException, CartoDataException {
+    public Set<DependencyRelationship> getAllDependencies(Artifact artifact) throws GalleyMavenException {
         return getAllDependencies(artifact, false, false);
     }
 
@@ -257,13 +264,12 @@ public class GalleyWrapper implements AutoCloseable {
      * @param providedDeps true if should dependencies of provided-scope dependency be resolved.
      * @return Set of dependency relationships describing the dependency graph.
      * @throws GalleyMavenException
-     * @throws CartoDataException
      * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
      * @see #addLocations(java.util.List)
      * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
      */
     public Set<DependencyRelationship> getAllDependencies(Artifact artifact, boolean testDeps, boolean providedDeps)
-            throws GalleyMavenException, CartoDataException {
+            throws GalleyMavenException {
         Set<DependencyRelationship> deps = new HashSet<>();
 
         URI src = localRepo.getUri();
@@ -284,7 +290,7 @@ public class GalleyWrapper implements AutoCloseable {
 
             try {
                 work.addAll(getDeps(dr.getTarget(), processor, src, disConf));
-            } catch (CartoDataException | GalleyMavenException ex) {
+            } catch (GalleyMavenException ex) {
                 log.warn("Failed to get dependencies for " + dr.getTarget(), ex);
             }
         }
@@ -295,7 +301,7 @@ public class GalleyWrapper implements AutoCloseable {
             ProjectVersionRef ref,
             MavenModelProcessor processor,
             URI src,
-            ModelProcessorConfig disConf) throws GalleyMavenException, CartoDataException {
+            ModelProcessorConfig disConf) throws GalleyMavenException {
         MavenPomView pomView = mvnPomReader.read(ref, locations);
         EProjectDirectRelationships relationships = processor.readRelationships(pomView, src, disConf);
         return relationships.getAllRelationships()

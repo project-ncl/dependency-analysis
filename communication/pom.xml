@@ -101,27 +101,31 @@
         </dependency>
 
         <dependency>
-            <groupId>org.commonjava.cartographer</groupId>
-            <artifactId>cartographer</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.sun</groupId>
-                    <artifactId>tools</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>galley-maven</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>galley-transport-filearc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>galley-transport-httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.atlas</groupId>
+            <artifactId>atlas-identities</artifactId>
+        </dependency>
+        <!-- Used for pom.xml analysis -->
+        <dependency>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>galley-cache-partyline</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-        </dependency>
-
-        <!-- Used for pom.xml analysis -->
-
-        <dependency>
-            <groupId>org.commonjava.maven.galley</groupId>
-            <artifactId>galley-cache-partyline</artifactId>
         </dependency>
 
         <!-- Test dependencies -->
