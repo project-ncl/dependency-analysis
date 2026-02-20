@@ -1,9 +1,9 @@
 package org.jboss.da.communication.pom;
 
-import org.commonjava.maven.atlas.ident.ref.ProjectVersionRef;
+import org.commonjava.atlas.maven.ident.ref.ProjectVersionRef;
 import org.commonjava.maven.galley.TransferException;
-import org.commonjava.maven.galley.maven.GalleyMaven;
 import org.commonjava.maven.galley.maven.parse.PomPeek;
+import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.commonjava.maven.galley.maven.util.ArtifactPathUtils;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
@@ -25,7 +25,7 @@ import java.util.stream.Stream;
 
 /**
  * Class holding local maven-like repository of pom files.
- * 
+ *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 public class LocalRepo {
@@ -36,10 +36,10 @@ public class LocalRepo {
 
     private static final String SUFFIX = "-20150205.044024-1.pom";
 
-    public LocalRepo(GalleyMaven galley, File scmDir) throws IOException {
+    public LocalRepo(TypeMapper typeMapper, File scmDir) throws IOException {
         path = Files.createTempDirectory("deps");
 
-        initLocalRepo(galley, scmDir.toPath());
+        initLocalRepo(typeMapper, scmDir.toPath());
     }
 
     public synchronized Location getLocation() {
@@ -50,7 +50,7 @@ public class LocalRepo {
         return path.toUri();
     }
 
-    private void initLocalRepo(GalleyMaven galley, Path scmDir) throws IOException {
+    private void initLocalRepo(TypeMapper typeMapper, Path scmDir) throws IOException {
         Set<Path> poms = getAllPoms(scmDir);
 
         for (Path pomFile : poms) {
@@ -62,7 +62,7 @@ public class LocalRepo {
             }
 
             try {
-                String artifactPath = ArtifactPathUtils.formatArtifactPath(key.asPomArtifact(), galley.getTypeMapper());
+                String artifactPath = ArtifactPathUtils.formatArtifactPath(key.asPomArtifact(), typeMapper);
 
                 Path p = path.resolve(artifactPath);
                 Files.createDirectories(p.getParent());
@@ -108,7 +108,7 @@ public class LocalRepo {
 
     /**
      * This method will generate maven-metadata for
-     * 
+     *
      * @param key
      * @param pomFile
      * @param p

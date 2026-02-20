@@ -1,12 +1,10 @@
 package org.jboss.da.test.server.communication;
 
-import org.jboss.da.test.server.AbstractServerTest;
 import org.apache.maven.scm.ScmException;
-import org.commonjava.cartographer.CartoDataException;
-import org.commonjava.cartographer.CartographerCore;
-import org.commonjava.maven.galley.maven.GalleyMavenException;
+import org.commonjava.maven.galley.maven.parse.MavenPomReader;
 import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
+import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
@@ -14,26 +12,24 @@ import org.jboss.da.communication.pom.GalleyWrapper;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.PomReader;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
-import org.jboss.da.communication.pom.qualifier.DACartographerCore;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
+import org.jboss.da.test.server.AbstractServerTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -54,8 +50,10 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
     private SCM scm;
 
     @Inject
-    @DACartographerCore
-    private CartographerCore carto;
+    MavenPomReader mavenPomReader;
+
+    @Inject
+    TypeMapper typeMapper;
 
     @Inject
     private PomReader pomReader;
@@ -89,8 +87,7 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
     }
 
     @Test
-    public void testReadRelationships()
-            throws IOException, PomAnalysisException, GalleyMavenException, CartoDataException {
+    public void testReadRelationships() throws PomAnalysisException {
         long start = System.nanoTime();
         GAVDependencyTree readRelationships = pomAnalyzer
                 .readRelationships(clonedRepository, "application/pom.xml", Collections.emptyList());
@@ -103,7 +100,7 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
 
     @Test
     public void testGetPom() throws IOException, PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf, processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, clonedRepository, disConf, processor)) {
             GalleyWrapper.Artifact parent = gw.getPom("pom.xml");
 
             assertEquals(PARENT_GAV, parent.getGAV());
@@ -116,7 +113,7 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
 
     @Test
     public void testGetModules() throws IOException, PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf, processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, clonedRepository, disConf, processor)) {
             GalleyWrapper.Artifact parent = gw.getPom("pom.xml");
 
             Set<GalleyWrapper.Artifact> modules = gw.getModules(parent);
@@ -149,7 +146,7 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
 
     @Test
     public void testGetDependencies() throws IOException, PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), clonedRepository, disConf, processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, clonedRepository, disConf, processor)) {
             gw.addDefaultLocations(config);
             gw.addLocationsFromPoms(pomReader);
 

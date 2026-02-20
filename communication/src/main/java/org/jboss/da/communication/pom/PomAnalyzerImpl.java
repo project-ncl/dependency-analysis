@@ -1,14 +1,13 @@
 package org.jboss.da.communication.pom;
 
-import org.commonjava.cartographer.CartoDataException;
-import org.commonjava.cartographer.CartographerCore;
-import org.commonjava.maven.atlas.graph.rel.DependencyRelationship;
+import org.commonjava.atlas.maven.graph.rel.DependencyRelationship;
 import org.commonjava.maven.galley.maven.GalleyMavenException;
 import org.commonjava.maven.galley.maven.model.view.MavenPomView;
 import org.commonjava.maven.galley.maven.parse.MavenPomReader;
 import org.commonjava.maven.galley.maven.parse.PomPeek;
 import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
+import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
 import org.jboss.da.common.json.DAConfig;
@@ -19,14 +18,12 @@ import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.impl.DependencyTreeBuilder;
 import org.jboss.da.communication.pom.model.MavenProject;
-import org.jboss.da.communication.pom.qualifier.DACartographerCore;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,8 +45,10 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     private PomReader pomReader;
 
     @Inject
-    @DACartographerCore
-    private CartographerCore carto;
+    MavenPomReader mavenPomReader;
+
+    @Inject
+    TypeMapper typeMapper;
 
     @Inject
     private Configuration config;
@@ -67,7 +66,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     public GAVDependencyTree readRelationships(File pomRepoDir, String pomPath, List<String> repositories)
             throws PomAnalysisException {
 
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), pomRepoDir, disConf, processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, pomRepoDir, disConf, processor)) {
             GalleyWrapper.Artifact pom = gw.getPom(pomPath);
             gw.addLocations(repositories);
 
@@ -79,7 +78,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
 
     @Override
     public GAVDependencyTree readRelationships(File pomRepoDir, GAV gav) throws PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), pomRepoDir, disConf, processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, pomRepoDir, disConf, processor)) {
             GalleyWrapper.Artifact artifact = gw.getGAV(gav);
 
             return readRelationships(gw, artifact);
@@ -99,14 +98,14 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             GAV originGAV = a.getGAV();
 
             return dtb.getDependencyTree(relationships, originGAV, false, false);
-        } catch (CartoDataException | GalleyMavenException | IOException ex) {
+        } catch (GalleyMavenException | IOException ex) {
             throw new PomAnalysisException(ex);
         }
     }
 
     @Override
     public Set<GAV> getToplevelDepency(File pomRepoDir, GAV gav) throws PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), pomRepoDir, disConf, processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, pomRepoDir, disConf, processor)) {
             GalleyWrapper.Artifact artifact = gw.getGAV(gav);
 
             gw.addDefaultLocations(config);
@@ -121,7 +120,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     @Override
     public Set<GAV> getToplevelDepency(File pomRepoDir, String pomPath, List<String> repositories)
             throws PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), pomRepoDir, disConf, processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, pomRepoDir, disConf, processor)) {
             GalleyWrapper.Artifact artifact = gw.getPom(pomPath);
 
             gw.addLocations(repositories);
@@ -151,7 +150,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     @Override
     public MavenPomView getGitPomView(File repoDir, String pomPath, List<String> repositories)
             throws PomAnalysisException {
-        try (GalleyWrapper gw = new GalleyWrapper(carto.getGalley(), repoDir, disConf, processor)) {
+        try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, repoDir, disConf, processor)) {
             GalleyWrapper.Artifact pom = gw.getPom(pomPath);
             gw.addDefaultLocations(config);
             gw.addLocationsFromPoms(pomReader);
@@ -182,7 +181,6 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         List<Location> repos = new ArrayList<>();
         repos.add(repoLocation);
 
-        MavenPomReader mavenPomReader = carto.getGalley().getPomReader();
         MavenPomView pomView = mavenPomReader.read(pom.getKey(), repos);
 
         return pomView;
@@ -191,7 +189,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     @Override
     public Map<GA, Set<GAV>> getDependenciesOfModules(File scmDir, String pomPath, List<String> repositories)
             throws PomAnalysisException {
-        try (GalleyWrapper wrapper = new GalleyWrapper(carto.getGalley(), scmDir, disConf, processor)) {
+        try (GalleyWrapper wrapper = new GalleyWrapper(mavenPomReader, typeMapper, scmDir, disConf, processor)) {
             wrapper.addDefaultLocations(config);
             wrapper.addLocations(repositories);
             wrapper.addLocationsFromPoms(pomReader);
