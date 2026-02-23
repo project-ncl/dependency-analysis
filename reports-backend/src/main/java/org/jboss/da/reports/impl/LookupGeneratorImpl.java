@@ -162,9 +162,11 @@ public class LookupGeneratorImpl implements LookupGenerator {
                 .collect(Collectors.toMap(Artifact::getName, pncProductProvider::getAllVersions));
     }
 
-    private CompletableFuture<Set<String>> filterBlacklistedArtifacts(CompletableFuture<Set<String>> versions, Set<GAV> cache, GA ga) {
-        Predicate<String> isNotBlacklisted = version -> !blackArtifactService
-                .isBlocklisted(cache, ga, version);
+    private CompletableFuture<Set<String>> filterBlacklistedArtifacts(
+            CompletableFuture<Set<String>> versions,
+            Set<GAV> cache,
+            GA ga) {
+        Predicate<String> isNotBlacklisted = version -> !blackArtifactService.isBlocklisted(cache, ga, version);
         return versions.thenApply(v -> v.stream().filter(isNotBlacklisted).collect(Collectors.toSet()));
     }
 
