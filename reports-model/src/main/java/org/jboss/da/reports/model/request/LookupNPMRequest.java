@@ -17,7 +17,7 @@ package org.jboss.da.reports.model.request;
 
 import org.jboss.da.model.rest.NPMPackage;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import org.jboss.da.listings.api.model.User;
 import org.jboss.da.listings.api.service.ArtifactService;
 import org.jboss.pnc.common.version.VersionParser;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import java.util.List;
 

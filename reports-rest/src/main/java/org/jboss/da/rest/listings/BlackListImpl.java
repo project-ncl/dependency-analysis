@@ -8,8 +8,8 @@ import org.jboss.da.listings.model.rest.RestArtifact;
 import org.jboss.da.listings.model.rest.SuccessResponse;
 import org.jboss.da.model.rest.ErrorMessage;
 
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
 import java.util.Collection;

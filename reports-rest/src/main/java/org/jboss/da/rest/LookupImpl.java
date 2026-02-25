@@ -2,8 +2,8 @@ package org.jboss.da.rest;
 
 import java.util.Set;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.lookup.model.MavenLatestRequest;

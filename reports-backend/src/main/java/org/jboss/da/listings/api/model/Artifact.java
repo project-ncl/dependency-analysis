@@ -1,7 +1,7 @@
 package org.jboss.da.listings.api.model;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MappedSuperclass;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;

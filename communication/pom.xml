@@ -7,23 +7,20 @@
     </parent>
     <artifactId>communication</artifactId>
     <name>communication</name>
-    <packaging>ejb</packaging>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>org.jboss.da</groupId>
             <artifactId>common</artifactId>
-            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.jboss.da</groupId>
             <artifactId>reports-model</artifactId>
-            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>org.jboss.da</groupId>
             <artifactId>source-code-manager</artifactId>
-            <type>ejb</type>
         </dependency>
 
         <dependency>
@@ -39,82 +36,86 @@
         <dependency>
             <groupId>org.jboss.pnc</groupId>
             <artifactId>pnc-common</artifactId>
+            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>org.jboss.pnc</groupId>
             <artifactId>rest-api</artifactId>
             <classifier>java-client</classifier>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.commonjava.atlas</groupId>
-                    <artifactId>atlas-identities</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
-        <!-- JAXB API -->
+        <!-- Jakarta XML Binding (used for Maven metadata / POM parsing) -->
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <scope>test</scope>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+<!--            <scope>provided</scope>-->
         </dependency>
-
-        <!-- JAXB RI -->
         <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <scope>provided</scope>
+<!--            <scope>provided</scope>-->
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>jakarta.enterprise</groupId>-->
+<!--            <artifactId>jakarta.enterprise.cdi-api</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.jboss.spec.javax.servlet</groupId>-->
+<!--            <artifactId>jboss-servlet-api_4.0_spec</artifactId>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-undertow</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.spec.javax.servlet</groupId>
-            <artifactId>jboss-servlet-api_4.0_spec</artifactId>
-            <scope>provided</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.quarkus</groupId>-->
+<!--            <artifactId>quarkus-oidc</artifactId>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.wildfly.security</groupId>
-            <artifactId>wildfly-elytron-http-oidc</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.commonjava.maven.galley</groupId>
             <artifactId>galley-maven</artifactId>
+            <classifier>jakarta</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>galley-core</artifactId>
+            <classifier>jakarta</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>galley-api</artifactId>
+            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>org.commonjava.maven.galley</groupId>
             <artifactId>galley-transport-filearc</artifactId>
+            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>org.commonjava.maven.galley</groupId>
             <artifactId>galley-transport-httpclient</artifactId>
+            <classifier>jakarta</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>galley-cache-partyline</artifactId>
+            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>org.commonjava.atlas</groupId>
             <artifactId>atlas-identities</artifactId>
-        </dependency>
-        <!-- Used for pom.xml analysis -->
-        <dependency>
-            <groupId>org.commonjava.maven.galley</groupId>
-            <artifactId>galley-cache-partyline</artifactId>
         </dependency>
 
         <dependency>
@@ -125,12 +126,14 @@
 
         <!-- Test dependencies -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-junit5</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-junit5-mockito</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.skyscreamer</groupId>
@@ -138,13 +141,43 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.tomakehurst</groupId>
+            <groupId>org.wiremock</groupId>
             <artifactId>wiremock-standalone</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.spec.javax.xml.bind</groupId>
-            <artifactId>jboss-jaxb-api_2.3_spec</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+<!--            <groupId>com.github.tomakehurst</groupId>-->
+<!--            <artifactId>wiremock-standalone</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.jboss.spec.javax.xml.bind</groupId>-->
+<!--            <artifactId>jboss-jaxb-api_2.3_spec</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
+
+    <build>
+        <plugins>
+<!--                    <plugin>-->
+<!--                        <groupId>io.smallrye</groupId>-->
+<!--                        <artifactId>jandex-maven-plugin</artifactId>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>make-index</id>-->
+<!--                                <goals>-->
+<!--                                    <goal>jandex</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>io.quarkus.platform</groupId>-->
+<!--                <artifactId>quarkus-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <finalName>reqour-rest</finalName>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+        </plugins>
+    </build>
+
 </project>

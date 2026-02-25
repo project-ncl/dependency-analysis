@@ -11,8 +11,8 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.api.GAVToplevelDependencies;
 import org.jboss.da.reports.model.api.SCMLocator;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.HashSet;
 import java.util.Map;

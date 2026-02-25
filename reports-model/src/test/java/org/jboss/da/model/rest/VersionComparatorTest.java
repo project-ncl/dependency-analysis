@@ -1,15 +1,13 @@
 package org.jboss.da.model.rest;
 
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@RunWith(MockitoJUnitRunner.class)
 public class VersionComparatorTest {
 
     @Test

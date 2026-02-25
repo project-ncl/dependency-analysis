@@ -1,11 +1,11 @@
 package org.jboss.da.rest.websocket;
 
-import org.jboss.weld.context.activator.ActivateRequestContext;
+import jakarta.enterprise.context.control.ActivateRequestContext;
 import org.slf4j.Logger;
 
-import javax.inject.Inject;
-import javax.websocket.RemoteEndpoint.Basic;
-import javax.websocket.Session;
+import jakarta.inject.Inject;
+import jakarta.websocket.RemoteEndpoint.Basic;
+import jakarta.websocket.Session;
 
 import java.io.IOException;
 
