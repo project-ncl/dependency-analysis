@@ -9,10 +9,8 @@ import org.jboss.da.products.api.ProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.jboss.da.products.impl.PncProductProvider.Pnc;
 
-import javax.annotation.Resource;
-import javax.enterprise.concurrent.ManagedScheduledExecutorService;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -24,6 +22,7 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
@@ -72,8 +71,8 @@ public class AggregatedProductProvider implements ProductProvider {
     @Pnc
     PncProductProvider pncProductProvider;
 
-    @Resource
-    private ManagedScheduledExecutorService scheduler;
+    @Inject
+    ScheduledExecutorService scheduler;
 
     @Override
     public CompletableFuture<Set<Product>> getAllProducts() {

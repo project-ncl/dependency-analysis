@@ -7,97 +7,78 @@
     </parent>
     <artifactId>application</artifactId>
     <name>application</name>
-    <packaging>ear</packaging>
+    <packaging>jar</packaging>
+    <description>Quarkus application for Dependency Analyzer</description>
+
+    <properties>
+        <quarkus.package.jar.type>uber-jar</quarkus.package.jar.type>
+    </properties>
 
     <dependencies>
-        <!-- Project modules -->
-        <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>communication</artifactId>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>source-code-manager</artifactId>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>reports-model</artifactId>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>reports-backend</artifactId>
-            <type>ejb</type>
-        </dependency>
         <dependency>
             <groupId>org.jboss.da</groupId>
             <artifactId>reports-rest</artifactId>
-            <type>war</type>
+        </dependency>
+
+        <!-- Quarkus extensions -->
+<!--        <dependency>-->
+<!--            <groupId>io.quarkus</groupId>-->
+<!--            <artifactId>quarkus-resteasy-jaxrs</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-hibernate-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jdbc-postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-arc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-oidc</artifactId>
+        </dependency>
+        <!-- Jakarta XML Binding (for communication module POM / Maven metadata parsing) -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jaxb</artifactId>
+        </dependency>
+        <!-- Jakarta WebSocket (for reports-rest WebSocket endpoint) -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-websockets</artifactId>
         </dependency>
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <filtering>false</filtering>
-                <directory>src/main/resources</directory>
-            </resource>
-            <resource>
-                <filtering>false</filtering>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**</include>
-                </includes>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-ear-plugin</artifactId>
-                <version>2.9</version>
+                <groupId>io.quarkus.platform</groupId>
+                <artifactId>quarkus-maven-plugin</artifactId>
                 <configuration>
-                    <filtering>true</filtering>
-                    <version>6</version>
-                    <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <finalName>dependency-analysis</finalName>
-                    <modules>
-                        <ejbModule>
-                            <groupId>org.jboss.da</groupId>
-                            <artifactId>communication</artifactId>
-                        </ejbModule>
-                        <ejbModule>
-                            <groupId>org.jboss.da</groupId>
-                            <artifactId>reports-model</artifactId>
-                        </ejbModule>
-                        <ejbModule>
-                            <groupId>org.jboss.da</groupId>
-                            <artifactId>reports-backend</artifactId>
-                        </ejbModule>
-                        <webModule>
-                            <groupId>org.jboss.da</groupId>
-                            <artifactId>reports-rest</artifactId>
-                        </webModule>
-                    </modules>
-                    <fileNameMapping>no-version</fileNameMapping>
-                    <outputDirectory>${outDirectory}</outputDirectory>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <configuration>
-                    <targetDir>target</targetDir>
-                    <filename>dependency-analysis.ear</filename>
-                    <skip>false</skip>
-                </configuration>
+
+                <!--                <version>${quarkus.platform.version}</version>-->
+<!--                <extensions>true</extensions>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>build</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>dependency-analysis</finalName>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
             </plugin>
         </plugins>
     </build>
-
 </project>

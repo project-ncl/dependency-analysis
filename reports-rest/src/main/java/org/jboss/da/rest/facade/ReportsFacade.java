@@ -25,7 +25,7 @@ import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import java.util.Iterator;
 import java.util.List;

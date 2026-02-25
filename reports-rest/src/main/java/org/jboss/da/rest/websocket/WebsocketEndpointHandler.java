@@ -1,6 +1,6 @@
 package org.jboss.da.rest.websocket;
 
-import javax.websocket.Session;
+import jakarta.websocket.Session;
 
 public interface WebsocketEndpointHandler {
 

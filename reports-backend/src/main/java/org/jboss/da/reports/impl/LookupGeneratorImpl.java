@@ -26,8 +26,8 @@ import org.jboss.da.reports.api.LookupGenerator;
 import org.jboss.pnc.common.version.VersionAnalyzer;
 import org.jboss.pnc.enums.ArtifactQuality;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.Collections;
 import java.util.EnumSet;

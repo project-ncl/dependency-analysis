@@ -1,6 +1,6 @@
 package org.jboss.da.listings.api.model;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;

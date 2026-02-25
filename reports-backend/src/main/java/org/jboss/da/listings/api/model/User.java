@@ -1,7 +1,7 @@
 package org.jboss.da.listings.api.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;

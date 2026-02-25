@@ -5,7 +5,7 @@ import org.jboss.da.listings.model.rest.RestArtifact;
 import org.jboss.da.listings.model.rest.RestProduct;
 import org.jboss.da.listings.model.rest.RestProductGAV;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.ArrayList;
 import java.util.Collection;

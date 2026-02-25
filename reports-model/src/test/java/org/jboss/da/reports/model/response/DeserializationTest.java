@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
 import org.jboss.da.reports.model.request.VersionsNPMRequest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;

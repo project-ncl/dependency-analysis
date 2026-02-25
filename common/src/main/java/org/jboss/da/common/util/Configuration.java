@@ -8,7 +8,7 @@ import org.jboss.da.common.json.DAGroupWrapper;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.json.ModuleConfigJson;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.NamedType;

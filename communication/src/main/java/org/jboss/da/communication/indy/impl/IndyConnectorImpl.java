@@ -15,9 +15,9 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.pnc.common.log.MDCUtils;
 import org.slf4j.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.xml.bind.JAXBException;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.xml.bind.JAXBException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -108,6 +108,7 @@ public class IndyConnectorImpl implements IndyConnector {
             log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
             return Collections.emptyList();
         } catch (IOException e) {
+            e.printStackTrace();
             log.debug("Failed to obtain versions for " + packageName + " from repository on url " + query, e);
             throw new RepositoryException(
                     "Failed to obtain versions for " + packageName + " from repository on url " + query,

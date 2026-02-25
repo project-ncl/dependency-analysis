@@ -2,13 +2,13 @@ package org.jboss.da.common.logging;
 
 import lombok.extern.slf4j.Slf4j;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.ejb.Startup;
-import javax.inject.Singleton;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.ApplicationScoped;
+//import io.quarkus.runtime.Startup;
 
-@Startup
-@Singleton
+//@Startup
+@ApplicationScoped
 @Slf4j
 public class AppLifecycle {
 

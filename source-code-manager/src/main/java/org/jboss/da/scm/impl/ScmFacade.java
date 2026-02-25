@@ -16,8 +16,8 @@ import org.apache.maven.scm.repository.ScmRepositoryException;
 import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.io.File;
 import java.io.IOException;

@@ -14,8 +14,8 @@ import org.jboss.da.rest.websocket.DefaultMethod;
 import org.jboss.da.rest.websocket.Method;
 import org.jboss.da.rest.websocket.Methods;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

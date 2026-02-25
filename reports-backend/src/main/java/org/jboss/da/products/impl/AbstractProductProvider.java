@@ -5,11 +5,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
+import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.annotation.Resource;
-import javax.enterprise.concurrent.ManagedExecutorService;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.UserLog;
@@ -54,8 +53,8 @@ public abstract class AbstractProductProvider implements ProductProvider {
     @UserLog
     protected Logger userLog;
 
-    @Resource
-    private ManagedExecutorService executorService;
+    @Inject
+    ExecutorService executorService;
 
     private VersionParser versionParser = new VersionParser(DEFAULT_SUFFIX);
 
