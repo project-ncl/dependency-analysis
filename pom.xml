@@ -85,7 +85,7 @@
         <version.pnc-common>3.4.1-SNAPSHOT</version.pnc-common>
         <version.pnc-api>3.4.2</version.pnc-api>
         <atlasVersion>0.16.2</atlasVersion>
-        <version.galley>0.13.4</version.galley>
+        <version.galley>1.21</version.galley>
         <version.cartographer>0.12.2</version.cartographer>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
