@@ -83,7 +83,7 @@
         <version.bc.rest>1</version.bc.rest>
         <version.pnc>3.4.2</version.pnc>
         <version.pnc-common>3.4.1-SNAPSHOT</version.pnc-common>
-        <version.pnc-api>3.5.0-SNAPSHOT</version.pnc-api>
+        <version.pnc-api>3.4.2</version.pnc-api>
         <atlasVersion>0.16.2</atlasVersion>
         <version.galley>0.13.4</version.galley>
         <version.cartographer>0.12.2</version.cartographer>

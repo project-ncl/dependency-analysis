@@ -20,7 +20,6 @@ import javax.inject.Inject;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -72,7 +71,7 @@ public class PncConnectorImpl implements PncConnector {
                 // TODO filtering by target repository if necessary
                 versions.add(parts[3]);
             } else {
-                log.error("Cannot read version for artifact with identifier %s", art.getIdentifier());
+                log.error("Cannot read version for artifact with identifier {}", art.getIdentifier());
             }
         }
         return versions;
@@ -90,7 +89,7 @@ public class PncConnectorImpl implements PncConnector {
                 // TODO filtering by target repository if necessary
                 versions.add(parts[1]);
             } else {
-                log.error("Cannot read version for artifact with identifier %s", art.getIdentifier());
+                log.error("Cannot read version for artifact with identifier {}", art.getIdentifier());
             }
         }
         return versions;
@@ -112,8 +111,7 @@ public class PncConnectorImpl implements PncConnector {
 
         builder.mdcToHeadersMappings(MDCUtils.HEADER_KEY_MAPPING);
 
-        Configuration config = builder.build();
-        return config;
+        return builder.build();
     }
 
 }
