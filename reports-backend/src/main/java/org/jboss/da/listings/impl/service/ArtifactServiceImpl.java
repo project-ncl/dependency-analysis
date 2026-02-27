@@ -34,18 +34,12 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
 
     protected User currentUser() {
         String username = auth.username().orElseThrow(() -> new IllegalStateException("No logged in user."));
-        String userId = auth.userId().orElseThrow(() -> new IllegalStateException("No logged in user."));
 
-        User user = users.findUser(userId).orElseGet(() -> {
-            User u = new User(username, userId);
+        return users.findUser(username).orElseGet(() -> {
+            User u = new User(username);
             users.create(u);
             return u;
         });
-        if (!user.getUsername().equals(username)) {
-            user.setUsername(username);
-            users.update(user);
-        }
-        return user;
     }
 
     @Override
