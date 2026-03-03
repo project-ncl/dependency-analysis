@@ -1,8 +1,5 @@
 package org.jboss.da.communication.indy.impl;
 
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.Timer;
-
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
@@ -16,7 +13,6 @@ import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.pnc.common.log.MDCUtils;
-import org.jboss.pnc.pncmetrics.MetricsConfiguration;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -40,8 +36,6 @@ import org.jboss.da.common.util.UserLog;
 @ApplicationScoped
 public class IndyConnectorImpl implements IndyConnector {
 
-    private static final String METRICS_KEY = "da.client.indy.timer";
-
     @Inject
     private Logger log;
 
@@ -60,9 +54,6 @@ public class IndyConnectorImpl implements IndyConnector {
     private MetadataFileParser parser;
 
     @Inject
-    private MetricsConfiguration metricsConfiguration;
-
-    @Inject
     public IndyConnectorImpl(Configuration configuration) {
         try {
             config = configuration.getConfig();
@@ -75,14 +66,6 @@ public class IndyConnectorImpl implements IndyConnector {
     @Override
     public List<String> getVersionsOfGA(GA ga) throws RepositoryException {
         String query = repositoryLink("maven", ga.getGroupId().replace(".", "/") + "/" + ga.getArtifactId());
-
-        MetricRegistry registry = metricsConfiguration.getMetricRegistry();
-        Timer.Context context = null;
-
-        if (registry != null) {
-            Timer timer = registry.timer(METRICS_KEY);
-            context = timer.time();
-        }
 
         try {
             userLog.info("Retrieving versions for maven artifacts " + ga + " from " + query);
@@ -103,10 +86,6 @@ public class IndyConnectorImpl implements IndyConnector {
             throw new RepositoryException(
                     "Failed to obtain versions for " + ga + " from repository on url " + query,
                     e);
-        } finally {
-            if (context != null) {
-                context.stop();
-            }
         }
     }
 

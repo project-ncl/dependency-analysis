@@ -25,10 +25,6 @@
             <type>ejb</type>
         </dependency>
         <dependency>
-            <groupId>org.jboss.pnc.metrics</groupId>
-            <artifactId>pncmetrics</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.commonjava.atlas</groupId>
             <artifactId>atlas-identities</artifactId>
         </dependency>

@@ -2,7 +2,7 @@
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
   <application-name>Dependency-Analysis</application-name>
   <display-name>Dependency-Analysis</display-name>
-  
+
   <module>
     <ejb>common.jar</ejb>
   </module>
@@ -17,9 +17,6 @@
   </module>
   <module>
     <ejb>reports-backend.jar</ejb>
-  </module>
-  <module>
-    <ejb>pncmetrics.jar</ejb>
   </module>
   <module>
     <web>

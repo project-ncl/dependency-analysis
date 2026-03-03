@@ -5,7 +5,6 @@
     <sub-deployment name="reports-rest.war">
         <dependencies>
             <module name="deployment.dependency-analysis.ear.reports-backend.jar"/>
-            <module name="deployment.dependency-analysis.ear.pncmetrics.jar"/>
             <module name="org.wildfly.security.elytron-http-oidc"/>
         </dependencies>
     </sub-deployment>
@@ -20,15 +19,10 @@
             <module name="deployment.dependency-analysis.ear.reports-model.jar"/>
         </dependencies>
     </sub-deployment>
-    <sub-deployment name="pncmetrics.jar">
-        <dependencies>
-        </dependencies>
-    </sub-deployment>
     <sub-deployment name="communication.jar">
         <dependencies>
             <module name="deployment.dependency-analysis.ear.common.jar"/>
             <module name="deployment.dependency-analysis.ear.source-code-manager.jar"/>
-            <module name="deployment.dependency-analysis.ear.pncmetrics.jar"/>
             <module name="org.wildfly.security.elytron-http-oidc"/>
         </dependencies>
     </sub-deployment>
