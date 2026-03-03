@@ -1,5 +1,6 @@
 package org.jboss.da.rest.websocket;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.control.ActivateRequestContext;
 import org.slf4j.Logger;
 
@@ -21,6 +22,7 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@ApplicationScoped
 public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler {
 
     @Inject

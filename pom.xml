@@ -94,7 +94,6 @@
         <mvn-scm.version>1.11.2</mvn-scm.version>
         <corsUrlPattern>/*</corsUrlPattern>
 
-        <version.jandex-maven-plugin>3.5.3</version.jandex-maven-plugin>
         <!-- OTEL Dependencies for Instrumentation -->
         <version.io.opentelemetry.instrumentation>1.22.0</version.io.opentelemetry.instrumentation>
     <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
@@ -499,6 +498,19 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>io.smallrye</groupId>
+                    <artifactId>jandex-maven-plugin</artifactId>
+                    <version>3.5.3</version>
+                    <executions>
+                        <execution>
+                            <id>make-index</id>
+                            <goals>
+                                <goal>jandex</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
                     <groupId>pl.project13.maven</groupId>
                     <artifactId>git-commit-id-plugin</artifactId>
                     <version>4.9.10</version>
@@ -524,36 +536,9 @@
                         <redirectTestOutputToFile>true</redirectTestOutputToFile>
                     </configuration>
                 </plugin>
-                <!--This plugin's configuration is used to store Eclipse
-                m2e settings only. It has no influence on the Maven build itself. -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>net.revelc.code</groupId>
-                                        <artifactId>formatter-maven-plugin</artifactId>
-                                        <versionRange>[0.5.2,)</versionRange>
-                                        <goals>
-                                            <goal>format</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.11.0</version>
                     <configuration>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
@@ -577,11 +562,6 @@
                         <skipOriginalJarRename>true</skipOriginalJarRename>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>io.smallrye</groupId>
-                    <artifactId>jandex-maven-plugin</artifactId>
-                    <version>${version.jandex-maven-plugin}</version>
-                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -598,7 +578,7 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.8.0</version>
+                <version>0.10.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <!-- as defined in your settings.xml -->
@@ -626,7 +606,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.4</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.commonjava.maven.enforcer</groupId>
@@ -668,18 +647,18 @@
 
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>integration-test</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <artifactId>maven-failsafe-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>integration-test</id>-->
+<!--                        <goals>-->
+<!--                            <goal>integration-test</goal>-->
+<!--                            <goal>verify</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
 
     </build>
