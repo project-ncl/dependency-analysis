@@ -1,5 +1,6 @@
 package org.jboss.da.rest.facade;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -33,6 +34,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
+@ApplicationScoped
 public class ReportsFacade {
 
     @Inject
