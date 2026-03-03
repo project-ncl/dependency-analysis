@@ -20,9 +20,6 @@ import org.jboss.da.rest.filter.MDCLoggingFilter;
 
 import org.jboss.da.rest.listings.BlackListImpl;
 import org.jboss.da.rest.reports.Reports;
-import org.jboss.pnc.pncmetrics.rest.GeneralRestMetricsFilter;
-import org.jboss.pnc.pncmetrics.rest.TimedMetric;
-import org.jboss.pnc.pncmetrics.rest.TimedMetricFilter;
 
 /**
  *
@@ -64,7 +61,7 @@ public class ReportsRestActivator extends Application {
 
     /**
      * Swagger classes required to generate the API JSON generation
-     * 
+     *
      * @param resources
      */
     public void addSwaggerResources(Set<Class<?>> resources) {
@@ -73,7 +70,7 @@ public class ReportsRestActivator extends Application {
 
     /**
      * Add all JAX-RS classes here to get activated!
-     * 
+     *
      * @param resources
      */
     public void addProjectResources(Set<Class<?>> resources) {
@@ -85,9 +82,6 @@ public class ReportsRestActivator extends Application {
     }
 
     public void addMetricsResources(Set<Class<?>> resources) {
-        resources.add(GeneralRestMetricsFilter.class);
-        resources.add(TimedMetric.class);
-        resources.add(TimedMetricFilter.class);
         resources.add(MDCLoggingFilter.class);
     }
 

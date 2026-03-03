@@ -27,7 +27,6 @@ import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.rest.facade.ReportsFacade;
 import org.jboss.da.validation.ValidationException;
-import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -64,7 +63,6 @@ public class Reports {
     @Path("/scm")
     @Operation(summary = "Get dependency report for a project specified in a repository URL.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = Report.class)))
-    @TimedMetric
     @WithSpan()
     public Response scmGenerator(
             @SpanAttribute(value = "request") @Parameter(description = "scm information") SCMReportRequest request)
@@ -76,7 +74,6 @@ public class Reports {
     @Path("/scm-advanced")
     @Operation(summary = "Get dependency report for a project specified in a repository URL.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = AdvancedReport.class)))
-    @TimedMetric
     @WithSpan()
     public Response advancedScmGenerator(
             @SpanAttribute(value = "request") @Parameter(description = "scm information") SCMReportRequest request)
@@ -94,7 +91,6 @@ public class Reports {
     @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = LookupReport.class))))
     @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
     @Tag(name = "deprecated")
-    @TimedMetric
     @Valid
     @WithSpan()
     public Response lookupGav(
@@ -116,7 +112,6 @@ public class Reports {
     @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMLookupReport.class))))
     @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
     @Tag(name = "deprecated")
-    @TimedMetric
     @Valid
     @WithSpan()
     public Response lookupNPM(
@@ -134,7 +129,6 @@ public class Reports {
     @Operation(summary = "Lookup and filter versions for the list of provided NPM artifacts.")
     @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMVersionsReport.class))))
     @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
-    @TimedMetric
     @Valid
     @WithSpan()
     public Response versionsNPM(
@@ -151,7 +145,6 @@ public class Reports {
     @Path("/align")
     @Operation(summary = "Get alignment report for project specified in a repository URL.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = AlignReport.class)))
-    @TimedMetric
     @WithSpan()
     public Response alignReport(@SpanAttribute(value = "request") AlignReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
@@ -164,7 +157,6 @@ public class Reports {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Get built artifacts for project specified in a repository URL.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = BuiltReport.class)))
-    @TimedMetric
     @WithSpan()
     public Response builtReport(@SpanAttribute(value = "request") BuiltReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {

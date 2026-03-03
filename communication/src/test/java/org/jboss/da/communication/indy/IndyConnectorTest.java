@@ -10,7 +10,6 @@ import org.jboss.da.communication.indy.impl.IndyConnectorImpl;
 import org.jboss.da.communication.indy.impl.MetadataFileParser;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.model.rest.GA;
-import org.jboss.pnc.pncmetrics.MetricsConfiguration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -58,9 +57,6 @@ public class IndyConnectorTest {
 
     @Mock
     private PomAnalyzer pomAnalyzer;
-
-    @Mock
-    private MetricsConfiguration metricsConfiguration;
 
     @Spy
     private ObjectMapper mapper = new ObjectMapper();

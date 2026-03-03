@@ -18,7 +18,6 @@ import org.jboss.da.lookup.model.NPMVersionsRequest;
 import org.jboss.da.lookup.model.NPMVersionsResult;
 import org.jboss.da.reports.api.LookupGenerator;
 import org.jboss.da.rest.api.Lookup;
-import org.jboss.pnc.pncmetrics.rest.TimedMetric;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
@@ -32,7 +31,7 @@ public class LookupImpl implements Lookup {
     private LookupGenerator lookupGenerator;
 
     @Override
-    @TimedMetric
+
     @WithSpan()
     public Set<MavenLookupResult> lookupMaven(@SpanAttribute(value = "request") MavenLookupRequest request)
             throws CommunicationException {
@@ -70,7 +69,7 @@ public class LookupImpl implements Lookup {
     }
 
     @Override
-    @TimedMetric
+
     @WithSpan()
     public Set<NPMLookupResult> lookupNPM(@SpanAttribute(value = "request") NPMLookupRequest request)
             throws CommunicationException {

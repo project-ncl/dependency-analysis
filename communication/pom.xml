@@ -51,11 +51,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.pnc.metrics</groupId>
-            <artifactId>pncmetrics</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- JAXB API -->
         <dependency>
