@@ -1,14 +1,5 @@
 package org.jboss.da.communication.auth.impl;
 
-import org.jboss.da.communication.auth.AuthenticatorService;
-
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.inject.Alternative;
-import jakarta.inject.Inject;
-import jakarta.servlet.http.HttpServletRequest;
-
-import java.util.Optional;
-
 /**
  * Authenticator service used for testing purposes.
  *
