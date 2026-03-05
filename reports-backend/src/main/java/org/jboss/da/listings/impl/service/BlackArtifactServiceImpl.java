@@ -32,10 +32,10 @@ import org.jboss.pnc.common.version.VersionParser;
 public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact> implements BlackArtifactService {
 
     @Inject
-    private BlackArtifactDAO blackArtifactDAO;
+    BlackArtifactDAO blackArtifactDAO;
 
     @Inject
-    private GADAO gaDAO;
+    GADAO gaDAO;
 
     @Override
     protected ArtifactDAO<BlackArtifact> getDAO() {
