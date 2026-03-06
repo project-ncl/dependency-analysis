@@ -4,19 +4,19 @@ import java.io.File;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
-import static org.junit.Assert.assertEquals;
-import org.junit.Assume;
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.Response;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@Ignore
+@Disabled
 public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
 
     private static final String ENCODING = "utf-8";
@@ -27,7 +27,7 @@ public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
     @Test
     public void testDA176() throws Exception {
         final String repo = System.getenv("DA_hosted_repo");
-        Assume.assumeTrue(repo != null);
+        Assumptions.assumeTrue(repo != null);
         String gavNonexisting = "keycloak-1.6.0.Final";
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, gavNonexisting);
         String json = FileUtils.readFileToString(jsonRequestFile, ENCODING);

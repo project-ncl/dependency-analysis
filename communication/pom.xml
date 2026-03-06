@@ -26,12 +26,12 @@
         <dependency>
             <groupId>org.jboss.pnc</groupId>
             <artifactId>common</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.commonjava.atlas</groupId>
-                    <artifactId>atlas-identities</artifactId>
-                </exclusion>
-            </exclusions>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.commonjava.atlas</groupId>-->
+<!--                    <artifactId>atlas-identities</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
         <dependency>
             <groupId>org.jboss.pnc</groupId>
@@ -44,15 +44,10 @@
         </dependency>
 
         <!-- Jakarta XML Binding (used for Maven metadata / POM parsing) -->
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>jakarta.xml.bind</groupId>-->
+<!--            <artifactId>jakarta.xml.bind-api</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -128,6 +123,11 @@
         <dependency>
             <groupId>org.wiremock</groupId>
             <artifactId>wiremock-standalone</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

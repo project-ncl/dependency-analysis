@@ -1,22 +1,28 @@
 package org.jboss.da.test.client.rest.reports;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.h2.H2DatabaseTestResource;
+import io.quarkus.test.junit.QuarkusTest;
+import jakarta.transaction.Transactional;
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
 import org.json.JSONException;
-import static org.junit.Assert.fail;
-import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.Response;
 
 import java.io.File;
 
+@QuarkusTest
+@QuarkusTestResource(value = H2DatabaseTestResource.class, restrictToAnnotatedClass = true)
 public class RestApiReportsRemoteTestIT extends AbstractRestReportsTest {
 
     private static final String ENCODING = "utf-8";
@@ -31,7 +37,7 @@ public class RestApiReportsRemoteTestIT extends AbstractRestReportsTest {
 
     private static final String PATH_SCM = "/reports/scm";
 
-    @Before
+    @BeforeEach
     public void workaroundNoHttpResponseException() throws InterruptedException {
         Thread.sleep(2000);
     }
@@ -87,7 +93,7 @@ public class RestApiReportsRemoteTestIT extends AbstractRestReportsTest {
     @Test
     public void testScmOptionalRepository() throws Exception {
         final String repo = System.getenv("DA_hosted_repo");
-        Assume.assumeTrue(repo != null);
+        Assumptions.assumeTrue(repo != null);
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, "keycloak-1.6.0.Final");
         String json = FileUtils.readFileToString(jsonRequestFile, ENCODING);
         json = json.replace("${DA-hosted-repo}", repo);

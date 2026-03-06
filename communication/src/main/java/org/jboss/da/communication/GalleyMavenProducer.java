@@ -160,11 +160,6 @@ public class GalleyMavenProducer {
         return globalHttpConfiguration;
     }
 
-    // @Produces
-    // public MetricRegistry getMetricRegistry() {
-    // return metricRegistry;
-    // }
-
     @Produces
     public TransportMetricConfig getTransportMetricConfig() {
         return transportMetricConfig;

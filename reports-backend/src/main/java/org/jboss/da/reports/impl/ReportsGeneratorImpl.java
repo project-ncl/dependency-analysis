@@ -91,37 +91,37 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     public static final String DEFAULT_SUFFIX = "redhat";
 
     @Inject
-    private Logger log;
+    Logger log;
 
     @Inject
     @UserLog
-    private Logger userLog;
+    Logger userLog;
 
     @Inject
-    private BlackArtifactService blackArtifactService;
+    BlackArtifactService blackArtifactService;
 
     @Inject
-    private DependencyTreeGenerator dependencyTreeGenerator;
+    DependencyTreeGenerator dependencyTreeGenerator;
 
     @Inject
-    private SCM scmManager;
+    SCM scmManager;
 
     @Inject
-    private PomAnalyzer pomAnalyzer;
+    PomAnalyzer pomAnalyzer;
 
     @Inject
-    private SCMConnector scmConnector;
+    SCMConnector scmConnector;
 
     @Inject
-    private AggregatedProductProvider aggProductProvider;
+    AggregatedProductProvider aggProductProvider;
 
     @Inject
     @Pnc
-    private PncProductProvider pncProductProvider;
+    PncProductProvider pncProductProvider;
 
     @Inject
     @Repository
-    private RepositoryProductProvider repositoryProductProvider;
+    RepositoryProductProvider repositoryProductProvider;
 
     private Map<String, LookupMode> modes;
 

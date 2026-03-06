@@ -1,6 +1,6 @@
 package org.jboss.da.test.client.rest.listings;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class RequestGenerator {

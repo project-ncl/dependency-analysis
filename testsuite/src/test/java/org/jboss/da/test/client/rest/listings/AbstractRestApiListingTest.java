@@ -2,19 +2,19 @@ package org.jboss.da.test.client.rest.listings;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
-import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.Response;
 
 /**
  *
@@ -38,7 +38,7 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
 
     protected static final String PATH_BLACK_LISTINGS_GA = "/listings/blacklist/ga";
 
-    @After
+    @AfterEach
     public void dropTables() throws Exception {
         List<RestArtifact> blacklistedArtifacts = getAllArtifactsFromList(PATH_BLACK_LIST);
         blacklistedArtifacts.forEach(gav -> removeGavFromList(PATH_BLACK_LISTINGS_GAV, gav));

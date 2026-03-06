@@ -105,6 +105,11 @@
             <!-- Project modules -->
             <dependency>
                 <groupId>org.jboss.da</groupId>
+                <artifactId>application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.da</groupId>
                 <artifactId>common</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -156,6 +161,16 @@
                 <artifactId>pnc-common</artifactId>
                 <version>${version.pnc-common}</version>
                 <classifier>jakarta</classifier>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.pnc</groupId>
+                        <artifactId>pnc-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.jboss.pnc</groupId>
+                        <artifactId>pnc-api-constants</artifactId>
+                    </exclusion>
+                </exclusions>
 <!--                <exclusions>-->
 <!--                    <exclusion>-->
 <!--                        <groupId>io.opentelemetry</groupId>-->
@@ -176,28 +191,48 @@
                 <groupId>org.jboss.pnc</groupId>
                 <artifactId>common</artifactId>
                 <version>${version.pnc}</version>
+                <exclusions>
+                    <!-- it's bringing in the non-jakarta pnc-api. yuck! -->
+                    <exclusion>
+                        <groupId>org.jboss.pnc</groupId>
+                        <artifactId>pnc-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.pnc</groupId>
                 <artifactId>dto</artifactId>
                 <version>${version.pnc}</version>
+                <exclusions>
+                    <!-- it's bringing in the non-jakarta pnc-api. yuck! -->
+                    <exclusion>
+                        <groupId>org.jboss.pnc</groupId>
+                        <artifactId>pnc-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.pnc</groupId>
-                <artifactId>rest-api</artifactId>
+                <artifactId>rest-client-jakarta</artifactId>
                 <version>${version.pnc}</version>
             </dependency>
-            <dependency>
-                <groupId>org.jboss.pnc</groupId>
-                <artifactId>rest-api</artifactId>
-                <classifier>java-client</classifier>
-                <version>${version.pnc}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.pnc</groupId>
-                <artifactId>rest-client</artifactId>
-                <version>${version.pnc}</version>
-            </dependency>
+
+<!--            <dependency>-->
+<!--                <groupId>org.jboss.pnc</groupId>-->
+<!--                <artifactId>rest-api</artifactId>-->
+<!--                <version>${version.pnc}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.jboss.pnc</groupId>-->
+<!--                <artifactId>rest-api</artifactId>-->
+<!--                <classifier>java-client</classifier>-->
+<!--                <version>${version.pnc}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.jboss.pnc</groupId>-->
+<!--                <artifactId>rest-client</artifactId>-->
+<!--                <version>${version.pnc}</version>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>jakarta.annotation</groupId>
@@ -663,29 +698,29 @@
 
     </build>
     <profiles>
-        <profile>
-            <id>excludeRemoteTests</id>
-            <activation>
-                <property>
-                    <name>excludeRemoteTests</name>
-                </property>
-            </activation>
-            <modules>
-                <module>testsuite</module>
-            </modules>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/**RemoteTestIT.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+        <!-- <profile> -->
+        <!--     <id>excludeRemoteTests</id> -->
+        <!--     <activation> -->
+        <!--         <property> -->
+        <!--             <name>excludeRemoteTests</name> -->
+        <!--         </property> -->
+        <!--     </activation> -->
+        <!--     <modules> -->
+        <!--         <module>testsuite</module> -->
+        <!--     </modules> -->
+        <!--     <build> -->
+        <!--         <plugins> -->
+        <!--             <plugin> -->
+        <!--                 <artifactId>maven-failsafe-plugin</artifactId> -->
+        <!--                 <configuration> -->
+        <!--                     <excludes> -->
+        <!--                         <exclude>**/**RemoteTestIT.java</exclude> -->
+        <!--                     </excludes> -->
+        <!--                 </configuration> -->
+        <!--             </plugin> -->
+        <!--         </plugins> -->
+        <!--     </build> -->
+        <!-- </profile> -->
         <profile>
             <id>release</id>
             <properties>

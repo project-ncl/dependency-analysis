@@ -1,14 +1,16 @@
 package org.jboss.da.test.client.rest.lookup;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
-
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.h2.H2DatabaseTestResource;
+import io.quarkus.test.junit.QuarkusTest;
+import jakarta.ws.rs.core.Response;
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.jboss.da.test.client.rest.listings.AbstractRestApiListingTest.PATH_BLACK_LISTINGS_GAV;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@QuarkusTest
+@QuarkusTestResource(value = H2DatabaseTestResource.class, restrictToAnnotatedClass = true)
 public class LookupTestIT extends AbstractRestReportsTest {
 
     static final String PATH_LOOKUP_MAVEN = "/lookup/maven";

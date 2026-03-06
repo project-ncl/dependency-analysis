@@ -5,18 +5,18 @@
  */
 package org.jboss.da.test.client.rest.listings;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@Ignore
+@Disabled
 public class BugReporoducerRemoteTestIT extends AbstractRestApiListingTest {
 
     private static final String PATH_LOOKUP_GAVS = "/reports/lookup/gavs";
