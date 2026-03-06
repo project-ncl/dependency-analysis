@@ -8,7 +8,7 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.common.util.UserLog;
+import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.communication.indy.impl.IndyConnectorImpl;
 import org.jboss.da.communication.indy.impl.MetadataFileParser;
 import org.jboss.da.communication.pom.api.PomAnalyzer;

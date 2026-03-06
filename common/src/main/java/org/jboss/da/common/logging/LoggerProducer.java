@@ -1,4 +1,4 @@
-package org.jboss.da.common.util;
+package org.jboss.da.common.logging;
 
 import jakarta.enterprise.inject.Produces;
 import jakarta.enterprise.inject.spi.InjectionPoint;

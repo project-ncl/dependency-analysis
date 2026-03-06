@@ -9,7 +9,7 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.common.util.UserLog;
+import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
