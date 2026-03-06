@@ -5,10 +5,11 @@ import org.jboss.da.test.ArquillianDeploymentFactory;
 import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
 import org.jboss.da.test.ArquillianDeploymentFactory.TestSide;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.junit.Rule;
+import org.junit.jupiter.api.extension.RegisterExtension;
+
+import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 /**
  *
@@ -16,13 +17,8 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
  */
 public class AbstractServerTest {
 
-    @Rule
-    public WireMockRule wireMockRule = new WireMockRule(
-            options().port(8081).usingFilesUnderDirectory("src/test/resources/wiremock"));
-
-    @Deployment
-    public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS, TestSide.SERVER);
-    }
-
+    @RegisterExtension
+    public static final WireMockExtension wireMockRule = WireMockExtension.newInstance()
+            .options(options().port(8081).usingFilesUnderDirectory("src/test/resources/wiremock"))
+            .build();
 }

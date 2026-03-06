@@ -21,40 +21,22 @@
         </dependency>
 
         <!-- Quarkus extensions -->
-<!--        <dependency>-->
-<!--            <groupId>io.quarkus</groupId>-->
-<!--            <artifactId>quarkus-resteasy-jaxrs</artifactId>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-hibernate-orm</artifactId>
+            <artifactId>quarkus-config-yaml</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-jdbc-postgresql</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-arc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-openapi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-oidc</artifactId>
-        </dependency>
-        <!-- Jakarta XML Binding (for communication module POM / Maven metadata parsing) -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jaxb</artifactId>
-        </dependency>
-        <!-- Jakarta WebSocket (for reports-rest WebSocket endpoint) -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-websockets</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.quarkus</groupId>-->
+<!--            <artifactId>quarkus-smallrye-openapi</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.quarkus</groupId>-->
+<!--            <artifactId>quarkus-oidc</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -65,19 +47,6 @@
                 <configuration>
                     <finalName>dependency-analysis</finalName>
                 </configuration>
-
-                <!--                <version>${quarkus.platform.version}</version>-->
-<!--                <extensions>true</extensions>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>build</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <finalName>dependency-analysis</finalName>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
             </plugin>
         </plugins>
     </build>

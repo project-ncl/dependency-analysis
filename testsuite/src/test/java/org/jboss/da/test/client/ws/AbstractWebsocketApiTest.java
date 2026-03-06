@@ -1,26 +1,26 @@
 package org.jboss.da.test.client.ws;
 
 import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
-import org.junit.runner.RunWith;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.AbstractClientApiTest;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.CloseReason;
-import javax.websocket.ContainerProvider;
-import javax.websocket.DeploymentException;
-import javax.websocket.Endpoint;
-import javax.websocket.EndpointConfig;
-import javax.websocket.MessageHandler;
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.DeploymentException;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.MessageHandler;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -40,8 +40,8 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2ParseException;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 
-@RunWith(Arquillian.class)
-@RunAsClient
+//@ExtendWith(ArquillianExtension.class)
+//@RunAsClient
 public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
 
     protected final String webSocketUrl;
@@ -52,7 +52,7 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
         this.webSocketUrl = readWebsocketApiUrl();
     }
 
-    @Before
+    @BeforeEach
     public void setup() throws URISyntaxException, DeploymentException, IOException {
         URI uri = new URI(webSocketUrl);
 
@@ -61,7 +61,7 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
         ContainerProvider.getWebSocketContainer().connectToServer(endpoint, cec, uri);
     }
 
-    @After
+    @AfterEach
     public void cleanup() throws InterruptedException, IOException {
         if (endpoint != null) {
             endpoint.close(5, TimeUnit.SECONDS);
@@ -96,10 +96,10 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
 
         private final AtomicLong sequence = new AtomicLong();
 
-        private javax.websocket.Session session;
+        private jakarta.websocket.Session session;
 
         @Override
-        public void onOpen(javax.websocket.Session session, EndpointConfig config) {
+        public void onOpen(jakarta.websocket.Session session, EndpointConfig config) {
             System.out.printf("Got connect: %s%n", session);
             this.session = session;
             session.addMessageHandler(String.class, (MessageHandler.Whole<String>) (String message) -> {
@@ -122,7 +122,7 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
         }
 
         @Override
-        public void onClose(javax.websocket.Session session, CloseReason closeReason) {
+        public void onClose(jakarta.websocket.Session session, CloseReason closeReason) {
             System.out.printf("Connection closed: %d - %s%n", closeReason);
             this.session = null;
             this.closeLatch.countDown(); // trigger latch

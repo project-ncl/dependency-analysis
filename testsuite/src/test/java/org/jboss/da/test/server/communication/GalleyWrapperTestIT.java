@@ -1,11 +1,12 @@
 package org.jboss.da.test.server.communication;
 
+import io.quarkus.test.junit.QuarkusTest;
 import org.apache.maven.scm.ScmException;
 import org.commonjava.maven.galley.maven.parse.MavenPomReader;
 import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
-import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.GalleyWrapper;
@@ -16,26 +17,26 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
 import org.jboss.da.test.server.AbstractServerTest;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@RunWith(Arquillian.class)
+@QuarkusTest
 public class GalleyWrapperTestIT extends AbstractServerTest {
 
     private static final String VERSION = "0.5.1";
@@ -47,7 +48,7 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
     private static final GAV TESTSUITE_GAV = new GAV("org.jboss.da", "testsuite", VERSION);
 
     @Inject
-    private SCM scm;
+    SCM scm;
 
     @Inject
     MavenPomReader mavenPomReader;
@@ -56,23 +57,23 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
     TypeMapper typeMapper;
 
     @Inject
-    private PomReader pomReader;
+    PomReader pomReader;
 
     @Inject
-    private PomAnalyzer pomAnalyzer;
+    PomAnalyzer pomAnalyzer;
 
     @Inject
-    private Configuration config;
+    Configuration config;
 
     @Inject
-    private ModelProcessorConfig disConf;
+    ModelProcessorConfig disConf;
 
     @Inject
-    private MavenModelProcessor processor;
+    MavenModelProcessor processor;
 
     private File clonedRepository;
 
-    @Before
+    @BeforeEach
     public void cloneRepo() throws ScmException {
         clonedRepository = scm
                 .cloneRepository(SCMType.GIT, "https://github.com/project-ncl/dependency-analysis.git", VERSION);

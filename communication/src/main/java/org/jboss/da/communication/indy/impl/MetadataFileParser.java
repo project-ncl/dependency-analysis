@@ -1,6 +1,5 @@
 package org.jboss.da.communication.indy.impl;
 
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.indy.model.VersionResponse;
 import org.jboss.da.communication.indy.model.npm.NpmMetadata;
 
@@ -23,7 +22,7 @@ import jakarta.inject.Inject;
 public class MetadataFileParser {
 
     @Inject
-    private ObjectMapper om;
+    ObjectMapper om;
 
     public static VersionResponse parseMavenMetadata(InputStream in) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(VersionResponse.class);

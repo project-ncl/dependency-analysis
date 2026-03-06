@@ -1,21 +1,25 @@
 package org.jboss.da.test.client.rest.listings;
 
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.h2.H2DatabaseTestResource;
+import io.quarkus.test.junit.QuarkusTest;
+import jakarta.ws.rs.core.Response;
 import org.json.JSONException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
+@QuarkusTest
+@QuarkusTestResource(value = H2DatabaseTestResource.class, restrictToAnnotatedClass = true)
 public class RestApiListingsTestIT extends AbstractRestApiListingTest {
-
-    private final RequestGenerator generator = new RequestGenerator();
 
     @Test
     public void testAddBlackArtifact() throws Exception {
@@ -184,7 +188,7 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     /**
      * Non RedHat but OSGi compliant black artifact test
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -198,7 +202,7 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     /**
      * Non RedHat non OSGi compliant black artifact test
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -222,7 +226,7 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     private void checkExpectedResponse(Response response, String expectedFile) throws IOException {
         File expectedResponseFile = getJsonResponseFile(PATH_FILES_LISTINGS_GAV, expectedFile);
-        assertEqualsJson(readFileToString(expectedResponseFile), response.readEntity(String.class));
+        assertEqualsJson(readFileToString(expectedResponseFile, Charset.defaultCharset()), response.readEntity(String.class));
     }
 
 }
