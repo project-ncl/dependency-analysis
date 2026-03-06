@@ -9,6 +9,7 @@ import org.jboss.da.listings.model.rest.SuccessResponse;
 import org.jboss.da.model.rest.ErrorMessage;
 
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import io.opentelemetry.instrumentation.annotations.WithSpan;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@Transactional
 public class BlackListImpl implements BlackList {
 
     @Inject

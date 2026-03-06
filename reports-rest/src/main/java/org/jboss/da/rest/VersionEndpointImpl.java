@@ -5,6 +5,7 @@ import org.jboss.da.rest.api.VersionEndpoint;
 import org.jboss.pnc.api.dto.ComponentVersion;
 
 import jakarta.enterprise.context.ApplicationScoped;
+
 import java.time.ZonedDateTime;
 
 @ApplicationScoped
