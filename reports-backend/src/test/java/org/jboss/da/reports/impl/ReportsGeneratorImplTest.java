@@ -5,7 +5,7 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.common.util.UserLog;
+import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;

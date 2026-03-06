@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import org.jboss.da.common.util.UserLog;
+import org.jboss.da.common.logging.UserLog;
 
 @ApplicationScoped
 public class IndyConnectorImpl implements IndyConnector {

@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import jakarta.inject.Inject;
 
 import org.jboss.da.common.json.LookupMode;
-import org.jboss.da.common.util.UserLog;
+import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
