@@ -2,7 +2,6 @@ package org.jboss.da.rest;
 
 import java.util.Set;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import org.jboss.da.common.CommunicationException;
@@ -21,14 +20,15 @@ import org.jboss.da.rest.api.Lookup;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-@ApplicationScoped
-@Slf4j
 public class LookupImpl implements Lookup {
 
     @Inject
-    private LookupGenerator lookupGenerator;
+    Logger log;
+
+    @Inject
+    LookupGenerator lookupGenerator;
 
     @Override
 
