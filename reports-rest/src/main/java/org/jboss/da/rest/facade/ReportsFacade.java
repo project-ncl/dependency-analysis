@@ -56,7 +56,7 @@ public class ReportsFacade {
 
     public AlignReport alignReport(AlignReportRequest request)
             throws ScmException, PomAnalysisException, ValidationException, CommunicationException {
-        validation.validation(request, "Getting allignment report for project specified in a repository URL failed");
+        validation.validation(request, "Getting alignment report for project specified in a repository URL failed");
         String pomPath = getPomPath(request.getPomPath());
         SCMLocator locator = SCMLocator
                 .generic(request.getScmUrl(), request.getRevision(), pomPath, request.getAdditionalRepos());
@@ -85,7 +85,7 @@ public class ReportsFacade {
 
         Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(request);
 
-        return artifactReport.map(Translate::toReport).orElseThrow(() -> new NoSuchElementException());
+        return artifactReport.map(Translate::toReport).orElseThrow(NoSuchElementException::new);
     }
 
     public AdvancedReport advancedScmReport(SCMReportRequest request)
@@ -107,7 +107,7 @@ public class ReportsFacade {
 
         Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator.getAdvancedReportFromSCM(request);
 
-        return advancedArtifactReport.map(Translate::toAdvancedReport).orElseThrow(() -> new NoSuchElementException());
+        return advancedArtifactReport.map(Translate::toAdvancedReport).orElseThrow(NoSuchElementException::new);
     }
 
     public List<LookupReport> gavsReport(LookupGAVsRequest gavRequest) throws CommunicationException {

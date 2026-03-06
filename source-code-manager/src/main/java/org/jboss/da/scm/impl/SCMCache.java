@@ -1,7 +1,5 @@
 package org.jboss.da.scm.impl;
 
-import lombok.extern.slf4j.Slf4j;
-
 import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -15,13 +13,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import io.quarkus.scheduler.Scheduled;
+import org.slf4j.Logger;
+
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ApplicationScoped
-@Slf4j
 public class SCMCache {
+
+    @Inject
+    Logger log;
 
     @Inject
     ScmFacade scm;
@@ -63,7 +65,7 @@ public class SCMCache {
         }
     }
 
-    @Scheduled(every="10m")
+    @Scheduled(every = "10m")
     public void invalidateCache() {
         checkFutureCache();
         Iterator<Map.Entry<SCMSpecifier, DirectoryReference>> it = cache.entrySet().iterator();

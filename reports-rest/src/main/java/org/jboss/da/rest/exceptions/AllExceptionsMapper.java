@@ -1,5 +1,6 @@
 package org.jboss.da.rest.exceptions;
 
+import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.maven.scm.ScmException;
@@ -12,6 +13,7 @@ import org.jboss.da.validation.ValidationException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
+import org.slf4j.Logger;
 
 import java.util.NoSuchElementException;
 
@@ -22,9 +24,11 @@ import static org.jboss.da.model.rest.ErrorMessage.ErrorType.POM_ANALYSIS;
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.SCM_ENDPOINT;
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.UNEXPECTED_SERVER_ERR;
 
-@Slf4j
 @Provider
 public class AllExceptionsMapper implements ExceptionMapper<Exception> {
+
+    @Inject
+    Logger log;
 
     @Override
     public Response toResponse(Exception e) {

@@ -1,6 +1,5 @@
 package org.jboss.da.products.impl;
 
-import lombok.extern.slf4j.Slf4j;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
@@ -11,6 +10,7 @@ import org.jboss.da.products.impl.PncProductProvider.Pnc;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -38,8 +38,10 @@ import java.util.stream.Collectors;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @ApplicationScoped
-@Slf4j
 public class AggregatedProductProvider implements ProductProvider {
+
+    @Inject
+    Logger log;
 
     public static Set<ProductArtifacts> filterArtifacts(
             Set<ProductArtifacts> artifacts,

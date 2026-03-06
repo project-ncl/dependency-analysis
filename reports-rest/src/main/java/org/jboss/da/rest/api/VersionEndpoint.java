@@ -24,5 +24,5 @@ public interface VersionEndpoint {
     @Produces(value = MediaType.APPLICATION_JSON)
     @Operation(summary = "Get version of Dependency-Analysis")
     @APIResponse(content = @Content(schema = @Schema(implementation = ComponentVersion.class)))
-    public ComponentVersion getVersion();
+    ComponentVersion getVersion();
 }

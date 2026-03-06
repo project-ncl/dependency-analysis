@@ -1,5 +1,6 @@
 package org.jboss.da.rest;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
@@ -24,6 +25,7 @@ import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
  *
  */
 @ApplicationPath("/rest/v-" + REST_API_VERSION_REPORTS)
+@ApplicationScoped
 @OpenAPIDefinition(
         info = @Info(
                 title = "Dependency Analyzer",

@@ -18,13 +18,13 @@ public class ReportsEndpoint {
 
     @Inject
     @ReportsWebsocketMethods
-    private Methods methods;
+    Methods methods;
 
     @Inject
-    private WebsocketEndpointHandler endpointHandler;
+    WebsocketEndpointHandler endpointHandler;
 
     @PostConstruct
-    private void init() {
+    void init() {
         endpointHandler.setMethods(methods);
     }
 

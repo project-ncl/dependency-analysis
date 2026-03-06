@@ -29,10 +29,10 @@ import io.opentelemetry.instrumentation.annotations.WithSpan;
 public class BlackListImpl implements BlackList {
 
     @Inject
-    private RestConvert convert;
+    RestConvert convert;
 
     @Inject
-    private BlackArtifactService blackService;
+    BlackArtifactService blackService;
 
     @Override
     @WithSpan()
