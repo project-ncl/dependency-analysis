@@ -30,6 +30,7 @@ import org.jboss.da.validation.ValidationException;
 import org.slf4j.Logger;
 
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -51,6 +52,7 @@ import java.util.List;
 @Tag(name = "reports")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Transactional
 public class Reports {
 
     @Inject
