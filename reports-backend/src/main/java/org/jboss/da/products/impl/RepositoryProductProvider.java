@@ -31,7 +31,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public class RepositoryProductProvider extends AbstractProductProvider {
 
     @Inject
-    private IndyConnector indyConnector;
+    IndyConnector indyConnector;
 
     @Override
     Stream<String> getVersionsStreamMaven(GA ga) {
