@@ -1,15 +1,15 @@
 package org.jboss.da.products.impl;
 
+import io.quarkus.narayana.jta.QuarkusTransaction;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.products.api.Artifact;
 import org.jboss.da.products.api.Product;
 import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.api.ProductProvider;
-import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.jboss.da.products.impl.PncProductProvider.Pnc;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
+import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public class AggregatedProductProvider implements ProductProvider {
         results.add(getter.apply(pncProductProvider));
 
         CompletableFuture<R> ret = new CompletableFuture<>();
-        scheduler.schedule((Runnable) () -> tryToComplete(ret, results, collector), 1, TimeUnit.MILLISECONDS);
+        scheduler.schedule(() -> QuarkusTransaction.requiringNew().run(() -> tryToComplete(ret, results, collector)), 1, TimeUnit.MILLISECONDS);
 
         return ret;
     }
@@ -154,7 +154,7 @@ public class AggregatedProductProvider implements ProductProvider {
                 Thread.currentThread().interrupt();
             }
         } else {
-            scheduler.schedule((Runnable) () -> tryToComplete(ret, results, collector), 1, TimeUnit.MILLISECONDS);
+            scheduler.schedule(() -> QuarkusTransaction.requiringNew().run(() -> tryToComplete(ret, results, collector)), 1, TimeUnit.MILLISECONDS);
         }
     }
 

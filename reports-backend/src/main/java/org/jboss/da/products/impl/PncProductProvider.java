@@ -64,7 +64,7 @@ public class PncProductProvider extends AbstractProductProvider {
     @Qualifier
     @Retention(RUNTIME)
     @Target({ TYPE, METHOD, FIELD, PARAMETER })
-    public static @interface Pnc {
+    public @interface Pnc {
     }
 
 }
