@@ -13,22 +13,6 @@
             <groupId>org.jboss.da</groupId>
             <artifactId>application</artifactId>
         </dependency>
-      <!--        <dependency>-->
-      <!--            <groupId>org.jboss.da</groupId>-->
-      <!--            <artifactId>reports-rest</artifactId>-->
-      <!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.jboss.da</groupId>-->
-<!--            <artifactId>source-code-manager</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.jboss.da</groupId>-->
-<!--            <artifactId>reports-backend</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.commonjava.atlas</groupId>-->
-<!--            <artifactId>atlas-identities</artifactId>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -93,12 +77,6 @@
             <artifactId>jsonrpc2-base</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.undertow</groupId>-->
-<!--            <artifactId>undertow-websockets-jsr</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-
     </dependencies>
 
     <build>

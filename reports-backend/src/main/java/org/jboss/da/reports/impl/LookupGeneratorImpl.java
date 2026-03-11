@@ -48,17 +48,17 @@ public class LookupGeneratorImpl implements LookupGenerator {
 
     @Inject
     @RepositoryProductProvider.Repository
-    private RepositoryProductProvider repositoryProductProvider;
+    RepositoryProductProvider repositoryProductProvider;
 
     @Inject
     @PncProductProvider.Pnc
-    private PncProductProvider pncProductProvider;
+    PncProductProvider pncProductProvider;
 
     @Inject
-    private AggregatedProductProvider aggProductProvider;
+    AggregatedProductProvider aggProductProvider;
 
     @Inject
-    private BlackArtifactService blackArtifactService;
+    BlackArtifactService blackArtifactService;
 
     private Map<String, LookupMode> modes;
 

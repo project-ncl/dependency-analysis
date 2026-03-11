@@ -1,6 +1,7 @@
 package org.jboss.da.rest.facade;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -35,13 +36,14 @@ import java.util.Optional;
 import java.util.Set;
 
 @ApplicationScoped
+@Transactional
 public class ReportsFacade {
 
     @Inject
-    private ReportsGenerator reportsGenerator;
+    ReportsGenerator reportsGenerator;
 
     @Inject
-    private Validation validation;
+    Validation validation;
 
     public Set<BuiltReport> builtReport(BuiltReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
