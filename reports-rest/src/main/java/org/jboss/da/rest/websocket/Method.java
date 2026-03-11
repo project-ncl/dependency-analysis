@@ -3,7 +3,7 @@ package org.jboss.da.rest.websocket;
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
- * 
+ *
  * @param <T> parameter type
  * @param <S> return type after method execution
  * @param <R> Json output type (e.g. Map, Set, ..)
@@ -11,11 +11,11 @@ package org.jboss.da.rest.websocket;
 
 public interface Method<T, S, R> {
 
-    public String getName();
+    String getName();
 
-    public Class<T> getParameterClass();
+    Class<T> getParameterClass();
 
-    public Class<R> getJsonOutputClass();
+    Class<R> getJsonOutputClass();
 
-    public S execute(T params) throws Exception;
+    S execute(T params) throws Exception;
 }

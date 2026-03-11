@@ -1,13 +1,7 @@
 package org.jboss.da.test.server;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.da.test.ArquillianDeploymentFactory;
-import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
-import org.jboss.da.test.ArquillianDeploymentFactory.TestSide;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.junit.jupiter.api.extension.RegisterExtension;
-
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 

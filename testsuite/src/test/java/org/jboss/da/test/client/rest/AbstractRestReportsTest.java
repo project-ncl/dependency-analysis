@@ -8,7 +8,7 @@ public abstract class AbstractRestReportsTest extends AbstractRestApiTest {
 
     @Override
     protected String getContextRoot() {
-        return "";// ArquillianDeploymentFactory.DEPLOYMENT_NAME;
+        return "";
     }
 
     @Override

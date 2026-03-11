@@ -226,7 +226,9 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     private void checkExpectedResponse(Response response, String expectedFile) throws IOException {
         File expectedResponseFile = getJsonResponseFile(PATH_FILES_LISTINGS_GAV, expectedFile);
-        assertEqualsJson(readFileToString(expectedResponseFile, Charset.defaultCharset()), response.readEntity(String.class));
+        assertEqualsJson(
+                readFileToString(expectedResponseFile, Charset.defaultCharset()),
+                response.readEntity(String.class));
     }
 
 }

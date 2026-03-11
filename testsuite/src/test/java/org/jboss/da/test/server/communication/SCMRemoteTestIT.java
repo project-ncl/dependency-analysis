@@ -38,21 +38,21 @@ public class SCMRemoteTestIT extends AbstractServerTest {
         GAVDependencyTree tree = scmConnector
                 .getDependencyTreeOfRevision(scmUrl, revision, "", Collections.emptyList());
 
-        assertEquals(tree.getGav(), new GAV("org.jboss.da", "parent", "0.3.0"));
+        assertEquals(new GAV("org.jboss.da", "parent", "0.3.0"), tree.getGav());
         assertTrue(tree.getDependencies().isEmpty());
 
         // with a slash in the pomPath
         GAVDependencyTree treeWithSlash = scmConnector
                 .getDependencyTreeOfRevision(scmUrl, revision, "/", Collections.emptyList());
 
-        assertEquals(treeWithSlash.getGav(), new GAV("org.jboss.da", "parent", "0.3.0"));
+        assertEquals(new GAV("org.jboss.da", "parent", "0.3.0"), treeWithSlash.getGav());
         assertTrue(treeWithSlash.getDependencies().isEmpty());
 
         // with application in the pomPath
         GAVDependencyTree treeApplication = scmConnector
                 .getDependencyTreeOfRevision(scmUrl, revision, "application", Collections.emptyList());
 
-        assertEquals(treeApplication.getGav(), new GAV("org.jboss.da", "application", "0.3.0"));
+        assertEquals(new GAV("org.jboss.da", "application", "0.3.0"), treeApplication.getGav());
         assertFalse(treeApplication.getDependencies().isEmpty());
     }
 

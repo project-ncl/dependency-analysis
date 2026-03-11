@@ -125,7 +125,10 @@ public class AggregatedProductProvider implements ProductProvider {
         results.add(getter.apply(pncProductProvider));
 
         CompletableFuture<R> ret = new CompletableFuture<>();
-        scheduler.schedule(() -> QuarkusTransaction.requiringNew().run(() -> tryToComplete(ret, results, collector)), 1, TimeUnit.MILLISECONDS);
+        scheduler.schedule(
+                () -> QuarkusTransaction.requiringNew().run(() -> tryToComplete(ret, results, collector)),
+                1,
+                TimeUnit.MILLISECONDS);
 
         return ret;
     }
@@ -154,7 +157,10 @@ public class AggregatedProductProvider implements ProductProvider {
                 Thread.currentThread().interrupt();
             }
         } else {
-            scheduler.schedule(() -> QuarkusTransaction.requiringNew().run(() -> tryToComplete(ret, results, collector)), 1, TimeUnit.MILLISECONDS);
+            scheduler.schedule(
+                    () -> QuarkusTransaction.requiringNew().run(() -> tryToComplete(ret, results, collector)),
+                    1,
+                    TimeUnit.MILLISECONDS);
         }
     }
 

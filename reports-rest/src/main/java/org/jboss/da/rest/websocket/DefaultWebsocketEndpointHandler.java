@@ -26,10 +26,10 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler {
 
     @Inject
-    private Logger log;
+    Logger log;
 
     @Inject
-    private ObjectMapper mapper;
+    ObjectMapper mapper;
 
     private Methods methods;
 

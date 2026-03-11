@@ -1,15 +1,18 @@
 package org.jboss.da.test.client.ws.reports;
 
+import io.quarkus.test.junit.QuarkusTest;
 import org.json.JSONException;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import java.io.IOException;
 
+@QuarkusTest
 public class WebsocketApiReportsTestIT extends AbstractWebsocketReportsTest {
 
     private static final String PATH_REPORTS_ALIGN = "/reports/align";
