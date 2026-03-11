@@ -133,33 +133,25 @@ public abstract class AbstractProductProvider implements ProductProvider {
 
     @Override
     public CompletableFuture<Set<String>> getAllVersions(Artifact artifact) {
-        switch (artifact.getType()) {
-            case MAVEN: {
+        return switch (artifact.getType()) {
+            case MAVEN -> {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
-                return supplyAsync(() -> getVersionsStreamMaven(ga).collect(Collectors.toSet()));
+                yield supplyAsync(() -> getVersionsStreamMaven(ga).collect(Collectors.toSet()));
             }
-            case NPM: {
-                return supplyAsync(() -> getVersionsStreamNPM(artifact.getName()).collect(Collectors.toSet()));
-            }
-            default: {
-                return CompletableFuture.completedFuture(Collections.emptySet());
-            }
-        }
+            case NPM -> supplyAsync(() -> getVersionsStreamNPM(artifact.getName()).collect(Collectors.toSet()));
+            default -> CompletableFuture.completedFuture(Collections.emptySet());
+        };
     }
 
     private CompletableFuture<Set<ProductArtifacts>> getArtifacts0(Artifact artifact) {
-        switch (artifact.getType()) {
-            case MAVEN: {
+        return switch (artifact.getType()) {
+            case MAVEN -> {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
-                return supplyAsync(() -> getArtifactsMaven(ga));
+                yield supplyAsync(() -> getArtifactsMaven(ga));
             }
-            case NPM: {
-                return supplyAsync(() -> getArtifactsNPM(artifact.getName()));
-            }
-            default: {
-                return CompletableFuture.completedFuture(Collections.emptySet());
-            }
-        }
+            case NPM -> supplyAsync(() -> getArtifactsNPM(artifact.getName()));
+            default -> CompletableFuture.completedFuture(Collections.emptySet());
+        };
     }
 
     private Set<ProductArtifacts> getArtifactsMaven(GA ga) {

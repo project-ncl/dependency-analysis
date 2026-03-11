@@ -25,7 +25,7 @@ import java.util.Optional;
 public class PomReader {
 
     @Inject
-    private Logger log;
+    Logger log;
 
     public Optional<MavenProject> analyze(File pomFile) {
         try {

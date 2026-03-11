@@ -30,7 +30,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public class PncProductProvider extends AbstractProductProvider {
 
     @Inject
-    private PncConnector pncConnector;
+    PncConnector pncConnector;
 
     @Override
     Stream<String> getVersionsStreamMaven(GA ga) {

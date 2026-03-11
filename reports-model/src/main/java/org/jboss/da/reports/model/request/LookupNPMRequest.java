@@ -38,13 +38,13 @@ import lombok.Value;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LookupNPMRequest {
 
-    private final String versionSuffix;
+    String versionSuffix;
 
     @NotNull
-    private final String mode;
+    String mode;
 
     @NonNull
-    private final List<NPMPackage> packages;
+    List<NPMPackage> packages;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonPOJOBuilder(withPrefix = "")

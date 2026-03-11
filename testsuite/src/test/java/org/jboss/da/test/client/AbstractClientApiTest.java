@@ -54,7 +54,7 @@ public abstract class AbstractClientApiTest {
 
     protected String readConfigurationValue(String name, String defaultValue) {
         String value = readConfigurationValue(name);
-        return value == null || "".equals(value.trim()) ? defaultValue : value;
+        return value == null || value.trim().isEmpty() ? defaultValue : value;
     }
 
     protected String readConfigurationValue(String name) {
@@ -208,7 +208,7 @@ public abstract class AbstractClientApiTest {
     }
 
     @Test
-    final void testJsonEquals() throws JSONException {
+    final void testJsonEquals() {
         String s1 = "[{\"groupId\": \"com.google.guava\", \"artifactId\": \"guava\", \"version\": \"13.0.1\"}]";
         String s2 = "[{\"groupId\": \"com.google.guava\", \"version\": \"13.0.1\", \"artifactId\": \"guava\"}]";
         assertEqualsJson(s1, s2);

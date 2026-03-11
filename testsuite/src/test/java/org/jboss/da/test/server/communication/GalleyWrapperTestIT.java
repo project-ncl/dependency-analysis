@@ -1,12 +1,12 @@
 package org.jboss.da.test.server.communication;
 
 import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
 import org.apache.maven.scm.ScmException;
 import org.commonjava.maven.galley.maven.parse.MavenPomReader;
 import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.GalleyWrapper;
@@ -19,9 +19,7 @@ import org.jboss.da.scm.api.SCMType;
 import org.jboss.da.test.server.AbstractServerTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import jakarta.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;

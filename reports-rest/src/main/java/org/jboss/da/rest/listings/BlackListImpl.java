@@ -39,9 +39,7 @@ public class BlackListImpl implements BlackList {
     @Override
     @WithSpan()
     public Collection<RestArtifact> getAllBlackArtifacts() {
-        List<RestArtifact> artifacts = new ArrayList<>();
-        artifacts.addAll(convert.toRestArtifacts(blackService.getAll()));
-        return artifacts;
+        return new ArrayList<>(convert.toRestArtifacts(blackService.getAll()));
     }
 
     @Override

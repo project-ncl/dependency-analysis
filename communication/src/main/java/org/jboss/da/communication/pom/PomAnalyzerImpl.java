@@ -10,7 +10,6 @@ import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
-import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
@@ -39,10 +38,10 @@ import java.util.Set;
 public class PomAnalyzerImpl implements PomAnalyzer {
 
     @Inject
-    private Logger log;
+    Logger log;
 
     @Inject
-    private PomReader pomReader;
+    PomReader pomReader;
 
     @Inject
     MavenPomReader mavenPomReader;
@@ -51,16 +50,16 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     TypeMapper typeMapper;
 
     @Inject
-    private Configuration config;
+    Configuration config;
 
     @Inject
-    private DependencyTreeBuilder dtb;
+    DependencyTreeBuilder dtb;
 
     @Inject
-    private ModelProcessorConfig disConf;
+    ModelProcessorConfig disConf;
 
     @Inject
-    private MavenModelProcessor processor;
+    MavenModelProcessor processor;
 
     @Override
     public GAVDependencyTree readRelationships(File pomRepoDir, String pomPath, List<String> repositories)
@@ -171,7 +170,6 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         }
         StringBuilder query = new StringBuilder();
         GlobalConfig globalCfg = this.config.getGlobalConfig();
-        DAConfig cfg = this.config.getConfig();
         query.append(globalCfg.getIndyUrl());
         query.append("/api/content/maven/group/");
         query.append(config.getConfig().getIndyGroupPublic());
@@ -181,9 +179,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         List<Location> repos = new ArrayList<>();
         repos.add(repoLocation);
 
-        MavenPomView pomView = mavenPomReader.read(pom.getKey(), repos);
-
-        return pomView;
+        return mavenPomReader.read(pom.getKey(), repos);
     }
 
     @Override

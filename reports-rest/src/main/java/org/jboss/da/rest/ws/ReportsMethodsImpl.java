@@ -40,40 +40,21 @@ public class ReportsMethodsImpl implements Methods {
     @Inject
     public ReportsMethodsImpl(ReportsFacade facade) {
 
-        SCM = put(
-                new DefaultMethod<>(
-                        "reports.scm",
-                        SCMReportRequest.class,
-                        Map.class,
-                        params -> facade.scmReport(params)));
+        SCM = put(new DefaultMethod<>("reports.scm", SCMReportRequest.class, Map.class, facade::scmReport));
 
         SCM_ADVANCED = put(
                 new DefaultMethod<>(
                         "reports.scmAdvanced",
                         SCMReportRequest.class,
                         Map.class,
-                        params -> facade.advancedScmReport(params)));
+                        facade::advancedScmReport));
 
-        BUILT = put(
-                new DefaultMethod<>(
-                        "reports.built",
-                        BuiltReportRequest.class,
-                        Set.class,
-                        params -> facade.builtReport(params)));
+        BUILT = put(new DefaultMethod<>("reports.built", BuiltReportRequest.class, Set.class, facade::builtReport));
 
-        ALIGN = put(
-                new DefaultMethod<>(
-                        "reports.align",
-                        AlignReportRequest.class,
-                        Map.class,
-                        params -> facade.alignReport(params)));
+        ALIGN = put(new DefaultMethod<>("reports.align", AlignReportRequest.class, Map.class, facade::alignReport));
 
         LOOKUP_GAV = put(
-                new DefaultMethod<>(
-                        "reports.lookup.gav",
-                        LookupGAVsRequest.class,
-                        List.class,
-                        params -> facade.gavsReport(params)));
+                new DefaultMethod<>("reports.lookup.gav", LookupGAVsRequest.class, List.class, facade::gavsReport));
     }
 
     private <T, S, R> DefaultMethod<T, S, R> put(DefaultMethod<T, S, R> method) {

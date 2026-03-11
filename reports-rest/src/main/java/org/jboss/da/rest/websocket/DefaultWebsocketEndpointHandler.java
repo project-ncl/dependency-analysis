@@ -110,19 +110,14 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
         try {
             return JSONRPC2Request.parse(msg);
         } catch (JSONRPC2ParseException ex) {
-            JSONRPC2Error error;
-            switch (ex.getCauseType()) {
-                case JSONRPC2ParseException.PROTOCOL:
-                    error = JSONRPC2Error.INVALID_REQUEST;
-                    break;
-                case JSONRPC2ParseException.JSON:
-                    error = JSONRPC2Error.PARSE_ERROR;
-                    break;
-                default:
+            JSONRPC2Error error = switch (ex.getCauseType()) {
+                case JSONRPC2ParseException.PROTOCOL -> JSONRPC2Error.INVALID_REQUEST;
+                case JSONRPC2ParseException.JSON -> JSONRPC2Error.PARSE_ERROR;
+                default -> {
                     log.warn("Unknown exception cause type " + ex.getCauseType() + ".");
-                    error = JSONRPC2Error.PARSE_ERROR;
-                    break;
-            }
+                    yield JSONRPC2Error.PARSE_ERROR;
+                }
+            };
             error = error.setData(ex.getMessage());
             remote.sendText(new JSONRPC2Response(error, null).toString());
             log.warn("Failed to parse JSON RPC message", ex);

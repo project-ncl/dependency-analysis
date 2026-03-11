@@ -42,50 +42,58 @@ public class RestApiReportsRemoteTestIT extends AbstractRestReportsTest {
 
     @Test
     public void testNPMLookupSingle() throws Exception {
-        Response response = assertResponseForRequest(PATH_LOOKUP_NPM, "jquery151");
-        assertEquals(200, response.getStatus());
+        try (Response response = assertResponseForRequest(PATH_LOOKUP_NPM, "jquery151")) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
     public void testNPMVersionsSingle() throws Exception {
-        Response response = assertResponseForRequest(PATH_VERSIONS_NPM, "jquery151");
-        assertEquals(200, response.getStatus());
+        try (Response response = assertResponseForRequest(PATH_VERSIONS_NPM, "jquery151")) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
     public void testNPMVersionsSingleIncludeAll() throws Exception {
-        Response response = assertResponseForRequest(PATH_VERSIONS_NPM, "jquery151-2");
-        assertEquals(200, response.getStatus());
+        try (Response response = assertResponseForRequest(PATH_VERSIONS_NPM, "jquery151-2")) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
     public void testGavLookupSingle() throws Exception {
-        Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13");
-        assertEquals(200, response.getStatus());
+        try (Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13")) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
     public void testGavLookupSingleTemporary() throws Exception {
-        Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13Temp");
-        assertEquals(200, response.getStatus());
+        try (Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13Temp")) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
     public void testGavLookupList() throws Exception {
-        Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13List");
-        assertEquals(200, response.getStatus());
+        try (Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "guava13List")) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
     public void testScmReportBasic() throws Exception {
-        Response response = assertResponseForRequest(PATH_SCM, "dependency-analysis");
-        assertEquals(200, response.getStatus());
+        try (Response response = assertResponseForRequest(PATH_SCM, "dependency-analysis")) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
     public void testAlignReportBasic() throws Exception {
-        Response response = assertResponseForRequest(PATH_REPORTS_ALIGN, "dependency-analysis");
-        assertEquals(200, response.getStatus());
+        try (Response response = assertResponseForRequest(PATH_REPORTS_ALIGN, "dependency-analysis")) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
@@ -96,9 +104,9 @@ public class RestApiReportsRemoteTestIT extends AbstractRestReportsTest {
         String json = FileUtils.readFileToString(jsonRequestFile, ENCODING);
         json = json.replace("${DA-hosted-repo}", repo);
 
-        Response response = createClientRequest(PATH_SCM).post(Entity.json(json));
-
-        assertEquals(200, response.getStatus());
+        try (Response response = createClientRequest(PATH_SCM).post(Entity.json(json))) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Override

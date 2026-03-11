@@ -14,6 +14,7 @@ import java.util.concurrent.TimeoutException;
 
 import io.quarkus.scheduler.Scheduled;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -22,8 +23,7 @@ import org.slf4j.Logger;
 @ApplicationScoped
 public class SCMCache {
 
-    @Inject
-    Logger log;
+    private static final Logger log = LoggerFactory.getLogger(SCMCache.class);
 
     @Inject
     ScmFacade scm;

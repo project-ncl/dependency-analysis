@@ -38,14 +38,14 @@ public class BackwardCompatibilityTest {
     }
 
     @Test
-    public void testVersioning() throws IOException, NoSuchFieldException {
+    public void testVersioning() throws IOException {
         Versioning verisoning = new Versioning();
 
         compare(verisoning, "Versioning");
     }
 
     @Test
-    public void testVersions() throws IOException, NoSuchFieldException {
+    public void testVersions() throws IOException {
         Versions versions = new Versions();
 
         compare(versions, "Versions");

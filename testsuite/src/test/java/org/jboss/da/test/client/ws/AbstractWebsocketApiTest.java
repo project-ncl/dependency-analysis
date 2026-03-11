@@ -10,7 +10,6 @@ import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.DeploymentException;
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.EndpointConfig;
-import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.test.client.AbstractClientApiTest;
@@ -21,11 +20,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicLong;
@@ -69,7 +68,7 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
     }
 
     protected JSONRPC2Response assertResponseForRequest(String path, String requestFile, String method)
-            throws IOException, InterruptedException, ExecutionException, TimeoutException {
+            throws IOException, InterruptedException, TimeoutException {
         File jsonRequestFile = getJsonRequestFile(path, requestFile);
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> parameters = mapper.readValue(jsonRequestFile, Map.class);
@@ -80,7 +79,9 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
 
         assertTrue(response.indicatesSuccess());
         File expectedResponseFile = getJsonResponseFile(path, requestFile);
-        assertEqualsJson(FileUtils.readFileToString(expectedResponseFile).trim(), responseString.trim());
+        assertEqualsJson(
+                FileUtils.readFileToString(expectedResponseFile, Charset.defaultCharset()).trim(),
+                responseString.trim());
         return response;
     }
 
@@ -98,7 +99,7 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
         public void onOpen(jakarta.websocket.Session session, EndpointConfig config) {
             System.out.printf("Got connect: %s%n", session);
             this.session = session;
-            session.addMessageHandler(String.class, (MessageHandler.Whole<String>) (String message) -> {
+            session.addMessageHandler(String.class, (String message) -> {
                 System.out.printf("Got message: " + message);
                 try {
                     JSONRPC2Response parse = JSONRPC2Response.parse(message);
@@ -127,7 +128,7 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
         }
 
         public JSONRPC2Response sendRequest(JSONRPC2Request request)
-                throws InterruptedException, ExecutionException, TimeoutException, IOException {
+                throws InterruptedException, TimeoutException, IOException {
             System.out.println("Sending message");
             Long id = sequence.incrementAndGet();
             request.setID(id);

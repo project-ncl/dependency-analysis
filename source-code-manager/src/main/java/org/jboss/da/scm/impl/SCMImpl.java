@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import org.slf4j.Logger;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -23,8 +24,7 @@ import org.apache.commons.io.FileUtils;
 @ApplicationScoped
 public class SCMImpl implements SCM {
 
-    @Inject
-    Logger log;
+    private static final Logger log = LoggerFactory.getLogger(SCMImpl.class);
 
     @Inject
     ScmFacade scm;

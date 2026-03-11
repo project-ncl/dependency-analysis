@@ -65,14 +65,14 @@ public class LookupGeneratorTest {
         DAConfig daConfig = new DAConfig();
         LookupMode mode = new LookupMode();
         mode.setName(PERSISTENT);
-        mode.setSuffixes(Arrays.asList("redhat"));
+        mode.setSuffixes(List.of("redhat"));
         daConfig.setModes(Collections.singletonList(mode));
         when(config.getConfig()).thenReturn(daConfig);
         lookupGenerator = new LookupGeneratorImpl(config);
     }
 
     @BeforeAll
-    public static void initMocks() throws ConfigurationParseException {
+    public static void initMocks() {
     }
 
     @Test

@@ -5,7 +5,6 @@ import org.json.JSONException;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -28,17 +27,17 @@ public class WebsocketApiReportsTestIT extends AbstractWebsocketReportsTest {
     private static final String METHOD_REPORTS_LOOKUP = "reports.lookup.gav";
 
     @Test
-    public void testAlignReportBasic() throws IOException, Exception {
+    public void testAlignReportBasic() throws Exception {
         assertResponseForRequest(PATH_REPORTS_ALIGN, "dependency-analysis", METHOD_REPORTS_ALIGN);
     }
 
     @Test
-    public void testBuiltReportBasic() throws IOException, Exception {
+    public void testBuiltReportBasic() throws Exception {
         assertResponseForRequest(PATH_REPORTS_BUILT, "dependency-analysis", METHOD_REPORTS_BUILT);
     }
 
     @Test
-    public void testLookupReportBasic() throws IOException, Exception {
+    public void testLookupReportBasic() throws Exception {
         assertResponseForRequest(PATH_REPORTS_LOOKUP, "guava13", METHOD_REPORTS_LOOKUP);
     }
 

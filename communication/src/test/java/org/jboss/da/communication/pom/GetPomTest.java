@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
 
@@ -45,7 +44,7 @@ public class GetPomTest {
     private final static String SCM_REVISION = "0.4";
 
     @Test
-    public void testGetPom1() throws CommunicationException, FileNotFoundException {
+    public void testGetPom1() throws FileNotFoundException {
         File file = new File(getClass().getClassLoader().getResource("pom/test1.xml").getFile());
         MavenProject pom;
 
@@ -59,7 +58,7 @@ public class GetPomTest {
     }
 
     @Test
-    public void testGetPom2() throws CommunicationException, FileNotFoundException {
+    public void testGetPom2() {
         File file = new File(getClass().getClassLoader().getResource("pom/test2.xml").getFile());
         MavenProject pom;
 

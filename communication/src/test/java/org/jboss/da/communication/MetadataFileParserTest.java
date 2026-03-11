@@ -1,6 +1,5 @@
 package org.jboss.da.communication;
 
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.indy.impl.MetadataFileParser;
 import org.jboss.da.communication.indy.model.VersionResponse;
 
@@ -24,14 +23,14 @@ public class MetadataFileParserTest {
     private static VersionResponse versionResponse;
 
     @BeforeAll
-    public static void init() throws JAXBException, IOException, CommunicationException {
+    public static void init() throws JAXBException, IOException {
         try (InputStream in = getResourceSteam("maven-metadata.xml")) {
             versionResponse = MetadataFileParser.parseMavenMetadata(in);
         }
     }
 
     @Test
-    public void availableVersionsTest() throws JAXBException, IOException, CommunicationException {
+    public void availableVersionsTest() {
         // given
         List<String> availableVersions = versionResponse.getVersioning().getVersions().getVersion();
 
@@ -45,7 +44,7 @@ public class MetadataFileParserTest {
     }
 
     @Test
-    public void latestTest() throws JAXBException, IOException, CommunicationException {
+    public void latestTest() {
         // given
         String latestVersion = versionResponse.getVersioning().getLatestVersion();
 
@@ -54,7 +53,7 @@ public class MetadataFileParserTest {
     }
 
     @Test
-    public void releaseTest() throws JAXBException, IOException, CommunicationException {
+    public void releaseTest() {
         // given
         String latestReleaseVersion = versionResponse.getVersioning().getLatestRelease();
 

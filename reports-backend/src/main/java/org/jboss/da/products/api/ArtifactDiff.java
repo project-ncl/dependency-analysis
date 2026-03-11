@@ -56,6 +56,6 @@ public class ArtifactDiff {
     }
 
     public boolean isUnchanged() {
-        return leftVersion != null && rightVersion != null && leftVersion.equals(rightVersion);
+        return leftVersion != null && leftVersion.equals(rightVersion);
     }
 }
