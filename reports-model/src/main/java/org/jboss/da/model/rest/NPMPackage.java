@@ -32,9 +32,9 @@ import lombok.Value;
 @JsonDeserialize(builder = NPMPackage.Builder.class)
 public class NPMPackage {
 
-    private final String name;
+    String name;
 
-    private final String version;
+    String version;
 
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder {

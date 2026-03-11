@@ -6,7 +6,6 @@ import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.common.logging.UserLog;
-import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -83,7 +82,6 @@ public class ReportsGeneratorImplTest {
     private Logger userLog;
 
     @InjectMocks
-    // @Spy
     private final DependencyTreeGenerator dependencyTreeGenerator = Mockito.spy(DependencyTreeGeneratorImpl.class);
 
     @InjectMocks
@@ -121,7 +119,7 @@ public class ReportsGeneratorImplTest {
         DAConfig daConfig = new DAConfig();
         LookupMode mode = new LookupMode();
         mode.setName("PERSISTENT");
-        mode.setSuffixes(Arrays.asList("redhat"));
+        mode.setSuffixes(List.of("redhat"));
         daConfig.setModes(Collections.singletonList(mode));
         when(config.getConfig()).thenReturn(daConfig);
         generator = new ReportsGeneratorImpl(config);
@@ -160,16 +158,12 @@ public class ReportsGeneratorImplTest {
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, artifacts));
     }
 
-    private void prepare(
-            List<Product> whitelisted,
-            boolean blacklisted,
-            List<String> versions,
-            GAVDependencyTree dependencyTree) throws CommunicationException, FindGAVDependencyException {
+    private void prepare(List<Product> whitelisted, List<String> versions) {
         lenient().when(productProvider.getArtifacts(matchingGAV(daCoreGAV)))
                 .thenReturn(CompletableFuture.completedFuture(toProductArtifacts(daCoreGAV.getGA(), versions)));
 
         prepareProductProvider(versions, whitelisted, daCoreGAV);
-        lenient().when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
+        lenient().when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(true);
 
         DAConfig daConfig = new DAConfig();
         daConfig.setIndyGroup("DA");
@@ -212,8 +206,8 @@ public class ReportsGeneratorImplTest {
     }
 
     @Test
-    public void testBlacklistedLookupReport() throws CommunicationException, FindGAVDependencyException {
-        prepare(Collections.emptyList(), true, daCoreVersionsBest, daCoreNoDT);
+    public void testBlacklistedLookupReport() throws CommunicationException {
+        prepare(Collections.emptyList(), daCoreVersionsBest);
         LookupGAVsRequest lgr = new LookupGAVsRequest(
                 Collections.emptySet(),
                 Collections.emptySet(),

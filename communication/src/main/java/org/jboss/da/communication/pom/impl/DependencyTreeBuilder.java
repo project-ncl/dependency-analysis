@@ -32,7 +32,7 @@ import java.io.Serializable;
 public class DependencyTreeBuilder {
 
     @Inject
-    private Logger log;
+    Logger log;
 
     /**
      * Transforms DependencyRelationships into GAVDependencyTree.

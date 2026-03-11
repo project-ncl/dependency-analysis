@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import jakarta.ws.rs.client.Entity;
-import jakarta.ws.rs.client.Invocation;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
 
@@ -23,11 +22,11 @@ import jakarta.ws.rs.core.Response;
 public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest {
 
     protected enum ListEntityType {
-        BLACK;
+        BLACK
     }
 
     protected enum OperationType {
-        POST, DELETE, PUT;
+        POST, DELETE, PUT
     }
 
     protected static final String PATH_FILES_LISTINGS_GAV = "/listings";
@@ -39,7 +38,7 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
     protected static final String PATH_BLACK_LISTINGS_GA = "/listings/blacklist/ga";
 
     @AfterEach
-    public void dropTables() throws Exception {
+    public void dropTables() {
         List<RestArtifact> blacklistedArtifacts = getAllArtifactsFromList(PATH_BLACK_LIST);
         blacklistedArtifacts.forEach(gav -> removeGavFromList(PATH_BLACK_LISTINGS_GAV, gav));
     }
@@ -52,20 +51,16 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
         }
     }
 
-    private String toRestProductRequest(RestProduct p) {
-        return "{" + "\"name\":" + "\"" + p.getName() + "\"," + "\"version\":" + "\"" + p.getVersion() + "\"" + "}";
-    }
-
-    protected List<RestArtifact> getAllArtifactsFromList(String listUrl) throws Exception {
-        return processGetRequest(new GenericType<List<RestArtifact>>() {
+    protected List<RestArtifact> getAllArtifactsFromList(String listUrl) {
+        return processGetRequest(new GenericType<>() {
         }, listUrl);
     }
 
-    private <T> T processGetRequest(GenericType<T> type, String url) throws Exception {
+    private <T> T processGetRequest(GenericType<T> type, String url) {
         Response response = createClientRequest(url).get();
 
         if (response.getStatus() != 200) {
-            System.out.println("Respose: " + response.readEntity(String.class));
+            System.out.println("Response: " + response.readEntity(String.class));
             fail("Failed to get entity via REST API. Status " + response.getStatusInfo());
         }
 
@@ -77,44 +72,18 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
         return FileUtils.readFileToString(jsonRequestFile, ENCODING);
     }
 
-    protected Response manipulateEntityFile(
-            ListEntityType entity,
-            OperationType operation,
-            String file,
-            Boolean checkSuccess) throws Exception {
-        return manipulateEntityString(entity, operation, readJsonFile(file), checkSuccess);
+    protected Response manipulateEntityFile(OperationType operation, String file) throws Exception {
+        return manipulateEntityString(operation, readJsonFile(file));
     }
 
-    protected Response manipulateEntityString(
-            ListEntityType entity,
-            OperationType operation,
-            String requestString,
-            Boolean checkSuccess) throws Exception {
-        String path = null;
-        switch (entity) {
-            case BLACK:
-                path = PATH_BLACK_LISTINGS_GAV;
-                break;
-        }
-
-        Invocation.Builder request = createClientRequest(path);
-        Response response;
-        switch (operation) {
-            case POST:
-                response = request.post(Entity.json(requestString));
-                break;
-
-            case DELETE:
-                response = request.method("DELETE", Entity.json(requestString));
-                break;
-            case PUT:
-                response = request.put(Entity.json(requestString));
-                break;
-            default:
-                throw new UnsupportedOperationException("Unknonw operation " + operation);
-        }
-        if (checkSuccess)
-            assertEquals(200, response.getStatus());
+    protected Response manipulateEntityString(OperationType operation, String requestString) {
+        String path = PATH_BLACK_LISTINGS_GAV;
+        Response response = switch (operation) {
+            case POST -> createClientRequest(path).post(Entity.json(requestString));
+            case DELETE -> createClientRequest(path).method("DELETE", Entity.json(requestString));
+            case PUT -> createClientRequest(path).put(Entity.json(requestString));
+        };
+        assertEquals(200, response.getStatus());
         return response;
     }
 

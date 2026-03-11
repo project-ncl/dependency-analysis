@@ -26,7 +26,10 @@ public class AlignRemoteTestIT extends AbstractRestReportsTest {
 
     @Test
     public void test() throws Exception {
-        Response response = assertResponseForRequest(RestApiReportsRemoteTestIT.PATH_REPORTS_ALIGN, "align-test-wrong");
-        assertEquals(500, response.getStatus());
+        try (Response response = assertResponseForRequest(
+                RestApiReportsRemoteTestIT.PATH_REPORTS_ALIGN,
+                "align-test-wrong")) {
+            assertEquals(500, response.getStatus());
+        }
     }
 }

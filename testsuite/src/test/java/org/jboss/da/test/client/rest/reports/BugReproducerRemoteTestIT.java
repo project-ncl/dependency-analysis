@@ -17,7 +17,7 @@ import jakarta.ws.rs.core.Response;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Disabled
-public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
+public class BugReproducerRemoteTestIT extends AbstractRestReportsTest {
 
     private static final String ENCODING = "utf-8";
 
@@ -33,9 +33,9 @@ public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
         String json = FileUtils.readFileToString(jsonRequestFile, ENCODING);
         json = json.replace("${DA-hosted-repo}", repo);
 
-        Response response = createClientRequest(PATH_SCM).post(Entity.json(json));
-
-        assertEquals(200, response.getStatus());
+        try (Response response = createClientRequest(PATH_SCM).post(Entity.json(json))) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
@@ -43,10 +43,10 @@ public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
         String gavNonexisting = "pnc-3de7ed5";
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, gavNonexisting);
 
-        Response response = createClientRequest(PATH_SCM)
-                .post(Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
-
-        assertEquals(200, response.getStatus());
+        try (Response response = createClientRequest(PATH_SCM)
+                .post(Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)))) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
@@ -54,15 +54,16 @@ public class BugReporoducerRemoteTestIT extends AbstractRestReportsTest {
         String nonOSGiDependency = "NCL5377";
         File jsonRequestFile = getJsonRequestFile(PATH_SCM, nonOSGiDependency);
 
-        Response response = createClientRequest(PATH_SCM)
-                .post(Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)));
-
-        assertEquals(200, response.getStatus());
+        try (Response response = createClientRequest(PATH_SCM)
+                .post(Entity.json(FileUtils.readFileToString(jsonRequestFile, ENCODING)))) {
+            assertEquals(200, response.getStatus());
+        }
     }
 
     @Test
     public void testNCLSUP132() throws Exception {
-        Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "NCLSUP132");
-        assertEquals(200, response.getStatus());
+        try (Response response = assertResponseForRequest(PATH_LOOKUP_GAVS, "NCLSUP132")) {
+            assertEquals(200, response.getStatus());
+        }
     }
 }

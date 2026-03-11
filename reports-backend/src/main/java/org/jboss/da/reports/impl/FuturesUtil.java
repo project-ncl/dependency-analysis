@@ -11,7 +11,7 @@ import org.jboss.da.common.CommunicationException;
 public class FuturesUtil {
     static <T> List<T> joinFutures(List<CompletableFuture<T>> futures) throws CommunicationException {
         try {
-            return futures.stream().map(r -> r.join()).collect(Collectors.toList());
+            return futures.stream().map(CompletableFuture::join).collect(Collectors.toList());
         } catch (CompletionException ex) {
             if (ex.getCause() instanceof CommunicationException) {
                 throw (CommunicationException) ex.getCause();
@@ -22,7 +22,7 @@ public class FuturesUtil {
 
     static <T> Set<T> joinFutures(Set<CompletableFuture<T>> futures) throws CommunicationException {
         try {
-            return futures.stream().map(r -> r.join()).collect(Collectors.toSet());
+            return futures.stream().map(CompletableFuture::join).collect(Collectors.toSet());
         } catch (CompletionException ex) {
             if (ex.getCause() instanceof CommunicationException) {
                 throw (CommunicationException) ex.getCause();

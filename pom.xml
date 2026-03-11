@@ -219,23 +219,6 @@
                 <version>${version.pnc}</version>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>org.jboss.pnc</groupId>-->
-<!--                <artifactId>rest-api</artifactId>-->
-<!--                <version>${version.pnc}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.jboss.pnc</groupId>-->
-<!--                <artifactId>rest-api</artifactId>-->
-<!--                <classifier>java-client</classifier>-->
-<!--                <version>${version.pnc}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.jboss.pnc</groupId>-->
-<!--                <artifactId>rest-client</artifactId>-->
-<!--                <version>${version.pnc}</version>-->
-<!--            </dependency>-->
-
             <dependency>
                 <groupId>jakarta.annotation</groupId>
                 <artifactId>jakarta.annotation-api</artifactId>
@@ -246,16 +229,6 @@
                 <artifactId>jakarta.transaction-api</artifactId>
                 <version>2.0.1</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>jakarta.validation</groupId>-->
-<!--                <artifactId>jakarta.validation-api</artifactId>-->
-<!--                <version>3.0.2</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>jakarta.websocket</groupId>-->
-<!--                <artifactId>jakarta.websocket-api</artifactId>-->
-<!--                <version>2.1.2</version>-->
-<!--            </dependency>-->
 
             <dependency>
                 <groupId>commons-validator</groupId>
@@ -486,11 +459,6 @@
                 <version>3.6.0</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.arquillian.junit5</groupId>
-                <artifactId>arquillian-junit5-container</artifactId>
-                <version>1.10.0.Final</version>
-            </dependency>
-            <dependency>
                 <groupId>io.quarkiverse.wiremock</groupId>
                 <artifactId>quarkus-wiremock-test</artifactId>
                 <version>1.5.3</version>
@@ -648,90 +616,9 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.commonjava.maven.enforcer</groupId>
-                        <artifactId>enforce-managed-deps-rule</artifactId>
-                        <version>1.2</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>enforce-plugin-versions</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requirePluginVersions />
-                            </rules>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>no-managed-deps</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <phase>initialize</phase>
-                        <configuration>
-                            <rules>
-                                <requireManagedDeps implementation="org.commonjava.maven.enforcer.rule.EnforceManagedDepsRule">
-                                    <checkProfiles>true</checkProfiles>
-                                    <failOnViolation>true</failOnViolation>
-                                    <regexIgnored>
-                                        <regexIgnored>[{]</regexIgnored>
-                                    </regexIgnored>
-                                </requireManagedDeps>
-                            </rules>
-                        </configuration>
-                    </execution>
-
-                </executions>
-            </plugin>
-<!--            <plugin>-->
-<!--                <artifactId>maven-failsafe-plugin</artifactId>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>integration-test</id>-->
-<!--                        <goals>-->
-<!--                            <goal>integration-test</goal>-->
-<!--                            <goal>verify</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
         </plugins>
-
     </build>
     <profiles>
-        <!-- <profile> -->
-        <!--     <id>excludeRemoteTests</id> -->
-        <!--     <activation> -->
-        <!--         <property> -->
-        <!--             <name>excludeRemoteTests</name> -->
-        <!--         </property> -->
-        <!--     </activation> -->
-        <!--     <modules> -->
-        <!--         <module>testsuite</module> -->
-        <!--     </modules> -->
-        <!--     <build> -->
-        <!--         <plugins> -->
-        <!--             <plugin> -->
-        <!--                 <artifactId>maven-failsafe-plugin</artifactId> -->
-        <!--                 <configuration> -->
-        <!--                     <excludes> -->
-        <!--                         <exclude>**/**RemoteTestIT.java</exclude> -->
-        <!--                     </excludes> -->
-        <!--                 </configuration> -->
-        <!--             </plugin> -->
-        <!--         </plugins> -->
-        <!--     </build> -->
-        <!-- </profile> -->
         <profile>
             <id>release</id>
             <properties>

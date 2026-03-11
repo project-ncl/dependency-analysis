@@ -95,7 +95,7 @@ public class IndyConnectorTest {
     }
 
     @Test
-    public void testGetVersionsOfGA() throws ConfigurationParseException, CommunicationException {
+    public void testGetVersionsOfGA() throws CommunicationException {
         stubFor(
                 get(urlEqualTo("/api/content/maven/group/DA-TEST-GROUP/foo/bar/baz/maven-metadata.xml")).willReturn(
                         aResponse().withStatus(200)
@@ -115,7 +115,7 @@ public class IndyConnectorTest {
     }
 
     @Test
-    public void testGetVersionsOfNpm() throws ConfigurationParseException, CommunicationException {
+    public void testGetVersionsOfNpm() throws CommunicationException {
         stubFor(
                 get(urlEqualTo("/api/content/npm/group/DA-TEST-GROUP/jquery/package.json")).willReturn(
                         aResponse().withStatus(200)

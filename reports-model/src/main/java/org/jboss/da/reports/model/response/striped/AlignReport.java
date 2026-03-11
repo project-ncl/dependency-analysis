@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NonNull;
 import org.jboss.da.reports.model.response.RestGA2GAVs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

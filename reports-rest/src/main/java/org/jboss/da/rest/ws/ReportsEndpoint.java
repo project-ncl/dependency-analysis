@@ -3,7 +3,6 @@ package org.jboss.da.rest.ws;
 import org.jboss.da.common.logging.AuditLogger;
 import org.jboss.da.rest.websocket.Methods;
 import org.jboss.da.rest.websocket.WebsocketEndpointHandler;
-import org.slf4j.MDC;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;

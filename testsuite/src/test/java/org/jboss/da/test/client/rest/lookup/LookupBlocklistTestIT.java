@@ -21,7 +21,8 @@ public class LookupBlocklistTestIT extends AbstractRestReportsTest {
     @BeforeEach
     public void prepareBlocklist() {
         String blocklist = "{\"groupId\":\"com.google.guava\",\"artifactId\":\"guava\",\"version\":\"13.0.1-redhat-2\"}";
-        createClientRequest(PATH_BLACK_LISTINGS_GAV).post(Entity.json(blocklist)).close();
+        Response response = createClientRequest(PATH_BLACK_LISTINGS_GAV).post(Entity.json(blocklist));
+        response.close();
     }
 
     @Test
@@ -34,6 +35,7 @@ public class LookupBlocklistTestIT extends AbstractRestReportsTest {
     @AfterEach
     public void cleanBlocklist() {
         String blocklist = "{\"groupId\":\"com.google.guava\",\"artifactId\":\"guava\",\"version\":\"13.0.1-redhat-2\"}";
-        createClientRequest(PATH_BLACK_LISTINGS_GAV).method("DELTE", Entity.json(blocklist)).close();
+        Response response = createClientRequest(PATH_BLACK_LISTINGS_GAV).method("DELTE", Entity.json(blocklist));
+        response.close();
     }
 }

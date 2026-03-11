@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,13 +27,12 @@ import java.util.Map;
 
 /**
  * Facade, which simplifies operations with the SCM repositories
- * 
+ *
  */
 @ApplicationScoped
 public class ScmFacade {
 
-    @Inject
-    private Logger logger;
+    private static final Logger logger = LoggerFactory.getLogger(ScmFacade.class);
 
     private final ScmManager scmManager;
 
@@ -47,7 +47,7 @@ public class ScmFacade {
     /**
      * Tries to do a shallow clone (clone only the requested revision) of the remote repository to the local directory.
      * If it is not possible to do that, then it does the full clone.
-     * 
+     *
      * @param scmType Type of the repository
      * @param scmUrl URL to the repository
      * @param revision Revision of the repository, which should be cloned
@@ -69,7 +69,7 @@ public class ScmFacade {
 
     /**
      * Process full clone of the remote repository to the local directory.
-     * 
+     *
      * @param scmType Type of the repository
      * @param scmUrl URL to the repository
      * @param revision Revision of the repository, which should be cloned
@@ -87,7 +87,7 @@ public class ScmFacade {
 
     /**
      * Stages selected local files in the SCM repository and pushes them to the remote repository.
-     * 
+     *
      * @param scmType Type of the repository
      * @param scmUrl URL to the repository
      * @param baseDir Directory of the local repository

@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -73,8 +74,7 @@ public class AggregatedProductProvider implements ProductProvider {
     @Pnc
     PncProductProvider pncProductProvider;
 
-    @Inject
-    ScheduledExecutorService scheduler;
+    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
 
     @Override
     public CompletableFuture<Set<Product>> getAllProducts() {
@@ -175,7 +175,7 @@ public class AggregatedProductProvider implements ProductProvider {
 
         @Override
         public Supplier<HashMap<Product, ProductArtifacts>> supplier() {
-            return () -> new HashMap<>();
+            return HashMap::new;
         }
 
         @Override
@@ -218,7 +218,7 @@ public class AggregatedProductProvider implements ProductProvider {
         }
     }
 
-    private static abstract class AbstractColector<R> implements Collector<R, R, R> {
+    private static abstract class AbstractCollector<R> implements Collector<R, R, R> {
 
         @Override
         public BinaryOperator<R> combiner() {
@@ -240,7 +240,7 @@ public class AggregatedProductProvider implements ProductProvider {
 
     }
 
-    private static class MapCol<R, S> extends AbstractColector<Map<R, S>> {
+    private static class MapCol<R, S> extends AbstractCollector<Map<R, S>> {
 
         private final BiFunction<? super S, ? super S, ? extends S> remappingFunction;
 
@@ -250,7 +250,7 @@ public class AggregatedProductProvider implements ProductProvider {
 
         @Override
         public Supplier<Map<R, S>> supplier() {
-            return () -> new HashMap<>();
+            return HashMap::new;
         }
 
         @Override
@@ -263,16 +263,16 @@ public class AggregatedProductProvider implements ProductProvider {
         }
     }
 
-    private static class SetCollector<R> extends AbstractColector<Set<R>> {
+    private static class SetCollector<R> extends AbstractCollector<Set<R>> {
 
         @Override
         public Supplier<Set<R>> supplier() {
-            return () -> new HashSet<>();
+            return HashSet::new;
         }
 
         @Override
         public BiConsumer<Set<R>, Set<R>> accumulator() {
-            return (h, s) -> h.addAll(s);
+            return Set::addAll;
         }
     }
 }

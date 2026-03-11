@@ -1,7 +1,6 @@
 package org.jboss.da.rest.exceptions;
 
 import jakarta.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;

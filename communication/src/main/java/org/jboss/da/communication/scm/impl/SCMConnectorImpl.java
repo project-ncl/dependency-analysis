@@ -29,10 +29,10 @@ import java.util.Set;
 public class SCMConnectorImpl implements SCMConnector {
 
     @Inject
-    private SCM scmManager;
+    SCM scmManager;
 
     @Inject
-    private PomAnalyzer pomAnalyzer;
+    PomAnalyzer pomAnalyzer;
 
     @Override
     public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, GAV gav)
