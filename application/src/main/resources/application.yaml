@@ -1,0 +1,30 @@
+quarkus:
+  http:
+    enable-compression: true
+    enable-decompression: true
+  websocket:
+    dispatch-to-worker: true
+  hibernate-orm:
+    log:
+      sql: false
+    database:
+      generation: ${persistence.hibernate.hbm2ddl.auto:update}
+  # graceful shutdown in case Quarkus is still processing requests
+  shutdown:
+    timeout: 30
+  index-dependency:
+    pnc-jandex:
+      group-id: "org.jboss.pnc"
+  log:
+    console:
+      format: "%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c{3.}] (%t) %s%e%n"
+      json:
+        ~: false
+        exception-output-type: formatted
+    category:
+      "org.jboss.pnc":
+        level: DEBUG
+      "com.arjuna.ats.jta":
+        # Set to WARN if you want to see all the exceptions
+        level: ERROR
+    level: INFO
