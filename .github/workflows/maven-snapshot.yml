@@ -8,5 +8,5 @@ jobs:
     call-snapshot-job:
       uses: project-ncl/shared-github-actions/.github/workflows/maven-snapshot.yml@v0.0.12
       with:
-        project_name: 'project-ncl/reqour'
+        project_name: 'project-ncl/dependency-analysis'
       secrets: inherit
