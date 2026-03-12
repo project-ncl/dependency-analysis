@@ -27,11 +27,4 @@ public class User extends GenericEntity {
     @Getter
     @NonNull
     private String username;
-
-    @Setter
-    @Getter
-    @NonNull
-    @Column(unique = true)
-    private String keycloakId;
-
 }
