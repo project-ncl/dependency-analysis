@@ -85,8 +85,6 @@
         <version.pnc-common>3.4.1-SNAPSHOT</version.pnc-common>
         <version.pnc-api>3.4.2</version.pnc-api>
         <atlasVersion>1.1.9</atlasVersion>
-        <!-- Ideally this should be 1.21 this causes many problems with o11yphant metrics -->
-        <!-- It was 0.13.4 -->
         <version.galley>1.22-SNAPSHOT</version.galley>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -98,7 +96,8 @@
 
         <!-- OTEL Dependencies for Instrumentation -->
         <version.io.opentelemetry.instrumentation>1.22.0</version.io.opentelemetry.instrumentation>
-    <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
+
+        <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
     <tagSuffix />
     </properties>
 
@@ -173,16 +172,6 @@
                         <artifactId>pnc-api-constants</artifactId>
                     </exclusion>
                 </exclusions>
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>io.opentelemetry</groupId>-->
-<!--                        <artifactId>*</artifactId>-->
-<!--                    </exclusion>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.apache.httpcomponents</groupId>-->
-<!--                        <artifactId>*</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
             </dependency>
             <dependency>
                 <groupId>org.jboss.pnc</groupId>
@@ -240,22 +229,6 @@
                 <artifactId>keycloak-core</artifactId>
                 <version>18.0.9.redhat-00001</version>
             </dependency>
-            <!-- OIDC security: use Quarkus OIDC when needed -->
-            <!-- needed when using J11 -->
-            <!-- JAXB API -->
-<!--            <dependency>-->
-<!--                <groupId>javax.xml.bind</groupId>-->
-<!--                <artifactId>jaxb-api</artifactId>-->
-<!--                <version>2.3.1</version>-->
-<!--            </dependency>-->
-
-            <!-- needed when using J11 -->
-            <!-- JAXB RI -->
-<!--            <dependency>-->
-<!--                <groupId>com.sun.xml.bind</groupId>-->
-<!--                <artifactId>jaxb-impl</artifactId>-->
-<!--                <version>2.3.4</version>-->
-<!--            </dependency>-->
 
             <!-- Commonjava -->
             <dependency>
@@ -263,12 +236,6 @@
                 <artifactId>galley-api</artifactId>
                 <version>${version.galley}</version>
                 <classifier>jakarta</classifier>
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>javax.activation</groupId>-->
-<!--                        <artifactId>javax.activation-api</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
             </dependency>
             <dependency>
                 <groupId>org.commonjava.maven.galley</groupId>
@@ -286,10 +253,16 @@
                         <groupId>org.commonjava.maven.galley</groupId>
                         <artifactId>*</artifactId>
                     </exclusion>
-<!--                    <exclusion>-->
-<!--                        <groupId>org.apache.httpcomponents</groupId>-->
-<!--                        <artifactId>*</artifactId>-->
-<!--                    </exclusion>-->
+                    <!-- Avoid dragging in all of o11yphant. -->
+                    <!-- Keeping o11yphant-metrics-api & o11yphant-trace-api for GalleyMavenProducer -->
+                    <exclusion>
+                        <groupId>org.commonjava.util</groupId>
+                        <artifactId>o11yphant-trace-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.commonjava.util</groupId>
+                        <artifactId>o11yphant-trace-helper-jhttpc</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -338,10 +311,16 @@
                         <groupId>org.commonjava.maven.galley</groupId>
                         <artifactId>*</artifactId>
                     </exclusion>
-<!--                    <exclusion>-->
-<!--                        <groupId>org.apache.httpcomponents</groupId>-->
-<!--                        <artifactId>*</artifactId>-->
-<!--                    </exclusion>-->
+                    <!-- Avoid dragging in all of o11yphant -->
+                    <!-- Keeping o11yphant-metrics-api & o11yphant-trace-api for GalleyMavenProducer -->
+                    <exclusion>
+                        <groupId>org.commonjava.util</groupId>
+                        <artifactId>o11yphant-trace-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.commonjava.util</groupId>
+                        <artifactId>o11yphant-trace-helper-jhttpc</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -382,12 +361,6 @@
                 <scope>provided</scope>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>io.swagger.core.v3</groupId>-->
-<!--                <artifactId>swagger-jaxrs2</artifactId>-->
-<!--                <version>2.2.2</version>-->
-<!--            </dependency>-->
-
             <!-- maven scm libraries -->
             <dependency>
                 <groupId>org.apache.maven.scm</groupId>
@@ -398,12 +371,6 @@
                 <groupId>org.apache.maven.scm</groupId>
                 <artifactId>maven-scm-provider-jgit</artifactId>
                 <version>${mvn-scm.version}</version>
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.apache.httpcomponents</groupId>-->
-<!--                        <artifactId>*</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
             </dependency>
             <dependency>
                 <groupId>org.eclipse.jgit</groupId>

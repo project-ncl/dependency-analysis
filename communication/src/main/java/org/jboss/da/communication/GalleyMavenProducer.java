@@ -88,8 +88,6 @@ public class GalleyMavenProducer {
 
             globalHttpConfiguration = new GlobalHttpConfiguration();
 
-            // metricRegistry = new MetricRegistry();
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
