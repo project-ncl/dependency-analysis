@@ -8,8 +8,9 @@ import org.jboss.da.listings.model.rest.RestArtifact;
 import org.jboss.da.listings.model.rest.SuccessResponse;
 import org.jboss.da.model.rest.ErrorMessage;
 
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,20 +27,19 @@ import io.opentelemetry.instrumentation.annotations.WithSpan;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@Transactional
 public class BlackListImpl implements BlackList {
 
     @Inject
-    private RestConvert convert;
+    RestConvert convert;
 
     @Inject
-    private BlackArtifactService blackService;
+    BlackArtifactService blackService;
 
     @Override
     @WithSpan()
     public Collection<RestArtifact> getAllBlackArtifacts() {
-        List<RestArtifact> artifacts = new ArrayList<>();
-        artifacts.addAll(convert.toRestArtifacts(blackService.getAll()));
-        return artifacts;
+        return new ArrayList<>(convert.toRestArtifacts(blackService.getAll()));
     }
 
     @Override

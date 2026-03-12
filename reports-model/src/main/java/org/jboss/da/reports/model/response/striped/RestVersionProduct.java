@@ -1,7 +1,6 @@
 package org.jboss.da.reports.model.response.striped;
 
 import lombok.*;
-import org.jboss.da.listings.model.rest.RestProductInput;
 
 /**
  *

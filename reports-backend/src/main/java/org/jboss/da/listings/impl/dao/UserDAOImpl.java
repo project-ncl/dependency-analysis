@@ -1,24 +1,22 @@
 package org.jboss.da.listings.impl.dao;
 
-import java.util.Optional;
-
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 import org.jboss.da.listings.api.dao.UserDAO;
 import org.jboss.da.listings.api.model.User;
 
-import javax.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import java.util.Optional;
 
 /**
- * 
+ *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  *
  */
-@Stateless
+@ApplicationScoped
 public class UserDAOImpl extends GenericDAOImpl<User> implements UserDAO {
 
     public UserDAOImpl() {

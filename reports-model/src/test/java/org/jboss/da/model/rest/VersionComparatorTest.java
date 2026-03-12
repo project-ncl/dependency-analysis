@@ -1,15 +1,14 @@
 package org.jboss.da.model.rest;
 
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@RunWith(MockitoJUnitRunner.class)
 public class VersionComparatorTest {
 
     @Test
@@ -21,15 +20,17 @@ public class VersionComparatorTest {
         assertTrue(vc.compare("3.4.2.Final", "3.4.1.Final") > 0);
         assertTrue(vc.compare("3.4.2.Final", "3.4.2.Beta") > 0);
 
-        assertTrue(vc.compare("3.0.0.Final", "3.Final") == 0);
-        assertTrue(vc.compare("3.0.0.Final", "3.0.Final") == 0);
-        assertTrue(vc.compare("3.0.0.Final", "3.0.0.Final") == 0);
+        assertEquals(0, vc.compare("3.0.0.Final", "3.Final"));
+        assertEquals(0, vc.compare("3.0.0.Final", "3.0.Final"));
+        // noinspection EqualsWithItself
+        assertEquals(0, vc.compare("3.0.0.Final", "3.0.0.Final"));
 
-        assertTrue(vc.compare("3.0.0", "3") == 0);
-        assertTrue(vc.compare("3.0.0", "3.0") == 0);
-        assertTrue(vc.compare("3.0.0", "3.0.0") == 0);
+        assertEquals(0, vc.compare("3.0.0", "3"));
+        assertEquals(0, vc.compare("3.0.0", "3.0"));
+        // noinspection EqualsWithItself
+        assertEquals(0, vc.compare("3.0.0", "3.0.0"));
 
-        assertTrue(vc.compare("b10", "0.0.0.b10") == 0);
+        assertEquals(0, vc.compare("b10", "0.0.0.b10"));
 
         assertTrue(vc.compare("3.4.2.Final", "4.4.2.Final") < 0);
         assertTrue(vc.compare("3.4.2.Final", "3.5.2.Final") < 0);

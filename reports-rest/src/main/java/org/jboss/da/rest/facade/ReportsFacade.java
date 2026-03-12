@@ -1,5 +1,7 @@
 package org.jboss.da.rest.facade;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -25,7 +27,7 @@ import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import java.util.Iterator;
 import java.util.List;
@@ -33,13 +35,15 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
+@ApplicationScoped
+@Transactional
 public class ReportsFacade {
 
     @Inject
-    private ReportsGenerator reportsGenerator;
+    ReportsGenerator reportsGenerator;
 
     @Inject
-    private Validation validation;
+    Validation validation;
 
     public Set<BuiltReport> builtReport(BuiltReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
@@ -54,7 +58,7 @@ public class ReportsFacade {
 
     public AlignReport alignReport(AlignReportRequest request)
             throws ScmException, PomAnalysisException, ValidationException, CommunicationException {
-        validation.validation(request, "Getting allignment report for project specified in a repository URL failed");
+        validation.validation(request, "Getting alignment report for project specified in a repository URL failed");
         String pomPath = getPomPath(request.getPomPath());
         SCMLocator locator = SCMLocator
                 .generic(request.getScmUrl(), request.getRevision(), pomPath, request.getAdditionalRepos());
@@ -83,7 +87,7 @@ public class ReportsFacade {
 
         Optional<ArtifactReport> artifactReport = reportsGenerator.getReportFromSCM(request);
 
-        return artifactReport.map(Translate::toReport).orElseThrow(() -> new NoSuchElementException());
+        return artifactReport.map(Translate::toReport).orElseThrow(NoSuchElementException::new);
     }
 
     public AdvancedReport advancedScmReport(SCMReportRequest request)
@@ -105,7 +109,7 @@ public class ReportsFacade {
 
         Optional<AdvancedArtifactReport> advancedArtifactReport = reportsGenerator.getAdvancedReportFromSCM(request);
 
-        return advancedArtifactReport.map(Translate::toAdvancedReport).orElseThrow(() -> new NoSuchElementException());
+        return advancedArtifactReport.map(Translate::toAdvancedReport).orElseThrow(NoSuchElementException::new);
     }
 
     public List<LookupReport> gavsReport(LookupGAVsRequest gavRequest) throws CommunicationException {

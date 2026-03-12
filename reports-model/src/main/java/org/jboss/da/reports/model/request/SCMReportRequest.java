@@ -4,7 +4,7 @@ import org.jboss.da.reports.model.api.SCMLocator;
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

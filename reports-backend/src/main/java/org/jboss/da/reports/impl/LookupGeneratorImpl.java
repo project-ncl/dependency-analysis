@@ -26,8 +26,8 @@ import org.jboss.da.reports.api.LookupGenerator;
 import org.jboss.pnc.common.version.VersionAnalyzer;
 import org.jboss.pnc.enums.ArtifactQuality;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.Collections;
 import java.util.EnumSet;
@@ -48,17 +48,17 @@ public class LookupGeneratorImpl implements LookupGenerator {
 
     @Inject
     @RepositoryProductProvider.Repository
-    private RepositoryProductProvider repositoryProductProvider;
+    RepositoryProductProvider repositoryProductProvider;
 
     @Inject
     @PncProductProvider.Pnc
-    private PncProductProvider pncProductProvider;
+    PncProductProvider pncProductProvider;
 
     @Inject
-    private AggregatedProductProvider aggProductProvider;
+    AggregatedProductProvider aggProductProvider;
 
     @Inject
-    private BlackArtifactService blackArtifactService;
+    BlackArtifactService blackArtifactService;
 
     private Map<String, LookupMode> modes;
 

@@ -1,11 +1,12 @@
 package org.jboss.da.rest.websocket;
 
-import org.jboss.weld.context.activator.ActivateRequestContext;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.control.ActivateRequestContext;
 import org.slf4j.Logger;
 
-import javax.inject.Inject;
-import javax.websocket.RemoteEndpoint.Basic;
-import javax.websocket.Session;
+import jakarta.inject.Inject;
+import jakarta.websocket.RemoteEndpoint.Basic;
+import jakarta.websocket.Session;
 
 import java.io.IOException;
 
@@ -21,13 +22,14 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@ApplicationScoped
 public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler {
 
     @Inject
-    private Logger log;
+    Logger log;
 
     @Inject
-    private ObjectMapper mapper;
+    ObjectMapper mapper;
 
     private Methods methods;
 
@@ -108,19 +110,14 @@ public class DefaultWebsocketEndpointHandler implements WebsocketEndpointHandler
         try {
             return JSONRPC2Request.parse(msg);
         } catch (JSONRPC2ParseException ex) {
-            JSONRPC2Error error;
-            switch (ex.getCauseType()) {
-                case JSONRPC2ParseException.PROTOCOL:
-                    error = JSONRPC2Error.INVALID_REQUEST;
-                    break;
-                case JSONRPC2ParseException.JSON:
-                    error = JSONRPC2Error.PARSE_ERROR;
-                    break;
-                default:
+            JSONRPC2Error error = switch (ex.getCauseType()) {
+                case JSONRPC2ParseException.PROTOCOL -> JSONRPC2Error.INVALID_REQUEST;
+                case JSONRPC2ParseException.JSON -> JSONRPC2Error.PARSE_ERROR;
+                default -> {
                     log.warn("Unknown exception cause type " + ex.getCauseType() + ".");
-                    error = JSONRPC2Error.PARSE_ERROR;
-                    break;
-            }
+                    yield JSONRPC2Error.PARSE_ERROR;
+                }
+            };
             error = error.setData(ex.getMessage());
             remote.sendText(new JSONRPC2Response(error, null).toString());
             log.warn("Failed to parse JSON RPC message", ex);

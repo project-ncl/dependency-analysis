@@ -1,7 +1,8 @@
 package org.jboss.da.communication;
 
-import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.inject.Produces;
 import org.commonjava.cdi.util.weft.config.DefaultWeftConfig;
 import org.commonjava.cdi.util.weft.config.WeftConfig;
 import org.commonjava.maven.galley.auth.MemoryPasswordManager;
@@ -21,36 +22,34 @@ import org.commonjava.maven.galley.maven.spi.defaults.MavenPluginDefaults;
 import org.commonjava.maven.galley.maven.spi.defaults.MavenPluginImplications;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.nfc.MemoryNotFoundCache;
+import org.commonjava.maven.galley.proxy.NoOpProxySitesCache;
 import org.commonjava.maven.galley.spi.auth.PasswordManager;
 import org.commonjava.maven.galley.spi.event.FileEventManager;
 import org.commonjava.maven.galley.spi.io.PathGenerator;
 import org.commonjava.maven.galley.spi.nfc.NotFoundCache;
+import org.commonjava.maven.galley.spi.proxy.ProxySitesCache;
 import org.commonjava.maven.galley.spi.transport.LocationExpander;
 import org.commonjava.maven.galley.transport.NoOpLocationExpander;
 import org.commonjava.maven.galley.transport.htcli.Http;
 import org.commonjava.maven.galley.transport.htcli.HttpImpl;
 import org.commonjava.maven.galley.transport.htcli.conf.GlobalHttpConfiguration;
-import org.commonjava.util.partyline.JoinableFileManager;
+import org.commonjava.maven.galley.transport.htcli.conf.GlobalProxyConfig;
+import org.commonjava.o11yphant.metrics.api.MetricRegistry;
+import org.commonjava.util.partyline.Partyline;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 
 // Inspiration taken from the previous CartographyProducer and org.commonjava.maven.galley.embed.TestCDIProvider.java
 public class GalleyMavenProducer {
 
-    @Inject
-    private TransferDecoratorManager transferDecorator;
-
     private FileTransportConfig fileTransportConfig;
 
     private PartyLineCacheProvider cacheProvider;
-
-    private MetricRegistry metricRegistry;
 
     private GlobalHttpConfiguration globalHttpConfiguration;
 
@@ -82,14 +81,12 @@ public class GalleyMavenProducer {
                     file,
                     pathGenerator,
                     new NoOpFileEventManager(),
-                    transferDecorator,
+                    new TransferDecoratorManager(),
                     Executors.newScheduledThreadPool(2),
-                    new JoinableFileManager());
+                    new Partyline());
             fileTransportConfig = new FileTransportConfig(file, pathGenerator);
 
             globalHttpConfiguration = new GlobalHttpConfiguration();
-
-            metricRegistry = new MetricRegistry();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -162,11 +159,6 @@ public class GalleyMavenProducer {
     }
 
     @Produces
-    public MetricRegistry getMetricRegistry() {
-        return metricRegistry;
-    }
-
-    @Produces
     public TransportMetricConfig getTransportMetricConfig() {
         return transportMetricConfig;
     }
@@ -174,6 +166,46 @@ public class GalleyMavenProducer {
     @Produces
     public ObjectMapper getObjectMapper() {
         return new ObjectMapper();
+    }
+
+    @Produces
+    public GlobalProxyConfig getGlobalProxyConfig() {
+        return new GlobalProxyConfig() {
+            @Override
+            public String getHost() {
+                return "proxy.com";
+            }
+
+            @Override
+            public int getPort() {
+                return 3128;
+            }
+
+            @Override
+            public String getUser() {
+                return null;
+            }
+
+            @Override
+            public List<String> getAllowHttpJobTypes() {
+                return new ArrayList<>();
+            }
+
+            @Override
+            public List<String> getEgressSites() {
+                return new ArrayList<>();
+            }
+        };
+    }
+
+    @Produces
+    public ProxySitesCache getProxySitesCache() {
+        return new NoOpProxySitesCache();
+    }
+
+    @Produces
+    public MetricRegistry getMetricRegistry() {
+        return null;
     }
 
     // Only appears to be used by GalleyWrapperTestIT

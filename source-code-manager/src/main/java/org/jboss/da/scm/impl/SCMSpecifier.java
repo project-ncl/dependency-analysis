@@ -13,7 +13,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 @ToString
-class SCMSpecifier {
+public class SCMSpecifier {
 
     @Getter
     private final SCMType scmType;

@@ -3,28 +3,27 @@ package org.jboss.da.rest.ws;
 import org.jboss.da.common.logging.AuditLogger;
 import org.jboss.da.rest.websocket.Methods;
 import org.jboss.da.rest.websocket.WebsocketEndpointHandler;
-import org.slf4j.MDC;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.websocket.OnClose;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Inject;
+import jakarta.websocket.OnClose;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.OnOpen;
+import jakarta.websocket.Session;
+import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/ws")
 public class ReportsEndpoint {
 
     @Inject
     @ReportsWebsocketMethods
-    private Methods methods;
+    Methods methods;
 
     @Inject
-    private WebsocketEndpointHandler endpointHandler;
+    WebsocketEndpointHandler endpointHandler;
 
     @PostConstruct
-    private void init() {
+    void init() {
         endpointHandler.setMethods(methods);
     }
 
