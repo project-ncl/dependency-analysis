@@ -1,0 +1,12 @@
+name: Build snapshot version and upload to Maven Central
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+    call-snapshot-job:
+      uses: project-ncl/shared-github-actions/.github/workflows/maven-snapshot.yml@v0.0.12
+      with:
+        project_name: 'project-ncl/reqour'
+      secrets: inherit
