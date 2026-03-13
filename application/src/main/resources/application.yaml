@@ -2,6 +2,8 @@ quarkus:
   http:
     enable-compression: true
     enable-decompression: true
+  swagger-ui:
+    always-include: true
   websocket:
     dispatch-to-worker: true
   hibernate-orm:
