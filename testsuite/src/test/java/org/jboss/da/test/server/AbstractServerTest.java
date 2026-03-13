@@ -1,9 +1,10 @@
 package org.jboss.da.test.server;
 
-import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
+
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
+import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 
 /**
  *

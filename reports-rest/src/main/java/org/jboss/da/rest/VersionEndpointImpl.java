@@ -1,12 +1,12 @@
 package org.jboss.da.rest;
 
-import org.jboss.da.common.Constants;
-import org.jboss.da.rest.api.VersionEndpoint;
-import org.jboss.pnc.api.dto.ComponentVersion;
+import java.time.ZonedDateTime;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import java.time.ZonedDateTime;
+import org.jboss.da.common.Constants;
+import org.jboss.da.rest.api.VersionEndpoint;
+import org.jboss.pnc.api.dto.ComponentVersion;
 
 @ApplicationScoped
 public class VersionEndpointImpl implements VersionEndpoint {

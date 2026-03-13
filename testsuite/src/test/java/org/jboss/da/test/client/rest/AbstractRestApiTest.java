@@ -1,10 +1,10 @@
 package org.jboss.da.test.client.rest;
 
-import io.quarkus.logging.Log;
-import jakarta.ws.rs.client.Client;
-import org.apache.commons.io.FileUtils;
-import org.jboss.da.test.client.AbstractClientApiTest;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 
+import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.ClientRequestFilter;
 import jakarta.ws.rs.client.Entity;
@@ -12,12 +12,13 @@ import jakarta.ws.rs.client.Invocation;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
+import org.apache.commons.io.FileUtils;
+import org.jboss.da.test.client.AbstractClientApiTest;
 import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.BeforeEach;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
+import io.quarkus.logging.Log;
 
 /**
  *

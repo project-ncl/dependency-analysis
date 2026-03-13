@@ -1,12 +1,11 @@
 package org.jboss.da.listings.api.service;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
-
-import java.util.Set;
 
 /**
  *

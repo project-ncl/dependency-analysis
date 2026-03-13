@@ -1,5 +1,13 @@
 package org.jboss.da.rest.ws;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
 import org.jboss.da.reports.model.request.AlignReportRequest;
 import org.jboss.da.reports.model.request.BuiltReportRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
@@ -13,13 +21,6 @@ import org.jboss.da.rest.facade.ReportsFacade;
 import org.jboss.da.rest.websocket.DefaultMethod;
 import org.jboss.da.rest.websocket.Method;
 import org.jboss.da.rest.websocket.Methods;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @ApplicationScoped
 @ReportsWebsocketMethods

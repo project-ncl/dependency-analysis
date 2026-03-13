@@ -3,6 +3,8 @@ package org.jboss.da.listings.api.model;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 
+import org.jboss.da.model.rest.GAV;
+
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,7 +13,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.jboss.da.model.rest.GAV;
 
 /**
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;

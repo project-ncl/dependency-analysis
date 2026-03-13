@@ -1,6 +1,12 @@
 package org.jboss.da.test.client;
 
-import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.apache.http.entity.ContentType;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
@@ -8,12 +14,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-import static org.junit.jupiter.api.Assertions.fail;
+import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 
 public abstract class AbstractClientApiTest {
 

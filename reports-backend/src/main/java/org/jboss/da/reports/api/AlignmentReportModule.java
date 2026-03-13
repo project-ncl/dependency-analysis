@@ -1,12 +1,12 @@
 package org.jboss.da.reports.api;
 
-import org.jboss.da.model.rest.GA;
-import org.jboss.da.model.rest.GAV;
-
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.model.rest.GAV;
 
 import lombok.Getter;
 

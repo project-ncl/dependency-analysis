@@ -5,10 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.jboss.da.model.rest.validators.ScmUrl;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import org.jboss.da.model.rest.validators.ScmUrl;
 
 /**
  *

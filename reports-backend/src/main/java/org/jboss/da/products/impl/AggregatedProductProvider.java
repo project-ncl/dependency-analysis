@@ -1,17 +1,5 @@
 package org.jboss.da.products.impl;
 
-import io.quarkus.narayana.jta.QuarkusTransaction;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import org.jboss.da.listings.model.ProductSupportStatus;
-import org.jboss.da.products.api.Artifact;
-import org.jboss.da.products.api.Product;
-import org.jboss.da.products.api.ProductArtifacts;
-import org.jboss.da.products.api.ProductProvider;
-import org.jboss.da.products.impl.PncProductProvider.Pnc;
-import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
-import org.slf4j.Logger;
-
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -33,6 +21,20 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import org.jboss.da.listings.model.ProductSupportStatus;
+import org.jboss.da.products.api.Artifact;
+import org.jboss.da.products.api.Product;
+import org.jboss.da.products.api.ProductArtifacts;
+import org.jboss.da.products.api.ProductProvider;
+import org.jboss.da.products.impl.PncProductProvider.Pnc;
+import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
+import org.slf4j.Logger;
+
+import io.quarkus.narayana.jta.QuarkusTransaction;
 
 /**
  *

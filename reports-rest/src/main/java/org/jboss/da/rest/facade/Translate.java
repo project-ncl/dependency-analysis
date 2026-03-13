@@ -1,35 +1,33 @@
 package org.jboss.da.rest.facade;
 
-import org.jboss.da.listings.model.rest.RestGavProducts;
-import org.jboss.da.listings.model.rest.RestProductInput;
-import org.jboss.da.model.rest.GAV;
-import org.jboss.da.products.api.Product;
-import org.jboss.da.reports.api.AlignmentReportModule;
-import org.jboss.da.reports.api.BuiltReportModule;
-import org.jboss.da.reports.api.ProductArtifact;
-import org.jboss.da.reports.model.response.AlignReport;
-import org.jboss.da.reports.model.response.BuiltReport;
-import org.jboss.da.reports.model.response.RestGA2GAVs;
-import org.jboss.da.reports.model.response.RestGA2RestGAV2VersionProducts;
-import org.jboss.da.reports.model.response.RestGAV2VersionProducts;
-import org.jboss.da.reports.model.response.RestVersionProduct;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.jboss.da.listings.model.rest.RestGavProducts;
+import org.jboss.da.listings.model.rest.RestProductInput;
+import org.jboss.da.model.rest.GAV;
+import org.jboss.da.products.api.Product;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
+import org.jboss.da.reports.api.AlignmentReportModule;
 import org.jboss.da.reports.api.ArtifactReport;
+import org.jboss.da.reports.api.BuiltReportModule;
+import org.jboss.da.reports.api.ProductArtifact;
 import org.jboss.da.reports.model.response.AdvancedReport;
+import org.jboss.da.reports.model.response.AlignReport;
+import org.jboss.da.reports.model.response.BuiltReport;
 import org.jboss.da.reports.model.response.GAVAvailableVersions;
 import org.jboss.da.reports.model.response.GAVBestMatchVersion;
 import org.jboss.da.reports.model.response.Report;
+import org.jboss.da.reports.model.response.RestGA2GAVs;
+import org.jboss.da.reports.model.response.RestGA2RestGAV2VersionProducts;
 import org.jboss.da.reports.model.response.RestGA2RestGAV2VersionProductsWithDiff;
+import org.jboss.da.reports.model.response.RestGAV2VersionProducts;
 import org.jboss.da.reports.model.response.RestGAV2VersionProductsWithDiff;
+import org.jboss.da.reports.model.response.RestVersionProduct;
 import org.jboss.da.reports.model.response.RestVersionProductWithDifference;
-
-import java.util.ArrayList;
-import java.util.List;
 
 class Translate {
 

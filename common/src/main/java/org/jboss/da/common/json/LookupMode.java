@@ -1,17 +1,17 @@
 package org.jboss.da.common.json;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+
+import org.jboss.pnc.enums.ArtifactQuality;
+import org.jboss.pnc.enums.BuildCategory;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import org.jboss.pnc.enums.ArtifactQuality;
-import org.jboss.pnc.enums.BuildCategory;
-
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
 
 @Data
 @NoArgsConstructor

@@ -1,9 +1,6 @@
 package org.jboss.da.listings.impl.dao;
 
-import org.jboss.da.common.logging.AuditLogger;
-import org.jboss.da.listings.api.dao.BlackArtifactDAO;
-import org.jboss.da.listings.api.model.BlackArtifact;
-import org.jboss.da.listings.api.model.GA;
+import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.TypedQuery;
@@ -11,7 +8,11 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
-import java.util.List;
+
+import org.jboss.da.common.logging.AuditLogger;
+import org.jboss.da.listings.api.dao.BlackArtifactDAO;
+import org.jboss.da.listings.api.model.BlackArtifact;
+import org.jboss.da.listings.api.model.GA;
 
 /**
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;

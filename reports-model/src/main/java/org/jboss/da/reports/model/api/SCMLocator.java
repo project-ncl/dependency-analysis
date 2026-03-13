@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import org.jboss.da.model.rest.validators.ScmUrl;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
-
-import org.jboss.da.model.rest.validators.ScmUrl;
 
 /**
  *

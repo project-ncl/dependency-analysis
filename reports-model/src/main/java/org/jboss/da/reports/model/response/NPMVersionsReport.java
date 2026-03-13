@@ -15,14 +15,15 @@
  */
 package org.jboss.da.reports.model.response;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import org.jboss.da.model.rest.NPMPackage;
-
 import java.util.List;
 
+import org.jboss.da.model.rest.NPMPackage;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 

@@ -1,16 +1,17 @@
 package org.jboss.da.test.client.rest.reports;
 
-import java.io.File;
-
-import org.apache.commons.io.FileUtils;
-import org.jboss.da.test.client.rest.AbstractRestReportsTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Assumptions;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+
+import java.io.File;
 
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.Response;
+
+import org.apache.commons.io.FileUtils;
+import org.jboss.da.test.client.rest.AbstractRestReportsTest;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  *
