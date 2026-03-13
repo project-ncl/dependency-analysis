@@ -95,7 +95,7 @@ public class BackwardCompatibilityTest {
         gav.setArtifactId("id");
         gav.setGroupId("gid");
         gav.setVersion("ver");
-        ArrayList list = new ArrayList<>();
+        ArrayList<RestArtifact> list = new ArrayList<>();
         list.add(gav);
         containsResponse.setFound(list);
 

@@ -70,12 +70,22 @@ public class IndyConnectorTest {
 
     private static final GA GA = new GA("foo.bar", "baz");
 
-    private static final String FOOBAR_MAVEN_METADATA = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<metadata>\n"
-            + "  <groupId>foo.bar</groupId>\n" + "  <artifactId>baz</artifactId>\n" + "  <versioning>\n"
-            + "    <latest>1.9.13.redhat-3</latest>\n" + "    <release>1.9.13.redhat-3</release>\n" + "    <versions>\n"
-            + "      <version>1.9.9.redhat-5</version>\n" + "      <version>1.9.13.redhat-2</version>\n"
-            + "      <version>1.9.13.redhat-3</version>\n" + "    </versions>\n"
-            + "    <lastUpdated>20171203034828</lastUpdated>\n" + "  </versioning>\n" + "</metadata>";
+    private static final String FOOBAR_MAVEN_METADATA = """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <metadata>
+              <groupId>foo.bar</groupId>
+              <artifactId>baz</artifactId>
+              <versioning>
+                <latest>1.9.13.redhat-3</latest>
+                <release>1.9.13.redhat-3</release>
+                <versions>
+                  <version>1.9.9.redhat-5</version>
+                  <version>1.9.13.redhat-2</version>
+                  <version>1.9.13.redhat-3</version>
+                </versions>
+                <lastUpdated>20171203034828</lastUpdated>
+              </versioning>
+            </metadata>""";
 
     private static Configuration initConfig() {
         GlobalConfig globalCfg = new GlobalConfig();
