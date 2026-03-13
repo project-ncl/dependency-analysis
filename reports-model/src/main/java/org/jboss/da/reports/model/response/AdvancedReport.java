@@ -1,15 +1,15 @@
 package org.jboss.da.reports.model.response;
 
-import lombok.Builder;
-import lombok.extern.jackson.Jacksonized;
+import java.util.Set;
+
 import org.jboss.da.listings.model.rest.RestGavProducts;
 import org.jboss.da.model.rest.GAV;
 
-import java.util.Set;
-
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.jackson.Jacksonized;
 
 @Jacksonized
 @Builder

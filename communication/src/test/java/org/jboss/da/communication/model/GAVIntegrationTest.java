@@ -1,14 +1,14 @@
 package org.jboss.da.communication.model;
 
-import org.jboss.da.model.rest.GAV;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Random;
 
-import static org.junit.Assert.assertEquals;
+import org.jboss.da.model.rest.GAV;
+import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

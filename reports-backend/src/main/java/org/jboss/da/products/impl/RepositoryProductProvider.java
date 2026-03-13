@@ -1,38 +1,37 @@
 package org.jboss.da.products.impl;
 
-import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.indy.api.IndyConnector;
-import org.jboss.da.model.rest.GA;
-import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
-
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Qualifier;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-import java.util.List;
-import java.util.stream.Stream;
-
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+import java.util.List;
+import java.util.stream.Stream;
+
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Qualifier;
+import jakarta.transaction.Transactional;
+
+import org.jboss.da.common.CommunicationException;
+import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
+
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Repository
-@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+@Transactional(Transactional.TxType.NOT_SUPPORTED)
 @RequestScoped
 public class RepositoryProductProvider extends AbstractProductProvider {
 
     @Inject
-    private IndyConnector indyConnector;
+    IndyConnector indyConnector;
 
     @Override
     Stream<String> getVersionsStreamMaven(GA ga) {

@@ -1,23 +1,23 @@
 package org.jboss.da.common.util;
 
-import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.GlobalConfig;
-import org.jboss.da.common.json.LookupMode;
-import org.jboss.pnc.enums.BuildCategory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.jboss.da.common.util.Configuration.CONFIG_SYSPROP;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static org.jboss.da.common.util.Configuration.CONFIG_SYSPROP;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.json.GlobalConfig;
+import org.jboss.da.common.json.LookupMode;
+import org.jboss.pnc.enums.BuildCategory;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ConfigurationTest {
 
@@ -25,7 +25,7 @@ public class ConfigurationTest {
 
     private Configuration configuration;
 
-    @Before
+    @BeforeEach
     public void before() {
         configuration = new Configuration();
         backupSystemConfigPath();
@@ -35,7 +35,7 @@ public class ConfigurationTest {
         backupConfigPath = System.getProperty(CONFIG_SYSPROP);
     }
 
-    @After
+    @AfterEach
     public void restoreConfigPath() {
         if (backupConfigPath != null) {
             System.setProperty(CONFIG_SYSPROP, backupConfigPath);

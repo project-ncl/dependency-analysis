@@ -1,16 +1,5 @@
 package org.jboss.da.communication.pom;
 
-import org.commonjava.atlas.maven.ident.ref.ProjectVersionRef;
-import org.commonjava.maven.galley.TransferException;
-import org.commonjava.maven.galley.maven.parse.PomPeek;
-import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
-import org.commonjava.maven.galley.maven.util.ArtifactPathUtils;
-import org.commonjava.maven.galley.model.Location;
-import org.commonjava.maven.galley.model.SimpleLocation;
-import org.jboss.da.common.util.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +11,17 @@ import java.nio.file.Path;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.apache.commons.io.FileUtils;
+import org.commonjava.atlas.maven.ident.ref.ProjectVersionRef;
+import org.commonjava.maven.galley.TransferException;
+import org.commonjava.maven.galley.maven.parse.PomPeek;
+import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
+import org.commonjava.maven.galley.maven.util.ArtifactPathUtils;
+import org.commonjava.maven.galley.model.Location;
+import org.commonjava.maven.galley.model.SimpleLocation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class holding local maven-like repository of pom files.
@@ -76,7 +76,7 @@ public class LocalRepo {
             } catch (FileAlreadyExistsException ex) {
                 log.error(
                         "File already exists. This is because there are multiple file with same "
-                                + "GAV. This ususaly happens when there are pom files in tests and is "
+                                + "GAV. This usually happens when there are pom files in tests and is "
                                 + "harmless in this case.",
                         ex);
             }
@@ -97,7 +97,7 @@ public class LocalRepo {
                 .collect(Collectors.toSet());
     }
 
-    protected void delete() {
+    protected void delete() throws IOException {
         File f;
         synchronized (this) {
             f = path.toFile();

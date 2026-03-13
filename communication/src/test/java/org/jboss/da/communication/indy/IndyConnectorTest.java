@@ -1,50 +1,45 @@
 package org.jboss.da.communication.indy;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
+import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.common.util.UserLog;
 import org.jboss.da.communication.indy.impl.IndyConnectorImpl;
 import org.jboss.da.communication.indy.impl.MetadataFileParser;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.model.rest.GA;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-
-import static org.mockito.Mockito.when;
-
 import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
-
-import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.client.WireMock;
-
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
-
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
+@WireMockTest(httpPort = 8082)
 public class IndyConnectorTest {
-
-    @Rule
-    public WireMockRule wireMockRule = (new WireMockRule(8082));
 
     @Mock
     private Logger log;
@@ -61,9 +56,8 @@ public class IndyConnectorTest {
     @Spy
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Spy
     @InjectMocks
-    private MetadataFileParser parser = new MetadataFileParser();
+    private MetadataFileParser parser = Mockito.spy(MetadataFileParser.class);
 
     @InjectMocks
     private final IndyConnectorImpl indyConnector = new IndyConnectorImpl(config);
@@ -76,12 +70,22 @@ public class IndyConnectorTest {
 
     private static final GA GA = new GA("foo.bar", "baz");
 
-    private static final String FOOBAR_MAVEN_METADATA = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<metadata>\n"
-            + "  <groupId>foo.bar</groupId>\n" + "  <artifactId>baz</artifactId>\n" + "  <versioning>\n"
-            + "    <latest>1.9.13.redhat-3</latest>\n" + "    <release>1.9.13.redhat-3</release>\n" + "    <versions>\n"
-            + "      <version>1.9.9.redhat-5</version>\n" + "      <version>1.9.13.redhat-2</version>\n"
-            + "      <version>1.9.13.redhat-3</version>\n" + "    </versions>\n"
-            + "    <lastUpdated>20171203034828</lastUpdated>\n" + "  </versioning>\n" + "</metadata>";
+    private static final String FOOBAR_MAVEN_METADATA = """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <metadata>
+              <groupId>foo.bar</groupId>
+              <artifactId>baz</artifactId>
+              <versioning>
+                <latest>1.9.13.redhat-3</latest>
+                <release>1.9.13.redhat-3</release>
+                <versions>
+                  <version>1.9.9.redhat-5</version>
+                  <version>1.9.13.redhat-2</version>
+                  <version>1.9.13.redhat-3</version>
+                </versions>
+                <lastUpdated>20171203034828</lastUpdated>
+              </versioning>
+            </metadata>""";
 
     private static Configuration initConfig() {
         GlobalConfig globalCfg = new GlobalConfig();
@@ -102,7 +106,7 @@ public class IndyConnectorTest {
     }
 
     @Test
-    public void testGetVersionsOfGA() throws ConfigurationParseException, CommunicationException {
+    public void testGetVersionsOfGA() throws CommunicationException {
         stubFor(
                 get(urlEqualTo("/api/content/maven/group/DA-TEST-GROUP/foo/bar/baz/maven-metadata.xml")).willReturn(
                         aResponse().withStatus(200)
@@ -113,8 +117,8 @@ public class IndyConnectorTest {
 
         // verify
         assertTrue(
-                "Unmatched requests: " + WireMock.findUnmatchedRequests(),
-                WireMock.findUnmatchedRequests().isEmpty());
+                WireMock.findUnmatchedRequests().isEmpty(),
+                "Unmatched requests: " + WireMock.findUnmatchedRequests());
         assertEquals(3, versionsOfGA.size());
         assertTrue(versionsOfGA.contains(REDHAT5));
         assertTrue(versionsOfGA.contains(REDHAT2));
@@ -122,7 +126,7 @@ public class IndyConnectorTest {
     }
 
     @Test
-    public void testGetVersionsOfNpm() throws ConfigurationParseException, CommunicationException {
+    public void testGetVersionsOfNpm() throws CommunicationException {
         stubFor(
                 get(urlEqualTo("/api/content/npm/group/DA-TEST-GROUP/jquery/package.json")).willReturn(
                         aResponse().withStatus(200)
@@ -133,8 +137,8 @@ public class IndyConnectorTest {
 
         // verify
         assertTrue(
-                "Unmatched requests: " + WireMock.findUnmatchedRequests(),
-                WireMock.findUnmatchedRequests().isEmpty());
+                WireMock.findUnmatchedRequests().isEmpty(),
+                "Unmatched requests: " + WireMock.findUnmatchedRequests());
         assertEquals(9, versionsOfGA.size());
         assertTrue(versionsOfGA.contains("1.12.1"));
         assertTrue(versionsOfGA.contains("1.5.1"));

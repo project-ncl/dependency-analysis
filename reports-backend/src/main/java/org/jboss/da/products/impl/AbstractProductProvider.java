@@ -1,18 +1,21 @@
 package org.jboss.da.products.impl;
 
+import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
+import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.annotation.Resource;
-import javax.enterprise.concurrent.ManagedExecutorService;
-import javax.inject.Inject;
+
+import jakarta.inject.Inject;
 
 import org.jboss.da.common.json.LookupMode;
-import org.jboss.da.common.util.UserLog;
+import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
@@ -26,9 +29,6 @@ import org.jboss.pnc.common.version.VersionParser;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
-
-import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
-import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
 
 /**
  * A product provider reading artifacts from an external source without an information about products.
@@ -54,8 +54,8 @@ public abstract class AbstractProductProvider implements ProductProvider {
     @UserLog
     protected Logger userLog;
 
-    @Resource
-    private ManagedExecutorService executorService;
+    @Inject
+    ExecutorService executorService;
 
     private VersionParser versionParser = new VersionParser(DEFAULT_SUFFIX);
 
@@ -134,33 +134,25 @@ public abstract class AbstractProductProvider implements ProductProvider {
 
     @Override
     public CompletableFuture<Set<String>> getAllVersions(Artifact artifact) {
-        switch (artifact.getType()) {
-            case MAVEN: {
+        return switch (artifact.getType()) {
+            case MAVEN -> {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
-                return supplyAsync(() -> getVersionsStreamMaven(ga).collect(Collectors.toSet()));
+                yield supplyAsync(() -> getVersionsStreamMaven(ga).collect(Collectors.toSet()));
             }
-            case NPM: {
-                return supplyAsync(() -> getVersionsStreamNPM(artifact.getName()).collect(Collectors.toSet()));
-            }
-            default: {
-                return CompletableFuture.completedFuture(Collections.emptySet());
-            }
-        }
+            case NPM -> supplyAsync(() -> getVersionsStreamNPM(artifact.getName()).collect(Collectors.toSet()));
+            default -> CompletableFuture.completedFuture(Collections.emptySet());
+        };
     }
 
     private CompletableFuture<Set<ProductArtifacts>> getArtifacts0(Artifact artifact) {
-        switch (artifact.getType()) {
-            case MAVEN: {
+        return switch (artifact.getType()) {
+            case MAVEN -> {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
-                return supplyAsync(() -> getArtifactsMaven(ga));
+                yield supplyAsync(() -> getArtifactsMaven(ga));
             }
-            case NPM: {
-                return supplyAsync(() -> getArtifactsNPM(artifact.getName()));
-            }
-            default: {
-                return CompletableFuture.completedFuture(Collections.emptySet());
-            }
-        }
+            case NPM -> supplyAsync(() -> getArtifactsNPM(artifact.getName()));
+            default -> CompletableFuture.completedFuture(Collections.emptySet());
+        };
     }
 
     private Set<ProductArtifacts> getArtifactsMaven(GA ga) {

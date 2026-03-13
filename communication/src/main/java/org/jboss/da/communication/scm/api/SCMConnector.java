@@ -1,7 +1,9 @@
 package org.jboss.da.communication.scm.api;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
@@ -9,9 +11,6 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
-
-import java.util.Map;
-import java.util.Set;
 
 /**
  *

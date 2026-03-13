@@ -5,27 +5,27 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
-
-import javax.annotation.PreDestroy;
-import javax.ejb.Schedule;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import org.slf4j.Logger;
-
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import io.quarkus.scheduler.Scheduled;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@Singleton
+@ApplicationScoped
 public class SCMCache {
 
-    @Inject
-    Logger log;
+    private static final Logger log = LoggerFactory.getLogger(SCMCache.class);
 
     @Inject
     ScmFacade scm;
@@ -61,13 +61,13 @@ public class SCMCache {
                     cache.put(e.getKey(), value.get(1, TimeUnit.SECONDS));
                     it.remove();
                 } catch (InterruptedException | ExecutionException | TimeoutException ex) {
-                    log.error("Error while geting Future object.", ex);
+                    log.error("Error while getting Future object.", ex);
                 }
             }
         }
     }
 
-    @Schedule(hour = "*", minute = "*/10")
+    @Scheduled(every = "10m")
     public void invalidateCache() {
         checkFutureCache();
         Iterator<Map.Entry<SCMSpecifier, DirectoryReference>> it = cache.entrySet().iterator();
@@ -80,7 +80,7 @@ public class SCMCache {
     }
 
     @PreDestroy
-    private void cleanup() {
+    void cleanup() {
         Iterator<Map.Entry<SCMSpecifier, DirectoryReference>> it = cache.entrySet().iterator();
         while (it.hasNext()) {
             it.next().getValue().delete();

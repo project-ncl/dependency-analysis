@@ -1,6 +1,15 @@
 package org.jboss.da.model.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.IOException;
+import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.stream.Collectors;
 
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.listings.model.rest.ContainsResponse;
@@ -15,20 +24,11 @@ import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.Report;
 import org.json.JSONException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.stream.Collectors;
-
-import static org.junit.Assert.fail;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  *
@@ -36,7 +36,7 @@ import static org.junit.Assert.fail;
  */
 public class BackwardCompatibilityTest {
 
-    private static final String EXPECETD_PATH = "src/test/resources/backwardCompatibilityTest";
+    private static final String EXPECTED_PATH = "src/test/resources/backwardCompatibilityTest";
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -61,7 +61,6 @@ public class BackwardCompatibilityTest {
         wlfill.setPomPath("./pom.xml");
         wlfill.setRevision("master");
         wlfill.setScmUrl("git@github.com:project-ncl/dependency-analysis.git");
-        StringWriter actual = new StringWriter();
 
         compare(wlfill, "WLFill");
     }
@@ -95,7 +94,7 @@ public class BackwardCompatibilityTest {
         gav.setArtifactId("id");
         gav.setGroupId("gid");
         gav.setVersion("ver");
-        ArrayList list = new ArrayList<>();
+        ArrayList<RestArtifact> list = new ArrayList<>();
         list.add(gav);
         containsResponse.setFound(list);
 
@@ -104,11 +103,11 @@ public class BackwardCompatibilityTest {
 
     @Test
     public void testSuccessResponse() throws IOException {
-        SuccessResponse succResponse = new SuccessResponse();
-        succResponse.setMessage("Hello World!");
-        succResponse.setSuccess(true);
+        SuccessResponse response = new SuccessResponse();
+        response.setMessage("Hello World!");
+        response.setSuccess(true);
 
-        compare(succResponse, "SuccessResponse");
+        compare(response, "SuccessResponse");
     }
 
     @Test
@@ -184,7 +183,7 @@ public class BackwardCompatibilityTest {
     private void compare(Object obj, String expectedFile) throws IOException {
         StringWriter actual = new StringWriter();
         mapper.writeValue(actual, obj);
-        Path expectedResponseFile = getJsonResponseFile(EXPECETD_PATH, expectedFile);
+        Path expectedResponseFile = getJsonResponseFile(EXPECTED_PATH, expectedFile);
         String expected = Files.lines(expectedResponseFile).collect(Collectors.joining());
         assertEqualsJson(expected, actual.toString());
     }

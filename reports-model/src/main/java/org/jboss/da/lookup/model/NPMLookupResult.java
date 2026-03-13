@@ -1,16 +1,13 @@
 package org.jboss.da.lookup.model;
 
-import lombok.AllArgsConstructor;
+import org.jboss.da.model.rest.NPMPackage;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-
-import org.jboss.da.model.rest.GAV;
-import org.jboss.da.model.rest.NPMPackage;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

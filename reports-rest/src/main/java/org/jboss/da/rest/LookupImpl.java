@@ -2,8 +2,8 @@ package org.jboss.da.rest;
 
 import java.util.Set;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.lookup.model.MavenLatestRequest;
@@ -18,17 +18,19 @@ import org.jboss.da.lookup.model.NPMVersionsRequest;
 import org.jboss.da.lookup.model.NPMVersionsResult;
 import org.jboss.da.reports.api.LookupGenerator;
 import org.jboss.da.rest.api.Lookup;
+import org.slf4j.Logger;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
-import lombok.extern.slf4j.Slf4j;
 
-@ApplicationScoped
-@Slf4j
+@Transactional
 public class LookupImpl implements Lookup {
 
     @Inject
-    private LookupGenerator lookupGenerator;
+    Logger log;
+
+    @Inject
+    LookupGenerator lookupGenerator;
 
     @Override
 

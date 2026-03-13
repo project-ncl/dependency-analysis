@@ -1,7 +1,5 @@
 package org.jboss.da.communication.indy.model;
 
-import org.jboss.da.model.rest.GAV;
-
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,6 +10,8 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+
+import org.jboss.da.model.rest.GAV;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -46,7 +46,7 @@ public class GAVDependencyTree implements Comparable<GAVDependencyTree> {
         Map<GAV, Set<GAVDependencyTree>> candidates = forest.entrySet()
                 .stream()
                 .filter(e -> e.getValue().size() > 1)
-                .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         int previous;
         do {
@@ -70,9 +70,7 @@ public class GAVDependencyTree implements Comparable<GAVDependencyTree> {
         while (!bfsQueue.isEmpty()) {
             GAVDependencyTree t = bfsQueue.poll();
             reverseLevelOrder.push(t);
-            for (GAVDependencyTree d : t.dependencies) {
-                bfsQueue.add(d);
-            }
+            bfsQueue.addAll(t.dependencies);
         }
         while (!reverseLevelOrder.isEmpty()) {
             GAVDependencyTree t = reverseLevelOrder.pop();

@@ -1,14 +1,19 @@
 package org.jboss.da.test.server.communication;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.jboss.da.model.rest.GAV;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import io.quarkus.test.junit.QuarkusTest;
 
 /**
  *
  * @author Stanislav Knot &lt;sknot@redhat.com&gt;
  */
+@QuarkusTest
 public class GAVComparatorRemoteTestIT {
 
     @Test
@@ -16,7 +21,7 @@ public class GAVComparatorRemoteTestIT {
         // identical strings
         GAV gav1 = new GAV("com.megginson.sax", "xml-writer", "0.2");
         GAV gav2 = new GAV("com.megginson.sax", "xml-writer", "0.2");
-        assertTrue(gav1.compareTo(gav2) == 0);
+        assertEquals(0, gav1.compareTo(gav2));
 
         // first string is less
         gav1 = new GAV("com.megginson.sax", "xml-writer", "0.2");
@@ -52,7 +57,5 @@ public class GAVComparatorRemoteTestIT {
         assertTrue(gav2.compareTo(gav3) < 0);
         assertTrue(gav3.compareTo(gav4) < 0);
         assertTrue(gav4.compareTo(gav5) > 0);
-
     }
-
 }

@@ -1,70 +1,67 @@
 package org.jboss.da.test.client.ws;
 
-import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
-import org.junit.runner.RunWith;
-
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
-import org.jboss.da.test.client.AbstractClientApiTest;
-import org.junit.After;
-import org.junit.Before;
-
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.CloseReason;
-import javax.websocket.ContainerProvider;
-import javax.websocket.DeploymentException;
-import javax.websocket.Endpoint;
-import javax.websocket.EndpointConfig;
-import javax.websocket.MessageHandler;
-
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.DeploymentException;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.Session;
+
+import org.apache.commons.io.FileUtils;
+import org.jboss.da.test.client.AbstractClientApiTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2ParseException;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 
-@RunWith(Arquillian.class)
-@RunAsClient
 public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
 
     protected final String webSocketUrl;
 
     protected JSONRPCWebsocketEndpoint endpoint;
 
+    protected Session session;
+
     public AbstractWebsocketApiTest() {
         this.webSocketUrl = readWebsocketApiUrl();
     }
 
-    @Before
+    @BeforeEach
     public void setup() throws URISyntaxException, DeploymentException, IOException {
         URI uri = new URI(webSocketUrl);
-
         endpoint = new JSONRPCWebsocketEndpoint();
         ClientEndpointConfig cec = ClientEndpointConfig.Builder.create().build();
-        ContainerProvider.getWebSocketContainer().connectToServer(endpoint, cec, uri);
+        session = ContainerProvider.getWebSocketContainer().connectToServer(endpoint, cec, uri);
     }
 
-    @After
+    @AfterEach
     public void cleanup() throws InterruptedException, IOException {
         if (endpoint != null) {
             endpoint.close(5, TimeUnit.SECONDS);
+        }
+        if (session != null) {
+            session.close();
         }
     }
 
@@ -73,7 +70,7 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
     }
 
     protected JSONRPC2Response assertResponseForRequest(String path, String requestFile, String method)
-            throws IOException, InterruptedException, ExecutionException, TimeoutException {
+            throws IOException, InterruptedException, TimeoutException {
         File jsonRequestFile = getJsonRequestFile(path, requestFile);
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> parameters = mapper.readValue(jsonRequestFile, Map.class);
@@ -84,7 +81,9 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
 
         assertTrue(response.indicatesSuccess());
         File expectedResponseFile = getJsonResponseFile(path, requestFile);
-        assertEqualsJson(FileUtils.readFileToString(expectedResponseFile).trim(), responseString.trim());
+        assertEqualsJson(
+                FileUtils.readFileToString(expectedResponseFile, Charset.defaultCharset()).trim(),
+                responseString.trim());
         return response;
     }
 
@@ -96,13 +95,13 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
 
         private final AtomicLong sequence = new AtomicLong();
 
-        private javax.websocket.Session session;
+        private jakarta.websocket.Session session;
 
         @Override
-        public void onOpen(javax.websocket.Session session, EndpointConfig config) {
+        public void onOpen(jakarta.websocket.Session session, EndpointConfig config) {
             System.out.printf("Got connect: %s%n", session);
             this.session = session;
-            session.addMessageHandler(String.class, (MessageHandler.Whole<String>) (String message) -> {
+            session.addMessageHandler(String.class, (String message) -> {
                 System.out.printf("Got message: " + message);
                 try {
                     JSONRPC2Response parse = JSONRPC2Response.parse(message);
@@ -116,20 +115,22 @@ public abstract class AbstractWebsocketApiTest extends AbstractClientApiTest {
         }
 
         public boolean close(int duration, TimeUnit unit) throws InterruptedException, IOException {
-            System.out.printf("Closing endpint");
-            session.close();
+            System.out.println("Closing endpoint");
+            if (session != null) {
+                session.close();
+            }
             return this.closeLatch.await(duration, unit);
         }
 
         @Override
-        public void onClose(javax.websocket.Session session, CloseReason closeReason) {
-            System.out.printf("Connection closed: %d - %s%n", closeReason);
+        public void onClose(jakarta.websocket.Session session, CloseReason closeReason) {
+            System.out.printf("Connection closed: - %s%n", closeReason);
             this.session = null;
             this.closeLatch.countDown(); // trigger latch
         }
 
         public JSONRPC2Response sendRequest(JSONRPC2Request request)
-                throws InterruptedException, ExecutionException, TimeoutException, IOException {
+                throws InterruptedException, TimeoutException, IOException {
             System.out.println("Sending message");
             Long id = sequence.incrementAndGet();
             request.setID(id);

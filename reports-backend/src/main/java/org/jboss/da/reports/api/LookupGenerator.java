@@ -8,10 +8,10 @@ import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.MavenVersionsResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
 import org.jboss.da.lookup.model.NPMVersionsResult;
-import org.jboss.pnc.api.constants.versions.VersionDistanceRule;
-import org.jboss.pnc.api.constants.versions.VersionFilter;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.model.rest.NPMPackage;
+import org.jboss.pnc.api.constants.versions.VersionDistanceRule;
+import org.jboss.pnc.api.constants.versions.VersionFilter;
 
 public interface LookupGenerator {
 

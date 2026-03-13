@@ -1,5 +1,13 @@
 package org.jboss.da.reports.impl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,10 +22,9 @@ import java.util.stream.Collectors;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.LookupMode;
+import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.common.util.UserLog;
-import org.jboss.da.communication.indy.FindGAVDependencyException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -32,36 +39,25 @@ import org.jboss.da.products.api.ProductArtifacts;
 import org.jboss.da.products.impl.AggregatedProductProvider;
 import org.jboss.da.products.impl.PncProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider;
-import org.jboss.da.reports.api.ArtifactReport;
 import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.impl.DependencyTreeGeneratorImpl;
-import org.jboss.da.reports.model.request.GAVRequest;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
 import org.jboss.da.reports.model.response.LookupReport;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatcher;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.argThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class ReportsGeneratorImplTest {
 
     @Mock
@@ -86,8 +82,7 @@ public class ReportsGeneratorImplTest {
     private Logger userLog;
 
     @InjectMocks
-    @Spy
-    private final DependencyTreeGenerator dependencyTreeGenerator = new DependencyTreeGeneratorImpl();
+    private final DependencyTreeGenerator dependencyTreeGenerator = Mockito.spy(DependencyTreeGeneratorImpl.class);
 
     @InjectMocks
     private ReportsGeneratorImpl generator;
@@ -97,9 +92,6 @@ public class ReportsGeneratorImplTest {
     private final String version = "0.1.0";
 
     private final GAV daCoreGAV = new GAV("org.jboss.da", "core", version);
-
-    private final List<String> daCoreVersionsNoBest = Arrays
-            .asList("1.1.1.redhat-2", "1.2.3.redhat-1", "1.3.4.redhat-3", "1.3.5.redhat-1");
 
     private final String bestMatchVersion = version + ".redhat-1";
 
@@ -127,13 +119,13 @@ public class ReportsGeneratorImplTest {
         DAConfig daConfig = new DAConfig();
         LookupMode mode = new LookupMode();
         mode.setName("PERSISTENT");
-        mode.setSuffixes(Arrays.asList("redhat"));
+        mode.setSuffixes(List.of("redhat"));
         daConfig.setModes(Collections.singletonList(mode));
         when(config.getConfig()).thenReturn(daConfig);
         generator = new ReportsGeneratorImpl(config);
     }
 
-    @Before
+    @BeforeEach
     public void initMock() throws ReflectiveOperationException {
         injectMethod("userLog", generator, userLog, ReportsGeneratorImpl.class);
     }
@@ -166,16 +158,12 @@ public class ReportsGeneratorImplTest {
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, artifacts));
     }
 
-    private void prepare(
-            List<Product> whitelisted,
-            boolean blacklisted,
-            List<String> versions,
-            GAVDependencyTree dependencyTree) throws CommunicationException, FindGAVDependencyException {
-        when(productProvider.getArtifacts(matchingGAV(daCoreGAV)))
+    private void prepare(List<Product> whitelisted, List<String> versions) {
+        lenient().when(productProvider.getArtifacts(matchingGAV(daCoreGAV)))
                 .thenReturn(CompletableFuture.completedFuture(toProductArtifacts(daCoreGAV.getGA(), versions)));
 
         prepareProductProvider(versions, whitelisted, daCoreGAV);
-        when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(blacklisted);
+        lenient().when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(true);
 
         DAConfig daConfig = new DAConfig();
         daConfig.setIndyGroup("DA");
@@ -185,20 +173,6 @@ public class ReportsGeneratorImplTest {
         } catch (ConfigurationParseException e) {
             throw new IllegalStateException(e);
         }
-    }
-
-    private void prepareMulti() throws CommunicationException, FindGAVDependencyException {
-        prepare(Collections.emptyList(), false, daCoreVersionsBest, daCoreNoDT);
-
-        when(productProvider.getArtifacts(matchingGAV(daUtilGAV))).thenReturn(
-                CompletableFuture.completedFuture(toProductArtifacts(daUtilGAV.getGA(), daCoreVersionsBest)));
-
-        when(blackArtifactService.isArtifactPresent(daUtilGAV)).thenReturn(false);
-
-        when(productProvider.getArtifacts(matchingGAV(daCommonGAV))).thenReturn(
-                CompletableFuture.completedFuture(toProductArtifacts(daCommonGAV.getGA(), daCoreVersionsNoBest)));
-        prepareProductProvider(daCoreVersionsNoBest, Collections.emptyList(), daCommonGAV);
-        when(blackArtifactService.isArtifactPresent(daCommonGAV)).thenReturn(false);
     }
 
     /**
@@ -228,12 +202,12 @@ public class ReportsGeneratorImplTest {
 
         // Then
         assertEquals(uniqueGAVs.size(), distinctList.size());
-        assertTrue(uniqueGAVs.equals(distinctList));
+        assertEquals(uniqueGAVs, distinctList);
     }
 
     @Test
-    public void testBlacklistedLookupReport() throws CommunicationException, FindGAVDependencyException {
-        prepare(Collections.emptyList(), true, daCoreVersionsBest, daCoreNoDT);
+    public void testBlacklistedLookupReport() throws CommunicationException {
+        prepare(Collections.emptyList(), daCoreVersionsBest);
         LookupGAVsRequest lgr = new LookupGAVsRequest(
                 Collections.emptySet(),
                 Collections.emptySet(),
@@ -251,49 +225,11 @@ public class ReportsGeneratorImplTest {
         assertTrue(lookupReport.isBlacklisted());
     }
 
-    private void assertMultipleDependencies(Set<ArtifactReport> deps) {
-        assertEquals(2, deps.size());
-
-        for (ArtifactReport dep : deps) {
-            GAV gav = dep.getGav();
-            switch (gav.getArtifactId()) {
-                case "util": {
-                    assertTrue(dep.getAvailableVersions().containsAll(daCoreVersionsBest));
-                    assertEquals(daUtilGAV, dep.getGav());
-                    assertNotNull(dep.getBestMatchVersion());
-                    assertEquals(bestMatchVersion, dep.getBestMatchVersion().get());
-                    assertTrue(dep.getDependencies().isEmpty());
-                    assertFalse(dep.isBlacklisted());
-                    assertTrue(dep.getWhitelisted().isEmpty());
-                    break;
-                }
-                case "common": {
-                    assertTrue(dep.getAvailableVersions().containsAll(daCoreVersionsNoBest));
-                    assertEquals(daCommonGAV, dep.getGav());
-                    assertFalse(dep.getBestMatchVersion().isPresent());
-                    assertTrue(dep.getDependencies().isEmpty());
-                    assertFalse(dep.isBlacklisted());
-                    assertTrue(dep.getWhitelisted().isEmpty());
-                    break;
-                }
-                default: {
-                    fail("Unknown artifact id");
-                    break;
-                }
-            }
-        }
-    }
-
-    private GAVRequest gavToRequest(GAV g) {
-        return new GAVRequest(g.getGroupId(), g.getArtifactId(), g.getVersion(), new HashSet<>(), new HashSet<>());
-
-    }
-
     private static Artifact matchingGAV(GAV gav) {
         return argThat(new IsArtifactWithSameNameAndTypeAs(new MavenArtifact(gav)));
     }
 
-    private static class IsArtifactWithSameNameAndTypeAs extends ArgumentMatcher<Artifact> {
+    private static class IsArtifactWithSameNameAndTypeAs implements ArgumentMatcher<Artifact> {
 
         private final String name;
 
@@ -305,13 +241,11 @@ public class ReportsGeneratorImplTest {
         }
 
         @Override
-        public boolean matches(Object argument) {
-            if (argument instanceof Artifact) {
-                Artifact artifact = (Artifact) argument;
-                return name.equals(artifact.getName()) && type == artifact.getType();
+        public boolean matches(Artifact argument) {
+            if (argument != null) {
+                return name.equals(argument.getName()) && type == argument.getType();
             }
             return false;
         }
-
     }
 }

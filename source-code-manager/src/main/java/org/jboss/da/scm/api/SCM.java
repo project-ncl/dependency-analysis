@@ -3,6 +3,7 @@ package org.jboss.da.scm.api;
 import java.io.File;
 import java.time.Duration;
 import java.time.temporal.TemporalAmount;
+
 import org.apache.maven.scm.ScmException;
 
 /**
@@ -18,9 +19,9 @@ public interface SCM {
 
     /**
      * Clone repository and return directory where the repository is located. The returned File object is weakly cached.
-     * As long as it is referenced the repository will stay clonned. The repository will stay cloned for at least
-     * {@link SCM#TIME_TO_KEEP} after the File object was garbagecollected.
-     * 
+     * As long as it is referenced the repository will stay cloned. The repository will stay cloned for at least
+     * {@link SCM#TIME_TO_KEEP} after the File object was garbage collected.
+     *
      * @param scmType
      * @param scmUrl
      * @param revision

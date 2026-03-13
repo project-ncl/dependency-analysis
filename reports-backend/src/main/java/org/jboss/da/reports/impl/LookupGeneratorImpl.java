@@ -1,33 +1,6 @@
 package org.jboss.da.reports.impl;
 
-import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.json.LookupMode;
-import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.listings.api.service.BlackArtifactService;
-import org.jboss.da.lookup.model.MavenLatestResult;
-import org.jboss.da.lookup.model.MavenLookupResult;
-import org.jboss.da.lookup.model.MavenVersionsResult;
-import org.jboss.da.lookup.model.NPMLookupResult;
-import org.jboss.da.lookup.model.NPMVersionsResult;
-import org.jboss.pnc.api.constants.versions.VersionDistanceRule;
-import org.jboss.pnc.api.constants.versions.VersionFilter;
-import org.jboss.da.model.rest.GA;
-import org.jboss.da.model.rest.GAV;
-import org.jboss.da.model.rest.NPMPackage;
-import org.jboss.da.products.api.Artifact;
-import org.jboss.da.products.api.MavenArtifact;
-import org.jboss.da.products.api.NPMArtifact;
-import org.jboss.da.products.api.ProductProvider;
-import org.jboss.da.products.impl.AggregatedProductProvider;
-import org.jboss.da.products.impl.PncProductProvider;
-import org.jboss.da.products.impl.RepositoryProductProvider;
-import org.jboss.da.reports.api.LookupGenerator;
-import org.jboss.pnc.common.version.VersionAnalyzer;
-import org.jboss.pnc.enums.ArtifactQuality;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import static org.jboss.da.reports.impl.FuturesUtil.joinFutures;
 
 import java.util.Collections;
 import java.util.EnumSet;
@@ -41,24 +14,51 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static org.jboss.da.reports.impl.FuturesUtil.joinFutures;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.json.LookupMode;
+import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.lookup.model.MavenLatestResult;
+import org.jboss.da.lookup.model.MavenLookupResult;
+import org.jboss.da.lookup.model.MavenVersionsResult;
+import org.jboss.da.lookup.model.NPMLookupResult;
+import org.jboss.da.lookup.model.NPMVersionsResult;
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.model.rest.GAV;
+import org.jboss.da.model.rest.NPMPackage;
+import org.jboss.da.products.api.Artifact;
+import org.jboss.da.products.api.MavenArtifact;
+import org.jboss.da.products.api.NPMArtifact;
+import org.jboss.da.products.api.ProductProvider;
+import org.jboss.da.products.impl.AggregatedProductProvider;
+import org.jboss.da.products.impl.PncProductProvider;
+import org.jboss.da.products.impl.RepositoryProductProvider;
+import org.jboss.da.reports.api.LookupGenerator;
+import org.jboss.pnc.api.constants.versions.VersionDistanceRule;
+import org.jboss.pnc.api.constants.versions.VersionFilter;
+import org.jboss.pnc.common.version.VersionAnalyzer;
+import org.jboss.pnc.enums.ArtifactQuality;
 
 @ApplicationScoped
 public class LookupGeneratorImpl implements LookupGenerator {
 
     @Inject
     @RepositoryProductProvider.Repository
-    private RepositoryProductProvider repositoryProductProvider;
+    RepositoryProductProvider repositoryProductProvider;
 
     @Inject
     @PncProductProvider.Pnc
-    private PncProductProvider pncProductProvider;
+    PncProductProvider pncProductProvider;
 
     @Inject
-    private AggregatedProductProvider aggProductProvider;
+    AggregatedProductProvider aggProductProvider;
 
     @Inject
-    private BlackArtifactService blackArtifactService;
+    BlackArtifactService blackArtifactService;
 
     private Map<String, LookupMode> modes;
 

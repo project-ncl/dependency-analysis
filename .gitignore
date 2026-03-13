@@ -1,17 +1,13 @@
-.gitignore
-.classpath
-.project
-.settings
-.factorypath
-*~
-*/target
-/target/
+# Maven
+target/
+settings.xml
+
+# IntelliJ
 *.iml
-*.pyc
 .idea
-da-config.json
-testsuite/random
-testsuite/**/arquillian.properties
+
+# VSCode
+.vscode
+
+# auto-generated java code
 /common/src/main/java/org/jboss/da/common/Constants.java
-nb-configuration.xml
-nbactions-*.xml

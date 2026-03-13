@@ -1,15 +1,17 @@
 package org.jboss.da.listings.model.rest;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 import java.util.Collections;
 import java.util.List;
+
+import org.jboss.da.model.rest.validators.ScmUrl;
+
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.jboss.da.model.rest.validators.ScmUrl;
 
 @JsonRootName(value = "productArtifact")
 @NoArgsConstructor

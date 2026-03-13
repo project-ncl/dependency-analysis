@@ -1,25 +1,31 @@
 package org.jboss.da.test.client.rest.listings;
 
+import static org.apache.commons.io.FileUtils.readFileToString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+
+import jakarta.ws.rs.core.Response;
+
 import org.json.JSONException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import javax.ws.rs.core.Response;
-import java.io.File;
-import java.io.IOException;
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.h2.H2DatabaseTestResource;
+import io.quarkus.test.junit.QuarkusTest;
 
-import static org.apache.commons.io.FileUtils.readFileToString;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
+@QuarkusTest
+@QuarkusTestResource(value = H2DatabaseTestResource.class, restrictToAnnotatedClass = true)
 public class RestApiListingsTestIT extends AbstractRestApiListingTest {
-
-    private final RequestGenerator generator = new RequestGenerator();
 
     @Test
     public void testAddBlackArtifact() throws Exception {
-        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        Response response = manipulateEntityFile(OperationType.POST, "gav");
 
         checkExpectedResponse(response, "success");
     }
@@ -27,10 +33,10 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
     @Test
     public void testDeleteBlackArtifact() throws Exception {
         // add artifact
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        manipulateEntityFile(OperationType.POST, "gav").close();
 
         // delete artifact
-        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.DELETE, "gav", true);
+        Response response = manipulateEntityFile(OperationType.DELETE, "gav");
 
         checkExpectedResponse(response, "success");
     }
@@ -40,7 +46,7 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
         String g = "org.jboss.da";
         String a = "dependency-analyzer";
         String v = "0.3.0";
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavRh", true);
+        manipulateEntityFile(OperationType.POST, "gavRh").close();
 
         Response response = getBlacklistedGAV(g, a, v);
         assertEquals(404, response.getStatus());
@@ -57,7 +63,7 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
         String g = "org.jboss.da";
         String a = "dependency-analyzer";
         String v = "0.3.0";
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        manipulateEntityFile(OperationType.POST, "gav").close();
 
         Response response = getBlacklistedGAV(g, a, v + "-redhat-1");
         assertEquals(200, response.getStatus());
@@ -75,8 +81,8 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
         String g = "org.jboss.da";
         String a = "dependency-analyzer";
         String v = "0.3.0";
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavRh", true);
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        manipulateEntityFile(OperationType.POST, "gavRh").close();
+        manipulateEntityFile(OperationType.POST, "gav").close();
         Response response = getBlacklistedGAV(g, a, v);
         checkExpectedResponse(response, "gavNonRhResponse");
         response = getBlacklistedGAV(g, a, v + "-redhat-1");
@@ -84,7 +90,7 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
         response = getBlacklistedGAV(g, a, v + "-redhat-2");
         checkExpectedResponse(response, "gavNonRhResponse");
 
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.DELETE, "gav", true);
+        manipulateEntityFile(OperationType.DELETE, "gav").close();
         response = getBlacklistedGAV(g, a, v);
         assertEquals(404, response.getStatus());
         response = getBlacklistedGAV(g, a, v + ".redhat-2");
@@ -93,7 +99,7 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
         assertEquals(200, response.getStatus());
         checkExpectedResponse(response, "gavRhNonOSGiResponse");
 
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.DELETE, "gavRh", true);
+        manipulateEntityFile(OperationType.DELETE, "gavRh").close();
         response = getBlacklistedGAV(g, a, v);
         assertEquals(404, response.getStatus());
         response = getBlacklistedGAV(g, a, v + ".redhat-2");
@@ -104,7 +110,7 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     @Test
     public void testDeleteNonExistingBlackArtifact() throws Exception {
-        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.DELETE, "gav", true);
+        Response response = manipulateEntityFile(OperationType.DELETE, "gav");
 
         checkExpectedResponse(response, "successFalse");
     }
@@ -112,10 +118,10 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
     @Test
     public void testAlreadyAddedBlackArtifact() throws Exception {
         // add first black artifact
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        manipulateEntityFile(OperationType.POST, "gav").close();
 
         // add second black artifact
-        Response response = manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        Response response = manipulateEntityFile(OperationType.POST, "gav");
 
         checkExpectedResponse(response, "successFalse");
     }
@@ -123,9 +129,9 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
     @Test
     public void testGetAllBlackArtifacts() throws Exception {
         // Add artifacts to blacklist
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        manipulateEntityFile(OperationType.POST, "gav").close();
 
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav2", true);
+        manipulateEntityFile(OperationType.POST, "gav2").close();
 
         // Get list
         Response response = createClientRequest(PATH_BLACK_LIST).get();
@@ -140,11 +146,11 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
         checkExpectedResponse(getBlacklisted("foo", "bar"), "gaBlacklistEmpty");
 
         // Add artifacts
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobar", true);
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobaz-1", true);
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobaz-2", true);
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobarbaz", true);
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gavFoobarbaz-4", true);
+        manipulateEntityFile(OperationType.POST, "gavFoobar").close();
+        manipulateEntityFile(OperationType.POST, "gavFoobaz-1").close();
+        manipulateEntityFile(OperationType.POST, "gavFoobaz-2").close();
+        manipulateEntityFile(OperationType.POST, "gavFoobarbaz").close();
+        manipulateEntityFile(OperationType.POST, "gavFoobarbaz-4").close();
 
         // Check responses
         checkExpectedResponse(getBlacklisted("foo", "bar"), "gaBlacklistFoobar");
@@ -154,7 +160,7 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     @Test
     public void testCheckRHBlackArtifact() throws Exception {
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        manipulateEntityFile(OperationType.POST, "gav").close();
 
         Response response = getBlacklisted("org.jboss.da", "dependency-analyzer", "0.3.0.redhat-1");
 
@@ -162,10 +168,9 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
     }
 
     private Response getBlacklistedGAV(String groupId, String artifactId, String version) {
-        Response response = createClientRequest(
+        return createClientRequest(
                 PATH_BLACK_LISTINGS_GAV + "?groupid=" + groupId + "&artifactid=" + artifactId + "&version=" + version)
-                        .get();
-        return response;
+                .get();
     }
 
     private Response getBlacklisted(String groupId, String artifactId, String version) {
@@ -184,12 +189,10 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     /**
      * Non RedHat but OSGi compliant black artifact test
-     * 
-     * @throws Exception
      */
     @Test
     public void testCheckNonRHBlackArtifact() throws Exception {
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        manipulateEntityFile(OperationType.POST, "gav").close();
 
         Response response = getBlacklisted("org.jboss.da", "dependency-analyzer", "0.3.0");
 
@@ -198,12 +201,10 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     /**
      * Non RedHat non OSGi compliant black artifact test
-     * 
-     * @throws Exception
      */
     @Test
     public void testCheckNonRHNonOSGiBlackArtifact() throws Exception {
-        manipulateEntityFile(ListEntityType.BLACK, OperationType.POST, "gav", true);
+        manipulateEntityFile(OperationType.POST, "gav").close();
 
         Response response = getBlacklisted("org.jboss.da", "dependency-analyzer", "0.3");
 
@@ -222,7 +223,9 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     private void checkExpectedResponse(Response response, String expectedFile) throws IOException {
         File expectedResponseFile = getJsonResponseFile(PATH_FILES_LISTINGS_GAV, expectedFile);
-        assertEqualsJson(readFileToString(expectedResponseFile), response.readEntity(String.class));
+        assertEqualsJson(
+                readFileToString(expectedResponseFile, Charset.defaultCharset()),
+                response.readEntity(String.class));
+        response.close();
     }
-
 }

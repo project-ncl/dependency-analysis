@@ -1,10 +1,10 @@
 package org.jboss.da.products.api;
 
 import org.jboss.da.model.rest.GA;
+import org.jboss.pnc.common.version.VersionComparator.VersionDifference;
 
 import lombok.Getter;
 import lombok.NonNull;
-import org.jboss.pnc.common.version.VersionComparator.VersionDifference;
 
 /**
  *
@@ -56,6 +56,6 @@ public class ArtifactDiff {
     }
 
     public boolean isUnchanged() {
-        return leftVersion != null && rightVersion != null && leftVersion.equals(rightVersion);
+        return leftVersion != null && leftVersion.equals(rightVersion);
     }
 }

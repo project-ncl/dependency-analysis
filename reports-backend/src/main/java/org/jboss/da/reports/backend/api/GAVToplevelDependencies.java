@@ -3,10 +3,10 @@ package org.jboss.da.reports.backend.api;
 import java.util.Collections;
 import java.util.Set;
 
+import org.jboss.da.model.rest.GAV;
+
 import lombok.Getter;
 import lombok.NonNull;
-
-import org.jboss.da.model.rest.GAV;
 
 /**
  *

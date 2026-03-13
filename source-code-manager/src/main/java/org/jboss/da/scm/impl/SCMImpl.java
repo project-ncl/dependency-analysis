@@ -1,28 +1,30 @@
 package org.jboss.da.scm.impl;
 
-import org.apache.maven.scm.ScmException;
-import org.jboss.da.scm.api.SCM;
-import org.jboss.da.scm.api.SCMType;
-
-import javax.inject.Inject;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import org.slf4j.Logger;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
 import org.apache.commons.io.FileUtils;
+import org.apache.maven.scm.ScmException;
+import org.jboss.da.scm.api.SCM;
+import org.jboss.da.scm.api.SCMType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@ApplicationScoped
 public class SCMImpl implements SCM {
 
-    @Inject
-    Logger log;
+    private static final Logger log = LoggerFactory.getLogger(SCMImpl.class);
 
     @Inject
     ScmFacade scm;

@@ -1,9 +1,14 @@
 package org.jboss.da.listings.impl.service;
 
+import java.util.Comparator;
 import java.util.Optional;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
@@ -13,13 +18,6 @@ import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.model.GA;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.model.rest.GAV;
-
-import java.util.Comparator;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.stream.Collectors;
-
 import org.jboss.pnc.common.version.SuffixedVersion;
 import org.jboss.pnc.common.version.VersionParser;
 
@@ -32,10 +30,10 @@ import org.jboss.pnc.common.version.VersionParser;
 public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact> implements BlackArtifactService {
 
     @Inject
-    private BlackArtifactDAO blackArtifactDAO;
+    BlackArtifactDAO blackArtifactDAO;
 
     @Inject
-    private GADAO gaDAO;
+    GADAO gaDAO;
 
     @Override
     protected ArtifactDAO<BlackArtifact> getDAO() {

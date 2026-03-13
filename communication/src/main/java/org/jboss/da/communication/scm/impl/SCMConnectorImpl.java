@@ -2,10 +2,12 @@ package org.jboss.da.communication.scm.impl;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
@@ -18,9 +20,6 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
 
-import java.util.Map;
-import java.util.Set;
-
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
@@ -29,10 +28,10 @@ import java.util.Set;
 public class SCMConnectorImpl implements SCMConnector {
 
     @Inject
-    private SCM scmManager;
+    SCM scmManager;
 
     @Inject
-    private PomAnalyzer pomAnalyzer;
+    PomAnalyzer pomAnalyzer;
 
     @Override
     public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, GAV gav)
@@ -54,7 +53,7 @@ public class SCMConnectorImpl implements SCMConnector {
         // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
-        return pomAnalyzer.getToplevelDepency(tempDir, gav);
+        return pomAnalyzer.getToplevelDependency(tempDir, gav);
     }
 
     @Override
@@ -84,7 +83,7 @@ public class SCMConnectorImpl implements SCMConnector {
         // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
-        return pomAnalyzer.getToplevelDepency(tempDir, pomPath, repositories);
+        return pomAnalyzer.getToplevelDependency(tempDir, pomPath, repositories);
     }
 
     @Override

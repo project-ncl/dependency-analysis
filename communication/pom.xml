@@ -1,150 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jboss.da</groupId>
-        <artifactId>parent</artifactId>
-        <version>3.2.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>communication</artifactId>
-    <name>communication</name>
-    <packaging>ejb</packaging>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.jboss.da</groupId>
+    <artifactId>parent</artifactId>
+    <version>4.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>communication</artifactId>
+  <packaging>jar</packaging>
+  <name>communication</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>common</artifactId>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>reports-model</artifactId>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>source-code-manager</artifactId>
-            <type>ejb</type>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>org.jboss.da</groupId>
+      <artifactId>common</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.da</groupId>
+      <artifactId>reports-model</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.da</groupId>
+      <artifactId>source-code-manager</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.jboss.pnc</groupId>
-            <artifactId>common</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.commonjava.atlas</groupId>
-                    <artifactId>atlas-identities</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.pnc</groupId>
-            <artifactId>pnc-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.pnc</groupId>
-            <artifactId>rest-api</artifactId>
-            <classifier>java-client</classifier>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.commonjava.atlas</groupId>
-                    <artifactId>atlas-identities</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+    <dependency>
+      <groupId>org.jboss.pnc</groupId>
+      <artifactId>common</artifactId>
+      <!--            <exclusions>-->
+      <!--                <exclusion>-->
+      <!--                    <groupId>org.commonjava.atlas</groupId>-->
+      <!--                    <artifactId>atlas-identities</artifactId>-->
+      <!--                </exclusion>-->
+      <!--            </exclusions>-->
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.pnc</groupId>
+      <artifactId>pnc-common</artifactId>
+      <classifier>jakarta</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.pnc</groupId>
+      <artifactId>rest-client-jakarta</artifactId>
+    </dependency>
 
-        <!-- JAXB API -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <scope>test</scope>
-        </dependency>
+    <!-- Jakarta XML Binding (used for Maven metadata / POM parsing) -->
+    <!--        <dependency>-->
+    <!--            <groupId>jakarta.xml.bind</groupId>-->
+    <!--            <artifactId>jakarta.xml.bind-api</artifactId>-->
+    <!--        </dependency>-->
 
-        <!-- JAXB RI -->
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <scope>test</scope>
-        </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>jakarta.enterprise.cdi-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.spec.javax.servlet</groupId>
-            <artifactId>jboss-servlet-api_4.0_spec</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.wildfly.security</groupId>
-            <artifactId>wildfly-elytron-http-oidc</artifactId>
-            <scope>provided</scope>
-        </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-undertow</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.commonjava.maven.galley</groupId>
-            <artifactId>galley-maven</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.commonjava.maven.galley</groupId>
-            <artifactId>galley-transport-filearc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.commonjava.maven.galley</groupId>
-            <artifactId>galley-transport-httpclient</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.commonjava.atlas</groupId>
-            <artifactId>atlas-identities</artifactId>
-        </dependency>
-        <!-- Used for pom.xml analysis -->
-        <dependency>
-            <groupId>org.commonjava.maven.galley</groupId>
-            <artifactId>galley-cache-partyline</artifactId>
-        </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.commonjava.maven.galley</groupId>
+      <artifactId>galley-maven</artifactId>
+      <classifier>jakarta</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.commonjava.maven.galley</groupId>
+      <artifactId>galley-core</artifactId>
+      <classifier>jakarta</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.commonjava.maven.galley</groupId>
+      <artifactId>galley-api</artifactId>
+      <classifier>jakarta</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.commonjava.maven.galley</groupId>
+      <artifactId>galley-transport-filearc</artifactId>
+      <classifier>jakarta</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.commonjava.maven.galley</groupId>
+      <artifactId>galley-transport-httpclient</artifactId>
+      <classifier>jakarta</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.commonjava.maven.galley</groupId>
+      <artifactId>galley-cache-partyline</artifactId>
+      <classifier>jakarta</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.commonjava.atlas</groupId>
+      <artifactId>atlas-identities</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
 
-        <!-- Test dependencies -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.skyscreamer</groupId>
-            <artifactId>jsonassert</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.tomakehurst</groupId>
-            <artifactId>wiremock-standalone</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.spec.javax.xml.bind</groupId>
-            <artifactId>jboss-jaxb-api_2.3_spec</artifactId>
-        </dependency>
-    </dependencies>
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-junit5-mockito</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.skyscreamer</groupId>
+      <artifactId>jsonassert</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.wiremock</groupId>
+      <artifactId>wiremock-standalone</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.smallrye</groupId>
+        <artifactId>jandex-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

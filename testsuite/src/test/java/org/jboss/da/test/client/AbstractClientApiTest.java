@@ -1,31 +1,27 @@
 package org.jboss.da.test.client;
 
-import org.apache.http.entity.ContentType;
-import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
-import org.json.JSONException;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
-
-import static org.junit.Assert.*;
-import org.junit.Rule;
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import org.apache.http.entity.ContentType;
+import org.json.JSONException;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
-@RunWith(Arquillian.class)
-@RunAsClient
+import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
+
 public abstract class AbstractClientApiTest {
 
-    @Rule
-    public WireMockRule wireMockRule = new WireMockRule(
-            options().port(8081).usingFilesUnderDirectory("src/test/resources/wiremock"));
+    @RegisterExtension
+    public static final WireMockExtension wireMockRule = WireMockExtension.newInstance()
+            .options(options().port(8081).usingFilesUnderDirectory("src/test/resources/wiremock"))
+            .build();
 
     protected static final String ENCODING = "utf-8";
 
@@ -59,14 +55,14 @@ public abstract class AbstractClientApiTest {
 
     protected String readConfigurationValue(String name, String defaultValue) {
         String value = readConfigurationValue(name);
-        return value == null || "".equals(value.trim()) ? defaultValue : value;
+        return value == null || value.trim().isEmpty() ? defaultValue : value;
     }
 
     protected String readConfigurationValue(String name) {
         return System.getProperty(name);
     }
 
-    // TODO convert to builder pattern appropriatelly
+    // TODO convert to builder pattern appropriately
     protected static class ExpectedResponseFilenameBuilder {
 
         protected static final String DEFAULT_VARIANT = "";
@@ -120,7 +116,7 @@ public abstract class AbstractClientApiTest {
 
     }
 
-    // TODO convert to builder pattern apropriatelly
+    // TODO convert to builder pattern appropriately
     protected static class RequestFilenameBuilder {
 
         protected static final String DEFAULT_VARIANT = "";
@@ -175,7 +171,7 @@ public abstract class AbstractClientApiTest {
     }
 
     private String readHostUrl() {
-        return readConfigurationValue("testsuite.hostUrl", "localhost:8180");
+        return readConfigurationValue("testsuite.hostUrl", "localhost:8083");
     }
 
     protected abstract String readRestApiVersion();
@@ -208,12 +204,12 @@ public abstract class AbstractClientApiTest {
         try {
             JSONAssert.assertEquals(expected, actual, JSONCompareMode.NON_EXTENSIBLE);
         } catch (JSONException ex) {
-            fail("The test wasn't able to compare JSON strings" + ex);
+            fail("The test wasn't able to compare JSON strings", ex);
         }
     }
 
     @Test
-    final public void testJsonEquals() throws JSONException {
+    final void testJsonEquals() {
         String s1 = "[{\"groupId\": \"com.google.guava\", \"artifactId\": \"guava\", \"version\": \"13.0.1\"}]";
         String s2 = "[{\"groupId\": \"com.google.guava\", \"version\": \"13.0.1\", \"artifactId\": \"guava\"}]";
         assertEqualsJson(s1, s2);

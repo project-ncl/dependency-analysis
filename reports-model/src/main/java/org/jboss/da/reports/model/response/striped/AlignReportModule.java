@@ -1,9 +1,10 @@
 package org.jboss.da.reports.model.response.striped;
 
-import lombok.*;
+import java.util.List;
+
 import org.jboss.da.reports.model.response.GAVAvailableVersions;
 
-import java.util.List;
+import lombok.*;
 
 /**
  *

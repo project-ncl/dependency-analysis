@@ -1,24 +1,5 @@
 package org.jboss.da.communication.indy.impl;
 
-import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.GlobalConfig;
-import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.communication.indy.api.IndyConnector;
-import org.jboss.da.communication.indy.model.VersionResponse;
-import org.jboss.da.communication.pom.api.PomAnalyzer;
-import org.jboss.da.communication.pom.model.MavenProject;
-import org.jboss.da.communication.repository.api.RepositoryException;
-import org.jboss.da.model.rest.GA;
-import org.jboss.da.model.rest.GAV;
-import org.jboss.pnc.common.log.MDCUtils;
-import org.slf4j.Logger;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.xml.bind.JAXBException;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +12,25 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import org.jboss.da.common.util.UserLog;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.xml.bind.JAXBException;
+
+import org.jboss.da.common.CommunicationException;
+import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.json.GlobalConfig;
+import org.jboss.da.common.logging.UserLog;
+import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.indy.model.VersionResponse;
+import org.jboss.da.communication.pom.api.PomAnalyzer;
+import org.jboss.da.communication.pom.model.MavenProject;
+import org.jboss.da.communication.repository.api.RepositoryException;
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.model.rest.GAV;
+import org.jboss.pnc.common.log.MDCUtils;
+import org.slf4j.Logger;
 
 @ApplicationScoped
 public class IndyConnectorImpl implements IndyConnector {
@@ -108,6 +107,7 @@ public class IndyConnectorImpl implements IndyConnector {
             log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
             return Collections.emptyList();
         } catch (IOException e) {
+            e.printStackTrace();
             log.debug("Failed to obtain versions for " + packageName + " from repository on url " + query, e);
             throw new RepositoryException(
                     "Failed to obtain versions for " + packageName + " from repository on url " + query,

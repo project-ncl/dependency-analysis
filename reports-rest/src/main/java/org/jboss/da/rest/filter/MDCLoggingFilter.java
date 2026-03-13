@@ -17,7 +17,14 @@
  */
 package org.jboss.da.rest.filter;
 
-import org.jboss.da.communication.auth.AuthenticatorService;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.container.ContainerRequestFilter;
+import jakarta.ws.rs.container.ContainerResponseContext;
+import jakarta.ws.rs.container.ContainerResponseFilter;
+import jakarta.ws.rs.core.Request;
+import jakarta.ws.rs.core.UriInfo;
+import jakarta.ws.rs.ext.Provider;
+
 import org.jboss.pnc.api.constants.MDCKeys;
 import org.jboss.pnc.common.log.MDCUtils;
 import org.slf4j.Logger;
@@ -26,42 +33,39 @@ import org.slf4j.MDC;
 
 import io.opentelemetry.api.trace.Span;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.ext.Provider;
-import java.io.IOException;
-
-/**
- * @author <a href="mailto:matejonnet@gmail.com">Matej Lazar</a>
- */
 @Provider
-public class MDCLoggingFilter implements ContainerRequestFilter {
+public class MDCLoggingFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
-    private Logger logger = LoggerFactory.getLogger(MDCLoggingFilter.class);
-
-    @Inject
-    private AuthenticatorService userService;
-
-    @Inject
-    private HttpServletRequest sr;
+    private static final Logger logger = LoggerFactory.getLogger(MDCLoggingFilter.class);
+    private static final String REQUEST_EXECUTION_START = "request-execution-start";
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
-        MDCUtils.setMDCFromRequestContext(containerRequestContext);
-        MDCUtils.addMDCFromOtelHeadersWithFallback(containerRequestContext, Span.current().getSpanContext(), true);
-        addAuditMDC();
+    public void filter(ContainerRequestContext requestContext) {
+
+        requestContext.setProperty(REQUEST_EXECUTION_START, System.currentTimeMillis());
+        MDCUtils.setMDCFromRequestContext(requestContext);
+        MDCUtils.addMDCFromOtelHeadersWithFallback(requestContext, Span.current().getSpanContext(), false);
+
+        UriInfo uriInfo = requestContext.getUriInfo();
+        Request request = requestContext.getRequest();
+        logger.info("Requested {} {}.", request.getMethod(), uriInfo.getRequestUri());
     }
 
-    public void addAuditMDC() {
-        userService.username().ifPresent(username -> MDC.put(MDCKeys.USER_NAME_KEY, username));
-        if (sr != null) {
-            MDC.put(MDCKeys.SRC_IP_KEY, sr.getRemoteAddr());
-            String forwardedFor = sr.getHeader("X-FORWARDED-FOR");
-            if (forwardedFor != null) {
-                MDC.put(MDCKeys.X_FORWARDED_FOR_KEY, forwardedFor);
-            }
+    @Override
+    public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) {
+        Long startTime = (Long) requestContext.getProperty(REQUEST_EXECUTION_START);
+
+        String took;
+        if (startTime == null) {
+            took = "-1";
+        } else {
+            took = Long.toString(System.currentTimeMillis() - startTime);
+        }
+
+        try (MDC.MDCCloseable ignored = MDC.putCloseable(MDCKeys.REQUEST_TOOK, took);
+                MDC.MDCCloseable ignored2 = MDC
+                        .putCloseable(MDCKeys.RESPONSE_STATUS, Integer.toString(responseContext.getStatus()));) {
+            logger.info("Completed {}, took: {}ms.", requestContext.getUriInfo().getPath(), took);
         }
     }
 }

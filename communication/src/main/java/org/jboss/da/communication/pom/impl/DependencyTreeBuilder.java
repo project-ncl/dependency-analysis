@@ -1,18 +1,7 @@
 package org.jboss.da.communication.pom.impl;
 
+import java.io.Serializable;
 import java.util.Comparator;
-
-import org.commonjava.atlas.maven.graph.rel.DependencyRelationship;
-import org.commonjava.atlas.maven.ident.ref.ArtifactRef;
-import org.commonjava.atlas.maven.ident.ref.ProjectRef;
-import org.jboss.da.communication.indy.model.GAVDependencyTree;
-import org.jboss.da.communication.pom.GalleyWrapper;
-import org.jboss.da.model.rest.GAV;
-import org.slf4j.Logger;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -20,9 +9,17 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.jboss.da.model.rest.DummyVersionComparator;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
-import java.io.Serializable;
+import org.commonjava.atlas.maven.graph.rel.DependencyRelationship;
+import org.commonjava.atlas.maven.ident.ref.ArtifactRef;
+import org.commonjava.atlas.maven.ident.ref.ProjectRef;
+import org.jboss.da.communication.indy.model.GAVDependencyTree;
+import org.jboss.da.communication.pom.GalleyWrapper;
+import org.jboss.da.model.rest.DummyVersionComparator;
+import org.jboss.da.model.rest.GAV;
+import org.slf4j.Logger;
 
 /**
  *
@@ -32,7 +29,7 @@ import java.io.Serializable;
 public class DependencyTreeBuilder {
 
     @Inject
-    private Logger log;
+    Logger log;
 
     /**
      * Transforms DependencyRelationships into GAVDependencyTree.

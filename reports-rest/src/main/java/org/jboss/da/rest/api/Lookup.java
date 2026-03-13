@@ -1,19 +1,20 @@
 package org.jboss.da.rest.api;
 
 import java.util.Set;
-import javax.validation.Valid;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.lookup.model.MavenLatestRequest;
 import org.jboss.da.lookup.model.MavenLatestResult;
@@ -39,13 +40,15 @@ public interface Lookup {
     @POST
     @Path(value = "/maven")
     @Operation(summary = "Finds best matching versions for given Maven artifact coordinates (GAV).")
-    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = MavenLookupResult.class))))
+    @APIResponse(
+            content = @Content(schema = @Schema(type = SchemaType.ARRAY, implementation = MavenLookupResult.class)))
     Set<MavenLookupResult> lookupMaven(@Valid MavenLookupRequest request) throws CommunicationException;
 
     @POST
     @Path(value = "/maven/versions")
     @Operation(summary = "Lookup and filter available versions for the given Maven artifact coordinates (GAV).")
-    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = MavenLookupResult.class))))
+    @APIResponse(
+            content = @Content(schema = @Schema(type = SchemaType.ARRAY, implementation = MavenLookupResult.class)))
     Set<MavenVersionsResult> versionsMaven(@Valid MavenVersionsRequest request) throws CommunicationException;
 
     @POST
@@ -53,19 +56,21 @@ public interface Lookup {
     @Operation(
             summary = "Finds latest matching versions for given Maven artifact coordinates (GAV), including bad versions.",
             description = "This endpoint is used for version increment so it will search all possible places and qualities of artifacts, including deleted and blocklisted artifacts.")
-    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = MavenLatestResult.class))))
+    @APIResponse(
+            content = @Content(schema = @Schema(type = SchemaType.ARRAY, implementation = MavenLatestResult.class)))
     Set<MavenLatestResult> lookupMaven(@Valid MavenLatestRequest request) throws CommunicationException;
 
     @POST
     @Path(value = "/npm")
     @Operation(summary = "Finds best matching versions for given NPM artifact coordinates (name, version).")
-    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMLookupResult.class))))
+    @APIResponse(content = @Content(schema = @Schema(type = SchemaType.ARRAY, implementation = NPMLookupResult.class)))
     Set<NPMLookupResult> lookupNPM(@Valid NPMLookupRequest request) throws CommunicationException;
 
     @POST
     @Path(value = "/npm/versions")
     @Operation(summary = "Lookup and filter available versions for the given NPM artifact coordinates (name, version).")
-    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMVersionsResult.class))))
+    @APIResponse(
+            content = @Content(schema = @Schema(type = SchemaType.ARRAY, implementation = NPMVersionsResult.class)))
     Set<NPMVersionsResult> versionsNPM(@Valid NPMVersionsRequest request) throws CommunicationException;
 
 }

@@ -18,9 +18,10 @@ package org.jboss.da.model.rest.validators;
  * limitations under the License.
  */
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.*;
+
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 /**
  * Author: Michal Szynkiewicz, michal.l.szynkiewicz@gmail.com Date: 3/12/16 Time: 5:01 PM

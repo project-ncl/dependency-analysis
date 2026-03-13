@@ -1,5 +1,12 @@
 package org.jboss.da.scm.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import jakarta.enterprise.context.ApplicationScoped;
+
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
 import org.apache.maven.scm.ScmTag;
@@ -15,24 +22,16 @@ import org.apache.maven.scm.repository.ScmRepository;
 import org.apache.maven.scm.repository.ScmRepositoryException;
 import org.jboss.da.scm.api.SCMType;
 import org.slf4j.Logger;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import org.slf4j.LoggerFactory;
 
 /**
  * Facade, which simplifies operations with the SCM repositories
- * 
+ *
  */
 @ApplicationScoped
 public class ScmFacade {
 
-    @Inject
-    private Logger logger;
+    private static final Logger logger = LoggerFactory.getLogger(ScmFacade.class);
 
     private final ScmManager scmManager;
 
@@ -47,7 +46,7 @@ public class ScmFacade {
     /**
      * Tries to do a shallow clone (clone only the requested revision) of the remote repository to the local directory.
      * If it is not possible to do that, then it does the full clone.
-     * 
+     *
      * @param scmType Type of the repository
      * @param scmUrl URL to the repository
      * @param revision Revision of the repository, which should be cloned
@@ -69,7 +68,7 @@ public class ScmFacade {
 
     /**
      * Process full clone of the remote repository to the local directory.
-     * 
+     *
      * @param scmType Type of the repository
      * @param scmUrl URL to the repository
      * @param revision Revision of the repository, which should be cloned
@@ -81,13 +80,13 @@ public class ScmFacade {
         ScmRepository repo = getScmRepository(scmType.getSCMUrl(scmUrl), scmManager);
         CheckOutScmResult checkOut = scmManager.checkOut(repo, new ScmFileSet(cloneTo), new ScmTag(revision));
         if (!checkOut.isSuccess()) {
-            throw new ScmException("Repository was not clonned: " + checkOut.getProviderMessage());
+            throw new ScmException("Repository was not cloned: " + checkOut.getProviderMessage());
         }
     }
 
     /**
      * Stages selected local files in the SCM repository and pushes them to the remote repository.
-     * 
+     *
      * @param scmType Type of the repository
      * @param scmUrl URL to the repository
      * @param baseDir Directory of the local repository

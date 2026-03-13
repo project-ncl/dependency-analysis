@@ -15,17 +15,20 @@
  */
 package org.jboss.da.lookup.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.extern.jackson.Jacksonized;
+import java.util.Set;
+
+import jakarta.validation.constraints.NotNull;
+
 import org.jboss.da.model.rest.GAV;
 import org.jboss.pnc.api.constants.versions.VersionDistanceRule;
 import org.jboss.pnc.api.constants.versions.VersionFilter;
 
-import javax.validation.constraints.NotNull;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  *

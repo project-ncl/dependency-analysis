@@ -2,24 +2,13 @@ package org.jboss.da.test.client.rest;
 
 import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.da.test.ArquillianDeploymentFactory;
-import org.jboss.da.test.ArquillianDeploymentFactory.DepType;
-import org.jboss.da.test.ArquillianDeploymentFactory.TestSide;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-
 public abstract class AbstractRestReportsTest extends AbstractRestApiTest {
 
     private static final String DEFAULT_REST_API_VERSION = "v-" + REST_API_VERSION_REPORTS;
 
-    @Deployment
-    public static EnterpriseArchive createDeployment() {
-        return new ArquillianDeploymentFactory().createDeployment(DepType.REPORTS, TestSide.CLIENT);
-    }
-
     @Override
     protected String getContextRoot() {
-        return ArquillianDeploymentFactory.DEPLOYMENT_NAME;
+        return "";
     }
 
     @Override

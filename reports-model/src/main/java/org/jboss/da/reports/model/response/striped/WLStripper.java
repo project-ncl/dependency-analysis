@@ -1,11 +1,11 @@
 package org.jboss.da.reports.model.response.striped;
 
-import org.jboss.da.reports.model.response.*;
-import org.jboss.da.reports.model.response.RestVersionProduct;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.jboss.da.reports.model.response.*;
+import org.jboss.da.reports.model.response.RestVersionProduct;
 
 public class WLStripper {
 

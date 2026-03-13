@@ -1,10 +1,11 @@
 package org.jboss.da.validation;
 
-import org.jboss.da.model.rest.ErrorMessage;
 import static org.jboss.da.model.rest.ErrorMessage.ErrorType.INPUT_VALIDATION;
-import org.jboss.da.model.rest.validators.Validations;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
+
+import org.jboss.da.model.rest.ErrorMessage;
+import org.jboss.da.model.rest.validators.Validations;
 
 import lombok.Getter;
 import lombok.NonNull;

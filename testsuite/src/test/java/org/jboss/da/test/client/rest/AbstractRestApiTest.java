@@ -1,19 +1,24 @@
 package org.jboss.da.test.client.rest;
 
-import org.apache.commons.io.FileUtils;
-import org.jboss.da.test.client.AbstractClientApiTest;
-import org.jboss.resteasy.client.jaxrs.BasicAuthentication;
-
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.ClientRequestFilter;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.ClientRequestFilter;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+import org.apache.commons.io.FileUtils;
+import org.jboss.da.test.client.AbstractClientApiTest;
+import org.junit.jupiter.api.AutoClose;
+import org.junit.jupiter.api.BeforeEach;
+
+import io.quarkus.logging.Log;
 
 /**
  *
@@ -27,14 +32,22 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
 
     private final ClientBuilder builder;
 
+    @AutoClose
+    private Client client;
+
     public AbstractRestApiTest() {
         this.restApiVersion = readRestApiVersion();
         this.restApiURL = readRestApiUrl();
 
         String userId = "user";
         String password = "pass.1234";
-        ClientRequestFilter crf = new BasicAuthentication(userId, password);
-        builder = ClientBuilder.newBuilder().register(crf);
+        ClientRequestFilter crf = null;// new BasicAuthentication(userId, password);
+        builder = ClientBuilder.newBuilder();// .register(crf);
+    }
+
+    @BeforeEach
+    public void setup() {
+        client = builder.build();
     }
 
     private String readRestApiUrl() {
@@ -45,12 +58,11 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
     }
 
     protected WebTarget createWebTarget(String relativePath) {
-        return builder.build().target(restApiURL + relativePath);
+        return client.target(restApiURL + relativePath);
     }
 
     protected Invocation.Builder createClientRequest(String relativePath) {
-        WebTarget target = builder.build().target(restApiURL + relativePath);
-        return target.request(MediaType.APPLICATION_JSON_TYPE);
+        return createWebTarget(relativePath).request(MediaType.APPLICATION_JSON_TYPE);
     }
 
     protected Response getResponseForRequest(String endpoint, String requestFile) throws IOException {
@@ -59,12 +71,12 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
         return createClientRequest(endpoint).post(Entity.json(entity));
     }
 
-    protected Response assertResponseForRequest(String endpoint, String requestFile) throws IOException, Exception {
+    protected Response assertResponseForRequest(String endpoint, String requestFile) throws Exception {
         Response response = getResponseForRequest(endpoint, requestFile);
         File expectedResponseFile = getJsonResponseFile(endpoint, requestFile);
         final String actual = response.readEntity(String.class).trim();
-        System.out.println("Actual: " + actual);
-        assertEqualsJson(FileUtils.readFileToString(expectedResponseFile).trim(), actual);
+        Log.info("Actual: " + actual);
+        assertEqualsJson(FileUtils.readFileToString(expectedResponseFile, Charset.defaultCharset()).trim(), actual);
         return response;
     }
 }

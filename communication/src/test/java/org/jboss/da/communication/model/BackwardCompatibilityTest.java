@@ -1,23 +1,23 @@
 package org.jboss.da.communication.model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
-import org.junit.Test;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.jboss.da.communication.indy.model.VersionResponse;
 import org.jboss.da.communication.indy.model.Versioning;
 import org.jboss.da.communication.indy.model.Versions;
 import org.json.JSONException;
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.stream.Collectors;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  *
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  */
 public class BackwardCompatibilityTest {
 
-    private static final String EXPECETD_PATH = "src/test/resources/backwardCompatibilityTest";
+    private static final String EXPECTED_PATH = "src/test/resources/backwardCompatibilityTest";
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -37,14 +37,14 @@ public class BackwardCompatibilityTest {
     }
 
     @Test
-    public void testVersioning() throws IOException, NoSuchFieldException {
-        Versioning verisoning = new Versioning();
+    public void testVersioning() throws IOException {
+        Versioning versioning = new Versioning();
 
-        compare(verisoning, "Versioning");
+        compare(versioning, "Versioning");
     }
 
     @Test
-    public void testVersions() throws IOException, NoSuchFieldException {
+    public void testVersions() throws IOException {
         Versions versions = new Versions();
 
         compare(versions, "Versions");
@@ -61,7 +61,7 @@ public class BackwardCompatibilityTest {
     private void compare(Object obj, String expectedFile) throws IOException {
         StringWriter actual = new StringWriter();
         mapper.writeValue(actual, obj);
-        Path expectedResponseFile = getJsonResponseFile(EXPECETD_PATH, expectedFile);
+        Path expectedResponseFile = getJsonResponseFile(EXPECTED_PATH, expectedFile);
         String expected = Files.lines(expectedResponseFile).collect(Collectors.joining());
         assertEqualsJson(expected, actual.toString());
     }

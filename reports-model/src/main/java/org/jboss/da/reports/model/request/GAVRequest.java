@@ -1,8 +1,8 @@
 package org.jboss.da.reports.model.request;
 
-import org.jboss.da.model.rest.GAV;
-
 import java.util.Set;
+
+import org.jboss.da.model.rest.GAV;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

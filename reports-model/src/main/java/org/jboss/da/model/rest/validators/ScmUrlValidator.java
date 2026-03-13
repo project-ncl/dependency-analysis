@@ -20,21 +20,18 @@ package org.jboss.da.model.rest.validators;
 
 ///TODOCopied from PNC model rest. Delete this class after NCL-1986 is resolved.
 
-import org.apache.commons.validator.routines.UrlValidator;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+
+import org.apache.commons.validator.routines.UrlValidator;
 
 /**
  * Author: Michal Szynkiewicz, michal.l.szynkiewicz@gmail.com Date: 3/12/16 Time: 5:01 PM
  */
 public class ScmUrlValidator implements ConstraintValidator<ScmUrl, String> {
-
-    @Override
-    public void initialize(ScmUrl constraintAnnotation) {
-    }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {

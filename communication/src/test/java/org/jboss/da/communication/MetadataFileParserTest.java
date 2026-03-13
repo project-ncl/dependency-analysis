@@ -1,16 +1,19 @@
 package org.jboss.da.communication;
 
-import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.indy.impl.MetadataFileParser;
-import org.jboss.da.communication.indy.model.VersionResponse;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import jakarta.xml.bind.JAXBException;
+
+import org.jboss.da.communication.indy.impl.MetadataFileParser;
+import org.jboss.da.communication.indy.model.VersionResponse;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:matejonnet@gmail.com">Matej Lazar</a>
@@ -19,43 +22,43 @@ public class MetadataFileParserTest {
 
     private static VersionResponse versionResponse;
 
-    @BeforeClass
-    public static void init() throws JAXBException, IOException, CommunicationException {
+    @BeforeAll
+    public static void init() throws JAXBException, IOException {
         try (InputStream in = getResourceSteam("maven-metadata.xml")) {
             versionResponse = MetadataFileParser.parseMavenMetadata(in);
         }
     }
 
     @Test
-    public void availableVersionsTest() throws JAXBException, IOException, CommunicationException {
+    public void availableVersionsTest() {
         // given
         List<String> availableVersions = versionResponse.getVersioning().getVersions().getVersion();
 
         // expect
-        Assert.assertTrue("Missing version.", availableVersions.contains("1.1.0.Beta1"));
-        Assert.assertTrue("Missing version.", availableVersions.contains("1.4.1.Final-redhat-1"));
-        Assert.assertTrue("Missing version.", availableVersions.contains("1.4.1.Final-redhat-2"));
-        Assert.assertTrue("Missing version.", availableVersions.contains("1.4.2.Final"));
-        Assert.assertTrue("Missing version.", availableVersions.contains("1.5.1.Final-redhat-4"));
-        Assert.assertFalse("Version should not be present.", availableVersions.contains("1.5.1.Final-redhat-10"));
+        assertTrue(availableVersions.contains("1.1.0.Beta1"), "Missing version.");
+        assertTrue(availableVersions.contains("1.4.1.Final-redhat-1"), "Missing version.");
+        assertTrue(availableVersions.contains("1.4.1.Final-redhat-2"), "Missing version.");
+        assertTrue(availableVersions.contains("1.4.2.Final"), "Missing version.");
+        assertTrue(availableVersions.contains("1.5.1.Final-redhat-4"), "Missing version.");
+        assertFalse(availableVersions.contains("1.5.1.Final-redhat-10"), "Version should not be present.");
     }
 
     @Test
-    public void latestTest() throws JAXBException, IOException, CommunicationException {
+    public void latestTest() {
         // given
         String latestVersion = versionResponse.getVersioning().getLatestVersion();
 
         // expect
-        Assert.assertEquals("1.4.2.Final", latestVersion);
+        assertEquals("1.4.2.Final", latestVersion);
     }
 
     @Test
-    public void releaseTest() throws JAXBException, IOException, CommunicationException {
+    public void releaseTest() {
         // given
         String latestReleaseVersion = versionResponse.getVersioning().getLatestRelease();
 
         // expect
-        Assert.assertEquals("1.4.1.Final-redhat-2", latestReleaseVersion);
+        assertEquals("1.4.1.Final-redhat-2", latestReleaseVersion);
     }
 
     private static InputStream getResourceSteam(String file) {

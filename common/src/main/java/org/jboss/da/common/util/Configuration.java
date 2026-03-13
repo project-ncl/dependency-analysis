@@ -2,13 +2,13 @@ package org.jboss.da.common.util;
 
 import java.io.*;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import org.jboss.da.common.json.AbstractModuleGroup;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.DAGroupWrapper;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.json.ModuleConfigJson;
-
-import javax.enterprise.context.ApplicationScoped;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.NamedType;

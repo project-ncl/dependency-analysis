@@ -1,5 +1,12 @@
 package org.jboss.da.communication.pom.api;
 
+import java.io.File;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import org.commonjava.maven.galley.maven.GalleyMavenException;
 import org.commonjava.maven.galley.maven.model.view.MavenPomView;
 import org.jboss.da.common.util.ConfigurationParseException;
@@ -8,13 +15,6 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
-
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  *
@@ -59,7 +59,7 @@ public interface PomAnalyzer {
      * @return The GAVDependencyTree of the root project
      * @throws PomAnalysisException
      */
-    Set<GAV> getToplevelDepency(File pomRepoDir, GAV gav) throws PomAnalysisException;
+    Set<GAV> getToplevelDependency(File pomRepoDir, GAV gav) throws PomAnalysisException;
 
     public Optional<File> getPOMFileForGAV(File tempDir, GAV gav);
 
@@ -81,5 +81,6 @@ public interface PomAnalyzer {
      * @return The GAVDependencyTree of the root project
      * @throws PomAnalysisException
      */
-    Set<GAV> getToplevelDepency(File pomRepoDir, String pomPath, List<String> repositories) throws PomAnalysisException;
+    Set<GAV> getToplevelDependency(File pomRepoDir, String pomPath, List<String> repositories)
+            throws PomAnalysisException;
 }

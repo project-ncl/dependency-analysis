@@ -1,5 +1,20 @@
 package org.jboss.da.communication.pom;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Queue;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.commonjava.atlas.maven.graph.model.EProjectDirectRelationships;
 import org.commonjava.atlas.maven.graph.rel.DependencyRelationship;
 import org.commonjava.atlas.maven.graph.rel.RelationshipType;
@@ -17,22 +32,10 @@ import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Queue;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -40,7 +43,7 @@ import java.util.stream.Collectors;
  */
 public class GalleyWrapper implements AutoCloseable {
 
-    private static Logger log = LoggerFactory.getLogger(GalleyWrapper.class);
+    private static final Logger log = LoggerFactory.getLogger(GalleyWrapper.class);
 
     private final MavenPomReader mvnPomReader;
 
@@ -71,7 +74,7 @@ public class GalleyWrapper implements AutoCloseable {
     /**
      * Return GalleyWrapper pointer to artifact specified in given pom.
      *
-     * @param pomPath Path to the pom file relative to the scm repostiory root.
+     * @param pomPath Path to the pom file relative to the scm repository root.
      * @return GalleyWrapper "pointer" to an artifact.
      * @throws PomAnalysisException
      */
@@ -88,7 +91,7 @@ public class GalleyWrapper implements AutoCloseable {
      *
      * @param gav GAV of the artifact.
      * @return GalleyWrapper "pointer" to an artifact.
-     * @throws org.jboss.da.communication.pom.PomAnalysisException
+     * @throws PomAnalysisException if an error occurs
      */
     public Artifact getGAV(GAV gav) throws PomAnalysisException {
         try {
@@ -108,7 +111,7 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * Return modules of artifact, including the artifact itselve. Module poms that couldn't be parsed are ommited.
+     * Return modules of artifact, including the artifact itself. Module poms that couldn't be parsed are omitted.
      *
      * @param artifact root artifact.
      * @return Set of all modules.
@@ -124,7 +127,7 @@ public class GalleyWrapper implements AutoCloseable {
 
     /**
      * Return all (transitive) modules of artifact, including the artifact itselve. Module poms that couldn't be parsed
-     * are ommited.
+     * are omitted.
      *
      * @param artifact root artifact.
      * @return Set of all modules.
@@ -148,10 +151,10 @@ public class GalleyWrapper implements AutoCloseable {
      *
      * @param artifact
      * @return MavenPomView of the artifact
-     * @throws org.jboss.da.communication.pom.PomAnalysisException
-     * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
-     * @see #addLocations(java.util.List)
-     * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
+     * @throws PomAnalysisException if an error occurs
+     * @see #addDefaultLocations(Configuration)
+     * @see #addLocations(List)
+     * @see #addLocationsFromPoms(PomReader)
      */
     public MavenPomView getPomView(Artifact artifact) throws PomAnalysisException {
         try {
@@ -167,10 +170,10 @@ public class GalleyWrapper implements AutoCloseable {
      *
      * @param artifact Dependencies of this artifact will be returned
      * @return First level dependencies.
-     * @throws org.jboss.da.communication.pom.PomAnalysisException
-     * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
-     * @see #addLocations(java.util.List)
-     * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
+     * @throws PomAnalysisException
+     * @see #addDefaultLocations(Configuration)
+     * @see #addLocations(List)
+     * @see #addLocationsFromPoms(PomReader)
      */
     public Set<GAV> getDependencies(Artifact artifact) throws PomAnalysisException {
         ProjectVersionRef ref = artifact.ref;
@@ -184,7 +187,7 @@ public class GalleyWrapper implements AutoCloseable {
 
         return allDirectDependencies.stream()
                 .map(GalleyWrapper::generateGAV)
-                .filter(x -> x != null)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
     }
 
@@ -203,7 +206,7 @@ public class GalleyWrapper implements AutoCloseable {
      * Add repositories Gally should use when resolving dependencies by analysing pom files in SCM repository.
      *
      * @param pomReader instance of {@link PomReader} used for parsing pom files
-     * @throws IOException
+     * @throws IOException if an error occurs
      */
     public void addLocationsFromPoms(PomReader pomReader) throws IOException {
         Set<Path> allPoms = localRepo.getAllPoms();
@@ -211,12 +214,12 @@ public class GalleyWrapper implements AutoCloseable {
                 .map(Path::toFile)
                 .map(pomReader::analyze) // parse pom file
                 .filter(Optional::isPresent)
-                .map(Optional::get) // filter sucessfuly parsed
-                .map(p -> p.getMavenRepositories())
-                .filter(r -> r != null) // get <repositories>
-                .flatMap(r -> r.stream()) // stream of <repository>
+                .map(Optional::get) // filter successfully parsed
+                .map(MavenProject::getMavenRepositories)
+                .filter(Objects::nonNull) // get <repositories>
+                .flatMap(Collection::stream) // stream of <repository>
                 .map(r -> new SimpleLocation(r.getId(), r.getUrl()))
-                .forEach(l -> locations.add(l));
+                .forEach(locations::add);
     }
 
     /**
@@ -236,20 +239,20 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     @Override
-    public void close() {
+    public void close() throws IOException {
         localRepo.delete();
     }
 
     /**
      * Return all transitive dependencies of given artifact. Dependencies of test-scope and provided-scope dependencies
-     * are ommited. You need to set locations so the galley know where to look for dependencies.
+     * are omitted. You need to set locations so the galley know where to look for dependencies.
      *
      * @param artifact Dependencies of this artifact will be returned
      * @return Set of dependency relationships describing the dependency graph.
-     * @throws GalleyMavenException
-     * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
-     * @see #addLocations(java.util.List)
-     * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
+     * @throws GalleyMavenException if an error occurs
+     * @see #addDefaultLocations(Configuration)
+     * @see #addLocations(List)
+     * @see #addLocationsFromPoms(PomReader)
      */
     public Set<DependencyRelationship> getAllDependencies(Artifact artifact) throws GalleyMavenException {
         return getAllDependencies(artifact, false, false);
@@ -263,10 +266,10 @@ public class GalleyWrapper implements AutoCloseable {
      * @param testDeps true if should dependencies of test-scope dependency be resolved.
      * @param providedDeps true if should dependencies of provided-scope dependency be resolved.
      * @return Set of dependency relationships describing the dependency graph.
-     * @throws GalleyMavenException
-     * @see #addDefaultLocations(org.jboss.da.common.util.Configuration)
-     * @see #addLocations(java.util.List)
-     * @see #addLocationsFromPoms(org.jboss.da.communication.pom.PomReader)
+     * @throws GalleyMavenException if an error occurs
+     * @see #addDefaultLocations(Configuration)
+     * @see #addLocations(List)
+     * @see #addLocationsFromPoms(PomReader)
      */
     public Set<DependencyRelationship> getAllDependencies(Artifact artifact, boolean testDeps, boolean providedDeps)
             throws GalleyMavenException {
@@ -274,8 +277,7 @@ public class GalleyWrapper implements AutoCloseable {
 
         URI src = localRepo.getUri();
 
-        Queue<DependencyRelationship> work = new LinkedList<>();
-        work.addAll(getDeps(artifact.ref, processor, src, disConf));
+        Queue<DependencyRelationship> work = new LinkedList<>(getDeps(artifact.ref, processor, src, disConf));
 
         while (!work.isEmpty()) {
             DependencyRelationship dr = work.remove();
@@ -321,21 +323,12 @@ public class GalleyWrapper implements AutoCloseable {
      * @return
      */
     public static boolean shouldAnalyzeDependencies(DependencyRelationship dr, boolean testDeps, boolean providedDeps) {
-        switch (dr.getScope()) {
-            case _import:
-            case embedded:
-            case system:
-            case toolchain:
-                return false;
-            case test:
-                return testDeps;
-            case provided:
-                return providedDeps;
-            case compile:
-            case runtime:
-            default:
-                return true;
-        }
+        return switch (dr.getScope()) {
+            case _import, embedded, system, toolchain -> false;
+            case test -> testDeps;
+            case provided -> providedDeps;
+            default -> true;
+        };
     }
 
     private static GAV generateGAV(MavenGAVView dep) {
@@ -356,7 +349,7 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     /**
-     * GalleyWrapper "pointer" to an arifact.
+     * GalleyWrapper "pointer" to an artifact.
      */
     public static class Artifact {
 
