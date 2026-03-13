@@ -29,7 +29,7 @@ public interface ReportsGenerator {
      * @param scml
      * @return Created report
      */
-    public Optional<ArtifactReport> getReportFromSCM(SCMReportRequest scml)
+    Optional<ArtifactReport> getReportFromSCM(SCMReportRequest scml)
             throws ScmException, PomAnalysisException, CommunicationException;
 
     /**
@@ -40,28 +40,28 @@ public interface ReportsGenerator {
      * @param scml
      * @return Created report
      */
-    public Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMReportRequest scml)
+    Optional<AdvancedArtifactReport> getAdvancedReportFromSCM(SCMReportRequest scml)
             throws ScmException, PomAnalysisException, CommunicationException;
 
     /**
-     * Creates an aligment report.
+     * Creates an alignment report.
      *
      * @param scml
      * @param productIds Optional list of product ids to filter the result.
      * @return
      */
-    public Set<AlignmentReportModule> getAligmentReport(
+    Set<AlignmentReportModule> getAlignmentReport(
             SCMLocator scml,
             boolean useUnknownProducts,
             Set<Long> productIds) throws ScmException, PomAnalysisException, CommunicationException;
 
-    public Set<BuiltReportModule> getBuiltReport(SCMLocator scml)
+    Set<BuiltReportModule> getBuiltReport(SCMLocator scml)
             throws ScmException, PomAnalysisException, CommunicationException;
 
-    public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request) throws CommunicationException;
+    List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request) throws CommunicationException;
 
-    public List<NPMLookupReport> getLookupReports(LookupNPMRequest request) throws CommunicationException;
+    List<NPMLookupReport> getLookupReports(LookupNPMRequest request) throws CommunicationException;
 
-    public List<NPMVersionsReport> getVersionsReports(VersionsNPMRequest request) throws CommunicationException;
+    List<NPMVersionsReport> getVersionsReports(VersionsNPMRequest request) throws CommunicationException;
 
 }
