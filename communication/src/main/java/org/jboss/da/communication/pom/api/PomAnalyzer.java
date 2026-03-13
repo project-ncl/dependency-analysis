@@ -59,7 +59,7 @@ public interface PomAnalyzer {
      * @return The GAVDependencyTree of the root project
      * @throws PomAnalysisException
      */
-    Set<GAV> getToplevelDepency(File pomRepoDir, GAV gav) throws PomAnalysisException;
+    Set<GAV> getToplevelDependency(File pomRepoDir, GAV gav) throws PomAnalysisException;
 
     public Optional<File> getPOMFileForGAV(File tempDir, GAV gav);
 
@@ -81,5 +81,6 @@ public interface PomAnalyzer {
      * @return The GAVDependencyTree of the root project
      * @throws PomAnalysisException
      */
-    Set<GAV> getToplevelDepency(File pomRepoDir, String pomPath, List<String> repositories) throws PomAnalysisException;
+    Set<GAV> getToplevelDependency(File pomRepoDir, String pomPath, List<String> repositories)
+            throws PomAnalysisException;
 }

@@ -63,9 +63,9 @@ public class ReportsFacade {
         SCMLocator locator = SCMLocator
                 .generic(request.getScmUrl(), request.getRevision(), pomPath, request.getAdditionalRepos());
 
-        Set<AlignmentReportModule> aligmentReport = reportsGenerator
-                .getAligmentReport(locator, request.isSearchUnknownProducts(), request.getProducts());
-        return Translate.toAlignReport(aligmentReport);
+        Set<AlignmentReportModule> alignmentReport = reportsGenerator
+                .getAlignmentReport(locator, request.isSearchUnknownProducts(), request.getProducts());
+        return Translate.toAlignReport(alignmentReport);
     }
 
     public Report scmReport(SCMReportRequest request) throws ScmException, PomAnalysisException, CommunicationException,

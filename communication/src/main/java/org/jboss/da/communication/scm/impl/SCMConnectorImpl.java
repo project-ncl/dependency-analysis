@@ -53,7 +53,7 @@ public class SCMConnectorImpl implements SCMConnector {
         // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
-        return pomAnalyzer.getToplevelDepency(tempDir, gav);
+        return pomAnalyzer.getToplevelDependency(tempDir, gav);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class SCMConnectorImpl implements SCMConnector {
         // TODO: enable the svn test if svn support is added
         File tempDir = scmManager.cloneRepository(SCMType.GIT, scmUrl, revision);
 
-        return pomAnalyzer.getToplevelDepency(tempDir, pomPath, repositories);
+        return pomAnalyzer.getToplevelDependency(tempDir, pomPath, repositories);
     }
 
     @Override

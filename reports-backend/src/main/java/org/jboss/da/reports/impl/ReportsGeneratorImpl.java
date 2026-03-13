@@ -300,7 +300,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     }
 
     @Override
-    public Set<AlignmentReportModule> getAligmentReport(
+    public Set<AlignmentReportModule> getAlignmentReport(
             SCMLocator scml,
             boolean useUnknownProduct,
             Set<Long> productIds) throws ScmException, PomAnalysisException, CommunicationException {

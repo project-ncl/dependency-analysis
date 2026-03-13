@@ -80,7 +80,7 @@ public class ScmFacade {
         ScmRepository repo = getScmRepository(scmType.getSCMUrl(scmUrl), scmManager);
         CheckOutScmResult checkOut = scmManager.checkOut(repo, new ScmFileSet(cloneTo), new ScmTag(revision));
         if (!checkOut.isSuccess()) {
-            throw new ScmException("Repository was not clonned: " + checkOut.getProviderMessage());
+            throw new ScmException("Repository was not cloned: " + checkOut.getProviderMessage());
         }
     }
 

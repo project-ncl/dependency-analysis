@@ -36,7 +36,7 @@ public interface BlackArtifactService extends ArtifactService<BlackArtifact> {
 
     /**
      * Add artifact to blacklist. If the version contains redhat suffix it is removed. Then the version is converted to
-     * OSGi version. It also removes all redhat suffixed artifacts (with given groupId, artifactId and OSGi verison)
+     * OSGi version. It also removes all redhat suffixed artifacts (with given groupId, artifactId and OSGi version)
      * from whitelist.
      */
     public ArtifactStatus addArtifact(String groupId, String artifactId, String version);

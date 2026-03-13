@@ -104,7 +104,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     }
 
     @Override
-    public Set<GAV> getToplevelDepency(File pomRepoDir, GAV gav) throws PomAnalysisException {
+    public Set<GAV> getToplevelDependency(File pomRepoDir, GAV gav) throws PomAnalysisException {
         try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, pomRepoDir, disConf, processor)) {
             GalleyWrapper.Artifact artifact = gw.getGAV(gav);
 
@@ -118,7 +118,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     }
 
     @Override
-    public Set<GAV> getToplevelDepency(File pomRepoDir, String pomPath, List<String> repositories)
+    public Set<GAV> getToplevelDependency(File pomRepoDir, String pomPath, List<String> repositories)
             throws PomAnalysisException {
         try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, pomRepoDir, disConf, processor)) {
             GalleyWrapper.Artifact artifact = gw.getPom(pomPath);
@@ -207,7 +207,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             return ret;
         } catch (IOException | PomAnalysisException ex) {
             throw new PomAnalysisException(
-                    "Failted to get dependencies of modules for " + new File(scmDir, pomPath),
+                    "Failed to get dependencies of modules for " + new File(scmDir, pomPath),
                     ex);
         }
     }
