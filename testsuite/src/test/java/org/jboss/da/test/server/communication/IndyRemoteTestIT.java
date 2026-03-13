@@ -1,7 +1,14 @@
 package org.jboss.da.test.server.communication;
 
-import io.quarkus.test.junit.QuarkusTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
+
 import jakarta.inject.Inject;
+
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.model.rest.GA;
@@ -10,12 +17,7 @@ import org.jboss.da.test.server.AbstractServerTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
 public class IndyRemoteTestIT extends AbstractServerTest {

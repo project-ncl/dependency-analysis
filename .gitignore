@@ -6,5 +6,8 @@ settings.xml
 *.iml
 .idea
 
+# VSCode
+.vscode
+
 # auto-generated java code
 /common/src/main/java/org/jboss/da/common/Constants.java

@@ -1,6 +1,7 @@
 package org.jboss.da.communication.pom.model;
 
 import jakarta.xml.bind.annotation.XmlElement;
+
 import lombok.Getter;
 
 /**

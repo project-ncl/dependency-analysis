@@ -1,11 +1,12 @@
 package org.jboss.da.reports.model.response.striped;
 
+import java.util.List;
+
+import org.jboss.da.reports.model.response.RestGA2GAVs;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
-import org.jboss.da.reports.model.response.RestGA2GAVs;
-
-import java.util.List;
 
 /**
  *

@@ -1,19 +1,19 @@
 package org.jboss.da.test.client.rest.listings;
 
-import org.apache.commons.io.FileUtils;
-import org.jboss.da.test.client.rest.AbstractRestReportsTest;
-import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
+
+import org.apache.commons.io.FileUtils;
+import org.jboss.da.test.client.rest.AbstractRestReportsTest;
+import org.junit.jupiter.api.AfterEach;
 
 /**
  *

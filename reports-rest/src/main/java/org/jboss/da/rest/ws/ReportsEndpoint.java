@@ -1,9 +1,5 @@
 package org.jboss.da.rest.ws;
 
-import org.jboss.da.common.logging.AuditLogger;
-import org.jboss.da.rest.websocket.Methods;
-import org.jboss.da.rest.websocket.WebsocketEndpointHandler;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 import jakarta.websocket.OnClose;
@@ -11,6 +7,10 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+
+import org.jboss.da.common.logging.AuditLogger;
+import org.jboss.da.rest.websocket.Methods;
+import org.jboss.da.rest.websocket.WebsocketEndpointHandler;
 
 @ServerEndpoint("/ws")
 public class ReportsEndpoint {

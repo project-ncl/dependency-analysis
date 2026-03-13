@@ -15,14 +15,16 @@
  */
 package org.jboss.da.lookup.model;
 
+import java.util.List;
+
+import org.jboss.da.model.rest.GAV;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import org.jboss.da.model.rest.GAV;
-
-import java.util.List;
 
 /**
  *

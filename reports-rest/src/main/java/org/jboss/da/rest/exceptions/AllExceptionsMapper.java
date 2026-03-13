@@ -1,6 +1,18 @@
 package org.jboss.da.rest.exceptions;
 
+import static org.jboss.da.model.rest.ErrorMessage.ErrorType.COMMUNICATION_FAIL;
+import static org.jboss.da.model.rest.ErrorMessage.ErrorType.ILLEGAL_ARGUMENTS;
+import static org.jboss.da.model.rest.ErrorMessage.ErrorType.NO_RELATIONSHIP_FOUND;
+import static org.jboss.da.model.rest.ErrorMessage.ErrorType.POM_ANALYSIS;
+import static org.jboss.da.model.rest.ErrorMessage.ErrorType.SCM_ENDPOINT;
+import static org.jboss.da.model.rest.ErrorMessage.ErrorType.UNEXPECTED_SERVER_ERR;
+
+import java.util.NoSuchElementException;
+
 import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
@@ -8,20 +20,7 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.ErrorMessage;
 import org.jboss.da.validation.ValidationException;
-
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.ext.ExceptionMapper;
-import jakarta.ws.rs.ext.Provider;
 import org.slf4j.Logger;
-
-import java.util.NoSuchElementException;
-
-import static org.jboss.da.model.rest.ErrorMessage.ErrorType.COMMUNICATION_FAIL;
-import static org.jboss.da.model.rest.ErrorMessage.ErrorType.ILLEGAL_ARGUMENTS;
-import static org.jboss.da.model.rest.ErrorMessage.ErrorType.NO_RELATIONSHIP_FOUND;
-import static org.jboss.da.model.rest.ErrorMessage.ErrorType.POM_ANALYSIS;
-import static org.jboss.da.model.rest.ErrorMessage.ErrorType.SCM_ENDPOINT;
-import static org.jboss.da.model.rest.ErrorMessage.ErrorType.UNEXPECTED_SERVER_ERR;
 
 @Provider
 public class AllExceptionsMapper implements ExceptionMapper<Exception> {

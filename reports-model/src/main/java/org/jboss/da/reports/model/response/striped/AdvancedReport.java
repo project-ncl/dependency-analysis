@@ -1,15 +1,16 @@
 package org.jboss.da.reports.model.response.striped;
 
+import java.util.Set;
+
+import org.jboss.da.model.rest.GAV;
+import org.jboss.da.reports.model.response.GAVAvailableVersions;
+import org.jboss.da.reports.model.response.GAVBestMatchVersion;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
-import org.jboss.da.model.rest.GAV;
-import org.jboss.da.reports.model.response.GAVAvailableVersions;
-import org.jboss.da.reports.model.response.GAVBestMatchVersion;
-
-import java.util.Set;
 
 @Jacksonized
 @Builder

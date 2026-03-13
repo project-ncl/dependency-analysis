@@ -1,13 +1,17 @@
 package org.jboss.da.products.impl;
 
+import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
+import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
 import java.util.concurrent.ExecutorService;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import jakarta.inject.Inject;
 
 import org.jboss.da.common.json.LookupMode;
@@ -25,9 +29,6 @@ import org.jboss.pnc.common.version.VersionParser;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
-
-import static org.jboss.da.listings.model.ProductSupportStatus.UNKNOWN;
-import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
 
 /**
  * A product provider reading artifacts from an external source without an information about products.

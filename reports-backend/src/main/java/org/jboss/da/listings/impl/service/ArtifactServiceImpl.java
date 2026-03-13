@@ -1,5 +1,11 @@
 package org.jboss.da.listings.impl.service;
 
+import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
+
+import java.util.List;
+
+import jakarta.inject.Inject;
+
 import org.jboss.da.communication.auth.AuthenticatorService;
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.UserDAO;
@@ -7,12 +13,6 @@ import org.jboss.da.listings.api.model.Artifact;
 import org.jboss.da.listings.api.model.User;
 import org.jboss.da.listings.api.service.ArtifactService;
 import org.jboss.pnc.common.version.VersionParser;
-
-import jakarta.inject.Inject;
-
-import java.util.List;
-
-import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
 
 /**
  *

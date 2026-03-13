@@ -1,6 +1,7 @@
 package org.jboss.da.scm.impl;
 
 import org.jboss.da.scm.api.SCMType;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

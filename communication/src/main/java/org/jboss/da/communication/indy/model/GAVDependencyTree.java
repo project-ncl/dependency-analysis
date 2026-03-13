@@ -1,7 +1,5 @@
 package org.jboss.da.communication.indy.model;
 
-import org.jboss.da.model.rest.GAV;
-
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,6 +10,8 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+
+import org.jboss.da.model.rest.GAV;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

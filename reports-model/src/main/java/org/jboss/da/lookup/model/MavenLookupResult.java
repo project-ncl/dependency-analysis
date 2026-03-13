@@ -1,11 +1,11 @@
 package org.jboss.da.lookup.model;
 
-import lombok.EqualsAndHashCode;
 import org.jboss.da.model.rest.GAV;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 

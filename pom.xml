@@ -1,645 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.jboss</groupId>
-        <artifactId>jboss-parent</artifactId>
-        <version>49</version>
-        <relativePath />
-    </parent>
+  <parent>
+    <groupId>org.jboss</groupId>
+    <artifactId>jboss-parent</artifactId>
+    <version>49</version>
+    <relativePath/>
+  </parent>
 
-    <groupId>org.jboss.da</groupId>
-    <artifactId>parent</artifactId>
-    <version>3.2.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  <groupId>org.jboss.da</groupId>
+  <artifactId>parent</artifactId>
+  <version>3.2.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <name>Dependency Analyzer</name>
-    <description>This project is a service, which provides information about built artifacts and analyse the projects' dependencies.</description>
+  <name>Dependency Analyzer</name>
+  <description>This project is a service, which provides information about built artifacts and analyse the projects' dependencies.</description>
+  <url>https://github.com/project-ncl/dependency-analysis</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>dcheung</id>
+      <name>Dustin Kut Moy Cheung</name>
+      <email>dcheung@redhat.com</email>
+      <organization>Red Hat</organization>
+    </developer>
+    <developer>
+      <id>jbartece</id>
+      <name>Jakub Bartecek</name>
+      <email>jbartece@redhat.com</email>
+      <organization>Red Hat</organization>
+    </developer>
+    <developer>
+      <id>jbrazdil</id>
+      <name>Honza Brazdil</name>
+      <email>jbrazdil@redhat.com</email>
+      <organization>Red Hat</organization>
+    </developer>
+    <developer>
+      <id>jmrazek</id>
+      <name>Jozef Mrazek</name>
+      <email>jmrazek@redhat.com</email>
+      <organization>Red Hat</organization>
+    </developer>
+    <developer>
+      <id>sknot</id>
+      <name>Stanislav Knot</name>
+      <email>sknot@redhat.com</email>
+      <organization>Red Hat</organization>
+    </developer>
+  </developers>
+
+  <modules>
+    <module>common</module>
+    <module>communication</module>
+    <module>source-code-manager</module>
+    <module>reports-model</module>
+    <module>reports-backend</module>
+    <module>reports-rest</module>
+    <module>application</module>
+    <module>cli-wrap</module>
+    <module>testsuite</module>
+  </modules>
+
+  <scm>
+    <connection>scm:git:https://github.com/project-ncl/dependency-analysis.git</connection>
+    <developerConnection>scm:git:git@github.com:project-ncl/dependency-analysis.git</developerConnection>
+    <tag>HEAD</tag>
     <url>https://github.com/project-ncl/dependency-analysis</url>
+  </scm>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <version.reports.rest>1</version.reports.rest>
+    <version.bc.rest>1</version.bc.rest>
+    <version.pnc>3.4.2</version.pnc>
+    <version.pnc-common>3.4.1-SNAPSHOT</version.pnc-common>
+    <version.pnc-api>3.4.2</version.pnc-api>
+    <atlasVersion>1.1.9</atlasVersion>
+    <version.galley>1.22-SNAPSHOT</version.galley>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <quarkus.platform.version>3.21.4</quarkus.platform.version>
+    <quarkus.wiremock>1.5.3</quarkus.wiremock>
 
-    <scm>
-        <connection>scm:git:https://github.com/project-ncl/dependency-analysis.git</connection>
-        <developerConnection>scm:git:git@github.com:project-ncl/dependency-analysis.git</developerConnection>
-        <url>https://github.com/project-ncl/dependency-analysis</url>
-        <tag>HEAD</tag>
-    </scm>
+    <mvn-scm.version>1.11.2</mvn-scm.version>
+    <corsUrlPattern>/*</corsUrlPattern>
 
-    <modules>
-        <module>common</module>
-        <module>communication</module>
-        <module>source-code-manager</module>
-        <module>reports-model</module>
-        <module>reports-backend</module>
-        <module>reports-rest</module>
-        <module>application</module>
-        <module>cli-wrap</module>
-        <module>testsuite</module>
-    </modules>
+    <!-- OTEL Dependencies for Instrumentation -->
+    <version.io.opentelemetry.instrumentation>2.26.1</version.io.opentelemetry.instrumentation>
 
-    <developers>
-        <developer>
-            <id>dcheung</id>
-            <email>dcheung@redhat.com</email>
-            <name>Dustin Kut Moy Cheung</name>
-            <organization>Red Hat</organization>
-        </developer>
-        <developer>
-            <id>jbartece</id>
-            <email>jbartece@redhat.com</email>
-            <name>Jakub Bartecek</name>
-            <organization>Red Hat</organization>
-        </developer>
-        <developer>
-            <id>jbrazdil</id>
-            <email>jbrazdil@redhat.com</email>
-            <name>Honza Brazdil</name>
-            <organization>Red Hat</organization>
-        </developer>
-        <developer>
-            <id>jmrazek</id>
-            <email>jmrazek@redhat.com</email>
-            <name>Jozef Mrazek</name>
-            <organization>Red Hat</organization>
-        </developer>
-        <developer>
-            <id>sknot</id>
-            <email>sknot@redhat.com</email>
-            <name>Stanislav Knot</name>
-            <organization>Red Hat</organization>
-        </developer>
-    </developers>
+    <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
+    <tagSuffix/>
+  </properties>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.reports.rest>1</version.reports.rest>
-        <version.bc.rest>1</version.bc.rest>
-        <version.pnc>3.4.2</version.pnc>
-        <version.pnc-common>3.4.1-SNAPSHOT</version.pnc-common>
-        <version.pnc-api>3.4.2</version.pnc-api>
-        <atlasVersion>1.1.9</atlasVersion>
-        <version.galley>1.22-SNAPSHOT</version.galley>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <quarkus.platform.version>3.21.4</quarkus.platform.version>
-        <quarkus.wiremock>1.5.3</quarkus.wiremock>
+  <dependencyManagement>
+    <dependencies>
+      <!-- Project modules -->
+      <dependency>
+        <groupId>org.jboss.da</groupId>
+        <artifactId>application</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.da</groupId>
+        <artifactId>common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.da</groupId>
+        <artifactId>source-code-manager</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.da</groupId>
+        <artifactId>communication</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.da</groupId>
+        <artifactId>reports-model</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.da</groupId>
+        <artifactId>reports-backend</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.da</groupId>
+        <artifactId>reports-rest</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <!-- Project modules -->
 
-        <mvn-scm.version>1.11.2</mvn-scm.version>
-        <corsUrlPattern>/*</corsUrlPattern>
+      <!-- Quarkus BOM -->
+      <dependency>
+        <groupId>io.quarkus.platform</groupId>
+        <artifactId>quarkus-bom</artifactId>
+        <version>${quarkus.platform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
 
-        <!-- OTEL Dependencies for Instrumentation -->
-        <version.io.opentelemetry.instrumentation>2.26.1</version.io.opentelemetry.instrumentation>
+      <!-- PNC -->
+      <dependency>
+        <groupId>org.jboss.pnc</groupId>
+        <artifactId>pnc-api</artifactId>
+        <version>${version.pnc-api}</version>
+        <classifier>jakarta</classifier>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.pnc</groupId>
+        <artifactId>pnc-common</artifactId>
+        <version>${version.pnc-common}</version>
+        <classifier>jakarta</classifier>
+        <exclusions>
+          <exclusion>
+            <groupId>org.jboss.pnc</groupId>
+            <artifactId>pnc-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.jboss.pnc</groupId>
+            <artifactId>pnc-api-constants</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.pnc</groupId>
+        <artifactId>constants</artifactId>
+        <version>${version.pnc}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.pnc</groupId>
+        <artifactId>common</artifactId>
+        <version>${version.pnc}</version>
+        <exclusions>
+          <!-- it's bringing in the non-jakarta pnc-api. yuck! -->
+          <exclusion>
+            <groupId>org.jboss.pnc</groupId>
+            <artifactId>pnc-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.pnc</groupId>
+        <artifactId>dto</artifactId>
+        <version>${version.pnc}</version>
+        <exclusions>
+          <!-- it's bringing in the non-jakarta pnc-api. yuck! -->
+          <exclusion>
+            <groupId>org.jboss.pnc</groupId>
+            <artifactId>pnc-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.pnc</groupId>
+        <artifactId>rest-client-jakarta</artifactId>
+        <version>${version.pnc}</version>
+      </dependency>
 
-        <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
-    <tagSuffix />
-    </properties>
+      <dependency>
+        <groupId>jakarta.annotation</groupId>
+        <artifactId>jakarta.annotation-api</artifactId>
+        <version>2.1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.transaction</groupId>
+        <artifactId>jakarta.transaction-api</artifactId>
+        <version>2.0.1</version>
+      </dependency>
 
-    <dependencyManagement>
+      <dependency>
+        <groupId>commons-validator</groupId>
+        <artifactId>commons-validator</artifactId>
+        <version>1.5.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-core</artifactId>
+        <version>18.0.9.redhat-00001</version>
+      </dependency>
+
+      <!-- Commonjava -->
+      <dependency>
+        <groupId>org.commonjava.maven.galley</groupId>
+        <artifactId>galley-api</artifactId>
+        <version>${version.galley}</version>
+        <classifier>jakarta</classifier>
+      </dependency>
+      <dependency>
+        <groupId>org.commonjava.maven.galley</groupId>
+        <artifactId>galley-core</artifactId>
+        <version>${version.galley}</version>
+        <classifier>jakarta</classifier>
+        <exclusions>
+          <!-- Avoid conflict with multiple SLF4J providers -->
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+          <!-- Avoid dragging in non-jakarta galley dependencies -->
+          <exclusion>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+          <!-- Avoid dragging in all of o11yphant. -->
+          <!-- Keeping o11yphant-metrics-api & o11yphant-trace-api for GalleyMavenProducer -->
+          <exclusion>
+            <groupId>org.commonjava.util</groupId>
+            <artifactId>o11yphant-trace-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.commonjava.util</groupId>
+            <artifactId>o11yphant-trace-helper-jhttpc</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.commonjava.maven.galley</groupId>
+        <artifactId>galley-maven</artifactId>
+        <version>${version.galley}</version>
+        <classifier>jakarta</classifier>
+        <exclusions>
+          <!-- Avoid conflict with multiple SLF4J providers -->
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+          <!-- Avoid dragging in non-jakarta galley dependencies -->
+          <exclusion>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.commonjava.maven.galley</groupId>
+        <artifactId>galley-transport-filearc</artifactId>
+        <version>${version.galley}</version>
+        <classifier>jakarta</classifier>
+        <exclusions>
+          <exclusion>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.commonjava.maven.galley</groupId>
+        <artifactId>galley-transport-httpclient</artifactId>
+        <version>${version.galley}</version>
+        <classifier>jakarta</classifier>
+        <exclusions>
+          <!-- Avoid conflict with multiple SLF4J providers -->
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+          <!-- Avoid dragging in non-jakarta galley dependencies -->
+          <exclusion>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+          <!-- Avoid dragging in all of o11yphant -->
+          <!-- Keeping o11yphant-metrics-api & o11yphant-trace-api for GalleyMavenProducer -->
+          <exclusion>
+            <groupId>org.commonjava.util</groupId>
+            <artifactId>o11yphant-trace-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.commonjava.util</groupId>
+            <artifactId>o11yphant-trace-helper-jhttpc</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.commonjava.maven.galley</groupId>
+        <artifactId>galley-cache-partyline</artifactId>
+        <version>${version.galley}</version>
+        <classifier>jakarta</classifier>
+        <exclusions>
+          <!-- Avoid conflict with multiple SLF4J providers -->
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+          <!-- Avoid dragging in non-jakarta galley dependencies -->
+          <exclusion>
+            <groupId>org.commonjava.maven.galley</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.commonjava.atlas</groupId>
+        <artifactId>atlas-identities</artifactId>
+        <version>${atlasVersion}</version>
+        <exclusions>
+          <!-- Avoid conflict with multiple SLF4J providers -->
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.28</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- maven scm libraries -->
+      <dependency>
+        <groupId>org.apache.maven.scm</groupId>
+        <artifactId>maven-scm-api</artifactId>
+        <version>${mvn-scm.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.scm</groupId>
+        <artifactId>maven-scm-provider-jgit</artifactId>
+        <version>${mvn-scm.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jgit</groupId>
+        <artifactId>org.eclipse.jgit</artifactId>
+        <!-- Forcing older version that worked. Otherwise, the version is provided from EAP bom, but we don't use EAP's library anyway. -->
+        <version>5.0.2.201807311906-r-redhat-00001</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.scm</groupId>
+        <artifactId>maven-scm-provider-svnexe</artifactId>
+        <version>${mvn-scm.version}</version>
+      </dependency>
+      <!-- maven scm libraries -->
+
+      <dependency>
+        <groupId>com.thetransactioncompany</groupId>
+        <artifactId>jsonrpc2-base</artifactId>
+        <version>2.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-servlets</artifactId>
+        <version>9.4.41.v20210516</version>
+      </dependency>
+
+      <!-- OTEL Dependencies for Instrumentation -->
+      <!-- BOMs -->
+      <dependency>
+        <groupId>io.opentelemetry.instrumentation</groupId>
+        <artifactId>opentelemetry-instrumentation-bom</artifactId>
+        <version>${version.io.opentelemetry.instrumentation}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.opentelemetry.instrumentation</groupId>
+        <artifactId>opentelemetry-instrumentation-annotations</artifactId>
+        <version>${version.io.opentelemetry.instrumentation}</version>
+      </dependency>
+
+      <!-- Test dependencies (JUnit 5 + Mockito via quarkus-junit5 in modules) -->
+      <dependency>
+        <groupId>org.skyscreamer</groupId>
+        <artifactId>jsonassert</artifactId>
+        <version>2.0-rc1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.wiremock</groupId>
+        <artifactId>wiremock-standalone</artifactId>
+        <!-- After 3.7.0 we get https://github.com/wiremock/wiremock/issues/2778 -->
+        <version>3.6.0</version>
+      </dependency>
+      <dependency>
+        <groupId>io.quarkiverse.wiremock</groupId>
+        <artifactId>quarkus-wiremock-test</artifactId>
+        <version>1.5.3</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.quarkiverse.wiremock</groupId>
+        <artifactId>quarkus-wiremock</artifactId>
+        <version>1.5.3</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- Test dependencies -->
+
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>central-portal-snapshots</id>
+      <name>Central Portal Snapshots</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+    </repository>
+
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <id>MRRC GA</id>
+      <url>https://maven.repository.redhat.com/ga</url>
+    </repository>
+
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>jboss-snapshots</id>
+      <url>https://repository.jboss.org/nexus/content/repositories/snapshots</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>io.smallrye</groupId>
+          <artifactId>jandex-maven-plugin</artifactId>
+          <version>3.5.3</version>
+          <executions>
+            <execution>
+              <id>make-index</id>
+              <goals>
+                <goal>jandex</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>pl.project13.maven</groupId>
+          <artifactId>git-commit-id-plugin</artifactId>
+          <version>4.9.10</version>
+          <configuration>
+            <abbrevLength>40</abbrevLength>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>revision</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <!--                        <argLine>-javaagent:${org.mockito:mockito-core:jar}</argLine>-->
+            <systemPropertyVariables>
+              <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+              <maven.home>${maven.home}</maven.home>
+            </systemPropertyVariables>
+            <redirectTestOutputToFile>true</redirectTestOutputToFile>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>io.quarkus.platform</groupId>
+          <artifactId>quarkus-maven-plugin</artifactId>
+          <version>${quarkus.platform.version}</version>
+          <extensions>true</extensions>
+          <configuration>
+            <skipOriginalJarRename>true</skipOriginalJarRename>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>build</goal>
+                <goal>generate-code</goal>
+                <goal>generate-code-tests</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <tagNameFormat>@{project.version}${tagSuffix}</tagNameFormat>
+          <releaseProfiles>release</releaseProfiles>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>0.10.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <!-- as defined in your settings.xml -->
+          <publishingServerId>central-publisher</publishingServerId>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <java>
+            <removeUnusedImports/>
+            <importOrder>
+              <file>java-import-order.txt</file>
+            </importOrder>
+            <eclipse>
+              <file>java-formatter.xml</file>
+            </eclipse>
+            <lineEndings>UNIX</lineEndings>
+          </java>
+          <pom>
+            <sortPom>
+              <expandEmptyElements>false</expandEmptyElements>
+            </sortPom>
+          </pom>
+        </configuration>
         <dependencies>
-            <!-- Project modules -->
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>application</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>source-code-manager</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>communication</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>reports-model</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>reports-backend</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.da</groupId>
-                <artifactId>reports-rest</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <!-- Project modules -->
-
-            <!-- Quarkus BOM -->
-            <dependency >
-                <groupId>io.quarkus.platform</groupId>
-                <artifactId>quarkus-bom</artifactId>
-                <version>${quarkus.platform.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- PNC -->
-            <dependency>
-                <groupId>org.jboss.pnc</groupId>
-                <artifactId>pnc-api</artifactId>
-                <version>${version.pnc-api}</version>
-                <classifier>jakarta</classifier>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.pnc</groupId>
-                <artifactId>pnc-common</artifactId>
-                <version>${version.pnc-common}</version>
-                <classifier>jakarta</classifier>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.jboss.pnc</groupId>
-                        <artifactId>pnc-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.jboss.pnc</groupId>
-                        <artifactId>pnc-api-constants</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.pnc</groupId>
-                <artifactId>constants</artifactId>
-                <version>${version.pnc}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.pnc</groupId>
-                <artifactId>common</artifactId>
-                <version>${version.pnc}</version>
-                <exclusions>
-                    <!-- it's bringing in the non-jakarta pnc-api. yuck! -->
-                    <exclusion>
-                        <groupId>org.jboss.pnc</groupId>
-                        <artifactId>pnc-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.pnc</groupId>
-                <artifactId>dto</artifactId>
-                <version>${version.pnc}</version>
-                <exclusions>
-                    <!-- it's bringing in the non-jakarta pnc-api. yuck! -->
-                    <exclusion>
-                        <groupId>org.jboss.pnc</groupId>
-                        <artifactId>pnc-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.pnc</groupId>
-                <artifactId>rest-client-jakarta</artifactId>
-                <version>${version.pnc}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>jakarta.annotation</groupId>
-                <artifactId>jakarta.annotation-api</artifactId>
-                <version>2.1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.transaction</groupId>
-                <artifactId>jakarta.transaction-api</artifactId>
-                <version>2.0.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-validator</groupId>
-                <artifactId>commons-validator</artifactId>
-                <version>1.5.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.keycloak</groupId>
-                <artifactId>keycloak-core</artifactId>
-                <version>18.0.9.redhat-00001</version>
-            </dependency>
-
-            <!-- Commonjava -->
-            <dependency>
-                <groupId>org.commonjava.maven.galley</groupId>
-                <artifactId>galley-api</artifactId>
-                <version>${version.galley}</version>
-                <classifier>jakarta</classifier>
-            </dependency>
-            <dependency>
-                <groupId>org.commonjava.maven.galley</groupId>
-                <artifactId>galley-core</artifactId>
-                <version>${version.galley}</version>
-                <classifier>jakarta</classifier>
-                <exclusions>
-                    <!-- Avoid conflict with multiple SLF4J providers -->
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <!-- Avoid dragging in non-jakarta galley dependencies -->
-                    <exclusion>
-                        <groupId>org.commonjava.maven.galley</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <!-- Avoid dragging in all of o11yphant. -->
-                    <!-- Keeping o11yphant-metrics-api & o11yphant-trace-api for GalleyMavenProducer -->
-                    <exclusion>
-                        <groupId>org.commonjava.util</groupId>
-                        <artifactId>o11yphant-trace-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.commonjava.util</groupId>
-                        <artifactId>o11yphant-trace-helper-jhttpc</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.commonjava.maven.galley</groupId>
-                <artifactId>galley-maven</artifactId>
-                <version>${version.galley}</version>
-                <classifier>jakarta</classifier>
-                <exclusions>
-                    <!-- Avoid conflict with multiple SLF4J providers -->
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <!-- Avoid dragging in non-jakarta galley dependencies -->
-                        <exclusion>
-                            <groupId>org.commonjava.maven.galley</groupId>
-                            <artifactId>*</artifactId>
-                        </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.commonjava.maven.galley</groupId>
-                <artifactId>galley-transport-filearc</artifactId>
-                <version>${version.galley}</version>
-                <classifier>jakarta</classifier>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.commonjava.maven.galley</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.commonjava.maven.galley</groupId>
-                <artifactId>galley-transport-httpclient</artifactId>
-                <version>${version.galley}</version>
-                <classifier>jakarta</classifier>
-                <exclusions>
-                    <!-- Avoid conflict with multiple SLF4J providers -->
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <!-- Avoid dragging in non-jakarta galley dependencies -->
-                    <exclusion>
-                        <groupId>org.commonjava.maven.galley</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <!-- Avoid dragging in all of o11yphant -->
-                    <!-- Keeping o11yphant-metrics-api & o11yphant-trace-api for GalleyMavenProducer -->
-                    <exclusion>
-                        <groupId>org.commonjava.util</groupId>
-                        <artifactId>o11yphant-trace-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.commonjava.util</groupId>
-                        <artifactId>o11yphant-trace-helper-jhttpc</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.commonjava.maven.galley</groupId>
-                <artifactId>galley-cache-partyline</artifactId>
-                <version>${version.galley}</version>
-                <classifier>jakarta</classifier>
-                <exclusions>
-                    <!-- Avoid conflict with multiple SLF4J providers -->
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <!-- Avoid dragging in non-jakarta galley dependencies -->
-                    <exclusion>
-                        <groupId>org.commonjava.maven.galley</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.commonjava.atlas</groupId>
-                <artifactId>atlas-identities</artifactId>
-                <version>${atlasVersion}</version>
-                <exclusions>
-                    <!-- Avoid conflict with multiple SLF4J providers -->
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.28</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <!-- maven scm libraries -->
-            <dependency>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-api</artifactId>
-                <version>${mvn-scm.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-provider-jgit</artifactId>
-                <version>${mvn-scm.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.jgit</groupId>
-                <artifactId>org.eclipse.jgit</artifactId>
-                <!-- Forcing older version that worked. Otherwise, the version is provided from EAP bom, but we don't use EAP's library anyway. -->
-                <version>5.0.2.201807311906-r-redhat-00001</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-provider-svnexe</artifactId>
-                <version>${mvn-scm.version}</version>
-            </dependency>
-            <!-- maven scm libraries -->
-
-            <dependency>
-                <groupId>com.thetransactioncompany</groupId>
-                <artifactId>jsonrpc2-base</artifactId>
-                <version>2.2</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-servlets</artifactId>
-                <version>9.4.41.v20210516</version>
-            </dependency>
-
-            <!-- OTEL Dependencies for Instrumentation -->
-            <!-- BOMs -->
-            <dependency>
-                <groupId>io.opentelemetry.instrumentation</groupId>
-                <artifactId>opentelemetry-instrumentation-bom</artifactId>
-                <version>${version.io.opentelemetry.instrumentation}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.opentelemetry.instrumentation</groupId>
-                <artifactId>opentelemetry-instrumentation-annotations</artifactId>
-                <version>${version.io.opentelemetry.instrumentation}</version>
-            </dependency>
-
-            <!-- Test dependencies (JUnit 5 + Mockito via quarkus-junit5 in modules) -->
-            <dependency>
-                <groupId>org.skyscreamer</groupId>
-                <artifactId>jsonassert</artifactId>
-                <version>2.0-rc1</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.wiremock</groupId>
-                <artifactId>wiremock-standalone</artifactId>
-                <!-- After 3.7.0 we get https://github.com/wiremock/wiremock/issues/2778 -->
-                <version>3.6.0</version>
-            </dependency>
-            <dependency>
-                <groupId>io.quarkiverse.wiremock</groupId>
-                <artifactId>quarkus-wiremock-test</artifactId>
-                <version>1.5.3</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.quarkiverse.wiremock</groupId>
-                <artifactId>quarkus-wiremock</artifactId>
-                <version>1.5.3</version>
-                <scope>test</scope>
-            </dependency>
-            <!-- Test dependencies -->
-
+          <dependency>
+            <groupId>org.jboss.pnc</groupId>
+            <artifactId>ide-config</artifactId>
+            <version>1.1.0</version>
+          </dependency>
         </dependencies>
-    </dependencyManagement>
-
-    <repositories>
-        <repository>
-            <name>Central Portal Snapshots</name>
-            <id>central-portal-snapshots</id>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>MRRC GA</id>
-            <url>https://maven.repository.redhat.com/ga</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-
-        <repository>
-            <id>jboss-snapshots</id>
-            <url>https://repository.jboss.org/nexus/content/repositories/snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>io.smallrye</groupId>
-                    <artifactId>jandex-maven-plugin</artifactId>
-                    <version>3.5.3</version>
-                    <executions>
-                        <execution>
-                            <id>make-index</id>
-                            <goals>
-                                <goal>jandex</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>pl.project13.maven</groupId>
-                    <artifactId>git-commit-id-plugin</artifactId>
-                    <version>4.9.10</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>revision</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <abbrevLength>40</abbrevLength>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-<!--                        <argLine>-javaagent:${org.mockito:mockito-core:jar}</argLine>-->
-                        <systemPropertyVariables>
-                            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                            <maven.home>${maven.home}</maven.home>
-                        </systemPropertyVariables>
-                        <redirectTestOutputToFile>true</redirectTestOutputToFile>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <target>${maven.compiler.target}</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>io.quarkus.platform</groupId>
-                    <artifactId>quarkus-maven-plugin</artifactId>
-                    <version>${quarkus.platform.version}</version>
-                    <extensions>true</extensions>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>build</goal>
-                                <goal>generate-code</goal>
-                                <goal>generate-code-tests</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <skipOriginalJarRename>true</skipOriginalJarRename>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
+        <executions>
+          <execution>
+            <goals>
+              <goal>apply</goal>
+            </goals>
+            <phase>compile</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>release</id>
+      <properties>
+        <persistence.hibernate.hbm2ddl.auto>validate</persistence.hibernate.hbm2ddl.auto>
+      </properties>
+      <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${version.source.plugin}</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${version.javadoc.plugin}</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
                 <configuration>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <tagNameFormat>@{project.version}${tagSuffix}</tagNameFormat>
-            <releaseProfiles>release</releaseProfiles>
+                  <detectOfflineLinks>false</detectOfflineLinks>
+                  <quiet>true</quiet>
+                  <doclint>none</doclint>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.10.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <!-- as defined in your settings.xml -->
-                    <publishingServerId>central-publisher</publishingServerId>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>net.revelc.code.formatter</groupId>
-                <artifactId>formatter-maven-plugin</artifactId>
-                <version>2.11.0</version>
-                <configuration>
-                    <configFile>../eclipse-codeStyle.xml</configFile>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>java-format</id>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
-    </build>
-    <profiles>
-        <profile>
-            <id>release</id>
-            <properties>
-                <persistence.hibernate.hbm2ddl.auto>validate</persistence.hibernate.hbm2ddl.auto>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>${version.source.plugin}</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${version.javadoc.plugin}</version>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                                <configuration>
-                                    <detectOfflineLinks>false</detectOfflineLinks>
-                                    <quiet>true</quiet>
-                                    <doclint>none</doclint>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+      </build>
+    </profile>
+  </profiles>
 </project>

@@ -1,5 +1,12 @@
 package org.jboss.da.communication.pom.api;
 
+import java.io.File;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import org.commonjava.maven.galley.maven.GalleyMavenException;
 import org.commonjava.maven.galley.maven.model.view.MavenPomView;
 import org.jboss.da.common.util.ConfigurationParseException;
@@ -8,13 +15,6 @@ import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
-
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  *

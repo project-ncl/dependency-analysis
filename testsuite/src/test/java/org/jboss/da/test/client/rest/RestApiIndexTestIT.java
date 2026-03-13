@@ -1,16 +1,18 @@
 package org.jboss.da.test.client.rest;
 
-import io.quarkus.test.common.QuarkusTestResource;
-import io.quarkus.test.h2.H2DatabaseTestResource;
-import io.quarkus.test.junit.QuarkusTest;
-import jakarta.ws.rs.core.Response;
-import org.junit.jupiter.api.Test;
-
 import static org.jboss.da.common.Constants.COMMIT_HASH;
 import static org.jboss.da.common.Constants.DA_VERSION;
 import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
 import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import jakarta.ws.rs.core.Response;
+
+import org.junit.jupiter.api.Test;
+
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.h2.H2DatabaseTestResource;
+import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
 @QuarkusTestResource(value = H2DatabaseTestResource.class, restrictToAnnotatedClass = true)

@@ -1,13 +1,13 @@
 package org.jboss.da.communication.pom.model;
 
-import org.jboss.da.model.rest.GAV;
+import java.util.List;
 
-import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import org.jboss.da.model.rest.GAV;
 
 import lombok.Getter;
 

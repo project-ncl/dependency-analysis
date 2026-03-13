@@ -3,6 +3,7 @@ package org.jboss.da.scm.api;
 import java.io.File;
 import java.time.Duration;
 import java.time.temporal.TemporalAmount;
+
 import org.apache.maven.scm.ScmException;
 
 /**

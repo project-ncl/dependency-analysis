@@ -15,15 +15,16 @@
  */
 package org.jboss.da.reports.model.request;
 
-import org.jboss.da.model.rest.NPMPackage;
+import java.util.List;
 
 import jakarta.validation.constraints.NotNull;
 
-import java.util.List;
+import org.jboss.da.model.rest.NPMPackage;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 import lombok.Builder;
 import lombok.NonNull;
 import lombok.Value;

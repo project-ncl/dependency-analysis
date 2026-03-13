@@ -1,8 +1,8 @@
 package org.jboss.da.test.client.ws.reports;
 
-import org.jboss.da.test.client.ws.AbstractWebsocketApiTest;
-
 import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
+
+import org.jboss.da.test.client.ws.AbstractWebsocketApiTest;
 
 public abstract class AbstractWebsocketReportsTest extends AbstractWebsocketApiTest {
 

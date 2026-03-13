@@ -18,10 +18,10 @@ import org.jboss.da.lookup.model.NPMVersionsRequest;
 import org.jboss.da.lookup.model.NPMVersionsResult;
 import org.jboss.da.reports.api.LookupGenerator;
 import org.jboss.da.rest.api.Lookup;
+import org.slf4j.Logger;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
-import org.slf4j.Logger;
 
 @Transactional
 public class LookupImpl implements Lookup {

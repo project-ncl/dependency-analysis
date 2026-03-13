@@ -1,14 +1,14 @@
 package org.jboss.da.rest;
 
+import static org.jboss.da.common.Constants.COMMIT_HASH;
+import static org.jboss.da.common.Constants.DA_VERSION;
+import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
+import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-
-import static org.jboss.da.common.Constants.REST_API_VERSION_BC;
-import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
-import static org.jboss.da.common.Constants.DA_VERSION;
-import static org.jboss.da.common.Constants.COMMIT_HASH;
 
 /**
  *

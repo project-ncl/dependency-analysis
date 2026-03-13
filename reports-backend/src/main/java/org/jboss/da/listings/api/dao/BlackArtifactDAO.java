@@ -1,8 +1,8 @@
 package org.jboss.da.listings.api.dao;
 
-import org.jboss.da.listings.api.model.BlackArtifact;
-
 import java.util.List;
+
+import org.jboss.da.listings.api.model.BlackArtifact;
 
 /**
  * 

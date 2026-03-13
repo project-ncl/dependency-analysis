@@ -1,13 +1,13 @@
 package org.jboss.da.reports.api;
 
-import org.jboss.da.model.rest.GAV;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+
+import org.jboss.da.model.rest.GAV;
 
 import lombok.Getter;
 import lombok.NonNull;

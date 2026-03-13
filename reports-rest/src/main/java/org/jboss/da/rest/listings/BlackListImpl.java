@@ -1,5 +1,15 @@
 package org.jboss.da.rest.listings;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.core.Response;
+
 import org.jboss.da.listings.api.model.BlackArtifact;
 import org.jboss.da.listings.api.service.ArtifactService;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -7,17 +17,6 @@ import org.jboss.da.listings.model.rest.ContainsResponse;
 import org.jboss.da.listings.model.rest.RestArtifact;
 import org.jboss.da.listings.model.rest.SuccessResponse;
 import org.jboss.da.model.rest.ErrorMessage;
-
-import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
-import jakarta.ws.rs.core.Response;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
 import org.jboss.da.rest.api.BlackList;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;

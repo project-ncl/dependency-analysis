@@ -1,14 +1,16 @@
 package org.jboss.da.reports.model.response.striped;
 
+import java.util.List;
+
+import org.jboss.da.model.rest.GAV;
+
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
-import org.jboss.da.model.rest.GAV;
-
-import java.util.List;
 
 /**
  *

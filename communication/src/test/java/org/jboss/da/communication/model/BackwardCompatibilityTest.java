@@ -1,24 +1,23 @@
 package org.jboss.da.communication.model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.Test;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.jboss.da.communication.indy.model.VersionResponse;
 import org.jboss.da.communication.indy.model.Versioning;
 import org.jboss.da.communication.indy.model.Versions;
 import org.json.JSONException;
+import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.stream.Collectors;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  *

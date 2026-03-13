@@ -1,14 +1,14 @@
 package org.jboss.da.rest.websocket;
 
+import java.io.IOException;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.control.ActivateRequestContext;
-import org.slf4j.Logger;
-
 import jakarta.inject.Inject;
 import jakarta.websocket.RemoteEndpoint.Basic;
 import jakarta.websocket.Session;
 
-import java.io.IOException;
+import org.slf4j.Logger;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;

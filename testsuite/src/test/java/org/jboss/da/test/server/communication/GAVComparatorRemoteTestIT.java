@@ -1,13 +1,13 @@
 package org.jboss.da.test.server.communication;
 
-import io.quarkus.test.junit.QuarkusTest;
-import org.jboss.da.model.rest.GAV;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.jboss.da.model.rest.GAV;
 import org.junit.jupiter.api.Test;
+
+import io.quarkus.test.junit.QuarkusTest;
 
 /**
  *

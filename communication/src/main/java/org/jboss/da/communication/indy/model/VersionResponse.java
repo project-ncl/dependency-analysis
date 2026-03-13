@@ -2,6 +2,7 @@ package org.jboss.da.communication.indy.model;
 
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
+
 import lombok.Getter;
 import lombok.ToString;
 
