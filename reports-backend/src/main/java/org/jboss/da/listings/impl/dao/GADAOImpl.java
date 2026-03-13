@@ -1,7 +1,10 @@
 package org.jboss.da.listings.impl.dao;
 
-import org.jboss.da.listings.api.dao.GADAO;
-import org.jboss.da.listings.api.model.GA;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.NoResultException;
@@ -10,11 +13,9 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+
+import org.jboss.da.listings.api.dao.GADAO;
+import org.jboss.da.listings.api.model.GA;
 
 @ApplicationScoped
 public class GADAOImpl extends GenericDAOImpl<GA> implements GADAO {

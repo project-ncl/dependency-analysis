@@ -1,13 +1,13 @@
 package org.jboss.da.rest.listings;
 
-import org.jboss.da.listings.api.model.Artifact;
-import org.jboss.da.listings.model.rest.RestArtifact;
-
-import jakarta.enterprise.context.ApplicationScoped;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import jakarta.enterprise.context.ApplicationScoped;
+
+import org.jboss.da.listings.api.model.Artifact;
+import org.jboss.da.listings.model.rest.RestArtifact;
 
 /**
  *

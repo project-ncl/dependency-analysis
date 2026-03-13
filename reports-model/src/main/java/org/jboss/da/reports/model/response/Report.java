@@ -1,17 +1,17 @@
 package org.jboss.da.reports.model.response;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 import java.util.List;
+
+import org.jboss.da.listings.model.rest.RestProductInput;
+import org.jboss.da.model.rest.GAV;
+
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
-
 import lombok.extern.jackson.Jacksonized;
-import org.jboss.da.listings.model.rest.RestProductInput;
-import org.jboss.da.model.rest.GAV;
 
 /**
  *

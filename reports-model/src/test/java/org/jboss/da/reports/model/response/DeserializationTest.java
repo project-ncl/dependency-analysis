@@ -1,11 +1,9 @@
 package org.jboss.da.reports.model.response;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.jboss.da.lookup.model.MavenLookupResult;
-import org.jboss.da.lookup.model.NPMLookupResult;
-import org.jboss.da.reports.model.request.VersionsNPMRequest;
-import org.junit.jupiter.api.Test;
+import static org.jboss.da.reports.model.request.VersionsNPMRequest.VersionFilter.MAJOR_MINOR;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,10 +11,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
-import static org.jboss.da.reports.model.request.VersionsNPMRequest.VersionFilter.MAJOR_MINOR;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.jboss.da.lookup.model.MavenLookupResult;
+import org.jboss.da.lookup.model.NPMLookupResult;
+import org.jboss.da.reports.model.request.VersionsNPMRequest;
+import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DeserializationTest {
 

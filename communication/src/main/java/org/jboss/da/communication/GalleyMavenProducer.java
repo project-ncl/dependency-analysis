@@ -1,8 +1,15 @@
 package org.jboss.da.communication;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.inject.Produces;
+
 import org.commonjava.cdi.util.weft.config.DefaultWeftConfig;
 import org.commonjava.cdi.util.weft.config.WeftConfig;
 import org.commonjava.maven.galley.auth.MemoryPasswordManager;
@@ -32,12 +39,7 @@ import org.commonjava.maven.galley.transport.htcli.conf.GlobalHttpConfiguration;
 import org.commonjava.maven.galley.transport.htcli.conf.GlobalProxyConfig;
 import org.commonjava.util.partyline.Partyline;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executors;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 // Inspiration taken from the previous CartographyProducer and org.commonjava.maven.galley.embed.TestCDIProvider.java
 public class GalleyMavenProducer {

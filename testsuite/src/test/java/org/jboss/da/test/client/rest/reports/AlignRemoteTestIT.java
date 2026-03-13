@@ -5,16 +5,16 @@
  */
 package org.jboss.da.test.client.rest.reports;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import jakarta.ws.rs.core.Response;
+
+import org.jboss.da.test.client.rest.AbstractRestReportsTest;
+import org.junit.jupiter.api.Test;
+
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.h2.H2DatabaseTestResource;
 import io.quarkus.test.junit.QuarkusTest;
-import org.jboss.da.test.client.rest.AbstractRestReportsTest;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-
-import jakarta.ws.rs.core.Response;
 
 /**
  *

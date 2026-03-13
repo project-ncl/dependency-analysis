@@ -1,25 +1,25 @@
 package org.jboss.da.products.impl;
 
-import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.pnc.PncConnector;
-import org.jboss.da.model.rest.GA;
-import org.jboss.da.products.impl.PncProductProvider.Pnc;
-
-import jakarta.transaction.Transactional;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Qualifier;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Qualifier;
+import jakarta.transaction.Transactional;
+
+import org.jboss.da.common.CommunicationException;
+import org.jboss.da.communication.pnc.PncConnector;
+import org.jboss.da.model.rest.GA;
+import org.jboss.da.products.impl.PncProductProvider.Pnc;
 
 /**
  * @author <a href="mailto:pkocandr@redhat.com">Petr Kocandrle</a>

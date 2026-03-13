@@ -1,18 +1,20 @@
 package org.jboss.da.test.client.rest.lookup;
 
-import io.quarkus.test.common.QuarkusTestResource;
-import io.quarkus.test.h2.H2DatabaseTestResource;
-import io.quarkus.test.junit.QuarkusTest;
+import static org.jboss.da.test.client.rest.listings.AbstractRestApiListingTest.PATH_BLACK_LISTINGS_GAV;
+import static org.jboss.da.test.client.rest.lookup.LookupTestIT.PATH_LOOKUP_MAVEN;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.Response;
+
 import org.jboss.da.test.client.rest.AbstractRestReportsTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.jboss.da.test.client.rest.listings.AbstractRestApiListingTest.PATH_BLACK_LISTINGS_GAV;
-import static org.jboss.da.test.client.rest.lookup.LookupTestIT.PATH_LOOKUP_MAVEN;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.h2.H2DatabaseTestResource;
+import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
 @QuarkusTestResource(value = H2DatabaseTestResource.class, restrictToAnnotatedClass = true)

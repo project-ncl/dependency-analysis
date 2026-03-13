@@ -1,8 +1,15 @@
 package org.jboss.da.rest;
 
+import static org.jboss.da.common.Constants.DA_VERSION;
+import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
+
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.info.Info;
 import org.eclipse.microprofile.openapi.annotations.info.License;
@@ -12,12 +19,6 @@ import org.jboss.da.rest.exceptions.AllExceptionsMapper;
 import org.jboss.da.rest.filter.MDCLoggingFilter;
 import org.jboss.da.rest.listings.BlackListImpl;
 import org.jboss.da.rest.reports.Reports;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.jboss.da.common.Constants.DA_VERSION;
-import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
 
 /**
  *

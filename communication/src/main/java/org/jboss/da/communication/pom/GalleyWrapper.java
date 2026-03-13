@@ -1,5 +1,20 @@
 package org.jboss.da.communication.pom;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Queue;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.commonjava.atlas.maven.graph.model.EProjectDirectRelationships;
 import org.commonjava.atlas.maven.graph.rel.DependencyRelationship;
 import org.commonjava.atlas.maven.graph.rel.RelationshipType;
@@ -21,21 +36,6 @@ import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Queue;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  *

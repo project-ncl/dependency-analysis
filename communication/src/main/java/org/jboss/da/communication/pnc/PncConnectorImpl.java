@@ -1,5 +1,13 @@
 package org.jboss.da.communication.pnc;
 
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.ConfigurationParseException;
@@ -13,14 +21,6 @@ import org.jboss.pnc.common.logging.MDCUtils;
 import org.jboss.pnc.dto.response.ArtifactInfo;
 import org.jboss.pnc.enums.RepositoryType;
 import org.slf4j.Logger;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author <a href="mailto:pkocandr@redhat.com">Petr Kocandrle</a>

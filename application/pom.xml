@@ -1,53 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jboss.da</groupId>
-        <artifactId>parent</artifactId>
-        <version>3.2.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>application</artifactId>
-    <name>application</name>
-    <packaging>jar</packaging>
-    <description>Quarkus application for Dependency Analyzer</description>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.jboss.da</groupId>
+    <artifactId>parent</artifactId>
+    <version>3.2.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>application</artifactId>
+  <packaging>jar</packaging>
+  <name>application</name>
+  <description>Quarkus application for Dependency Analyzer</description>
 
-    <properties>
-        <quarkus.package.jar.type>uber-jar</quarkus.package.jar.type>
-    </properties>
+  <properties>
+    <quarkus.package.jar.type>uber-jar</quarkus.package.jar.type>
+  </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.jboss.da</groupId>
-            <artifactId>reports-rest</artifactId>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>org.jboss.da</groupId>
+      <artifactId>reports-rest</artifactId>
+    </dependency>
 
-        <!-- Quarkus extensions -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-config-yaml</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jdbc-postgresql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-openapi</artifactId>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.quarkus</groupId>-->
-<!--            <artifactId>quarkus-oidc</artifactId>-->
-<!--        </dependency>-->
-    </dependencies>
+    <!-- Quarkus extensions -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-config-yaml</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jdbc-postgresql</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
+    </dependency>
+    <!--        <dependency>-->
+    <!--            <groupId>io.quarkus</groupId>-->
+    <!--            <artifactId>quarkus-oidc</artifactId>-->
+    <!--        </dependency>-->
+  </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>io.quarkus.platform</groupId>
-                <artifactId>quarkus-maven-plugin</artifactId>
-                <configuration>
-                    <finalName>dependency-analysis</finalName>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.quarkus.platform</groupId>
+        <artifactId>quarkus-maven-plugin</artifactId>
+        <configuration>
+          <finalName>dependency-analysis</finalName>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

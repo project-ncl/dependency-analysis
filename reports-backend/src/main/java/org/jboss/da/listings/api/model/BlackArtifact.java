@@ -1,6 +1,7 @@
 package org.jboss.da.listings.api.model;
 
 import jakarta.persistence.Entity;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

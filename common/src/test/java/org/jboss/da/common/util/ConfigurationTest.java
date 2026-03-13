@@ -1,5 +1,16 @@
 package org.jboss.da.common.util;
 
+import static org.jboss.da.common.util.Configuration.CONFIG_SYSPROP;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.json.LookupMode;
@@ -7,17 +18,6 @@ import org.jboss.pnc.enums.BuildCategory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
-import static org.jboss.da.common.util.Configuration.CONFIG_SYSPROP;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConfigurationTest {
 

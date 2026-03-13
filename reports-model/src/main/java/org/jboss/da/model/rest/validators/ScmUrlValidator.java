@@ -20,12 +20,13 @@ package org.jboss.da.model.rest.validators;
 
 ///TODOCopied from PNC model rest. Delete this class after NCL-1986 is resolved.
 
-import org.apache.commons.validator.routines.UrlValidator;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
+
+import org.apache.commons.validator.routines.UrlValidator;
 
 /**
  * Author: Michal Szynkiewicz, michal.l.szynkiewicz@gmail.com Date: 3/12/16 Time: 5:01 PM

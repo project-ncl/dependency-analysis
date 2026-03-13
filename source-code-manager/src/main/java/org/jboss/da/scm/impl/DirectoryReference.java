@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.time.Instant;
 import java.util.Optional;
+
 import org.apache.commons.io.FileUtils;
 import org.jboss.da.scm.api.SCM;
 import org.slf4j.Logger;

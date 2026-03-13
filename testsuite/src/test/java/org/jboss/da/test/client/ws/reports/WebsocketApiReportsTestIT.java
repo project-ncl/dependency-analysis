@@ -1,15 +1,13 @@
 package org.jboss.da.test.client.ws.reports;
 
-import io.quarkus.test.junit.QuarkusTest;
-import org.json.JSONException;
-
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.io.IOException;
+import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
 public class WebsocketApiReportsTestIT extends AbstractWebsocketReportsTest {

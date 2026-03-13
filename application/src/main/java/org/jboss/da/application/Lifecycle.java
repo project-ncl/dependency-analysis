@@ -1,9 +1,10 @@
 package org.jboss.da.application;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import io.quarkus.logging.Log;
 import io.quarkus.runtime.Shutdown;
 import io.quarkus.runtime.Startup;
-import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class Lifecycle {

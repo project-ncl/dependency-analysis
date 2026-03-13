@@ -1,9 +1,9 @@
 package org.jboss.da.reports.api;
 
-import org.jboss.da.model.rest.GAV;
-
 import java.util.Collections;
 import java.util.List;
+
+import org.jboss.da.model.rest.GAV;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

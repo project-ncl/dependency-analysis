@@ -2,10 +2,12 @@ package org.jboss.da.reports.model.request;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.jboss.da.model.rest.validators.ScmUrl;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import org.jboss.da.model.rest.validators.ScmUrl;
 
 public class BuiltReportRequest {
 

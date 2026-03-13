@@ -1,10 +1,10 @@
 package org.jboss.da.listings.api.dao;
 
-import org.jboss.da.listings.api.model.GA;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import org.jboss.da.listings.api.model.GA;
 
 public interface GADAO extends GenericDAO<GA> {
 

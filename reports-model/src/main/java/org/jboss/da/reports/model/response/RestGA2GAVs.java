@@ -1,9 +1,9 @@
 package org.jboss.da.reports.model.response;
 
-import org.jboss.da.model.rest.GAV;
-
 import java.util.Set;
 import java.util.TreeSet;
+
+import org.jboss.da.model.rest.GAV;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

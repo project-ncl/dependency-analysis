@@ -1,9 +1,10 @@
 package org.jboss.da.communication.auth.impl;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import org.jboss.da.communication.auth.AuthenticatorService;
-
 import java.util.Optional;
+
+import jakarta.enterprise.context.ApplicationScoped;
+
+import org.jboss.da.communication.auth.AuthenticatorService;
 
 /**
  * To be removed and eventually replaced by Dustin's new PNCAuth Quarkus extension.

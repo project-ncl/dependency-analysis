@@ -1,16 +1,6 @@
 package org.jboss.da.rest.api;
 
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.media.Content;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
-import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.jboss.da.listings.model.rest.ContainsResponse;
-import org.jboss.da.listings.model.rest.RestArtifact;
-import org.jboss.da.listings.model.rest.SuccessResponse;
-import org.jboss.da.model.rest.ErrorMessage;
+import java.util.Collection;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -22,7 +12,17 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.util.Collection;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import org.jboss.da.listings.model.rest.ContainsResponse;
+import org.jboss.da.listings.model.rest.RestArtifact;
+import org.jboss.da.listings.model.rest.SuccessResponse;
+import org.jboss.da.model.rest.ErrorMessage;
 
 /**
  *

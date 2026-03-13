@@ -1,10 +1,10 @@
 package org.jboss.da.products.api;
 
-import org.jboss.da.listings.model.ProductSupportStatus;
-
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+
+import org.jboss.da.listings.model.ProductSupportStatus;
 
 /**
  * Product Provider is used for providing information about products and their artifacts. Each product is defined by its

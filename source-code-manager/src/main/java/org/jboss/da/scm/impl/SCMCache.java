@@ -1,8 +1,5 @@
 package org.jboss.da.scm.impl;
 
-import jakarta.annotation.PreDestroy;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,9 +9,14 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import io.quarkus.scheduler.Scheduled;
+import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import io.quarkus.scheduler.Scheduled;
 
 /**
  *

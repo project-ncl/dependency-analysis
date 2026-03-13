@@ -1,19 +1,19 @@
 package org.jboss.da.communication;
 
-import org.jboss.da.communication.indy.impl.MetadataFileParser;
-import org.jboss.da.communication.indy.model.VersionResponse;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import jakarta.xml.bind.JAXBException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import jakarta.xml.bind.JAXBException;
+
+import org.jboss.da.communication.indy.impl.MetadataFileParser;
+import org.jboss.da.communication.indy.model.VersionResponse;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:matejonnet@gmail.com">Matej Lazar</a>

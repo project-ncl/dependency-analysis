@@ -1,5 +1,9 @@
 package org.jboss.da.reports.api;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -11,10 +15,6 @@ import org.jboss.da.reports.model.request.VersionsNPMRequest;
 import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.reports.model.response.NPMVersionsReport;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  *

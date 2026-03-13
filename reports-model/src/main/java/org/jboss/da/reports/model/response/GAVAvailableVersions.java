@@ -1,8 +1,8 @@
 package org.jboss.da.reports.model.response;
 
-import org.jboss.da.model.rest.GAV;
-
 import java.util.Set;
+
+import org.jboss.da.model.rest.GAV;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

@@ -1,15 +1,39 @@
 package org.jboss.da.reports.impl;
 
-import lombok.Data;
+import static org.jboss.da.listings.model.ProductSupportStatus.SUPERSEDED;
+import static org.jboss.da.listings.model.ProductSupportStatus.SUPPORTED;
+import static org.jboss.da.products.api.Product.UNKNOWN;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.validation.ValidationException;
 
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.maven.scm.ScmException;
 import org.codehaus.plexus.util.StringUtils;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.LookupMode;
+import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
-import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
@@ -55,31 +79,7 @@ import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 import org.slf4j.Logger;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.validation.ValidationException;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
-import static org.jboss.da.listings.model.ProductSupportStatus.SUPERSEDED;
-import static org.jboss.da.listings.model.ProductSupportStatus.SUPPORTED;
-import static org.jboss.da.products.api.Product.UNKNOWN;
+import lombok.Data;
 
 /**
  * The implementation of reports, which provides information about built/not built artifacts/blacklisted artifacts
