@@ -134,13 +134,13 @@ class Translate {
                 .collect(Collectors.toList());
     }
 
-    static AlignReport toAlignReport(Set<AlignmentReportModule> aligmentReport) {
+    static AlignReport toAlignReport(Set<AlignmentReportModule> alignmentReport) {
         AlignReport ret = new AlignReport();
         List<RestGA2RestGAV2VersionProducts> internallyBuilt = ret.getInternallyBuilt();
         List<RestGA2RestGAV2VersionProductsWithDiff> builtInDifferentVersion = ret.getBuiltInDifferentVersion();
         List<RestGA2GAVs> notBuilt = ret.getNotBuilt();
         List<RestGA2GAVs> blacklisted = ret.getBlacklisted();
-        for (AlignmentReportModule module : aligmentReport) {
+        for (AlignmentReportModule module : alignmentReport) {
             List<RestGAV2VersionProducts> ib = toRestGAV2VersionProducts(module.getInternallyBuilt());
             List<RestGAV2VersionProductsWithDiff> dv = toRestGAV2VersionProductsWithDiff(module.getDifferentVersion());
             Set<GAV> nb = module.getNotBuilt();

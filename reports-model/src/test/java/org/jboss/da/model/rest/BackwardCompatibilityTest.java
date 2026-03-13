@@ -36,7 +36,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class BackwardCompatibilityTest {
 
-    private static final String EXPECETD_PATH = "src/test/resources/backwardCompatibilityTest";
+    private static final String EXPECTED_PATH = "src/test/resources/backwardCompatibilityTest";
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -61,7 +61,6 @@ public class BackwardCompatibilityTest {
         wlfill.setPomPath("./pom.xml");
         wlfill.setRevision("master");
         wlfill.setScmUrl("git@github.com:project-ncl/dependency-analysis.git");
-        StringWriter actual = new StringWriter();
 
         compare(wlfill, "WLFill");
     }
@@ -104,11 +103,11 @@ public class BackwardCompatibilityTest {
 
     @Test
     public void testSuccessResponse() throws IOException {
-        SuccessResponse succResponse = new SuccessResponse();
-        succResponse.setMessage("Hello World!");
-        succResponse.setSuccess(true);
+        SuccessResponse response = new SuccessResponse();
+        response.setMessage("Hello World!");
+        response.setSuccess(true);
 
-        compare(succResponse, "SuccessResponse");
+        compare(response, "SuccessResponse");
     }
 
     @Test
@@ -184,7 +183,7 @@ public class BackwardCompatibilityTest {
     private void compare(Object obj, String expectedFile) throws IOException {
         StringWriter actual = new StringWriter();
         mapper.writeValue(actual, obj);
-        Path expectedResponseFile = getJsonResponseFile(EXPECETD_PATH, expectedFile);
+        Path expectedResponseFile = getJsonResponseFile(EXPECTED_PATH, expectedFile);
         String expected = Files.lines(expectedResponseFile).collect(Collectors.joining());
         assertEqualsJson(expected, actual.toString());
     }

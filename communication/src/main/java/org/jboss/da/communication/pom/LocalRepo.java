@@ -76,7 +76,7 @@ public class LocalRepo {
             } catch (FileAlreadyExistsException ex) {
                 log.error(
                         "File already exists. This is because there are multiple file with same "
-                                + "GAV. This ususaly happens when there are pom files in tests and is "
+                                + "GAV. This usually happens when there are pom files in tests and is "
                                 + "harmless in this case.",
                         ex);
             }

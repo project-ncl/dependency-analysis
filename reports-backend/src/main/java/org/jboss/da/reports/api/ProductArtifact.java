@@ -10,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 /**
- * Class reprpresenting artifact and product where this artifact is whitelisted.
- * 
+ * Class representing artifact and product where this artifact is whitelisted.
+ *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @RequiredArgsConstructor
