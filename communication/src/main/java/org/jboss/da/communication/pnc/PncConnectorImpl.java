@@ -14,8 +14,8 @@ import org.jboss.pnc.dto.response.ArtifactInfo;
 import org.jboss.pnc.enums.RepositoryType;
 import org.slf4j.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -53,8 +53,8 @@ public class PncConnectorImpl implements PncConnector {
                     repoType,
                     mode.getBuildCategories());
         } catch (RemoteResourceException ex) {
-            log.debug("Error when reading artifacts from PNC: " + ex, ex);
-            throw new RepositoryException("Error when reading artifacts from PNC: " + ex, ex);
+            log.error("Caught error when reading artifacts from PNC from {}", globalConfig.getPncUrl(), ex);
+            throw new RepositoryException("Error when reading artifacts from PNC from " + globalConfig.getPncUrl(), ex);
         }
         return artCollection.getAll();
     }

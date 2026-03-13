@@ -9,13 +9,13 @@ public enum SCMType {
 
     private final String provider;
 
-    private SCMType(String provider) {
+    SCMType(String provider) {
         this.provider = provider;
     }
 
     /**
      * Returns provided url in Maven SCM format.
-     * 
+     *
      * @param url
      * @return
      */

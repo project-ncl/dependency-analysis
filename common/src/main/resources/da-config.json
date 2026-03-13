@@ -5,7 +5,7 @@
     {
       "@module-group": "global",
       "indyUrl": "",
-      "cartographerUrl": ""
+      "pncUrl": ""
     },
     {
       "@module-group": "pnc",

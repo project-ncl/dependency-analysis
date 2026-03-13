@@ -4,23 +4,23 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class GetPomTest {
 
     @Spy
@@ -44,7 +44,7 @@ public class GetPomTest {
     private final static String SCM_REVISION = "0.4";
 
     @Test
-    public void testGetPom1() throws CommunicationException, FileNotFoundException {
+    public void testGetPom1() throws FileNotFoundException {
         File file = new File(getClass().getClassLoader().getResource("pom/test1.xml").getFile());
         MavenProject pom;
 
@@ -58,7 +58,7 @@ public class GetPomTest {
     }
 
     @Test
-    public void testGetPom2() throws CommunicationException, FileNotFoundException {
+    public void testGetPom2() {
         File file = new File(getClass().getClassLoader().getResource("pom/test2.xml").getFile());
         MavenProject pom;
 

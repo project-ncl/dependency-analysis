@@ -4,8 +4,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
@@ -29,10 +29,10 @@ import java.util.Set;
 public class SCMConnectorImpl implements SCMConnector {
 
     @Inject
-    private SCM scmManager;
+    SCM scmManager;
 
     @Inject
-    private PomAnalyzer pomAnalyzer;
+    PomAnalyzer pomAnalyzer;
 
     @Override
     public GAVDependencyTree getDependencyTreeOfRevision(String scmUrl, String revision, GAV gav)

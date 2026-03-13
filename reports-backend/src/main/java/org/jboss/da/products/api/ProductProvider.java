@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * Product Provider is used for providing information about products and their artifacts. Each product is defined by its
- * name and version and can have differen level of support.
+ * name and version and can have different level of support.
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */

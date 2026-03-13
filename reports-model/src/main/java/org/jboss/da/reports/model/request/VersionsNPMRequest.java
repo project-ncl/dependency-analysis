@@ -17,7 +17,7 @@ package org.jboss.da.reports.model.request;
 
 import org.jboss.da.model.rest.NPMPackage;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -42,15 +42,15 @@ public class VersionsNPMRequest {
         MAJOR_MINOR
     }
 
-    private final VersionFilter versionFilter;
+    VersionFilter versionFilter;
 
     @NotNull
-    private final String mode;
+    String mode;
 
     @NonNull
-    private final List<NPMPackage> packages;
+    List<NPMPackage> packages;
 
-    private final boolean includeAll;
+    boolean includeAll;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonPOJOBuilder(withPrefix = "")

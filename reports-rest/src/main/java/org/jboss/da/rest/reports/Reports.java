@@ -2,14 +2,23 @@ package org.jboss.da.rest.reports;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.inject.Inject;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 import org.apache.maven.scm.ScmException;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.model.request.AlignReportRequest;
@@ -29,16 +38,6 @@ import org.jboss.da.rest.facade.ReportsFacade;
 import org.jboss.da.validation.ValidationException;
 import org.slf4j.Logger;
 
-import javax.inject.Inject;
-import javax.validation.Valid;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
 import java.util.List;
 
 /**
@@ -54,15 +53,15 @@ import java.util.List;
 public class Reports {
 
     @Inject
-    private Logger log;
+    Logger log;
 
     @Inject
-    private ReportsFacade facade;
+    ReportsFacade facade;
 
     @POST
     @Path("/scm")
     @Operation(summary = "Get dependency report for a project specified in a repository URL.")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = Report.class)))
+    @APIResponse(content = @Content(schema = @Schema(implementation = Report.class)))
     @WithSpan()
     public Response scmGenerator(
             @SpanAttribute(value = "request") @Parameter(description = "scm information") SCMReportRequest request)
@@ -73,7 +72,7 @@ public class Reports {
     @POST
     @Path("/scm-advanced")
     @Operation(summary = "Get dependency report for a project specified in a repository URL.")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = AdvancedReport.class)))
+    @APIResponse(content = @Content(schema = @Schema(implementation = AdvancedReport.class)))
     @WithSpan()
     public Response advancedScmGenerator(
             @SpanAttribute(value = "request") @Parameter(description = "scm information") SCMReportRequest request)
@@ -88,8 +87,8 @@ public class Reports {
             summary = "Lookup built versions for the list of provided GAVs.",
             deprecated = true,
             description = "DEPRECATED: use /lookup/maven endpoint instead.")
-    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = LookupReport.class))))
-    @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
+    @APIResponse(content = @Content(schema = @Schema(type = SchemaType.ARRAY, implementation = LookupReport.class)))
+    @APIResponse(responseCode = "502", description = "Communication with remote repository failed")
     @Tag(name = "deprecated")
     @Valid
     @WithSpan()
@@ -109,8 +108,8 @@ public class Reports {
             summary = "Lookup built versions for the list of provided NPM artifacts.",
             deprecated = true,
             description = "DEPRECATED: use /lookup/npm endpoint instead.")
-    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMLookupReport.class))))
-    @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
+    @APIResponse(content = @Content(schema = @Schema(type = SchemaType.ARRAY, implementation = NPMLookupReport.class)))
+    @APIResponse(responseCode = "502", description = "Communication with remote repository failed")
     @Tag(name = "deprecated")
     @Valid
     @WithSpan()
@@ -127,8 +126,9 @@ public class Reports {
     @POST
     @Path("/versions/npm")
     @Operation(summary = "Lookup and filter versions for the list of provided NPM artifacts.")
-    @ApiResponse(content = @Content(array = @ArraySchema(schema = @Schema(implementation = NPMVersionsReport.class))))
-    @ApiResponse(responseCode = "502", description = "Communication with remote repository failed")
+    @APIResponse(
+            content = @Content(schema = @Schema(type = SchemaType.ARRAY, implementation = NPMVersionsReport.class)))
+    @APIResponse(responseCode = "502", description = "Communication with remote repository failed")
     @Valid
     @WithSpan()
     public Response versionsNPM(
@@ -144,7 +144,7 @@ public class Reports {
     @POST
     @Path("/align")
     @Operation(summary = "Get alignment report for project specified in a repository URL.")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = AlignReport.class)))
+    @APIResponse(content = @Content(schema = @Schema(implementation = AlignReport.class)))
     @WithSpan()
     public Response alignReport(@SpanAttribute(value = "request") AlignReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {
@@ -156,7 +156,7 @@ public class Reports {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Get built artifacts for project specified in a repository URL.")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = BuiltReport.class)))
+    @APIResponse(content = @Content(schema = @Schema(implementation = BuiltReport.class)))
     @WithSpan()
     public Response builtReport(@SpanAttribute(value = "request") BuiltReportRequest request)
             throws ScmException, PomAnalysisException, CommunicationException, ValidationException {

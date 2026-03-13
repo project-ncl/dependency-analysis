@@ -10,8 +10,8 @@ import org.jboss.da.communication.pom.GalleyWrapper;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -32,7 +32,7 @@ import java.io.Serializable;
 public class DependencyTreeBuilder {
 
     @Inject
-    private Logger log;
+    Logger log;
 
     /**
      * Transforms DependencyRelationships into GAVDependencyTree.

@@ -1,21 +1,22 @@
 package org.jboss.da.reports.model.response;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
 import org.jboss.da.reports.model.request.VersionsNPMRequest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.stream.Collectors;
-import static org.assertj.core.api.Assertions.*;
+
 import static org.jboss.da.reports.model.request.VersionsNPMRequest.VersionFilter.MAJOR_MINOR;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class DeserializationTest {
 
@@ -30,9 +31,9 @@ public class DeserializationTest {
         ObjectMapper mapper = new ObjectMapper();
         LookupReport reported = mapper.readValue(content, LookupReport.class);
 
-        assertThat(reported.getGav()).isNotNull();
-        assertThat(reported.getGav().getArtifactId()).isEqualTo("xom");
-        assertThat(reported.getGav().getVersion()).isEqualTo("1.2.5");
+        assertNotNull(reported.getGav());
+        assertEquals("xom", reported.getGav().getArtifactId());
+        assertEquals("1.2.5", reported.getGav().getVersion());
     }
 
     @Test
@@ -44,9 +45,9 @@ public class DeserializationTest {
         ObjectMapper mapper = new ObjectMapper();
         MavenLookupResult reported = mapper.readValue(content, MavenLookupResult.class);
 
-        assertThat(reported.getGav()).isNotNull();
-        assertThat(reported.getGav().getArtifactId()).isEqualTo("xom");
-        assertThat(reported.getGav().getVersion()).isEqualTo("1.2.5");
+        assertNotNull(reported.getGav());
+        assertEquals("xom", reported.getGav().getArtifactId());
+        assertEquals("1.2.5", reported.getGav().getVersion());
     }
 
     @Test
@@ -57,8 +58,8 @@ public class DeserializationTest {
 
         ObjectMapper mapper = new ObjectMapper();
         NPMLookupReport reported = mapper.readValue(content, NPMLookupReport.class);
-        assertThat(reported.getNpmPackage()).isNotNull();
-        assertThat(reported.getNpmPackage().getVersion()).isEqualTo("1.2.3");
+        assertNotNull(reported.getNpmPackage());
+        assertEquals("1.2.3", reported.getNpmPackage().getVersion());
     }
 
     @Test
@@ -69,8 +70,8 @@ public class DeserializationTest {
 
         ObjectMapper mapper = new ObjectMapper();
         NPMLookupResult reported = mapper.readValue(content, NPMLookupResult.class);
-        assertThat(reported.getNpmPackage()).isNotNull();
-        assertThat(reported.getNpmPackage().getVersion()).isEqualTo("1.2.3");
+        assertNotNull(reported.getNpmPackage());
+        assertEquals("1.2.3", reported.getNpmPackage().getVersion());
     }
 
     @Test
@@ -80,12 +81,12 @@ public class DeserializationTest {
 
         ObjectMapper mapper = new ObjectMapper();
         VersionsNPMRequest request = mapper.readValue(content, VersionsNPMRequest.class);
-        assertThat(request.getMode()).isEqualTo("FOO");
-        assertThat(request.getVersionFilter()).isEqualTo(MAJOR_MINOR);
-        assertThat(request.getPackages()).hasSize(1);
-        assertThat(request.getPackages().get(0).getName()).isEqualTo("abab");
-        assertThat(request.getPackages().get(0).getVersion()).isEqualTo("1.2.3");
-        assertThat(request.isIncludeAll()).isFalse();
+        assertEquals("FOO", request.getMode());
+        assertEquals(MAJOR_MINOR, request.getVersionFilter());
+        assertEquals(1, request.getPackages().size());
+        assertEquals("abab", request.getPackages().get(0).getName());
+        assertEquals("1.2.3", request.getPackages().get(0).getVersion());
+        assertFalse(request.isIncludeAll());
     }
 
     protected Path getJsonResponseFile(String path, String variant) {

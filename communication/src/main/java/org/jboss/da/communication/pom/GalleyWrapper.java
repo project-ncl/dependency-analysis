@@ -17,6 +17,7 @@ import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +27,11 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
@@ -184,7 +187,7 @@ public class GalleyWrapper implements AutoCloseable {
 
         return allDirectDependencies.stream()
                 .map(GalleyWrapper::generateGAV)
-                .filter(x -> x != null)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
     }
 
@@ -212,11 +215,11 @@ public class GalleyWrapper implements AutoCloseable {
                 .map(pomReader::analyze) // parse pom file
                 .filter(Optional::isPresent)
                 .map(Optional::get) // filter sucessfuly parsed
-                .map(p -> p.getMavenRepositories())
-                .filter(r -> r != null) // get <repositories>
-                .flatMap(r -> r.stream()) // stream of <repository>
+                .map(MavenProject::getMavenRepositories)
+                .filter(Objects::nonNull) // get <repositories>
+                .flatMap(Collection::stream) // stream of <repository>
                 .map(r -> new SimpleLocation(r.getId(), r.getUrl()))
-                .forEach(l -> locations.add(l));
+                .forEach(locations::add);
     }
 
     /**
@@ -236,7 +239,7 @@ public class GalleyWrapper implements AutoCloseable {
     }
 
     @Override
-    public void close() {
+    public void close() throws IOException {
         localRepo.delete();
     }
 
@@ -274,8 +277,7 @@ public class GalleyWrapper implements AutoCloseable {
 
         URI src = localRepo.getUri();
 
-        Queue<DependencyRelationship> work = new LinkedList<>();
-        work.addAll(getDeps(artifact.ref, processor, src, disConf));
+        Queue<DependencyRelationship> work = new LinkedList<>(getDeps(artifact.ref, processor, src, disConf));
 
         while (!work.isEmpty()) {
             DependencyRelationship dr = work.remove();
@@ -321,21 +323,12 @@ public class GalleyWrapper implements AutoCloseable {
      * @return
      */
     public static boolean shouldAnalyzeDependencies(DependencyRelationship dr, boolean testDeps, boolean providedDeps) {
-        switch (dr.getScope()) {
-            case _import:
-            case embedded:
-            case system:
-            case toolchain:
-                return false;
-            case test:
-                return testDeps;
-            case provided:
-                return providedDeps;
-            case compile:
-            case runtime:
-            default:
-                return true;
-        }
+        return switch (dr.getScope()) {
+            case _import, embedded, system, toolchain -> false;
+            case test -> testDeps;
+            case provided -> providedDeps;
+            default -> true;
+        };
     }
 
     private static GAV generateGAV(MavenGAVView dep) {

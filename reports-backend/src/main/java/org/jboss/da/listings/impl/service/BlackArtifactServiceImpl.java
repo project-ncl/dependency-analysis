@@ -2,8 +2,8 @@ package org.jboss.da.listings.impl.service;
 
 import java.util.Optional;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
@@ -32,10 +32,10 @@ import org.jboss.pnc.common.version.VersionParser;
 public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact> implements BlackArtifactService {
 
     @Inject
-    private BlackArtifactDAO blackArtifactDAO;
+    BlackArtifactDAO blackArtifactDAO;
 
     @Inject
-    private GADAO gaDAO;
+    GADAO gaDAO;
 
     @Override
     protected ArtifactDAO<BlackArtifact> getDAO() {

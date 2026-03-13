@@ -7,20 +7,26 @@
     </parent>
     <artifactId>common</artifactId>
     <name>common</name>
-    <packaging>ejb</packaging>
+    <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>org.jboss.da</groupId>
             <artifactId>reports-model</artifactId>
-            <type>ejb</type>
         </dependency>
 
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <scope>provided</scope>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.jboss.pnc</groupId>
+            <artifactId>constants</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -28,77 +34,21 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.pnc</groupId>
-            <artifactId>constants</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>jakarta.enterprise.cdi-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.spec.javax.ejb</groupId>
-            <artifactId>jboss-ejb-api_3.2_spec</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.spec.javax.annotation</groupId>
-            <artifactId>jboss-annotations-api_1.3_spec</artifactId>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-junit5</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-ejb-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifestEntries combine.children="append">
-                                <Dependencies>
-                                    org.apache.httpcomponents export meta-inf
-                                </Dependencies>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
         <plugins>
+            <plugin>
+                <groupId>io.smallrye</groupId>
+                <artifactId>jandex-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>pl.project13.maven</groupId>
                 <artifactId>git-commit-id-plugin</artifactId>
-                <version>2.2.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                    </execution>
-                </executions>
-
-                <configuration>
-                    <!--
-                      If you'd like to tell the plugin where your .git directory is,
-                      use this setting, otherwise we'll perform a search trying to
-                      figure out the right directory. It's better to add it explicite IMHO.
-                    -->
-                    <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-
-                    <!-- false is default here, it prints some more information during the build -->
-                    <verbose>true</verbose>
-
-                </configuration>
             </plugin>
 
             <plugin>

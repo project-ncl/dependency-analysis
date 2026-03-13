@@ -2,9 +2,8 @@ package org.jboss.da.listings.impl.dao;
 
 import static java.util.Objects.requireNonNull;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 
 import org.jboss.da.common.logging.AuditLogger;
 import org.jboss.da.listings.api.dao.GenericDAO;
@@ -15,7 +14,7 @@ import org.jboss.da.listings.api.model.GenericEntity;
  */
 public abstract class GenericDAOImpl<T extends GenericEntity> implements GenericDAO<T> {
 
-    @PersistenceContext(unitName = "relationdbPU")
+    @Inject
     protected EntityManager em;
 
     protected final Class<T> type;

@@ -46,7 +46,7 @@ public class GAVDependencyTree implements Comparable<GAVDependencyTree> {
         Map<GAV, Set<GAVDependencyTree>> candidates = forest.entrySet()
                 .stream()
                 .filter(e -> e.getValue().size() > 1)
-                .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         int previous;
         do {
@@ -70,9 +70,7 @@ public class GAVDependencyTree implements Comparable<GAVDependencyTree> {
         while (!bfsQueue.isEmpty()) {
             GAVDependencyTree t = bfsQueue.poll();
             reverseLevelOrder.push(t);
-            for (GAVDependencyTree d : t.dependencies) {
-                bfsQueue.add(d);
-            }
+            bfsQueue.addAll(t.dependencies);
         }
         while (!reverseLevelOrder.isEmpty()) {
             GAVDependencyTree t = reverseLevelOrder.pop();

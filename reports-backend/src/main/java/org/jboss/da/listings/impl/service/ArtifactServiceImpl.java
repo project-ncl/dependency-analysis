@@ -8,14 +8,14 @@ import org.jboss.da.listings.api.model.User;
 import org.jboss.da.listings.api.service.ArtifactService;
 import org.jboss.pnc.common.version.VersionParser;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import java.util.List;
 
 import static org.jboss.da.reports.impl.ReportsGeneratorImpl.DEFAULT_SUFFIX;
 
 /**
- * 
+ *
  * @author Jozef Mrazek &lt;jmrazek@redhat.com&gt;
  * @author Jakub Bartecek &lt;jbartece@redhat.com&gt;
  *
@@ -28,7 +28,7 @@ public abstract class ArtifactServiceImpl<T extends Artifact> implements Artifac
     AuthenticatorService auth;
 
     @Inject
-    private UserDAO users;
+    UserDAO users;
 
     protected abstract ArtifactDAO<T> getDAO();
 

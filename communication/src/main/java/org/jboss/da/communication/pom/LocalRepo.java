@@ -1,5 +1,6 @@
 package org.jboss.da.communication.pom;
 
+import org.apache.commons.io.FileUtils;
 import org.commonjava.atlas.maven.ident.ref.ProjectVersionRef;
 import org.commonjava.maven.galley.TransferException;
 import org.commonjava.maven.galley.maven.parse.PomPeek;
@@ -7,7 +8,6 @@ import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.commonjava.maven.galley.maven.util.ArtifactPathUtils;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
-import org.jboss.da.common.util.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,7 +97,7 @@ public class LocalRepo {
                 .collect(Collectors.toSet());
     }
 
-    protected void delete() {
+    protected void delete() throws IOException {
         File f;
         synchronized (this) {
             f = path.toFile();

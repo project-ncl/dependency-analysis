@@ -5,11 +5,10 @@ import org.jboss.da.communication.pnc.PncConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.products.impl.PncProductProvider.Pnc;
 
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Qualifier;
+import jakarta.transaction.Transactional;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Qualifier;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -26,12 +25,12 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @author <a href="mailto:pkocandr@redhat.com">Petr Kocandrle</a>
  */
 @Pnc
-@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+@Transactional(Transactional.TxType.NOT_SUPPORTED)
 @RequestScoped
 public class PncProductProvider extends AbstractProductProvider {
 
     @Inject
-    private PncConnector pncConnector;
+    PncConnector pncConnector;
 
     @Override
     Stream<String> getVersionsStreamMaven(GA ga) {
@@ -65,7 +64,7 @@ public class PncProductProvider extends AbstractProductProvider {
     @Qualifier
     @Retention(RUNTIME)
     @Target({ TYPE, METHOD, FIELD, PARAMETER })
-    public static @interface Pnc {
+    public @interface Pnc {
     }
 
 }

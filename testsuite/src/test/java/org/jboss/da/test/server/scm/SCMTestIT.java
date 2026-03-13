@@ -1,14 +1,15 @@
 package org.jboss.da.test.server.scm;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import io.quarkus.test.junit.QuarkusTest;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.scm.api.SCMType;
 import org.jboss.da.scm.impl.ScmFacade;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -19,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+@QuarkusTest
 public class SCMTestIT {
 
     private void testDaGitClone(String scmUrl) throws Exception {
@@ -51,7 +53,7 @@ public class SCMTestIT {
     }
 
     @Test
-    @Ignore("Github discontinued support for git://")
+    @Disabled("Github discontinued support for git://")
     public void shouldCloneGitRepository_Git() throws Exception {
         testDaGitClone("git://github.com/project-ncl/dependency-analysis.git");
     }
@@ -110,7 +112,7 @@ public class SCMTestIT {
         }
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void shouldCloneSvnRepository() throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_svn_checkout");
