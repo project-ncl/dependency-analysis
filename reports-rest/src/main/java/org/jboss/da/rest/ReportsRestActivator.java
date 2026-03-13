@@ -31,7 +31,7 @@ import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
                 title = "Dependency Analyzer",
                 license = @License(name = "Apache 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0.html"),
                 version = DA_VERSION),
-        servers = { @Server(url = "/da", description = "Dependency Analyzer") },
+        servers = { @Server(url = "/", description = "Dependency Analyzer") },
         tags = {
                 @Tag(name = "lookup", description = "Lookup of artifact versions."),
                 @Tag(name = "blocklist", description = "Listings of blocklisted artifacts"),
@@ -39,25 +39,9 @@ import static org.jboss.da.common.Constants.REST_API_VERSION_REPORTS;
                 @Tag(name = "deprecated", description = "Deprecated endpoints.") })
 public class ReportsRestActivator extends Application {
 
-    // @Context
-    // private ServletConfig servletConfig;
-
-    // @PostConstruct
-    // public void init() {
-    // configureSwagger();
-    // }
-
-    /*
-     * private void configureSwagger() { try { var builder = new JaxrsOpenApiContextBuilder().application(this)
-     * .resourcePackages(Collections.singleton("org.jboss.da.rest")); if (servletConfig != null) {
-     * builder.servletConfig(servletConfig); } builder.buildContext(true); } catch (OpenApiConfigurationException ex) {
-     * throw new IllegalArgumentException("Failed to setup OpenAPI configuration", ex); } }
-     */
-
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new HashSet<>();
-        // addSwaggerResources(resources);
         addProjectResources(resources);
         addMetricsResources(resources);
         addExceptionMappers(resources);
@@ -66,16 +50,9 @@ public class ReportsRestActivator extends Application {
     }
 
     /**
-     * Swagger classes required to generate the API JSON generation
-     *
-     * @param resources public void addSwaggerResources(Set<Class<?>> resources) { resources.add(OpenApiResource.class);
-     *        }
-     */
-
-    /**
      * Add all JAX-RS classes here to get activated!
      *
-     * @param resources
+     * @param resources Resource to be added
      */
     public void addProjectResources(Set<Class<?>> resources) {
         resources.add(Root.class);

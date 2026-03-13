@@ -29,7 +29,7 @@ public class RestApiIndexTestIT extends AbstractRestReportsTest {
                 + DA_VERSION + "</li>" + "\n" + "<ul><li><strong>Commit Hash:</strong> " + COMMIT_HASH + "</li>" + "\n"
                 + "<li><strong>BC REST API Version:</strong> " + REST_API_VERSION_BC + "</li>" + "\n"
                 + "<li><strong>Reports REST API Version:</strong> " + REST_API_VERSION_REPORTS + "</li>" + "\n"
-                + "<li><a href=\"../doc\">Swagger documentation</a></li>" + "\n"
+                + "<li><a href=\"../../q/openapi\">Swagger documentation</a></li>" + "\n"
                 + "<li><strong>REST proposal documentation:</strong> <a href=\"https://docs.engineering.redhat.com/display/JP/REST+endpoints+proposal\">https://docs.engineering.redhat.com/display/JP/REST+endpoints+proposal</a></li></ul>";
     }
 
