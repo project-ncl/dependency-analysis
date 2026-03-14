@@ -91,7 +91,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <jboss.bom.version>7.4.3.GA</jboss.bom.version>
-        <mvn-scm.version>1.11.2</mvn-scm.version>
+        <mvn-scm.version>2.2.1</mvn-scm.version>
         <corsUrlPattern>/*</corsUrlPattern>
 
         <!-- OTEL Dependencies for Instrumentation -->
