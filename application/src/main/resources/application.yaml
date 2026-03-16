@@ -2,6 +2,11 @@ quarkus:
   http:
     enable-compression: true
     enable-decompression: true
+
+    # Add CORS
+    cors:
+      enabled: true
+      origins: "/.*/"
   swagger-ui:
     always-include: true
   websocket:
