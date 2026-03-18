@@ -8,7 +8,6 @@ import org.commonjava.cdi.util.weft.config.WeftConfig;
 import org.commonjava.maven.galley.auth.MemoryPasswordManager;
 import org.commonjava.maven.galley.cache.partyline.PartyLineCacheProvider;
 import org.commonjava.maven.galley.config.TransportManagerConfig;
-import org.commonjava.maven.galley.config.TransportMetricConfig;
 import org.commonjava.maven.galley.event.NoOpFileEventManager;
 import org.commonjava.maven.galley.filearc.FileTransportConfig;
 import org.commonjava.maven.galley.io.HashedLocationPathGenerator;
@@ -20,7 +19,6 @@ import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.commonjava.maven.galley.maven.spi.defaults.MavenPluginDefaults;
 import org.commonjava.maven.galley.maven.spi.defaults.MavenPluginImplications;
-import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.nfc.MemoryNotFoundCache;
 import org.commonjava.maven.galley.proxy.NoOpProxySitesCache;
 import org.commonjava.maven.galley.spi.auth.PasswordManager;
@@ -30,11 +28,8 @@ import org.commonjava.maven.galley.spi.nfc.NotFoundCache;
 import org.commonjava.maven.galley.spi.proxy.ProxySitesCache;
 import org.commonjava.maven.galley.spi.transport.LocationExpander;
 import org.commonjava.maven.galley.transport.NoOpLocationExpander;
-import org.commonjava.maven.galley.transport.htcli.Http;
-import org.commonjava.maven.galley.transport.htcli.HttpImpl;
 import org.commonjava.maven.galley.transport.htcli.conf.GlobalHttpConfiguration;
 import org.commonjava.maven.galley.transport.htcli.conf.GlobalProxyConfig;
-import org.commonjava.o11yphant.metrics.api.MetricRegistry;
 import org.commonjava.util.partyline.Partyline;
 
 import java.io.File;
@@ -54,22 +49,6 @@ public class GalleyMavenProducer {
     private GlobalHttpConfiguration globalHttpConfiguration;
 
     private PathGenerator pathGenerator;
-
-    private final TransportMetricConfig transportMetricConfig = new TransportMetricConfig() {
-        public boolean isEnabled() {
-            return false;
-        }
-
-        @Override
-        public String getNodePrefix() {
-            return null;
-        }
-
-        @Override
-        public String getMetricUniqueName(Location location) {
-            return null;
-        }
-    };
 
     @PostConstruct
     void init() {
@@ -129,11 +108,6 @@ public class GalleyMavenProducer {
     }
 
     @Produces
-    public Http getHttp() {
-        return new HttpImpl(getPasswordManager());
-    }
-
-    @Produces
     public PasswordManager getPasswordManager() {
         return new MemoryPasswordManager();
     }
@@ -156,11 +130,6 @@ public class GalleyMavenProducer {
     @Produces
     public GlobalHttpConfiguration getGlobalHttpConfiguration() {
         return globalHttpConfiguration;
-    }
-
-    @Produces
-    public TransportMetricConfig getTransportMetricConfig() {
-        return transportMetricConfig;
     }
 
     @Produces
@@ -201,11 +170,6 @@ public class GalleyMavenProducer {
     @Produces
     public ProxySitesCache getProxySitesCache() {
         return new NoOpProxySitesCache();
-    }
-
-    @Produces
-    public MetricRegistry getMetricRegistry() {
-        return null;
     }
 
     // Only appears to be used by GalleyWrapperTestIT
