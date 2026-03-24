@@ -91,7 +91,7 @@
     <quarkus.platform.version>3.21.4</quarkus.platform.version>
     <quarkus.wiremock>1.5.3</quarkus.wiremock>
 
-    <mvn-scm.version>1.11.2</mvn-scm.version>
+    <mvn-scm.version>2.2.1</mvn-scm.version>
     <corsUrlPattern>/*</corsUrlPattern>
 
     <!-- OTEL Dependencies for Instrumentation -->
