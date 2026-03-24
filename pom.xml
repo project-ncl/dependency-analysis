@@ -156,6 +156,12 @@
         <artifactId>pnc-api</artifactId>
         <version>${version.pnc-api}</version>
         <classifier>jakarta</classifier>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.jboss.pnc</groupId>
@@ -163,13 +169,10 @@
         <version>${version.pnc-common}</version>
         <classifier>jakarta</classifier>
         <exclusions>
+          <!-- it's bringing in the non-jakarta pnc. yuck! -->
           <exclusion>
             <groupId>org.jboss.pnc</groupId>
-            <artifactId>pnc-api</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>org.jboss.pnc</groupId>
-            <artifactId>pnc-api-constants</artifactId>
+            <artifactId>*</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -182,11 +185,12 @@
         <groupId>org.jboss.pnc</groupId>
         <artifactId>common</artifactId>
         <version>${version.pnc}</version>
+        <classifier>jakarta</classifier>
         <exclusions>
-          <!-- it's bringing in the non-jakarta pnc-api. yuck! -->
+          <!-- it's bringing in the non-jakarta pnc. yuck! -->
           <exclusion>
             <groupId>org.jboss.pnc</groupId>
-            <artifactId>pnc-api</artifactId>
+            <artifactId>*</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -194,11 +198,12 @@
         <groupId>org.jboss.pnc</groupId>
         <artifactId>dto</artifactId>
         <version>${version.pnc}</version>
+        <classifier>jakarta</classifier>
         <exclusions>
-          <!-- it's bringing in the non-jakarta pnc-api. yuck! -->
+          <!-- it's bringing in the non-jakarta pnc. yuck! -->
           <exclusion>
             <groupId>org.jboss.pnc</groupId>
-            <artifactId>pnc-api</artifactId>
+            <artifactId>*</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -222,7 +227,13 @@
       <dependency>
         <groupId>commons-validator</groupId>
         <artifactId>commons-validator</artifactId>
-        <version>1.5.1</version>
+        <version>1.10.1</version>
+        <exclusions>
+          <exclusion>
+            <groupId>*</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.keycloak</groupId>
@@ -310,16 +321,6 @@
           <exclusion>
             <groupId>org.commonjava.maven.galley</groupId>
             <artifactId>*</artifactId>
-          </exclusion>
-          <!-- Avoid dragging in all of o11yphant -->
-          <!-- Keeping o11yphant-metrics-api & o11yphant-trace-api for GalleyMavenProducer -->
-          <exclusion>
-            <groupId>org.commonjava.util</groupId>
-            <artifactId>o11yphant-trace-core</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>org.commonjava.util</groupId>
-            <artifactId>o11yphant-trace-helper-jhttpc</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
