@@ -27,12 +27,7 @@
     <dependency>
       <groupId>org.jboss.pnc</groupId>
       <artifactId>common</artifactId>
-      <!--            <exclusions>-->
-      <!--                <exclusion>-->
-      <!--                    <groupId>org.commonjava.atlas</groupId>-->
-      <!--                    <artifactId>atlas-identities</artifactId>-->
-      <!--                </exclusion>-->
-      <!--            </exclusions>-->
+      <classifier>jakarta</classifier>
     </dependency>
     <dependency>
       <groupId>org.jboss.pnc</groupId>
@@ -43,12 +38,6 @@
       <groupId>org.jboss.pnc</groupId>
       <artifactId>rest-client-jakarta</artifactId>
     </dependency>
-
-    <!-- Jakarta XML Binding (used for Maven metadata / POM parsing) -->
-    <!--        <dependency>-->
-    <!--            <groupId>jakarta.xml.bind</groupId>-->
-    <!--            <artifactId>jakarta.xml.bind-api</artifactId>-->
-    <!--        </dependency>-->
 
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
