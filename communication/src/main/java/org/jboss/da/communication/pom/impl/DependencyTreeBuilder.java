@@ -17,7 +17,6 @@ import org.commonjava.atlas.maven.ident.ref.ArtifactRef;
 import org.commonjava.atlas.maven.ident.ref.ProjectRef;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.GalleyWrapper;
-import org.jboss.da.model.rest.DummyVersionComparator;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 
@@ -182,7 +181,7 @@ public class DependencyTreeBuilder {
                 ret = target1.getArtifactId().compareTo(target2.getArtifactId());
             }
             if (ret == 0) {
-                ret = DummyVersionComparator.compareVersions(target1.getVersionString(), target2.getVersionString());
+                ret = GAV.compareVersions(target1.getVersionString(), target2.getVersionString());
 
             }
             if (ret == 0) {
