@@ -26,12 +26,9 @@ quarkus:
     console:
       format: "%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c{3.}] (%t) %s%e%n"
       json:
-        ~: false
+        enabled: false
         exception-output-type: formatted
     category:
       "org.jboss.pnc":
         level: DEBUG
-      "com.arjuna.ats.jta":
-        # Set to WARN if you want to see all the exceptions
-        level: ERROR
     level: INFO
