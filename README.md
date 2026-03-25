@@ -1,9 +1,5 @@
 # Dependency-analysis
 
-## Dependency analyzer CLI
-  - You can found the CLI in **cli-wrap/** folder
-  - Documentation for CLI can be found here: http://project-ncl.github.io/dependency-analysis/users-documentation.html
-
 ## Build a project
   - mvn clean package
 

@@ -67,7 +67,6 @@
     <module>reports-backend</module>
     <module>reports-rest</module>
     <module>application</module>
-    <module>cli-wrap</module>
     <module>testsuite</module>
   </modules>
 
