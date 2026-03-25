@@ -4,6 +4,8 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "org.apache.maven.scm:*" # don't touch this, it causes test failures
 
   - package-ecosystem: "github-actions" # Also update Github actions
     directory: "/"
