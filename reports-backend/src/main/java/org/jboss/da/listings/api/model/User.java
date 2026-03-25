@@ -1,6 +1,5 @@
 package org.jboss.da.listings.api.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import lombok.AccessLevel;
@@ -27,11 +26,4 @@ public class User extends GenericEntity {
     @Getter
     @NonNull
     private String username;
-
-    @Setter
-    @Getter
-    @NonNull
-    @Column(unique = true)
-    private String keycloakId;
-
 }
