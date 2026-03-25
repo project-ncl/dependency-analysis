@@ -26,7 +26,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.validation.ValidationException;
 
-import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.maven.scm.ScmException;
 import org.codehaus.plexus.util.StringUtils;
 import org.jboss.da.common.CommunicationException;
