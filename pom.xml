@@ -83,7 +83,7 @@
     <version.bc.rest>1</version.bc.rest>
     <version.pnc>3.4.2</version.pnc>
     <version.pnc-common>3.4.1-SNAPSHOT</version.pnc-common>
-    <version.pnc-api>3.4.2</version.pnc-api>
+    <version.pnc-api>3.4.3</version.pnc-api>
     <atlasVersion>1.2.1</atlasVersion>
     <version.galley>1.22-SNAPSHOT</version.galley>
     <maven.compiler.source>17</maven.compiler.source>
