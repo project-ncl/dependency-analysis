@@ -1,77 +1,42 @@
 # Dependency-analysis
 
-## Build a project
-  - mvn clean package
+This project is a service, which provides information about built artifacts and
+analyse the projects' dependencies. It can lookup the Red Hat artifacts and inform
+the users about alternatives instead of the artifacts used in their projects, produces
+dependency reports of artifacts and resolves dependency tree.
 
-### Build a project and run integration tests in testsuite module
-  - mvn clean verify -DtestsuiteContainer=/path/to/EAP/dir
-  - You can exclude tests, which use remote services, using -PexcludeRemoteTests
+The project is currently based upon Quarkus (it used to use EAP 7).
 
-### Deploy/work with local jboss instance
+## Build and test the project
 
-  - make sure your instance of EAP is running (/path/to/EAP/bin/standalone.sh)
+```mvn clean package```
 
-  - DEPLOY:
-    mvn clean package wildfly:deploy
+### Deploy the application
 
-    - deploys 'application' module (application/target/dependency-analysis.ear)
-    - deploys to standalone/data/content instead of standalone/deployments
-    - default endpoints
-        http://localhost:8080/da/
-        http://localhost:8080/da-bcg/
-    - swagger provides a generated UI to test the endpoints
-        http://localhost:8080/da/doc/doc
-        http://localhost:8080/da-bcg/doc
+The application requires a running PostgreSQL instance. While this isn't configured by default
+adding e.g.
+```
+quarkus.datasource.db-kind=postgresql
+quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/postgres
+quarkus.datasource.username=postgres
+```
+to an `application/src/resources/application.properties` and then building the application module would suffice.
 
-  - UNDEPLOY:
-    mvn wildfly:undeploy
+It may then be started with
 
-### Working with JBoss Developer Studio (JBDS)
+```
+java -jar target/dependency-analysis-runner.jar
+```
 
-  - Deploying through IDE via 'Run on Server' (e.g. JBDS) seems to corrupt expected endpoints,
-    use maven command to deploy/undeploy
+It listens on http://localhost:8080/ and the default endpoint is:
+   * http://localhost:8080/rest/v-1
 
-  - Project DA uses lombok.jar to generate boilerplate getters/setters/constructors via annotations,
-    download/install into your IDE as per https://projectlombok.org/download.html
+The Quarkus application has been configured with:
+   * Swagger (on http://localhost:8080/q/swagger-ui/ )
 
-  - Workspace errors in .js, .xml, other files can be ignored as long as Maven build completes
-    successfully from command line
+### Configuration
+The Dependency Analysis project uses a JSON configuration file for its configuration and is found in `common/src/main/resources/da-config.json` or it can be set using property da-config-file e.g.
 
-### Setup application
-  - Setup PostgreSQL database
-  - Datasource configuration and connection information in the standalone.xml
-      datasource has to be named "PostgresDA"
-  - JDBC for PostgreSQL is needed. You have to add it to standalone.xml
-  - Add to the folder ```<EAP_HOME>/modules/system/layers/base/org/postgresql/main/``` a file named
-    module.xml and a file with the driver
-    (download from [here](https://jdbc.postgresql.org/download/postgresql-9.3-1103.jdbc4.jar))
-  - The Dependency Analysis project uses a JSON configuration file for its configuration
-    and is found in ```common/src/main/resources/da-config.json``` or it can be set using property da-config-file
-  - You can set values to cofigure Dependency Analyser
-    * keycloak% - keycloak settings
-    * pncServer - link to pnc server
-    * indyServer - link to Indy server
-    * indyGroup - Indy group
-
-### Run/debug integration tests in 'testsuite' through IDE (JBDS/Eclipse)
-
-  - Install Arquillian support:
-    - Help -> Install New Software -> Work With -> http://download.jboss.org/jbosstools/updates/stable/luna/
-    - Select 'Arquillian support' under 'JBoss Web and Java EE Development'
-    - Create a run configuration for any test class/test method you want to run (right click - Run As - JUnit)
-    - Open 'Arquillian' tab under the run configuration to set properties (jbossHome, managementPort)
-
-  - Run/Debug your run configuration
-
-
-### Metrics support
-
-PNC tracks metrics of JVM and its internals via Dropwizard Metrics. The metrics can currently be reported to a Graphite server by specifying as system property or environment variables those properties:
-- metrics\_graphite\_server (mandatory)
-- metrics\_graphite\_port (mandatory)
-- metrics\_graphite\_prefix (mandatory)
-- metrics\_graphite\_interval (optional)
-
-If the `metrics_graphite_interval` variable (interval specified in seconds) is not specified, we'll use the default value of 60 seconds to report data to Graphite.
-
-The graphite reporter is configured to report rates per second and durations in terms of milliseconds.
+```
+java -Dda-config-file=da-config-file.json -jar target/dependency-analysis-runner.jar
+```
