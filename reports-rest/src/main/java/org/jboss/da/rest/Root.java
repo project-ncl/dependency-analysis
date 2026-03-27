@@ -29,6 +29,7 @@ public class Root {
                         <li><strong>BC REST API Version:</strong> %s</li>
                         <li><strong>Reports REST API Version:</strong> %s</li>
                         <li><a href="../../q/openapi">Swagger documentation</a></li>
+                        <li><a href="../../q/health">Health Check URL</a></li>
                         <li><strong>REST proposal documentation:</strong> <a href="https://docs.engineering.redhat.com/display/JP/REST+endpoints+proposal">https://docs.engineering.redhat.com/display/JP/REST+endpoints+proposal</a></li></ul>""",
                 DA_VERSION,
                 COMMIT_HASH,
