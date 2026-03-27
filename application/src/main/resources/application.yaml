@@ -7,6 +7,14 @@ quarkus:
     cors:
       enabled: true
       origins: "/.*/"
+  # We also need to configure the oidc-client
+  # More here: https://quarkus.io/guides/security-openid-connect-client-reference
+  oidc-client:
+    auth-server-url: https://keycloak/auth
+    client-id: quarkus_app
+    credentials:
+      secret: secret
+    refresh-token-time-skew: 2M
   swagger-ui:
     always-include: true
   websocket:
@@ -32,3 +40,8 @@ quarkus:
       "org.jboss.pnc":
         level: DEBUG
     level: INFO
+
+pnc_client_auth:
+  type: OIDC # or LDAP
+  ldap_credentials:
+    path: /mnt/secrets/ldap_credentials # file must be in format: <username>:<password>
