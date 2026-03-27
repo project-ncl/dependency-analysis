@@ -417,7 +417,7 @@
         <groupId>org.wiremock</groupId>
         <artifactId>wiremock-standalone</artifactId>
         <!-- After 3.7.0 we get https://github.com/wiremock/wiremock/issues/2778 -->
-        <version>3.6.0</version>
+        <version>3.13.2</version>
       </dependency>
       <dependency>
         <groupId>io.quarkiverse.wiremock</groupId>
