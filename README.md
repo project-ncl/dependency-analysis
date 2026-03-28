@@ -33,6 +33,7 @@ It listens on http://localhost:8080/ and the default endpoint is:
 
 The Quarkus application has been configured with:
    * Swagger (on http://localhost:8080/q/swagger-ui/ )
+   * Health  (on http://localhost:8080/q/health/ )
 
 ### Configuration
 The Dependency Analysis project uses a JSON configuration file for its configuration and is found in `common/src/main/resources/da-config.json` or it can be set using property da-config-file e.g.
