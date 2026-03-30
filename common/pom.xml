@@ -55,7 +55,7 @@
       <plugin>
         <groupId>com.google.code.maven-replacer-plugin</groupId>
         <artifactId>maven-replacer-plugin</artifactId>
-        <version>1.4.0</version>
+        <version>1.4.1</version>
         <configuration>
           <file>src/main/templates/org/jboss/da/common/Constants.java</file>
           <outputFile>src/main/java/org/jboss/da/common/Constants.java</outputFile>
