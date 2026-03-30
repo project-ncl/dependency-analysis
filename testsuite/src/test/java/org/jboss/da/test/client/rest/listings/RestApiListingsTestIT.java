@@ -2,11 +2,14 @@ package org.jboss.da.test.client.rest.listings;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.List;
+import java.util.logging.LogRecord;
 
 import jakarta.ws.rs.core.Response;
 
@@ -15,12 +18,18 @@ import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
+import io.quarkus.test.LogCollectingTestResource;
 import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.common.ResourceArg;
 import io.quarkus.test.h2.H2DatabaseTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
 @QuarkusTestResource(value = H2DatabaseTestResource.class, restrictToAnnotatedClass = true)
+@QuarkusTestResource(
+        value = LogCollectingTestResource.class,
+        restrictToAnnotatedClass = true,
+        initArgs = @ResourceArg(name = LogCollectingTestResource.LEVEL, value = "FINE"))
 public class RestApiListingsTestIT extends AbstractRestApiListingTest {
 
     @Test
@@ -28,6 +37,14 @@ public class RestApiListingsTestIT extends AbstractRestApiListingTest {
         Response response = manipulateEntityFile(OperationType.POST, "gav");
 
         checkExpectedResponse(response, "success");
+
+        List<LogRecord> logRecords = LogCollectingTestResource.current().getRecords();
+        assertTrue(
+                logRecords.stream()
+                        .anyMatch(
+                                r -> LogCollectingTestResource.format(r)
+                                        .contains("Looking for user with name testUser")));
+
     }
 
     @Test
