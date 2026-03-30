@@ -19,11 +19,13 @@ import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.BeforeEach;
 
 import io.quarkus.logging.Log;
+import io.quarkus.test.security.TestSecurity;
 
 /**
  *
  * @author jbrazdil
  */
+@TestSecurity(user = "testUser", roles = { "admin", "user" })
 public abstract class AbstractRestApiTest extends AbstractClientApiTest {
 
     protected final String restApiURL;
