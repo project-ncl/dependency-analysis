@@ -6,6 +6,7 @@ updates:
       interval: "weekly"
     ignore:
       - dependency-name: "org.apache.maven.scm:*" # don't touch this, it causes test failures
+      - dependency-name: "org.wiremock:wiremock-standalone" # Causes https://github.com/wiremock/wiremock/issues/2778
 
   - package-ecosystem: "github-actions" # Also update Github actions
     directory: "/"

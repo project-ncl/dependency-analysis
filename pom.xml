@@ -407,7 +407,7 @@
         <version>${version.io.opentelemetry.instrumentation}</version>
       </dependency>
 
-      <!-- Test dependencies (JUnit 5 + Mockito via quarkus-junit5 in modules) -->
+      <!-- Test dependencies (JUnit 5 + Mockito via quarkus-junit in modules) -->
       <dependency>
         <groupId>org.skyscreamer</groupId>
         <artifactId>jsonassert</artifactId>
