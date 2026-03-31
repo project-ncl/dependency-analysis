@@ -12,7 +12,7 @@ This project is hosted on [GitHub](https://github.com/project-ncl/dependency-ana
 
 The service maintains the database of the blocklisted artifacts. This data in the database can be changed only by authenticated users. In future authorization may be added.
 
-The meaning of the this lists is:
+The meaning of the lists is:
 
 - **Blocklist** — contains artifacts, which should not be used in the projects. There are typically artifacts, which cannot be built, has unacceptable license, contains vulnerabilities, etc. The inserted artifacts can be of community versions of artifacts (e.g. 4.2.18.Final) which will blocklist all redhat builds of that version or of redhat version (e.g. 4.2.18.Final-redhat-1) which will blocklist the specific version.
 
@@ -21,8 +21,10 @@ The meaning of the this lists is:
 Dependency Analyzer can lookup the Red Hat built artifacts and tell the user if an artifact was built or not and provide them alternative versions of the artifact. The user gets the information about:
 
 - The latest built version of the artifact
-- All built versions of artifacts with the same GroupId, ArtifactId
-- Blocklist status of the requested artifact
+- All built versions of artifacts with the same Maven GroupId:ArtifactId:Version or NPM Name:Version
+- Blocklist status of the requested artifact (only for Maven)
+
+This former two are supported for both NPM and Maven artifacts.
 
 ### Dependency reports
 
