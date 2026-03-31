@@ -26,7 +26,6 @@ import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.impl.DependencyTreeBuilder;
@@ -163,7 +162,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     }
 
     @Override
-    public MavenPomView getMavenPomView(InputStream is) throws ConfigurationParseException, GalleyMavenException {
+    public MavenPomView getMavenPomView(InputStream is) throws GalleyMavenException {
         PomPeek pom = new PomPeek(is);
 
         if (pom.getKey() == null) {

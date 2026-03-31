@@ -17,7 +17,6 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
@@ -59,7 +58,7 @@ public class LookupGeneratorTest {
     @InjectMocks
     private LookupGenerator lookupGenerator;
 
-    public LookupGeneratorTest() throws ConfigurationParseException {
+    public LookupGeneratorTest() {
         config = mock(Configuration.class);
         DAConfig daConfig = new DAConfig();
         LookupMode mode = new LookupMode();

@@ -31,7 +31,6 @@ import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
 import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
@@ -227,15 +226,11 @@ public class GalleyWrapper implements AutoCloseable {
      * dependencies.
      */
     public void addDefaultLocations(Configuration config) {
-        try {
-            locations.add(
-                    new SimpleLocation(
-                            "indy",
-                            config.getGlobalConfig().getIndyUrl() + "/api/content/maven/group/"
-                                    + config.getConfig().getIndyGroupPublic() + "/"));
-        } catch (ConfigurationParseException e) {
-            log.error("Failed to add indy group to locations" + e);
-        }
+        locations.add(
+                new SimpleLocation(
+                        "indy",
+                        config.getGlobalConfig().getIndyUrl() + "/api/content/maven/group/"
+                                + config.getConfig().getIndyGroupPublic() + "/"));
     }
 
     @Override

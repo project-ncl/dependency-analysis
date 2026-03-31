@@ -15,7 +15,6 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.indy.impl.IndyConnectorImpl;
 import org.jboss.da.communication.indy.impl.MetadataFileParser;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
@@ -96,12 +95,8 @@ public class IndyConnectorTest {
         cfg.setIndyGroupPublic("DA-PUBLIC-TEST-GROUP");
         cfg.setIndyRequestTimeout(30000);
         Configuration config = Mockito.mock(Configuration.class);
-        try {
-            when(config.getGlobalConfig()).thenReturn(globalCfg);
-            when(config.getConfig()).thenReturn(cfg);
-        } catch (ConfigurationParseException ex) {
-            throw new RuntimeException(ex);
-        }
+        when(config.getGlobalConfig()).thenReturn(globalCfg);
+        when(config.getConfig()).thenReturn(cfg);
         return config;
     }
 

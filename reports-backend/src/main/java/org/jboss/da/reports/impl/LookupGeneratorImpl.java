@@ -20,7 +20,6 @@ import jakarta.inject.Inject;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.lookup.model.MavenLatestResult;
 import org.jboss.da.lookup.model.MavenLookupResult;
@@ -63,7 +62,7 @@ public class LookupGeneratorImpl implements LookupGenerator {
     private Map<String, LookupMode> modes;
 
     @Inject
-    public LookupGeneratorImpl(Configuration config) throws ConfigurationParseException {
+    public LookupGeneratorImpl(Configuration config) {
         modes = config.getConfig()
                 .getModes()
                 .stream()

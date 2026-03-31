@@ -21,7 +21,6 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.VersionResponse;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
@@ -54,12 +53,8 @@ public class IndyConnectorImpl implements IndyConnector {
 
     @Inject
     public IndyConnectorImpl(Configuration configuration) {
-        try {
-            config = configuration.getConfig();
-            globalConfig = configuration.getGlobalConfig();
-        } catch (ConfigurationParseException ex) {
-            throw new IllegalStateException("Configuration failure, can't parse default repository group", ex);
-        }
+        config = configuration.getConfig();
+        globalConfig = configuration.getGlobalConfig();
     }
 
     @Override
