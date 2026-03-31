@@ -46,12 +46,6 @@ The Quarkus application has been configured with:
 
 ## Configuration
 
-The Dependency Analysis project uses two configuration files:
+* **Dependency Analyzer (`da.*`)** — defaults are inlined under `da` in `application/src/main/resources/application.yaml` (`da.pnc-url`, `da.indy.*`, `da.lookup-modes`). Override with env vars (e.g. `DA_PNC_URL`, `DA_INDY_INDY_URL`), system properties, or additional entries in `quarkus.config.locations`.
 
-* A JSON configuration file for its configuration and is found in `common/src/main/resources/da-config.json` or it can be set using property da-config-file e.g.
-
-```
-java -Dda-config-file=da-config-file.json -jar target/dependency-analysis-runner.jar
-```
-
-* A standard Quarkus `application.yaml` which is currently only used to configure Quarkus components.
+* **Quarkus** — `application/src/main/resources/application.yaml` (HTTP, logging, persistence, etc.).

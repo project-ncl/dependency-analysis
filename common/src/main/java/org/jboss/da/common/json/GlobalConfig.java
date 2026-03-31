@@ -18,11 +18,9 @@
 package org.jboss.da.common.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@JsonTypeName(value = "global")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GlobalConfig extends AbstractModuleGroup {
+public class GlobalConfig {
 
     private String indyUrl;
     private String pncUrl;

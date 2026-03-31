@@ -10,7 +10,6 @@ import jakarta.inject.Inject;
 
 import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.json.LookupMode;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 import org.jboss.pnc.client.ArtifactClient;
@@ -35,11 +34,7 @@ public class PncConnectorImpl implements PncConnector {
 
     @Inject
     public PncConnectorImpl(org.jboss.da.common.util.Configuration configuration) {
-        try {
-            globalConfig = configuration.getGlobalConfig();
-        } catch (ConfigurationParseException ex) {
-            throw new IllegalStateException("Configuration failure, can't parse default repository group", ex);
-        }
+        globalConfig = configuration.getGlobalConfig();
     }
 
     private Collection<ArtifactInfo> getArtifacts(String identifierPattern, RepositoryType repoType, LookupMode mode)

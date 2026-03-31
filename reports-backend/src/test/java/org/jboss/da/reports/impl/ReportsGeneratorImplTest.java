@@ -24,7 +24,6 @@ import org.jboss.da.common.json.DAConfig;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -114,7 +113,7 @@ public class ReportsGeneratorImplTest {
 
     private final Product productEAP = new Product("EAP", "7.0", ProductSupportStatus.UNKNOWN);
 
-    public ReportsGeneratorImplTest() throws ConfigurationParseException {
+    public ReportsGeneratorImplTest() {
         config = mock(Configuration.class);
         DAConfig daConfig = new DAConfig();
         LookupMode mode = new LookupMode();
@@ -168,11 +167,7 @@ public class ReportsGeneratorImplTest {
         DAConfig daConfig = new DAConfig();
         daConfig.setIndyGroup("DA");
         daConfig.setIndyGroup("DA-temporary-builds");
-        try {
-            when(config.getConfig()).thenReturn(daConfig);
-        } catch (ConfigurationParseException e) {
-            throw new IllegalStateException(e);
-        }
+        when(config.getConfig()).thenReturn(daConfig);
     }
 
     /**
