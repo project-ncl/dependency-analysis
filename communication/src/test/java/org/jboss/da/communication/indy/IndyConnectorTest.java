@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.lenient;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import org.jboss.da.common.CommunicationException;
@@ -18,11 +17,14 @@ import org.jboss.da.communication.indy.impl.IndyConnectorImpl;
 import org.jboss.da.communication.indy.impl.MetadataFileParser;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.model.rest.GA;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
@@ -55,10 +57,13 @@ public class IndyConnectorTest {
     @Spy
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Spy
+    @InjectMocks
     private MetadataFileParser parser = Mockito.spy(MetadataFileParser.class);
 
+    @InjectMocks
     private IndyConnectorImpl indyConnector;
+
+    private AutoCloseable object;
 
     private static final String REDHAT3 = "1.9.13.redhat-3";
 
@@ -96,26 +101,12 @@ public class IndyConnectorTest {
         lenient().when(indy.indyRequestRetries()).thenReturn(10);
 
         indyConnector = new IndyConnectorImpl(daConfiguration);
-        inject(indyConnector, "log", log);
-        inject(indyConnector, "userLog", userLog);
-        inject(indyConnector, "pomAnalyzer", pomAnalyzer);
-        inject(indyConnector, "parser", parser);
-        inject(parser, "om", mapper);
+        object = MockitoAnnotations.openMocks(this);
     }
 
-    private static void inject(Object target, String fieldName, Object value) throws ReflectiveOperationException {
-        Class<?> c = target.getClass();
-        while (c != null) {
-            try {
-                Field f = c.getDeclaredField(fieldName);
-                f.setAccessible(true);
-                f.set(target, value);
-                return;
-            } catch (NoSuchFieldException e) {
-                c = c.getSuperclass();
-            }
-        }
-        throw new NoSuchFieldException(fieldName);
+    @AfterEach
+    void finish() throws Exception {
+        object.close();
     }
 
     @Test

@@ -6,7 +6,6 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,16 +28,22 @@ import org.jboss.da.products.impl.PncProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class LookupGeneratorTest {
 
     public static final String PERSISTENT = "persistent";
+
+    @Mock
+    private Configuration configuration;
 
     @Mock
     private RepositoryProductProvider repositoryProductProvider;
@@ -52,11 +57,13 @@ public class LookupGeneratorTest {
     @Mock
     private BlackArtifactService blackArtifactService;
 
+    @InjectMocks
     private LookupGeneratorImpl lookupGenerator;
 
+    private AutoCloseable object;
+
     @BeforeEach
-    void setUp() throws ReflectiveOperationException {
-        Configuration configuration = mock(Configuration.class);
+    void setUp() {
         Configuration.LookupMode mode = mock(Configuration.LookupMode.class);
         when(mode.name()).thenReturn(PERSISTENT);
         when(mode.suffixes()).thenReturn(List.of("redhat"));
@@ -69,17 +76,14 @@ public class LookupGeneratorTest {
                                 ArtifactQuality.VERIFIED,
                                 ArtifactQuality.TESTED));
         when(configuration.lookupModes()).thenReturn(Collections.singletonList(mode));
+
         lookupGenerator = new LookupGeneratorImpl(configuration);
-        injectField(lookupGenerator, "repositoryProductProvider", repositoryProductProvider);
-        injectField(lookupGenerator, "pncProductProvider", pncProductProvider);
-        injectField(lookupGenerator, "aggProductProvider", aggProductProvider);
-        injectField(lookupGenerator, "blackArtifactService", blackArtifactService);
+        object = MockitoAnnotations.openMocks(this);
     }
 
-    private static void injectField(Object target, String fieldName, Object value) throws ReflectiveOperationException {
-        Field f = LookupGeneratorImpl.class.getDeclaredField(fieldName);
-        f.setAccessible(true);
-        f.set(target, value);
+    @AfterEach
+    void finish() throws Exception {
+        object.close();
     }
 
     @Test
