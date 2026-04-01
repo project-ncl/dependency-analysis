@@ -24,7 +24,8 @@ import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
-import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.config.Configuration;
+import org.jboss.da.common.util.Urls;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.impl.DependencyTreeBuilder;
@@ -49,7 +50,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     TypeMapper typeMapper;
 
     @Inject
-    Configuration config;
+    Configuration configuration;
 
     @Inject
     DependencyTreeBuilder dtb;
@@ -88,7 +89,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     private GAVDependencyTree readRelationships(GalleyWrapper gw, GalleyWrapper.Artifact a)
             throws PomAnalysisException {
         try {
-            gw.addDefaultLocations(config);
+            gw.addDefaultLocations(configuration);
             gw.addLocationsFromPoms(pomReader);
 
             Set<DependencyRelationship> relationships = gw.getAllDependencies(a);
@@ -106,7 +107,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
         try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, pomRepoDir, disConf, processor)) {
             GalleyWrapper.Artifact artifact = gw.getGAV(gav);
 
-            gw.addDefaultLocations(config);
+            gw.addDefaultLocations(configuration);
             gw.addLocationsFromPoms(pomReader);
 
             return gw.getDependencies(artifact);
@@ -122,7 +123,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             GalleyWrapper.Artifact artifact = gw.getPom(pomPath);
 
             gw.addLocations(repositories);
-            gw.addDefaultLocations(config);
+            gw.addDefaultLocations(configuration);
             gw.addLocationsFromPoms(pomReader);
 
             return gw.getDependencies(artifact);
@@ -150,7 +151,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             throws PomAnalysisException {
         try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, repoDir, disConf, processor)) {
             GalleyWrapper.Artifact pom = gw.getPom(pomPath);
-            gw.addDefaultLocations(config);
+            gw.addDefaultLocations(configuration);
             gw.addLocationsFromPoms(pomReader);
             gw.addLocations(repositories);
 
@@ -168,9 +169,9 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             log.warn("Could not parse pom for GAV");
         }
         StringBuilder query = new StringBuilder();
-        query.append(config.getConfig().getIndy().getIndyUrl());
+        query.append(Urls.withoutTrailingSlash(configuration.indy().indyUrl()));
         query.append("/api/content/maven/group/");
-        query.append(config.getConfig().getIndy().getIndyGroupPublic());
+        query.append(configuration.indy().indyGroupPublic());
         query.append('/');
         Location repoLocation = new SimpleLocation(query.toString());
 
@@ -184,7 +185,7 @@ public class PomAnalyzerImpl implements PomAnalyzer {
     public Map<GA, Set<GAV>> getDependenciesOfModules(File scmDir, String pomPath, List<String> repositories)
             throws PomAnalysisException {
         try (GalleyWrapper wrapper = new GalleyWrapper(mavenPomReader, typeMapper, scmDir, disConf, processor)) {
-            wrapper.addDefaultLocations(config);
+            wrapper.addDefaultLocations(configuration);
             wrapper.addLocations(repositories);
             wrapper.addLocationsFromPoms(pomReader);
 

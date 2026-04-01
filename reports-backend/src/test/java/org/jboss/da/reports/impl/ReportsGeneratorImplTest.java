@@ -20,11 +20,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.IndySection;
-import org.jboss.da.common.json.LookupMode;
+import org.jboss.da.common.config.Configuration;
 import org.jboss.da.common.logging.UserLog;
-import org.jboss.da.common.util.Configuration;
 import org.jboss.da.communication.indy.api.IndyConnector;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.listings.api.service.BlackArtifactService;
@@ -43,6 +40,8 @@ import org.jboss.da.reports.backend.api.DependencyTreeGenerator;
 import org.jboss.da.reports.backend.impl.DependencyTreeGeneratorImpl;
 import org.jboss.da.reports.model.request.LookupGAVsRequest;
 import org.jboss.da.reports.model.response.LookupReport;
+import org.jboss.pnc.enums.ArtifactQuality;
+import org.jboss.pnc.enums.BuildCategory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -74,8 +73,6 @@ public class ReportsGeneratorImplTest {
 
     @Mock
     private PncProductProvider pncProductProvider;
-
-    private Configuration config;
 
     @Mock
     @UserLog
@@ -115,14 +112,17 @@ public class ReportsGeneratorImplTest {
     private final Product productEAP = new Product("EAP", "7.0", ProductSupportStatus.UNKNOWN);
 
     public ReportsGeneratorImplTest() {
-        config = mock(Configuration.class);
-        DAConfig daConfig = new DAConfig();
-        LookupMode mode = new LookupMode();
-        mode.setName("PERSISTENT");
-        mode.setSuffixes(List.of("redhat"));
-        daConfig.setModes(Collections.singletonList(mode));
-        when(config.getConfig()).thenReturn(daConfig);
-        generator = new ReportsGeneratorImpl(config);
+        Configuration configuration = mock(Configuration.class);
+        Configuration.LookupMode lm = mock(Configuration.LookupMode.class);
+        when(lm.name()).thenReturn("PERSISTENT");
+        when(lm.suffixes()).thenReturn(List.of("redhat"));
+        when(lm.incrementSuffix()).thenReturn("redhat");
+        when(lm.buildCategories()).thenReturn(List.of(BuildCategory.STANDARD));
+        when(lm.artifactQualities())
+                .thenReturn(
+                        List.of(ArtifactQuality.NEW, ArtifactQuality.VERIFIED, ArtifactQuality.TESTED));
+        when(configuration.lookupModes()).thenReturn(Collections.singletonList(lm));
+        generator = new ReportsGeneratorImpl(configuration);
     }
 
     @BeforeEach
@@ -165,11 +165,6 @@ public class ReportsGeneratorImplTest {
         prepareProductProvider(versions, whitelisted, daCoreGAV);
         lenient().when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(true);
 
-        DAConfig daConfig = new DAConfig();
-        IndySection indy = new IndySection();
-        indy.setIndyGroup("DA-temporary-builds");
-        daConfig.setIndy(indy);
-        when(config.getConfig()).thenReturn(daConfig);
     }
 
     /**

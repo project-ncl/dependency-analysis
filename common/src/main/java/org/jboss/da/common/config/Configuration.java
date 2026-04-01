@@ -12,7 +12,7 @@ import io.smallrye.config.WithDefault;
 import io.smallrye.config.WithName;
 
 @ConfigMapping(prefix = "da")
-public interface DaAppConfig {
+public interface Configuration {
 
     @NotBlank
     @WithName("pnc-url")

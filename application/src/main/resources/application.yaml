@@ -33,7 +33,7 @@ quarkus:
         level: DEBUG
     level: INFO
 
-# Dependency Analyzer defaults (formerly classpath:da-config.yaml).
+# Dependency Analyzer defaults
 da:
   pnc-url: "http://127.0.0.1:8005"
   indy:

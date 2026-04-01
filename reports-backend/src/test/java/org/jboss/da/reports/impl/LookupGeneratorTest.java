@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,9 +15,7 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.LookupMode;
-import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.config.Configuration;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
@@ -28,11 +27,11 @@ import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.impl.AggregatedProductProvider;
 import org.jboss.da.products.impl.PncProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider;
-import org.jboss.da.reports.api.LookupGenerator;
-import org.junit.jupiter.api.BeforeAll;
+import org.jboss.pnc.enums.ArtifactQuality;
+import org.jboss.pnc.enums.BuildCategory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -40,8 +39,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 public class LookupGeneratorTest {
 
     public static final String PERSISTENT = "persistent";
-
-    private Configuration config;
 
     @Mock
     private RepositoryProductProvider repositoryProductProvider;
@@ -55,22 +52,34 @@ public class LookupGeneratorTest {
     @Mock
     private BlackArtifactService blackArtifactService;
 
-    @InjectMocks
-    private LookupGenerator lookupGenerator;
+    private LookupGeneratorImpl lookupGenerator;
 
-    public LookupGeneratorTest() {
-        config = mock(Configuration.class);
-        DAConfig daConfig = new DAConfig();
-        LookupMode mode = new LookupMode();
-        mode.setName(PERSISTENT);
-        mode.setSuffixes(List.of("redhat"));
-        daConfig.setModes(Collections.singletonList(mode));
-        when(config.getConfig()).thenReturn(daConfig);
-        lookupGenerator = new LookupGeneratorImpl(config);
+    @BeforeEach
+    void setUp() throws ReflectiveOperationException {
+        Configuration configuration = mock(Configuration.class);
+        Configuration.LookupMode mode = mock(Configuration.LookupMode.class);
+        when(mode.name()).thenReturn(PERSISTENT);
+        when(mode.suffixes()).thenReturn(List.of("redhat"));
+        when(mode.incrementSuffix()).thenReturn("redhat");
+        when(mode.buildCategories()).thenReturn(List.of(BuildCategory.STANDARD));
+        when(mode.artifactQualities())
+                .thenReturn(
+                        Arrays.asList(
+                                ArtifactQuality.NEW,
+                                ArtifactQuality.VERIFIED,
+                                ArtifactQuality.TESTED));
+        when(configuration.lookupModes()).thenReturn(Collections.singletonList(mode));
+        lookupGenerator = new LookupGeneratorImpl(configuration);
+        injectField(lookupGenerator, "repositoryProductProvider", repositoryProductProvider);
+        injectField(lookupGenerator, "pncProductProvider", pncProductProvider);
+        injectField(lookupGenerator, "aggProductProvider", aggProductProvider);
+        injectField(lookupGenerator, "blackArtifactService", blackArtifactService);
     }
 
-    @BeforeAll
-    public static void initMocks() {
+    private static void injectField(Object target, String fieldName, Object value) throws ReflectiveOperationException {
+        Field f = LookupGeneratorImpl.class.getDeclaredField(fieldName);
+        f.setAccessible(true);
+        f.set(target, value);
     }
 
     @Test

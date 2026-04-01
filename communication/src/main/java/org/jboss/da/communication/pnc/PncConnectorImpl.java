@@ -8,7 +8,7 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
-import org.jboss.da.common.json.LookupMode;
+import org.jboss.da.common.lookup.LookupMode;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 import org.jboss.pnc.client.ArtifactClient;
@@ -32,8 +32,8 @@ public class PncConnectorImpl implements PncConnector {
     private String pncUrl;
 
     @Inject
-    public PncConnectorImpl(org.jboss.da.common.util.Configuration daConfiguration) {
-        pncUrl = daConfiguration.getConfig().getPncUrl();
+    public PncConnectorImpl(org.jboss.da.common.config.Configuration daConfig) {
+        pncUrl = daConfig.pncUrl();
     }
 
     private Collection<ArtifactInfo> getArtifacts(String identifierPattern, RepositoryType repoType, LookupMode mode)
