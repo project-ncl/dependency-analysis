@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.GlobalConfig;
+import org.jboss.da.common.json.IndySection;
 import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.communication.indy.impl.IndyConnectorImpl;
@@ -87,15 +87,16 @@ public class IndyConnectorTest {
             </metadata>""";
 
     private static Configuration initConfig() {
-        GlobalConfig globalCfg = new GlobalConfig();
-        globalCfg.setIndyUrl("http://localhost:8082");
+        IndySection indy = new IndySection();
+        indy.setIndyUrl("http://localhost:8082");
+        indy.setIndyGroup("DA-TEST-GROUP");
+        indy.setIndyGroupPublic("DA-PUBLIC-TEST-GROUP");
+        indy.setIndyRequestTimeout(30000);
 
         DAConfig cfg = new DAConfig();
-        cfg.setIndyGroup("DA-TEST-GROUP");
-        cfg.setIndyGroupPublic("DA-PUBLIC-TEST-GROUP");
-        cfg.setIndyRequestTimeout(30000);
+        cfg.setIndy(indy);
+
         Configuration config = Mockito.mock(Configuration.class);
-        when(config.getGlobalConfig()).thenReturn(globalCfg);
         when(config.getConfig()).thenReturn(cfg);
         return config;
     }

@@ -18,7 +18,6 @@ import jakarta.xml.bind.JAXBException;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.communication.indy.api.IndyConnector;
@@ -43,8 +42,6 @@ public class IndyConnectorImpl implements IndyConnector {
 
     private DAConfig config;
 
-    private GlobalConfig globalConfig;
-
     @Inject
     private PomAnalyzer pomAnalyzer;
 
@@ -54,7 +51,6 @@ public class IndyConnectorImpl implements IndyConnector {
     @Inject
     public IndyConnectorImpl(Configuration configuration) {
         config = configuration.getConfig();
-        globalConfig = configuration.getGlobalConfig();
     }
 
     @Override
@@ -112,11 +108,11 @@ public class IndyConnectorImpl implements IndyConnector {
 
     private String repositoryLink(String type, String path) {
         StringBuilder query = new StringBuilder();
-        query.append(globalConfig.getIndyUrl());
+        query.append(config.getIndy().getIndyUrl());
         query.append("/api/content/");
         query.append(type);
         query.append("/group/");
-        query.append(config.getIndyGroup()).append('/');
+        query.append(config.getIndy().getIndyGroup()).append('/');
         query.append(path).append('/');
         switch (type) {
             case "maven": {
@@ -135,11 +131,11 @@ public class IndyConnectorImpl implements IndyConnector {
     private HttpURLConnection getResponse(String query) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL(query).openConnection();
         MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
-        connection.setConnectTimeout(config.getIndyRequestTimeout());
-        connection.setReadTimeout(config.getIndyRequestTimeout());
+        connection.setConnectTimeout(config.getIndy().getIndyRequestTimeout());
+        connection.setReadTimeout(config.getIndy().getIndyRequestTimeout());
         int retry = 0;
         while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
-                && retry < config.getIndyRequestRetries()) {
+                && retry < config.getIndy().getIndyRequestRetries()) {
 
             userLog.warn("Connection to: {} failed with status: {}. retrying...", query, connection.getResponseCode());
             log.warn("Connection to: {} failed with status: {}. retrying...", query, connection.getResponseCode());
@@ -155,8 +151,8 @@ public class IndyConnectorImpl implements IndyConnector {
 
             connection = (HttpURLConnection) new URL(query).openConnection();
             MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
-            connection.setConnectTimeout(config.getIndyRequestTimeout());
-            connection.setReadTimeout(config.getIndyRequestTimeout());
+            connection.setConnectTimeout(config.getIndy().getIndyRequestTimeout());
+            connection.setReadTimeout(config.getIndy().getIndyRequestTimeout());
         }
         return connection;
     }
@@ -170,9 +166,9 @@ public class IndyConnectorImpl implements IndyConnector {
     public Optional<InputStream> getPomStream(GAV gav) throws RepositoryException {
         StringBuilder query = new StringBuilder();
         try {
-            query.append(globalConfig.getIndyUrl());
+            query.append(config.getIndy().getIndyUrl());
             query.append("/api/content/maven/group/");
-            query.append(config.getIndyGroupPublic()).append('/');
+            query.append(config.getIndy().getIndyGroupPublic()).append('/');
             query.append(gav.getGroupId().replace(".", "/")).append("/");
             query.append(gav.getArtifactId()).append('/');
             query.append(gav.getVersion()).append('/');
@@ -200,9 +196,9 @@ public class IndyConnectorImpl implements IndyConnector {
         StringBuilder query = new StringBuilder();
 
         try {
-            query.append(globalConfig.getIndyUrl());
+            query.append(config.getIndy().getIndyUrl());
             query.append("/api/content/maven/group/");
-            query.append(config.getIndyGroupPublic()).append('/');
+            query.append(config.getIndy().getIndyGroupPublic()).append('/');
             query.append(gav.getGroupId().replace(".", "/")).append("/");
             query.append(gav.getArtifactId()).append('/');
             query.append(gav.getVersion()).append('/');
