@@ -24,7 +24,6 @@ import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
-import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.util.Configuration;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
@@ -169,10 +168,9 @@ public class PomAnalyzerImpl implements PomAnalyzer {
             log.warn("Could not parse pom for GAV");
         }
         StringBuilder query = new StringBuilder();
-        GlobalConfig globalCfg = this.config.getGlobalConfig();
-        query.append(globalCfg.getIndyUrl());
+        query.append(config.getConfig().getIndy().getIndyUrl());
         query.append("/api/content/maven/group/");
-        query.append(config.getConfig().getIndyGroupPublic());
+        query.append(config.getConfig().getIndy().getIndyGroupPublic());
         query.append('/');
         Location repoLocation = new SimpleLocation(query.toString());
 

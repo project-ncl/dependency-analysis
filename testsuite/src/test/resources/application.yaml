@@ -1,0 +1,47 @@
+# Testsuite Quarkus config (merged from former application.properties + da-config.yaml).
+quarkus:
+  datasource:
+    db-kind: h2
+    username: admin
+    password: admin
+    jdbc:
+      url: jdbc:h2:mem:test
+  hibernate-orm:
+    dialect: org.hibernate.dialect.H2Dialect
+  http:
+    test-port: 8083
+  log:
+    level: INFO
+
+# DA — same values as the old ModuleConfigJson merge (global URLs + da module).
+da:
+  pnc-url: "http://localhost:8081/pnc-rest/v2"
+  indy:
+    indy-url: "http://localhost:8081"
+    indy-group: "test-DA"
+    indy-group-public: "DApublic"
+    indy-request-timeout: 600000
+    indy-request-retries: 10
+  lookup-modes:
+    - name: PERSISTENT
+      suffixes:
+        - redhat
+      increment-suffix: redhat
+      build-categories:
+        - STANDARD
+      artifact-qualities:
+        - NEW
+        - VERIFIED
+        - TESTED
+    - name: TEMPORARY
+      suffixes:
+        - temporary-redhat
+        - redhat
+      increment-suffix: temporary-redhat
+      build-categories:
+        - STANDARD
+      artifact-qualities:
+        - NEW
+        - VERIFIED
+        - TESTED
+        - TEMPORARY

@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.json.DAConfig;
+import org.jboss.da.common.json.IndySection;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Configuration;
@@ -165,8 +166,9 @@ public class ReportsGeneratorImplTest {
         lenient().when(blackArtifactService.isArtifactPresent(daCoreGAV)).thenReturn(true);
 
         DAConfig daConfig = new DAConfig();
-        daConfig.setIndyGroup("DA");
-        daConfig.setIndyGroup("DA-temporary-builds");
+        IndySection indy = new IndySection();
+        indy.setIndyGroup("DA-temporary-builds");
+        daConfig.setIndy(indy);
         when(config.getConfig()).thenReturn(daConfig);
     }
 

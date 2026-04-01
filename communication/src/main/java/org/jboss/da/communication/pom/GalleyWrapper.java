@@ -229,8 +229,8 @@ public class GalleyWrapper implements AutoCloseable {
         locations.add(
                 new SimpleLocation(
                         "indy",
-                        config.getGlobalConfig().getIndyUrl() + "/api/content/maven/group/"
-                                + config.getConfig().getIndyGroupPublic() + "/"));
+                        config.getConfig().getIndy().getIndyUrl() + "/api/content/maven/group/"
+                                + config.getConfig().getIndy().getIndyGroupPublic() + "/"));
     }
 
     @Override

@@ -18,9 +18,9 @@ public interface DaAppConfig {
     @WithName("pnc-url")
     String pncUrl();
 
-    IndySection indy();
+    Indy indy();
 
-    interface IndySection {
+    interface Indy {
         @NotBlank
         @WithName("indy-url")
         String indyUrl();
@@ -42,9 +42,9 @@ public interface DaAppConfig {
         int indyRequestRetries();
     }
 
-    List<LookupModeSection> lookupModes();
+    List<LookupMode> lookupModes();
 
-    interface LookupModeSection {
+    interface LookupMode {
         String name();
 
         List<String> suffixes();

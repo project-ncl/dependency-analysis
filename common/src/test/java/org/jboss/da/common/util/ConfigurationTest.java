@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 import org.jboss.da.common.config.DaAppConfig;
 import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.GlobalConfig;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.pnc.enums.BuildCategory;
 import org.junit.jupiter.api.Test;
@@ -37,22 +36,30 @@ public class ConfigurationTest {
     public void userCanSetConfigurationUsingYamlFile() throws IOException {
         Configuration configuration = configurationFromClasspathYaml("/testConfig.yaml");
 
-        GlobalConfig globalConfig = configuration.getGlobalConfig();
         DAConfig config = configuration.getConfig();
 
-        checkRequiredFields(globalConfig, config, "http://127.0.0.1:8004", "indy-da-group", "indy-da-group-public");
-        assertEquals(100000, config.getIndyRequestTimeout().intValue());
+        checkRequiredFields(
+                config,
+                "http://127.0.0.1:8005",
+                "http://127.0.0.1:8004",
+                "indy-da-group",
+                "indy-da-group-public");
+        assertEquals(100000, config.getIndy().getIndyRequestTimeout().intValue());
     }
 
     @Test
     public void configurationWithoutPropsWithDefaultValues() throws IOException {
         Configuration configuration = configurationFromClasspathYaml("/configWithoutDefaults.yaml");
 
-        GlobalConfig globalConfig = configuration.getGlobalConfig();
         DAConfig config = configuration.getConfig();
 
-        checkRequiredFields(globalConfig, config, "http://127.0.0.1:8004", "indy-da-group", "indy-da-group-public");
-        assertEquals(600000, config.getIndyRequestTimeout().intValue());
+        checkRequiredFields(
+                config,
+                "http://127.0.0.1:8005",
+                "http://127.0.0.1:8004",
+                "indy-da-group",
+                "indy-da-group-public");
+        assertEquals(600000, config.getIndy().getIndyRequestTimeout().intValue());
     }
 
     @Test
@@ -92,13 +99,14 @@ public class ConfigurationTest {
     }
 
     private void checkRequiredFields(
-            GlobalConfig globalConfig,
             DAConfig config,
+            String pncUrl,
             String indyServer,
             String indyGroup,
             String indyGroupPublic) {
-        assertEquals(indyServer, globalConfig.getIndyUrl());
-        assertEquals(indyGroup, config.getIndyGroup());
-        assertEquals(indyGroupPublic, config.getIndyGroupPublic());
+        assertEquals(pncUrl, config.getPncUrl());
+        assertEquals(indyServer, config.getIndy().getIndyUrl());
+        assertEquals(indyGroup, config.getIndy().getIndyGroup());
+        assertEquals(indyGroupPublic, config.getIndy().getIndyGroupPublic());
     }
 }

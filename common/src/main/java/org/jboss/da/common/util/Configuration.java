@@ -9,7 +9,7 @@ import jakarta.inject.Inject;
 
 import org.jboss.da.common.config.DaAppConfig;
 import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.GlobalConfig;
+import org.jboss.da.common.json.IndySection;
 import org.jboss.da.common.json.LookupMode;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
@@ -19,11 +19,8 @@ public class Configuration {
 
     private final DAConfig daConfig;
 
-    private final GlobalConfig globalConfig;
-
     @Inject
     public Configuration(DaAppConfig appConfig) {
-        this.globalConfig = toGlobalConfig(appConfig);
         this.daConfig = toDaConfig(appConfig);
     }
 
@@ -31,31 +28,26 @@ public class Configuration {
         return daConfig;
     }
 
-    public GlobalConfig getGlobalConfig() {
-        return globalConfig;
-    }
-
-    private static GlobalConfig toGlobalConfig(DaAppConfig appConfig) {
-        GlobalConfig g = new GlobalConfig();
-        g.setIndyUrl(appConfig.indy().indyUrl());
-        g.setPncUrl(appConfig.pncUrl());
-        return g;
-    }
-
     private static DAConfig toDaConfig(DaAppConfig appConfig) {
-        DaAppConfig.IndySection indy = appConfig.indy();
         DAConfig d = new DAConfig();
-        d.setIndyGroup(indy.indyGroup());
-        d.setIndyGroupPublic(indy.indyGroupPublic());
-        d.setIndyRequestTimeout(indy.indyRequestTimeout());
-        d.setIndyRequestRetries(indy.indyRequestRetries());
+        d.setPncUrl(appConfig.pncUrl());
+
+        IndySection indy = new IndySection();
+        DaAppConfig.Indy appIndy = appConfig.indy();
+        indy.setIndyUrl(appIndy.indyUrl());
+        indy.setIndyGroup(appIndy.indyGroup());
+        indy.setIndyGroupPublic(appIndy.indyGroupPublic());
+        indy.setIndyRequestTimeout(appIndy.indyRequestTimeout());
+        indy.setIndyRequestRetries(appIndy.indyRequestRetries());
+        d.setIndy(indy);
+
         d.setModes(toLookupModes(appConfig.lookupModes()));
         return d;
     }
 
-    private static List<LookupMode> toLookupModes(List<DaAppConfig.LookupModeSection> sections) {
+    private static List<LookupMode> toLookupModes(List<DaAppConfig.LookupMode> sections) {
         List<LookupMode> modes = new ArrayList<>();
-        for (DaAppConfig.LookupModeSection s : sections) {
+        for (DaAppConfig.LookupMode s : sections) {
             EnumSet<BuildCategory> buildCategories = s.buildCategories().isEmpty()
                     ? EnumSet.noneOf(BuildCategory.class)
                     : EnumSet.copyOf(new ArrayList<>(s.buildCategories()));
