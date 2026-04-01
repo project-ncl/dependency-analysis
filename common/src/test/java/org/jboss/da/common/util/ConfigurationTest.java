@@ -13,9 +13,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.jboss.da.common.config.DaAppConfig;
-import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.LookupMode;
+import org.jboss.da.common.config.Configuration;
+import org.jboss.da.common.lookup.LookupMode;
 import org.jboss.pnc.enums.BuildCategory;
 import org.junit.jupiter.api.Test;
 
@@ -23,52 +22,42 @@ import io.smallrye.config.ConfigValidationException;
 import io.smallrye.config.SmallRyeConfig;
 import io.smallrye.config.SmallRyeConfigBuilder;
 import io.smallrye.config.source.yaml.YamlConfigSource;
-import io.smallrye.config.validator.BeanValidationConfigValidatorImpl;
 
 public class ConfigurationTest {
 
     @Test
     public void defaultConfigurationIsLoaded() {
-        assertThrows(ConfigValidationException.class, () -> configurationFromClasspathYaml("/da-config-1.yaml"));
+        assertThrows(ConfigValidationException.class, () -> loadFromClasspathYaml("/da-config-1.yaml"));
     }
 
     @Test
     public void userCanSetConfigurationUsingYamlFile() throws IOException {
-        Configuration configuration = configurationFromClasspathYaml("/testConfig.yaml");
+        Configuration configuration = loadFromClasspathYaml("/testConfig.yaml");
 
-        DAConfig config = configuration.getConfig();
-
-        checkRequiredFields(
-                config,
-                "http://127.0.0.1:8005",
-                "http://127.0.0.1:8004",
-                "indy-da-group",
-                "indy-da-group-public");
-        assertEquals(100000, config.getIndy().getIndyRequestTimeout().intValue());
+        assertEquals("http://127.0.0.1:8005", configuration.pncUrl());
+        assertEquals("http://127.0.0.1:8004", Urls.withoutTrailingSlash(configuration.indy().indyUrl()));
+        assertEquals("indy-da-group", configuration.indy().indyGroup());
+        assertEquals("indy-da-group-public", configuration.indy().indyGroupPublic());
+        assertEquals(100000, configuration.indy().indyRequestTimeout());
     }
 
     @Test
     public void configurationWithoutPropsWithDefaultValues() throws IOException {
-        Configuration configuration = configurationFromClasspathYaml("/configWithoutDefaults.yaml");
+        Configuration configuration = loadFromClasspathYaml("/configWithoutDefaults.yaml");
 
-        DAConfig config = configuration.getConfig();
-
-        checkRequiredFields(
-                config,
-                "http://127.0.0.1:8005",
-                "http://127.0.0.1:8004",
-                "indy-da-group",
-                "indy-da-group-public");
-        assertEquals(600000, config.getIndy().getIndyRequestTimeout().intValue());
+        assertEquals("http://127.0.0.1:8005", configuration.pncUrl());
+        assertEquals("http://127.0.0.1:8004", Urls.withoutTrailingSlash(configuration.indy().indyUrl()));
+        assertEquals("indy-da-group", configuration.indy().indyGroup());
+        assertEquals("indy-da-group-public", configuration.indy().indyGroupPublic());
+        assertEquals(600000, configuration.indy().indyRequestTimeout());
     }
 
     @Test
     public void testDefaultLookupModes() throws IOException {
-        Configuration configuration = configurationFromClasspathYaml("/da-config-2.yaml");
+        Configuration configuration = loadFromClasspathYaml("/da-config-2.yaml");
 
-        DAConfig config = configuration.getConfig();
+        List<LookupMode> modes = configuration.lookupModes().stream().map(LookupMode::from).toList();
 
-        List<LookupMode> modes = config.getModes();
         assertNotNull(modes);
         assertEquals(2, modes.size());
         Map<String, LookupMode> modeMap = modes.stream()
@@ -85,28 +74,13 @@ public class ConfigurationTest {
         assertFalse(persistent.getArtifactQualities().isEmpty());
     }
 
-    private static Configuration configurationFromClasspathYaml(String classpathResource) throws IOException {
+    private static Configuration loadFromClasspathYaml(String classpathResource) throws IOException {
         URL url = ConfigurationTest.class.getResource(classpathResource);
         assertNotNull(url, "Missing classpath resource: " + classpathResource);
         SmallRyeConfig smallRyeConfig = new SmallRyeConfigBuilder()
                 .withSources(new YamlConfigSource(url))
-                .withValidateUnknown(false)
-                .withValidator(new BeanValidationConfigValidatorImpl())
-                .withMapping(DaAppConfig.class)
+                .withMapping(Configuration.class)
                 .build();
-        DaAppConfig appConfig = smallRyeConfig.getConfigMapping(DaAppConfig.class);
-        return new Configuration(appConfig);
-    }
-
-    private void checkRequiredFields(
-            DAConfig config,
-            String pncUrl,
-            String indyServer,
-            String indyGroup,
-            String indyGroupPublic) {
-        assertEquals(pncUrl, config.getPncUrl());
-        assertEquals(indyServer, config.getIndy().getIndyUrl());
-        assertEquals(indyGroup, config.getIndy().getIndyGroup());
-        assertEquals(indyGroupPublic, config.getIndy().getIndyGroupPublic());
+        return smallRyeConfig.getConfigMapping(Configuration.class);
     }
 }

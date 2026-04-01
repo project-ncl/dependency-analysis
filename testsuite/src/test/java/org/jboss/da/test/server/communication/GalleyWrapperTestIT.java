@@ -17,7 +17,7 @@ import org.commonjava.maven.galley.maven.parse.MavenPomReader;
 import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
-import org.jboss.da.common.util.Configuration;
+import org.jboss.da.common.config.Configuration;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.GalleyWrapper;
 import org.jboss.da.communication.pom.PomAnalysisException;
@@ -63,7 +63,7 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
     PomAnalyzer pomAnalyzer;
 
     @Inject
-    Configuration config;
+    Configuration configuration;
 
     @Inject
     ModelProcessorConfig disConf;
@@ -148,7 +148,7 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
     @Test
     public void testGetDependencies() throws IOException, PomAnalysisException {
         try (GalleyWrapper gw = new GalleyWrapper(mavenPomReader, typeMapper, clonedRepository, disConf, processor)) {
-            gw.addDefaultLocations(config);
+            gw.addDefaultLocations(configuration);
             gw.addLocationsFromPoms(pomReader);
 
             GalleyWrapper.Artifact common = gw.getPom("common/pom.xml");

@@ -1,4 +1,4 @@
-# Omits indy-request-timeout (uses DaAppConfig @WithDefault 600000).
+# Omits indy-request-timeout (uses Configuration @WithDefault 600000).
 da:
   pnc-url: "http://127.0.0.1:8005"
   indy:
