@@ -35,11 +35,11 @@ quarkus:
 
 # Dependency Analyzer defaults
 da:
-  pnc-url: "http://127.0.0.1:8005"
+  pnc-url: ""
   indy:
-    indy-url: "http://127.0.0.1:8004/"
-    indy-group: "DA"
-    indy-group-public: "DApublic"
+    indy-url: ""
+    indy-group: ""
+    indy-group-public: ""
     indy-request-timeout: 3600000
     indy-request-retries: 10
   lookup-modes:
