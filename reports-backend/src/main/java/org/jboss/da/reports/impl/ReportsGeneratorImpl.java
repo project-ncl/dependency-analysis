@@ -30,10 +30,9 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.maven.scm.ScmException;
 import org.codehaus.plexus.util.StringUtils;
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.json.LookupMode;
+import org.jboss.da.common.config.Configuration;
 import org.jboss.da.common.logging.UserLog;
-import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.common.lookup.LookupMode;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
@@ -125,11 +124,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
     private final Map<String, LookupMode> modes;
 
     @Inject
-    public ReportsGeneratorImpl(Configuration config) throws ConfigurationParseException {
-        modes = config.getConfig()
-                .getModes()
-                .stream()
-                .collect(Collectors.toMap(LookupMode::getName, Function.identity()));
+    public ReportsGeneratorImpl(Configuration configuration) {
+        modes = LookupMode.indexByName(configuration);
     }
 
     @Override

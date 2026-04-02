@@ -8,9 +8,7 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
-import org.jboss.da.common.json.GlobalConfig;
-import org.jboss.da.common.json.LookupMode;
-import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.common.lookup.LookupMode;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 import org.jboss.pnc.client.ArtifactClient;
@@ -31,15 +29,11 @@ public class PncConnectorImpl implements PncConnector {
     @Inject
     private Logger log;
 
-    private GlobalConfig globalConfig;
+    private String pncUrl;
 
     @Inject
-    public PncConnectorImpl(org.jboss.da.common.util.Configuration configuration) {
-        try {
-            globalConfig = configuration.getGlobalConfig();
-        } catch (ConfigurationParseException ex) {
-            throw new IllegalStateException("Configuration failure, can't parse default repository group", ex);
-        }
+    public PncConnectorImpl(org.jboss.da.common.config.Configuration daConfig) {
+        pncUrl = daConfig.pncUrl();
     }
 
     private Collection<ArtifactInfo> getArtifacts(String identifierPattern, RepositoryType repoType, LookupMode mode)
@@ -53,8 +47,8 @@ public class PncConnectorImpl implements PncConnector {
                     repoType,
                     mode.getBuildCategories());
         } catch (RemoteResourceException ex) {
-            log.error("Caught error when reading artifacts from PNC from {}", globalConfig.getPncUrl(), ex);
-            throw new RepositoryException("Error when reading artifacts from PNC from " + globalConfig.getPncUrl(), ex);
+            log.error("Caught error when reading artifacts from PNC from {}", pncUrl, ex);
+            throw new RepositoryException("Error when reading artifacts from PNC from " + pncUrl, ex);
         }
         return artCollection.getAll();
     }
@@ -96,7 +90,7 @@ public class PncConnectorImpl implements PncConnector {
     }
 
     private ArtifactClient getArtifactClient() {
-        URI uri = URI.create(globalConfig.getPncUrl());
+        URI uri = URI.create(pncUrl);
 
         Configuration config = getClientConfig(uri.getScheme(), uri.getHost(), uri.getPort());
 

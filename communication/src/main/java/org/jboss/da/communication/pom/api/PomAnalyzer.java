@@ -9,7 +9,6 @@ import java.util.Set;
 
 import org.commonjava.maven.galley.maven.GalleyMavenException;
 import org.commonjava.maven.galley.maven.model.view.MavenPomView;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
@@ -69,7 +68,7 @@ public interface PomAnalyzer {
     public MavenPomView getGitPomView(File repoDir, String pomPath, List<String> repositories)
             throws PomAnalysisException;
 
-    public MavenPomView getMavenPomView(InputStream is) throws ConfigurationParseException, GalleyMavenException;
+    public MavenPomView getMavenPomView(InputStream is) throws GalleyMavenException;
 
     /**
      * Given the directory of a project, and the path to pom of the project which we'll consider as the root project,

@@ -46,12 +46,5 @@ The Quarkus application has been configured with:
 
 ## Configuration
 
-The Dependency Analysis project uses two configuration files:
-
-* A JSON configuration file for its configuration and is found in `common/src/main/resources/da-config.json` or it can be set using property da-config-file e.g.
-
-```
-java -Dda-config-file=da-config-file.json -jar target/dependency-analysis-runner.jar
-```
-
-* A standard Quarkus `application.yaml` which is currently only used to configure Quarkus components.
+The Dependency Analysis project uses a single `application.yaml` configuration file which configures both Quarkus
+components and the DA defaults.

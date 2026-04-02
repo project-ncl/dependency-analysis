@@ -1,0 +1,31 @@
+# Omits indy-request-timeout (uses Configuration @WithDefault 600000).
+da:
+  pnc-url: "http://127.0.0.1:8005"
+  indy:
+    indy-url: "http://127.0.0.1:8004"
+    indy-group: indy-da-group
+    indy-group-public: indy-da-group-public
+    indy-request-retries: 10
+  lookup-modes:
+    - name: PERSISTENT
+      suffixes:
+        - redhat
+      increment-suffix: redhat
+      build-categories:
+        - STANDARD
+      artifact-qualities:
+        - NEW
+        - VERIFIED
+        - TESTED
+    - name: TEMPORARY
+      suffixes:
+        - temporary-redhat
+        - redhat
+      increment-suffix: temporary-redhat
+      build-categories:
+        - STANDARD
+      artifact-qualities:
+        - NEW
+        - VERIFIED
+        - TESTED
+        - TEMPORARY

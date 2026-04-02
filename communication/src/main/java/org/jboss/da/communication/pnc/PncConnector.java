@@ -2,7 +2,7 @@ package org.jboss.da.communication.pnc;
 
 import java.util.List;
 
-import org.jboss.da.common.json.LookupMode;
+import org.jboss.da.common.lookup.LookupMode;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 

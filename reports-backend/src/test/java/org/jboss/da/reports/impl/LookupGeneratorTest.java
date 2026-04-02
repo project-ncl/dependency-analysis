@@ -14,10 +14,7 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.LookupMode;
-import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.common.config.Configuration;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
@@ -29,12 +26,15 @@ import org.jboss.da.products.api.NPMArtifact;
 import org.jboss.da.products.impl.AggregatedProductProvider;
 import org.jboss.da.products.impl.PncProductProvider;
 import org.jboss.da.products.impl.RepositoryProductProvider;
-import org.jboss.da.reports.api.LookupGenerator;
-import org.junit.jupiter.api.BeforeAll;
+import org.jboss.pnc.enums.ArtifactQuality;
+import org.jboss.pnc.enums.BuildCategory;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,7 +42,8 @@ public class LookupGeneratorTest {
 
     public static final String PERSISTENT = "persistent";
 
-    private Configuration config;
+    @Mock
+    private Configuration configuration;
 
     @Mock
     private RepositoryProductProvider repositoryProductProvider;
@@ -57,21 +58,32 @@ public class LookupGeneratorTest {
     private BlackArtifactService blackArtifactService;
 
     @InjectMocks
-    private LookupGenerator lookupGenerator;
+    private LookupGeneratorImpl lookupGenerator;
 
-    public LookupGeneratorTest() throws ConfigurationParseException {
-        config = mock(Configuration.class);
-        DAConfig daConfig = new DAConfig();
-        LookupMode mode = new LookupMode();
-        mode.setName(PERSISTENT);
-        mode.setSuffixes(List.of("redhat"));
-        daConfig.setModes(Collections.singletonList(mode));
-        when(config.getConfig()).thenReturn(daConfig);
-        lookupGenerator = new LookupGeneratorImpl(config);
+    private AutoCloseable object;
+
+    @BeforeEach
+    void setUp() {
+        Configuration.LookupMode mode = mock(Configuration.LookupMode.class);
+        when(mode.name()).thenReturn(PERSISTENT);
+        when(mode.suffixes()).thenReturn(List.of("redhat"));
+        when(mode.incrementSuffix()).thenReturn("redhat");
+        when(mode.buildCategories()).thenReturn(List.of(BuildCategory.STANDARD));
+        when(mode.artifactQualities())
+                .thenReturn(
+                        Arrays.asList(
+                                ArtifactQuality.NEW,
+                                ArtifactQuality.VERIFIED,
+                                ArtifactQuality.TESTED));
+        when(configuration.lookupModes()).thenReturn(Collections.singletonList(mode));
+
+        lookupGenerator = new LookupGeneratorImpl(configuration);
+        object = MockitoAnnotations.openMocks(this);
     }
 
-    @BeforeAll
-    public static void initMocks() {
+    @AfterEach
+    void finish() throws Exception {
+        object.close();
     }
 
     @Test

@@ -30,8 +30,8 @@ import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
 import org.commonjava.maven.galley.maven.spi.type.TypeMapper;
 import org.commonjava.maven.galley.model.Location;
 import org.commonjava.maven.galley.model.SimpleLocation;
-import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
+import org.jboss.da.common.config.Configuration;
+import org.jboss.da.common.util.Urls;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
@@ -226,16 +226,12 @@ public class GalleyWrapper implements AutoCloseable {
      * Add maven central and group from indy repositories among repositories Galley should use when resolving
      * dependencies.
      */
-    public void addDefaultLocations(Configuration config) {
-        try {
-            locations.add(
-                    new SimpleLocation(
-                            "indy",
-                            config.getGlobalConfig().getIndyUrl() + "/api/content/maven/group/"
-                                    + config.getConfig().getIndyGroupPublic() + "/"));
-        } catch (ConfigurationParseException e) {
-            log.error("Failed to add indy group to locations" + e);
-        }
+    public void addDefaultLocations(Configuration configuration) {
+        locations.add(
+                new SimpleLocation(
+                        "indy",
+                        Urls.withoutTrailingSlash(configuration.indy().indyUrl()) + "/api/content/maven/group/"
+                                + configuration.indy().indyGroupPublic() + "/"));
     }
 
     @Override

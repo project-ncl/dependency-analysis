@@ -6,7 +6,6 @@ import java.nio.charset.Charset;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.client.ClientRequestFilter;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.Invocation;
 import jakarta.ws.rs.client.WebTarget;
@@ -40,11 +39,7 @@ public abstract class AbstractRestApiTest extends AbstractClientApiTest {
     public AbstractRestApiTest() {
         this.restApiVersion = readRestApiVersion();
         this.restApiURL = readRestApiUrl();
-
-        String userId = "user";
-        String password = "pass.1234";
-        ClientRequestFilter crf = null;// new BasicAuthentication(userId, password);
-        builder = ClientBuilder.newBuilder();// .register(crf);
+        builder = ClientBuilder.newBuilder();
     }
 
     @BeforeEach

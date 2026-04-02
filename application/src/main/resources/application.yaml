@@ -32,3 +32,36 @@ quarkus:
       "org.jboss.pnc":
         level: DEBUG
     level: INFO
+
+# Dependency Analyzer defaults
+da:
+  pnc-url: ""
+  indy:
+    indy-url: ""
+    indy-group: ""
+    indy-group-public: ""
+    indy-request-timeout: 3600000
+    indy-request-retries: 10
+  lookup-modes:
+    - name: PERSISTENT
+      suffixes:
+        - redhat
+      increment-suffix: redhat
+      build-categories:
+        - STANDARD
+      artifact-qualities:
+        - NEW
+        - VERIFIED
+        - TESTED
+    - name: TEMPORARY
+      suffixes:
+        - temporary-redhat
+        - redhat
+      increment-suffix: temporary-redhat
+      build-categories:
+        - STANDARD
+      artifact-qualities:
+        - NEW
+        - VERIFIED
+        - TESTED
+        - TEMPORARY

@@ -6,25 +6,25 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.lenient;
 
 import java.util.List;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.common.json.DAConfig;
-import org.jboss.da.common.json.GlobalConfig;
+import org.jboss.da.common.config.Configuration;
 import org.jboss.da.common.logging.UserLog;
-import org.jboss.da.common.util.Configuration;
-import org.jboss.da.common.util.ConfigurationParseException;
 import org.jboss.da.communication.indy.impl.IndyConnectorImpl;
 import org.jboss.da.communication.indy.impl.MetadataFileParser;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.model.rest.GA;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
@@ -48,7 +48,8 @@ public class IndyConnectorTest {
     @UserLog
     private Logger userLog;
 
-    private final Configuration config = initConfig();
+    @Mock
+    private Configuration daConfiguration;
 
     @Mock
     private PomAnalyzer pomAnalyzer;
@@ -60,7 +61,9 @@ public class IndyConnectorTest {
     private MetadataFileParser parser = Mockito.spy(MetadataFileParser.class);
 
     @InjectMocks
-    private final IndyConnectorImpl indyConnector = new IndyConnectorImpl(config);
+    private IndyConnectorImpl indyConnector;
+
+    private AutoCloseable object;
 
     private static final String REDHAT3 = "1.9.13.redhat-3";
 
@@ -87,22 +90,23 @@ public class IndyConnectorTest {
               </versioning>
             </metadata>""";
 
-    private static Configuration initConfig() {
-        GlobalConfig globalCfg = new GlobalConfig();
-        globalCfg.setIndyUrl("http://localhost:8082");
+    @BeforeEach
+    void stubConfiguration() throws ReflectiveOperationException {
+        Configuration.Indy indy = Mockito.mock(Configuration.Indy.class);
+        lenient().when(daConfiguration.indy()).thenReturn(indy);
+        lenient().when(indy.indyUrl()).thenReturn("http://localhost:8082");
+        lenient().when(indy.indyGroup()).thenReturn("DA-TEST-GROUP");
+        lenient().when(indy.indyGroupPublic()).thenReturn("DA-PUBLIC-TEST-GROUP");
+        lenient().when(indy.indyRequestTimeout()).thenReturn(30000);
+        lenient().when(indy.indyRequestRetries()).thenReturn(10);
 
-        DAConfig cfg = new DAConfig();
-        cfg.setIndyGroup("DA-TEST-GROUP");
-        cfg.setIndyGroupPublic("DA-PUBLIC-TEST-GROUP");
-        cfg.setIndyRequestTimeout(30000);
-        Configuration config = Mockito.mock(Configuration.class);
-        try {
-            when(config.getGlobalConfig()).thenReturn(globalCfg);
-            when(config.getConfig()).thenReturn(cfg);
-        } catch (ConfigurationParseException ex) {
-            throw new RuntimeException(ex);
-        }
-        return config;
+        indyConnector = new IndyConnectorImpl(daConfiguration);
+        object = MockitoAnnotations.openMocks(this);
+    }
+
+    @AfterEach
+    void finish() throws Exception {
+        object.close();
     }
 
     @Test
