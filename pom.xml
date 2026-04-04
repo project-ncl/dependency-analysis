@@ -84,7 +84,7 @@
     <version.pnc>3.4.4</version.pnc>
     <version.pnc-common>3.4.1-SNAPSHOT</version.pnc-common>
     <version.pnc-api>3.4.3</version.pnc-api>
-    <atlasVersion>1.2.1</atlasVersion>
+    <atlasVersion>1.2.2</atlasVersion>
     <version.galley>1.22-SNAPSHOT</version.galley>
     <maven.compiler.release>17</maven.compiler.release>
     <jdk.min.version>${maven.compiler.release}</jdk.min.version>
