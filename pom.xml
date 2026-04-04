@@ -238,7 +238,7 @@
       <dependency>
         <groupId>org.keycloak</groupId>
         <artifactId>keycloak-core</artifactId>
-        <version>18.0.9.redhat-00001</version>
+        <version>26.4.11.redhat-00001</version>
       </dependency>
 
       <!-- Commonjava -->
