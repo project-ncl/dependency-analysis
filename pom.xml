@@ -85,7 +85,7 @@
     <version.pnc-common>3.4.1-SNAPSHOT</version.pnc-common>
     <version.pnc-api>3.4.3</version.pnc-api>
     <atlasVersion>1.2.2</atlasVersion>
-    <version.galley>1.22-SNAPSHOT</version.galley>
+    <version.galley>1.22</version.galley>
     <maven.compiler.release>17</maven.compiler.release>
     <jdk.min.version>${maven.compiler.release}</jdk.min.version>
     <quarkus.platform.version>3.34.1</quarkus.platform.version>
