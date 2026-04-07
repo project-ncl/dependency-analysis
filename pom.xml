@@ -264,16 +264,6 @@
             <groupId>org.commonjava.maven.galley</groupId>
             <artifactId>*</artifactId>
           </exclusion>
-          <!-- Avoid dragging in all of o11yphant. -->
-          <!-- Keeping o11yphant-metrics-api & o11yphant-trace-api for GalleyMavenProducer -->
-          <exclusion>
-            <groupId>org.commonjava.util</groupId>
-            <artifactId>o11yphant-trace-core</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>org.commonjava.util</groupId>
-            <artifactId>o11yphant-trace-helper-jhttpc</artifactId>
-          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
