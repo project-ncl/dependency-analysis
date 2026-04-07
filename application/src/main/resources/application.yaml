@@ -7,6 +7,27 @@ quarkus:
     cors:
       enabled: true
       origins: "/.*/"
+
+    auth:
+      # required for LDAP: build-time property
+      basic: true
+  security:
+    ldap:
+      # enable LDAP: build-time property
+      enabled: true
+      cache:
+        enabled: true
+        max-age: 5m
+      dir-context:
+        url: ldaps://ldap-server.com
+      identity-mapping:
+        search-base-dn: ou=company.com
+  oidc:
+    auth-server-url: https://keycloak-host/auth/realms/pncredhat
+    client-id: client
+    credentials:
+      secret: secret
+
   swagger-ui:
     always-include: true
   websocket:
