@@ -1,12 +1,18 @@
 name: Build snapshot version and upload to Maven Central
 
+permissions: {}
+
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
     call-snapshot-job:
-      uses: project-ncl/shared-github-actions/.github/workflows/maven-snapshot.yml@v0.0.13
+      uses: project-ncl/shared-github-actions/.github/workflows/maven-snapshot.yml@504efc82df7d4f73e3bd2b67bec31bcd532ed9e4 # v0.0.14
       with:
         project_name: 'project-ncl/dependency-analysis'
-      secrets: inherit
+      secrets:
+        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+        QUAY_DEVEL_USERNAME: ${{ secrets.QUAY_DEVEL_USERNAME }}
+        QUAY_DEVEL_PASSWORD: ${{ secrets.QUAY_DEVEL_PASSWORD }}
