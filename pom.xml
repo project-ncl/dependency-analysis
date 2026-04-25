@@ -95,7 +95,7 @@
     <mvn-scm.version>1.13.0</mvn-scm.version>
 
     <!-- OTEL Dependencies for Instrumentation -->
-    <version.io.opentelemetry.instrumentation>2.26.1</version.io.opentelemetry.instrumentation>
+    <version.io.opentelemetry.instrumentation>2.27.0</version.io.opentelemetry.instrumentation>
 
     <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
     <tagSuffix/>
