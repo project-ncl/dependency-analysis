@@ -92,7 +92,7 @@
     <quarkus.wiremock>1.5.3</quarkus.wiremock>
 
     <!-- Don't update to 2.x as it causes test failures -->
-    <mvn-scm.version>1.13.0</mvn-scm.version>
+    <mvn-scm.version>2.2.1</mvn-scm.version>
 
     <!-- OTEL Dependencies for Instrumentation -->
     <version.io.opentelemetry.instrumentation>2.26.1</version.io.opentelemetry.instrumentation>
