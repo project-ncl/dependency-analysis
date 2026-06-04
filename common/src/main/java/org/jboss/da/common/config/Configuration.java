@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import jakarta.validation.constraints.NotBlank;
 
+import org.jboss.da.common.config.validator.ValidRepositoryConfig;
+import org.jboss.pnc.api.enums.RepositoryType;
 import org.jboss.pnc.enums.ArtifactQuality;
 import org.jboss.pnc.enums.BuildCategory;
 
@@ -16,6 +18,7 @@ import io.smallrye.config.WithDefault;
 import io.smallrye.config.WithName;
 
 @ConfigMapping(prefix = "da")
+@ValidRepositoryConfig
 public interface Configuration {
 
     @NotBlank
@@ -34,15 +37,13 @@ public interface Configuration {
     }
 
     interface Indy {
-        @NotBlank
+
         @WithName("indy-url")
         String indyUrl();
 
-        @NotBlank
         @WithName("indy-group")
         String indyGroup();
 
-        @NotBlank
         @WithName("indy-group-public")
         String indyGroupPublic();
 
