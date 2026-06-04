@@ -28,8 +28,11 @@ import org.jboss.pnc.api.enums.RepositoryType;
 import org.jboss.pnc.common.log.MDCUtils;
 import org.slf4j.Logger;
 
+import io.quarkus.arc.lookup.LookupIfProperty;
 
+@Artifactory
 @ApplicationScoped
+@LookupIfProperty(name = "da.repository-manager-support", stringValue = "ARTIFACTORY")
 public class ArtifactoryConnector implements RepositoryConnector {
 
     private final Logger log;

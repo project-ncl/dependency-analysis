@@ -10,7 +10,7 @@ import java.util.List;
 import jakarta.inject.Inject;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.indy.Indy;
 import org.jboss.da.communication.repository.api.RepositoryConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
@@ -24,7 +24,7 @@ import io.quarkus.test.junit.QuarkusTest;
 public class IndyRemoteTestIT extends AbstractServerTest {
 
     @Inject
-    IndyConnector indyConnector;
+    @Indy
     RepositoryConnector indyConnector;
 
     @BeforeEach

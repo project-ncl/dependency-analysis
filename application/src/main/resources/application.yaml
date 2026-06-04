@@ -74,6 +74,8 @@ quarkus:
 # Dependency Analyzer defaults
 da:
   pnc-url: ""
+  # Indy default for backward compatibility
+  repository-manager-support: INDY
   indy:
     indy-url: ""
     indy-group: ""
