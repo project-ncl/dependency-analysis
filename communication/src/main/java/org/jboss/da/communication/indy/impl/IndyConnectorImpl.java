@@ -32,8 +32,11 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.pnc.common.log.MDCUtils;
 import org.slf4j.Logger;
 
+import io.quarkus.arc.lookup.LookupIfProperty;
+
+@Indy
 @ApplicationScoped
-public class IndyConnectorImpl implements IndyConnector {
+@LookupIfProperty(name = "da.repository-manager-support", stringValue = "INDY")
 public class IndyConnectorImpl implements RepositoryConnector {
 
     @Inject

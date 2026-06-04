@@ -1,6 +1,10 @@
 package org.jboss.da.common.config;
 
+import java.net.URI;
+import java.time.Duration;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -18,9 +22,17 @@ public interface Configuration {
     @WithName("pnc-url")
     String pncUrl();
 
+    @WithDefault("INDY") // keep Indy as default for backward compatibility
+    RepositoryManager repositoryManagerSupport();
+
     Indy indy();
 
     Artifactory artifactory();
+
+    enum RepositoryManager {
+        INDY, ARTIFACTORY, DISABLED
+    }
+
     interface Indy {
         @NotBlank
         @WithName("indy-url")

@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
+import jakarta.enterprise.inject.Any;
+import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Qualifier;
 import jakarta.transaction.Transactional;
 
@@ -30,9 +31,12 @@ import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 @RequestScoped
 public class RepositoryProductProvider extends AbstractProductProvider {
 
-    @Inject
-    IndyConnector indyConnector;
     private final RepositoryConnector repositoryConnector;
+
+    public RepositoryProductProvider(@Any Instance<RepositoryConnector> repositoryConnector) {
+        // @LookupIfProperty in implementations ensures only ONE instance
+        this.repositoryConnector = repositoryConnector.get();
+    }
 
     @Override
     Stream<String> getVersionsStreamMaven(GA ga) {
