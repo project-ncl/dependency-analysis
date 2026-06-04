@@ -11,6 +11,7 @@ import jakarta.inject.Inject;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.repository.api.RepositoryConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.test.server.AbstractServerTest;
@@ -24,6 +25,7 @@ public class IndyRemoteTestIT extends AbstractServerTest {
 
     @Inject
     IndyConnector indyConnector;
+    RepositoryConnector indyConnector;
 
     @BeforeEach
     public void workaroundNoHttpResponseException() throws InterruptedException {

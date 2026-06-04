@@ -15,8 +15,8 @@ import jakarta.inject.Inject;
 import org.commonjava.atlas.maven.graph.rel.DependencyRelationship;
 import org.commonjava.atlas.maven.ident.ref.ArtifactRef;
 import org.commonjava.atlas.maven.ident.ref.ProjectRef;
-import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.GalleyWrapper;
+import org.jboss.da.communication.repository.model.GAVDependencyTree;
 import org.jboss.da.model.rest.GAV;
 import org.slf4j.Logger;
 

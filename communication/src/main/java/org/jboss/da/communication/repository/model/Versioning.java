@@ -1,4 +1,4 @@
-package org.jboss.da.communication.indy.model;
+package org.jboss.da.communication.repository.model;
 
 import jakarta.xml.bind.annotation.XmlElement;
 

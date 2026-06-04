@@ -1,4 +1,4 @@
-package org.jboss.da.communication.indy.impl;
+package org.jboss.da.communication.repository;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,8 +10,8 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 
-import org.jboss.da.communication.indy.model.VersionResponse;
-import org.jboss.da.communication.indy.model.npm.NpmMetadata;
+import org.jboss.da.communication.repository.model.VersionResponse;
+import org.jboss.da.communication.repository.model.npm.NpmMetadata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

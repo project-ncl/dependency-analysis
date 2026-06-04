@@ -1,4 +1,4 @@
-package org.jboss.da.communication.indy.model;
+package org.jboss.da.communication.repository.model;
 
 import java.util.Deque;
 import java.util.HashMap;
