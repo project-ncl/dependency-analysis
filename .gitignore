@@ -14,3 +14,4 @@ settings.xml
 
 # Local development properties
 application/src/main/resources/application.properties
+application/src/main/resources/application-local.yaml
