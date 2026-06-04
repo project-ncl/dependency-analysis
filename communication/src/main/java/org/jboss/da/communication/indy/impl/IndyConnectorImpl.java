@@ -90,7 +90,10 @@ public class IndyConnectorImpl implements RepositoryConnector {
             log.info("Retrieving npm metadata for " + packageName + " from " + query);
             HttpURLConnection connection = getResponse(query);
 
-            final Set<String> versions = parser.parseNpmMetadata(connection).getVersions().keySet();
+            Set<String> versions;
+            try (InputStream stream = connection.getInputStream()) {
+                versions = parser.parseNpmMetadata(stream).getVersions().keySet();
+            }
             log.debug(
                     "Npm metadata for {} found. Response: {}. Versions: {}",
                     packageName,
@@ -226,7 +229,7 @@ public class IndyConnectorImpl implements RepositoryConnector {
 
     private VersionResponse parseMetadataFile(URLConnection connection) throws IOException, CommunicationException {
         try (InputStream in = connection.getInputStream()) {
-            return MetadataFileParser.parseMavenMetadata(in);
+            return parser.parseMavenMetadata(in);
         } catch (JAXBException e) {
             throw new RepositoryException("Failed to parse metadata file", e);
         }
