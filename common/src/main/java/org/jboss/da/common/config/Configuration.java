@@ -20,6 +20,7 @@ public interface Configuration {
 
     Indy indy();
 
+    Artifactory artifactory();
     interface Indy {
         @NotBlank
         @WithName("indy-url")
@@ -40,6 +41,21 @@ public interface Configuration {
         @WithName("indy-request-retries")
         @WithDefault("10")
         int indyRequestRetries();
+    }
+
+    interface Artifactory {
+
+        Optional<URI> url();
+
+        Optional<String> accessToken();
+
+        Map<RepositoryType, @NotBlank String> groups();
+
+        @WithDefault("PT3M")
+        Duration requestTimeout();
+
+        @WithDefault("10")
+        int requestRetries();
     }
 
     List<LookupMode> lookupModes();

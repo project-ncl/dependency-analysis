@@ -2,7 +2,6 @@ package org.jboss.da.communication.repository;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLConnection;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -30,9 +29,7 @@ public class MetadataFileParser {
         return (VersionResponse) jaxbUnmarshaller.unmarshal(in);
     }
 
-    public NpmMetadata parseNpmMetadata(URLConnection connection) throws IOException {
-        try (InputStream in = connection.getInputStream()) {
-            return om.readValue(in, NpmMetadata.class);
-        }
+    public NpmMetadata parseNpmMetadata(InputStream in) throws IOException {
+        return om.readValue(in, NpmMetadata.class);
     }
 }

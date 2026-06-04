@@ -80,6 +80,13 @@ da:
     indy-group-public: ""
     indy-request-timeout: 3600000
     indy-request-retries: 10
+  artifactory:
+    #url: ""
+    #groups:
+    #  MAVEN: ""
+    #access-token:
+    request-timeout: PT60m
+    request-retries: 10
   lookup-modes:
     - name: PERSISTENT
       suffixes:
