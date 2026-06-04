@@ -10,9 +10,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import org.apache.maven.scm.ScmException;
-import org.jboss.da.communication.indy.model.GAVDependencyTree;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
+import org.jboss.da.communication.repository.model.GAVDependencyTree;
 import org.jboss.da.communication.scm.api.SCMConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;

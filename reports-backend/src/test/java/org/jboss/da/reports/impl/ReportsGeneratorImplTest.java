@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.config.Configuration;
 import org.jboss.da.common.logging.UserLog;
-import org.jboss.da.communication.indy.api.IndyConnector;
-import org.jboss.da.communication.indy.model.GAVDependencyTree;
+import org.jboss.da.communication.repository.api.RepositoryConnector;
+import org.jboss.da.communication.repository.model.GAVDependencyTree;
 import org.jboss.da.listings.api.service.BlackArtifactService;
 import org.jboss.da.listings.model.ProductSupportStatus;
 import org.jboss.da.model.rest.GA;
@@ -60,7 +60,7 @@ import org.slf4j.Logger;
 public class ReportsGeneratorImplTest {
 
     @Mock
-    private IndyConnector indyClient;
+    private RepositoryConnector repositoryConnector;
 
     @Mock
     private BlackArtifactService blackArtifactService;

@@ -20,11 +20,13 @@ import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.config.Configuration;
 import org.jboss.da.common.logging.UserLog;
 import org.jboss.da.common.util.Urls;
-import org.jboss.da.communication.indy.api.IndyConnector;
-import org.jboss.da.communication.indy.model.VersionResponse;
+import org.jboss.da.communication.indy.Indy;
 import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.pom.model.MavenProject;
+import org.jboss.da.communication.repository.MetadataFileParser;
+import org.jboss.da.communication.repository.api.RepositoryConnector;
 import org.jboss.da.communication.repository.api.RepositoryException;
+import org.jboss.da.communication.repository.model.VersionResponse;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.pnc.common.log.MDCUtils;
@@ -32,6 +34,7 @@ import org.slf4j.Logger;
 
 @ApplicationScoped
 public class IndyConnectorImpl implements IndyConnector {
+public class IndyConnectorImpl implements RepositoryConnector {
 
     @Inject
     private Logger log;

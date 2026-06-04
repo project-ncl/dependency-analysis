@@ -1,15 +1,14 @@
-package org.jboss.da.communication.indy.api;
+package org.jboss.da.communication.repository.api;
 
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
 import org.jboss.da.communication.pom.model.MavenProject;
-import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
 
-public interface IndyConnector {
+public interface RepositoryConnector {
 
     /**
      * Finds available versions of specific groupId artifactId. If the provided groupId artifactId is not found in

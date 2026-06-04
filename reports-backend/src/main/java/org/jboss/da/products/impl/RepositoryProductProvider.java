@@ -17,7 +17,7 @@ import jakarta.inject.Qualifier;
 import jakarta.transaction.Transactional;
 
 import org.jboss.da.common.CommunicationException;
-import org.jboss.da.communication.indy.api.IndyConnector;
+import org.jboss.da.communication.repository.api.RepositoryConnector;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.products.impl.RepositoryProductProvider.Repository;
 
@@ -32,18 +32,19 @@ public class RepositoryProductProvider extends AbstractProductProvider {
 
     @Inject
     IndyConnector indyConnector;
+    private final RepositoryConnector repositoryConnector;
 
     @Override
     Stream<String> getVersionsStreamMaven(GA ga) {
         if (!ga.isValid()) {
-            userLog.warn("Received nonvalid GA " + ga + ", using empty list of versions.");
-            log.warn("Received nonvalid GA: " + ga);
+            userLog.warn("Received nonvalid GA {}, using empty list of versions.", ga);
+            log.warn("Received nonvalid GA: {}", ga);
             return Stream.empty();
         }
+
         try {
-            List<String> versionsOfGA;
-            versionsOfGA = indyConnector.getVersionsOfGA(ga);
-            log.debug("Got versions of " + ga + " from repository: " + versionsOfGA);
+            List<String> versionsOfGA = repositoryConnector.getVersionsOfGA(ga);
+            log.debug("Got versions of {} from repository: {}", ga, versionsOfGA);
             return versionsOfGA.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
@@ -53,10 +54,9 @@ public class RepositoryProductProvider extends AbstractProductProvider {
     @Override
     Stream<String> getVersionsStreamNPM(String name) {
         try {
-            List<String> versionsOfGA;
-            versionsOfGA = indyConnector.getVersionsOfNpm(name);
-            log.debug("Got versions of " + name + " from repository: " + versionsOfGA);
-            return versionsOfGA.stream();
+            List<String> versionsOfNpm = repositoryConnector.getVersionsOfNpm(name);
+            log.debug("Got versions of {} from repository: {}", name, versionsOfNpm);
+            return versionsOfNpm.stream();
         } catch (CommunicationException ex) {
             throw new ProductException(ex);
         }

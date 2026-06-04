@@ -9,9 +9,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
-import org.jboss.da.communication.indy.model.VersionResponse;
-import org.jboss.da.communication.indy.model.Versioning;
-import org.jboss.da.communication.indy.model.Versions;
+import org.jboss.da.communication.repository.model.VersionResponse;
+import org.jboss.da.communication.repository.model.Versioning;
+import org.jboss.da.communication.repository.model.Versions;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
