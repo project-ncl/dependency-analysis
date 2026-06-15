@@ -157,7 +157,7 @@ public class ArtifactoryConnector implements RepositoryConnector {
         query.append(switch (type) {
             case MAVEN -> "maven-metadata.xml";
             case NPM -> "package.json";
-            case COCOA_POD, GENERIC_PROXY, DISTRIBUTION_ARCHIVE ->
+            case COCOA_POD, GENERIC_PROXY, DISTRIBUTION_ARCHIVE, RPM ->
                 throw new UnsupportedOperationException("Not supported.");
         });
         return query.toString();
