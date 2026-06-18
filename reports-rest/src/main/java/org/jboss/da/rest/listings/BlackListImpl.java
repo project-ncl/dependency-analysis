@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.Response;
 
 import org.jboss.da.listings.api.model.BlackArtifact;
@@ -26,7 +25,6 @@ import io.opentelemetry.instrumentation.annotations.WithSpan;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@Transactional
 public class BlackListImpl implements BlackList {
 
     @Inject
