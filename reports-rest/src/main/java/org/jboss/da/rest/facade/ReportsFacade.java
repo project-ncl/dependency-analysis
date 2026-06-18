@@ -8,7 +8,6 @@ import java.util.Set;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
@@ -36,7 +35,6 @@ import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
 
 @ApplicationScoped
-@Transactional
 public class ReportsFacade {
 
     @Inject
