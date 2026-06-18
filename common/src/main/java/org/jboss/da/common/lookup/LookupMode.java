@@ -1,6 +1,7 @@
 package org.jboss.da.common.lookup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class LookupMode {
                 : EnumSet.copyOf(new ArrayList<>(section.artifactQualities()));
         return builder()
                 .name(section.name())
-                .suffixes(new ArrayList<>(section.suffixes()))
+                .suffixes(new ArrayList<>(section.suffixes().orElse(Collections.emptyList())))
                 .incrementSuffix(section.incrementSuffix())
                 .buildCategories(buildCategories)
                 .artifactQualities(qualities)
