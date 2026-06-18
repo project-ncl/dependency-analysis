@@ -1,6 +1,7 @@
 package org.jboss.da.common.config;
 
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -47,7 +48,7 @@ public interface Configuration {
     interface LookupMode {
         String name();
 
-        List<String> suffixes();
+        Optional<List<String>> suffixes();
 
         @WithName("increment-suffix")
         @WithDefault("")
