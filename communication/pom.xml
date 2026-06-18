@@ -93,6 +93,17 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+      <version>2.22.0</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>4.0.5</version>
+    </dependency>
+
     <!-- Test dependencies -->
     <dependency>
       <groupId>io.quarkus</groupId>
