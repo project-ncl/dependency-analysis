@@ -3,7 +3,6 @@ package org.jboss.da.rest;
 import java.util.Set;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.lookup.model.MavenLatestRequest;
@@ -23,7 +22,6 @@ import org.slf4j.Logger;
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
 
-@Transactional
 public class LookupImpl implements Lookup {
 
     @Inject
