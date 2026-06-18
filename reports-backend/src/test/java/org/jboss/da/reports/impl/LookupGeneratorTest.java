@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -66,7 +67,7 @@ public class LookupGeneratorTest {
     void setUp() {
         Configuration.LookupMode mode = mock(Configuration.LookupMode.class);
         when(mode.name()).thenReturn(PERSISTENT);
-        when(mode.suffixes()).thenReturn(List.of("redhat"));
+        when(mode.suffixes()).thenReturn(Optional.of(List.of("redhat")));
         when(mode.incrementSuffix()).thenReturn("redhat");
         when(mode.buildCategories()).thenReturn(List.of(BuildCategory.STANDARD));
         when(mode.artifactQualities())
