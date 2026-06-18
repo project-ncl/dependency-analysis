@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import org.jboss.da.listings.api.dao.ArtifactDAO;
 import org.jboss.da.listings.api.dao.BlackArtifactDAO;
@@ -41,6 +42,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     }
 
     @Override
+    @Transactional
     public Set<GAV> prefetchGAs(Set<org.jboss.da.model.rest.GA> gaToPrefetch) {
         if (gaToPrefetch.isEmpty()) {
             return Set.of();
@@ -63,6 +65,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     }
 
     @Override
+    @Transactional
     public org.jboss.da.listings.api.service.ArtifactService.ArtifactStatus addArtifact(
             String groupId,
             String artifactId,
@@ -82,6 +85,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     }
 
     @Override
+    @Transactional
     public Optional<BlackArtifact> getArtifact(String groupId, String artifactId, String version) {
         SuffixedVersion parsedVersion = versionParser.parse(version);
         Optional<BlackArtifact> artifact = blackArtifactDAO
@@ -108,6 +112,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     }
 
     @Override
+    @Transactional
     public boolean removeArtifact(String groupId, String artifactId, String version) {
         Optional<BlackArtifact> artifact = blackArtifactDAO.findArtifact(groupId, artifactId, version);
         if (artifact.isPresent()) {
@@ -118,6 +123,7 @@ public class BlackArtifactServiceImpl extends ArtifactServiceImpl<BlackArtifact>
     }
 
     @Override
+    @Transactional
     public SortedSet<BlackArtifact> getArtifacts(String groupId, String artifactId) {
         Comparator<BlackArtifact> baComparator = Comparator
                 .comparing((BlackArtifact a) -> versionParser.parse(a.getVersion()));
