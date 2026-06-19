@@ -84,17 +84,19 @@ public class LocalRepo {
     }
 
     public static Set<Path> getAllPoms(Path scmDir) throws IOException {
-        return Files.walk(scmDir)
-                .filter(p -> !Files.isDirectory(p)) // is file
-                .filter(p -> p.endsWith("pom.xml")) // named pom.xml
-                .collect(Collectors.toSet());
+        try (Stream<Path> walk = Files.walk(scmDir)) {
+            return walk.filter(p -> !Files.isDirectory(p)) // is file
+                    .filter(p -> p.endsWith("pom.xml")) // named pom.xml
+                    .collect(Collectors.toSet());
+        }
     }
 
     public synchronized Set<Path> getAllPoms() throws IOException {
-        return Files.walk(path)
-                .filter(p -> !Files.isDirectory(p)) // is file
-                .filter(p -> p.toString().endsWith(".pom")) // name ends with .pom
-                .collect(Collectors.toSet());
+        try (Stream<Path> walk = Files.walk(path)) {
+            return walk.filter(p -> !Files.isDirectory(p)) // is file
+                    .filter(p -> p.toString().endsWith(".pom")) // name ends with .pom
+                    .collect(Collectors.toSet());
+        }
     }
 
     protected void delete() throws IOException {
