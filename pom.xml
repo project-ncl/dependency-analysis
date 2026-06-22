@@ -6,7 +6,7 @@
     <groupId>org.jboss</groupId>
     <artifactId>jboss-parent</artifactId>
     <version>53</version>
-    <relativePath />
+    <relativePath/>
   </parent>
 
   <groupId>org.jboss.da</groupId>
@@ -98,7 +98,7 @@
     <version.io.opentelemetry.instrumentation>2.27.0</version.io.opentelemetry.instrumentation>
 
     <persistence.hibernate.hbm2ddl.auto>update</persistence.hibernate.hbm2ddl.auto>
-    <tagSuffix />
+    <tagSuffix/>
   </properties>
 
   <dependencyManagement>
@@ -557,7 +557,7 @@
         <version>3.4.0</version>
         <configuration>
           <java>
-            <removeUnusedImports />
+            <removeUnusedImports/>
             <importOrder>
               <file>java-import-order.txt</file>
             </importOrder>
