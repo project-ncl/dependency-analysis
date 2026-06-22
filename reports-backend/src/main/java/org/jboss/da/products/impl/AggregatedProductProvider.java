@@ -22,6 +22,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -77,6 +78,11 @@ public class AggregatedProductProvider implements ProductProvider {
     PncProductProvider pncProductProvider;
 
     ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+
+    @PreDestroy
+    public void preDestroy() {
+        scheduler.shutdown();
+    }
 
     @Override
     public CompletableFuture<Set<Product>> getAllProducts() {
