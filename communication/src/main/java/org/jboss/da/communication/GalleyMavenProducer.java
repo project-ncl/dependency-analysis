@@ -6,8 +6,11 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
 
 import org.commonjava.cdi.util.weft.config.DefaultWeftConfig;
@@ -42,6 +45,7 @@ import org.commonjava.util.partyline.Partyline;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 // Inspiration taken from the previous CartographyProducer and org.commonjava.maven.galley.embed.TestCDIProvider.java
+@ApplicationScoped
 public class GalleyMavenProducer {
 
     private FileTransportConfig fileTransportConfig;
@@ -52,10 +56,13 @@ public class GalleyMavenProducer {
 
     private PathGenerator pathGenerator;
 
+    private ScheduledExecutorService threadPool;
+
     @PostConstruct
     void init() {
         try {
             File file = Files.createTempDirectory("galley").toFile();
+            threadPool = Executors.newScheduledThreadPool(2);
 
             pathGenerator = new HashedLocationPathGenerator();
             cacheProvider = new PartyLineCacheProvider(
@@ -63,7 +70,7 @@ public class GalleyMavenProducer {
                     pathGenerator,
                     new NoOpFileEventManager(),
                     new TransferDecoratorManager(),
-                    Executors.newScheduledThreadPool(2),
+                    threadPool,
                     new Partyline());
             fileTransportConfig = new FileTransportConfig(file, pathGenerator);
 
@@ -72,6 +79,11 @@ public class GalleyMavenProducer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        threadPool.shutdown();
     }
 
     @Produces
