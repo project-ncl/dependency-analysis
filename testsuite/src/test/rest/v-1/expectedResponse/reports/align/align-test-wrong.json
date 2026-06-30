@@ -1,5 +1,5 @@
 {
   "errorType": "SCM_ENDPOINT",
   "errorMessage": "Exception thrown in SCM analysis",
-  "details": "Exception while executing SCM command."
+  "details": "Cloning of git repository https://github.com/project-ncl/dependency-analysis2.git at revision 0.6.1 failed."
 }
