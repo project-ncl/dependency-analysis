@@ -329,6 +329,14 @@
             <groupId>org.commonjava.maven.galley</groupId>
             <artifactId>*</artifactId>
           </exclusion>
+          <!--
+            partyline pins vulnerable infinispan version,
+            infinispan related implementation there is not used by DA
+          -->
+          <exclusion>
+            <groupId>org.infinispan</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
