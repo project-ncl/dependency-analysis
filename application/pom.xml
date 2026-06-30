@@ -58,6 +58,13 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-micrometer-opentelemetry</artifactId>
     </dependency>
+    <!-- Upgrade of PNC from 3.4.5 -> 3.5.1 changed the rest client from using resteasy-jackson2-provider
+         with compile scope to jackson-jaxrs-json-provider with provided scope. Without this we get a 
+         Quarkus Arc processor null pointer. -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
