@@ -91,8 +91,7 @@
     <quarkus.platform.version>3.37.0</quarkus.platform.version>
     <quarkus.wiremock>1.5.3</quarkus.wiremock>
 
-    <!-- Don't update to 2.x as it causes test failures -->
-    <mvn-scm.version>1.13.0</mvn-scm.version>
+    <mvn-scm.version>2.2.1</mvn-scm.version>
 
     <!-- OTEL Dependencies for Instrumentation -->
     <version.io.opentelemetry.instrumentation>2.27.0</version.io.opentelemetry.instrumentation>
@@ -330,6 +329,14 @@
             <groupId>org.commonjava.maven.galley</groupId>
             <artifactId>*</artifactId>
           </exclusion>
+          <!--
+            partyline pins vulnerable infinispan version,
+            infinispan related implementation there is not used by DA
+          -->
+          <exclusion>
+            <groupId>org.infinispan</groupId>
+            <artifactId>*</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
@@ -360,11 +367,6 @@
       </dependency>
       <dependency>
         <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-provider-jgit</artifactId>
-        <version>${mvn-scm.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.scm</groupId>
         <artifactId>maven-scm-provider-svnexe</artifactId>
         <version>${mvn-scm.version}</version>
       </dependency>
@@ -373,7 +375,7 @@
       <dependency>
         <groupId>com.thetransactioncompany</groupId>
         <artifactId>jsonrpc2-base</artifactId>
-        <version>2.2</version>
+        <version>2.2.1</version>
       </dependency>
 
       <dependency>
