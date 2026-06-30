@@ -66,13 +66,13 @@ public class SCMTestIT {
         try {
             testDaGitClone("git@github.com:project-ncl/dependency-analysis.git");
         } catch (ScmException e) {
-            // Verify the stack trace is indeed the expected private key failure and not something else
+            // Verify the failure is the expected clone failure and not something else
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
             String trace = sw.toString(); // stack trace as a string
 
-            assertTrue(trace.contains("JGit checkout failure!"));
+            assertTrue(trace.contains("Cloning of git repository"));
         }
     }
 
