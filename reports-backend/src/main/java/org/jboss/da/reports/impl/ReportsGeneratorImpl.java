@@ -70,6 +70,7 @@ import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
+import org.jboss.pnc.common.log.LogSanitizer;
 import org.jboss.pnc.common.version.SuffixedVersion;
 import org.jboss.pnc.common.version.VersionAnalyzer;
 import org.jboss.pnc.common.version.VersionComparator;
@@ -568,7 +569,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     @Override
     public List<LookupReport> getLookupReportsForGavs(LookupGAVsRequest request) throws CommunicationException {
-        userLog.info("Starting lookup report for: {}", request);
+        userLog.info("Starting lookup report for: {}", LogSanitizer.clean(request.toString()));
 
         // Get set of GAs
         Set<GA> uniqueGAs = request.getGavs().stream().map(GAV::getGA).collect(Collectors.toSet());

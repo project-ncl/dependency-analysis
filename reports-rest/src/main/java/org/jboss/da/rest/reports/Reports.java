@@ -37,6 +37,7 @@ import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.rest.facade.ReportsFacade;
 import org.jboss.da.validation.ValidationException;
+import org.jboss.pnc.common.log.LogSanitizer;
 import org.slf4j.Logger;
 
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
@@ -98,9 +99,11 @@ public class Reports {
             @SpanAttribute(value = "gavRequest") @Parameter(
                     description = "JSON list of objects with keys 'groupId', 'artifactId', and 'version'") LookupGAVsRequest gavRequest)
             throws CommunicationException {
-        log.info("Incoming request to /lookup/gavs. Payload: " + gavRequest.toString());
+        log.info("Incoming request to /lookup/gavs. Payload: " + LogSanitizer.clean(gavRequest.toString()));
         List<LookupReport> lookupReportList = facade.gavsReport(gavRequest);
-        log.info("Request to /lookup/gavs completed successfully. Payload: " + gavRequest.toString());
+        log.info(
+                "Request to /lookup/gavs completed successfully. Payload: "
+                        + LogSanitizer.clean(gavRequest.toString()));
         return Response.status(Status.OK).entity(lookupReportList).build();
     }
 
@@ -119,9 +122,9 @@ public class Reports {
             @SpanAttribute(value = "request") @Parameter(
                     description = "JSON object with list of package names") LookupNPMRequest request)
             throws CommunicationException {
-        log.info("Incoming request to /lookup/npm. Payload: " + request.toString());
+        log.info("Incoming request to /lookup/npm. Payload: " + LogSanitizer.clean(request.toString()));
         List<NPMLookupReport> lookupReportList = facade.lookupReport(request);
-        log.info("Request to /lookup/npm completed successfully. Payload: " + request.toString());
+        log.info("Request to /lookup/npm completed successfully. Payload: " + LogSanitizer.clean(request.toString()));
         return Response.status(Status.OK).entity(lookupReportList).build();
     }
 
@@ -137,9 +140,9 @@ public class Reports {
             @SpanAttribute(value = "request") @Parameter(
                     description = "JSON object with list of package names") VersionsNPMRequest request)
             throws CommunicationException {
-        log.info("Incoming request to /versions/npm. Payload: " + request.toString());
+        log.info("Incoming request to /versions/npm. Payload: " + LogSanitizer.clean(request.toString()));
         List<NPMVersionsReport> versionsReportList = facade.versionReport(request);
-        log.info("Request to /versions/npm completed successfully. Payload: " + request.toString());
+        log.info("Request to /versions/npm completed successfully. Payload: " + LogSanitizer.clean(request.toString()));
         return Response.status(Status.OK).entity(versionsReportList).build();
     }
 
