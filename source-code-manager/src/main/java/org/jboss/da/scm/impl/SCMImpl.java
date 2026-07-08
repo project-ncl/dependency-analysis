@@ -14,6 +14,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.scm.api.SCM;
 import org.jboss.da.scm.api.SCMType;
+import org.jboss.pnc.common.log.LogSanitizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +42,10 @@ public class SCMImpl implements SCM {
         if (fref.shouldIComplete()) {
             try {
                 File tempDir = Files.createTempDirectory("cloned_repo").toFile();
-                log.info("Cached repository for {} not found. Cloning to {}.", spec, tempDir);
+                log.info(
+                        "Cached repository for {} not found. Cloning to {}.",
+                        LogSanitizer.clean(spec.toString()),
+                        LogSanitizer.clean(tempDir.toString()));
                 try {
                     scm.shallowCloneRepository(scmType, scmUrl, revision, tempDir);
                     DirectoryReference ref = new DirectoryReference(tempDir);
@@ -66,7 +70,10 @@ public class SCMImpl implements SCM {
                 File dir = fref.get(30, TimeUnit.MINUTES)
                         .get()
                         .orElseThrow(() -> new IllegalStateException("Now completed reference has empty file."));
-                log.info("Cached repository for {} found in {}.", spec, dir);
+                log.info(
+                        "Cached repository for {} found in {}.",
+                        LogSanitizer.clean(spec.toString()),
+                        LogSanitizer.clean(dir.toString()));
                 return dir;
             } catch (InterruptedException | ExecutionException | TimeoutException ex) {
                 throw new ScmException("Could not obtain cloned repository.", ex);
