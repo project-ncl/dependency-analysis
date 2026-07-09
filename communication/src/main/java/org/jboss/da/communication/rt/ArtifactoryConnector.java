@@ -69,6 +69,10 @@ public class ArtifactoryConnector implements RepositoryConnector {
             if (connection == null) {
                 return Collections.emptyList();
             }
+            if (connection.statusCode() == 404) {
+                log.debug("Maven metadata for {} not found (404). Assuming empty version list.", ga);
+                return Collections.emptyList();
+            }
             List<String> versions;
             try (InputStream in = connection.body()) {
                 versions = parser.parseMavenMetadata(in).getVersioning().getVersions().getVersion();
@@ -105,6 +109,10 @@ public class ArtifactoryConnector implements RepositoryConnector {
 
             HttpResponse<InputStream> connection = makeRequest(query);
             if (connection == null) {
+                return Collections.emptyList();
+            }
+            if (connection.statusCode() == 404) {
+                log.debug("Npm metadata for {} not found (404). Assuming empty version list.", packageName);
                 return Collections.emptyList();
             }
 
