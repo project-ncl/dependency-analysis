@@ -1,6 +1,5 @@
 package org.jboss.da.communication.rt;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.http.HttpClient;
@@ -89,9 +88,6 @@ public class ArtifactoryConnector implements RepositoryConnector {
                     versions);
 
             return versions;
-        } catch (FileNotFoundException ex) {
-            log.debug("Maven metadata for {} not found. Assuming empty version list.", ga);
-            return Collections.emptyList();
         } catch (IOException | CommunicationException e) {
             log.debug("Failed to obtain versions for {} from repository on url {}", ga, query, e);
             throw new RepositoryException(
@@ -128,9 +124,6 @@ public class ArtifactoryConnector implements RepositoryConnector {
                     versions);
 
             return new ArrayList<>(versions);
-        } catch (FileNotFoundException ex) {
-            log.debug("Npm metadata for {} not found. Assuming empty version list.", packageName);
-            return Collections.emptyList();
         } catch (IOException e) {
             log.debug("Failed to obtain versions for {} from repository on url {}", packageName, query, e);
             throw new RepositoryException(
