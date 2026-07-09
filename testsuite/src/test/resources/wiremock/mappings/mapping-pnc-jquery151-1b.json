@@ -1,7 +1,7 @@
 {
   "id" : "5986cae2-38de-11eb-adc1-0242ac120002",
   "request" : {
-    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=jquery%3A*&qualities=VERIFIED&qualities=TESTED&qualities=NEW&repoType=NPM",
+    "url" : "/pnc-rest/v2/artifacts/filter?pageIndex=0&pageSize=100&identifier=jquery%3A*&qualities=VERIFIED&qualities=TESTED&qualities=NEW&repoType=NPM",
     "method" : "GET"
   },
   "response" : {
