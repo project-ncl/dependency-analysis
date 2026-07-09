@@ -23,7 +23,7 @@ public class MetadataFileParser {
     @Inject
     ObjectMapper om;
 
-    public static VersionResponse parseMavenMetadata(InputStream in) throws JAXBException {
+    public VersionResponse parseMavenMetadata(InputStream in) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(VersionResponse.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         return (VersionResponse) jaxbUnmarshaller.unmarshal(in);
