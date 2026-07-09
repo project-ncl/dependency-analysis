@@ -1,7 +1,7 @@
 {
   "id" : "f81e69d0-38de-11eb-adc1-0242ac120002",
   "request" : {
-    "url" : "/pnc-rest/v2/artifacts/filter?pageSize=100&pageIndex=0&identifier=jquery%3A*&qualities=TESTED&qualities=NEW&qualities=VERIFIED&repoType=NPM",
+    "url" : "/pnc-rest/v2/artifacts/filter?pageIndex=0&pageSize=100&identifier=jquery%3A*&qualities=TESTED&qualities=NEW&qualities=VERIFIED&repoType=NPM",
     "method" : "GET"
   },
   "response" : {
