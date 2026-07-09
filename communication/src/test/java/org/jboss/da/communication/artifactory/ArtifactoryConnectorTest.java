@@ -138,6 +138,21 @@ public class ArtifactoryConnectorTest {
     }
 
     @Test
+    public void testGetVersionsOfGA_NotFound() throws CommunicationException {
+        stubFor(
+                get(urlEqualTo("/artifactory/DA-MVN-TEST-GROUP/foo/bar/nonexistent/maven-metadata.xml"))
+                        .willReturn(aResponse().withStatus(404).withBody("Not Found")));
+
+        List<String> versionsOfGA = artifactoryConnector.getVersionsOfGA(new GA("foo.bar", "nonexistent"));
+
+        // verify
+        assertTrue(
+                WireMock.findUnmatchedRequests().isEmpty(),
+                "Unmatched requests: " + WireMock.findUnmatchedRequests());
+        assertTrue(versionsOfGA.isEmpty(), "Expected empty list for non-existent artifact");
+    }
+
+    @Test
     public void testGetVersionsOfNpm() throws CommunicationException {
         stubFor(
                 get(urlEqualTo("/artifactory/DA-NPM-TEST-GROUP/jquery/package.json")).willReturn(
@@ -161,5 +176,20 @@ public class ArtifactoryConnectorTest {
         assertTrue(versionsOfGA.contains("3.0.0-beta1"));
         assertTrue(versionsOfGA.contains("3.0.0-rc1"));
         assertTrue(versionsOfGA.contains("3.1.0"));
+    }
+
+    @Test
+    public void testGetVersionsOfNpm_NotFound() throws CommunicationException {
+        stubFor(
+                get(urlEqualTo("/artifactory/DA-NPM-TEST-GROUP/nonexistent-package/package.json"))
+                        .willReturn(aResponse().withStatus(404).withBody("Not Found")));
+
+        List<String> versionsOfNpm = artifactoryConnector.getVersionsOfNpm("nonexistent-package");
+
+        // verify
+        assertTrue(
+                WireMock.findUnmatchedRequests().isEmpty(),
+                "Unmatched requests: " + WireMock.findUnmatchedRequests());
+        assertTrue(versionsOfNpm.isEmpty(), "Expected empty list for non-existent npm package");
     }
 }
