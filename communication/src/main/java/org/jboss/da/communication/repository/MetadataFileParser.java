@@ -20,12 +20,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ApplicationScoped
 public class MetadataFileParser {
 
+    private static final JAXBContext JAXB_CONTEXT;
+
+    static {
+        try {
+            JAXB_CONTEXT = JAXBContext.newInstance(VersionResponse.class);
+        } catch (JAXBException e) {
+            throw new ExceptionInInitializerError("Failed to initialize JAXBContext: " + e.getMessage());
+        }
+    }
+
     @Inject
     ObjectMapper om;
 
     public VersionResponse parseMavenMetadata(InputStream in) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(VersionResponse.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        Unmarshaller jaxbUnmarshaller = JAXB_CONTEXT.createUnmarshaller();
         return (VersionResponse) jaxbUnmarshaller.unmarshal(in);
     }
 
