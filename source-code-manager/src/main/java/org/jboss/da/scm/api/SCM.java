@@ -4,8 +4,6 @@ import java.io.File;
 import java.time.Duration;
 import java.time.temporal.TemporalAmount;
 
-import org.apache.maven.scm.ScmException;
-
 /**
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
@@ -22,12 +20,11 @@ public interface SCM {
      * As long as it is referenced the repository will stay cloned. The repository will stay cloned for at least
      * {@link SCM#TIME_TO_KEEP} after the File object was garbage collected.
      *
-     * @param scmType
      * @param scmUrl
      * @param revision
      * @return
      * @throws ScmException
      * @see SCM#TIME_TO_KEEP
      */
-    File cloneRepository(SCMType scmType, String scmUrl, String revision) throws ScmException;
+    File cloneRepository(String scmUrl, String revision) throws ScmException;
 }

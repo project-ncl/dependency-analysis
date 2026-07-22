@@ -91,8 +91,6 @@
     <quarkus.platform.version>3.37.0</quarkus.platform.version>
     <quarkus.wiremock>1.6.3</quarkus.wiremock>
 
-    <mvn-scm.version>2.2.1</mvn-scm.version>
-
     <!-- OTEL Dependencies for Instrumentation -->
     <version.io.opentelemetry.instrumentation>2.27.0</version.io.opentelemetry.instrumentation>
 
@@ -358,19 +356,6 @@
         <version>1.18.46</version>
         <scope>provided</scope>
       </dependency>
-
-      <!-- maven scm libraries -->
-      <dependency>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-api</artifactId>
-        <version>${mvn-scm.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-provider-svnexe</artifactId>
-        <version>${mvn-scm.version}</version>
-      </dependency>
-      <!-- maven scm libraries -->
 
       <dependency>
         <groupId>com.thetransactioncompany</groupId>

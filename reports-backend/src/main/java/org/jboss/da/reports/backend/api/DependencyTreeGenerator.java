@@ -1,10 +1,10 @@
 package org.jboss.da.reports.backend.api;
 
-import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.repository.model.GAVDependencyTree;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.model.api.SCMLocator;
+import org.jboss.da.scm.api.ScmException;
 
 /**
  *

@@ -5,12 +5,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import org.apache.maven.scm.ScmException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.pom.model.MavenProject;
 import org.jboss.da.communication.repository.model.GAVDependencyTree;
 import org.jboss.da.model.rest.GA;
 import org.jboss.da.model.rest.GAV;
+import org.jboss.da.scm.api.ScmException;
 
 /**
  *
