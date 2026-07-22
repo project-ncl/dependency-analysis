@@ -12,6 +12,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import jakarta.inject.Inject;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.scm.ScmException;
 import org.jboss.da.scm.api.SCMType;
@@ -24,9 +26,11 @@ import io.quarkus.test.junit.QuarkusTest;
 @QuarkusTest
 public class SCMTestIT {
 
+    @Inject
+    ScmFacade scm;
+
     private void testDaGitClone(String scmUrl) throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_git_clone");
-        ScmFacade scm = new ScmFacade();
 
         try {
             // the git commit is actually the one for tag 0.2.0
@@ -86,7 +90,6 @@ public class SCMTestIT {
 
         // this test should use the shallow cloning feature
         Path tempDir = Files.createTempDirectory("da_temp_git_clone");
-        ScmFacade scm = new ScmFacade();
 
         try {
             scm.shallowCloneRepository(
@@ -117,7 +120,6 @@ public class SCMTestIT {
     @Test
     public void shouldCloneSvnRepository() throws Exception {
         Path tempDir = Files.createTempDirectory("da_temp_svn_checkout");
-        ScmFacade scm = new ScmFacade();
 
         try {
             // revision makes no sense for SVN
