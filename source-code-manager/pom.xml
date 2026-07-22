@@ -49,6 +49,10 @@
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
     </dependency>
+    <dependency>
+      <groupId>io.smallrye.common</groupId>
+      <artifactId>smallrye-common-process</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
