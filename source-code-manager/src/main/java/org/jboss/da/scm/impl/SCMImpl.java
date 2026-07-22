@@ -11,9 +11,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.maven.scm.ScmException;
 import org.jboss.da.scm.api.SCM;
-import org.jboss.da.scm.api.SCMType;
+import org.jboss.da.scm.api.ScmException;
 import org.jboss.pnc.common.log.LogSanitizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,8 +33,8 @@ public class SCMImpl implements SCM {
     SCMCache cache;
 
     @Override
-    public File cloneRepository(SCMType scmType, String scmUrl, String revision) throws ScmException {
-        SCMSpecifier spec = new SCMSpecifier(scmType, scmUrl, revision);
+    public File cloneRepository(String scmUrl, String revision) throws ScmException {
+        SCMSpecifier spec = new SCMSpecifier(scmUrl, revision);
 
         FutureReference fref = cache.get(spec);
 
@@ -47,7 +46,7 @@ public class SCMImpl implements SCM {
                         LogSanitizer.clean(spec.toString()),
                         LogSanitizer.clean(tempDir.toString()));
                 try {
-                    scm.shallowCloneRepository(scmType, scmUrl, revision, tempDir);
+                    scm.cloneRepository(scmUrl, revision, tempDir);
                     DirectoryReference ref = new DirectoryReference(tempDir);
                     fref.complete(ref);
                     return tempDir;

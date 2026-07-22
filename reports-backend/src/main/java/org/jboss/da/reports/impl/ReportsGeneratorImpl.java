@@ -27,8 +27,6 @@ import jakarta.inject.Inject;
 import jakarta.validation.ValidationException;
 
 import org.apache.commons.lang3.BooleanUtils;
-import org.apache.maven.scm.ScmException;
-import org.codehaus.plexus.util.StringUtils;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.config.Configuration;
 import org.jboss.da.common.logging.UserLog;
@@ -69,7 +67,7 @@ import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.scm.api.SCM;
-import org.jboss.da.scm.api.SCMType;
+import org.jboss.da.scm.api.ScmException;
 import org.jboss.pnc.common.log.LogSanitizer;
 import org.jboss.pnc.common.version.SuffixedVersion;
 import org.jboss.pnc.common.version.VersionAnalyzer;
@@ -231,9 +229,8 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
         GAVDependencyTree dt = dependencyTreeGenerator.getDependencyTree(scml);
         Optional<ArtifactReport> artifactReport = createReport(dt);
-        // TODO: hardcoded to git
         // hopefully we'll get the cached cloned folder for this repo
-        File repoFolder = scmManager.cloneRepository(SCMType.GIT, scml.getScmUrl(), scml.getRevision());
+        File repoFolder = scmManager.cloneRepository(scml.getScmUrl(), scml.getRevision());
         return artifactReport.map(r -> generateAdvancedArtifactReport(r, repoFolder));
     }
 
@@ -705,7 +702,7 @@ public class ReportsGeneratorImpl implements ReportsGenerator {
 
     private LookupMode getLookupMode(String modeName, String suffix) {
         LookupMode mode;
-        if (StringUtils.isEmpty(modeName)) {
+        if (modeName == null || modeName.isEmpty()) {
             mode = new LookupMode();
             mode.setName("ON_THE_FLY_MODE");
             mode.getBuildCategories().add(BuildCategory.STANDARD);

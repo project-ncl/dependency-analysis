@@ -12,7 +12,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
-import org.apache.maven.scm.ScmException;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -36,6 +35,7 @@ import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.reports.model.response.Report;
 import org.jboss.da.rest.facade.ReportsFacade;
+import org.jboss.da.scm.api.ScmException;
 import org.jboss.da.validation.ValidationException;
 import org.jboss.pnc.common.log.LogSanitizer;
 import org.slf4j.Logger;

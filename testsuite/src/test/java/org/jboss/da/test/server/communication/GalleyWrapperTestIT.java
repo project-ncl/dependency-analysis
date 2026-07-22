@@ -12,7 +12,6 @@ import java.util.Set;
 
 import jakarta.inject.Inject;
 
-import org.apache.maven.scm.ScmException;
 import org.commonjava.maven.galley.maven.parse.MavenPomReader;
 import org.commonjava.maven.galley.maven.rel.MavenModelProcessor;
 import org.commonjava.maven.galley.maven.rel.ModelProcessorConfig;
@@ -25,7 +24,7 @@ import org.jboss.da.communication.pom.api.PomAnalyzer;
 import org.jboss.da.communication.repository.model.GAVDependencyTree;
 import org.jboss.da.model.rest.GAV;
 import org.jboss.da.scm.api.SCM;
-import org.jboss.da.scm.api.SCMType;
+import org.jboss.da.scm.api.ScmException;
 import org.jboss.da.test.server.AbstractServerTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -76,7 +75,7 @@ public class GalleyWrapperTestIT extends AbstractServerTest {
     @BeforeEach
     public void cloneRepo() throws ScmException {
         clonedRepository = scm
-                .cloneRepository(SCMType.GIT, "https://github.com/project-ncl/dependency-analysis.git", VERSION);
+                .cloneRepository("https://github.com/project-ncl/dependency-analysis.git", VERSION);
     }
 
     private void printDeptree(GAVDependencyTree tree, String prefix) {

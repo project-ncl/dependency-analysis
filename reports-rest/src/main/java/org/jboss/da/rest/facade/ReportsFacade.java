@@ -9,7 +9,6 @@ import java.util.Set;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
-import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.reports.api.AdvancedArtifactReport;
@@ -31,6 +30,7 @@ import org.jboss.da.reports.model.response.LookupReport;
 import org.jboss.da.reports.model.response.NPMLookupReport;
 import org.jboss.da.reports.model.response.NPMVersionsReport;
 import org.jboss.da.reports.model.response.Report;
+import org.jboss.da.scm.api.ScmException;
 import org.jboss.da.validation.Validation;
 import org.jboss.da.validation.ValidationException;
 

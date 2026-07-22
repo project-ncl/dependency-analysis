@@ -14,11 +14,11 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
-import org.apache.maven.scm.ScmException;
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.communication.pom.PomAnalysisException;
 import org.jboss.da.communication.repository.api.RepositoryException;
 import org.jboss.da.model.rest.ErrorMessage;
+import org.jboss.da.scm.api.ScmException;
 import org.jboss.da.validation.ValidationException;
 import org.slf4j.Logger;
 
