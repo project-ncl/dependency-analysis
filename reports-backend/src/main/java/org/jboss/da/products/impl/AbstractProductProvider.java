@@ -114,14 +114,15 @@ public abstract class AbstractProductProvider implements ProductProvider {
             case MAVEN: {
                 GA ga = ((MavenArtifact) artifact).getGav().getGA();
                 CompletableFuture<Set<String>> versions = supplyAsync(
-                        () -> getVersionsStreamMaven(ga).filter(v -> versionParser.parse(v).isSuffixed())
+                        () -> getVersionsStreamMaven(ga).filter(this::filterSuffixVersionOnlyIfSuffixConfigured)
                                 .distinct()
                                 .collect(Collectors.toSet()));
                 return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN, rv));
             }
             case NPM: {
                 CompletableFuture<Set<String>> versions = supplyAsync(
-                        () -> getVersionsStreamNPM(artifact.getName()).filter(v -> versionParser.parse(v).isSuffixed())
+                        () -> getVersionsStreamNPM(artifact.getName())
+                                .filter(this::filterSuffixVersionOnlyIfSuffixConfigured)
                                 .distinct()
                                 .collect(Collectors.toSet()));
                 return versions.thenApply(rv -> Collections.singletonMap(Product.UNKNOWN, rv));
@@ -156,7 +157,7 @@ public abstract class AbstractProductProvider implements ProductProvider {
     }
 
     private Set<ProductArtifacts> getArtifactsMaven(GA ga) {
-        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga).filter(v -> versionParser.parse(v).isSuffixed())
+        Set<Artifact> allArtifacts = getVersionsStreamMaven(ga).filter(this::filterSuffixVersionOnlyIfSuffixConfigured)
                 .distinct()
                 .map(x -> new GAV(ga, x))
                 .map(MavenArtifact::new)
@@ -168,7 +169,7 @@ public abstract class AbstractProductProvider implements ProductProvider {
     }
 
     private Set<ProductArtifacts> getArtifactsNPM(String name) {
-        Set<Artifact> allArtifacts = getVersionsStreamNPM(name).filter(v -> versionParser.parse(v).isSuffixed())
+        Set<Artifact> allArtifacts = getVersionsStreamNPM(name).filter(this::filterSuffixVersionOnlyIfSuffixConfigured)
                 .distinct()
                 .map(v -> new NPMArtifact(name, v))
                 .collect(Collectors.toSet());
@@ -176,6 +177,21 @@ public abstract class AbstractProductProvider implements ProductProvider {
             return Collections.emptySet();
         }
         return Collections.singleton(new ProductArtifacts(Product.UNKNOWN, allArtifacts));
+    }
+
+    /**
+     * Helper method to filter for suffixed versions only if the suffixes were configured for version parser
+     * 
+     * @param version version to parse
+     * @return boolean
+     */
+    private boolean filterSuffixVersionOnlyIfSuffixConfigured(String version) {
+
+        if (versionParser.hasSuffixesConfigured()) {
+            return versionParser.parse(version).isSuffixed();
+        } else {
+            return true;
+        }
     }
 
     abstract Stream<String> getVersionsStreamMaven(GA ga);
