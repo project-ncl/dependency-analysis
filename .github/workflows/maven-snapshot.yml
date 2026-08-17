@@ -4,7 +4,7 @@ permissions: {}
 
 on:
   push:
-    branches: [ "ncl-9782" ]
+    branches: [ "master" ]
 
 jobs:
     call-snapshot-job:
