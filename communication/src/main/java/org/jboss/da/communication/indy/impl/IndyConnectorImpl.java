@@ -138,32 +138,44 @@ public class IndyConnectorImpl implements RepositoryConnector {
     }
 
     private HttpURLConnection getResponse(String query) throws IOException {
-        HttpURLConnection connection = (HttpURLConnection) new URL(query).openConnection();
-        MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
-        connection.setConnectTimeout(configuration.indy().indyRequestTimeout());
-        connection.setReadTimeout(configuration.indy().indyRequestTimeout());
-        int retry = 0;
-        while ((connection.getResponseCode() == 504 || connection.getResponseCode() == 500)
-                && retry < configuration.indy().indyRequestRetries()) {
+        int maxRetries = configuration.indy().indyRequestRetries();
+        IOException lastException = null;
 
-            userLog.warn("Connection to: {} failed with status: {}. retrying...", query, connection.getResponseCode());
-            log.warn("Connection to: {} failed with status: {}. retrying...", query, connection.getResponseCode());
-
-            retry++;
-
-            try {
-                // Wait before retrying using Exponential back-off: 100ms, 200ms, 400ms, cap to 5000ms
-                Thread.sleep(Math.min((long) Math.pow(2, retry) * 100L, 5000L));
-            } catch (InterruptedException e) {
-                log.error(e.getMessage());
+        for (int attempt = 0; attempt <= maxRetries; attempt++) {
+            if (attempt > 0) {
+                try {
+                    long delay = Math.min((long) Math.pow(2, attempt) * 100L, 5000L);
+                    Thread.sleep(delay);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    throw new IOException("Interrupted while retrying connection to " + query, e);
+                }
             }
 
-            connection = (HttpURLConnection) new URL(query).openConnection();
-            MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
-            connection.setConnectTimeout(configuration.indy().indyRequestTimeout());
-            connection.setReadTimeout(configuration.indy().indyRequestTimeout());
+            HttpURLConnection connection;
+            try {
+                connection = (HttpURLConnection) new URL(query).openConnection();
+                MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
+                connection.setConnectTimeout(configuration.indy().indyRequestTimeout());
+                connection.setReadTimeout(configuration.indy().indyRequestTimeout());
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode != 500 && responseCode != 504) {
+                    return connection;
+                }
+
+                userLog.warn("Connection to: {} failed with status: {}. retrying...", query, responseCode);
+                log.warn("Connection to: {} failed with status: {}. retrying...", query, responseCode);
+            } catch (IOException e) {
+                lastException = e;
+                userLog.warn("Connection to: {} failed with: {}. retrying...", query, e.getMessage());
+                log.warn("Connection to: {} failed with: {}. retrying...", query, e.getMessage());
+            }
         }
-        return connection;
+
+        throw lastException != null
+                ? lastException
+                : new IOException("Failed to connect to " + query + " after " + maxRetries + " retries");
     }
 
     @Override
@@ -183,8 +195,7 @@ public class IndyConnectorImpl implements RepositoryConnector {
             query.append(gav.getVersion()).append('/');
             query.append(gav.getArtifactId()).append('-').append(gav.getVersion()).append(".pom");
 
-            URLConnection connection = new URL(query.toString()).openConnection();
-            MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
+            HttpURLConnection connection = getResponse(query.toString());
             return Optional.of(connection.getInputStream());
         } catch (FileNotFoundException ex) {
             return Optional.empty();
@@ -194,13 +205,6 @@ public class IndyConnectorImpl implements RepositoryConnector {
     }
 
     @Override
-    /**
-     * Implementation note: dcheung tried to initially use HttpURLConnection and send a 'HEAD' request to the resource.
-     * Even though that worked, for some reason this completely makes Arquillian fail to deploy the testsuite. For that
-     * reason, dcheung switched to using a simple URL object instead with the try-catch logic.
-     *
-     * No dcheung doesn't usually talks about himself in the third person..
-     */
     public boolean doesGAVExistInPublicRepo(GAV gav) throws RepositoryException {
         StringBuilder query = new StringBuilder();
 
@@ -213,14 +217,11 @@ public class IndyConnectorImpl implements RepositoryConnector {
             query.append(gav.getVersion()).append('/');
             query.append(gav.getArtifactId()).append("-").append(gav.getVersion()).append(".pom");
 
-            URLConnection connection = new URL(query.toString()).openConnection();
-            MDCUtils.getHeadersFromMDC().forEach(connection::addRequestProperty);
+            HttpURLConnection connection = getResponse(query.toString());
             try {
                 connection.getInputStream().close();
-                // if we've reached here, then it means the pom exists
                 return true;
             } catch (FileNotFoundException e) {
-                // if we've reached here, the resource is not available
                 return false;
             }
         } catch (IOException e) {
