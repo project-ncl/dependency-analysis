@@ -200,7 +200,12 @@ public class LookupGeneratorImpl implements LookupGenerator {
             LookupMode mode,
             Map<GA, CompletableFuture<Set<String>>> artifactsMap) throws CommunicationException {
 
-        VersionAnalyzer va = new VersionAnalyzer(Collections.singletonList(mode.getIncrementSuffix()));
+        final VersionAnalyzer va;
+        if (mode.getIncrementSuffix().isEmpty()) {
+            va = new VersionAnalyzer(Collections.emptyList());
+        } else {
+            va = new VersionAnalyzer(Collections.singletonList(mode.getIncrementSuffix().get()));
+        }
 
         Set<CompletableFuture<MavenLatestResult>> futures = gavs.stream()
                 .map(gav -> artifactsMap.get(gav.getGA()).thenApply(pas -> getLatestResult(va, gav, pas)))

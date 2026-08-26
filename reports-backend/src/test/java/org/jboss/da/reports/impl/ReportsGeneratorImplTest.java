@@ -117,7 +117,7 @@ public class ReportsGeneratorImplTest {
         Configuration.LookupMode lm = mock(Configuration.LookupMode.class);
         when(lm.name()).thenReturn("PERSISTENT");
         when(lm.suffixes()).thenReturn(Optional.of(List.of("redhat")));
-        when(lm.incrementSuffix()).thenReturn("redhat");
+        when(lm.incrementSuffix()).thenReturn(Optional.of("redhat"));
         when(lm.buildCategories()).thenReturn(List.of(BuildCategory.STANDARD));
         when(lm.artifactQualities())
                 .thenReturn(

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -68,7 +69,7 @@ public class ConfigurationTest {
         assertNotNull(persistent.getSuffixes());
         assertEquals(1, persistent.getSuffixes().size());
         assertEquals("redhat", persistent.getSuffixes().get(0));
-        assertEquals("redhat", persistent.getIncrementSuffix());
+        assertEquals(Optional.of("redhat"), persistent.getIncrementSuffix());
         assertEquals(1, persistent.getBuildCategories().size());
         assertTrue(persistent.getBuildCategories().contains(BuildCategory.STANDARD));
         assertFalse(persistent.getArtifactQualities().isEmpty());

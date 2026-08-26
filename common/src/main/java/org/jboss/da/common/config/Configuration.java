@@ -51,8 +51,7 @@ public interface Configuration {
         Optional<List<String>> suffixes();
 
         @WithName("increment-suffix")
-        @WithDefault("")
-        String incrementSuffix();
+        Optional<String> incrementSuffix();
 
         @WithName("build-categories")
         List<BuildCategory> buildCategories();

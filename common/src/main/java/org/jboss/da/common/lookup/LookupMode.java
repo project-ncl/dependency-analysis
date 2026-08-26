@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,8 @@ import lombok.NoArgsConstructor;
 public class LookupMode {
     private String name;
     private List<String> suffixes = new ArrayList<>();
-    private String incrementSuffix;
+    @Builder.Default
+    private Optional<String> incrementSuffix = Optional.empty();
     private EnumSet<BuildCategory> buildCategories = EnumSet.noneOf(BuildCategory.class);
     private EnumSet<ArtifactQuality> artifactQualities = EnumSet.noneOf(ArtifactQuality.class);
 
