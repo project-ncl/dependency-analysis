@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -115,8 +116,8 @@ public class ReportsGeneratorImplTest {
         Configuration configuration = mock(Configuration.class);
         Configuration.LookupMode lm = mock(Configuration.LookupMode.class);
         when(lm.name()).thenReturn("PERSISTENT");
-        when(lm.suffixes()).thenReturn(List.of("redhat"));
-        when(lm.incrementSuffix()).thenReturn("redhat");
+        when(lm.suffixes()).thenReturn(Optional.of(List.of("redhat")));
+        when(lm.incrementSuffix()).thenReturn(Optional.of("redhat"));
         when(lm.buildCategories()).thenReturn(List.of(BuildCategory.STANDARD));
         when(lm.artifactQualities())
                 .thenReturn(

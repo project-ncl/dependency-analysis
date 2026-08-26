@@ -76,11 +76,10 @@ public interface Configuration {
     interface LookupMode {
         String name();
 
-        List<String> suffixes();
+        Optional<List<String>> suffixes();
 
         @WithName("increment-suffix")
-        @WithDefault("")
-        String incrementSuffix();
+        Optional<String> incrementSuffix();
 
         @WithName("build-categories")
         List<BuildCategory> buildCategories();

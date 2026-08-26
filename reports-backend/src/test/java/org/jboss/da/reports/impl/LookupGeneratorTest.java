@@ -7,15 +7,16 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import org.jboss.da.common.CommunicationException;
 import org.jboss.da.common.config.Configuration;
 import org.jboss.da.listings.api.service.BlackArtifactService;
+import org.jboss.da.lookup.model.MavenLatestResult;
 import org.jboss.da.lookup.model.MavenLookupResult;
 import org.jboss.da.lookup.model.NPMLookupResult;
 import org.jboss.da.model.rest.GA;
@@ -41,6 +42,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 public class LookupGeneratorTest {
 
     public static final String PERSISTENT = "persistent";
+    public static final String NO_INCREMENTAL_SUFFIX = "no-incremental-suffix";
 
     @Mock
     private Configuration configuration;
@@ -64,18 +66,30 @@ public class LookupGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        Configuration.LookupMode mode = mock(Configuration.LookupMode.class);
-        when(mode.name()).thenReturn(PERSISTENT);
-        when(mode.suffixes()).thenReturn(List.of("redhat"));
-        when(mode.incrementSuffix()).thenReturn("redhat");
-        when(mode.buildCategories()).thenReturn(List.of(BuildCategory.STANDARD));
-        when(mode.artifactQualities())
+        Configuration.LookupMode persistentMode = mock(Configuration.LookupMode.class);
+        when(persistentMode.name()).thenReturn(PERSISTENT);
+        when(persistentMode.suffixes()).thenReturn(Optional.of(List.of("redhat")));
+        when(persistentMode.incrementSuffix()).thenReturn(Optional.of("redhat"));
+        when(persistentMode.buildCategories()).thenReturn(List.of(BuildCategory.STANDARD));
+        when(persistentMode.artifactQualities())
                 .thenReturn(
                         Arrays.asList(
                                 ArtifactQuality.NEW,
                                 ArtifactQuality.VERIFIED,
                                 ArtifactQuality.TESTED));
-        when(configuration.lookupModes()).thenReturn(Collections.singletonList(mode));
+
+        Configuration.LookupMode noIncrementalSuffixMode = mock(Configuration.LookupMode.class);
+        when(noIncrementalSuffixMode.name()).thenReturn(NO_INCREMENTAL_SUFFIX);
+        when(noIncrementalSuffixMode.suffixes()).thenReturn(Optional.empty());
+        when(noIncrementalSuffixMode.buildCategories()).thenReturn(List.of(BuildCategory.LIGHTWELL_UPSTREAM));
+        when(noIncrementalSuffixMode.artifactQualities())
+                .thenReturn(
+                        Arrays.asList(
+                                ArtifactQuality.NEW,
+                                ArtifactQuality.VERIFIED,
+                                ArtifactQuality.TESTED));
+
+        when(configuration.lookupModes()).thenReturn(List.of(persistentMode, noIncrementalSuffixMode));
 
         lookupGenerator = new LookupGeneratorImpl(configuration);
         object = MockitoAnnotations.openMocks(this);
@@ -106,6 +120,30 @@ public class LookupGeneratorTest {
     }
 
     @Test
+    void testLookupLatestMavenOfUnsuffixedVersion() throws CommunicationException {
+        GAV gav1 = new GAV("foo.bar", "baz", "1.0.0");
+        prepareAggregatedProvider(gav1.getGA(), Arrays.asList("1.0.0", "1.2.3.redhat-4", "1.0.0.redhat-2"));
+        GAV gav2 = new GAV("foo.bar", "buz", "1.0.0");
+        prepareAggregatedProvider(gav2.getGA(), Arrays.asList("1.0.0.redhat-1", "1.2.3.redhat-4", "1.0.0.redhat-2"));
+        GAV gav3 = new GAV("foo.bar", "buff", "1.0.0");
+        prepareAggregatedProvider(gav3.getGA(), Arrays.asList("1.2.3", "2.0.0"));
+        Set<GAV> gavs = new HashSet<>();
+        gavs.add(gav1);
+        gavs.add(gav2);
+        gavs.add(gav3);
+
+        Set<MavenLatestResult> results = lookupGenerator.lookupLatestMaven(gavs, NO_INCREMENTAL_SUFFIX);
+
+        assertEquals(3, results.size());
+        MavenLatestResult result1 = results.stream().filter(r -> gav1.equals(r.getGav())).findFirst().get();
+        MavenLatestResult result2 = results.stream().filter(r -> gav2.equals(r.getGav())).findFirst().get();
+        MavenLatestResult result3 = results.stream().filter(r -> gav3.equals(r.getGav())).findFirst().get();
+        assertEquals("1.0.0", result1.getLatestVersion());
+        assertNull(result2.getLatestVersion()); // not found -- only suffixed artifacts
+        assertNull(result3.getLatestVersion()); // not found -- not matching the version
+    }
+
+    @Test
     public void testNpm() throws CommunicationException {
         NPMPackage gav1 = new NPMPackage("foo-bar", "1.0.0");
         preparePnc(gav1.getName(), Arrays.asList("1.0.0.redhat-1", "1.2.3.redhat-4", "1.0.0.redhat-2"));
@@ -126,6 +164,11 @@ public class LookupGeneratorTest {
 
     private void preparePnc(GA ga, List<String> versions) {
         when(pncProductProvider.getAllVersions(eq(new MavenArtifact(new GAV(ga, "0.0.0")))))
+                .thenReturn(CompletableFuture.completedFuture(new HashSet<>(versions)));
+    }
+
+    private void prepareAggregatedProvider(GA ga, List<String> versions) {
+        when(aggProductProvider.getAllVersions(eq(new MavenArtifact(new GAV(ga, "0.0.0")))))
                 .thenReturn(CompletableFuture.completedFuture(new HashSet<>(versions)));
     }
 

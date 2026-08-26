@@ -1,9 +1,11 @@
 package org.jboss.da.common.lookup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -24,7 +26,8 @@ import lombok.NoArgsConstructor;
 public class LookupMode {
     private String name;
     private List<String> suffixes = new ArrayList<>();
-    private String incrementSuffix;
+    @Builder.Default
+    private Optional<String> incrementSuffix = Optional.empty();
     private EnumSet<BuildCategory> buildCategories = EnumSet.noneOf(BuildCategory.class);
     private EnumSet<ArtifactQuality> artifactQualities = EnumSet.noneOf(ArtifactQuality.class);
 
@@ -37,7 +40,7 @@ public class LookupMode {
                 : EnumSet.copyOf(new ArrayList<>(section.artifactQualities()));
         return builder()
                 .name(section.name())
-                .suffixes(new ArrayList<>(section.suffixes()))
+                .suffixes(new ArrayList<>(section.suffixes().orElse(Collections.emptyList())))
                 .incrementSuffix(section.incrementSuffix())
                 .buildCategories(buildCategories)
                 .artifactQualities(qualities)
