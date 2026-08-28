@@ -8,7 +8,8 @@
 
 name: Java CI with Maven
 
-permissions: {}
+permissions:
+  contents: read
 
 on:
   pull_request:
