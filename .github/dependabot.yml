@@ -26,3 +26,10 @@ updates:
     # a compromised new version
     cooldown:
       default-days: 7
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "version-3.0.x"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7
