@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-import lombok.Builder;
 import lombok.NonNull;
 import lombok.Value;
 
@@ -34,7 +33,7 @@ import lombok.Value;
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
 @Value
-@Builder(builderClassName = "Builder")
+@lombok.Builder(builderClassName = "Builder")
 @JsonDeserialize(builder = VersionsNPMRequest.Builder.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VersionsNPMRequest {

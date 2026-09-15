@@ -7,7 +7,6 @@ import org.jboss.da.model.rest.GAV;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.jackson.Jacksonized;
@@ -16,7 +15,7 @@ import lombok.extern.jackson.Jacksonized;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
-@Builder
+@lombok.Builder
 @Jacksonized
 @JsonRootName(value = "report")
 @AllArgsConstructor
