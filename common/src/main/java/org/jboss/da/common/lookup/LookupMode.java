@@ -15,18 +15,17 @@ import org.jboss.pnc.enums.BuildCategory;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(toBuilder = true)
+@lombok.Builder(toBuilder = true)
 public class LookupMode {
     private String name;
     private List<String> suffixes = new ArrayList<>();
-    @Builder.Default
+    @lombok.Builder.Default
     private Optional<String> incrementSuffix = Optional.empty();
     private EnumSet<BuildCategory> buildCategories = EnumSet.noneOf(BuildCategory.class);
     private EnumSet<ArtifactQuality> artifactQualities = EnumSet.noneOf(ArtifactQuality.class);

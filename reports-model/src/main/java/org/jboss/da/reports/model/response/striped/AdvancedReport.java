@@ -6,14 +6,13 @@ import org.jboss.da.model.rest.GAV;
 import org.jboss.da.reports.model.response.GAVAvailableVersions;
 import org.jboss.da.reports.model.response.GAVBestMatchVersion;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
 
 @Jacksonized
-@Builder
+@lombok.Builder
 @RequiredArgsConstructor
 public class AdvancedReport {
 

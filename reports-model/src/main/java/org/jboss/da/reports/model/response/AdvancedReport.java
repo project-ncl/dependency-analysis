@@ -5,14 +5,13 @@ import java.util.Set;
 import org.jboss.da.listings.model.rest.RestGavProducts;
 import org.jboss.da.model.rest.GAV;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
 
 @Jacksonized
-@Builder
+@lombok.Builder
 @RequiredArgsConstructor
 public class AdvancedReport {
 
