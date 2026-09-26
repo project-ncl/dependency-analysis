@@ -85,7 +85,7 @@
     <version.pnc-common>3.5.4</version.pnc-common>
     <version.pnc-api>3.5.2</version.pnc-api>
     <atlasVersion>1.2.2</atlasVersion>
-    <version.galley>1.22</version.galley>
+    <version.galley>1.23</version.galley>
     <maven.compiler.release>17</maven.compiler.release>
     <jdk.min.version>${maven.compiler.release}</jdk.min.version>
     <quarkus.platform.version>3.39.3</quarkus.platform.version>
