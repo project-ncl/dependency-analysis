@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.jboss</groupId>
     <artifactId>jboss-parent</artifactId>
-    <version>53</version>
+    <version>54</version>
     <relativePath/>
   </parent>
 
@@ -78,7 +78,6 @@
   </scm>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version.reports.rest>1</version.reports.rest>
     <version.bc.rest>1</version.bc.rest>
     <version.pnc>3.6.0-SNAPSHOT</version.pnc>
@@ -524,7 +523,7 @@
         <configuration>
           <autoVersionSubmodules>true</autoVersionSubmodules>
           <tagNameFormat>@{project.version}${tagSuffix}</tagNameFormat>
-          <releaseProfiles>release</releaseProfiles>
+          <releaseProfiles>central-release</releaseProfiles>
         </configuration>
       </plugin>
       <plugin>
@@ -573,53 +572,7 @@
         <persistence.hibernate.hbm2ddl.auto>validate</persistence.hibernate.hbm2ddl.auto>
       </properties>
       <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>${version.source.plugin}</version>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>${version.javadoc.plugin}</version>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-                <configuration>
-                  <detectOfflineLinks>false</detectOfflineLinks>
-                  <quiet>true</quiet>
-                  <doclint>none</doclint>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>3.2.8</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-                <phase>verify</phase>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
+        <plugins/>
       </build>
     </profile>
   </profiles>
