@@ -8,8 +8,10 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.security.TestSecurity;
 
 @QuarkusTest
+@TestSecurity(user = "testUser", roles = { "pnc-users", "pnc-users-admin" })
 public class WebsocketApiReportsTestIT extends AbstractWebsocketReportsTest {
 
     private static final String PATH_REPORTS_ALIGN = "/reports/align";
