@@ -56,7 +56,6 @@ public class ReportsRestActivator extends Application {
      * @param resources Resource to be added
      */
     public void addProjectResources(Set<Class<?>> resources) {
-        resources.add(Root.class);
         resources.add(Reports.class);
         resources.add(LookupImpl.class);
         resources.add(BlackListImpl.class);
