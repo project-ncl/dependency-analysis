@@ -2,6 +2,7 @@ package org.jboss.da.rest.api;
 
 import java.util.Collection;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -30,6 +31,7 @@ import org.jboss.da.model.rest.ErrorMessage;
  */
 @Path("/listings/blacklist")
 @Tag(name = "blocklist")
+@RolesAllowed({ "pnc-users", "pnc-users-admin" })
 public interface BlackList {
 
     String GAV_JSON = "JSON object with keys 'groupId', 'artifactId', and 'version'";
