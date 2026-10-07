@@ -478,6 +478,13 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
+          <!--
+            Pin to 3.5.6: jboss-parent 54 bumps surefire to 3.6.0, which has a
+            known fork-shutdown hang (apache/maven-surefire#3500) that affects
+            our Quarkus integration tests which leave non-daemon threads running.
+            Remove when 3.6.1+ is released with a fix.
+          -->
+          <version>3.5.6</version>
           <configuration>
             <!--                        <argLine>-javaagent:${org.mockito:mockito-core:jar}</argLine>-->
             <systemPropertyVariables>
