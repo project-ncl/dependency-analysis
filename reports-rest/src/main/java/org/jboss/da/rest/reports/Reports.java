@@ -2,6 +2,7 @@ package org.jboss.da.rest.reports;
 
 import java.util.List;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -53,6 +54,7 @@ import io.opentelemetry.instrumentation.annotations.WithSpan;
 @Tag(name = "reports")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@RolesAllowed({ "pnc-users", "pnc-users-admin" })
 public class Reports {
 
     @Inject

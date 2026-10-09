@@ -24,7 +24,7 @@ import io.quarkus.test.security.TestSecurity;
  *
  * @author jbrazdil
  */
-@TestSecurity(user = "testUser", roles = { "admin", "user" })
+@TestSecurity(user = "testUser", roles = { "pnc-users", "pnc-users-admin" })
 public abstract class AbstractRestApiTest extends AbstractClientApiTest {
 
     protected final String restApiURL;
