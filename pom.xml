@@ -87,7 +87,7 @@
     <version.galley>1.23</version.galley>
     <maven.compiler.release>17</maven.compiler.release>
     <jdk.min.version>${maven.compiler.release}</jdk.min.version>
-    <quarkus.platform.version>3.39.5</quarkus.platform.version>
+    <quarkus.platform.version>3.40.1</quarkus.platform.version>
     <quarkus.wiremock>1.7.0</quarkus.wiremock>
 
     <!-- OTEL Dependencies for Instrumentation -->
