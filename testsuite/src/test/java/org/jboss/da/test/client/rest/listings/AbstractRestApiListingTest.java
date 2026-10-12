@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
@@ -20,6 +23,9 @@ import org.junit.jupiter.api.AfterEach;
  * @author jbrazdil
  */
 public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest {
+
+    @Inject
+    EntityManager em;
 
     protected enum ListEntityType {
         BLACK
@@ -38,17 +44,9 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
     protected static final String PATH_BLACK_LISTINGS_GA = "/listings/blacklist/ga";
 
     @AfterEach
+    @Transactional
     public void dropTables() {
-        List<RestArtifact> blacklistedArtifacts = getAllArtifactsFromList(PATH_BLACK_LIST);
-        blacklistedArtifacts.forEach(gav -> removeGavFromList(PATH_BLACK_LISTINGS_GAV, gav));
-    }
-
-    private void removeGavFromList(String listUrl, RestArtifact gav) {
-        try {
-            createClientRequest(listUrl).method("DELETE", Entity.json(gav), String.class);
-        } catch (Exception e) {
-            fail("Failed to remove GAV from the list using URL " + listUrl);
-        }
+        em.createQuery("DELETE FROM BlackArtifact").executeUpdate();
     }
 
     protected List<RestArtifact> getAllArtifactsFromList(String listUrl) {
@@ -60,8 +58,9 @@ public abstract class AbstractRestApiListingTest extends AbstractRestReportsTest
         Response response = createClientRequest(url).get();
 
         if (response.getStatus() != 200) {
-            System.out.println("Response: " + response.readEntity(String.class));
-            fail("Failed to get entity via REST API. Status " + response.getStatusInfo());
+            String body = response.readEntity(String.class);
+            System.out.println("Response: " + body);
+            fail("Failed to get entity via REST API. Status: " + response.getStatus() + " " + body);
         }
 
         return response.readEntity(type);

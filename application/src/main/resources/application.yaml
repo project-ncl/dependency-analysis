@@ -13,6 +13,13 @@ quarkus:
     auth:
       # required for LDAP: build-time property
       basic: true
+      policy:
+        ws-roles:
+          roles-allowed: pnc-users,pnc-users-admin
+      permission:
+        ws-policy:
+          paths: /ws
+          policy: ws-roles
   security:
     ldap:
       # enable LDAP: build-time property
