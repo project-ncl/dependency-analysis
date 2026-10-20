@@ -13,6 +13,11 @@ quarkus:
   log:
     level: INFO
 
+pnc_client_auth:
+    type: LDAP
+    ldap_credentials:
+        path: /tmp/fake-ldap-secret
+
 # DA — same values as the old ModuleConfigJson merge (global URLs + da module).
 da:
   pnc-url: "http://localhost:8081/pnc-rest/v2"

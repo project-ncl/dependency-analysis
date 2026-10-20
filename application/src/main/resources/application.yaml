@@ -63,6 +63,11 @@ quarkus:
         level: DEBUG
     level: INFO
 
+pnc_client_auth:
+    type: LDAP
+    ldap_credentials:
+        path: /mnt/secrets/ldap-secret
+
 # Dependency Analyzer defaults
 da:
   pnc-url: ""
