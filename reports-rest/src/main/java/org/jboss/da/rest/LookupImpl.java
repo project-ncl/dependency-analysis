@@ -2,6 +2,7 @@ package org.jboss.da.rest;
 
 import java.util.Set;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 
 import org.jboss.da.common.CommunicationException;
@@ -22,6 +23,7 @@ import org.slf4j.Logger;
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
 
+@RolesAllowed({ "pnc-app-da-user", "pnc-users", "pnc-users-admin" })
 public class LookupImpl implements Lookup {
 
     @Inject

@@ -15,7 +15,7 @@ quarkus:
       basic: true
       policy:
         ws-roles:
-          roles-allowed: pnc-users,pnc-users-admin
+          roles-allowed: pnc-app-da-user,pnc-users-admin
       permission:
         ws-policy:
           paths: /ws

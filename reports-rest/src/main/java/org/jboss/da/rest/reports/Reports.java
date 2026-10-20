@@ -54,7 +54,7 @@ import io.opentelemetry.instrumentation.annotations.WithSpan;
 @Tag(name = "reports")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@RolesAllowed({ "pnc-users", "pnc-users-admin" })
+@RolesAllowed({ "pnc-users-admin" })
 public class Reports {
 
     @Inject
