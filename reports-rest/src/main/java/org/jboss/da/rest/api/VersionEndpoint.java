@@ -1,6 +1,5 @@
 package org.jboss.da.rest.api;
 
-import jakarta.annotation.security.PermitAll;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -15,7 +14,6 @@ import org.jboss.pnc.api.dto.ComponentVersion;
 
 @Path("/version")
 @Tag(name = "version")
-@PermitAll
 public interface VersionEndpoint {
     /**
      * Return the current version of Dependency Analysis

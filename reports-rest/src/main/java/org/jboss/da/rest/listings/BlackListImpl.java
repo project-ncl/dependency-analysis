@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 
@@ -25,6 +26,7 @@ import io.opentelemetry.instrumentation.annotations.WithSpan;
  *
  * @author Honza Brázdil &lt;jbrazdil@redhat.com&gt;
  */
+@RolesAllowed({ "pnc-users", "pnc-users-admin" })
 public class BlackListImpl implements BlackList {
 
     @Inject
@@ -71,6 +73,7 @@ public class BlackListImpl implements BlackList {
 
     @Override
     @WithSpan()
+    @RolesAllowed({ "pnc-app-da-user", "pnc-users-admin" })
     public Response addBlackArtifact(@SpanAttribute(value = "artifact") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         ArtifactService.ArtifactStatus result = blackService

@@ -2,7 +2,6 @@ package org.jboss.da.rest.api;
 
 import java.util.Set;
 
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -36,7 +35,6 @@ import org.jboss.da.lookup.model.NPMVersionsResult;
 @Tag(name = "lookup")
 @Consumes(value = MediaType.APPLICATION_JSON)
 @Produces(value = MediaType.APPLICATION_JSON)
-@RolesAllowed({ "pnc-users", "pnc-users-admin" })
 public interface Lookup {
 
     @POST
