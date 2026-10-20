@@ -1,5 +1,6 @@
 package org.jboss.da.communication.pnc;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,9 +16,9 @@ import org.jboss.pnc.client.ArtifactClient;
 import org.jboss.pnc.client.Configuration;
 import org.jboss.pnc.client.RemoteCollection;
 import org.jboss.pnc.client.RemoteResourceException;
-import org.jboss.pnc.common.logging.MDCUtils;
 import org.jboss.pnc.dto.response.ArtifactInfo;
 import org.jboss.pnc.enums.RepositoryType;
+import org.jboss.pnc.quarkus.client.auth.runtime.PNCClientAuth;
 import org.slf4j.Logger;
 
 /**
@@ -28,6 +29,9 @@ public class PncConnectorImpl implements PncConnector {
 
     @Inject
     private Logger log;
+
+    @Inject
+    PNCClientAuth pncClientAuth;
 
     private String pncUrl;
 
@@ -103,7 +107,14 @@ public class PncConnectorImpl implements PncConnector {
         builder.host(host);
         builder.port(port == -1 ? null : port);
 
-        builder.mdcToHeadersMappings(MDCUtils.HEADER_KEY_MAPPING);
+        builder.addDefaultMdcToHeadersMappings();
+
+        try {
+            PNCClientAuth.LDAPCredentials ldapCredentials = pncClientAuth.getLDAPCredentials();
+            builder.basicAuth(new Configuration.BasicAuth(ldapCredentials.username(), ldapCredentials.password()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         return builder.build();
     }

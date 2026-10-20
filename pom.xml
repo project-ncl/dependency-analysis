@@ -208,6 +208,11 @@
         <artifactId>rest-client-jakarta</artifactId>
         <version>${version.pnc}</version>
       </dependency>
+      <dependency>
+        <groupId>org.jboss.pnc</groupId>
+        <artifactId>quarkus-pnc-client-auth</artifactId>
+        <version>1.0.0</version>
+      </dependency>
 
       <dependency>
         <groupId>jakarta.annotation</groupId>
