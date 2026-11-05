@@ -73,7 +73,7 @@ public class BlackListImpl implements BlackList {
 
     @Override
     @WithSpan()
-    @RolesAllowed({ "pnc-app-da-user", "pnc-users-admin" })
+    @RolesAllowed({ "pnc-app-da-blacklist", "pnc-users-admin" })
     public Response addBlackArtifact(@SpanAttribute(value = "artifact") RestArtifact artifact) {
         SuccessResponse response = new SuccessResponse();
         ArtifactService.ArtifactStatus result = blackService
